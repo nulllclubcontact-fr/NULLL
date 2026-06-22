@@ -1,11 +1,11 @@
 import Image from "next/image";
 import logoWhite from "../Logo_basics/Logo Typo Blanc fond Noir.png";
-import cameraProof from "../photo/2.png";
-import motionRun from "../photo/1.png";
-import runSunset from "../photo/ChatGPT Image 28 mai 2026, 01_55_11.png";
 import { upcomingRuns } from "../lib/content";
-import { BrutalButton } from "./BrutalButton";
 import { Reveal } from "./Reveal";
+
+const cameraProof = "/assets/photos/camera-proof.png";
+const motionRun = "/assets/photos/motion-run.png";
+const runSunset = "/assets/photos/run-sunset.png";
 
 export function Runs() {
   return (
@@ -38,8 +38,8 @@ export function Runs() {
           <Reveal className="mt-5 grid grid-cols-[110px_1fr] border-2 border-dashed border-white p-4 font-mono uppercase" delay={0.08}>
             <div className="grid place-items-center border-r-2 border-white text-5xl">+</div>
             <div className="px-6">
-              <p className="text-2xl font-bold">MORE DROPS COMING SOON</p>
-              <p className="mt-2 text-sm text-white/70">Future events will appear here</p>
+              <p className="text-2xl font-bold">PLUS DE RUNS BIENTOT</p>
+              <p className="mt-2 text-sm text-white/70">Les prochains evenements arriveront ici</p>
             </div>
           </Reveal>
         </div>
@@ -133,7 +133,7 @@ function PosterNav() {
 function SideTape() {
   return (
     <div className="absolute inset-y-0 left-0 hidden w-16 border-r-2 border-white font-mono text-xs uppercase lg:block">
-      <div className="vertical-copy absolute left-5 top-8 text-rust">2026/05/28 21:17:48</div>
+      <div className="vertical-copy absolute left-5 top-8 text-rust">2026/09/12 19:00:00</div>
       <div className="vertical-copy absolute bottom-24 left-5 text-white/75">
         Aix-en-Provence, France / 43.5297 N, 5.4474 E
       </div>
@@ -150,29 +150,32 @@ function RunDropCard({
   run: (typeof upcomingRuns)[number];
 }) {
   const parts = run.date.split(" ");
-  const day = parts[1] ?? "07";
-  const month = parts[2] ?? "JUN";
+  const weekday = parts[0] ?? "SAM";
+  const day = parts[1] ?? "12";
+  const month = parts[2] ?? "SEP";
 
   return (
     <Reveal className="grid grid-cols-[76px_1fr] gap-3" delay={index * 0.04}>
       <div className="grid place-items-center border-2 border-white bg-white py-2 text-center font-mono uppercase text-black">
-        <span className="text-sm font-black">SAT</span>
+        <span className="text-sm font-black">{weekday}</span>
         <span className="font-display text-5xl leading-none">{day}</span>
         <span className="text-sm font-black">{month}</span>
       </div>
       <article className="grid border-2 border-white md:grid-cols-[1fr_150px]">
         <div className="p-2.5">
           <div className="flex items-start justify-between gap-4 border-b-2 border-white pb-2">
-            <h3 className="font-display text-3xl uppercase leading-none sm:text-4xl">NEXT DROP</h3>
+            <h3 className="font-display text-3xl uppercase leading-none sm:text-4xl">PROCHAIN RUN</h3>
             <span className="font-mono text-sm text-rust">{run.time}</span>
           </div>
           <dl className="mt-2 grid grid-cols-[92px_1fr] gap-y-0.5 font-mono text-xs uppercase">
-            <dt>Location:</dt>
+            <dt>Lieu:</dt>
             <dd>Aix-en-Provence</dd>
-            <dt>Pace:</dt>
+            <dt>Rythme:</dt>
             <dd>No ego</dd>
-            <dt>Rule:</dt>
-            <dd>Come as you are</dd>
+            <dt>Apres:</dt>
+            <dd>DJ sets</dd>
+            <dt>Regle:</dt>
+            <dd>Viens comme tu es</dd>
           </dl>
         </div>
         <div className="relative hidden border-l-2 border-white md:block">
@@ -206,7 +209,7 @@ function PhotoFrame({
 }: {
   alt: string;
   className: string;
-  src: typeof motionRun;
+  src: string;
   stamp?: string;
 }) {
   return (

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CountdownTimer } from "./CountdownTimer";
 import { LanguageToggle } from "./LanguageToggle";
 import { LocalizedText } from "./LocalizedText";
 import { navItems, type NavKey } from "../lib/content";
@@ -54,6 +55,9 @@ export function BrandHeader({ current }: BrandHeaderProps) {
           <Link className="border-t-2 border-white px-4 py-4 text-shock" href="/runs">
             <LocalizedText en="NEXT RUN / AIX-EN-PROVENCE" fr="PROCHAIN RUN / AIX-EN-PROVENCE" />
           </Link>
+          <div className="border-t-2 border-white px-4 py-4">
+            <CountdownTimer />
+          </div>
           <LanguageToggle className="border-t-2" />
         </nav>
       </details>
@@ -100,9 +104,7 @@ export function BrandHeader({ current }: BrandHeaderProps) {
             5.4474 E
           </div>
           <div className="border-l-2 border-white p-4 text-shock">
-            Time
-            <br />
-            12:45:32
+            <CountdownTimer />
           </div>
         </div>
         <LanguageToggle className="border-l-2" />
@@ -110,7 +112,7 @@ export function BrandHeader({ current }: BrandHeaderProps) {
           className="grid min-h-16 place-items-center border-white p-4 font-mono text-sm uppercase transition hover:bg-shock hover:text-black lg:border-l-2"
           href="/runs"
         >
-          <LocalizedText en="Next run" fr="Run" />
+          <LocalizedText en="Next run" fr="Prochain run" />
         </Link>
       </div>
     </header>

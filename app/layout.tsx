@@ -3,12 +3,17 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "NULLL.CLUB | Aix-en-Provence Social Run Club",
+  title: "NULLL.CLUB | Social Run Club Aix-en-Provence",
   description:
-    "NULLL.CLUB is a social run club in Aix-en-Provence. Running is just the excuse. Make it real.",
+    "NULLL.CLUB est un social run club a Aix-en-Provence. Le sport est le pretexte. Make it real.",
+  icons: {
+    icon: "/assets/brand/nulll-mark.png",
+    shortcut: "/assets/brand/nulll-mark.png",
+    apple: "/assets/brand/nulll-mark.png"
+  },
   openGraph: {
     title: "NULLL.CLUB",
-    description: "Running is just the excuse. Aix-en-Provence social run club.",
+    description: "Le sport est le pretexte. Aix-en-Provence social run club.",
     type: "website"
   }
 };
@@ -24,7 +29,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html data-lang="fr" lang="fr" suppressHydrationWarning>
       <body>{children}</body>
     </html>
   );

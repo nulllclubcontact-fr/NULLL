@@ -10,7 +10,7 @@ import { merchItems } from "../lib/content";
 
 const routeCards = [
   { href: "/runs", label: "Runs", labelFr: "Runs", text: "Next drops, place, pace, rule.", textFr: "Prochaines dates, lieu, rythme, regle." },
-  { href: "/community", label: "Community", labelFr: "Communaute", text: "Come alone. Leave connected.", textFr: "Viens seul. Repartez connectes." },
+  { href: "/community", label: "Community", labelFr: "Communaute", text: "Come alone. Leave connected.", textFr: "Viens seul. Repars connecte." },
   { href: "/merch", label: "Merch", labelFr: "Merch", text: "Wear the club. Support the runs.", textFr: "Porte le club. Soutiens les runs." },
   { href: "/about", label: "About", labelFr: "A propos", text: "Sport is the pretext.", textFr: "Le sport est le pretexte." }
 ] as const;
@@ -146,7 +146,7 @@ export default function Home() {
             className="h-full min-h-[540px]"
             priority
             src="/assets/photos/motion-run.png"
-            stamp="05.06.2026"
+            stamp="12.09.2026"
           />
           <Image
             alt=""
@@ -222,7 +222,7 @@ export default function Home() {
                 <>
                   UN TEE.
                   <br />
-                  LE DROP APRES.
+                  LE DROP COMPLET.
                 </>
               }
             />
@@ -234,7 +234,7 @@ export default function Home() {
                   Homepage shows one signal. The full drop keeps every t-shirt.
                 </>
               }
-              fr="L'accueil montre un signal. Le full drop garde tous les t-shirts."
+              fr="L'accueil montre un signal. Le drop complet garde tous les t-shirts."
             />
           </p>
           <div className="mt-6 grid grid-cols-[1fr_82px] border-2 border-white font-mono text-sm uppercase">
@@ -255,7 +255,7 @@ export default function Home() {
                     <br />
                     Tee selectionne
                     <br />
-                    Drop complet sur merch
+                    DJ sets apres run
                   </>
                 }
               />

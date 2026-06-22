@@ -9,9 +9,9 @@ export const navItems = [
 
 export const runFacts = [
   {
-    label: "NEXT DROP",
-    value: "25.06.2026",
-    detail: "19:12 / ROTONDE"
+    label: "PROCHAIN RUN",
+    value: "12.09.2026",
+    detail: "AIX / DJ SETS APRES"
   },
   {
     label: "LOCATION",
@@ -34,31 +34,46 @@ export type NavKey = (typeof navItems)[number]["key"];
 
 export const upcomingRuns = [
   {
-    id: "drop-001",
-    date: "SAT 07 JUN",
+    id: "run-001",
+    date: "SAM 12 SEP",
+    dateEn: "SAT 12 SEP",
     time: "19:00",
-    title: "Next Drop",
-    route: "4.8 KM / CITY LOOP",
+    title: "Prochain Run",
+    titleEn: "Next Run",
+    fullDate: "12 septembre 2026",
+    fullDateEn: "September 12, 2026",
+    route: "5 KM / BOUCLE SOCIALE",
+    routeEn: "5 KM / SOCIAL LOOP",
     start: "Aix-en-Provence",
-    status: "OPEN"
+    status: "DJ SETS APRES"
   },
   {
-    id: "drop-002",
-    date: "SAT 21 JUN",
+    id: "run-002",
+    date: "SAM 19 SEP",
+    dateEn: "SAT 19 SEP",
     time: "19:30",
-    title: "Next Drop",
-    route: "7.2 KM / SOFT CLIMB",
+    title: "Prochain Run",
+    titleEn: "Next Run",
+    fullDate: "19 septembre 2026",
+    fullDateEn: "September 19, 2026",
+    route: "6 KM / NO EGO PACE",
+    routeEn: "6 KM / NO EGO PACE",
     start: "Aix-en-Provence",
-    status: "DROP SOON"
+    status: "DJ SETS APRES"
   },
   {
-    id: "drop-003",
-    date: "SAT 05 JUL",
+    id: "run-003",
+    date: "SAM 26 SEP",
+    dateEn: "SAT 26 SEP",
     time: "19:30",
-    title: "Next Drop",
-    route: "5.5 KM / CHAT FIRST",
+    title: "Prochain Run",
+    titleEn: "Next Run",
+    fullDate: "26 septembre 2026",
+    fullDateEn: "September 26, 2026",
+    route: "5.5 KM / PARLE D'ABORD",
+    routeEn: "5.5 KM / TALK FIRST",
     start: "Aix-en-Provence",
-    status: "WAITLIST"
+    status: "DJ SETS APRES"
   }
 ] as const;
 
@@ -66,21 +81,24 @@ export const merchItems = [
   {
     id: "tee-blackout",
     name: "BLACKOUT TEE",
-    price: "38 EUR",
+    price: "35 EUR",
+    amount: 35,
     variant: "black",
     caption: "Club mark. Heavy cotton. Zero finesse."
   },
   {
     id: "tee-white-noise",
     name: "WHITE NOISE TEE",
-    price: "38 EUR",
+    price: "35 EUR",
+    amount: 35,
     variant: "white",
     caption: "Runs badly. Washes worse. Looks correct."
   },
   {
     id: "tee-warning",
     name: "SOCIAL WARNING TEE",
-    price: "42 EUR",
+    price: "35 EUR",
+    amount: 35,
     variant: "warning",
     caption: "Not a running brand. A public signal."
   }
@@ -94,3 +112,12 @@ export const slogans = [
   "COME ALONE. LEAVE CONNECTED.",
   "MAKE IT REAL."
 ] as const;
+
+export const contactInfo = {
+  instagram: "https://www.instagram.com/nulll.club",
+  instagramLabel: "@nulll.club",
+  email: "contact@nulll.club",
+  linkedin: "https://www.linkedin.com/company/nulll-club/"
+} as const;
+
+export const firstRunTargetIso = "2026-09-12T19:00:00+02:00";

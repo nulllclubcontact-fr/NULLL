@@ -1,7 +1,8 @@
 import Image from "next/image";
-import cameraProof from "../photo/2.png";
-import runSunset from "../photo/ChatGPT Image 28 mai 2026, 01_55_11.png";
 import { Reveal } from "./Reveal";
+
+const cameraProof = "/assets/photos/camera-proof.png";
+const runSunset = "/assets/photos/run-sunset.png";
 
 export function Community() {
   return (

@@ -1,9 +1,10 @@
 import Image from "next/image";
-import motionRun from "../photo/1.png";
 import logoWhite from "../Logo_basics/Logo Typo Blanc fond Noir.png";
 import { BrutalButton } from "./BrutalButton";
 import { Reveal } from "./Reveal";
 import { SiteHeader } from "./SiteHeader";
+
+const motionRun = "/assets/photos/motion-run.png";
 
 const manifestoLines = [
   "We are not here to perform.",
@@ -32,7 +33,7 @@ export function Hero() {
               </div>
             </Reveal>
             <Reveal className="max-w-2xl font-mono text-base leading-relaxed text-white sm:text-xl" delay={0.14}>
-              Aix-en-Provence social run club. We run, we meet, we make it real.
+              Social run club a Aix-en-Provence. On court, on se rencontre, on rend ca reel.
             </Reveal>
             <Reveal className="mt-6 flex flex-col gap-4 sm:flex-row" delay={0.2}>
               <BrutalButton href="#runs">JOIN THE NEXT RUN</BrutalButton>
@@ -56,7 +57,7 @@ export function Hero() {
             <div className="p-4">
               MAKE IT REAL.
               <br />
-              20:42:13
+              12.09.2026
             </div>
           </div>
         </div>
@@ -77,7 +78,7 @@ export function Hero() {
             />
             <div className="absolute inset-x-0 bottom-0 grid grid-cols-[1fr_auto] border-t-2 border-white bg-black/90 font-mono text-xs uppercase text-white sm:text-sm">
               <div className="p-4">Aix-en-Provence // Social Run Club</div>
-              <div className="border-l-2 border-white p-4 text-rust">05.06.2026</div>
+              <div className="border-l-2 border-white p-4 text-rust">12.09.2026</div>
             </div>
           </div>
           <Image

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import logoWhite from "../Logo_basics/Logo Typo Blanc fond Noir.png";
 import { navItems } from "../lib/content";
+import { CountdownTimer } from "./CountdownTimer";
+import { LocalizedText } from "./LocalizedText";
 
 export function SiteHeader() {
   return (
@@ -16,7 +18,7 @@ export function SiteHeader() {
               href={item.href}
               key={item.href}
             >
-              {item.label}
+              <LocalizedText en={item.label} fr={item.labelFr} />
             </a>
           ))}
         </nav>
@@ -25,7 +27,9 @@ export function SiteHeader() {
           <br />
           43.5297 N, 5.4474 E
         </div>
-        <div className="flex items-center px-7 py-4 font-mono text-sm uppercase text-rust">20:42:13</div>
+        <div className="flex items-center px-7 py-4">
+          <CountdownTimer />
+        </div>
       </div>
     </header>
   );

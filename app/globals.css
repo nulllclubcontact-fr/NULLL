@@ -60,21 +60,28 @@ summary::-webkit-details-marker {
   display: none;
 }
 
-html:not([data-lang="fr"]) .lang-fr,
-html[data-lang="fr"] .lang-en {
+html:not([data-lang="en"]) .lang-en,
+html[data-lang="en"] .lang-fr {
   display: none !important;
 }
 
 .brutal-title {
-  line-height: 0.88;
+  line-height: 0.9;
   word-break: normal;
-  overflow-wrap: normal;
+  overflow-wrap: anywhere;
   text-wrap: balance;
 }
 
 .copy-safe {
   min-width: 0;
   overflow-wrap: anywhere;
+}
+
+.display-safe {
+  min-width: 0;
+  line-height: 0.9;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .grid-paper {

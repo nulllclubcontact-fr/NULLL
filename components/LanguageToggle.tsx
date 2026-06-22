@@ -15,10 +15,10 @@ function applyLanguage(nextLang: SiteLanguage) {
 }
 
 export function LanguageToggle({ className = "" }: LanguageToggleProps) {
-  const [lang, setLang] = useState<SiteLanguage>("en");
+  const [lang, setLang] = useState<SiteLanguage>("fr");
 
   useEffect(() => {
-    const savedLang = window.localStorage.getItem("nulll-lang") === "fr" ? "fr" : "en";
+    const savedLang = window.localStorage.getItem("nulll-lang") === "en" ? "en" : "fr";
     setLang(savedLang);
     applyLanguage(savedLang);
   }, []);
@@ -35,10 +35,10 @@ export function LanguageToggle({ className = "" }: LanguageToggleProps) {
       }}
       type="button"
     >
-      <span>
-        {lang === "fr" ? "EN" : "FR"}
-        <span className="text-shock group-hover:text-black"> / </span>
-        {lang === "fr" ? "FR" : "EN"}
+      <span className="flex items-center gap-1">
+        <span className={lang === "fr" ? "text-shock group-hover:text-black" : ""}>FR</span>
+        <span>/</span>
+        <span className={lang === "en" ? "text-shock group-hover:text-black" : ""}>EN</span>
       </span>
     </button>
   );

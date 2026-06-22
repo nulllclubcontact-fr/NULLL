@@ -1,9 +1,11 @@
 import Image from "next/image";
 import logoWhite from "../Logo_basics/Logo Typo Blanc fond Noir.png";
+import { contactInfo } from "../lib/content";
 
 const footerLinks = [
-  { label: "Instagram", href: "https://www.instagram.com/nulll.club" },
-  { label: "Contact", href: "mailto:hello@nulll.club" },
+  { label: "Instagram", href: contactInfo.instagram },
+  { label: "Contact", href: `mailto:${contactInfo.email}` },
+  { label: "LinkedIn", href: contactInfo.linkedin },
   { label: "Runs", href: "#runs" },
   { label: "Merch", href: "#merch" }
 ] as const;
@@ -18,10 +20,10 @@ export function Footer() {
             NULLL.CLUB is a community that brings people closer with sport as an excuse. Make it real.
           </p>
         </div>
-        <div className="grid grid-cols-2 font-mono text-sm uppercase sm:grid-cols-4">
+        <div className="grid grid-cols-2 font-mono text-sm uppercase sm:grid-cols-5">
           {footerLinks.map((link) => (
             <a
-              className="min-h-32 border-b-2 border-r-2 border-white p-4 transition hover:bg-white hover:text-black sm:border-b-0"
+              className="min-h-28 border-b-2 border-r-2 border-white p-4 transition hover:bg-white hover:text-black sm:border-b-0"
               href={link.href}
               key={link.href}
             >
