@@ -16,10 +16,10 @@ export function Merch() {
             </h2>
           </Reveal>
           <p className="mt-5 border-t-2 border-white pt-5 font-mono text-xl uppercase leading-tight">
-            <LocalizedText en="Not a running brand." fr="Pas une marque de running." />
+            <LocalizedText en="Not a running brand." fr="Not a running brand." />
             <br />
             <span className="text-shock">
-              <LocalizedText en="A social warning." fr="Un signal social." />
+              <LocalizedText en="A social warning." fr="A social warning." />
             </span>
           </p>
           <div className="mt-6 grid grid-cols-[1fr_82px] border-2 border-white font-mono text-sm uppercase">
@@ -35,7 +35,7 @@ export function Merch() {
           <p className="copy-safe mt-5 font-mono text-xs uppercase text-white/60">
             <LocalizedText
               en="All sales support the club and the runs."
-              fr="Les ventes soutiennent le club et les runs."
+              fr="Sales support le club et les runs."
             />
           </p>
         </div>

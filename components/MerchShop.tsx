@@ -76,7 +76,7 @@ export function MerchShop() {
       <aside className="border-2 border-white bg-black text-white xl:sticky xl:top-28 xl:self-start" aria-live="polite">
         <div className="flex items-center justify-between border-b-2 border-white p-4 font-mono uppercase">
           <span className="text-shock">
-            <LocalizedText en="Cart" fr="Panier" />
+            <LocalizedText en="Cart" fr="Cart" />
           </span>
           <span>[{count}]</span>
         </div>
@@ -85,7 +85,7 @@ export function MerchShop() {
           <div className="p-4 font-mono text-sm uppercase text-white/65">
             <LocalizedText
               en="No tee selected yet. Hit add to cart, the signal will appear here."
-              fr="Aucun tee selectionne. Clique ajouter au panier, le signal apparait ici."
+              fr="No tee selected. Clique Add to cart, le signal apparait ici."
             />
           </div>
         ) : (
@@ -125,7 +125,7 @@ export function MerchShop() {
 
             <div className="border-b-2 border-white p-4 font-mono uppercase">
               <p className="text-xs text-white/60">
-                <LocalizedText en="Estimated total" fr="Total estime" />
+                <LocalizedText en="Estimated total" fr="Total estimate" />
               </p>
               <p className="mt-2 text-3xl font-black text-shock">{total} EUR</p>
             </div>
@@ -138,7 +138,7 @@ export function MerchShop() {
           type="button"
         >
           <span>
-            <LocalizedText en="Checkout soon" fr="Paiement bientot" />
+            <LocalizedText en="Checkout soon" fr="Checkout soon" />
           </span>
           <ArrowIcon />
         </button>
@@ -203,7 +203,7 @@ function ProductCard({
           type="button"
         >
           <span>
-            <LocalizedText en="Add to cart" fr="Ajouter au panier" />
+            <LocalizedText en="Add to cart" fr="Add to cart" />
           </span>
           <span aria-hidden="true">-&gt;</span>
         </button>

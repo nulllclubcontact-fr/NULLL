@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "NULLL.CLUB | Social Run Club Aix-en-Provence",
   description:
-    "NULLL.CLUB est un social run club a Aix-en-Provence. Le sport est le pretexte. Make it real.",
+    "NULLL.CLUB est un social run club a Aix-en-Provence. Sport is the pretext. Make it real.",
   icons: {
     icon: "/assets/brand/nulll-mark.png",
     shortcut: "/assets/brand/nulll-mark.png",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "NULLL.CLUB",
-    description: "Le sport est le pretexte. Aix-en-Provence social run club.",
+    description: "Sport is the pretext. Aix-en-Provence social run club.",
     type: "website"
   }
 };

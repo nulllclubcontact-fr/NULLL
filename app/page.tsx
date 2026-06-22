@@ -9,10 +9,10 @@ import { PosterPhoto } from "../components/PosterPhoto";
 import { merchItems } from "../lib/content";
 
 const routeCards = [
-  { href: "/runs", label: "Runs", labelFr: "Runs", text: "Next drops, place, pace, rule.", textFr: "Prochaines dates, lieu, rythme, regle." },
-  { href: "/community", label: "Community", labelFr: "Communaute", text: "Come alone. Leave connected.", textFr: "Viens seul. Repars connecte." },
-  { href: "/merch", label: "Merch", labelFr: "Merch", text: "Wear the club. Support the runs.", textFr: "Porte le club. Soutiens les runs." },
-  { href: "/about", label: "About", labelFr: "A propos", text: "Sport is the pretext.", textFr: "Le sport est le pretexte." }
+  { href: "/runs", label: "Runs", labelFr: "Runs", text: "Next runs, place, pace, rule.", textFr: "Dates, spot, pace, rule." },
+  { href: "/community", label: "Community", labelFr: "Community", text: "Come alone. Leave connected.", textFr: "Come alone. Leave connected." },
+  { href: "/merch", label: "Merch", labelFr: "Merch", text: "Wear the club. Support the runs.", textFr: "Wear the club. Support les runs." },
+  { href: "/about", label: "About", labelFr: "A propos", text: "Sport is the pretext.", textFr: "Sport is the pretext." }
 ] as const;
 
 const homeMerchVisuals = {
@@ -57,7 +57,7 @@ export default function Home() {
                 }
                 fr={
                   <>
-                    COURIR EST JUSTE LE <span className="text-shock">PRETEXTE.</span>
+                    RUNNING IS JUST THE <span className="text-shock">EXCUSE.</span>
                   </>
                 }
               />
@@ -65,15 +65,15 @@ export default function Home() {
             <p className="copy-safe mt-5 max-w-2xl font-mono text-lg leading-relaxed text-white/80">
               <LocalizedText
                 en="Aix-en-Provence social run club. We run, we meet, we make it real."
-                fr="Social run club a Aix-en-Provence. On court, on se rencontre, on rend ca reel."
+                fr="Social run club a Aix-en-Provence. On run, on meet, on make it real."
               />
             </p>
             <div className="mt-7 flex flex-col gap-4 sm:flex-row">
               <BrutalButton href="/runs" variant="pink">
-                <LocalizedText en="JOIN THE NEXT RUN" fr="REJOINDRE LE PROCHAIN RUN" />
+                <LocalizedText en="JOIN THE NEXT RUN" fr="JOIN LE PROCHAIN RUN" />
               </BrutalButton>
               <BrutalButton href="/merch">
-                <LocalizedText en="SEE THE MERCH" fr="VOIR LE MERCH" />
+                <LocalizedText en="SEE THE MERCH" fr="SEE THE MERCH" />
               </BrutalButton>
             </div>
           </div>
@@ -92,11 +92,11 @@ export default function Home() {
                 }
                 fr={
                   <>
-                    Pas de rythme.
+                    No pace.
                     <br />
-                    Pas d'ego.
+                    No ego.
                     <br />
-                    Pas d'excuse.
+                    No excuse.
                   </>
                 }
               />
@@ -112,9 +112,9 @@ export default function Home() {
                 }
                 fr={
                   <>
-                    Cours mal.
+                    Run bad.
                     <br />
-                    Rencontre des gens.
+                    Meet people.
                   </>
                 }
               />
@@ -130,7 +130,7 @@ export default function Home() {
                 }
                 fr={
                   <>
-                    Rends ca reel.
+                    Make it real.
                     <br />
                     43.5298 N
                   </>
@@ -175,9 +175,9 @@ export default function Home() {
               }
               fr={
                 <>
-                  Choisis ta page.
+                  Pick ta page.
                   <br />
-                  Reste clair.
+                  Stay sharp.
                 </>
               }
             />
@@ -220,9 +220,9 @@ export default function Home() {
               }
               fr={
                 <>
-                  UN TEE.
+                  ONE TEE.
                   <br />
-                  LE DROP COMPLET.
+                  FULL DROP APRES.
                 </>
               }
             />
@@ -234,7 +234,7 @@ export default function Home() {
                   Homepage shows one signal. The full drop keeps every t-shirt.
                 </>
               }
-              fr="L'accueil montre un signal. Le drop complet garde tous les t-shirts."
+              fr="L'accueil montre one signal. Le full drop garde tous les tees."
             />
           </p>
           <div className="mt-6 grid grid-cols-[1fr_82px] border-2 border-white font-mono text-sm uppercase">
@@ -253,7 +253,7 @@ export default function Home() {
                   <>
                     Drop 001
                     <br />
-                    Tee selectionne
+                    Featured tee
                     <br />
                     DJ sets apres run
                   </>
@@ -264,7 +264,7 @@ export default function Home() {
           </div>
           <div className="mt-6">
             <BrutalButton href="/merch" variant="pink">
-              <LocalizedText en="SEE FULL DROP" fr="VOIR LE DROP COMPLET" />
+                <LocalizedText en="SEE FULL DROP" fr="SEE FULL DROP" />
             </BrutalButton>
           </div>
         </div>
@@ -275,7 +275,7 @@ export default function Home() {
             <div className="border-b-2 border-black p-4">
               <p className="text-xs">DROP 001</p>
               <p className="copy-safe mt-4 text-2xl font-black leading-tight">
-                <LocalizedText en="3 TEES WAITING ON THE MERCH PAGE." fr="3 TEES ATTENDENT SUR LA PAGE MERCH." />
+                <LocalizedText en="3 TEES WAITING ON THE MERCH PAGE." fr="3 TEES WAITING SUR LA PAGE MERCH." />
               </p>
             </div>
             <Link className="group flex min-h-28 items-end justify-between gap-4 p-4 transition hover:bg-shock" href="/merch">
@@ -338,7 +338,7 @@ function HomeMerchCard({ item }: { item: (typeof merchItems)[number] }) {
           <span className="text-shock">{item.price}</span>
         </div>
         <p className="copy-safe mt-3 min-h-12 font-mono text-xs uppercase text-white/65">
-          <LocalizedText en={item.caption} fr="Logo club. Coton lourd. Signal simple." />
+          <LocalizedText en={item.caption} fr="Club logo. Heavy cotton. Signal simple." />
         </p>
       </div>
     </Link>

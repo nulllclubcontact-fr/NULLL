@@ -10,30 +10,30 @@ const contactRoutes = [
     label: "INSTAGRAM",
     href: contactInfo.instagram,
     value: contactInfo.instagramLabel,
-    text: "Le signal le plus rapide pour les prochains runs.",
+    text: "Le fastest signal pour les prochains runs.",
     textEn: "Fastest signal for the next runs."
   },
   {
     label: "EMAIL",
     href: `mailto:${contactInfo.email}?subject=NULLL.CLUB%20contact`,
     value: contactInfo.email,
-    text: "Merch, collab, photos, idee bizarre mais humaine.",
+    text: "Merch, collab, photos, weird ideas mais humaines.",
     textEn: "Merch, collabs, photos and human weird ideas."
   },
   {
     label: "LINKEDIN",
     href: contactInfo.linkedin,
     value: "NULLL CLUB",
-    text: "Pour les projets, partenaires et traces officielles.",
+    text: "Pour projects, partners et traces officielles.",
     textEn: "For projects, partners and official traces."
   }
 ] as const;
 
 const questions = [
-  ["Je peux venir seul ?", "Oui. C'est presque le principe.", "Can I come alone?", "Yes. It is almost the point."],
-  ["Je dois etre rapide ?", "Non. Rythme social, ego dehors.", "Do I need to be fast?", "No. Social pace, ego outside."],
-  ["Le depart est ou ?", "Aix-en-Provence. Lieu exact sur Instagram.", "Where is the start?", "Aix-en-Provence. Exact spot on Instagram."],
-  ["Je peux filmer ?", "Demande avant. On garde ca humain.", "Can I film?", "Ask first. Keep it human."]
+  ["Can I come alone ?", "Oui. Almost recommended.", "Can I come alone?", "Yes. It is almost the point."],
+  ["Need to be fast ?", "Non. Social pace, ego dehors.", "Do I need to be fast?", "No. Social pace, ego outside."],
+  ["Start spot ?", "Aix-en-Provence. Exact spot sur Instagram.", "Where is the start?", "Aix-en-Provence. Exact spot on Instagram."],
+  ["Je peux film ?", "Ask first. Keep it human.", "Can I film?", "Ask first. Keep it human."]
 ] as const;
 
 export default function ContactPage() {
@@ -47,10 +47,10 @@ export default function ContactPage() {
               <LocalizedText en="Contact / Social" fr="Contact / Social" />
             </PageStamp>
             <h1 className="display-safe mt-7 font-display text-[clamp(3rem,6.5vw,7.4rem)] uppercase">
-              <LocalizedText en="THE RUNS HAPPEN OUTSIDE." fr="LES RUNS SE PASSENT DEHORS." />
+              <LocalizedText en="THE RUNS HAPPEN OUTSIDE." fr="THE RUNS HAPPEN OUTSIDE." />
               <br />
-              <LocalizedText en="THE CHAOS STARTS" fr="LE SIGNAL COMMENCE" /> <span className="text-shock">
-                <LocalizedText en="HERE." fr="ICI." />
+              <LocalizedText en="THE CHAOS STARTS" fr="THE CHAOS STARTS" /> <span className="text-shock">
+                <LocalizedText en="HERE." fr="HERE." />
               </span>
             </h1>
           </div>
@@ -75,13 +75,13 @@ export default function ContactPage() {
             <p className="mt-5 text-sm text-white/65">
               <LocalizedText
                 en="Want the next run? Ask on Instagram or email. Come alone, that is enough."
-                fr="Tu veux le prochain run ? Instagram ou email. Viens seul, ca suffit."
+                fr="Tu veux le next run ? Instagram ou email. Come alone, ca suffit."
               />
             </p>
           </div>
           <div className="mt-6">
             <BrutalButton href="/runs" variant="pink">
-              <LocalizedText en="SEE RUNS" fr="VOIR LES RUNS" />
+              <LocalizedText en="SEE RUNS" fr="SEE RUNS" />
             </BrutalButton>
           </div>
         </aside>
@@ -90,17 +90,17 @@ export default function ContactPage() {
       <section className="poster-frame grid grid-cols-1 border-t-0 lg:grid-cols-[0.36fr_0.64fr]">
         <div className="grid-paper border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
           <PageStamp index="06B.">
-            <LocalizedText en="Doors" fr="Canaux" />
+            <LocalizedText en="Doors" fr="Channels" />
           </PageStamp>
           <h2 className="display-safe mt-6 font-display text-[clamp(3.2rem,7vw,7rem)] uppercase">
-            <LocalizedText en="CHOOSE" fr="CHOISIS" />
+            <LocalizedText en="CHOOSE" fr="PICK" />
             <br />
-            <LocalizedText en="YOUR DOOR." fr="LE SIGNAL." />
+            <LocalizedText en="YOUR DOOR." fr="TON SIGNAL." />
           </h2>
           <p className="mt-5 font-mono text-base uppercase leading-relaxed text-white/70">
             <LocalizedText
               en="No form maze. No club secretary. Pick the signal and say it straight."
-              fr="Pas de formulaire labyrinthe. Pas de standard. Choisis le canal et parle clair."
+              fr="Pas de form maze. Pas de standard. Pick le channel et dis-le straight."
             />
           </p>
         </div>
@@ -124,10 +124,10 @@ export default function ContactPage() {
       <section className="poster-frame grid grid-cols-1 border-t-0 lg:grid-cols-[0.58fr_0.42fr]">
         <div className="border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
           <p className="display-safe font-display text-[clamp(3rem,7vw,7rem)] uppercase">
-            <LocalizedText en="ASK LESS." fr="PARLE CLAIR." />
+            <LocalizedText en="ASK LESS." fr="ASK LESS." />
             <br />
-            <LocalizedText en="SHOW UP" fr="VIENS" /> <span className="text-shock">
-              <LocalizedText en="MORE." fr="VRAIMENT." />
+            <LocalizedText en="SHOW UP" fr="SHOW UP" /> <span className="text-shock">
+              <LocalizedText en="MORE." fr="MORE." />
             </span>
           </p>
         </div>

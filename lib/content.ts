@@ -1,7 +1,7 @@
 export const navItems = [
   { key: "home", label: "01. HOME", labelFr: "01. ACCUEIL", href: "/" },
   { key: "runs", label: "02. RUNS", labelFr: "02. RUNS", href: "/runs" },
-  { key: "community", label: "03. COMMUNITY", labelFr: "03. COMMUNAUTE", href: "/community" },
+  { key: "community", label: "03. COMMUNITY", labelFr: "03. COMMUNITY", href: "/community" },
   { key: "merch", label: "04. MERCH", labelFr: "04. MERCH", href: "/merch" },
   { key: "about", label: "05. ABOUT", labelFr: "05. A PROPOS", href: "/about" },
   { key: "contact", label: "06. CONTACT", labelFr: "06. CONTACT", href: "/contact" }
@@ -42,7 +42,7 @@ export const upcomingRuns = [
     titleEn: "Next Run",
     fullDate: "12 septembre 2026",
     fullDateEn: "September 12, 2026",
-    route: "5 KM / BOUCLE SOCIALE",
+    route: "5 KM / SOCIAL LOOP",
     routeEn: "5 KM / SOCIAL LOOP",
     start: "Aix-en-Provence",
     status: "DJ SETS APRES"
@@ -70,7 +70,7 @@ export const upcomingRuns = [
     titleEn: "Next Run",
     fullDate: "26 septembre 2026",
     fullDateEn: "September 26, 2026",
-    route: "5.5 KM / PARLE D'ABORD",
+    route: "5.5 KM / TALK FIRST",
     routeEn: "5.5 KM / TALK FIRST",
     start: "Aix-en-Provence",
     status: "DJ SETS APRES"

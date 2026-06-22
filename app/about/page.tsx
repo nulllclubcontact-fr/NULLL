@@ -9,25 +9,25 @@ const positions = [
     label: "NOT",
     labelFr: "NON",
     title: "A FITNESS BRAND",
-    titleFr: "UNE MARQUE FITNESS",
+    titleFr: "A FITNESS BRAND",
     text: "No transformation promise. No perfect mornings. No cult of discipline.",
-    textFr: "Pas de promesse miracle. Pas de matin parfait. Pas de culte de la perf."
+    textFr: "No transformation promise. Pas de perfect morning. Pas de culte de la perf."
   },
   {
     label: "YES",
     labelFr: "OUI",
     title: "A SOCIAL EXCUSE",
-    titleFr: "UN PRETEXTE SOCIAL",
+    titleFr: "A SOCIAL EXCUSE",
     text: "The run is the entry point. The real thing is who you meet on the way.",
-    textFr: "Le run est l'entree. Le vrai sujet, c'est qui tu rencontres en route."
+    textFr: "Le run est l'entree. Le vrai sujet, c'est who you meet on the way."
   },
   {
     label: "NOT",
     labelFr: "NON",
     title: "A CLOSED CIRCLE",
-    titleFr: "UN CERCLE FERME",
+    titleFr: "A CLOSED CIRCLE",
     text: "No membership aura. No inner circle. Come once, come badly, come back.",
-    textFr: "Pas d'aura privee. Pas de cercle interne. Viens une fois, mal, puis reviens."
+    textFr: "No membership aura. Pas d'inner circle. Come once, run badly, come back."
   },
   {
     label: "YES",
@@ -35,7 +35,7 @@ const positions = [
     title: "AIX OUTSIDE",
     titleFr: "AIX DEHORS",
     text: "A small city gets louder when people stop acting like strangers.",
-    textFr: "Une petite ville devient plus vivante quand on arrete de rester inconnus."
+    textFr: "Une small city devient louder quand les gens arretent de rester strangers."
   }
 ] as const;
 
@@ -76,12 +76,12 @@ export default function AboutPage() {
           <p className="copy-safe mt-6 max-w-xl border-t-2 border-white pt-5 font-mono text-base uppercase leading-relaxed text-white/75">
             <LocalizedText
               en="NULLL.CLUB brings people closer with sport as an excuse. We run because it gives the city a meeting point."
-              fr="NULLL.CLUB rapproche les gens avec le sport comme excuse. On court parce que ca donne un point de rencontre a la ville."
+              fr="NULLL.CLUB rapproche les gens avec sport as an excuse. On run parce que ca donne un meeting point a la ville."
             />
           </p>
           <div className="mt-8">
             <BrutalButton href="/runs" variant="pink">
-              <LocalizedText en="MAKE IT REAL" fr="RENDS CA REEL" />
+              <LocalizedText en="MAKE IT REAL" fr="MAKE IT REAL" />
             </BrutalButton>
           </div>
         </div>
@@ -89,13 +89,13 @@ export default function AboutPage() {
         <div className="grid-paper flex flex-col justify-between p-5 lg:p-8">
           <div className="font-mono text-[clamp(1.25rem,2.55vw,2.85rem)] font-black leading-snug">
             <p className="copy-safe border-b border-dashed border-white/30 py-3">
-              <LocalizedText en="We are not here to perform." fr="On n'est pas la pour performer." />
+              <LocalizedText en="We are not here to perform." fr="On n'est pas here to perform." />
             </p>
             <p className="copy-safe border-b border-dashed border-white/30 py-3">
-              <LocalizedText en="We are here to show up." fr="On est la pour venir, vraiment." />
+              <LocalizedText en="We are here to show up." fr="On est here to show up." />
             </p>
             <p className="copy-safe border-b border-dashed border-white/30 py-3">
-              <LocalizedText en="To run badly, talk loudly, meet strangers," fr="Pour courir mal, parler fort, rencontrer des inconnus," />
+              <LocalizedText en="To run badly, talk loudly, meet strangers," fr="To run badly, parler fort, meet strangers," />
             </p>
             <p className="copy-safe border-b border-dashed border-white/30 py-3">
               <LocalizedText
@@ -106,7 +106,7 @@ export default function AboutPage() {
                 }
                 fr={
                   <>
-                    transpirer ensemble et repartir <span className="whitespace-nowrap bg-shock px-2 text-black">moins seul.</span>
+                    sweat ensemble et leave <span className="whitespace-nowrap bg-shock px-2 text-black">less alone.</span>
                   </>
                 }
               />
@@ -117,7 +117,7 @@ export default function AboutPage() {
             <p className="copy-safe font-mono text-sm uppercase text-white/70">
               <LocalizedText
                 en="Not a club in the clean sense. A social accident. A reason to meet."
-                fr="Pas un club au sens propre. Un accident social. Une raison de se croiser."
+                fr="Pas un club clean. A social accident. Une raison de se croiser."
               />
             </p>
           </div>
@@ -140,9 +140,9 @@ export default function AboutPage() {
               }
               fr={
                 <>
-                  CE QUE C'EST.
+                  WHAT IT IS.
                   <br />
-                  CE QUE CA N'EST PAS.
+                  WHAT IT ISN'T.
                 </>
               }
             />
@@ -170,7 +170,7 @@ export default function AboutPage() {
           <p className="copy-safe max-w-5xl font-mono text-[clamp(1.15rem,2.45vw,2.6rem)] font-black uppercase leading-tight">
             <LocalizedText
               en="The performance part can wait outside. The people part starts here: one city, one excuse, one shared pace."
-              fr="La performance peut attendre dehors. Le vrai sujet commence ici : une ville, une excuse, un rythme commun."
+              fr="La performance peut wait outside. Le people part starts here : une ville, une excuse, un shared pace."
             />
           </p>
         </div>

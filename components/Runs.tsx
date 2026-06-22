@@ -39,7 +39,7 @@ export function Runs() {
             <div className="grid place-items-center border-r-2 border-white text-5xl">+</div>
             <div className="px-6">
               <p className="text-2xl font-bold">PLUS DE RUNS BIENTOT</p>
-              <p className="mt-2 text-sm text-white/70">Les prochains evenements arriveront ici</p>
+              <p className="mt-2 text-sm text-white/70">Future events drop ici</p>
             </div>
           </Reveal>
         </div>
@@ -168,14 +168,14 @@ function RunDropCard({
             <span className="font-mono text-sm text-rust">{run.time}</span>
           </div>
           <dl className="mt-2 grid grid-cols-[92px_1fr] gap-y-0.5 font-mono text-xs uppercase">
-            <dt>Lieu:</dt>
+            <dt>Location:</dt>
             <dd>Aix-en-Provence</dd>
-            <dt>Rythme:</dt>
+            <dt>Pace:</dt>
             <dd>No ego</dd>
             <dt>Apres:</dt>
             <dd>DJ sets</dd>
-            <dt>Regle:</dt>
-            <dd>Viens comme tu es</dd>
+            <dt>Rule:</dt>
+            <dd>Come as you are</dd>
           </dl>
         </div>
         <div className="relative hidden border-l-2 border-white md:block">

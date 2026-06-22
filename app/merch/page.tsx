@@ -18,10 +18,10 @@ export default function MerchPage() {
             THE CLUB
           </h1>
           <p className="mt-5 border-t-2 border-white pt-5 font-mono text-xl uppercase leading-tight">
-            <LocalizedText en="Not a running brand." fr="Pas une marque de running." />
+            <LocalizedText en="Not a running brand." fr="Not a running brand." />
             <br />
-            <LocalizedText en="A" fr="Un" /> <span className="text-shock">
-              <LocalizedText en="social warning." fr="signal social." />
+            <LocalizedText en="A" fr="A" /> <span className="text-shock">
+              <LocalizedText en="social warning." fr="social warning." />
             </span>
           </p>
           <div className="mt-6 grid grid-cols-[1fr_82px] border-2 border-white font-mono text-sm uppercase">
