@@ -21,6 +21,14 @@ pnpm-debug.log*
 .codex-*.png
 qa-artifacts/
 
+# Local brand/reference source files not needed for deploy
+design-reference/
+photo/
+photo_story/
+swisstransfer_*/
+*.dpx
+*.drx
+
 # OS / editor
 .DS_Store
 Thumbs.db
