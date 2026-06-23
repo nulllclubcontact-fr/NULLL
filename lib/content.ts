@@ -37,7 +37,7 @@ export const upcomingRuns = [
     id: "run-001",
     date: "SAM 12 SEP",
     dateEn: "SAT 12 SEP",
-    time: "19:00",
+    time: "08:30",
     title: "Prochain Run",
     titleEn: "Next Run",
     fullDate: "12 septembre 2026",
@@ -51,7 +51,7 @@ export const upcomingRuns = [
     id: "run-002",
     date: "SAM 19 SEP",
     dateEn: "SAT 19 SEP",
-    time: "19:30",
+    time: "08:30",
     title: "Prochain Run",
     titleEn: "Next Run",
     fullDate: "19 septembre 2026",
@@ -65,7 +65,7 @@ export const upcomingRuns = [
     id: "run-003",
     date: "SAM 26 SEP",
     dateEn: "SAT 26 SEP",
-    time: "19:30",
+    time: "08:30",
     title: "Prochain Run",
     titleEn: "Next Run",
     fullDate: "26 septembre 2026",
@@ -120,4 +120,4 @@ export const contactInfo = {
   linkedin: "https://www.linkedin.com/company/nulll-club/"
 } as const;
 
-export const firstRunTargetIso = "2026-09-12T19:00:00+02:00";
+export const firstRunTargetIso = "2026-09-12T08:30:00+02:00";

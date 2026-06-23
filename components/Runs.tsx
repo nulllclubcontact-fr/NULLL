@@ -133,7 +133,7 @@ function PosterNav() {
 function SideTape() {
   return (
     <div className="absolute inset-y-0 left-0 hidden w-16 border-r-2 border-white font-mono text-xs uppercase lg:block">
-      <div className="vertical-copy absolute left-5 top-8 text-rust">2026/09/12 19:00:00</div>
+      <div className="vertical-copy absolute left-5 top-8 text-rust">2026/09/12 08:30:00</div>
       <div className="vertical-copy absolute bottom-24 left-5 text-white/75">
         Aix-en-Provence, France / 43.5297 N, 5.4474 E
       </div>

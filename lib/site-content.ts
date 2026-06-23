@@ -150,8 +150,8 @@ const sharedEvents: Array<Omit<RunEvent, "title" | "summary" | "afterRun" | "pac
   {
     id: "sept-12",
     date: "Vendredi 12 septembre 2026",
-    isoDate: "2026-09-12T19:00:00+02:00",
-    time: "19:00",
+    isoDate: "2026-09-12T08:30:00+02:00",
+    time: "08:30",
     distance: "5 km",
     location: "Aix-en-Provence centre",
     address: "Rotonde, 13100 Aix-en-Provence"
@@ -159,8 +159,8 @@ const sharedEvents: Array<Omit<RunEvent, "title" | "summary" | "afterRun" | "pac
   {
     id: "sept-19",
     date: "Vendredi 19 septembre 2026",
-    isoDate: "2026-09-19T19:15:00+02:00",
-    time: "19:15",
+    isoDate: "2026-09-19T08:30:00+02:00",
+    time: "08:30",
     distance: "6 km",
     location: "Quartier Mazarin",
     address: "Cours Mirabeau, 13100 Aix-en-Provence"
@@ -168,8 +168,8 @@ const sharedEvents: Array<Omit<RunEvent, "title" | "summary" | "afterRun" | "pac
   {
     id: "sept-26",
     date: "Vendredi 26 septembre 2026",
-    isoDate: "2026-09-26T19:30:00+02:00",
-    time: "19:30",
+    isoDate: "2026-09-26T08:30:00+02:00",
+    time: "08:30",
     distance: "5,5 km",
     location: "Parc Jourdan",
     address: "Avenue Jules Ferry, 13100 Aix-en-Provence"
