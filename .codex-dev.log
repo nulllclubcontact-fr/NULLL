@@ -1,0 +1,11 @@
+
+> nulll-club-site@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.0.8.10:3000
+✓ Ready in 923ms
+
+ GET / 200 in 2.7s (next.js: 2.2s, application-code: 465ms)
+ GET /runs 200 in 219ms (next.js: 115ms, application-code: 103ms)

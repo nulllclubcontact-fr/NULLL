@@ -60,6 +60,13 @@ summary::-webkit-details-marker {
   display: none;
 }
 
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
 html:not([data-lang="en"]) .lang-en,
 html[data-lang="en"] .lang-fr {
   display: none !important;
@@ -68,20 +75,28 @@ html[data-lang="en"] .lang-fr {
 .brutal-title {
   line-height: 0.9;
   word-break: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   text-wrap: balance;
 }
 
 .copy-safe {
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .display-safe {
   min-width: 0;
   line-height: 0.9;
-  overflow-wrap: anywhere;
+  word-break: normal;
+  overflow-wrap: break-word;
   text-wrap: balance;
+}
+
+.display-nowrap {
+  min-width: 0;
+  line-height: 0.9;
+  overflow-wrap: normal;
+  white-space: nowrap;
 }
 
 .grid-paper {
@@ -162,6 +177,147 @@ html[data-lang="en"] .lang-fr {
     #000000;
 }
 
+@layer components {
+  .shell {
+    width: min(100% - 24px, 1440px);
+    margin-inline: auto;
+  }
+
+  .panel {
+    border: 2px solid #ffffff;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      #000000;
+    background-size: 42px 42px;
+    color: #ffffff;
+  }
+
+  .panel-grid {
+    box-shadow: 8px 8px 0 rgba(255, 63, 180, 0.85);
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .nav-link,
+  .locale-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    padding: 0.7rem 0.9rem;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .nav-link:hover,
+  .locale-chip:hover,
+  .nav-link-active {
+    border-color: var(--shock);
+    background: var(--shock);
+    color: #000000;
+  }
+
+  .primary-link,
+  .secondary-link,
+  .primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3.25rem;
+    border: 2px solid #ffffff;
+    padding: 0.95rem 1.1rem;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition:
+      transform 160ms ease,
+      background-color 160ms ease,
+      color 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .primary-link,
+  .primary-button {
+    background: var(--shock);
+    color: #000000;
+  }
+
+  .secondary-link {
+    background: #000000;
+    color: #ffffff;
+  }
+
+  .primary-link:hover,
+  .secondary-link:hover,
+  .primary-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #ffffff;
+  }
+
+  .icon-button {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 2px solid #ffffff;
+    background: #000000;
+    color: #ffffff;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.35rem;
+    font-weight: 900;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease;
+  }
+
+  .icon-button:hover {
+    background: var(--shock);
+    color: #000000;
+  }
+
+  .primary-button:disabled,
+  .icon-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.42;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .field {
+    width: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.72);
+    background: #050505;
+    color: #ffffff;
+    padding: 0.95rem 1rem;
+    outline: none;
+  }
+
+  .field:focus,
+  .nav-link:focus-visible,
+  .locale-chip:focus-visible,
+  .primary-link:focus-visible,
+  .secondary-link:focus-visible,
+  .primary-button:focus-visible,
+  .icon-button:focus-visible {
+    border-color: var(--shock);
+    box-shadow: 0 0 0 4px rgba(255, 63, 180, 0.32);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -190,5 +346,16 @@ html[data-lang="en"] .lang-fr {
 
   .brutal-title {
     line-height: 0.92;
+  }
+
+  .shell {
+    width: min(100% - 16px, 1440px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.68fr);
+    align-items: stretch;
   }
 }

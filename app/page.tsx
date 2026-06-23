@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "../components/ArrowIcon";
 import { BrandHeader } from "../components/BrandHeader";
@@ -39,16 +39,16 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white">
       <BrandHeader current="home" />
-      <section className="poster-frame grid min-h-[calc(100vh-98px)] grid-cols-1 lg:grid-cols-[1.06fr_0.94fr]">
-        <div className="grid-paper flex flex-col justify-between border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
+      <section className="poster-frame grid min-h-[calc(100svh-82px)] grid-cols-1 lg:grid-cols-[1.02fr_0.98fr]">
+        <div className="grid-paper flex flex-col justify-between border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-6 xl:p-7">
           <div>
             <PageStamp index="01.">
               <LocalizedText en="Home / Signal" fr="Accueil / Signal" />
             </PageStamp>
-            <h1 className="brutal-title mt-8 whitespace-nowrap font-display text-[clamp(3.05rem,11.4vw,10.8rem)] uppercase">
+            <h1 className="brutal-title mt-6 whitespace-nowrap font-display text-[clamp(3.05rem,8.35vw,8.7rem)] uppercase">
               NULLL.CLUB
             </h1>
-            <div className="copy-safe mt-5 border-2 border-white px-4 py-3 font-mono text-[clamp(1.05rem,2.35vw,2.25rem)] font-black uppercase leading-tight">
+            <div className="copy-safe mt-5 border-2 border-white px-4 py-3 font-mono text-[clamp(1rem,1.55vw,1.55rem)] font-black uppercase leading-tight">
               <LocalizedText
                 en={
                   <>
@@ -62,13 +62,13 @@ export default function Home() {
                 }
               />
             </div>
-            <p className="copy-safe mt-5 max-w-2xl font-mono text-lg leading-relaxed text-white/80">
+            <p className="copy-safe mt-4 max-w-2xl font-mono text-base leading-relaxed text-white/80 xl:text-lg">
               <LocalizedText
                 en="Aix-en-Provence social run club. We run, we meet, we make it real."
                 fr="Social run club a Aix-en-Provence. On run, on meet, on make it real."
               />
             </p>
-            <div className="mt-7 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row xl:mt-6">
               <BrutalButton href="/runs" variant="pink">
                 <LocalizedText en="JOIN THE NEXT RUN" fr="JOIN LE PROCHAIN RUN" />
               </BrutalButton>
@@ -78,8 +78,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 border-2 border-white font-mono text-sm uppercase sm:grid-cols-3">
-            <div className="border-b-2 border-white p-4 text-shock sm:border-b-0 sm:border-r-2">
+          <div className="mt-6 grid grid-cols-1 border-2 border-white font-mono text-xs uppercase sm:grid-cols-3 xl:text-sm">
+            <div className="border-b-2 border-white p-3 text-shock sm:border-b-0 sm:border-r-2 xl:p-4">
               <LocalizedText
                 en={
                   <>
@@ -101,7 +101,7 @@ export default function Home() {
                 }
               />
             </div>
-            <div className="border-b-2 border-white p-4 sm:border-b-0 sm:border-r-2">
+            <div className="border-b-2 border-white p-3 sm:border-b-0 sm:border-r-2 xl:p-4">
               <LocalizedText
                 en={
                   <>
@@ -119,7 +119,7 @@ export default function Home() {
                 }
               />
             </div>
-            <div className="p-4">
+            <div className="p-3 xl:p-4">
               <LocalizedText
                 en={
                   <>
@@ -140,10 +140,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative min-h-[560px] bg-black p-3">
+        <div className="relative min-h-[420px] bg-black p-3">
           <PosterPhoto
             alt="NULLL.CLUB runners in motion"
-            className="h-full min-h-[540px]"
+            className="h-full min-h-[400px] lg:min-h-[min(66vh,596px)]"
             priority
             src="/assets/photos/motion-run.png"
             stamp="12.09.2026"
@@ -151,7 +151,7 @@ export default function Home() {
           <Image
             alt=""
             aria-hidden="true"
-            className="absolute bottom-16 left-10 h-auto w-36 object-contain"
+            className="absolute bottom-12 left-8 h-auto w-28 object-contain xl:w-36"
             height={116}
             src="/assets/brand/nulll-logo.png"
             width={252}
@@ -160,7 +160,7 @@ export default function Home() {
       </section>
 
       <section className="poster-frame grid grid-cols-1 border-t-0 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
+        <div className="border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-6 xl:p-7">
           <PageStamp index="02.">
             <LocalizedText en="Navigation" fr="Navigation" />
           </PageStamp>
@@ -205,11 +205,11 @@ export default function Home() {
       </section>
 
       <section className="poster-frame grid grid-cols-1 border-t-0 lg:grid-cols-[0.42fr_0.58fr]">
-        <div className="grid-paper border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
+        <div className="grid-paper border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-6 xl:p-7">
           <PageStamp index="03.">
             <LocalizedText en="Home / Merch signal" fr="Accueil / Merch signal" />
           </PageStamp>
-          <h2 className="brutal-title mt-6 font-display text-[clamp(3.4rem,8.6vw,8.5rem)] uppercase">
+          <h2 className="brutal-title mt-6 font-display text-[clamp(3.1rem,7.2vw,7rem)] uppercase">
             <LocalizedText
               en={
                 <>
@@ -238,7 +238,7 @@ export default function Home() {
             />
           </p>
           <div className="mt-6 grid grid-cols-[1fr_82px] border-2 border-white font-mono text-sm uppercase">
-            <div className="p-4">
+            <div className="p-3 xl:p-4">
               <LocalizedText
                 en={
                   <>
@@ -269,9 +269,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid-paper-dark grid grid-cols-1 gap-3 bg-white p-3 text-black md:grid-cols-[0.72fr_0.28fr]">
+        <div className="grid-paper grid grid-cols-1 content-start items-start gap-3 bg-black p-3 text-black md:grid-cols-[minmax(0,0.72fr)_minmax(160px,0.28fr)]">
           <HomeMerchCard item={featuredMerch} />
-          <div className="grid border-2 border-black font-mono uppercase">
+          <div className="grid min-w-0 border-2 border-black bg-white font-mono uppercase">
             <div className="border-b-2 border-black p-4">
               <p className="text-xs">DROP 001</p>
               <p className="copy-safe mt-4 text-2xl font-black leading-tight">
@@ -296,7 +296,7 @@ function HomeMerchCard({ item }: { item: (typeof merchItems)[number] }) {
 
   return (
     <Link
-      className="group border-2 border-white bg-white text-black transition hover:-translate-y-2 hover:shadow-[8px_8px_0_#ff3fb4]"
+      className="group min-w-0 border-2 border-white bg-white text-black transition hover:-translate-y-2 hover:shadow-[8px_8px_0_#ff3fb4]"
       href="/merch"
     >
       <div className="relative aspect-[1.18/1] overflow-hidden border-b-2 border-black md:aspect-[1.35/1]">
@@ -344,3 +344,4 @@ function HomeMerchCard({ item }: { item: (typeof merchItems)[number] }) {
     </Link>
   );
 }
+

@@ -10,9 +10,11 @@ const config: Config = {
     extend: {
       colors: {
         ink: "#000000",
+        "ink-soft": "#070707",
         paper: "#ffffff",
         ash: "#a7a7a7",
         rust: "#d64a24",
+        accent: "#ff3fb4",
         shock: "#ff3fb4"
       },
       fontFamily: {

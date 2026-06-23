@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { merchItems } from "../lib/content";
 import { ArrowIcon } from "./ArrowIcon";
@@ -66,8 +67,8 @@ export function MerchShop() {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-3 p-3 xl:grid-cols-[1fr_270px]">
-      <div className="grid grid-cols-1 items-start gap-3 md:grid-cols-3">
+    <div className="grid min-w-0 grid-cols-1 gap-3 p-3 xl:grid-cols-[minmax(0,1fr)_270px]">
+      <div className="grid min-w-0 grid-cols-1 items-start gap-3 md:grid-cols-2 2xl:grid-cols-3">
         {merchItems.map((item, index) => (
           <ProductCard addItem={addItem} index={index + 1} item={item} key={item.id} />
         ))}
@@ -105,6 +106,7 @@ export function MerchShop() {
                   </div>
                   <div className="flex items-start gap-2">
                     <button
+                      aria-label={`Remove one ${visual.title}`}
                       className="grid h-8 w-8 place-items-center border-2 border-white transition hover:bg-white hover:text-black"
                       onClick={() => removeItem(item.id)}
                       type="button"
@@ -112,6 +114,7 @@ export function MerchShop() {
                       -
                     </button>
                     <button
+                      aria-label={`Add one ${visual.title}`}
                       className="grid h-8 w-8 place-items-center border-2 border-white transition hover:bg-shock hover:text-black"
                       onClick={() => addItem(item.id)}
                       type="button"
@@ -132,16 +135,28 @@ export function MerchShop() {
           </div>
         )}
 
-        <button
-          className="flex w-full items-center justify-between p-4 font-mono text-sm uppercase transition hover:bg-shock hover:text-black disabled:cursor-not-allowed disabled:text-white/35 disabled:hover:bg-black"
-          disabled={count === 0}
-          type="button"
-        >
-          <span>
-            <LocalizedText en="Checkout soon" fr="Checkout soon" />
-          </span>
-          <ArrowIcon />
-        </button>
+        {count === 0 ? (
+          <button
+            className="flex w-full cursor-not-allowed items-center justify-between p-4 font-mono text-sm uppercase text-white/35"
+            disabled
+            type="button"
+          >
+            <span>
+              <LocalizedText en="Select a tee first" fr="Choisis un tee d'abord" />
+            </span>
+            <ArrowIcon />
+          </button>
+        ) : (
+          <Link
+            className="flex w-full items-center justify-between bg-shock p-4 font-mono text-sm font-black uppercase text-black transition hover:bg-white"
+            href="/contact"
+          >
+            <span>
+              <LocalizedText en="Order via contact" fr="Commander via contact" />
+            </span>
+            <ArrowIcon />
+          </Link>
+        )}
       </aside>
     </div>
   );
@@ -159,7 +174,7 @@ function ProductCard({
   const visual = visualByVariant[item.variant];
 
   return (
-    <article className="group self-start border-2 border-white bg-white text-black transition hover:-translate-y-2 hover:shadow-[8px_8px_0_#ff3fb4]">
+    <article className="group min-w-0 self-start border-2 border-white bg-white text-black transition hover:-translate-y-2 hover:shadow-[8px_8px_0_#ff3fb4]">
       <div className="relative aspect-[1.03/1] overflow-hidden border-b-2 border-black">
         <Image alt={visual.title} className="object-cover" fill sizes="(min-width: 1280px) 24vw, (min-width: 768px) 32vw, 100vw" src={visual.image} />
         <div className="absolute left-4 top-3 font-mono text-sm uppercase">{String(index).padStart(3, "0")}.</div>
@@ -176,7 +191,7 @@ function ProductCard({
           />
         ) : null}
         {visual.overlay === "run" ? (
-          <div className="display-safe absolute left-1/2 top-[37%] w-[72%] -translate-x-1/2 text-center font-display text-[clamp(2.4rem,3.4vw,4rem)] uppercase text-black">
+          <div className="absolute left-1/2 top-[36%] w-[62%] -translate-x-1/2 text-center font-display text-[clamp(1.7rem,2.2vw,2.45rem)] uppercase leading-[0.84] text-black">
             RUN BAD
             <br />
             MEET PEOPLE
@@ -198,6 +213,7 @@ function ProductCard({
           <span className="whitespace-nowrap text-shock">{visual.price} EUR</span>
         </div>
         <button
+          aria-label={`Add ${visual.title} to cart`}
           className="mt-3 flex min-h-12 w-full items-center justify-between border-2 border-white px-4 py-3 font-mono text-sm uppercase transition hover:bg-shock hover:text-black"
           onClick={() => addItem(item.id)}
           type="button"

@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { BrandHeader } from "../../components/BrandHeader";
 import { BrutalButton } from "../../components/BrutalButton";
 import { LocalizedText } from "../../components/LocalizedText";
@@ -50,12 +50,12 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-black text-white">
       <BrandHeader current="about" />
-      <section className="poster-frame grid min-h-[calc(100vh-98px)] grid-cols-1 lg:grid-cols-[0.48fr_0.52fr]">
-        <div className="grid-paper border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
+      <section className="poster-frame grid min-h-[calc(100svh-82px)] grid-cols-1 lg:grid-cols-[0.48fr_0.52fr]">
+        <div className="grid-paper border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-6 xl:p-7">
           <PageStamp index="05.">
             <LocalizedText en="Manifesto" fr="Manifeste" />
           </PageStamp>
-          <h1 className="brutal-title mt-7 font-display text-[clamp(3.2rem,8.8vw,9.4rem)] uppercase">
+          <h1 className="brutal-title mt-7 font-display text-[clamp(2.9rem,6.4vw,6.8rem)] uppercase">
             <LocalizedText
               en={
                 <>
@@ -87,7 +87,7 @@ export default function AboutPage() {
         </div>
 
         <div className="grid-paper flex flex-col justify-between p-5 lg:p-8">
-          <div className="font-mono text-[clamp(1.25rem,2.55vw,2.85rem)] font-black leading-snug">
+          <div className="font-mono text-[clamp(1.12rem,2vw,2.15rem)] font-black leading-snug">
             <p className="copy-safe border-b border-dashed border-white/30 py-3">
               <LocalizedText en="We are not here to perform." fr="On n'est pas here to perform." />
             </p>
@@ -113,7 +113,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="mt-8 grid grid-cols-[78px_1fr] items-center gap-5 border-2 border-white p-5">
-            <Image alt="" aria-hidden="true" className="h-24 w-auto" height={197} src="/assets/brand/nulll-mark.png" width={151} />
+            <Image alt="" aria-hidden="true" className="h-20 w-auto" height={197} src="/assets/brand/nulll-mark.png" width={151} />
             <p className="copy-safe font-mono text-sm uppercase text-white/70">
               <LocalizedText
                 en="Not a club in the clean sense. A social accident. A reason to meet."
@@ -125,11 +125,11 @@ export default function AboutPage() {
       </section>
 
       <section className="poster-frame grid grid-cols-1 border-t-0 lg:grid-cols-[0.34fr_0.66fr]">
-        <div className="grid-paper border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
+        <div className="grid-paper border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-6 xl:p-7">
           <PageStamp index="05B.">
             <LocalizedText en="Position" fr="Position" />
           </PageStamp>
-          <h2 className="brutal-title mt-6 font-display text-[clamp(3rem,7.2vw,7.4rem)] uppercase">
+          <h2 className="brutal-title mt-6 font-display text-[clamp(2.6rem,5vw,5.2rem)] uppercase">
             <LocalizedText
               en={
                 <>
@@ -154,7 +154,7 @@ export default function AboutPage() {
               <div className="inline-block border-2 border-current px-3 py-1 font-mono text-xs font-black uppercase">
                 <LocalizedText en={item.label} fr={item.labelFr} />
               </div>
-              <h3 className="brutal-title mt-6 font-display text-[clamp(2.45rem,4.8vw,4.3rem)] uppercase">
+              <h3 className="brutal-title mt-6 font-display text-[clamp(2rem,3.1vw,3rem)] uppercase">
                 <LocalizedText en={item.title} fr={item.titleFr} />
               </h3>
               <p className="copy-safe mt-5 font-mono text-sm uppercase leading-relaxed opacity-75">
@@ -166,8 +166,8 @@ export default function AboutPage() {
       </section>
 
       <section className="poster-frame grid grid-cols-1 border-t-0 lg:grid-cols-[0.62fr_0.38fr]">
-        <div className="border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
-          <p className="copy-safe max-w-5xl font-mono text-[clamp(1.15rem,2.45vw,2.6rem)] font-black uppercase leading-tight">
+        <div className="border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-6 xl:p-7">
+          <p className="copy-safe max-w-5xl font-mono text-[clamp(1.08rem,2vw,2.1rem)] font-black uppercase leading-tight">
             <LocalizedText
               en="The performance part can wait outside. The people part starts here: one city, one excuse, one shared pace."
               fr="La performance peut wait outside. Le people part starts here : une ville, une excuse, un shared pace."
@@ -190,3 +190,4 @@ export default function AboutPage() {
     </main>
   );
 }
+

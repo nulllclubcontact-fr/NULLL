@@ -22,7 +22,7 @@ export default function RunsPage() {
               <LocalizedText en="Aix social run club" fr="Aix social run club" />
             </PageStamp>
           </div>
-          <div className="my-5 rotate-[-1deg] border-2 border-white p-3 text-center font-mono text-lg font-black uppercase tonic-shadow">
+          <div className="my-5 rotate-[-1deg] overflow-hidden whitespace-nowrap border-2 border-white p-3 text-center font-mono text-[clamp(0.62rem,2vw,1.125rem)] font-black uppercase tonic-shadow">
             NO PACE. NO EGO. <span className="text-shock">NO EXCUSE.</span> DJ SETS.
           </div>
           <div className="space-y-3">
@@ -97,7 +97,14 @@ function RunDrop({ index, run }: { index: number; run: (typeof upcomingRuns)[num
             <h2 className="display-safe font-display text-[clamp(2.8rem,5vw,4.7rem)] uppercase">
               <LocalizedText en={run.titleEn} fr={run.title} />
             </h2>
-            <span className="font-mono text-sm text-shock">{run.time}</span>
+            <div className="flex shrink-0 flex-col items-end gap-2 font-mono uppercase">
+              <span className="text-sm text-shock">{run.time}</span>
+              {index === 0 ? (
+                <span className="rotate-[-2deg] bg-shock px-2 py-1 text-[10px] font-black leading-none text-black">
+                  <LocalizedText en="DATE CONFIRMED!" fr="DATE CONFIRME !" />
+                </span>
+              ) : null}
+            </div>
           </div>
           <dl className="mt-3 grid grid-cols-[92px_1fr] gap-y-1 font-mono text-xs uppercase">
             <dt>

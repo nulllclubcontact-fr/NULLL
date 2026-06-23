@@ -46,7 +46,7 @@ export default function ContactPage() {
             <PageStamp index="06.">
               <LocalizedText en="Contact / Social" fr="Contact / Social" />
             </PageStamp>
-            <h1 className="display-safe mt-7 font-display text-[clamp(3rem,6.5vw,7.4rem)] uppercase">
+            <h1 className="display-safe mt-7 font-display text-[clamp(2.8rem,5.4vw,6rem)] uppercase">
               <LocalizedText en="THE RUNS HAPPEN OUTSIDE." fr="THE RUNS HAPPEN OUTSIDE." />
               <br />
               <LocalizedText en="THE CHAOS STARTS" fr="THE CHAOS STARTS" /> <span className="text-shock">
@@ -92,7 +92,7 @@ export default function ContactPage() {
           <PageStamp index="06B.">
             <LocalizedText en="Doors" fr="Channels" />
           </PageStamp>
-          <h2 className="display-safe mt-6 font-display text-[clamp(3.2rem,7vw,7rem)] uppercase">
+          <h2 className="display-safe mt-6 font-display text-[clamp(2.75rem,5.6vw,5.8rem)] uppercase">
             <LocalizedText en="CHOOSE" fr="PICK" />
             <br />
             <LocalizedText en="YOUR DOOR." fr="TON SIGNAL." />
@@ -104,16 +104,16 @@ export default function ContactPage() {
             />
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3">
+        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
           {contactRoutes.map((route) => (
             <a
-              className="group min-h-56 border-b-2 border-white p-5 transition hover:bg-shock hover:text-black md:border-b-0 md:border-r-2 md:last:border-r-0"
+              className="group min-h-56 min-w-0 border-b-2 border-white p-5 transition hover:bg-shock hover:text-black lg:border-b-0 lg:border-r-2 2xl:last:border-r-0"
               href={route.href}
               key={route.label}
             >
               <p className="font-mono text-xs uppercase text-shock group-hover:text-black">{route.label}</p>
-              <h3 className="display-safe mt-6 font-display text-[clamp(2.3rem,4.2vw,4.2rem)] uppercase">{route.value}</h3>
-              <p className="mt-5 font-mono text-sm uppercase leading-relaxed opacity-75">
+              <h3 className="display-nowrap mt-6 font-display text-[clamp(1.35rem,2vw,2.25rem)] uppercase">{route.value}</h3>
+              <p className="copy-safe mt-5 font-mono text-sm uppercase leading-relaxed opacity-75">
                 <LocalizedText en={route.textEn} fr={route.text} />
               </p>
             </a>
@@ -123,7 +123,7 @@ export default function ContactPage() {
 
       <section className="poster-frame grid grid-cols-1 border-t-0 lg:grid-cols-[0.58fr_0.42fr]">
         <div className="border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
-          <p className="display-safe font-display text-[clamp(3rem,7vw,7rem)] uppercase">
+          <p className="display-safe font-display text-[clamp(2.65rem,5.8vw,5.8rem)] uppercase">
             <LocalizedText en="ASK LESS." fr="ASK LESS." />
             <br />
             <LocalizedText en="SHOW UP" fr="SHOW UP" /> <span className="text-shock">
@@ -147,3 +147,4 @@ export default function ContactPage() {
     </main>
   );
 }
+

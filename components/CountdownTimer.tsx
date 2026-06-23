@@ -29,7 +29,7 @@ function pad(value: number) {
 
 export function CountdownTimer({ className = "" }: { className?: string }) {
   const targetTime = useMemo(() => new Date(firstRunTargetIso).getTime(), []);
-  const [parts, setParts] = useState<CountdownParts>(() => getCountdownParts(targetTime));
+  const [parts, setParts] = useState<CountdownParts | null>(null);
 
   useEffect(() => {
     const tick = () => setParts(getCountdownParts(targetTime));
@@ -44,8 +44,8 @@ export function CountdownTimer({ className = "" }: { className?: string }) {
       <span className="block text-[10px] leading-tight text-white/65">
         <LocalizedText en="Time to first run" fr="Time avant run" />
       </span>
-      <span className="mt-1 block whitespace-nowrap text-sm font-black leading-tight text-shock sm:text-base">
-        {parts.days}D {pad(parts.hours)}H {pad(parts.minutes)}M {pad(parts.seconds)}S
+      <span className="mt-1 block whitespace-nowrap text-[clamp(0.72rem,0.9vw,0.92rem)] font-black leading-tight text-shock">
+        {parts ? `${parts.days}D ${pad(parts.hours)}H ${pad(parts.minutes)}M ${pad(parts.seconds)}S` : "--D --H --M --S"}
       </span>
     </div>
   );

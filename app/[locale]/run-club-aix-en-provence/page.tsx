@@ -1,0 +1,31 @@
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { resolveLocale } from "../../../lib/locale";
+import { buildPageMetadata } from "../../../lib/seo";
+import { getRoute, getSiteCopy } from "../../../lib/site-content";
+import { SeoArticleView } from "../../shared/SeoArticleView";
+
+type PageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const locale = resolveLocale((await params).locale);
+  const article = getSiteCopy(locale).articles.find((entry) => entry.key === "localClub")!;
+  return buildPageMetadata({
+    locale,
+    routeKey: "localClub",
+    title: article.title,
+    description: article.description
+  });
+}
+
+export default async function LocalClubPage({ params }: PageProps) {
+  const locale = resolveLocale((await params).locale);
+  if (locale === "eng") {
+    redirect(getRoute(locale, "localClub"));
+  }
+  const article = getSiteCopy(locale).articles.find((entry) => entry.key === "localClub")!;
+
+  return <SeoArticleView article={article} locale={locale} pathname={getRoute(locale, "localClub")} />;
+}

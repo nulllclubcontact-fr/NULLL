@@ -45,15 +45,15 @@ export default function CommunityPage() {
   return (
     <main className="min-h-screen bg-black text-white">
       <BrandHeader current="community" />
-      <section className="poster-frame grid min-h-[calc(100vh-98px)] grid-cols-1 lg:grid-cols-[0.56fr_0.44fr]">
-        <div className="grid-paper border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
+      <section className="poster-frame grid min-h-[calc(100svh-82px)] grid-cols-1 lg:grid-cols-[0.56fr_0.44fr]">
+        <div className="grid-paper border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-6 xl:p-7">
           <PageStamp index="03.">
             <LocalizedText en="Community manifesto" fr="Community manifesto" />
           </PageStamp>
-          <h1 className="display-safe mt-7 font-display text-[clamp(3.25rem,9vw,10rem)] uppercase">
+          <h1 className="display-safe mt-7 font-display text-[clamp(3rem,7.4vw,8rem)] uppercase">
             COMMUNITY
           </h1>
-          <div className="mt-6 border-2 border-white p-5 font-mono text-[clamp(1.25rem,3vw,3rem)] font-black leading-tight">
+          <div className="mt-5 border-2 border-white p-4 font-mono text-[clamp(1.12rem,2.1vw,2.1rem)] font-black leading-tight">
             {principles.map((line) => (
               <p className="border-b border-dashed border-white/30 py-2 last:border-b-0" key={line.en}>
                 {line.en.includes("show up") ? (
@@ -86,8 +86,8 @@ export default function CommunityPage() {
             <PosterPhoto alt="Two runners in Aix" className="aspect-[4/5]" src="/assets/photos/run-sunset.png" stamp="00:02:17" />
             <PosterPhoto alt="Camera documentation" className="mt-10 aspect-[4/5]" src="/assets/photos/camera-proof.png" stamp="REC" />
           </div>
-          <div className="mt-6 border-2 border-white p-5">
-              <p className="break-words font-display text-[clamp(2.7rem,6vw,6rem)] uppercase leading-[0.82]">
+          <div className="mt-6 min-w-0 border-2 border-white p-5">
+            <p className="display-safe font-display text-[clamp(2rem,3.35vw,3.35rem)] uppercase leading-[0.84]">
               <LocalizedText en="SPORT IS" fr="SPORT IS" />
               <br />
               <LocalizedText en="THE" fr="THE" /> <span className="text-shock">
@@ -110,11 +110,11 @@ export default function CommunityPage() {
       </section>
 
       <section className="poster-frame grid grid-cols-1 border-t-0 lg:grid-cols-[0.4fr_0.6fr]">
-        <div className="grid-paper border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
+        <div className="grid-paper border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-6 xl:p-7">
           <PageStamp index="03B.">
             <LocalizedText en="How it works" fr="How it works" />
           </PageStamp>
-          <h2 className="display-safe mt-6 font-display text-[clamp(3.2rem,7vw,7rem)] uppercase">
+          <h2 className="display-safe mt-6 font-display text-[clamp(2.8rem,5.6vw,5.8rem)] uppercase">
             <LocalizedText en="THE SOCIAL PART" fr="THE SOCIAL PART" />
             <br />
             <LocalizedText en="IS NOT OPTIONAL." fr="N'EST PAS OPTIONNELLE." />
@@ -131,7 +131,7 @@ export default function CommunityPage() {
           {rituals.map((ritual) => (
             <article className="group min-h-72 border-b-2 border-white p-5 transition hover:bg-shock hover:text-black md:border-b-0 md:border-r-2 md:last:border-r-0" key={ritual.step}>
               <div className="font-mono text-sm uppercase">{ritual.step}</div>
-              <h3 className="display-safe mt-8 font-display text-[clamp(2.7rem,5.2vw,5rem)] uppercase">
+              <h3 className="display-safe mt-8 font-display text-[clamp(2.35rem,4.2vw,4.2rem)] uppercase">
                 <LocalizedText en={ritual.title} fr={ritual.titleFr} />
               </h3>
               <p className="mt-6 font-mono text-sm uppercase leading-relaxed opacity-75">
@@ -143,8 +143,8 @@ export default function CommunityPage() {
       </section>
 
       <section className="poster-frame grid grid-cols-1 border-t-0 lg:grid-cols-[0.68fr_0.32fr]">
-        <div className="border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-8">
-          <p className="display-safe font-display text-[clamp(3.2rem,8vw,8rem)] uppercase">
+        <div className="border-b-2 border-white p-5 lg:border-b-0 lg:border-r-2 lg:p-6 xl:p-7">
+          <p className="display-safe font-display text-[clamp(2.8rem,6vw,6.2rem)] uppercase">
             <LocalizedText en="AIX IS TOO SMALL" fr="AIX IS TOO SMALL" />
             <br />
             <LocalizedText en="TO STAY" fr="TO STAY" /> <span className="text-shock">
@@ -182,3 +182,4 @@ function Slogan({ text, textFr, title, titleFr }: { text: string; textFr: string
     </article>
   );
 }
+
