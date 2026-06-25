@@ -72,6 +72,9 @@ export function SiteHeader({
               {item.label}
             </Link>
           ))}
+          <Link className="nav-link text-shock" href="/identification">
+            {locale === "fr" ? "S'identifier" : "Sign in"}
+          </Link>
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
           <Link className="locale-chip" href={switchPath}>

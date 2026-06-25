@@ -21,6 +21,12 @@ export function SiteHeader() {
               <LocalizedText en={item.label} fr={item.labelFr} />
             </a>
           ))}
+          <a
+            className="whitespace-nowrap px-2 py-5 font-mono text-xs font-black uppercase text-shock transition hover:bg-shock hover:text-black lg:px-4 lg:text-sm"
+            href="/identification"
+          >
+            S&apos;identifier
+          </a>
         </nav>
         <div className="flex items-center px-7 py-4 font-mono text-xs uppercase md:text-sm">
           Aix-en-Provence
