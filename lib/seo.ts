@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import { getRoute, locales, type Locale, type RouteKey } from "./site-content";
+import { getRoute, type Locale, type RouteKey } from "./site-content";
 
 const SITE_URL = "https://nulll.club";
 
@@ -19,17 +19,15 @@ export function buildPageMetadata({
   description: string;
 }): Metadata {
   const canonical = `${SITE_URL}${getRoute(locale, routeKey)}`;
-  const languages = Object.fromEntries(
-    locales.map((entry) => [entry === "eng" ? "en" : entry, `${SITE_URL}${getRoute(entry, routeKey)}`])
-  );
-  languages["x-default"] = `${SITE_URL}/fr`;
-
   return {
     title,
     description,
     alternates: {
       canonical,
-      languages
+      languages: {
+        fr: canonical,
+        "x-default": `${SITE_URL}/fr`
+      }
     },
     openGraph: {
       title,
@@ -139,4 +137,3 @@ export function buildEventSchema(event: {
     }
   };
 }
-

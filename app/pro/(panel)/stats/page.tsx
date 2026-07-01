@@ -126,17 +126,17 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
   return (
     <section className="shell grid gap-8 py-8 lg:py-12">
       <div>
-        <p className="font-mono text-sm uppercase tracking-[0.28em] text-shock">Stats pro</p>
-        <h1 className="brutal-title mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Ton vrai CA.</h1>
-        <p className="mt-5 max-w-xl text-white/72">Addition des commandes scannées. Filtré sur ton partenaire. Rien d'autre.</p>
+        <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">Stats pro</p>
+        <h1 className="mt-6 font-display text-[clamp(3.6rem,10vw,8rem)] uppercase leading-[0.94]">Ton vrai CA.</h1>
+        <p className="mt-5 max-w-xl font-bold leading-tight text-[#351815]/72">Addition des commandes scannées. Filtré sur ton partenaire. Rien d'autre.</p>
       </div>
 
       <form className="panel grid gap-4 p-5 sm:grid-cols-[1fr_1fr_auto]" action="/pro/stats">
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs font-black uppercase">
           Du
           <input className="field" defaultValue={from} name="from" type="date" />
         </label>
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs font-black uppercase">
           Au
           <input className="field" defaultValue={to} name="to" type="date" />
         </label>
@@ -154,22 +154,22 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
 
       {days.length === 0 ? (
         <div className="panel panel-grid p-5 md:p-8">
-          <p className="font-display text-[clamp(2.8rem,7vw,5rem)] uppercase leading-none">Pas encore de scan.</p>
-          <p className="mt-4 text-white/72">Quand une commande passe par QR, elle finit ici.</p>
+          <p className="font-display text-[clamp(2.6rem,6vw,4.6rem)] uppercase leading-[0.96]">Pas encore de scan.</p>
+          <p className="mt-4 font-bold text-[#351815]/72">Quand une commande passe par QR, elle finit ici.</p>
         </div>
       ) : (
         <div className="grid gap-5">
           {days.map((day) => (
             <article className="panel p-5" key={day.day}>
-              <div className="grid gap-4 border-b-2 border-white pb-5 md:grid-cols-[1fr_auto] md:items-end">
+              <div className="grid gap-4 border-b-2 border-[#351815] pb-5 md:grid-cols-[1fr_auto] md:items-end">
                 <div>
-                  <h2 className="font-display text-[clamp(2.6rem,7vw,5.8rem)] uppercase leading-none">{formatDate(day.day)}</h2>
-                  <div className="mt-4 h-4 border-2 border-white bg-black">
-                    <div className="h-full bg-shock" style={{ width: `${(day.revenue / maxRevenue) * 100}%` }} />
+                  <h2 className="font-display text-[clamp(2.4rem,6vw,5rem)] uppercase leading-[0.96]">{formatDate(day.day)}</h2>
+                  <div className="mt-4 h-4 border-2 border-[#351815] bg-[#fff8ef]">
+                    <div className="h-full bg-[#ffb000]" style={{ width: `${(day.revenue / maxRevenue) * 100}%` }} />
                   </div>
                 </div>
                 <div className="font-mono text-sm font-black uppercase md:text-right">
-                  <p className="text-shock">{formatEuro(day.revenue)}</p>
+                  <p className="text-[#d96ab4]">{formatEuro(day.revenue)}</p>
                   <p>{day.clients.size} client(s)</p>
                   <p>{day.scans} scan(s)</p>
                   <p>{day.points} points</p>
@@ -178,11 +178,11 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
 
               <div className="mt-5 grid gap-3">
                 {day.orders.map((order) => (
-                  <div className="grid gap-2 border-b border-white/20 pb-3 last:border-b-0 md:grid-cols-[80px_1fr_auto_auto]" key={order.id}>
-                    <p className="font-mono text-xs uppercase text-white/50">{formatTime(order.created_at)}</p>
+                  <div className="grid gap-2 border-b border-[#351815]/20 pb-3 last:border-b-0 md:grid-cols-[80px_1fr_auto_auto]" key={order.id}>
+                    <p className="font-mono text-xs font-black uppercase text-[#351815]/50">{formatTime(order.created_at)}</p>
                     <p>{order.label}</p>
                     <p className="font-mono text-sm font-black uppercase">{formatEuro(Number(order.amount_eur))}</p>
-                    <p className="font-mono text-sm font-black uppercase text-shock">+{order.points_awarded} pts</p>
+                    <p className="font-mono text-sm font-black uppercase text-[#d96ab4]">+{order.points_awarded} pts</p>
                   </div>
                 ))}
               </div>
@@ -197,7 +197,7 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
 function StatBlock({ label, value }: { label: string; value: string }) {
   return (
     <div className="panel p-5">
-      <p className="font-mono text-xs uppercase tracking-[0.16em] text-white/50">{label}</p>
+      <p className="font-mono text-xs font-black uppercase text-[#351815]/50">{label}</p>
       <p className="mt-3 font-display text-[clamp(2.3rem,6vw,4.8rem)] uppercase leading-none">{value}</p>
     </div>
   );

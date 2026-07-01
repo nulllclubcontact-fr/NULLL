@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CountdownTimer } from "./CountdownTimer";
-import { LanguageToggle } from "./LanguageToggle";
 import { LocalizedText } from "./LocalizedText";
 import { navItems, type NavKey } from "../lib/content";
 
@@ -57,11 +56,10 @@ export function BrandHeader({ current }: BrandHeaderProps) {
           <div className="border-t-2 border-white px-4 py-4">
             <CountdownTimer />
           </div>
-          <LanguageToggle className="border-t-2" />
         </nav>
       </details>
 
-      <div className="hidden border-b-2 border-white lg:grid lg:grid-cols-[140px_minmax(0,1fr)_200px_58px_104px_92px] xl:grid-cols-[210px_minmax(0,1fr)_300px_74px_150px_150px]">
+      <div className="hidden border-b-2 border-white lg:grid lg:grid-cols-[140px_minmax(0,1fr)_200px_104px_92px] xl:grid-cols-[210px_minmax(0,1fr)_300px_150px_150px]">
         <Link
           aria-label="NULLL.CLUB home"
           className="flex h-20 items-center border-b-2 border-white px-5 transition hover:bg-white hover:invert lg:border-b-0 lg:border-r-2"
@@ -106,7 +104,6 @@ export function BrandHeader({ current }: BrandHeaderProps) {
             <CountdownTimer />
           </div>
         </div>
-        <LanguageToggle className="border-l-2" />
         <Link
           className="copy-safe grid min-h-14 place-items-center border-white p-2 text-center font-mono text-[10px] font-black uppercase leading-tight text-shock transition hover:bg-shock hover:text-black lg:border-l-2 xl:p-4 xl:text-sm"
           href="/identification"

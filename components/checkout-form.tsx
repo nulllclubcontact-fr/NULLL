@@ -118,24 +118,24 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
 
   if (status.type === "success") {
     return (
-      <div className="panel p-8" role="status">
-        <p className="text-sm uppercase tracking-[0.18em] text-accent">{locale === "fr" ? "Commande reçue" : "Order received"}</p>
+      <div className="border-2 border-[#351815] bg-[#f6eadf] p-8" role="status">
+        <p className="font-mono text-xs font-black uppercase text-[#d96ab4]">{locale === "fr" ? "Commande reçue" : "Order received"}</p>
         <h2 className="mt-4 font-display text-[clamp(2.6rem,5vw,4rem)] uppercase leading-[0.92]">
           {locale === "fr" ? "Demande confirmée." : "Request confirmed."}
         </h2>
-        <p className="mt-4 max-w-2xl text-paper/76">
+        <p className="mt-4 max-w-2xl text-[#351815]/76">
           {locale === "fr"
             ? "Nous avons enregistré ta demande. Conserve cette référence et surveille ta boîte mail pour la confirmation."
             : "Your request has been recorded. Keep this reference and watch your inbox for confirmation."}
         </p>
-        <div className="mt-6 inline-flex border border-paper bg-paper px-4 py-3 text-ink">
+        <div className="mt-6 inline-flex border-2 border-[#351815] bg-[#ffb000] px-4 py-3 text-[#351815]">
           <strong>{status.reference}</strong>
         </div>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-          <Link className="primary-link" href={getRoute(locale, "runs")}>
+          <Link className="inline-flex min-h-14 items-center border-2 border-[#351815] bg-[#351815] px-4 py-3 font-mono text-sm font-black uppercase text-[#f6eadf]" href={getRoute(locale, "runs")}>
             {locale === "fr" ? "Voir les prochains runs" : "See upcoming runs"}
           </Link>
-          <Link className="secondary-link" href={getRoute(locale, "merch")}>
+          <Link className="inline-flex min-h-14 items-center border-2 border-[#351815] bg-[#f6eadf] px-4 py-3 font-mono text-sm font-black uppercase text-[#351815]" href={getRoute(locale, "merch")}>
             {locale === "fr" ? "Retour au merch" : "Back to merch"}
           </Link>
         </div>
@@ -145,7 +145,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[0.92fr_0.48fr]">
-      <form className="panel p-6 lg:p-8" onSubmit={handleSubmit}>
+      <form className="border-2 border-[#351815] bg-[#f6eadf] p-6 lg:p-8" onSubmit={handleSubmit}>
         <div className="grid gap-5 md:grid-cols-2">
           <Field
             label={locale === "fr" ? "Prénom" : "First name"}
@@ -179,11 +179,11 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
         </div>
 
         <label className="mt-5 block">
-          <span className="mb-2 block text-sm uppercase tracking-[0.14em] text-paper/58">
+          <span className="mb-2 block font-mono text-xs font-black uppercase text-[#351815]/58">
             {locale === "fr" ? "Méthode de remise" : "Delivery method"}
           </span>
           <select
-            className="field"
+            className="w-full border-2 border-[#351815] bg-[#f6eadf] p-3 font-mono text-sm outline-none transition focus:bg-[#ffb000]/20"
             onChange={(event) => setForm((current) => ({ ...current, deliveryMethod: event.target.value }))}
             required
             value={form.deliveryMethod}
@@ -194,11 +194,11 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
         </label>
 
         <label className="mt-5 block">
-          <span className="mb-2 block text-sm uppercase tracking-[0.14em] text-paper/58">
+          <span className="mb-2 block font-mono text-xs font-black uppercase text-[#351815]/58">
             {locale === "fr" ? "Notes" : "Notes"}
           </span>
           <textarea
-            className="field min-h-[140px]"
+            className="min-h-[140px] w-full border-2 border-[#351815] bg-[#f6eadf] p-3 font-mono text-sm outline-none transition focus:bg-[#ffb000]/20"
             onChange={(event) => setForm((current) => ({ ...current, notes: event.target.value }))}
             placeholder={
               locale === "fr" ? "Taille souhaitée, préférence de remise, message utile..." : "Preferred size, pickup preference, useful message..."
@@ -209,7 +209,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
 
         {status.type === "error" ? <p className="mt-4 text-sm text-[#ff8e75]" role="alert">{status.message}</p> : null}
 
-        <button aria-busy={status.type === "loading"} className="primary-button mt-6 w-full justify-center" disabled={status.type === "loading"} type="submit">
+        <button aria-busy={status.type === "loading"} className="mt-6 inline-flex min-h-14 w-full items-center justify-center border-2 border-[#351815] bg-[#351815] px-4 py-3 font-mono text-sm font-black uppercase text-[#f6eadf] transition hover:bg-[#ffb000] hover:text-[#351815] disabled:opacity-50" disabled={status.type === "loading"} type="submit">
           {status.type === "loading"
             ? locale === "fr"
               ? "Envoi en cours..."
@@ -220,16 +220,16 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
         </button>
       </form>
 
-      <aside className="panel p-6">
-        <p className="text-sm uppercase tracking-[0.18em] text-accent">{locale === "fr" ? "Récapitulatif" : "Summary"}</p>
+      <aside className="border-2 border-[#351815] bg-[#351815] p-6 text-[#f6eadf]">
+        <p className="font-mono text-xs font-black uppercase text-[#d96ab4]">{locale === "fr" ? "Récapitulatif" : "Summary"}</p>
         <div className="mt-4 space-y-4">
           {items.length ? (
             items.map((item) => (
-              <div className="border-b border-paper/10 pb-4" key={item!.id}>
+              <div className="border-b-2 border-[#f6eadf] pb-4" key={item!.id}>
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="font-semibold">{item!.name}</p>
-                    <p className="text-sm text-paper/55">
+                    <p className="text-sm text-[#f6eadf]/55">
                       {item!.quantity} x {item!.price}€
                     </p>
                   </div>
@@ -238,18 +238,18 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
               </div>
             ))
           ) : (
-            <p className="text-paper/64">
+            <p className="text-[#f6eadf]/64">
               {locale === "fr" ? "Aucun article dans le panier." : "No items in your cart."}
             </p>
           )}
         </div>
-        <div className="mt-6 border-t border-paper/15 pt-5">
+        <div className="mt-6 border-t-2 border-[#f6eadf] pt-5">
           <div className="flex items-center justify-between gap-4">
-            <span className="text-paper/64">{locale === "fr" ? "Total" : "Total"}</span>
+            <span className="text-[#f6eadf]/64">{locale === "fr" ? "Total" : "Total"}</span>
             <strong className="text-2xl">{total}€</strong>
           </div>
         </div>
-        <p className="mt-5 text-sm text-paper/58">
+        <p className="mt-5 text-sm text-[#f6eadf]/58">
           {locale === "fr"
             ? "La demande confirme ton panier, ton mode de remise et tes coordonnées avant validation finale par email."
             : "The request confirms your cart, delivery method and contact details before the final email confirmation."}
@@ -276,8 +276,8 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm uppercase tracking-[0.14em] text-paper/58">{label}</span>
-      <input autoComplete={autoComplete} className="field" onChange={(event) => onChange(event.target.value)} required={required} type={type} value={value} />
+      <span className="mb-2 block font-mono text-xs font-black uppercase text-[#351815]/58">{label}</span>
+      <input autoComplete={autoComplete} className="w-full border-2 border-[#351815] bg-[#f6eadf] p-3 font-mono text-sm outline-none transition focus:bg-[#ffb000]/20" onChange={(event) => onChange(event.target.value)} required={required} type={type} value={value} />
     </label>
   );
 }

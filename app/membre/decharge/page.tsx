@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AccountHeader } from "../../../components/account-shell";
 
 const waiverSections = [
   {
@@ -33,14 +34,15 @@ const waiverSections = [
 
 export default function MemberWaiverPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-[#f6eadf] text-[#351815]">
+      <AccountHeader />
       <section className="shell grid gap-8 py-10">
         <div>
-          <p className="font-mono text-sm uppercase tracking-[0.28em] text-shock">Décharge</p>
-          <h1 className="brutal-title mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">
+          <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">Décharge / membre</p>
+          <h1 className="mt-6 font-display text-[clamp(3.4rem,9vw,7.6rem)] uppercase leading-[0.94]">
             Décharge de responsabilité.
           </h1>
-          <p className="mt-5 max-w-xl text-lg text-white/72">
+          <p className="mt-5 max-w-xl text-lg font-bold leading-tight text-[#351815]/72">
             NULLL.CLUB. Lis. Comprends. Accepte si tu es ok.
           </p>
         </div>
@@ -49,18 +51,18 @@ export default function MemberWaiverPage() {
           <h2 className="font-display text-[clamp(2.6rem,7vw,5rem)] uppercase leading-none">
             Décharge de responsabilité - NULLL.CLUB
           </h2>
-          <p className="mt-6 text-lg text-white/78">
+          <p className="mt-6 text-lg font-bold leading-tight text-[#351815]/78">
             En cochant la case d'acceptation et en validant mon inscription, je reconnais et j'accepte ce qui suit :
           </p>
           <div className="mt-8 grid gap-6">
             {waiverSections.map((section) => (
-              <section className="border-t-2 border-white pt-5" key={section.title}>
-                <h3 className="font-mono text-sm font-black uppercase tracking-[0.16em] text-shock">{section.title}</h3>
-                <p className="mt-3 leading-relaxed text-white/78">{section.text}</p>
+              <section className="border-t-2 border-[#351815] pt-5" key={section.title}>
+                <h3 className="font-mono text-sm font-black uppercase text-[#d96ab4]">{section.title}</h3>
+                <p className="mt-3 leading-relaxed text-[#351815]/78">{section.text}</p>
               </section>
             ))}
           </div>
-          <p className="mt-8 border-t-2 border-white pt-5 font-mono text-sm font-black uppercase text-white">
+          <p className="mt-8 border-t-2 border-[#351815] pt-5 font-mono text-sm font-black uppercase text-[#351815]">
             Je certifie avoir lu et compris la présente décharge et l'accepter sans réserve.
           </p>
         </article>

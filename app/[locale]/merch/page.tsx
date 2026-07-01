@@ -26,12 +26,12 @@ export default async function MerchPage({ params }: PageProps) {
 
   return (
     <SiteShell current="merch" locale={locale} pathname={getRoute(locale, "merch")}>
-      <section className="shell py-10 lg:py-14">
+      <section className="mx-auto w-full max-w-[1760px] px-5 py-10 sm:px-8 lg:px-10 lg:py-14">
         <SectionTitle as="h1" index="10" text={copy.merchPage.intro} title={copy.merchPage.title} />
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {copy.merchPage.trust.map((item) => (
-            <div className="panel p-4" key={item}>
-              <p>{item}</p>
+          {copy.merchPage.trust.map((item, index) => (
+            <div className={`${index % 2 === 0 ? "bg-[#d96ab4]" : "bg-[#ffb000]"} border-2 border-[#351815] p-4 font-mono text-sm font-black uppercase`} key={item}>
+              {item}
             </div>
           ))}
         </div>

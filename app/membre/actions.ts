@@ -54,14 +54,28 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
     return { error: "Lis et accepte la decharge. Obligatoire." };
   }
 
-  const serviceSupabase = createSupabaseServiceClient();
+  let serviceSupabase;
+
+  try {
+    serviceSupabase = createSupabaseServiceClient();
+  } catch {
+    return { error: "Connexion membre indisponible: variables Supabase manquantes." };
+  }
+
   const { error: configError } = await serviceSupabase.from("app_config").select("key").limit(1);
 
   if (configError) {
     return { error: "Base pas prete. Lance la migration Supabase d'abord." };
   }
 
-  const supabase = await createSupabaseServerClient();
+  let supabase;
+
+  try {
+    supabase = await createSupabaseServerClient();
+  } catch {
+    return { error: "Connexion membre indisponible: variables Supabase manquantes." };
+  }
+
   const { data, error } = await supabase.auth.signUp({
     email,
     password
@@ -99,7 +113,14 @@ export async function loginMember(_previousState: LoginState, formData: FormData
     return { error: "Mail et mot de passe. Les deux." };
   }
 
-  const supabase = await createSupabaseServerClient();
+  let supabase;
+
+  try {
+    supabase = await createSupabaseServerClient();
+  } catch {
+    return { error: "Connexion membre indisponible: variables Supabase manquantes." };
+  }
+
   const { error } = await supabase.auth.signInWithPassword({
     email,
     password
@@ -119,7 +140,14 @@ export async function resetMemberPassword(_previousState: LoginState, formData: 
     return { error: "Mets ton mail." };
   }
 
-  const supabase = await createSupabaseServerClient();
+  let supabase;
+
+  try {
+    supabase = await createSupabaseServerClient();
+  } catch {
+    return { error: "Reset indisponible: variables Supabase manquantes." };
+  }
+
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3001"}/membre/login`
   });

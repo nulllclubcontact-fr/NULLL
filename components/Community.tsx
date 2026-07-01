@@ -11,7 +11,7 @@ export function Community() {
         <div className="grid-paper-dark border-b-2 border-black p-4 sm:p-6 lg:border-b-0 lg:border-r-2 lg:p-8">
           <Reveal>
             <p className="mb-5 font-mono text-sm uppercase">03 / Community</p>
-            <h2 className="font-display text-[clamp(4rem,10.5vw,10rem)] uppercase leading-[0.82]">
+            <h2 className="font-display text-[clamp(3.5rem,8.4vw,8.2rem)] uppercase leading-[0.94]">
               COME ALONE.
               <br />
               LEAVE CONNECTED.

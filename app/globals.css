@@ -5,7 +5,19 @@
 :root {
   --grid-line: rgba(255, 255, 255, 0.16);
   --grid-line-dark: rgba(0, 0, 0, 0.18);
-  --shock: #ff3fb4;
+
+  /* Couleurs de marque pilotées par le CMS — canaux RGB (R G B).
+     Ces valeurs par défaut sont IDENTIQUES aux couleurs d'origine ;
+     l'admin (Identité visuelle) peut les surcharger à l'exécution. */
+  --c-ink: 0 0 0;
+  --c-ink-soft: 7 7 7;
+  --c-paper: 255 255 255;
+  --c-ash: 167 167 167;
+  --c-rust: 214 74 36;
+  --c-accent: 255 63 180;
+
+  /* Compat : ancienne variable --shock suit désormais l'accent. */
+  --shock: rgb(var(--c-accent));
 }
 
 * {
@@ -14,15 +26,15 @@
 
 html {
   scroll-behavior: smooth;
-  background: #000000;
+  background: #f6eadf;
 }
 
 body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
-  background: #000000;
-  color: #ffffff;
+  background: #f6eadf;
+  color: #351815;
   font-family: Arial, Helvetica, sans-serif;
   text-rendering: geometricPrecision;
 }
@@ -33,23 +45,31 @@ body::before {
   z-index: 50;
   pointer-events: none;
   content: "";
-  opacity: 0.11;
+  opacity: 0.08;
   background-image:
     radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.75) 0 1px, transparent 1px),
     radial-gradient(circle at 72% 62%, rgba(255, 255, 255, 0.45) 0 1px, transparent 1px),
     linear-gradient(115deg, transparent 0 47%, rgba(255, 255, 255, 0.18) 48% 49%, transparent 50% 100%);
   background-size: 19px 19px, 31px 31px, 220px 220px;
-  mix-blend-mode: screen;
+  mix-blend-mode: multiply;
 }
 
 ::selection {
-  background: var(--shock);
-  color: #000000;
+  background: #ffb000;
+  color: #351815;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 summary {
@@ -179,22 +199,22 @@ html[data-lang="en"] .lang-fr {
 
 @layer components {
   .shell {
-    width: min(100% - 24px, 1440px);
+    width: min(100% - 24px, 1680px);
     margin-inline: auto;
   }
 
   .panel {
-    border: 2px solid #ffffff;
+    border: 2px solid #351815;
     background:
-      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      #000000;
+      linear-gradient(rgba(53, 24, 21, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(53, 24, 21, 0.055) 1px, transparent 1px),
+      #f6eadf;
     background-size: 42px 42px;
-    color: #ffffff;
+    color: #351815;
   }
 
   .panel-grid {
-    box-shadow: 8px 8px 0 rgba(255, 63, 180, 0.85);
+    box-shadow: 8px 8px 0 #d96ab4;
   }
 
   .hero-grid {
@@ -207,7 +227,7 @@ html[data-lang="en"] .lang-fr {
     display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.55);
+    border: 2px solid #351815;
     padding: 0.7rem 0.9rem;
     font-family: "Courier New", Courier, monospace;
     font-size: 0.78rem;
@@ -223,9 +243,9 @@ html[data-lang="en"] .lang-fr {
   .nav-link:hover,
   .locale-chip:hover,
   .nav-link-active {
-    border-color: var(--shock);
-    background: var(--shock);
-    color: #000000;
+    border-color: #351815;
+    background: #d96ab4;
+    color: #351815;
   }
 
   .primary-link,
@@ -236,13 +256,16 @@ html[data-lang="en"] .lang-fr {
     justify-content: space-between;
     gap: 1rem;
     min-height: 3.25rem;
-    border: 2px solid #ffffff;
+    min-width: 0;
+    border: 2px solid #351815;
     padding: 0.95rem 1.1rem;
     font-family: "Courier New", Courier, monospace;
     font-size: 0.9rem;
     font-weight: 900;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    text-align: left;
+    overflow-wrap: anywhere;
     transition:
       transform 160ms ease,
       background-color 160ms ease,
@@ -252,20 +275,20 @@ html[data-lang="en"] .lang-fr {
 
   .primary-link,
   .primary-button {
-    background: var(--shock);
-    color: #000000;
+    background: #351815;
+    color: #f6eadf;
   }
 
   .secondary-link {
-    background: #000000;
-    color: #ffffff;
+    background: #f6eadf;
+    color: #351815;
   }
 
   .primary-link:hover,
   .secondary-link:hover,
   .primary-button:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 #ffffff;
+    box-shadow: 6px 6px 0 #d96ab4;
   }
 
   .icon-button {
@@ -273,9 +296,9 @@ html[data-lang="en"] .lang-fr {
     width: 2.75rem;
     height: 2.75rem;
     place-items: center;
-    border: 2px solid #ffffff;
-    background: #000000;
-    color: #ffffff;
+    border: 2px solid #351815;
+    background: #f6eadf;
+    color: #351815;
     font-family: "Courier New", Courier, monospace;
     font-size: 1.35rem;
     font-weight: 900;
@@ -285,8 +308,8 @@ html[data-lang="en"] .lang-fr {
   }
 
   .icon-button:hover {
-    background: var(--shock);
-    color: #000000;
+    background: #ffb000;
+    color: #351815;
   }
 
   .primary-button:disabled,
@@ -299,9 +322,10 @@ html[data-lang="en"] .lang-fr {
 
   .field {
     width: 100%;
-    border: 2px solid rgba(255, 255, 255, 0.72);
-    background: #050505;
-    color: #ffffff;
+    min-height: 3.25rem;
+    border: 2px solid #351815;
+    background: #fff8ef;
+    color: #351815;
     padding: 0.95rem 1rem;
     outline: none;
   }
@@ -314,7 +338,7 @@ html[data-lang="en"] .lang-fr {
   .primary-button:focus-visible,
   .icon-button:focus-visible {
     border-color: var(--shock);
-    box-shadow: 0 0 0 4px rgba(255, 63, 180, 0.32);
+    box-shadow: 0 0 0 4px rgba(217, 106, 180, 0.32);
   }
 }
 
@@ -349,7 +373,7 @@ html[data-lang="en"] .lang-fr {
   }
 
   .shell {
-    width: min(100% - 16px, 1440px);
+    width: min(100% - 16px, 1680px);
   }
 }
 
@@ -357,5 +381,14 @@ html[data-lang="en"] .lang-fr {
   .hero-grid {
     grid-template-columns: minmax(0, 1fr) minmax(360px, 0.68fr);
     align-items: stretch;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }

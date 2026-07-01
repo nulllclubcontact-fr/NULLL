@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { StructuredData } from "../../components/StructuredData";
-import { HeroPanel, PrimaryLink, RunCard, SectionTitle, SiteShell } from "../../components/site-shell";
-import { buildEventSchema, buildOrganizationSchema, buildPageMetadata, buildSportsLocationSchema } from "../../lib/seo";
+import { ArrowIcon } from "../../components/ArrowIcon";
+import { SiteShell } from "../../components/site-shell";
+import { buildOrganizationSchema, buildPageMetadata, buildSportsLocationSchema } from "../../lib/seo";
 import { resolveLocale } from "../../lib/locale";
 import { getRoute, getSiteCopy, type Locale } from "../../lib/site-content";
 
@@ -21,124 +23,117 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 }
 
+const clubRules = ["No headphones", "No lonely run", "Music outside", "Real talk"];
+
 export default async function LocaleHomePage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale);
-  const copy = getSiteCopy(locale);
 
   return (
     <SiteShell current="home" locale={locale} pathname={`/${locale}`}>
       <StructuredData data={[buildOrganizationSchema(locale), buildSportsLocationSchema(locale)]} />
-      <HeroPanel
-        actions={
-          <>
-            <PrimaryLink href={getRoute(locale, "runs")}>{copy.home.hero.primaryCta}</PrimaryLink>
-            <PrimaryLink href={getRoute(locale, "community")} secondary>
-              {copy.home.hero.secondaryCta}
-            </PrimaryLink>
-          </>
-        }
-        facts={copy.home.hero.stats}
-        image="/assets/photos/motion-run.png"
-        imageAlt={locale === "fr" ? "Coureurs de NULLL.CLUB à Aix-en-Provence" : "NULLL.CLUB runners in Aix-en-Provence"}
-        intro={copy.home.hero.intro}
-        label={locale === "fr" ? "Accueil / Run club social" : "Home / Social run club"}
-        stamp="01"
-        title={copy.home.hero.title}
-      />
-
-      <section className="shell py-8 lg:py-12">
-        <SectionTitle index="02" text={copy.home.sections.nextRunsText} title={copy.home.sections.nextRunsTitle} />
-        <div className="mt-8 grid gap-6 lg:grid-cols-3">
-          {copy.runs.map((run, index) => (
-            <div key={run.id}>
-              {index === 0 ? (
-                <StructuredData
-                  data={buildEventSchema({
-                    locale,
-                    name: run.title,
-                    description: run.summary,
-                    startDate: run.isoDate,
-                    locationName: run.location,
-                    address: run.address,
-                    route: getRoute(locale, "runs")
-                  })}
-                />
-              ) : null}
-              <RunCard locale={locale} run={run} />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="shell py-8 lg:py-12">
-        <SectionTitle index="03" title={copy.home.sections.howTitle} />
-        <div className="mt-8 grid gap-6 lg:grid-cols-3">
-          {copy.home.sections.howSteps.map((step, index) => (
-            <article className="panel p-5 lg:p-6" key={step.title}>
-              <p className="text-sm uppercase tracking-[0.18em] text-accent">0{index + 1}</p>
-              <h3 className="mt-4 font-display text-[clamp(2rem,4vw,3rem)] uppercase leading-[0.95]">{step.title}</h3>
-              <p className="mt-4 text-paper/74">{step.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="shell py-8 lg:py-12">
-        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="panel p-6 lg:p-8">
-            <SectionTitle index="04" text={copy.home.sections.seoBody} title={copy.home.sections.seoTitle} />
-            <div className="mt-8 space-y-4">
-              {copy.home.promise.map((item) => (
-                <p className="border-t border-paper/15 pt-4 text-paper/74" key={item}>
-                  {item}
-                </p>
-              ))}
-            </div>
-          </div>
-          <div className="panel p-6 lg:p-8">
-            <SectionTitle index="05" text={copy.home.sections.merchText} title={copy.home.sections.merchTitle} />
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <PrimaryLink href={getRoute(locale, "merch")}>{locale === "fr" ? "Voir le merch" : "See the merch"}</PrimaryLink>
-              <PrimaryLink href={getRoute(locale, "contact")} secondary>
-                {locale === "fr" ? "Contacter le club" : "Contact the club"}
-              </PrimaryLink>
-            </div>
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
-              {copy.home.faq.map((entry) => (
-                <article className="border-t border-paper/15 pt-4" key={entry.q}>
-                  <h3 className="font-semibold">{entry.q}</h3>
-                  <p className="mt-3 text-paper/68">{entry.a}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="shell pb-16 pt-8 lg:pb-20">
-        <div className="panel grid gap-6 p-6 lg:grid-cols-[0.82fr_1.18fr] lg:p-8">
+      <section className="mx-auto grid min-h-[calc(100svh-82px)] w-full max-w-[1760px] grid-cols-1 border-b-2 border-[#351815] lg:grid-cols-[0.94fr_1.06fr]">
+        <div className="flex min-h-[680px] flex-col justify-between border-b-2 border-[#351815] px-5 py-8 sm:px-8 lg:border-b-0 lg:border-r-2 lg:px-10">
           <div>
-            <p className="text-sm uppercase tracking-[0.18em] text-accent">
-              {locale === "fr" ? "Pages locales" : "Local pages"}
+            <div className="flex flex-wrap items-center gap-2 font-mono text-[0.72rem] font-black uppercase leading-none sm:text-xs">
+              <span className="border-2 border-[#351815] bg-[#351815] px-3 py-2 text-[#f6eadf]">01</span>
+              <span className="border-2 border-[#351815] px-3 py-2">Aix-en-Provence</span>
+              <span className="border-2 border-[#351815] bg-[#ffb000] px-3 py-2">Run club social</span>
+            </div>
+            <h1 className="mt-8 max-w-4xl font-display text-[clamp(4.2rem,11vw,10.8rem)] uppercase leading-[0.92]">
+              RUN.
+              <br />
+              MEET.
+              <br />
+              REPEAT.
+            </h1>
+            <p className="mt-6 max-w-2xl text-[clamp(1.2rem,2.1vw,2rem)] font-black uppercase leading-[0.98]">
+              {locale === "fr"
+                ? "Un running club social pour sortir de la bulle ecole, metro, boulot."
+                : "A social running club for people who need to get out of the weekly bubble."}
             </p>
-            <h2 className="mt-4 font-display text-[clamp(2.8rem,6vw,5rem)] uppercase leading-[0.92]">
-              {locale === "fr" ? "Renforcer la présence locale du club." : "Strengthen the club’s local footprint."}
-            </h2>
           </div>
-          <div className="grid gap-4">
-            {[
-              { key: "localClub" as const, label: locale === "fr" ? "Run club Aix-en-Provence" : "Aix-en-Provence run club" },
-              { key: "localRunning" as const, label: locale === "fr" ? "Courir à Aix-en-Provence" : "Running in Aix-en-Provence" },
-              { key: "localEvents" as const, label: locale === "fr" ? "Événements running Aix" : "Aix running events" }
-            ].map((entry) => (
-              <Link className="primary-link group justify-between" href={getRoute(locale, entry.key)} key={entry.key}>
-                <span>{entry.label}</span>
-                <span>{locale === "fr" ? "Lire" : "Read"}</span>
-              </Link>
-            ))}
+          <div className="mt-8 grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
+            <div className="border-2 border-[#351815] bg-[#d96ab4] p-4 font-mono text-sm font-black uppercase leading-tight sm:p-5">
+              {locale === "fr" ? "Runs en groupe. Enceinte commune. Zero ecouteurs. Le sport est le pretexte, la famille est le sujet." : "Group runs. Shared speaker. Zero headphones. Sport is the excuse, family is the point."}
+            </div>
+            <div className="flex flex-col gap-3 sm:min-w-56">
+              <HomeLink href={getRoute(locale, "runs")}>{locale === "fr" ? "Rejoindre un run" : "Join a run"}</HomeLink>
+              <HomeLink href={getRoute(locale, "community")} light>{locale === "fr" ? "Voir l'esprit" : "Feel the mood"}</HomeLink>
+            </div>
           </div>
+        </div>
+        <div className="relative min-h-[720px] overflow-hidden bg-[#351815] p-3 sm:p-5 lg:min-h-full">
+          <Image alt="NULLL.CLUB community after a race" className="object-cover" fill priority sizes="(min-width: 1024px) 54vw, 100vw" src="/assets/nulll-new/run-finish.png" />
+          <div className="absolute inset-3 border-2 border-[#f6eadf] sm:inset-5" />
+          <div className="absolute bottom-8 left-8 right-8 z-10 bg-[#f6eadf] p-5 text-[#351815]">
+            <p className="font-mono text-xs font-black uppercase">Next mood</p>
+            <p className="mt-2 font-display text-[clamp(2.6rem,5vw,4.8rem)] uppercase leading-[0.92]">Make it real</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b-2 border-[#351815] bg-[#351815] py-3 text-[#f6eadf]">
+        <div className="flex overflow-hidden font-display text-[clamp(2.2rem,5vw,4.8rem)] uppercase leading-none">
+          <div className="animate-[marquee_24s_linear_infinite] whitespace-nowrap">RUN TOGETHER / NO HEADPHONES / MUSIC OUTSIDE / COME ALONE LEAVE CONNECTED / DROP 001 /&nbsp;</div>
+          <div className="animate-[marquee_24s_linear_infinite] whitespace-nowrap" aria-hidden="true">RUN TOGETHER / NO HEADPHONES / MUSIC OUTSIDE / COME ALONE LEAVE CONNECTED / DROP 001 /&nbsp;</div>
+        </div>
+      </section>
+
+      <section className="mx-auto grid w-full max-w-[1760px] grid-cols-1 border-b-2 border-[#351815] lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="border-b-2 border-[#351815] p-5 sm:p-8 lg:border-b-0 lg:border-r-2 lg:p-10">
+          <p className="font-mono text-xs font-black uppercase">02 / why we run</p>
+          <h2 className="mt-5 max-w-4xl font-display text-[clamp(3.4rem,7.4vw,7.2rem)] uppercase leading-[0.94]">
+            {locale === "fr" ? "Pas la perf. La presence." : "Not performance. Presence."}
+          </h2>
+          <p className="mt-6 max-w-xl text-xl font-bold leading-tight sm:text-2xl">
+            {locale === "fr"
+              ? "NULLL.CLUB melange deux mondes: ecole, metro, boulot d'un cote; sueur, musique et vraies rencontres de l'autre."
+              : "NULLL.CLUB mixes two worlds: school, metro, work on one side; sweat, music and real people on the other."}
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2">
+          <PhotoTile alt="Smiling NULLL.CLUB mood" src="/assets/nulll-new/smile-sun.png" title="social" />
+          <div className="flex min-h-[430px] flex-col justify-between border-b-2 border-[#351815] bg-[#ffb000] p-5 sm:border-l-2 sm:p-7">
+            <Image alt="NULLL N" className="h-auto w-32" height={784} src="/assets/nulll-new/n-burgundy.png" width={900} />
+            <div>
+              <p className="font-display text-[clamp(3rem,6.6vw,5.8rem)] uppercase leading-[0.94]">No bubble</p>
+              <p className="mt-4 font-mono text-sm font-black uppercase leading-tight">
+                {locale === "fr" ? "Ici tu ne disparais pas derriere tes ecouteurs." : "You do not disappear behind headphones here."}
+              </p>
+            </div>
+          </div>
+          <div className="border-b-2 border-[#351815] bg-[#d96ab4] p-5 sm:p-7">
+            <p className="font-mono text-xs font-black uppercase">club rules</p>
+            <div className="mt-6 grid gap-2">
+              {clubRules.map((rule) => (
+                <div className="flex items-center justify-between border-2 border-[#351815] bg-[#f6eadf] px-3 py-2 font-mono text-xs font-black uppercase" key={rule}>
+                  <span>{rule}</span>
+                  <span>+</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <PhotoTile alt="Poolside NULLL.CLUB after-run mood" src="/assets/nulll-new/pool-legs.png" title="after run" />
         </div>
       </section>
     </SiteShell>
+  );
+}
+
+function HomeLink({ children, href, light = false }: { children: React.ReactNode; href: string; light?: boolean }) {
+  return (
+    <Link className={`${light ? "bg-[#f6eadf] text-[#351815] hover:bg-[#351815] hover:text-[#f6eadf]" : "bg-[#351815] text-[#f6eadf] hover:bg-[#ffb000] hover:text-[#351815]"} group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-[#351815] px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1`} href={href}>
+      <span>{children}</span>
+      <ArrowIcon />
+    </Link>
+  );
+}
+
+function PhotoTile({ alt, src, title }: { alt: string; src: string; title: string }) {
+  return (
+    <div className="relative min-h-[430px] overflow-hidden border-b-2 border-[#351815]">
+      <Image alt={alt} className="object-cover" fill sizes="(min-width: 1024px) 28vw, 100vw" src={src} />
+      <div className="absolute left-4 top-4 bg-[#f6eadf] px-3 py-2 font-mono text-xs font-black uppercase text-[#351815]">{title}</div>
+    </div>
   );
 }

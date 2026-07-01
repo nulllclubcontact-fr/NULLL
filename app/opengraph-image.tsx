@@ -53,7 +53,7 @@ export default function OpenGraphImage() {
             Run club social à Aix-en-Provence.
           </div>
           <div style={{ fontSize: "30px", color: "rgba(244,240,232,0.74)", maxWidth: "840px" }}>
-            Prochains runs, communauté locale, événements running et merch du club.
+            Prochains runs, communauté locale et rendez-vous pour sortir de la bulle.
           </div>
         </div>
       </div>

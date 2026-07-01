@@ -20,7 +20,7 @@ export function Hero() {
       <div className="relative z-10 grid grid-cols-1 border-b-2 border-white lg:min-h-[540px] lg:grid-cols-[minmax(0,1.06fr)_minmax(440px,0.94fr)]">
         <div className="flex flex-col justify-between border-b-2 border-white p-4 sm:p-6 lg:border-b-0 lg:border-r-2 lg:p-8">
           <Reveal>
-            <h1 className="whitespace-nowrap font-display text-[clamp(4.7rem,11.7vw,11rem)] uppercase leading-[0.78] text-white">
+            <h1 className="whitespace-nowrap font-display text-[clamp(4rem,9vw,9rem)] uppercase leading-[0.94] text-white">
               NULLL.CLUB
             </h1>
           </Reveal>
@@ -100,7 +100,7 @@ export function Hero() {
             <span className="text-2xl">+</span>
           </div>
           <Reveal>
-            <h2 className="font-display text-[clamp(4rem,8vw,7.8rem)] uppercase leading-[0.83]">
+            <h2 className="font-display text-[clamp(3.4rem,6.6vw,6.4rem)] uppercase leading-[0.94]">
               WE DON&apos;T
               <br />
               PERFORM.

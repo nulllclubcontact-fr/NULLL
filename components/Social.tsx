@@ -11,7 +11,7 @@ export function Social() {
         <div className="flex flex-col justify-between border-b-2 border-black p-4 sm:p-8 lg:border-b-0 lg:border-r-2">
           <Reveal>
             <p className="mb-6 font-mono text-sm uppercase">05 / Instagram</p>
-            <h2 className="font-display text-[clamp(4.5rem,13vw,13rem)] uppercase leading-[0.8]">
+            <h2 className="font-display text-[clamp(3.8rem,10vw,10rem)] uppercase leading-[0.94]">
               THE RUNS HAPPEN OUTSIDE.
               <br />
               THE CHAOS STARTS HERE.

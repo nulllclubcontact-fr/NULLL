@@ -14,7 +14,14 @@ function formatDiscount(value: number) {
 }
 
 export default async function MemberDashboardPage() {
-  const supabase = await createSupabaseServerClient();
+  let supabase;
+
+  try {
+    supabase = await createSupabaseServerClient();
+  } catch {
+    redirect("/membre/login");
+  }
+
   const {
     data: { user }
   } = await supabase.auth.getUser();
@@ -42,34 +49,34 @@ export default async function MemberDashboardPage() {
 
   return (
     <section className="shell grid gap-8 py-8 lg:py-12">
-      <p className="font-mono text-sm uppercase tracking-[0.28em] text-shock">Dashboard membre</p>
+      <p className="inline-flex w-fit border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">Dashboard membre</p>
 
       <ResetReminder currentMonthPoints={currentMonthPoints} />
 
       <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="panel panel-grid p-5 md:p-8">
-          <p className="font-mono text-sm uppercase tracking-[0.16em] text-white/60">
+          <p className="font-mono text-sm font-black uppercase text-[#351815]/60">
             {profile?.first_name ? `${profile.first_name}, ce mois-ci` : "Ce mois-ci"}
           </p>
-          <h1 className="brutal-title mt-4 font-display text-[clamp(6rem,22vw,18rem)] uppercase leading-none">
+          <h1 className="mt-4 font-display text-[clamp(6rem,22vw,18rem)] uppercase leading-none">
             {currentMonthPoints}
           </h1>
-          <p className="mt-2 font-mono text-lg font-black uppercase text-shock">points</p>
+          <p className="mt-2 font-mono text-lg font-black uppercase text-[#d96ab4]">points</p>
         </div>
 
         <div className="grid gap-6">
           <div className="panel p-5">
-            <p className="font-mono text-sm uppercase tracking-[0.16em] text-white/60">Palier actuel</p>
-            <div className="mt-4 inline-flex border-2 border-shock bg-shock px-4 py-2 font-mono text-sm font-black uppercase text-black">
+            <p className="font-mono text-sm font-black uppercase text-[#351815]/60">Palier actuel</p>
+            <div className="mt-4 inline-flex border-2 border-[#351815] bg-[#d96ab4] px-4 py-2 font-mono text-sm font-black uppercase text-[#351815]">
               {tierProgress.currentTier?.name ?? "Base"} - {formatDiscount(currentDiscount)}%
             </div>
-            <p className="mt-5 text-white/72">
+            <p className="mt-5 font-bold text-[#351815]/72">
               {tierProgress.nextTier
                 ? `Encore ${tierProgress.pointsToNext} points pour ${formatDiscount(tierProgress.nextTier.discount_percent)} %.`
                 : "Palier max. Tu peux toujours faire tourner."}
             </p>
-            <div className="mt-5 h-5 border-2 border-white bg-black" aria-label="Progression vers le palier suivant">
-              <div className="h-full bg-shock" style={{ width: `${tierProgress.progressPercent}%` }} />
+            <div className="mt-5 h-5 border-2 border-[#351815] bg-[#fff8ef]" aria-label="Progression vers le palier suivant">
+              <div className="h-full bg-[#ffb000]" style={{ width: `${tierProgress.progressPercent}%` }} />
             </div>
           </div>
 

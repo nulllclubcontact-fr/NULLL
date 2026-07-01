@@ -16,7 +16,7 @@ export function Manifesto() {
             01 / Manifesto
           </div>
           <Reveal>
-            <h2 className="font-display text-[clamp(4.4rem,12vw,11rem)] uppercase leading-[0.82]">
+            <h2 className="font-display text-[clamp(3.6rem,9vw,8.6rem)] uppercase leading-[0.94]">
               WE DON&apos;T
               <br />
               <span className="strike-mark">PERFORM.</span>

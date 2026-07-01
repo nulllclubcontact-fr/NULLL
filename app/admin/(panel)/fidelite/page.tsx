@@ -17,13 +17,13 @@ export default async function AdminLoyaltyPage() {
   return (
     <section className="shell grid gap-8 py-8 lg:py-12">
       <div>
-        <p className="font-mono text-sm uppercase tracking-[0.28em] text-shock">Admin fidelite</p>
-        <h1 className="brutal-title mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Points. Paliers. Cash.</h1>
-        <p className="mt-5 max-w-xl text-white/72">Le ratio nourrit les achats. Les paliers pilotent les reductions.</p>
+        <p className="font-mono text-sm uppercase  text-[#d96ab4]">Admin fidelite</p>
+        <h1 className="mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Points. Paliers. Cash.</h1>
+        <p className="mt-5 max-w-xl text-[#351815]/72">Le ratio nourrit les achats. Les paliers pilotent les reductions.</p>
       </div>
 
       <form action={updatePointsPerEuro} className="panel panel-grid grid gap-4 p-5 md:grid-cols-[1fr_auto]">
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Points par euro
           <input
             className="field"
@@ -42,19 +42,19 @@ export default async function AdminLoyaltyPage() {
       </form>
 
       <form action={createLoyaltyTier} className="panel grid gap-4 p-5 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.7fr_auto]">
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Nom
           <input className="field" maxLength={80} name="name" required />
         </label>
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Min points
           <input className="field" min="0" name="min_points" required step="1" type="number" />
         </label>
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Reduction %
           <input className="field" min="0" max="100" name="discount_percent" required step="0.01" type="number" />
         </label>
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Position
           <input className="field" defaultValue={nextPosition} min="0" name="position" required step="1" type="number" />
         </label>
@@ -83,15 +83,15 @@ function TierBlock({ tier }: { tier: AdminLoyaltyTier }) {
     <article className="panel p-5">
       <form action={updateLoyaltyTier} className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.7fr_auto]">
         <input name="tier_id" type="hidden" value={tier.id} />
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Nom
           <input className="field" defaultValue={tier.name} maxLength={80} name="name" required />
         </label>
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Min points
           <input className="field" defaultValue={tier.min_points} min="0" name="min_points" required step="1" type="number" />
         </label>
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Reduction %
           <input
             className="field"
@@ -104,7 +104,7 @@ function TierBlock({ tier }: { tier: AdminLoyaltyTier }) {
             type="number"
           />
         </label>
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Position
           <input className="field" defaultValue={tier.position} min="0" name="position" required step="1" type="number" />
         </label>

@@ -232,7 +232,7 @@ function buildRuns(locale: Locale): RunEvent[] {
 }
 
 export function isLocale(value: string): value is Locale {
-  return locales.includes(value as Locale);
+  return value === "fr";
 }
 
 export function getRoute(locale: Locale, key: RouteKey) {
@@ -302,9 +302,9 @@ export function getSiteCopy(locale: Locale) {
             "Une communauté running ouverte à Aix-en-Provence pour courir ensemble, rencontrer du monde et participer à des événements conviviaux."
         },
         merch: {
-          title: "Merch du run club | NULLL.CLUB Aix-en-Provence",
+          title: "Pièces du club | NULLL.CLUB Aix-en-Provence",
           description:
-            "Retrouve le merchandising officiel du run club NULLL.CLUB à Aix-en-Provence et commande les pièces disponibles."
+            "Découvre les pièces NULLL.CLUB quand elles sont disponibles, comme prolongement naturel du run club à Aix-en-Provence."
         },
         about: {
           title: "À propos du club de running | NULLL.CLUB",
@@ -337,7 +337,7 @@ export function getSiteCopy(locale: Locale) {
         },
         promise: [
           "Tu comprends immédiatement où tu es : un run club à Aix-en-Provence, pas une marque abstraite.",
-          "Tu sais quoi faire ensuite : choisir un prochain run, suivre Instagram, ou commander une pièce du club.",
+          "Tu sais quoi faire ensuite : choisir un prochain run, suivre Instagram, ou venir rencontrer le groupe.",
           "Tu vois la preuve sociale : dates, parcours, ambiance et communauté locale."
         ],
         sections: {
@@ -359,9 +359,9 @@ export function getSiteCopy(locale: Locale) {
               text: "Le vrai lien se crée après la course : musique, boisson, discussions, prochains plans."
             }
           ],
-          merchTitle: "Le merch du club",
+          merchTitle: "Les pièces du club",
           merchText:
-            "Un merchandising limité, cohérent avec l’identité du club, avec une commande simple et une demande confirmée en ligne.",
+            "Une sélection courte qui prolonge l'énergie du club sans prendre la place du run.",
           seoTitle: "Pourquoi rejoindre un groupe de course à Aix ?",
           seoBody:
             "Si tu cherches un run club à Aix-en-Provence, un club de running local ou un groupe de course convivial, NULLL.CLUB t’offre un format simple : des événements running récurrents, une communication claire et une communauté ouverte."
@@ -475,9 +475,9 @@ export function getSiteCopy(locale: Locale) {
         ]
       },
       merchPage: {
-        title: "Le merchandising officiel du run club.",
+        title: "Les pièces du club.",
         intro:
-          "Une sélection courte, claire et directement commandable, pensée pour soutenir le club et renforcer son identité à Aix-en-Provence.",
+          "Une sélection courte, pensée comme une trace du club, pas comme le centre du projet.",
         trust: [
           "Stocks affichés par article",
           "Demande de commande validée en ligne",
@@ -646,7 +646,7 @@ export function getSiteCopy(locale: Locale) {
       },
       promise: [
         "You immediately understand the offer: a real run club in Aix-en-Provence.",
-        "You know what to do next: join a run, follow the club or place a merch order.",
+          "You know what to do next: join a run, follow the club or meet the group.",
         "You get proof, not just branding: dates, routes, atmosphere and local community signals."
       ],
       sections: {

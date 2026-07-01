@@ -1,18 +1,14 @@
-import { redirect } from "next/navigation";
-import { CommunityPageView, generateMetadata } from "../community/page";
+import { CommunityPageView } from "../../../components/LocalizedPageViews";
 import { resolveLocale } from "../../../lib/locale";
-import { getRoute } from "../../../lib/site-content";
+import { generateMetadata } from "../community/page";
+
+export { generateMetadata };
 
 type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
-export { generateMetadata };
-
-export default async function LocalizedCommunityPage(props: PageProps) {
-  const locale = resolveLocale((await props.params).locale);
-  if (locale === "eng") {
-    redirect(getRoute(locale, "community"));
-  }
+export default async function LocalizedCommunityPage({ params }: PageProps) {
+  const locale = resolveLocale((await params).locale);
   return <CommunityPageView locale={locale} />;
 }

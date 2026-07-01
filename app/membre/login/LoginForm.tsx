@@ -11,18 +11,18 @@ export function LoginForm() {
   const [resetState, resetAction, resetPending] = useActionState(resetMemberPassword, initialState);
 
   return (
-    <div className="panel panel-grid max-w-xl p-5">
+    <div className="panel panel-grid p-5 sm:p-6">
       <form action={loginAction} className="grid gap-4" aria-label="Connexion membre">
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs font-black uppercase">
           E-mail
-          <input className="field" name="email" required type="email" />
+          <input autoComplete="email" className="field" name="email" required type="email" />
         </label>
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs font-black uppercase">
           Mot de passe
-          <input className="field" name="password" required type="password" />
+          <input autoComplete="current-password" className="field" name="password" required type="password" />
         </label>
         {loginState.error ? (
-          <p className="border-2 border-shock bg-shock px-4 py-3 font-mono text-sm font-black uppercase text-black" role="alert">
+          <p className="border-2 border-[#351815] bg-[#ffb000] px-4 py-3 font-mono text-sm font-black uppercase text-[#351815]" role="alert">
             {loginState.error}
           </p>
         ) : null}
@@ -31,13 +31,13 @@ export function LoginForm() {
         </button>
       </form>
 
-      <form action={resetAction} className="mt-4 grid gap-3 border-t-2 border-white pt-4">
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+      <form action={resetAction} className="mt-5 grid gap-3 border-t-2 border-[#351815] pt-5">
+        <label className="grid gap-2 font-mono text-xs font-black uppercase">
           Mot de passe oublie
-          <input className="field" name="email" required type="email" />
+          <input autoComplete="email" className="field" name="email" required type="email" />
         </label>
-        {resetState.error ? <p className="text-sm text-shock">{resetState.error}</p> : null}
-        {resetState.message ? <p className="text-sm text-white/72">{resetState.message}</p> : null}
+        {resetState.error ? <p className="text-sm font-bold text-[#351815]">{resetState.error}</p> : null}
+        {resetState.message ? <p className="text-sm font-bold text-[#351815]/72">{resetState.message}</p> : null}
         <button className="secondary-link justify-center" disabled={resetPending} type="submit">
           Recevoir le lien
         </button>
@@ -47,7 +47,7 @@ export function LoginForm() {
         <Link className="primary-link" href="/membre/register">
           Creer un compte
         </Link>
-        <Link className="secondary-link" href="/">
+        <Link className="secondary-link" href="/identification">
           Retour site
         </Link>
       </div>

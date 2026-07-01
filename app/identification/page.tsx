@@ -1,50 +1,82 @@
 import Link from "next/link";
-import { BrandHeader } from "../../components/BrandHeader";
+import { AccountHeader } from "../../components/account-shell";
+import { ArrowIcon } from "../../components/ArrowIcon";
+import { SiteFooter } from "../../components/site-shell";
+import { getSiteCopy } from "../../lib/site-content";
 
 export const metadata = {
   title: "S'identifier | NULLL.CLUB",
   description: "Connexion membre, inscription membre et acces professionnel partenaire NULLL.CLUB."
 };
 
+const accessCards = [
+  {
+    label: "Deja membre",
+    title: "Se connecter",
+    text: "Accede a ton QR, tes points, ton palier et ton historique.",
+    href: "/membre/login",
+    tone: "bg-[#d96ab4]"
+  },
+  {
+    label: "Nouveau membre",
+    title: "Creer un compte",
+    text: "Inscription, decharge, puis acces au club membre.",
+    href: "/membre/register",
+    tone: "bg-[#ffb000]"
+  },
+  {
+    label: "Partenaire",
+    title: "Espace pro",
+    text: "Scan QR, statistiques et points credites en caisse.",
+    href: "/pro/login",
+    tone: "bg-[#351815] text-[#f6eadf]"
+  }
+];
+
 export default function IdentificationPage() {
+  const copy = getSiteCopy("fr");
+
   return (
-    <main className="min-h-screen bg-black text-white">
-      <BrandHeader current="home" />
-      <section className="shell grid gap-8 py-8 lg:py-12">
-        <div>
-          <p className="font-mono text-sm uppercase tracking-[0.28em] text-shock">Identification</p>
-          <h1 className="brutal-title mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Entre. Ou cree.</h1>
-          <p className="mt-5 max-w-xl text-lg text-white/72">Ton compte membre, ton QR, tes points. Le reel, avec login.</p>
-        </div>
-
-        <div className="grid gap-5 lg:grid-cols-2">
-          <Link className="panel panel-grid group min-h-64 p-5 transition hover:bg-shock hover:text-black md:p-8" href="/membre/login">
-            <p className="font-mono text-xs font-black uppercase tracking-[0.16em] text-shock group-hover:text-black">Deja membre</p>
-            <h2 className="mt-5 font-display text-[clamp(3rem,8vw,6rem)] uppercase leading-none">Se connecter.</h2>
-            <p className="mt-5 max-w-md font-mono text-sm uppercase opacity-70">Dashboard, QR, points, historique.</p>
-          </Link>
-
-          <Link className="panel group min-h-64 p-5 transition hover:bg-white hover:text-black md:p-8" href="/membre/register">
-            <p className="font-mono text-xs font-black uppercase tracking-[0.16em] text-shock">Nouveau membre</p>
-            <h2 className="mt-5 font-display text-[clamp(3rem,8vw,6rem)] uppercase leading-none">Creer un compte.</h2>
-            <p className="mt-5 max-w-md font-mono text-sm uppercase opacity-70">Inscription membre et decharge obligatoire.</p>
-          </Link>
-        </div>
-
-        <div className="border-t-2 border-white pt-8">
-          <div className="panel grid gap-5 p-5 md:grid-cols-[1fr_auto] md:items-center md:p-8">
+    <main className="bg-[#f6eadf] text-[#351815]">
+      <AccountHeader />
+      <section className="border-b-2 border-[#351815] px-5 py-8 sm:px-8 lg:px-10 lg:py-12">
+        <div className="mx-auto grid w-full max-w-[1760px] gap-8">
+          <div className="grid gap-6 lg:grid-cols-[0.72fr_1fr] lg:items-end">
             <div>
-              <p className="font-mono text-xs font-black uppercase tracking-[0.16em] text-white/50">Espace professionnel</p>
-              <p className="mt-3 max-w-2xl text-white/72">
-                Compte professionnel reserve aux partenaires NULLL.CLUB. Accessible uniquement avec un code fourni par le club.
+              <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">
+                Identification / NULLL.CLUB
               </p>
+              <h1 className="mt-6 max-w-4xl font-display text-[clamp(3.6rem,8vw,7.4rem)] uppercase leading-[0.92]">
+                Choisis ton acces.
+              </h1>
             </div>
-            <Link className="primary-link" href="/pro/login">
-              Acceder a mon espace pro
-            </Link>
+            <p className="max-w-3xl text-lg font-black uppercase leading-tight text-[#351815]/76 lg:text-2xl">
+              Un seul endroit pour rejoindre le club, retrouver ton compte ou scanner cote partenaire. Meme site, meme energie.
+            </p>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            {accessCards.map((card) => (
+              <Link
+                className={`group grid min-h-[310px] content-between overflow-hidden border-2 border-[#351815] p-5 transition hover:-translate-y-1 sm:p-6 ${card.tone}`}
+                href={card.href}
+                key={card.href}
+              >
+                <div>
+                  <p className="font-mono text-xs font-black uppercase opacity-75">{card.label}</p>
+                  <h2 className="mt-5 font-display text-[clamp(2.7rem,5vw,4.8rem)] uppercase leading-[0.92]">{card.title}</h2>
+                  <p className="mt-5 max-w-md font-mono text-sm font-black uppercase leading-tight opacity-75">{card.text}</p>
+                </div>
+                <div className="mt-8 flex items-center justify-between border-t-2 border-current pt-4 font-mono text-sm font-black uppercase">
+                  Entrer
+                  <ArrowIcon />
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
+      <SiteFooter copy={copy} locale="fr" />
     </main>
   );
 }

@@ -191,7 +191,7 @@ function ProductCard({
           />
         ) : null}
         {visual.overlay === "run" ? (
-          <div className="absolute left-1/2 top-[36%] w-[62%] -translate-x-1/2 text-center font-display text-[clamp(1.7rem,2.2vw,2.45rem)] uppercase leading-[0.84] text-black">
+          <div className="absolute left-1/2 top-[36%] w-[62%] -translate-x-1/2 text-center font-display text-[clamp(1.6rem,2vw,2.25rem)] uppercase leading-[0.96] text-black">
             RUN BAD
             <br />
             MEET PEOPLE

@@ -53,7 +53,14 @@ function formatEuro(value: number) {
 }
 
 export default async function MemberHistoryPage() {
-  const supabase = await createSupabaseServerClient();
+  let supabase;
+
+  try {
+    supabase = await createSupabaseServerClient();
+  } catch {
+    redirect("/membre/login");
+  }
+
   const {
     data: { user }
   } = await supabase.auth.getUser();
@@ -99,14 +106,14 @@ export default async function MemberHistoryPage() {
   return (
     <section className="shell grid gap-8 py-8 lg:py-12">
       <div>
-        <p className="font-mono text-sm uppercase tracking-[0.28em] text-shock">Historique</p>
-        <h1 className="brutal-title mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Ce que tu as fait compter.</h1>
+        <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">Historique</p>
+        <h1 className="mt-6 font-display text-[clamp(3.4rem,9vw,7.4rem)] uppercase leading-[0.94]">Ce que tu as fait compter.</h1>
       </div>
 
       {items.length === 0 ? (
         <div className="panel panel-grid max-w-3xl p-5 md:p-8">
-          <p className="font-display text-[clamp(2.8rem,7vw,5rem)] uppercase leading-none">Rien encore.</p>
-          <p className="mt-4 text-white/72">Scanne chez un partenaire NULLL. Les points arriveront ici.</p>
+          <p className="font-display text-[clamp(2.6rem,6vw,4.6rem)] uppercase leading-[0.96]">Rien encore.</p>
+          <p className="mt-4 font-bold text-[#351815]/72">Scanne chez un partenaire NULLL. Les points arriveront ici.</p>
         </div>
       ) : (
         <div className="grid gap-4">
@@ -114,19 +121,19 @@ export default async function MemberHistoryPage() {
             item.kind === "transaction" ? (
               <article className="panel grid gap-4 p-5 md:grid-cols-[1fr_auto] md:items-center" key={item.id}>
                 <div>
-                  <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/50">{formatDate(item.createdAt)}</p>
-                  <h2 className="mt-2 font-display text-[clamp(2.4rem,6vw,4.8rem)] uppercase leading-none">{item.label}</h2>
-                  <p className="mt-3 text-white/72">{item.partnerName}</p>
+                  <p className="font-mono text-xs font-black uppercase text-[#351815]/50">{formatDate(item.createdAt)}</p>
+                  <h2 className="mt-2 font-display text-[clamp(2.3rem,5.2vw,4.2rem)] uppercase leading-[0.96]">{item.label}</h2>
+                  <p className="mt-3 font-bold text-[#351815]/72">{item.partnerName}</p>
                 </div>
-                <div className="grid gap-2 border-t-2 border-white pt-4 font-mono text-sm font-black uppercase md:border-l-2 md:border-t-0 md:pl-6 md:pt-0 md:text-right">
+                <div className="grid gap-2 border-t-2 border-[#351815] pt-4 font-mono text-sm font-black uppercase md:border-l-2 md:border-t-0 md:pl-6 md:pt-0 md:text-right">
                   <p>{formatEuro(item.amountEur)}</p>
-                  <p className="text-shock">+{item.points} points</p>
+                  <p className="text-[#d96ab4]">+{item.points} points</p>
                 </div>
               </article>
             ) : (
-              <article className="border-2 border-shock bg-shock p-5 text-black" key={item.id}>
-                <p className="font-mono text-xs font-black uppercase tracking-[0.18em] text-black/60">{formatDate(item.createdAt)}</p>
-                <h2 className="mt-2 font-display text-[clamp(2.3rem,6vw,4.2rem)] uppercase leading-none">
+              <article className="border-2 border-[#351815] bg-[#ffb000] p-5 text-[#351815]" key={item.id}>
+                <p className="font-mono text-xs font-black uppercase text-[#351815]/60">{formatDate(item.createdAt)}</p>
+                <h2 className="mt-2 font-display text-[clamp(2.2rem,5vw,3.8rem)] uppercase leading-[0.96]">
                   Réinitialisation mensuelle - retour à 0
                 </h2>
                 <p className="mt-3 font-mono text-sm font-black uppercase">{item.points} points reset</p>

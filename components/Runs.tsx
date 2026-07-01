@@ -16,7 +16,7 @@ export function Runs() {
           <SideTape />
           <div className="mb-3 flex items-start justify-between gap-6">
             <Reveal>
-              <h2 className="font-display text-[clamp(5rem,11vw,12rem)] uppercase leading-[0.78]">RUNS</h2>
+              <h2 className="font-display text-[clamp(4.2rem,9vw,9.4rem)] uppercase leading-[0.94]">RUNS</h2>
             </Reveal>
             <div className="mt-6 hidden font-mono text-sm uppercase lg:block">
               AIX-EN-PROVENCE
@@ -47,7 +47,7 @@ export function Runs() {
         <div className="grid-paper relative p-4 sm:p-6" id="community">
           <Reveal>
             <div className="grid grid-cols-[1fr_auto] gap-6">
-              <h2 className="font-display text-[clamp(4.2rem,7.4vw,8.6rem)] uppercase leading-[0.78]">
+              <h2 className="font-display text-[clamp(3.4rem,6.6vw,6.8rem)] uppercase leading-[0.94]">
                 COMMUNITY
               </h2>
               <p className="hidden pt-8 font-mono text-sm uppercase text-white/75 sm:block">
@@ -77,14 +77,14 @@ export function Runs() {
           <div className="mt-8 grid grid-cols-1 gap-5 border-b-2 border-white pb-6 md:grid-cols-[1fr_0.85fr]">
             <div className="relative border-2 border-rust p-4">
               <div className="absolute inset-2 rounded-[50%] border border-rust" />
-              <p className="relative font-display text-[clamp(2.8rem,5.4vw,5.8rem)] uppercase leading-[0.82]">
+              <p className="relative font-display text-[clamp(2.5rem,4.8vw,4.8rem)] uppercase leading-[0.96]">
                 COME ALONE.
                 <br />
                 LEAVE CONNECTED.
               </p>
             </div>
             <div className="flex items-center gap-5 border-l-2 border-white pl-5">
-              <p className="font-display text-[clamp(2.7rem,5.2vw,5.4rem)] uppercase leading-[0.84]">
+              <p className="font-display text-[clamp(2.4rem,4.6vw,4.6rem)] uppercase leading-[0.96]">
                 SPORT IS
                 <br />
                 THE PRETEXT.

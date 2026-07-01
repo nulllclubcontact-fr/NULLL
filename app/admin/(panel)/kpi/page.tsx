@@ -155,17 +155,17 @@ export default async function AdminKpiPage({ searchParams }: KpiPageProps) {
   return (
     <section className="shell grid gap-8 py-8 lg:py-12">
       <div>
-        <p className="font-mono text-sm uppercase tracking-[0.28em] text-shock">Admin KPI</p>
-        <h1 className="brutal-title mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Vue totale.</h1>
-        <p className="mt-5 max-w-xl text-white/72">Tous les partenaires. Tous les scans. Une periode.</p>
+        <p className="font-mono text-sm uppercase  text-[#d96ab4]">Admin KPI</p>
+        <h1 className="mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Vue totale.</h1>
+        <p className="mt-5 max-w-xl text-[#351815]/72">Tous les partenaires. Tous les scans. Une periode.</p>
       </div>
 
       <form className="panel grid gap-4 p-5 sm:grid-cols-[1fr_1fr_auto]" action="/admin/kpi">
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Du
           <input className="field" defaultValue={from} name="from" type="date" />
         </label>
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Au
           <input className="field" defaultValue={to} name="to" type="date" />
         </label>
@@ -193,15 +193,15 @@ export default async function AdminKpiPage({ searchParams }: KpiPageProps) {
             <h2 className="font-display text-[clamp(2.8rem,7vw,6rem)] uppercase leading-none">Par jour.</h2>
             <div className="mt-5 grid gap-4">
               {days.map((day) => (
-                <div className="grid gap-3 border-b border-white/20 pb-4 last:border-b-0 md:grid-cols-[1fr_auto] md:items-center" key={day.day}>
+                <div className="grid gap-3 border-b border-[#351815]/20 pb-4 last:border-b-0 md:grid-cols-[1fr_auto] md:items-center" key={day.day}>
                   <div>
-                    <p className="font-mono text-xs uppercase tracking-[0.16em] text-white/55">{formatDate(day.day)}</p>
-                    <div className="mt-3 h-4 border-2 border-white bg-black">
-                      <div className="h-full bg-shock" style={{ width: `${(day.revenue / maxRevenue) * 100}%` }} />
+                    <p className="font-mono text-xs uppercase  text-[#351815]/55">{formatDate(day.day)}</p>
+                    <div className="mt-3 h-4 border-2 border-[#351815] bg-[#fff8ef]">
+                      <div className="h-full bg-[#ffb000]" style={{ width: `${(day.revenue / maxRevenue) * 100}%` }} />
                     </div>
                   </div>
                   <div className="font-mono text-sm font-black uppercase md:text-right">
-                    <p className="text-shock">{formatEuro(day.revenue)}</p>
+                    <p className="text-[#d96ab4]">{formatEuro(day.revenue)}</p>
                     <p>{day.clients.size} client(s)</p>
                     <p>{day.scans} scan(s)</p>
                     <p>{day.points} points</p>
@@ -215,11 +215,11 @@ export default async function AdminKpiPage({ searchParams }: KpiPageProps) {
             <h2 className="font-display text-[clamp(2.8rem,7vw,6rem)] uppercase leading-none">Par partenaire.</h2>
             <div className="mt-5 grid gap-3">
               {partners.map((partner) => (
-                <div className="grid gap-2 border-b border-white/20 pb-3 last:border-b-0 md:grid-cols-[1fr_auto_auto_auto]" key={partner.id}>
+                <div className="grid gap-2 border-b border-[#351815]/20 pb-3 last:border-b-0 md:grid-cols-[1fr_auto_auto_auto]" key={partner.id}>
                   <p className="font-mono text-sm font-black uppercase">{partner.name}</p>
-                  <p className="font-mono text-sm font-black uppercase text-shock">{formatEuro(partner.revenue)}</p>
-                  <p className="font-mono text-sm uppercase text-white/60">{partner.clients.size} client(s)</p>
-                  <p className="font-mono text-sm uppercase text-white/60">{partner.scans} scan(s)</p>
+                  <p className="font-mono text-sm font-black uppercase text-[#d96ab4]">{formatEuro(partner.revenue)}</p>
+                  <p className="font-mono text-sm uppercase text-[#351815]/60">{partner.clients.size} client(s)</p>
+                  <p className="font-mono text-sm uppercase text-[#351815]/60">{partner.scans} scan(s)</p>
                 </div>
               ))}
             </div>
@@ -233,7 +233,7 @@ export default async function AdminKpiPage({ searchParams }: KpiPageProps) {
 function StatBlock({ label, value }: { label: string; value: string }) {
   return (
     <div className="panel p-5">
-      <p className="font-mono text-xs uppercase tracking-[0.16em] text-white/50">{label}</p>
+      <p className="font-mono text-xs uppercase  text-[#351815]/50">{label}</p>
       <p className="mt-3 font-display text-[clamp(2.1rem,5vw,4rem)] uppercase leading-none">{value}</p>
     </div>
   );

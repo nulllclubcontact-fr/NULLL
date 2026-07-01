@@ -16,7 +16,14 @@ export const metadata = {
 };
 
 export default async function MemberQrPage() {
-  const supabase = await createSupabaseServerClient();
+  let supabase;
+
+  try {
+    supabase = await createSupabaseServerClient();
+  } catch {
+    redirect("/membre/login");
+  }
+
   const {
     data: { user }
   } = await supabase.auth.getUser();
@@ -47,29 +54,29 @@ export default async function MemberQrPage() {
   });
 
   return (
-    <section className="grid min-h-[calc(100vh-92px)] bg-white text-black">
+    <section className="grid min-h-[calc(100vh-92px)] bg-[#f6eadf] text-[#351815]">
       <div className="shell grid content-center gap-8 py-8">
         <div>
-          <p className="font-mono text-sm font-black uppercase tracking-[0.28em] text-black/60">QR membre</p>
-          <h1 className="brutal-title mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Fais scanner.</h1>
+          <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">QR membre</p>
+          <h1 className="mt-6 font-display text-[clamp(3.6rem,10vw,8rem)] uppercase leading-[0.94]">Fais scanner.</h1>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(280px,0.55fr)] lg:items-center">
-          <div className="border-4 border-black bg-white p-4 sm:p-8">
+          <div className="border-2 border-[#351815] bg-white p-4 shadow-[8px_8px_0_#d96ab4] sm:p-8">
             <div
               className="mx-auto aspect-square w-full max-w-[520px]"
               dangerouslySetInnerHTML={{ __html: qrSvg }}
             />
           </div>
 
-          <aside className="border-4 border-black bg-black p-5 text-white sm:p-8">
-            <p className="font-mono text-sm uppercase tracking-[0.2em] text-shock">
+          <aside className="border-2 border-[#351815] bg-[#351815] p-5 text-[#f6eadf] sm:p-8">
+            <p className="font-mono text-sm font-black uppercase text-[#ffb000]">
               {profile.first_name ? profile.first_name : "Membre NULLL"}
             </p>
-            <p className="mt-5 font-display text-[clamp(2.6rem,7vw,5rem)] uppercase leading-none">
+            <p className="mt-5 font-display text-[clamp(2.4rem,5.6vw,4.4rem)] uppercase leading-[0.96]">
               Présente ce code aux partenaires NULLL pour gagner tes points.
             </p>
-            <p className="mt-5 text-sm text-white/60">
+            <p className="mt-5 text-sm text-[#f6eadf]/60">
               Token opaque. Pas ton UUID. Pas ton mail. Juste ce qu'il faut pour créditer.
             </p>
           </aside>

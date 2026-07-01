@@ -83,7 +83,12 @@ export async function loginAdmin(_previousState: AdminLoginState, formData: Form
     return { error: "Acces refuse." };
   }
 
-  await setAdminSession();
+  try {
+    await setAdminSession();
+  } catch {
+    return { error: "Session admin indisponible: secret serveur manquant." };
+  }
+
   redirect("/admin/partenaires");
 }
 

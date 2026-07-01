@@ -22,17 +22,17 @@ export default async function AdminPartnersPage() {
   return (
     <section className="shell grid gap-8 py-8 lg:py-12">
       <div>
-        <p className="font-mono text-sm uppercase tracking-[0.28em] text-shock">Admin partenaires</p>
-        <h1 className="brutal-title mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Codes. Hash. Silence.</h1>
-        <p className="mt-5 max-w-xl text-white/72">Le code clair apparait une fois. Apres, il n'existe plus ici.</p>
+        <p className="font-mono text-sm uppercase  text-[#d96ab4]">Admin partenaires</p>
+        <h1 className="mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Codes. Hash. Silence.</h1>
+        <p className="mt-5 max-w-xl text-[#351815]/72">Le code clair apparait une fois. Apres, il n'existe plus ici.</p>
       </div>
 
       <form action={createPartner} className="panel panel-grid grid gap-4 p-5 md:grid-cols-[1fr_1fr_auto]">
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Nom partenaire
           <input className="field" maxLength={120} name="name" required />
         </label>
-        <label className="grid gap-2 font-mono text-xs uppercase tracking-[0.16em]">
+        <label className="grid gap-2 font-mono text-xs uppercase ">
           Contact
           <input className="field" name="contact_email" type="email" />
         </label>
@@ -61,13 +61,13 @@ function PartnerBlock({ partner }: { partner: AdminPartner }) {
 
   return (
     <article className="panel p-5">
-      <div className="grid gap-4 border-b-2 border-white pb-5 lg:grid-cols-[1fr_auto] lg:items-start">
+      <div className="grid gap-4 border-b-2 border-[#351815] pb-5 lg:grid-cols-[1fr_auto] lg:items-start">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.16em] text-white/50">
+          <p className="font-mono text-xs uppercase  text-[#351815]/50">
             {partner.active ? "Actif" : "Desactive"} / {formatDate(partner.created_at)}
           </p>
           <h2 className="mt-2 font-display text-[clamp(2.6rem,7vw,5.8rem)] uppercase leading-none">{partner.name}</h2>
-          <p className="mt-3 text-white/60">{partner.contact_email || "Pas de contact"}</p>
+          <p className="mt-3 text-[#351815]/60">{partner.contact_email || "Pas de contact"}</p>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:min-w-80 lg:grid-cols-1">
@@ -82,16 +82,16 @@ function PartnerBlock({ partner }: { partner: AdminPartner }) {
       </div>
 
       <div className="mt-5 grid gap-3">
-        <p className="font-mono text-xs font-black uppercase tracking-[0.16em] text-shock">
+        <p className="font-mono text-xs font-black uppercase  text-[#d96ab4]">
           {activeCodes.length} code(s) actif(s)
         </p>
         {partner.partner_access_codes.length === 0 ? (
-          <p className="text-white/60">Aucun code genere.</p>
+          <p className="text-[#351815]/60">Aucun code genere.</p>
         ) : (
           partner.partner_access_codes.map((code) => (
-            <div className="grid gap-3 border-b border-white/20 pb-3 last:border-b-0 md:grid-cols-[1fr_1fr_auto] md:items-center" key={code.id}>
-              <p className="font-mono text-xs uppercase text-white/55">Cree le {formatDate(code.created_at)}</p>
-              <p className="font-mono text-xs uppercase text-white/55">
+            <div className="grid gap-3 border-b border-[#351815]/20 pb-3 last:border-b-0 md:grid-cols-[1fr_1fr_auto] md:items-center" key={code.id}>
+              <p className="font-mono text-xs uppercase text-[#351815]/55">Cree le {formatDate(code.created_at)}</p>
+              <p className="font-mono text-xs uppercase text-[#351815]/55">
                 {code.last_used_at ? `Dernier usage ${formatDate(code.last_used_at)}` : "Jamais utilise"}
               </p>
               {code.active ? (
@@ -102,7 +102,7 @@ function PartnerBlock({ partner }: { partner: AdminPartner }) {
                   </button>
                 </form>
               ) : (
-                <p className="font-mono text-xs font-black uppercase text-white/35">Revoque</p>
+                <p className="font-mono text-xs font-black uppercase text-[#351815]/35">Revoque</p>
               )}
             </div>
           ))

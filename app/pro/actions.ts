@@ -85,7 +85,14 @@ export async function loginPro(_previousState: ProLoginState, formData: FormData
     return { error: "Code invalide" };
   }
 
-  const supabase = createSupabaseServiceClient();
+  let supabase;
+
+  try {
+    supabase = createSupabaseServiceClient();
+  } catch {
+    return { error: "Espace pro indisponible: variables Supabase manquantes." };
+  }
+
   const { data: accessCodes, error } = await supabase
     .from("partner_access_codes")
     .select("id,partner_id,code_hash,partners(active)")
@@ -106,7 +113,7 @@ export async function loginPro(_previousState: ProLoginState, formData: FormData
     if (matches) {
       await supabase.from("partner_access_codes").update({ last_used_at: new Date().toISOString() }).eq("id", accessCode.id);
       await setProSession(accessCode.partner_id);
-      redirect("/pro/scan");
+      redirect("/pro/stats");
     }
   }
 
@@ -126,7 +133,14 @@ export async function lookupMember(token: string): Promise<LookupMemberResult> {
     return { ok: false, error: "QR invalide" };
   }
 
-  const supabase = createSupabaseServiceClient();
+  let supabase;
+
+  try {
+    supabase = createSupabaseServiceClient();
+  } catch {
+    return { ok: false, error: "Espace pro indisponible: variables Supabase manquantes." };
+  }
+
   const [{ data: profile, error: profileError }, { data: tiers, error: tiersError }] = await Promise.all([
     supabase
       .from("profiles")
@@ -180,7 +194,14 @@ export async function creditPurchase(_previousState: CreditPurchaseState, formDa
     return { error: "Montant invalide." };
   }
 
-  const supabase = createSupabaseServiceClient();
+  let supabase;
+
+  try {
+    supabase = createSupabaseServiceClient();
+  } catch {
+    return { error: "Espace pro indisponible: variables Supabase manquantes." };
+  }
+
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
     .select("id")
