@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "NULLL.CLUB | Social Run Club Aix-en-Provence",
   description:
     "NULLL.CLUB est un social run club a Aix-en-Provence. Sport is the pretext. Make it real.",
+  verification: {
+    google: "fNfY1cH-yZV7xIDDC6nfD4skGeF04uJSexk94VyoQSY"
+  },
   icons: {
     icon: "/assets/brand/nulll-mark.png",
     shortcut: "/assets/brand/nulll-mark.png",
