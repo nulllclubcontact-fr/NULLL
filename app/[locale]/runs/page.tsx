@@ -5,7 +5,7 @@ import { StructuredData } from "../../../components/StructuredData";
 import { ArrowIcon } from "../../../components/ArrowIcon";
 import { PrimaryLink, RunCard, SiteShell } from "../../../components/site-shell";
 import { resolveLocale } from "../../../lib/locale";
-import { buildEventSchema, buildPageMetadata } from "../../../lib/seo";
+import { buildBreadcrumbSchema, buildEventSchema, buildFaqSchema, buildPageMetadata } from "../../../lib/seo";
 import { getRoute, getSiteCopy, type RunEvent } from "../../../lib/site-content";
 
 type PageProps = {
@@ -41,6 +41,13 @@ export default async function RunsPage({ params }: PageProps) {
           address: firstRun.address,
           route: getRoute(locale, "runs")
         })}
+      />
+      <StructuredData data={buildFaqSchema(copy.runsPage.faq)} />
+      <StructuredData
+        data={buildBreadcrumbSchema([
+          { name: "Accueil", url: getRoute(locale, "home") },
+          { name: "Runs", url: getRoute(locale, "runs") }
+        ])}
       />
 
       <section className="relative overflow-hidden border-b-2 border-[#351815] bg-[#f6eadf]">

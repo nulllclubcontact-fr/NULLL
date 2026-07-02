@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { StructuredData } from "./StructuredData";
 import { CheckoutForm } from "./checkout-form";
 import { SectionTitle, SiteShell } from "./site-shell";
+import { buildBreadcrumbSchema } from "../lib/seo";
 import { getRoute, getSiteCopy, type Locale } from "../lib/site-content";
 
 export function AboutPageView({ locale }: { locale: Locale }) {
@@ -8,6 +10,12 @@ export function AboutPageView({ locale }: { locale: Locale }) {
 
   return (
     <SiteShell current="about" locale={locale} pathname={getRoute(locale, "about")}>
+      <StructuredData
+        data={buildBreadcrumbSchema([
+          { name: "Accueil", url: getRoute(locale, "home") },
+          { name: "À propos", url: getRoute(locale, "about") }
+        ])}
+      />
       <section className="mx-auto grid w-full max-w-none gap-8 px-4 py-10 sm:px-6 xl:grid-cols-[0.92fr_1.08fr] xl:px-8 xl:py-14">
         <div>
           <SectionTitle as="h1" index="08" text={copy.aboutPage.intro} title={copy.aboutPage.title} />

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { StructuredData } from "../../../components/StructuredData";
 import { MerchExperience } from "../../../components/merch-experience";
 import { SectionTitle, SiteShell } from "../../../components/site-shell";
 import { resolveLocale } from "../../../lib/locale";
-import { buildPageMetadata } from "../../../lib/seo";
+import { buildBreadcrumbSchema, buildPageMetadata } from "../../../lib/seo";
 import { getRoute, getSiteCopy } from "../../../lib/site-content";
 
 type PageProps = {
@@ -26,6 +27,12 @@ export default async function MerchPage({ params }: PageProps) {
 
   return (
     <SiteShell current="merch" locale={locale} pathname={getRoute(locale, "merch")}>
+      <StructuredData
+        data={buildBreadcrumbSchema([
+          { name: "Accueil", url: getRoute(locale, "home") },
+          { name: "Merch", url: getRoute(locale, "merch") }
+        ])}
+      />
       <section className="mx-auto w-full max-w-none px-4 py-10 sm:px-6 xl:px-8 xl:py-14">
         <SectionTitle as="h1" index="10" text={copy.merchPage.intro} title={copy.merchPage.title} />
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">

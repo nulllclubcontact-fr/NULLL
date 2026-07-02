@@ -1,4 +1,6 @@
+import { StructuredData } from "../../components/StructuredData";
 import { PrimaryLink, SectionTitle, SiteShell } from "../../components/site-shell";
+import { buildBreadcrumbSchema } from "../../lib/seo";
 import { getRoute, type Article, type Locale } from "../../lib/site-content";
 
 export function SeoArticleView({
@@ -12,6 +14,12 @@ export function SeoArticleView({
 }) {
   return (
     <SiteShell current="home" locale={locale} pathname={pathname}>
+      <StructuredData
+        data={buildBreadcrumbSchema([
+          { name: "Accueil", url: getRoute(locale, "home") },
+          { name: article.h1, url: pathname }
+        ])}
+      />
       <section className="shell py-10 lg:py-14">
         <SectionTitle as="h1" index="12" text={article.intro} title={article.h1} />
         <div className="mt-10 grid gap-6">

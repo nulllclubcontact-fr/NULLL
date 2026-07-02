@@ -7,6 +7,48 @@ export function getSiteUrl() {
   return SITE_URL;
 }
 
+export function buildWebSiteSchema(locale: Locale) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "NULLL.CLUB",
+    alternateName: ["NULLL", "NULLL Club", "Nulll Club Aix-en-Provence"],
+    url: `${SITE_URL}${getRoute(locale, "home")}`,
+    inLanguage: "fr-FR",
+    publisher: {
+      "@type": "Organization",
+      name: "NULLL.CLUB",
+      url: SITE_URL,
+      logo: `${SITE_URL}/assets/brand/nulll-mark.png`
+    }
+  };
+}
+
+export function buildFaqSchema(items: Array<{ q: string; a: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a }
+    }))
+  };
+}
+
+export function buildBreadcrumbSchema(items: Array<{ name: string; url: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${SITE_URL}${item.url}`
+    }))
+  };
+}
+
 export function buildPageMetadata({
   locale,
   routeKey,

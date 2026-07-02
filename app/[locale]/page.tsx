@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { StructuredData } from "../../components/StructuredData";
 import { ArrowIcon } from "../../components/ArrowIcon";
 import { SiteShell } from "../../components/site-shell";
-import { buildOrganizationSchema, buildPageMetadata, buildSportsLocationSchema } from "../../lib/seo";
+import { buildFaqSchema, buildOrganizationSchema, buildPageMetadata, buildSportsLocationSchema, buildWebSiteSchema } from "../../lib/seo";
 import { resolveLocale } from "../../lib/locale";
 import { getRoute, getSiteCopy } from "../../lib/site-content";
 
@@ -27,10 +27,18 @@ const clubRules = ["Zero ecouteurs", "Personne seul", "Musique dehors", "Vrai li
 
 export default async function LocaleHomePage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale);
+  const copy = getSiteCopy(locale);
 
   return (
     <SiteShell current="home" locale={locale} pathname={`/${locale}`}>
-      <StructuredData data={[buildOrganizationSchema(locale), buildSportsLocationSchema(locale)]} />
+      <StructuredData
+        data={[
+          buildOrganizationSchema(locale),
+          buildSportsLocationSchema(locale),
+          buildWebSiteSchema(locale),
+          buildFaqSchema(copy.home.faq)
+        ]}
+      />
       <section className="mx-auto grid min-h-[calc(100svh-82px)] w-full max-w-none grid-cols-1 border-b-2 border-[#351815] xl:grid-cols-[0.94fr_1.06fr]">
         <div className="flex min-h-[680px] flex-col justify-between border-b-2 border-[#351815] px-4 py-8 sm:px-6 xl:border-b-0 xl:border-r-2 xl:px-8">
           <div>
