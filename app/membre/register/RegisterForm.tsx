@@ -33,9 +33,9 @@ export function RegisterForm() {
       <label className="flex gap-3 border-2 border-[#351815] bg-[#fff8ef] p-4 text-sm font-bold leading-tight text-[#351815]/78">
         <input checked={accepted} className="mt-1 h-5 w-5 accent-[#d96ab4]" name="waiver" onChange={(event) => setAccepted(event.target.checked)} type="checkbox" />
         <span>
-          J'ai lu et j'accepte la décharge de responsabilité : je participe aux activités de NULLL.CLUB sous ma propre
+          J’ai lu et j’accepte la décharge de responsabilité : je participe aux activités de NULLL.CLUB sous ma propre
           responsabilité, je reconnais les risques liés à la course à pied et je renonce à tout recours, sauf faute de
-          l'organisateur.{" "}
+          l’organisateur.{" "}
           <Link className="font-black text-[#351815] underline decoration-[#d96ab4] decoration-2 underline-offset-4" href="/membre/decharge">
             lire la décharge complète
           </Link>

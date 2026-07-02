@@ -27,10 +27,10 @@ export default async function ContactPage({ params }: PageProps) {
 
   return (
     <SiteShell current="contact" locale={locale} pathname={getRoute(locale, "contact")}>
-      <section className="mx-auto w-full max-w-[1760px] px-5 py-10 sm:px-8 lg:px-10 lg:py-14">
+      <section className="mx-auto w-full max-w-none px-4 py-10 sm:px-6 xl:px-8 xl:py-14">
         <SectionTitle as="h1" index="09" text={copy.contactPage.intro} title={copy.contactPage.title} />
-        <div className="mt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+        <div className="mt-10 grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
+          <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-1">
             {copy.contactPage.channels.map((channel, index) => (
               <Link
                 className={`${index === 1 ? "bg-[#ffb000]" : index === 2 ? "bg-[#351815] text-[#f6eadf]" : "bg-[#d96ab4]"} group border-2 border-[#351815] p-6 transition hover:-translate-y-1 hover:shadow-[8px_8px_0_#ffb000]`}

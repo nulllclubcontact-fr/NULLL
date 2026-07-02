@@ -61,7 +61,7 @@ export default async function MemberQrPage() {
           <h1 className="mt-6 font-display text-[clamp(3.6rem,10vw,8rem)] uppercase leading-[0.94]">Fais scanner.</h1>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(280px,0.55fr)] lg:items-center">
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,0.85fr)_minmax(280px,0.55fr)] xl:items-center">
           <div className="border-2 border-[#351815] bg-white p-4 shadow-[8px_8px_0_#d96ab4] sm:p-8">
             <div
               className="mx-auto aspect-square w-full max-w-[520px]"
@@ -77,7 +77,7 @@ export default async function MemberQrPage() {
               Présente ce code aux partenaires NULLL pour gagner tes points.
             </p>
             <p className="mt-5 text-sm text-[#f6eadf]/60">
-              Token opaque. Pas ton UUID. Pas ton mail. Juste ce qu'il faut pour créditer.
+              Token opaque. Pas ton UUID. Pas ton mail. Juste ce qu’il faut pour créditer.
             </p>
           </aside>
         </div>

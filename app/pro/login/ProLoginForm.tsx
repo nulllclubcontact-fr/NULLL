@@ -12,7 +12,7 @@ export function ProLoginForm() {
   return (
     <form action={formAction} className="panel panel-grid grid gap-4 p-5 sm:p-6" aria-label="Connexion pro">
       <label className="grid gap-2 font-mono text-xs font-black uppercase">
-        Code d'accès
+        Code d’accès
         <input autoComplete="one-time-code" className="field" name="code" required />
       </label>
       {state.error ? (

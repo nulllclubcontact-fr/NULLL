@@ -6,7 +6,7 @@ import { ArrowIcon } from "../../components/ArrowIcon";
 import { SiteShell } from "../../components/site-shell";
 import { buildOrganizationSchema, buildPageMetadata, buildSportsLocationSchema } from "../../lib/seo";
 import { resolveLocale } from "../../lib/locale";
-import { getRoute, getSiteCopy, type Locale } from "../../lib/site-content";
+import { getRoute, getSiteCopy } from "../../lib/site-content";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 }
 
-const clubRules = ["No headphones", "No lonely run", "Music outside", "Real talk"];
+const clubRules = ["Zero ecouteurs", "Personne seul", "Musique dehors", "Vrai lien"];
 
 export default async function LocaleHomePage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale);
@@ -31,8 +31,8 @@ export default async function LocaleHomePage({ params }: PageProps) {
   return (
     <SiteShell current="home" locale={locale} pathname={`/${locale}`}>
       <StructuredData data={[buildOrganizationSchema(locale), buildSportsLocationSchema(locale)]} />
-      <section className="mx-auto grid min-h-[calc(100svh-82px)] w-full max-w-[1760px] grid-cols-1 border-b-2 border-[#351815] lg:grid-cols-[0.94fr_1.06fr]">
-        <div className="flex min-h-[680px] flex-col justify-between border-b-2 border-[#351815] px-5 py-8 sm:px-8 lg:border-b-0 lg:border-r-2 lg:px-10">
+      <section className="mx-auto grid min-h-[calc(100svh-82px)] w-full max-w-none grid-cols-1 border-b-2 border-[#351815] xl:grid-cols-[0.94fr_1.06fr]">
+        <div className="flex min-h-[680px] flex-col justify-between border-b-2 border-[#351815] px-4 py-8 sm:px-6 xl:border-b-0 xl:border-r-2 xl:px-8">
           <div>
             <div className="flex flex-wrap items-center gap-2 font-mono text-[0.72rem] font-black uppercase leading-none sm:text-xs">
               <span className="border-2 border-[#351815] bg-[#351815] px-3 py-2 text-[#f6eadf]">01</span>
@@ -47,23 +47,21 @@ export default async function LocaleHomePage({ params }: PageProps) {
               REPEAT.
             </h1>
             <p className="mt-6 max-w-2xl text-[clamp(1.2rem,2.1vw,2rem)] font-black uppercase leading-[0.98]">
-              {locale === "fr"
-                ? "Un running club social pour sortir de la bulle ecole, metro, boulot."
-                : "A social running club for people who need to get out of the weekly bubble."}
+              Un running club social pour sortir de la bulle ecole, metro, boulot.
             </p>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
             <div className="border-2 border-[#351815] bg-[#d96ab4] p-4 font-mono text-sm font-black uppercase leading-tight sm:p-5">
-              {locale === "fr" ? "Runs en groupe. Enceinte commune. Zero ecouteurs. Le sport est le pretexte, la famille est le sujet." : "Group runs. Shared speaker. Zero headphones. Sport is the excuse, family is the point."}
+              Runs en groupe. Enceinte commune. Zero ecouteurs. Le sport est le pretexte, la famille est le sujet.
             </div>
             <div className="flex flex-col gap-3 sm:min-w-56">
-              <HomeLink href={getRoute(locale, "runs")}>{locale === "fr" ? "Rejoindre un run" : "Join a run"}</HomeLink>
-              <HomeLink href={getRoute(locale, "community")} light>{locale === "fr" ? "Voir l'esprit" : "Feel the mood"}</HomeLink>
+              <HomeLink href={getRoute(locale, "runs")}>Rejoindre un run</HomeLink>
+              <HomeLink href={getRoute(locale, "community")} light>Voir l’esprit</HomeLink>
             </div>
           </div>
         </div>
-        <div className="relative min-h-[720px] overflow-hidden bg-[#351815] p-3 sm:p-5 lg:min-h-full">
-          <Image alt="NULLL.CLUB community after a race" className="object-cover" fill priority sizes="(min-width: 1024px) 54vw, 100vw" src="/assets/nulll-new/run-finish.png" />
+        <div className="relative min-h-[720px] overflow-hidden bg-[#351815] p-3 sm:p-5 xl:min-h-full">
+          <Image alt="NULLL.CLUB community after a race" className="object-cover" fill priority sizes="(min-width: 1280px) 54vw, 100vw" src="/assets/nulll-new/run-finish.png" />
           <div className="absolute inset-3 border-2 border-[#f6eadf] sm:inset-5" />
           <div className="absolute bottom-8 left-8 right-8 z-10 bg-[#f6eadf] p-5 text-[#351815]">
             <p className="font-mono text-xs font-black uppercase">Next mood</p>
@@ -79,16 +77,14 @@ export default async function LocaleHomePage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="mx-auto grid w-full max-w-[1760px] grid-cols-1 border-b-2 border-[#351815] lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="border-b-2 border-[#351815] p-5 sm:p-8 lg:border-b-0 lg:border-r-2 lg:p-10">
+      <section className="mx-auto grid w-full max-w-none grid-cols-1 border-b-2 border-[#351815] xl:grid-cols-[0.9fr_1.1fr]">
+        <div className="border-b-2 border-[#351815] p-5 sm:p-6 xl:border-b-0 xl:border-r-2 xl:p-8">
           <p className="font-mono text-xs font-black uppercase">02 / why we run</p>
           <h2 className="mt-5 max-w-4xl font-display text-[clamp(3.4rem,7.4vw,7.2rem)] uppercase leading-[0.94]">
-            {locale === "fr" ? "Pas la perf. La presence." : "Not performance. Presence."}
+            Pas la perf. La presence.
           </h2>
           <p className="mt-6 max-w-xl text-xl font-bold leading-tight sm:text-2xl">
-            {locale === "fr"
-              ? "NULLL.CLUB melange deux mondes: ecole, metro, boulot d'un cote; sueur, musique et vraies rencontres de l'autre."
-              : "NULLL.CLUB mixes two worlds: school, metro, work on one side; sweat, music and real people on the other."}
+            NULLL.CLUB melange deux mondes: ecole, metro, boulot d’un cote; sueur, musique et vraies rencontres de l’autre.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -98,7 +94,7 @@ export default async function LocaleHomePage({ params }: PageProps) {
             <div>
               <p className="font-display text-[clamp(3rem,6.6vw,5.8rem)] uppercase leading-[0.94]">No bubble</p>
               <p className="mt-4 font-mono text-sm font-black uppercase leading-tight">
-                {locale === "fr" ? "Ici tu ne disparais pas derriere tes ecouteurs." : "You do not disappear behind headphones here."}
+                Ici tu ne disparais pas derriere tes ecouteurs.
               </p>
             </div>
           </div>
@@ -132,7 +128,7 @@ function HomeLink({ children, href, light = false }: { children: React.ReactNode
 function PhotoTile({ alt, src, title }: { alt: string; src: string; title: string }) {
   return (
     <div className="relative min-h-[430px] overflow-hidden border-b-2 border-[#351815]">
-      <Image alt={alt} className="object-cover" fill sizes="(min-width: 1024px) 28vw, 100vw" src={src} />
+      <Image alt={alt} className="object-cover" fill sizes="(min-width: 1280px) 28vw, 100vw" src={src} />
       <div className="absolute left-4 top-4 bg-[#f6eadf] px-3 py-2 font-mono text-xs font-black uppercase text-[#351815]">{title}</div>
     </div>
   );

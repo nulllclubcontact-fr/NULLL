@@ -27,9 +27,9 @@ export function SeoArticleView({
           ))}
         </div>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-          <PrimaryLink href={getRoute(locale, "runs")}>{locale === "fr" ? "Voir les prochains runs" : "See upcoming runs"}</PrimaryLink>
+          <PrimaryLink href={getRoute(locale, "runs")}>Voir les prochains runs</PrimaryLink>
           <PrimaryLink href={getRoute(locale, "contact")} secondary>
-            {locale === "fr" ? "Contacter le club" : "Contact the club"}
+            Contacter le club
           </PrimaryLink>
         </div>
       </section>

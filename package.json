@@ -6,32 +6,35 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.12.0",
-    "@supabase/supabase-js": "^2.108.2",
-    "@zxing/browser": "^0.2.0",
-    "bcryptjs": "^3.0.3",
-    "framer-motion": "latest",
-    "next": "latest",
-    "qrcode": "^1.5.4",
-    "react": "latest",
-    "react-dom": "latest"
+    "@supabase/ssr": "0.12.0",
+    "@supabase/supabase-js": "2.108.2",
+    "@zxing/browser": "0.2.0",
+    "bcryptjs": "3.0.3",
+    "next": "16.2.9",
+    "qrcode": "1.5.4",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
   },
   "devDependencies": {
-    "@types/node": "latest",
-    "@types/qrcode": "^1.5.6",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "latest",
-    "postcss": "latest",
-    "tailwindcss": "^3.4.17",
-    "typescript": "latest"
+    "@types/node": "26.0.0",
+    "@types/qrcode": "1.5.6",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "autoprefixer": "10.5.1",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.9",
+    "postcss": "8.5.15",
+    "tailwindcss": "3.4.19",
+    "typescript": "6.0.3"
   },
   "pnpm": {
     "ignoredBuiltDependencies": [
-      "sharp"
+      "sharp",
+      "unrs-resolver"
     ]
   }
 }

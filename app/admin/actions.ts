@@ -1,8 +1,9 @@
 "use server";
 
 import bcrypt from "bcryptjs";
-import { randomBytes, timingSafeEqual } from "node:crypto";
+import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { clearAdminSession, getAdminSession, setAdminSession } from "../../lib/admin/guard";
 import {
@@ -25,9 +26,60 @@ export type GenerateCodeState = {
   code?: string;
 };
 
+const ADMIN_ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
+const ADMIN_LOCK_MS = 15 * 60 * 1000;
+const ADMIN_MAX_ATTEMPTS = 5;
+const adminAttempts = new Map<string, { count: number; resetAt: number; lockedUntil: number }>();
+
 function readText(formData: FormData, key: string) {
   const value = formData.get(key);
   return typeof value === "string" ? value.trim() : "";
+}
+
+async function getAdminAttemptKey() {
+  const headerStore = await headers();
+  const forwardedFor = headerStore.get("x-forwarded-for")?.split(",")[0]?.trim();
+  const realIp = headerStore.get("x-real-ip")?.trim();
+  const userAgent = headerStore.get("user-agent")?.slice(0, 160) ?? "unknown-agent";
+  const identity = forwardedFor || realIp || "local";
+
+  return createHash("sha256").update(`admin:${identity}:${userAgent}`).digest("hex");
+}
+
+function getAdminAttemptState(key: string) {
+  const now = Date.now();
+  const current = adminAttempts.get(key);
+
+  if (!current || current.resetAt <= now) {
+    const next = { count: 0, resetAt: now + ADMIN_ATTEMPT_WINDOW_MS, lockedUntil: 0 };
+    adminAttempts.set(key, next);
+    return next;
+  }
+
+  return current;
+}
+
+function isAdminLocked(key: string) {
+  return getAdminAttemptState(key).lockedUntil > Date.now();
+}
+
+function registerAdminFailure(key: string) {
+  const state = getAdminAttemptState(key);
+  state.count += 1;
+
+  if (state.count >= ADMIN_MAX_ATTEMPTS) {
+    state.lockedUntil = Date.now() + ADMIN_LOCK_MS;
+  }
+
+  return state.count;
+}
+
+function clearAdminFailures(key: string) {
+  adminAttempts.delete(key);
+}
+
+function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function isAdminCodeValid(code: string) {
@@ -78,13 +130,21 @@ function isValidTier(input: { name: string; minPoints: number; discountPercent: 
 
 export async function loginAdmin(_previousState: AdminLoginState, formData: FormData): Promise<AdminLoginState> {
   const code = readText(formData, "code");
+  const attemptKey = await getAdminAttemptKey();
+
+  if (isAdminLocked(attemptKey)) {
+    return { error: "Trop d'essais. Reessaie dans quelques minutes." };
+  }
 
   if (!isAdminCodeValid(code)) {
+    const failedAttempts = registerAdminFailure(attemptKey);
+    await wait(Math.min(failedAttempts * 250, 1500));
     return { error: "Acces refuse." };
   }
 
   try {
     await setAdminSession();
+    clearAdminFailures(attemptKey);
   } catch {
     return { error: "Session admin indisponible: secret serveur manquant." };
   }

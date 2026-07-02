@@ -2,6 +2,7 @@ import "server-only";
 
 import { cookies } from "next/headers";
 import { createHmac, timingSafeEqual } from "node:crypto";
+import { getSessionSecret } from "../session-secret";
 
 const ADMIN_SESSION_COOKIE = "nulll_admin_session";
 
@@ -11,13 +12,7 @@ type AdminSessionPayload = {
 };
 
 function getSecret() {
-  const secret = process.env.SUPABASE_SERVICE_ROLE_KEY ?? "";
-
-  if (!secret) {
-    throw new Error("Missing Supabase service role environment variable");
-  }
-
-  return secret;
+  return getSessionSecret();
 }
 
 function signPayload(payload: string) {

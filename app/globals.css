@@ -87,11 +87,6 @@ textarea {
   font: inherit;
 }
 
-html:not([data-lang="en"]) .lang-en,
-html[data-lang="en"] .lang-fr {
-  display: none !important;
-}
-
 .brutal-title {
   line-height: 0.9;
   word-break: normal;
@@ -199,7 +194,8 @@ html[data-lang="en"] .lang-fr {
 
 @layer components {
   .shell {
-    width: min(100% - 24px, 1680px);
+    width: calc(100% - 16px);
+    max-width: none;
     margin-inline: auto;
   }
 

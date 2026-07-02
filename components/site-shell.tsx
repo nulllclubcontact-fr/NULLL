@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "./ArrowIcon";
-import { LocaleDocumentSync } from "./LocaleDocumentSync";
 import { PosterPhoto } from "./PosterPhoto";
 import { getRoute, getSiteCopy, type Locale, type RouteKey, type RunEvent } from "../lib/site-content";
 
@@ -24,7 +23,6 @@ export function SiteShell({
 
   return (
     <div className="min-h-screen bg-[#f6eadf] text-[#351815]">
-      <LocaleDocumentSync locale={locale} />
       <SiteHeader copy={copy} current={current} locale={locale} pathname={pathname} />
       {children}
       <SiteFooter copy={copy} locale={locale} />
@@ -47,11 +45,11 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-[#351815] bg-[#f6eadf]">
-      <div className="mx-auto grid min-h-20 w-full max-w-[1760px] grid-cols-[1fr_auto] items-stretch lg:grid-cols-[260px_1fr_150px_220px]">
+      <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto] items-stretch 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
         <Link className="flex items-center border-r-2 border-[#351815] px-4 transition hover:bg-[#ffb000] sm:px-6" href={getRoute(locale, "home")}>
           <Image alt="NULLL.CLUB" className="h-auto w-36 sm:w-44" height={157} priority src="/assets/nulll-new/logo-burgundy.png" width={1225} />
         </Link>
-        <nav aria-label={locale === "fr" ? "Navigation principale" : "Main navigation"} className="hidden grid-cols-6 font-mono text-xs font-black uppercase lg:grid">
+        <nav aria-label="Navigation principale" className="hidden min-w-0 grid-cols-6 font-mono text-xs font-black uppercase 2xl:grid">
           {copy.nav.map((item: { key: RouteKey; label: string }) => (
             <Link
               aria-current={item.key === current ? "page" : undefined}
@@ -67,27 +65,27 @@ export function SiteHeader({
         </nav>
         <Link
           aria-current={isIdentification ? "page" : undefined}
-          className={`hidden place-items-center border-r-2 border-[#351815] font-mono text-xs font-black uppercase transition hover:bg-[#d96ab4] xl:grid ${
+          className={`hidden place-items-center border-r-2 border-[#351815] px-3 text-center font-mono text-xs font-black uppercase transition hover:bg-[#d96ab4] 2xl:grid ${
             isIdentification ? "bg-[#d96ab4]" : ""
           }`}
           href="/identification"
         >
-          {locale === "fr" ? "S'identifier" : "Sign in"}
+          S’identifier
         </Link>
-        <Link className="grid min-h-20 place-items-center bg-[#351815] px-4 font-mono text-xs font-black uppercase text-[#f6eadf] transition hover:bg-[#ffb000] hover:text-[#351815] sm:px-6" href={getRoute(locale, "runs")}>
-          {locale === "fr" ? "Prochain run" : "Next run"}
+        <Link className="grid min-h-20 place-items-center bg-[#351815] px-4 text-center font-mono text-xs font-black uppercase text-[#f6eadf] transition hover:bg-[#ffb000] hover:text-[#351815] sm:px-6" href={getRoute(locale, "runs")}>
+          Prochain run
         </Link>
       </div>
-      <details className="border-t-2 border-[#351815] lg:hidden">
+      <details className="border-t-2 border-[#351815] 2xl:hidden">
         <summary className="cursor-pointer px-4 py-3 font-mono text-xs font-black uppercase">Menu</summary>
-        <nav aria-label={locale === "fr" ? "Navigation mobile" : "Mobile navigation"} className="grid border-t-2 border-[#351815] font-mono text-xs font-black uppercase">
+        <nav aria-label="Navigation mobile" className="grid border-t-2 border-[#351815] font-mono text-xs font-black uppercase">
           {copy.nav.map((item: { key: RouteKey; label: string }) => (
             <Link className={`border-b-2 border-[#351815] px-4 py-4 ${item.key === current ? "bg-[#d96ab4]" : ""}`} href={getRoute(locale, item.key)} key={item.key}>
               {item.label}
             </Link>
           ))}
           <Link className={`border-b-2 border-[#351815] px-4 py-4 ${isIdentification ? "bg-[#d96ab4]" : ""}`} href="/identification">
-            {locale === "fr" ? "S'identifier" : "Sign in"}
+            S’identifier
           </Link>
         </nav>
       </details>
@@ -98,22 +96,20 @@ export function SiteHeader({
 export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }) {
   return (
     <footer className="border-t-2 border-[#351815] bg-[#351815] text-[#f6eadf]">
-      <div className="mx-auto grid w-full max-w-[1760px] gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:px-10">
+      <div className="mx-auto grid w-full max-w-none gap-10 px-4 py-14 sm:px-6 xl:grid-cols-[1.1fr_0.9fr] xl:px-8">
         <div className="space-y-5">
           <p className="font-display text-[clamp(2.6rem,6vw,5.4rem)] uppercase leading-[0.96]">
-            {locale === "fr" ? "Run club social a Aix-en-Provence." : "Social run club in Aix-en-Provence."}
+            Run club social a Aix-en-Provence.
           </p>
           <p className="max-w-2xl text-[#f6eadf]/72">
-            {locale === "fr"
-              ? "Un point de rendez-vous pour courir ensemble, couper la semaine et revenir avec autre chose qu'un chrono."
-              : "A meeting point to run together, cut through the week and come back with more than a time."}
+            Un point de rendez-vous pour courir ensemble, couper la semaine et revenir avec autre chose qu’un chrono.
           </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <FooterBlock
             links={[
               { href: getRoute(locale, "runs"), label: "Runs" },
-              { href: getRoute(locale, "community"), label: locale === "fr" ? "Communaute" : "Community" },
+              { href: getRoute(locale, "community"), label: "Communaute" },
               { href: getRoute(locale, "merch"), label: "Merch" },
               { href: getRoute(locale, "contact"), label: "Contact" }
             ]}
@@ -124,9 +120,9 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
               { href: copy.contact.instagram, label: "Instagram" },
               { href: `mailto:${copy.contact.email}`, label: "Email" },
               { href: copy.contact.linkedin, label: "LinkedIn" },
-              { href: getRoute(locale, "localClub"), label: locale === "fr" ? "Guide local" : "Local guide" }
+              { href: getRoute(locale, "localClub"), label: "Guide local" }
             ]}
-            title={locale === "fr" ? "Liens utiles" : "Useful links"}
+            title="Liens utiles"
           />
         </div>
       </div>
@@ -170,11 +166,11 @@ export function HeroPanel({
   facts: Array<{ label: string; value: string }>;
 }) {
   return (
-    <section className="mx-auto grid w-full max-w-[1760px] gap-6 px-5 py-8 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.68fr)] lg:px-10 lg:py-12">
-      <div className="border-2 border-[#351815] bg-[#f6eadf] p-6 shadow-[8px_8px_0_#d96ab4] lg:p-10">
+    <section className="mx-auto grid w-full max-w-none gap-6 px-4 py-8 sm:px-6 xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.68fr)] xl:px-8 xl:py-12">
+      <div className="border-2 border-[#351815] bg-[#f6eadf] p-6 shadow-[8px_8px_0_#d96ab4] xl:p-10">
         <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">{stamp} / {label}</p>
         <h1 className="mt-8 max-w-4xl font-display text-[clamp(3.4rem,7.5vw,7.4rem)] uppercase leading-[0.94]">{title}</h1>
-        <p className="mt-6 max-w-2xl text-lg font-bold leading-tight text-[#351815]/80 lg:text-xl">{intro}</p>
+        <p className="mt-6 max-w-2xl text-lg font-bold leading-tight text-[#351815]/80 xl:text-xl">{intro}</p>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">{actions}</div>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {facts.map((fact) => (
@@ -186,7 +182,7 @@ export function HeroPanel({
         </div>
       </div>
       <div className="overflow-hidden border-2 border-[#351815] bg-[#351815] p-3">
-        <PosterPhoto alt={imageAlt} className="min-h-[460px] lg:min-h-[640px]" priority src={image} stamp="AIX" />
+        <PosterPhoto alt={imageAlt} className="min-h-[460px] xl:min-h-[640px]" priority src={image} stamp="AIX" />
       </div>
     </section>
   );
@@ -227,7 +223,7 @@ export function PrimaryLink({ href, children, secondary = false }: { href: strin
   );
 }
 
-export function RunCard({ run, locale }: { run: RunEvent; locale: Locale }) {
+export function RunCard({ run }: { run: RunEvent }) {
   return (
     <article className="flex h-full flex-col border-2 border-[#351815] bg-[#f6eadf] p-5 transition hover:-translate-y-1 hover:shadow-[8px_8px_0_#ffb000]">
       <div className="flex items-start justify-between gap-4 border-b-2 border-[#351815] pb-4">
@@ -239,16 +235,16 @@ export function RunCard({ run, locale }: { run: RunEvent; locale: Locale }) {
       </div>
       <div className="mt-5 grid gap-2 text-[#351815]/78">
         <p>
-          <strong>{locale === "fr" ? "Distance :" : "Distance:"}</strong> {run.distance}
+          <strong>Distance :</strong> {run.distance}
         </p>
         <p>
-          <strong>{locale === "fr" ? "Allure :" : "Pace:"}</strong> {run.pace}
+          <strong>Allure :</strong> {run.pace}
         </p>
         <p>
-          <strong>{locale === "fr" ? "Lieu :" : "Location:"}</strong> {run.location}
+          <strong>Lieu :</strong> {run.location}
         </p>
         <p>
-          <strong>{locale === "fr" ? "Apres-run :" : "After run:"}</strong> {run.afterRun}
+          <strong>Apres-run :</strong> {run.afterRun}
         </p>
       </div>
       <p className="mt-5 text-[#351815]/72">{run.summary}</p>

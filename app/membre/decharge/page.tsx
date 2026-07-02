@@ -52,7 +52,7 @@ export default function MemberWaiverPage() {
             Décharge de responsabilité - NULLL.CLUB
           </h2>
           <p className="mt-6 text-lg font-bold leading-tight text-[#351815]/78">
-            En cochant la case d'acceptation et en validant mon inscription, je reconnais et j'accepte ce qui suit :
+            En cochant la case d’acceptation et en validant mon inscription, je reconnais et j’accepte ce qui suit :
           </p>
           <div className="mt-8 grid gap-6">
             {waiverSections.map((section) => (
@@ -63,7 +63,7 @@ export default function MemberWaiverPage() {
             ))}
           </div>
           <p className="mt-8 border-t-2 border-[#351815] pt-5 font-mono text-sm font-black uppercase text-[#351815]">
-            Je certifie avoir lu et compris la présente décharge et l'accepter sans réserve.
+            Je certifie avoir lu et compris la présente décharge et l’accepter sans réserve.
           </p>
         </article>
 

@@ -44,11 +44,11 @@ export default async function RunsPage({ params }: PageProps) {
       />
 
       <section className="relative overflow-hidden border-b-2 border-[#351815] bg-[#f6eadf]">
-        <div className="absolute -left-24 top-24 hidden w-[38vw] -rotate-6 opacity-[0.08] lg:block">
+        <div className="absolute -left-24 top-24 hidden w-[38vw] -rotate-6 opacity-[0.08] xl:block">
           <Image alt="" aria-hidden="true" height={784} src="/assets/nulll-new/n-burgundy.png" width={900} />
         </div>
-        <div className="mx-auto grid min-h-[calc(100svh-82px)] w-full max-w-[1760px] grid-cols-1 lg:grid-cols-[0.98fr_1.02fr]">
-          <div className="relative z-10 flex flex-col justify-between border-b-2 border-[#351815] px-5 py-7 sm:px-8 lg:border-b-0 lg:border-r-2 lg:px-10">
+        <div className="mx-auto grid min-h-[calc(100svh-82px)] w-full max-w-none grid-cols-1 xl:grid-cols-[0.98fr_1.02fr]">
+          <div className="relative z-10 flex flex-col justify-between border-b-2 border-[#351815] px-4 py-7 sm:px-6 xl:border-b-0 xl:border-r-2 xl:px-8">
             <div>
               <div className="flex flex-wrap items-center gap-2 font-mono text-[0.72rem] font-black uppercase leading-none sm:text-xs">
                 <span className="border-2 border-[#351815] bg-[#351815] px-3 py-2 text-[#f6eadf]">Run 001</span>
@@ -63,36 +63,34 @@ export default async function RunsPage({ params }: PageProps) {
               </h1>
 
               <p className="mt-7 max-w-2xl text-[clamp(1.3rem,2.2vw,2.35rem)] font-black uppercase leading-[0.96]">
-                {locale === "fr"
-                  ? "Le premier vrai rendez-vous NULLL.CLUB. Tu viens seul, tu repars avec des noms, du bruit, une raison de revenir."
-                  : "The first real NULLL.CLUB meeting point. Come alone, leave with names, noise and a reason to come back."}
+                Le premier vrai rendez-vous NULLL.CLUB. Tu viens seul, tu repars avec des noms, du bruit, une raison de revenir.
               </p>
             </div>
 
             <div className="mt-8 grid gap-4 xl:grid-cols-[1fr_260px] xl:items-end">
-              <RunInfoPanel locale={locale} run={firstRun} />
+              <RunInfoPanel run={firstRun} />
               <Link
                 className="group inline-flex min-h-16 items-center justify-between gap-4 border-2 border-[#351815] bg-[#351815] px-5 py-4 font-mono text-sm font-black uppercase text-[#f6eadf] transition hover:-translate-y-1 hover:bg-[#ffb000] hover:text-[#351815]"
                 href={getRoute(locale, "contact")}
               >
-                <span>{locale === "fr" ? "Je veux le spot exact" : "Get the exact spot"}</span>
+                <span>Je veux le spot exact</span>
                 <ArrowIcon />
               </Link>
             </div>
           </div>
 
-          <div className="relative min-h-[760px] overflow-hidden bg-[#351815] p-3 sm:p-5 lg:min-h-full">
+          <div className="relative min-h-[760px] overflow-hidden bg-[#351815] p-3 sm:p-5 xl:min-h-full">
             <Image
-              alt={locale === "fr" ? "Premier run NULLL.CLUB" : "First NULLL.CLUB run"}
+              alt="Premier run NULLL.CLUB"
               className="object-cover"
               fill
               priority
-              sizes="(min-width: 1024px) 52vw, 100vw"
+              sizes="(min-width: 1280px) 52vw, 100vw"
               src="/assets/nulll-new/run-finish.png"
             />
             <div className="absolute inset-3 border-2 border-[#f6eadf] sm:inset-5" />
             <div className="absolute left-6 top-6 z-10 border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase text-[#351815]">
-              {locale === "fr" ? "Aucun ecouteur" : "No headphones"}
+              Aucun ecouteur
             </div>
             <div className="absolute bottom-8 left-8 right-8 z-10 grid gap-3 md:grid-cols-[1fr_auto] md:items-end">
               <div className="bg-[#f6eadf] p-5 text-[#351815]">
@@ -118,16 +116,14 @@ export default async function RunsPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="mx-auto grid w-full max-w-[1760px] gap-6 px-5 py-10 sm:px-8 lg:grid-cols-[0.45fr_0.55fr] lg:px-10 lg:py-14">
-        <div className="border-2 border-[#351815] bg-[#ffb000] p-6 lg:p-8">
-          <p className="font-mono text-xs font-black uppercase">{locale === "fr" ? "Pourquoi c'est different" : "Why this feels different"}</p>
+      <section className="mx-auto grid w-full max-w-none gap-6 px-4 py-10 sm:px-6 xl:grid-cols-[0.45fr_0.55fr] xl:px-8 xl:py-14">
+        <div className="border-2 border-[#351815] bg-[#ffb000] p-6 xl:p-8">
+          <p className="font-mono text-xs font-black uppercase">Pourquoi c’est different</p>
           <h2 className="mt-5 font-display text-[clamp(3.2rem,6.8vw,6.4rem)] uppercase leading-[0.94]">
-            {locale === "fr" ? "Pas juste courir." : "Not just running."}
+            Pas juste courir.
           </h2>
           <p className="mt-6 text-xl font-black uppercase leading-tight text-[#351815]/78">
-            {locale === "fr"
-              ? "On coupe la semaine en deux: plus d'ecouteurs, une enceinte, un groupe, une ville, un pretexte pour parler."
-              : "We split the week open: no headphones, one speaker, one group, one city, one excuse to talk."}
+            On coupe la semaine en deux: plus d’ecouteurs, une enceinte, un groupe, une ville, un pretexte pour parler.
           </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -140,18 +136,18 @@ export default async function RunsPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1760px] px-5 pb-14 sm:px-8 lg:px-10">
+      <section className="mx-auto w-full max-w-none px-4 pb-14 sm:px-6 xl:px-8">
         <div className="mb-6 flex flex-col justify-between gap-4 border-t-2 border-[#351815] pt-8 md:flex-row md:items-end">
           <div>
             <p className="font-mono text-xs font-black uppercase text-[#d96ab4]">Calendar</p>
             <h2 className="mt-3 font-display text-[clamp(3rem,6.2vw,6rem)] uppercase leading-[0.94]">
-              {locale === "fr" ? "Les prochains rendez-vous." : "The next meetups."}
+              Les prochains rendez-vous.
             </h2>
           </div>
           <PrimaryLink href={getRoute(locale, "contact")}>{copy.runsPage.cta}</PrimaryLink>
         </div>
-        <div className="grid gap-6 lg:grid-cols-3">
-          <FeaturedRunCard locale={locale} run={firstRun} />
+        <div className="grid gap-6 xl:grid-cols-3">
+          <FeaturedRunCard run={firstRun} />
           {laterRuns.map((run) => (
             <div key={run.id}>
               <StructuredData
@@ -165,20 +161,20 @@ export default async function RunsPage({ params }: PageProps) {
                   route: getRoute(locale, "runs")
                 })}
               />
-              <RunCard locale={locale} run={run} />
+              <RunCard run={run} />
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1760px] px-5 pb-14 sm:px-8 lg:px-10">
-        <div className="grid gap-6 border-2 border-[#351815] bg-[#351815] p-6 text-[#f6eadf] lg:grid-cols-[0.7fr_1.3fr] lg:p-8">
+      <section className="mx-auto w-full max-w-none px-4 pb-14 sm:px-6 xl:px-8">
+        <div className="grid gap-6 border-2 border-[#351815] bg-[#351815] p-6 text-[#f6eadf] xl:grid-cols-[0.7fr_1.3fr] xl:p-8">
           <div>
             <p className="font-mono text-xs font-black uppercase text-[#ffb000]">
-              {locale === "fr" ? "FAQ run club" : "Run club FAQ"}
+              FAQ run club
             </p>
             <h2 className="mt-4 font-display text-[clamp(2.6rem,5.2vw,4.5rem)] uppercase leading-[0.96]">
-              {locale === "fr" ? "Les reponses qui levent les freins." : "Answers that remove friction."}
+              Les reponses qui levent les freins.
             </h2>
           </div>
           <div className="grid gap-4">
@@ -195,12 +191,12 @@ export default async function RunsPage({ params }: PageProps) {
   );
 }
 
-function RunInfoPanel({ locale, run }: { locale: "fr" | "eng"; run: RunEvent }) {
+function RunInfoPanel({ run }: { run: RunEvent }) {
   const rows = [
-    [locale === "fr" ? "Date" : "Date", run.date],
-    [locale === "fr" ? "Heure" : "Time", run.time],
-    [locale === "fr" ? "Lieu" : "Spot", run.location],
-    [locale === "fr" ? "Regle" : "Rule", locale === "fr" ? "Zero ecouteurs" : "Zero headphones"]
+    ["Date", run.date],
+    ["Heure", run.time],
+    ["Lieu", run.location],
+    ["Regle", "Zero ecouteurs"]
   ];
 
   return (
@@ -215,16 +211,16 @@ function RunInfoPanel({ locale, run }: { locale: "fr" | "eng"; run: RunEvent }) 
   );
 }
 
-function FeaturedRunCard({ locale, run }: { locale: "fr" | "eng"; run: RunEvent }) {
+function FeaturedRunCard({ run }: { run: RunEvent }) {
   return (
     <article className="relative overflow-hidden border-2 border-[#351815] bg-[#351815] p-5 text-[#f6eadf] shadow-[8px_8px_0_#ffb000]">
       <p className="font-mono text-xs font-black uppercase text-[#ffb000]">Run 001 / Featured</p>
       <h3 className="mt-4 font-display text-[clamp(2.7rem,4.6vw,4.8rem)] uppercase leading-[0.94]">{run.title}</h3>
       <p className="mt-5 font-bold text-[#f6eadf]/72">{run.summary}</p>
       <div className="mt-6 grid gap-2 font-mono text-xs font-black uppercase">
-        <div className="flex justify-between border-t-2 border-[#f6eadf] pt-3"><span>{locale === "fr" ? "Distance" : "Distance"}</span><span>{run.distance}</span></div>
-        <div className="flex justify-between border-t-2 border-[#f6eadf] pt-3"><span>{locale === "fr" ? "Allure" : "Pace"}</span><span>{run.pace}</span></div>
-        <div className="flex justify-between border-t-2 border-[#f6eadf] pt-3"><span>{locale === "fr" ? "Apres" : "After"}</span><span>{run.afterRun}</span></div>
+        <div className="flex justify-between border-t-2 border-[#f6eadf] pt-3"><span>Distance</span><span>{run.distance}</span></div>
+        <div className="flex justify-between border-t-2 border-[#f6eadf] pt-3"><span>Allure</span><span>{run.pace}</span></div>
+        <div className="flex justify-between border-t-2 border-[#f6eadf] pt-3"><span>Apres</span><span>{run.afterRun}</span></div>
       </div>
     </article>
   );

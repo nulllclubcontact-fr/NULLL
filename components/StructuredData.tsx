@@ -3,5 +3,7 @@ type StructuredDataProps = {
 };
 
 export function StructuredData({ data }: StructuredDataProps) {
-  return <script dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} type="application/ld+json" />;
+  const json = JSON.stringify(data).replace(/</g, "\\u003c");
+
+  return <script dangerouslySetInnerHTML={{ __html: json }} type="application/ld+json" />;
 }

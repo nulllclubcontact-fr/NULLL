@@ -4,7 +4,7 @@ export type CartItem = {
 };
 
 export type CheckoutPayload = {
-  locale: "fr" | "eng";
+  locale: "fr";
   items: CartItem[];
   firstName: string;
   lastName: string;

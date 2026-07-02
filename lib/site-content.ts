@@ -1,4 +1,4 @@
-export const locales = ["fr", "eng"] as const;
+export const locales = ["fr"] as const;
 
 export type Locale = (typeof locales)[number];
 
@@ -64,18 +64,6 @@ const routeSlugs: Record<Locale, Record<RouteKey, string>> = {
     localClub: "run-club-aix-en-provence",
     localRunning: "courir-a-aix-en-provence",
     localEvents: "evenements-running-aix"
-  },
-  eng: {
-    home: "",
-    runs: "runs",
-    community: "community",
-    merch: "merch",
-    about: "about",
-    contact: "contact",
-    checkout: "checkout",
-    localClub: "aix-en-provence-run-club",
-    localRunning: "running-in-aix-en-provence",
-    localEvents: "aix-running-events"
   }
 };
 
@@ -111,38 +99,6 @@ export const productsByLocale: Record<Locale, Product[]> = {
       description: "Pièce statement pour soutenir le run club et les prochaines dates.",
       fit: "Coupe droite, coton lourd, unisexe."
     }
-  ],
-  eng: [
-    {
-      id: "tee-black",
-      image: "/assets/merch/tee-black-blank.png",
-      alt: "Black NULLL.CLUB t-shirt",
-      name: "Club black tee",
-      price: 35,
-      badge: "Aix Edition 001",
-      description: "Heavy black t-shirt built for social runs in Aix-en-Provence.",
-      fit: "Straight fit, heavy cotton, unisex."
-    },
-    {
-      id: "tee-white",
-      image: "/assets/merch/tee-white-blank.png",
-      alt: "White NULLL.CLUB t-shirt",
-      name: "Signal white tee",
-      price: 35,
-      badge: "Aix Edition 001",
-      description: "Bright version for sunset sessions and running events in Aix.",
-      fit: "Straight fit, heavy cotton, unisex."
-    },
-    {
-      id: "tee-social",
-      image: "/assets/merch/tee-black-blank.png",
-      alt: "Black NULLL.CLUB social warning t-shirt",
-      name: "Social warning tee",
-      price: 38,
-      badge: "Limited edition",
-      description: "Statement piece supporting the run club and upcoming events.",
-      fit: "Straight fit, heavy cotton, unisex."
-    }
   ]
 };
 
@@ -176,57 +132,28 @@ const sharedEvents: Array<Omit<RunEvent, "title" | "summary" | "afterRun" | "pac
   }
 ];
 
-function buildRuns(locale: Locale): RunEvent[] {
-  if (locale === "fr") {
-    return [
-      {
-        ...sharedEvents[0],
-        title: "Run social découverte",
-        pace: "Allure conversation",
-        summary: "Premier format idéal pour découvrir le run club à Aix-en-Provence sans pression.",
-        afterRun: "Boissons et musique après le run"
-      },
-      {
-        ...sharedEvents[1],
-        title: "Run coucher de soleil",
-        pace: "Allure douce",
-        summary: "Boucle urbaine simple pour courir à Aix-en-Provence et rencontrer du monde.",
-        afterRun: "Photo de groupe et verre partenaire"
-      },
-      {
-        ...sharedEvents[2],
-        title: "Run communauté",
-        pace: "Allure sociale",
-        summary: "Sortie collective pensée pour les membres réguliers et les nouveaux venus.",
-        afterRun: "Rencontre informelle après la sortie"
-      }
-    ];
-  }
-
+function buildRuns(): RunEvent[] {
   return [
     {
       ...sharedEvents[0],
-      date: "Friday, September 12 2026",
-      title: "Social discovery run",
-      pace: "Conversation pace",
-      summary: "Ideal first session to discover the Aix-en-Provence run club without pressure.",
-      afterRun: "Drinks and music after the run"
+      title: "Run social découverte",
+      pace: "Allure conversation",
+      summary: "Premier format idéal pour découvrir le run club à Aix-en-Provence sans pression.",
+      afterRun: "Boissons et musique après le run"
     },
     {
       ...sharedEvents[1],
-      date: "Friday, September 19 2026",
-      title: "Sunset social run",
-      pace: "Easy pace",
-      summary: "Simple city loop to run in Aix-en-Provence and meet new people.",
-      afterRun: "Group photo and partner drink"
+      title: "Run coucher de soleil",
+      pace: "Allure douce",
+      summary: "Boucle urbaine simple pour courir à Aix-en-Provence et rencontrer du monde.",
+      afterRun: "Photo de groupe et verre partenaire"
     },
     {
       ...sharedEvents[2],
-      date: "Friday, September 26 2026",
-      title: "Community run",
-      pace: "Social pace",
-      summary: "Collective session designed for regular members and first-timers.",
-      afterRun: "Informal meetup after the session"
+      title: "Run communauté",
+      pace: "Allure sociale",
+      summary: "Sortie collective pensée pour les membres réguliers et les nouveaux venus.",
+      afterRun: "Rencontre informelle après la sortie"
     }
   ];
 }
@@ -240,35 +167,16 @@ export function getRoute(locale: Locale, key: RouteKey) {
   return slug ? `/${locale}/${slug}` : `/${locale}`;
 }
 
-export function switchLocalePath(locale: Locale, pathname: string) {
-  const parts = pathname.split("/").filter(Boolean);
-  if (!parts.length) {
-    return `/${locale}`;
-  }
-
-  const current = parts[0];
-  if (!isLocale(current)) {
-    return `/${locale}`;
-  }
-
-  const nextParts = [...parts];
-  nextParts[0] = locale;
-  return `/${nextParts.join("/")}`;
-}
-
 export function getArticleBySlug(locale: Locale, slug: string) {
   return getSiteCopy(locale).articles.find((article) => article.slug === slug);
 }
 
 export function getSiteCopy(locale: Locale) {
-  const runs = buildRuns(locale);
+  const runs = buildRuns();
 
-  if (locale === "fr") {
-    return {
+  return {
       locale,
       siteName: "NULLL.CLUB",
-      languageLabel: "Français",
-      alternateLanguageLabel: "English",
       brandLine: "Run club social à Aix-en-Provence",
       city: "Aix-en-Provence",
       contact: {
@@ -572,313 +480,4 @@ export function getSiteCopy(locale: Locale) {
       ] satisfies Article[],
       runs
     };
-  }
-
-  return {
-    locale,
-    siteName: "NULLL.CLUB",
-    languageLabel: "English",
-    alternateLanguageLabel: "Français",
-    brandLine: "Social run club in Aix-en-Provence",
-    city: "Aix-en-Provence",
-    contact: {
-      instagram: "https://www.instagram.com/nulll.club",
-      instagramLabel: "@nulll.club",
-      email: "contact@nulll.club",
-      linkedin: "https://www.linkedin.com/company/nulll-club/"
-    },
-    nav: [
-      { key: "home" as const, label: "Home" },
-      { key: "runs" as const, label: "Runs" },
-      { key: "community" as const, label: "Community" },
-      { key: "merch" as const, label: "Merch" },
-      { key: "about" as const, label: "About" },
-      { key: "contact" as const, label: "Contact" }
-    ],
-    meta: {
-      home: {
-        title: "Aix-en-Provence Run Club | NULLL.CLUB",
-        description:
-          "NULLL.CLUB is a social run club in Aix-en-Provence with inclusive weekly runs, local community energy and clear event information."
-      },
-      runs: {
-        title: "Upcoming Runs in Aix-en-Provence | NULLL.CLUB",
-        description:
-          "See the next runs from the Aix-en-Provence running club: dates, distance, meeting point, pace and social details."
-      },
-      community: {
-        title: "Social Running Community in Aix | NULLL.CLUB",
-        description:
-          "Discover a welcoming social running community in Aix-en-Provence built around shared runs, local connections and recurring events."
-      },
-      merch: {
-        title: "Run Club Merch | NULLL.CLUB Aix-en-Provence",
-        description:
-          "Shop the official NULLL.CLUB merch collection and send your order request directly from the site."
-      },
-      about: {
-        title: "About the Running Club | NULLL.CLUB",
-        description:
-          "Learn how NULLL.CLUB builds a social running club in Aix-en-Provence focused on clarity, community and consistency."
-      },
-      contact: {
-        title: "Contact the Aix-en-Provence Run Club | NULLL.CLUB",
-        description:
-          "Contact NULLL.CLUB to join a run, ask a question, discuss partnerships or follow upcoming running events in Aix."
-      },
-      checkout: {
-        title: "Complete Your Order | NULLL.CLUB",
-        description: "Review your cart, add your details and submit your merch order request."
-      }
-    },
-    home: {
-      hero: {
-        title: "The social run club that gives Aix-en-Provence a real meeting point.",
-        intro:
-          "NULLL.CLUB hosts accessible runs in Aix-en-Provence for people who want to move, meet others and keep showing up week after week.",
-        primaryCta: "See upcoming runs",
-        secondaryCta: "Explore the community",
-        stats: [
-          { label: "City", value: "Aix-en-Provence" },
-          { label: "Format", value: "Weekly social run" },
-          { label: "Pace", value: "Conversation pace and beginner-friendly" }
-        ]
-      },
-      promise: [
-        "You immediately understand the offer: a real run club in Aix-en-Provence.",
-          "You know what to do next: join a run, follow the club or meet the group.",
-        "You get proof, not just branding: dates, routes, atmosphere and local community signals."
-      ],
-      sections: {
-        nextRunsTitle: "Upcoming runs in Aix-en-Provence",
-        nextRunsText:
-          "Every session displays a clear date, exact area, distance and the after-run plan.",
-        howTitle: "How it works",
-        howSteps: [
-          {
-            title: "Show up without pressure",
-            text: "You do not need to be fast, fully equipped or already connected to the group."
-          },
-          {
-            title: "Run at social pace",
-            text: "Routes are designed for conversation, comfort and staying together."
-          },
-          {
-            title: "Stay after the run",
-            text: "The real value comes after the effort: music, drinks, names and future plans."
-          }
-        ],
-        merchTitle: "Official club merch",
-        merchText:
-          "A short, coherent collection with a clear order flow and confirmation request built into the site.",
-        seoTitle: "Why join a running group in Aix?",
-        seoBody:
-          "If you are looking for an Aix-en-Provence run club, a local running club or social running events in Aix, NULLL.CLUB offers clear event information, recurring sessions and an open community."
-      },
-      faq: [
-        {
-          q: "Can I come alone?",
-          a: "Yes. That is often the best way to experience the group for the first time."
-        },
-        {
-          q: "Do I need to be fast?",
-          a: "No. The pace is built for conversation and shared movement."
-        },
-        {
-          q: "How do I get the exact meeting point?",
-          a: "The exact start location is shown on the runs page and repeated on Instagram."
-        }
-      ]
-    },
-    runsPage: {
-      title: "Clear, recurring runs that are easy to join.",
-      intro:
-        "Every running event in Aix comes with a precise meeting area, expected effort level, distance and after-run context.",
-      checklist: [
-        "Conversation pace",
-        "Meeting point announced in advance",
-        "Distance matched to a social format",
-        "After-run moment included"
-      ],
-      cta: "Get the next date",
-      faq: [
-        {
-          q: "What level do I need?",
-          a: "No minimum level is required. The goal is to move together at an accessible pace."
-        },
-        {
-          q: "Can I join for the first time without messaging first?",
-          a: "Yes, although you can message us if you want reassurance before your first session."
-        },
-        {
-          q: "Do you host special events?",
-          a: "Yes. Some dates include partners, music or photo and video coverage."
-        }
-      ]
-    },
-    communityPage: {
-      title: "A local, welcoming and recurring running community.",
-      intro:
-        "NULLL.CLUB is more than a running group in Aix. It is a repeated reason to meet people in a city where staying inside your own circle is easy.",
-      pillars: [
-        {
-          title: "Open to newcomers",
-          text: "Every run is designed so a first visit feels simple and comfortable."
-        },
-        {
-          title: "Rooted in Aix-en-Provence",
-          text: "The club highlights local routes, local people and the city itself."
-        },
-        {
-          title: "Built around connection",
-          text: "Sport is the entry point, not the whole promise."
-        }
-      ]
-    },
-    aboutPage: {
-      title: "A social running club, not a performance posture.",
-      intro:
-        "NULLL.CLUB exists to make running in Aix-en-Provence easier to join, easier to understand and more human.",
-      values: [
-        {
-          title: "Clarity",
-          text: "Readable pages, visible dates and an obvious next step."
-        },
-        {
-          title: "Consistency",
-          text: "A club only exists when its events keep coming back reliably."
-        },
-        {
-          title: "Accessibility",
-          text: "We remove intimidation without removing identity."
-        },
-        {
-          title: "Design",
-          text: "A brutalist and forward-looking direction that still stays understandable."
-        }
-      ]
-    },
-    contactPage: {
-      title: "Join the club, ask a question or start a project.",
-      intro:
-        "To follow the next runs, get the exact meeting point or discuss a partnership, every channel is direct and explicit.",
-      channels: [
-        {
-          title: "Instagram",
-          value: "@nulll.club",
-          text: "The main channel for new dates, quick updates and social proof.",
-          href: "https://www.instagram.com/nulll.club"
-        },
-        {
-          title: "Email",
-          value: "contact@nulll.club",
-          text: "Best for orders, partnerships, media requests and detailed questions.",
-          href: "mailto:contact@nulll.club"
-        },
-        {
-          title: "LinkedIn",
-          value: "NULLL.CLUB",
-          text: "For local partners, collaborations and brand projects.",
-          href: "https://www.linkedin.com/company/nulll-club/"
-        }
-      ]
-    },
-    merchPage: {
-      title: "Official run club merch.",
-      intro:
-        "A focused collection with a clear order flow designed to support the club and reinforce the local identity of the project.",
-      trust: [
-        "Per-product stock labels",
-        "Built-in online order request",
-        "Confirmation message with reference",
-        "Local pickup or email coordination"
-      ]
-    },
-    checkoutPage: {
-      title: "Complete your order",
-      intro:
-        "Review your cart, add your details and submit your request. You will get a confirmation with the next steps."
-    },
-    articles: [
-      {
-        key: "localClub",
-        slug: "aix-en-provence-run-club",
-        title: "Aix-en-Provence Run Club | Local Guide by NULLL.CLUB",
-        description:
-          "Learn how to choose a run club in Aix-en-Provence and what makes a local running community easier to join.",
-        h1: "Finding a run club in Aix-en-Provence",
-        intro:
-          "If you are looking for a run club in Aix-en-Provence, you usually want three things: clear timing, an accessible group and a reason to come back.",
-        sections: [
-          {
-            title: "Why join a run club in Aix-en-Provence?",
-            body: [
-              "Running alone works for training, but not always for consistency. A local running club gives you a repeatable routine.",
-              "The right running group in Aix combines a clear schedule, an accessible pace and social energy."
-            ]
-          },
-          {
-            title: "What NULLL.CLUB offers",
-            body: [
-              "Recurring social runs, readable communication, a strong identity and a real welcome for newcomers.",
-              "The club focuses on clarity, local relevance and a better user journey than a vague manifesto-only website."
-            ]
-          }
-        ]
-      },
-      {
-        key: "localRunning",
-        slug: "running-in-aix-en-provence",
-        title: "Running in Aix-en-Provence | Local Advice and Community",
-        description:
-          "See where to run in Aix-en-Provence, how to join a running group and what to expect from a social running event.",
-        h1: "Running in Aix-en-Provence with a group",
-        intro:
-          "Running in Aix-en-Provence becomes easier when you know the right timing, the right meeting points and the right local group.",
-        sections: [
-          {
-            title: "Best formats for running in Aix",
-            body: [
-              "Sunset social runs are often the easiest format for building a lasting habit.",
-              "A running group that clearly states pace and distance removes a large part of the friction."
-            ]
-          },
-          {
-            title: "How to choose the right group",
-            body: [
-              "Look for clear timing, beginner-friendly messaging and good follow-up on Instagram or email.",
-              "Choose a group that shows distance, area and after-run context rather than just attitude."
-            ]
-          }
-        ]
-      },
-      {
-        key: "localEvents",
-        slug: "aix-running-events",
-        title: "Aix Running Events | Local Agenda by NULLL.CLUB",
-        description:
-          "Follow local running events in Aix-en-Provence, including social runs and recurring community sessions from NULLL.CLUB.",
-        h1: "Running events in Aix-en-Provence",
-        intro:
-          "A strong running events page for Aix-en-Provence should be local, readable and precise enough to trigger action on the first visit.",
-        sections: [
-          {
-            title: "What events matter most?",
-            body: [
-              "Social running events are often the easiest entry point for meeting people and rebuilding consistency.",
-              "Recurring formats create stronger community memory, especially when the run continues with a shared moment afterwards."
-            ]
-          },
-          {
-            title: "How NULLL.CLUB presents them",
-            body: [
-              "Each run highlights a date, a time, a distance, an area and a clear context.",
-              "That structure answers search intent much better than concept copy alone."
-            ]
-          }
-        ]
-      }
-    ] satisfies Article[],
-    runs
-  };
 }

@@ -18,10 +18,15 @@ yarn-error.log*
 pnpm-debug.log*
 
 # Local QA / Codex artifacts
+.codex-*
 .codex-*.png
 qa-artifacts/
+tsconfig.tsbuildinfo
+*.zip
 
 # Local brand/reference source files not needed for deploy
+Logo_basics/
+screenshots_bugs/
 design-reference/
 photo/
 photo_story/

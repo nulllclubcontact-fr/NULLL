@@ -34,7 +34,7 @@ export function buildPageMetadata({
       description,
       url: canonical,
       siteName: "NULLL.CLUB",
-      locale: locale === "fr" ? "fr_FR" : "en_US",
+      locale: "fr_FR",
       type: "website",
       images: [
         {
@@ -64,10 +64,7 @@ export function buildOrganizationSchema(locale: Locale) {
     ],
     email: "contact@nulll.club",
     areaServed: "Aix-en-Provence",
-    description:
-      locale === "fr"
-        ? "Run club social à Aix-en-Provence avec runs accessibles, événements locaux et communauté réelle."
-        : "Social run club in Aix-en-Provence with collective runs, local events and community."
+    description: "Run club social à Aix-en-Provence avec runs accessibles, événements locaux et communauté réelle."
   };
 }
 
@@ -76,10 +73,7 @@ export function buildSportsLocationSchema(locale: Locale) {
     "@context": "https://schema.org",
     "@type": "SportsActivityLocation",
     name: "NULLL.CLUB Aix-en-Provence",
-    description:
-      locale === "fr"
-        ? "Groupe de course et communauté running à Aix-en-Provence."
-        : "Running group and social running community in Aix-en-Provence.",
+    description: "Groupe de course et communauté running à Aix-en-Provence.",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Aix-en-Provence",

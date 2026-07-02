@@ -39,9 +39,9 @@ export default function IdentificationPage() {
   return (
     <main className="bg-[#f6eadf] text-[#351815]">
       <AccountHeader />
-      <section className="border-b-2 border-[#351815] px-5 py-8 sm:px-8 lg:px-10 lg:py-12">
-        <div className="mx-auto grid w-full max-w-[1760px] gap-8">
-          <div className="grid gap-6 lg:grid-cols-[0.72fr_1fr] lg:items-end">
+      <section className="border-b-2 border-[#351815] px-4 py-8 sm:px-6 xl:px-8 xl:py-12">
+        <div className="mx-auto grid w-full max-w-none gap-8">
+          <div className="grid gap-6 xl:grid-cols-[0.72fr_1fr] xl:items-end">
             <div>
               <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">
                 Identification / NULLL.CLUB
@@ -50,12 +50,12 @@ export default function IdentificationPage() {
                 Choisis ton acces.
               </h1>
             </div>
-            <p className="max-w-3xl text-lg font-black uppercase leading-tight text-[#351815]/76 lg:text-2xl">
+            <p className="max-w-3xl text-lg font-black uppercase leading-tight text-[#351815]/76 xl:text-2xl">
               Un seul endroit pour rejoindre le club, retrouver ton compte ou scanner cote partenaire. Meme site, meme energie.
             </p>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-3">
+          <div className="grid gap-4 xl:grid-cols-3">
             {accessCards.map((card) => (
               <Link
                 className={`group grid min-h-[310px] content-between overflow-hidden border-2 border-[#351815] p-5 transition hover:-translate-y-1 sm:p-6 ${card.tone}`}

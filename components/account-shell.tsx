@@ -29,13 +29,13 @@ export function AccountShell({
         <Image
           alt=""
           aria-hidden="true"
-          className="absolute -right-24 top-20 hidden h-auto w-[36vw] rotate-6 opacity-10 lg:block"
+          className="absolute -right-24 top-20 hidden h-auto w-[36vw] rotate-6 opacity-10 xl:block"
           height={784}
           src="/assets/nulll-new/n-burgundy.png"
           width={900}
         />
-        <div className="mx-auto grid w-full max-w-[1760px] lg:grid-cols-[minmax(0,0.82fr)_minmax(360px,0.68fr)]">
-          <div className="flex flex-col justify-center border-b-2 border-[#351815] px-5 py-8 sm:px-8 lg:min-h-[620px] lg:border-b-0 lg:border-r-2 lg:px-10">
+        <div className="mx-auto grid w-full max-w-none xl:grid-cols-[minmax(0,0.82fr)_minmax(360px,0.68fr)]">
+          <div className="flex flex-col justify-center border-b-2 border-[#351815] px-4 py-8 sm:px-6 xl:min-h-[620px] xl:border-b-0 xl:border-r-2 xl:px-8">
             <div>
               <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">
                 {eyebrow}
@@ -53,9 +53,9 @@ export function AccountShell({
               <span>Partenaires pro</span>
             </div>
           </div>
-          <div className="grid content-center gap-5 bg-[#351815] p-4 text-[#f6eadf] sm:p-6 lg:p-8">
-            <div className="relative min-h-[220px] overflow-hidden border-2 border-[#f6eadf] sm:min-h-[300px] lg:min-h-[340px]">
-              <Image alt={imageAlt} className="object-cover" fill priority sizes="(min-width: 1024px) 42vw, 100vw" src={image} />
+          <div className="grid content-center gap-5 bg-[#351815] p-4 text-[#f6eadf] sm:p-6 xl:p-8">
+            <div className="relative min-h-[220px] overflow-hidden border-2 border-[#f6eadf] sm:min-h-[300px] xl:min-h-[340px]">
+              <Image alt={imageAlt} className="object-cover" fill priority sizes="(min-width: 1280px) 42vw, 100vw" src={image} />
               <div className="absolute inset-0 bg-[#351815]/10" />
               <Image
                 alt="NULLL.CLUB"

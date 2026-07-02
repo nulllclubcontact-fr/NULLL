@@ -53,7 +53,7 @@ export default async function MemberDashboardPage() {
 
       <ResetReminder currentMonthPoints={currentMonthPoints} />
 
-      <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
         <div className="panel panel-grid p-5 md:p-8">
           <p className="font-mono text-sm font-black uppercase text-[#351815]/60">
             {profile?.first_name ? `${profile.first_name}, ce mois-ci` : "Ce mois-ci"}

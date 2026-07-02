@@ -65,13 +65,18 @@ export function ProQrScanner() {
   }, [stopScanner]);
 
   useEffect(() => {
-    void startScanner();
+    const timer = window.setTimeout(() => {
+      void startScanner();
+    }, 0);
 
-    return () => stopScanner();
+    return () => {
+      window.clearTimeout(timer);
+      stopScanner();
+    };
   }, [startScanner, stopScanner]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.65fr)]">
+    <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(280px,0.65fr)]">
       <div className="panel panel-grid p-4">
         <video
           aria-label="Camera de scan QR"
@@ -108,7 +113,7 @@ export function ProQrScanner() {
             {member.error}
           </p>
         ) : null}
-        {!member && !isPending ? <p className="mt-5 font-bold text-[#351815]/72">Scanne un QR membre NULLL. Rien d'autre.</p> : null}
+        {!member && !isPending ? <p className="mt-5 font-bold text-[#351815]/72">Scanne un QR membre NULLL. Rien d’autre.</p> : null}
       </aside>
     </div>
   );
@@ -135,7 +140,7 @@ function PurchaseForm({ qrToken }: { qrToken: string }) {
     <form action={purchaseAction} className="grid gap-3 border-t-2 border-[#351815] pt-5">
       <input name="qr_token" readOnly type="hidden" value={qrToken} />
       <label className="grid gap-2 font-mono text-xs font-black uppercase">
-        Libellé de l'achat
+        Libellé de l’achat
         <input className="field" maxLength={80} name="label" placeholder="Menu + boisson" required />
       </label>
       <label className="grid gap-2 font-mono text-xs font-black uppercase">
@@ -148,7 +153,7 @@ function PurchaseForm({ qrToken }: { qrToken: string }) {
         </p>
       ) : null}
       <button className="primary-button" disabled={purchasePending} type="submit">
-        {purchasePending ? "Validation..." : "Valider l'achat"}
+        {purchasePending ? "Validation..." : "Valider l’achat"}
       </button>
     </form>
   );

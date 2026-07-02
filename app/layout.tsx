@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nulll.club"),
   title: "NULLL.CLUB | Social Run Club Aix-en-Provence",
   description:
     "NULLL.CLUB est un social run club a Aix-en-Provence. Sport is the pretext. Make it real.",
@@ -19,8 +20,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
-  colorScheme: "dark"
+  themeColor: "#f6eadf",
+  colorScheme: "light"
 };
 
 export default function RootLayout({
@@ -29,7 +30,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html data-lang="fr" lang="fr" suppressHydrationWarning>
+    <html lang="fr">
       <body>{children}</body>
     </html>
   );

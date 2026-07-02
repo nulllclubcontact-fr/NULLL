@@ -15,8 +15,12 @@ export function MerchExperience({ locale }: { locale: Locale }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setCart(parseCart(window.localStorage.getItem(CART_STORAGE_KEY)));
-    setMounted(true);
+    const timer = window.setTimeout(() => {
+      setCart(parseCart(window.localStorage.getItem(CART_STORAGE_KEY)));
+      setMounted(true);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -36,22 +40,20 @@ export function MerchExperience({ locale }: { locale: Locale }) {
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {products.map((product, index) => {
           const quantity = cartMap.get(product.id) ?? 0;
-          return <ProductCard index={index} key={product.id} locale={locale} product={product} quantity={quantity} setCart={setCart} />;
+          return <ProductCard index={index} key={product.id} product={product} quantity={quantity} setCart={setCart} />;
         })}
       </div>
 
       <aside className="sticky top-28 h-fit border-2 border-[#351815] bg-[#351815] p-5 text-[#f6eadf]">
-        <p className="font-mono text-xs font-black uppercase text-[#ffb000]">{locale === "fr" ? "Panier" : "Cart"}</p>
+        <p className="font-mono text-xs font-black uppercase text-[#ffb000]">Panier</p>
         <p className="mt-3 font-display text-[clamp(2.4rem,3.6vw,3.6rem)] uppercase leading-[0.96]">
-          {count} {locale === "fr" ? "piece" : "item"}
+          {count} piece
           {count > 1 ? "s" : ""}
         </p>
         <div className="mt-6 space-y-4">
           {count === 0 ? (
             <p className="font-bold text-[#f6eadf]/70">
-              {locale === "fr"
-                ? "Le panier est vide. Ajoute une piece du club pour passer commande."
-                : "Your cart is empty. Add a club piece to continue."}
+              Le panier est vide. Ajoute une piece du club pour passer commande.
             </p>
           ) : (
             products
@@ -73,7 +75,7 @@ export function MerchExperience({ locale }: { locale: Locale }) {
         </div>
         <div className="mt-6 border-t-2 border-[#f6eadf] pt-5">
           <div className="flex items-center justify-between gap-4">
-            <span className="text-[#f6eadf]/64">{locale === "fr" ? "Total estime" : "Estimated total"}</span>
+            <span className="text-[#f6eadf]/64">Total estime</span>
             <strong className="text-2xl text-[#ffb000]">{total} EUR</strong>
           </div>
         </div>
@@ -84,13 +86,11 @@ export function MerchExperience({ locale }: { locale: Locale }) {
           }`}
           href={getRoute(locale, "checkout")}
         >
-          <span>{locale === "fr" ? "Passer commande" : "Continue to checkout"}</span>
+          <span>Passer commande</span>
           <ArrowIcon />
         </Link>
         <p className="mt-4 text-sm text-[#f6eadf]/55">
-          {locale === "fr"
-            ? "La commande reste simple: tu envoies la demande, le club confirme ensuite par email."
-            : "Checkout stays simple: send the request, then the club confirms by email."}
+          La commande reste simple: tu envoies la demande, le club confirme ensuite par email.
         </p>
       </aside>
     </div>
@@ -99,13 +99,11 @@ export function MerchExperience({ locale }: { locale: Locale }) {
 
 function ProductCard({
   index,
-  locale,
   product,
   quantity,
   setCart
 }: {
   index: number;
-  locale: Locale;
   product: Product;
   quantity: number;
   setCart: React.Dispatch<React.SetStateAction<CartItem[]>>;
@@ -130,7 +128,7 @@ function ProductCard({
         <p className="mt-2 text-sm font-bold text-[#351815]/52">{product.fit}</p>
         <div className="mt-5 flex items-center gap-3">
           <button
-            aria-label={locale === "fr" ? `Retirer un exemplaire de ${product.name}` : `Remove one ${product.name}`}
+            aria-label={`Retirer un exemplaire de ${product.name}`}
             className="grid h-11 w-11 place-items-center border-2 border-[#351815] font-mono font-black transition hover:bg-[#351815] hover:text-[#f6eadf] disabled:opacity-40"
             disabled={quantity === 0}
             onClick={() => setCart((current) => upsertCartItem(current, product.id, Math.max(0, quantity - 1)))}
@@ -140,7 +138,7 @@ function ProductCard({
           </button>
           <span className="w-10 text-center text-lg font-black">{quantity}</span>
           <button
-            aria-label={locale === "fr" ? `Ajouter un exemplaire de ${product.name}` : `Add one ${product.name}`}
+            aria-label={`Ajouter un exemplaire de ${product.name}`}
             className="grid h-11 w-11 place-items-center border-2 border-[#351815] font-mono font-black transition hover:bg-[#ffb000]"
             onClick={() => setCart((current) => upsertCartItem(current, product.id, quantity + 1))}
             type="button"
@@ -149,12 +147,12 @@ function ProductCard({
           </button>
         </div>
         <button
-          aria-label={locale === "fr" ? `Ajouter ${product.name} au panier` : `Add ${product.name} to cart`}
+          aria-label={`Ajouter ${product.name} au panier`}
           className="mt-5 flex min-h-14 w-full items-center justify-between border-2 border-[#351815] bg-[#351815] px-4 py-3 font-mono text-sm font-black uppercase text-[#f6eadf] transition hover:-translate-y-1 hover:bg-[#ffb000] hover:text-[#351815]"
           onClick={() => setCart((current) => upsertCartItem(current, product.id, quantity + 1))}
           type="button"
         >
-          <span>{locale === "fr" ? "Ajouter au panier" : "Add to cart"}</span>
+          <span>Ajouter au panier</span>
           <ArrowIcon />
         </button>
       </div>

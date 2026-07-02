@@ -24,7 +24,7 @@ export default async function AdminPartnersPage() {
       <div>
         <p className="font-mono text-sm uppercase  text-[#d96ab4]">Admin partenaires</p>
         <h1 className="mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Codes. Hash. Silence.</h1>
-        <p className="mt-5 max-w-xl text-[#351815]/72">Le code clair apparait une fois. Apres, il n'existe plus ici.</p>
+        <p className="mt-5 max-w-xl text-[#351815]/72">Le code clair apparait une fois. Apres, il n’existe plus ici.</p>
       </div>
 
       <form action={createPartner} className="panel panel-grid grid gap-4 p-5 md:grid-cols-[1fr_1fr_auto]">

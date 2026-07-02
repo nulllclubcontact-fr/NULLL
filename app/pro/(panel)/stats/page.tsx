@@ -128,7 +128,7 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
       <div>
         <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">Stats pro</p>
         <h1 className="mt-6 font-display text-[clamp(3.6rem,10vw,8rem)] uppercase leading-[0.94]">Ton vrai CA.</h1>
-        <p className="mt-5 max-w-xl font-bold leading-tight text-[#351815]/72">Addition des commandes scannées. Filtré sur ton partenaire. Rien d'autre.</p>
+        <p className="mt-5 max-w-xl font-bold leading-tight text-[#351815]/72">Addition des commandes scannées. Filtré sur ton partenaire. Rien d’autre.</p>
       </div>
 
       <form className="panel grid gap-4 p-5 sm:grid-cols-[1fr_1fr_auto]" action="/pro/stats">

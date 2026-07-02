@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { CheckoutPageView } from "../../../components/LocalizedPageViews";
 import { resolveLocale } from "../../../lib/locale";
 import { buildPageMetadata } from "../../../lib/seo";
 import { getRoute, getSiteCopy } from "../../../lib/site-content";
@@ -28,8 +27,5 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CheckoutPage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale);
-  if (locale === "fr") {
-    redirect(getRoute(locale, "checkout"));
-  }
-  return <CheckoutPageView locale={locale} />;
+  redirect(getRoute(locale, "checkout"));
 }

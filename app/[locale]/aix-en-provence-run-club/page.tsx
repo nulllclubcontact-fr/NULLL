@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 import { resolveLocale } from "../../../lib/locale";
 import { buildPageMetadata } from "../../../lib/seo";
 import { getRoute, getSiteCopy } from "../../../lib/site-content";
-import { SeoArticleView } from "../../shared/SeoArticleView";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -22,10 +21,5 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function AixRunClubPage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale);
-  if (locale === "fr") {
-    redirect(getRoute(locale, "localClub"));
-  }
-  const article = getSiteCopy(locale).articles.find((entry) => entry.key === "localClub")!;
-
-  return <SeoArticleView article={article} locale={locale} pathname={getRoute(locale, "localClub")} />;
+  redirect(getRoute(locale, "localClub"));
 }

@@ -1,6 +1,8 @@
 "use server";
 
 import bcrypt from "bcryptjs";
+import { createHash } from "node:crypto";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { getProSession, setProSession } from "../../lib/pro/guard";
 import { getTierForPoints, type LoyaltyTier } from "../../lib/loyalty/tiers";
@@ -40,7 +42,10 @@ type PartnerAccessCode = {
   partners: { active: boolean | null } | null;
 };
 
-const attempts = new Map<string, { count: number; resetAt: number }>();
+const PRO_ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
+const PRO_LOCK_MS = 10 * 60 * 1000;
+const PRO_MAX_ATTEMPTS = 8;
+const attempts = new Map<string, { count: number; resetAt: number; lockedUntil: number }>();
 
 function readCode(formData: FormData) {
   const value = formData.get("code");
@@ -56,22 +61,43 @@ function formatRpcError() {
   return "Achat refuse. Verifie le QR et le montant.";
 }
 
-function getAttemptKey(code: string) {
-  return code.slice(0, 4).toLowerCase() || "empty";
+async function getAttemptKey(code: string) {
+  const headerStore = await headers();
+  const forwardedFor = headerStore.get("x-forwarded-for")?.split(",")[0]?.trim();
+  const realIp = headerStore.get("x-real-ip")?.trim();
+  const userAgent = headerStore.get("user-agent")?.slice(0, 160) ?? "unknown-agent";
+  const identity = forwardedFor || realIp || "local";
+  const codeHash = createHash("sha256").update(code.trim().toLowerCase() || "empty").digest("hex");
+
+  return createHash("sha256").update(`pro:${identity}:${userAgent}:${codeHash}`).digest("hex");
 }
 
-function isRateLimited(code: string) {
-  const key = getAttemptKey(code);
+async function isRateLimited(code: string) {
+  const key = await getAttemptKey(code);
   const now = Date.now();
   const current = attempts.get(key);
 
   if (!current || current.resetAt < now) {
-    attempts.set(key, { count: 1, resetAt: now + 60_000 });
+    attempts.set(key, { count: 1, resetAt: now + PRO_ATTEMPT_WINDOW_MS, lockedUntil: 0 });
     return false;
   }
 
+  if (current.lockedUntil > now) {
+    return true;
+  }
+
   current.count += 1;
-  return current.count > 8;
+
+  if (current.count > PRO_MAX_ATTEMPTS) {
+    current.lockedUntil = now + PRO_LOCK_MS;
+    return true;
+  }
+
+  return false;
+}
+
+async function clearRateLimit(code: string) {
+  attempts.delete(await getAttemptKey(code));
 }
 
 export async function loginPro(_previousState: ProLoginState, formData: FormData): Promise<ProLoginState> {
@@ -81,7 +107,7 @@ export async function loginPro(_previousState: ProLoginState, formData: FormData
     return { error: "Code invalide" };
   }
 
-  if (isRateLimited(code)) {
+  if (await isRateLimited(code)) {
     return { error: "Code invalide" };
   }
 
@@ -113,6 +139,7 @@ export async function loginPro(_previousState: ProLoginState, formData: FormData
     if (matches) {
       await supabase.from("partner_access_codes").update({ last_used_at: new Date().toISOString() }).eq("id", accessCode.id);
       await setProSession(accessCode.partner_id);
+      await clearRateLimit(code);
       redirect("/pro/stats");
     }
   }
