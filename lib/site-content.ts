@@ -195,7 +195,7 @@ export function getSiteCopy(locale: Locale) {
       ],
       meta: {
         home: {
-          title: "Run club à Aix-en-Provence | NULLL.CLUB",
+          title: "NULLL.CLUB — Run club social à Aix-en-Provence",
           description:
             "NULLL.CLUB est un run club social à Aix-en-Provence. Rejoins un groupe de course inclusif avec sorties, communauté locale et événements running."
         },
