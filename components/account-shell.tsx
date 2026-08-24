@@ -19,7 +19,7 @@ export function AccountShell({
   title,
   intro,
   children,
-  image = "/assets/nulll-new/run-finish.png",
+  image = "/assets/photos/runners-aix.png",
   imageAlt = "NULLL.CLUB community"
 }: AccountShellProps) {
   return (
@@ -57,13 +57,6 @@ export function AccountShell({
             <div className="relative min-h-[220px] overflow-hidden border-2 border-[#f6eadf] sm:min-h-[300px] xl:min-h-[340px]">
               <Image alt={imageAlt} className="object-cover" fill priority sizes="(min-width: 1280px) 42vw, 100vw" src={image} />
               <div className="absolute inset-0 bg-[#351815]/10" />
-              <Image
-                alt="NULLL.CLUB"
-                className="absolute bottom-5 left-5 h-auto w-48 max-w-[70%]"
-                height={157}
-                src="/assets/nulll-new/logo-yellow.png"
-                width={1225}
-              />
             </div>
             {children}
           </div>

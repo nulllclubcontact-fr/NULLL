@@ -61,19 +61,17 @@ function formatRpcError() {
   return "Achat refuse. Verifie le QR et le montant.";
 }
 
-async function getAttemptKey(code: string) {
+async function getAttemptKey() {
   const headerStore = await headers();
   const forwardedFor = headerStore.get("x-forwarded-for")?.split(",")[0]?.trim();
   const realIp = headerStore.get("x-real-ip")?.trim();
   const userAgent = headerStore.get("user-agent")?.slice(0, 160) ?? "unknown-agent";
   const identity = forwardedFor || realIp || "local";
-  const codeHash = createHash("sha256").update(code.trim().toLowerCase() || "empty").digest("hex");
-
-  return createHash("sha256").update(`pro:${identity}:${userAgent}:${codeHash}`).digest("hex");
+  return createHash("sha256").update(`pro:${identity}:${userAgent}`).digest("hex");
 }
 
-async function isRateLimited(code: string) {
-  const key = await getAttemptKey(code);
+async function isRateLimited() {
+  const key = await getAttemptKey();
   const now = Date.now();
   const current = attempts.get(key);
 
@@ -96,8 +94,8 @@ async function isRateLimited(code: string) {
   return false;
 }
 
-async function clearRateLimit(code: string) {
-  attempts.delete(await getAttemptKey(code));
+async function clearRateLimit() {
+  attempts.delete(await getAttemptKey());
 }
 
 export async function loginPro(_previousState: ProLoginState, formData: FormData): Promise<ProLoginState> {
@@ -107,7 +105,7 @@ export async function loginPro(_previousState: ProLoginState, formData: FormData
     return { error: "Code invalide" };
   }
 
-  if (await isRateLimited(code)) {
+  if (await isRateLimited()) {
     return { error: "Code invalide" };
   }
 
@@ -139,7 +137,7 @@ export async function loginPro(_previousState: ProLoginState, formData: FormData
     if (matches) {
       await supabase.from("partner_access_codes").update({ last_used_at: new Date().toISOString() }).eq("id", accessCode.id);
       await setProSession(accessCode.partner_id);
-      await clearRateLimit(code);
+      await clearRateLimit();
       redirect("/pro/stats");
     }
   }

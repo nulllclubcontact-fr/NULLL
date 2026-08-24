@@ -7,7 +7,7 @@ import { ArrowIcon } from "./ArrowIcon";
 import { parseCart, serializeCart, upsertCartItem, CART_STORAGE_KEY, type CartItem } from "../lib/shop";
 import { getRoute, productsByLocale, type Locale, type Product } from "../lib/site-content";
 
-const productMood = ["/assets/nulll-new/pool-legs.png", "/assets/nulll-new/water-face.png", "/assets/nulll-new/run-finish.png"];
+const productMood = ["/assets/photos/editorial-bed.png", "/assets/photos/editorial-shower.png", "/assets/photos/runner-ground.png"];
 
 export function MerchExperience({ locale }: { locale: Locale }) {
   const products = productsByLocale[locale];
@@ -113,7 +113,6 @@ function ProductCard({
       <div className="relative aspect-[4/5] border-b-2 border-[#351815]">
         <Image alt={product.alt} className="object-cover" fill sizes="(min-width: 1280px) 22vw, (min-width: 768px) 48vw, 100vw" src={productMood[index % productMood.length]} />
         <div className="absolute inset-0 bg-[#351815]/10" />
-        <Image alt="" aria-hidden="true" className="absolute left-1/2 top-1/2 h-auto w-[72%] -translate-x-1/2 -translate-y-1/2" height={157} src={index === 1 ? "/assets/nulll-new/logo-yellow.png" : "/assets/nulll-new/logo-pink.png"} width={1225} />
         <div className="absolute left-4 top-4 border-2 border-[#351815] bg-[#f6eadf] px-3 py-2 font-mono text-xs font-black uppercase">Drop 00{index + 1}</div>
       </div>
       <div className="p-5">

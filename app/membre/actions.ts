@@ -149,7 +149,7 @@ export async function resetMemberPassword(_previousState: LoginState, formData: 
   }
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3001"}/membre/login`
+    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://nulll.club"}/membre/login`
   });
 
   if (error) {

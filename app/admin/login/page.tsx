@@ -20,7 +20,7 @@ export default async function AdminLoginPage() {
   return (
     <AccountShell
       eyebrow="Admin"
-      image="/assets/nulll-new/run-finish.png"
+      image="/assets/photos/runners-aix.png"
       imageAlt="NULLL.CLUB admin access"
       intro="Un code serveur. Des partenaires. Rien de plus."
       title="Backdoor propre."

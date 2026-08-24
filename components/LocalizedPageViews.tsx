@@ -24,8 +24,7 @@ export function AboutPageView({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div className="relative min-h-[520px] overflow-hidden border-2 border-[#351815] bg-[#351815]">
-          <Image alt="NULLL.CLUB lifestyle mood" className="object-cover" fill sizes="(min-width: 1280px) 54vw, 100vw" src="/assets/nulll-new/water-face.png" />
-          <Image alt="NULLL.CLUB" className="absolute left-1/2 top-1/2 h-auto w-[78%] -translate-x-1/2 -translate-y-1/2" height={157} src="/assets/nulll-new/logo-yellow.png" width={1225} />
+          <Image alt="Portrait lifestyle avec lunettes miroir" className="object-cover" fill sizes="(min-width: 1280px) 54vw, 100vw" src="/assets/photos/editorial-glasses.png" />
         </div>
       </section>
       <section className="mx-auto grid w-full max-w-none gap-4 px-4 pb-14 sm:px-6 md:grid-cols-2 xl:px-8">
@@ -55,7 +54,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div className="relative min-h-[560px] overflow-hidden border-2 border-[#351815] bg-[#351815]">
-          <Image alt="Ambiance communautaire NULLL.CLUB" className="object-cover" fill priority sizes="(min-width: 1280px) 48vw, 100vw" src="/assets/nulll-new/smile-sun.png" />
+          <Image alt="Portrait d’un coureur NULLL.CLUB à Aix-en-Provence" className="object-cover" fill priority sizes="(min-width: 1280px) 48vw, 100vw" src="/assets/photos/runner-portrait.png" />
         </div>
       </section>
       <section className="mx-auto grid w-full max-w-none gap-4 px-4 pb-14 sm:px-6 xl:grid-cols-3 xl:px-8">

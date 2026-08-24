@@ -106,7 +106,7 @@ export function buildOrganizationSchema(locale: Locale) {
     ],
     email: "contact@nulll.club",
     areaServed: "Aix-en-Provence",
-    description: "Run club social à Aix-en-Provence avec runs accessibles, événements locaux et communauté réelle."
+    description: "Club de course à Aix-en-Provence avec sorties accessibles, événements locaux et communauté réelle."
   };
 }
 

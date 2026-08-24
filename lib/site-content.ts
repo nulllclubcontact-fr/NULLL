@@ -105,30 +105,30 @@ export const productsByLocale: Record<Locale, Product[]> = {
 const sharedEvents: Array<Omit<RunEvent, "title" | "summary" | "afterRun" | "pace">> = [
   {
     id: "sept-12",
-    date: "Vendredi 12 septembre 2026",
+    date: "Samedi 12 septembre 2026",
     isoDate: "2026-09-12T08:30:00+02:00",
     time: "08:30",
     distance: "5 km",
-    location: "Aix-en-Provence centre",
-    address: "Rotonde, 13100 Aix-en-Provence"
+    location: "Parking Émile Zola",
+    address: "Parking Émile Zola, Aix-en-Provence"
   },
   {
     id: "sept-19",
-    date: "Vendredi 19 septembre 2026",
+    date: "Samedi 19 septembre 2026",
     isoDate: "2026-09-19T08:30:00+02:00",
     time: "08:30",
     distance: "6 km",
-    location: "Quartier Mazarin",
-    address: "Cours Mirabeau, 13100 Aix-en-Provence"
+    location: "Parking Émile Zola",
+    address: "Parking Émile Zola, Aix-en-Provence"
   },
   {
     id: "sept-26",
-    date: "Vendredi 26 septembre 2026",
+    date: "Samedi 26 septembre 2026",
     isoDate: "2026-09-26T08:30:00+02:00",
     time: "08:30",
     distance: "5,5 km",
-    location: "Parc Jourdan",
-    address: "Avenue Jules Ferry, 13100 Aix-en-Provence"
+    location: "Parking Émile Zola",
+    address: "Parking Émile Zola, Aix-en-Provence"
   }
 ];
 
@@ -143,7 +143,7 @@ function buildRuns(): RunEvent[] {
     },
     {
       ...sharedEvents[1],
-      title: "Run coucher de soleil",
+      title: "Run du samedi matin",
       pace: "Allure douce",
       summary: "Boucle urbaine simple pour courir à Aix-en-Provence et rencontrer du monde.",
       afterRun: "Photo de groupe et verre partenaire"
@@ -177,7 +177,7 @@ export function getSiteCopy(locale: Locale) {
   return {
       locale,
       siteName: "NULLL.CLUB",
-      brandLine: "Run club social à Aix-en-Provence",
+      brandLine: "Social sport club à Aix-en-Provence",
       city: "Aix-en-Provence",
       contact: {
         instagram: "https://www.instagram.com/nulll.club",
@@ -187,7 +187,7 @@ export function getSiteCopy(locale: Locale) {
       },
       nav: [
         { key: "home" as const, label: "Accueil" },
-        { key: "runs" as const, label: "Runs" },
+        { key: "runs" as const, label: "Sorties" },
         { key: "community" as const, label: "Communauté" },
         { key: "merch" as const, label: "Merch" },
         { key: "about" as const, label: "À propos" },
@@ -195,9 +195,9 @@ export function getSiteCopy(locale: Locale) {
       ],
       meta: {
         home: {
-          title: "NULLL.CLUB — Run club social à Aix-en-Provence",
+          title: "NULLL.CLUB — Club de course à Aix-en-Provence",
           description:
-            "NULLL.CLUB est un run club social à Aix-en-Provence. Rejoins un groupe de course inclusif avec sorties, communauté locale et événements running."
+            "NULLL.CLUB est un club de course à Aix-en-Provence. Rejoins un groupe ouvert à tous avec des sorties et des événements locaux."
         },
         runs: {
           title: "Prochains runs à Aix-en-Provence | NULLL.CLUB",

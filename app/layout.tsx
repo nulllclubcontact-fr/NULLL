@@ -4,9 +4,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nulll.club"),
-  title: "NULLL.CLUB | Social Run Club Aix-en-Provence",
+  title: "NULLL.CLUB | Club de course à Aix-en-Provence",
   description:
-    "NULLL.CLUB est un social run club a Aix-en-Provence. Sport is the pretext. Make it real.",
+    "NULLL.CLUB est un club de course ouvert à tous à Aix-en-Provence.",
   verification: {
     google: "fNfY1cH-yZV7xIDDC6nfD4skGeF04uJSexk94VyoQSY"
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "NULLL.CLUB",
-    description: "Sport is the pretext. Aix-en-Provence social run club.",
+    description: "Club de course ouvert à tous à Aix-en-Provence.",
     type: "website"
   }
 };
