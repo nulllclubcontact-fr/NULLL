@@ -45,11 +45,11 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-[#351815] bg-[#f6eadf]">
-      <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto] items-stretch 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
+      <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto] items-stretch xl:grid-cols-[240px_minmax(0,1fr)_150px_190px] 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
         <Link className="flex items-center border-r-2 border-[#351815] px-4 transition hover:bg-[#ffb000] sm:px-6" href={getRoute(locale, "home")}>
           <Image alt="NULLL.CLUB" className="h-auto w-36 sm:w-44" height={157} priority src="/assets/nulll-new/logo-burgundy.png" width={1225} />
         </Link>
-        <nav aria-label="Navigation principale" className="hidden min-w-0 grid-cols-6 font-mono text-xs font-black uppercase 2xl:grid">
+        <nav aria-label="Navigation principale" className="hidden min-w-0 grid-cols-6 font-mono text-xs font-black uppercase xl:grid">
           {copy.nav.map((item: { key: RouteKey; label: string }) => (
             <Link
               aria-current={item.key === current ? "page" : undefined}
@@ -65,7 +65,7 @@ export function SiteHeader({
         </nav>
         <Link
           aria-current={isIdentification ? "page" : undefined}
-          className={`hidden place-items-center border-r-2 border-[#351815] px-3 text-center font-mono text-xs font-black uppercase transition hover:bg-[#d96ab4] 2xl:grid ${
+          className={`hidden place-items-center border-r-2 border-[#351815] px-3 text-center font-mono text-xs font-black uppercase transition hover:bg-[#d96ab4] xl:grid ${
             isIdentification ? "bg-[#d96ab4]" : ""
           }`}
           href="/identification"
@@ -76,8 +76,8 @@ export function SiteHeader({
           <span className="sm:hidden">Courir</span><span className="hidden sm:inline">Prochaine sortie</span>
         </Link>
       </div>
-      <details className="border-t-2 border-[#351815] 2xl:hidden">
-        <summary className="cursor-pointer px-4 py-3 font-mono text-xs font-black uppercase">Menu</summary>
+      <details className="border-t-2 border-[#351815] xl:hidden">
+        <summary className="flex min-h-11 cursor-pointer items-center px-4 py-3 font-mono text-xs font-black uppercase">Menu</summary>
         <nav aria-label="Navigation mobile" className="grid border-t-2 border-[#351815] font-mono text-xs font-black uppercase">
           {copy.nav.map((item: { key: RouteKey; label: string }) => (
             <Link className={`border-b-2 border-[#351815] px-4 py-4 ${item.key === current ? "bg-[#d96ab4]" : ""}`} href={getRoute(locale, item.key)} key={item.key}>
@@ -96,7 +96,7 @@ export function SiteHeader({
 export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }) {
   return (
     <footer className="border-t-2 border-[#351815] bg-[#351815] text-[#f6eadf]">
-      <div className="mx-auto max-w-[1600px] px-5 py-12 sm:px-8 sm:py-14 xl:px-12">
+      <div className="mx-auto max-w-[1600px] px-5 py-10 sm:px-8 sm:py-14 xl:px-12">
         <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-12">
           <div>
             <p className="max-w-[13ch] font-display text-[clamp(2rem,3.4vw,2.9rem)] uppercase leading-[.96] [overflow-wrap:normal]">
@@ -129,7 +129,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
           />
 
           <div>
-            <p className="font-mono text-[.66rem] font-black uppercase tracking-[.16em] text-[#ffb000]">Le rendez-vous</p>
+            <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">Le rendez-vous</p>
             <ul className="mt-5 space-y-3 text-[1.02rem] text-[#f6eadf]/80">
               <li>Tous les samedis</li>
               <li>08:30</li>
@@ -139,7 +139,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-[#f6eadf]/20 pt-5 font-mono text-[.66rem] uppercase tracking-[.12em] text-[#f6eadf]/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-[#f6eadf]/20 pt-5 font-mono text-xs uppercase tracking-[.12em] text-[#f6eadf]/60 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 NULLL.CLUB</span>
           <span>Aix-en-Provence, France</span>
           <span className="text-[#ffb000]/70">Ouvert à tous</span>
@@ -152,12 +152,12 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
 function FooterColumn({ title, links }: { title: string; links: Array<{ href: string; label: string }> }) {
   return (
     <div>
-      <p className="font-mono text-[.66rem] font-black uppercase tracking-[.16em] text-[#ffb000]">{title}</p>
+      <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">{title}</p>
       <ul className="mt-5 space-y-3">
         {links.map((link) => (
           <li key={link.href}>
             <Link
-              className="text-[1.02rem] text-[#f6eadf]/80 transition-colors hover:text-[#f6eadf] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+              className="inline-flex min-h-11 items-center py-2 text-[1.02rem] text-[#f6eadf]/80 transition-colors hover:text-[#f6eadf] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
               href={link.href}
             >
               {link.label}
@@ -190,9 +190,9 @@ export function HeroPanel({
 }) {
   return (
     <section className="mx-auto grid w-full max-w-none gap-6 px-4 py-8 sm:px-6 xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.68fr)] xl:px-8 xl:py-12">
-      <div className="border-2 border-[#351815] bg-[#f6eadf] p-6 shadow-[8px_8px_0_#d96ab4] xl:p-10">
+      <div className="min-w-0 border-2 border-[#351815] bg-[#f6eadf] p-5 shadow-[6px_6px_0_#d96ab4] sm:p-6 sm:shadow-[8px_8px_0_#d96ab4] xl:p-10">
         <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">{stamp} / {label}</p>
-        <h1 className="mt-8 max-w-4xl font-display text-[clamp(3.4rem,7.5vw,7.4rem)] uppercase leading-[0.94]">{title}</h1>
+        <h1 className="mt-6 max-w-4xl font-display text-[clamp(2.8rem,7.5vw,7.4rem)] uppercase leading-[0.94] sm:mt-8">{title}</h1>
         <p className="mt-6 max-w-2xl text-lg font-bold leading-tight text-[#351815]/80 xl:text-xl">{intro}</p>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">{actions}</div>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -205,7 +205,7 @@ export function HeroPanel({
         </div>
       </div>
       <div className="overflow-hidden border-2 border-[#351815] bg-[#351815] p-3">
-        <PosterPhoto alt={imageAlt} className="min-h-[460px] xl:min-h-[640px]" priority src={image} stamp="AIX" />
+        <PosterPhoto alt={imageAlt} className="min-h-[320px] sm:min-h-[460px] xl:min-h-[640px]" priority src={image} stamp="AIX" />
       </div>
     </section>
   );

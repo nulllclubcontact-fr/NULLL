@@ -52,7 +52,7 @@ export function Countdown({ isoDate, centered = false }: { isoDate: string; cent
 
   return (
     <div className="countdown-shell">
-      <p className="font-mono text-[.65rem] font-black uppercase tracking-[.18em] opacity-55">Départ dans</p>
+      <p className="font-mono text-xs font-black uppercase tracking-[.18em] opacity-65">Départ dans</p>
       <div className={`mt-3 flex items-end gap-4 sm:gap-6 ${centered ? "justify-center" : ""}`}>
         {cells.map(([value, label], index) => (
           <div className="flex items-end gap-4 sm:gap-6" key={label}>

@@ -30,7 +30,7 @@ export function HomeExperience({
   return (
     <>
       {/* ---------------- HERO ---------------- */}
-      <section className="relative overflow-hidden bg-[#120908] text-[#f6eadf]" aria-labelledby="home-title">
+      <section className="relative min-h-[calc(100svh-124px)] overflow-hidden bg-[#120908] text-[#f6eadf] xl:min-h-[calc(100svh-82px)]" aria-labelledby="home-title">
         <Image
           alt="Le groupe NULLL.CLUB court dans une rue d’Aix-en-Provence au lever du soleil"
           className="hero-photo object-cover object-[62%_center]"
@@ -39,7 +39,7 @@ export function HomeExperience({
           sizes="100vw"
           src="/assets/photos/hero-nulll-aix-v2.png"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(18,9,8,.82)_0%,rgba(18,9,8,.55)_34%,rgba(18,9,8,.12)_62%,rgba(18,9,8,0)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(18,9,8,.88)_0%,rgba(18,9,8,.68)_48%,rgba(18,9,8,.2)_100%)] sm:bg-[linear-gradient(100deg,rgba(18,9,8,.82)_0%,rgba(18,9,8,.55)_34%,rgba(18,9,8,.12)_62%,rgba(18,9,8,0)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(to_top,rgba(18,9,8,.75),transparent)]" />
 
         <div className="relative mx-auto flex max-w-[1800px] flex-col px-5 pb-5 pt-6 sm:px-8 sm:pb-8 sm:pt-8 xl:px-12">
@@ -48,7 +48,7 @@ export function HomeExperience({
             <span className="text-[#ffb000]">Ouvert à tous · Gratuit</span>
           </div>
 
-          <div className="max-w-3xl py-16 sm:py-24">
+          <div className="max-w-3xl py-12 sm:py-24">
             <h1 className="home-title font-display uppercase tracking-[-.03em]" id="home-title">
               <span className="hero-rise" style={{ animationDelay: "80ms" }}>On court ensemble,</span>
               <span className="hero-rise text-[#d96ab4]" style={{ animationDelay: "200ms" }}>tous les samedis.</span>
@@ -107,7 +107,7 @@ export function HomeExperience({
               <li key={run.id}>
                 <article className={`flex h-full flex-col justify-between gap-6 border-2 border-[#351815] p-6 sm:p-7 ${index === 0 ? "bg-[#ffb000]" : ""}`}>
                   <div>
-                    <p className="font-mono text-[.62rem] font-black uppercase tracking-[.1em] opacity-70">
+                    <p className="font-mono text-xs font-black uppercase tracking-[.1em] opacity-70">
                       {index === 0 ? "Prochaine sortie" : `Sortie ${index + 1}`}
                     </p>
                     <p className="mt-3 font-display text-3xl uppercase leading-none sm:text-4xl">{run.date}</p>
@@ -179,7 +179,7 @@ export function HomeExperience({
 function RunDatum({ emphasis = false, label, value }: { emphasis?: boolean; label: string; value: string }) {
   return (
     <div className={`${emphasis ? "bg-[#ffb000]" : ""} border-b border-[#351815] px-5 py-4 last:border-b-0 md:border-b-0 md:border-r`}>
-      <p className="font-mono text-[.62rem] font-black uppercase tracking-[.08em] opacity-65">{label}</p>
+      <p className="font-mono text-xs font-black uppercase tracking-[.08em] opacity-70">{label}</p>
       <p className={`${emphasis ? "text-xl sm:text-2xl" : "text-lg"} mt-1 font-black uppercase leading-tight`}>{value}</p>
     </div>
   );

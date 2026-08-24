@@ -53,7 +53,7 @@ export default async function RunsPage({ params }: PageProps) {
       />
 
       {/* ---------------- AFFICHE D'OUVERTURE ---------------- */}
-      <section className="relative flex min-h-[calc(100svh-82px)] flex-col overflow-hidden bg-[#351815] text-[#f6eadf]" aria-labelledby="runs-title">
+      <section className="relative flex min-h-[calc(100svh-124px)] flex-col overflow-hidden bg-[#351815] text-[#f6eadf] xl:min-h-[calc(100svh-82px)]" aria-labelledby="runs-title">
         <Image
           alt="Un membre de NULLL.CLUB en pleine foulée sur un chemin, saisi en flou de mouvement"
           className="object-cover object-[50%_54%]"
@@ -72,7 +72,7 @@ export default async function RunsPage({ params }: PageProps) {
           </div>
         </div>
 
-        <div className="relative mx-auto flex w-full max-w-[1800px] flex-1 flex-col items-center justify-center gap-14 px-5 py-10 text-center sm:px-8 sm:py-12 xl:px-12">
+        <div className="relative mx-auto flex w-full max-w-[1800px] flex-1 flex-col items-center justify-center gap-9 px-5 py-8 text-center sm:gap-14 sm:px-8 sm:py-12 xl:px-12">
           <h1
             className="hero-rise hero-text-shadow whitespace-nowrap font-display text-[clamp(1.9rem,12.4vw,13rem)] uppercase leading-[.9] tracking-[-.045em]"
             id="runs-title"
@@ -82,7 +82,7 @@ export default async function RunsPage({ params }: PageProps) {
           </h1>
 
           <div className="hero-rise hero-text-shadow flex w-full flex-col items-center" style={{ animationDelay: "280ms" }}>
-            <p className="font-mono text-[.65rem] font-black uppercase tracking-[.18em] text-[#ffb000]">
+            <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#ffb000]">
               Prochaine sortie
             </p>
             <p className="mt-3 font-display text-[clamp(1.9rem,4vw,3.4rem)] uppercase leading-none [overflow-wrap:normal]">
@@ -212,7 +212,7 @@ export default async function RunsPage({ params }: PageProps) {
                 delay={index * 110}
                 key={entry.q}
               >
-                <span className="font-mono text-[.65rem] font-black uppercase tracking-[.14em] opacity-50">
+                <span className="font-mono text-xs font-black uppercase tracking-[.14em] opacity-60">
                   0{index + 1}
                 </span>
                 <dt className="font-display text-[clamp(1.5rem,2.6vw,2.3rem)] uppercase leading-[.95]">{entry.q}</dt>
@@ -253,7 +253,7 @@ function RunCardCol({ contactHref, index, run }: { contactHref: string; index: n
     >
       <div className={`flex items-center justify-between border-b-2 p-5 lg:flex-col lg:items-start lg:justify-between lg:border-b-0 lg:border-r-2 ${isNext ? "border-[#351815]" : "border-[#f6eadf]"}`}>
         <span className="font-display text-6xl leading-none tracking-[-.05em]">0{index + 1}</span>
-        <span className="font-mono text-[.58rem] font-black uppercase tracking-[.14em] opacity-60">
+        <span className="font-mono text-xs font-black uppercase tracking-[.14em] opacity-65">
           Couloir<br className="hidden lg:block" /> {index + 1}
         </span>
       </div>
@@ -276,7 +276,7 @@ function RunCardCol({ contactHref, index, run }: { contactHref: string; index: n
             ["Départ", run.location]
           ].map(([label, value]) => (
             <div key={label}>
-              <dt className="font-mono text-[.58rem] font-black uppercase tracking-[.14em] opacity-45">{label}</dt>
+              <dt className="font-mono text-xs font-black uppercase tracking-[.14em] opacity-60">{label}</dt>
               <dd className="mt-2 text-base font-black uppercase leading-tight">{value}</dd>
             </div>
           ))}
@@ -284,7 +284,7 @@ function RunCardCol({ contactHref, index, run }: { contactHref: string; index: n
 
       <div className={`flex flex-col justify-center gap-5 border-b-2 p-6 lg:border-b-0 lg:border-r-2 ${isNext ? "border-[#351815]" : "border-[#f6eadf]"}`}>
         <p className="text-sm font-bold leading-snug">
-          <span className="block font-mono text-[.55rem] font-black uppercase tracking-[.14em] opacity-45">Après la ligne</span>
+          <span className="block font-mono text-xs font-black uppercase tracking-[.14em] opacity-60">Après la ligne</span>
           <span className="mt-2 block">{run.afterRun}</span>
         </p>
         <a
@@ -305,7 +305,7 @@ function RunCardCol({ contactHref, index, run }: { contactHref: string; index: n
         }`}
         href={contactHref}
       >
-        <span className="font-mono text-[.55rem] font-black uppercase tracking-[.15em] opacity-55">Arrivée</span>
+        <span className="font-mono text-xs font-black uppercase tracking-[.15em] opacity-65">Arrivée</span>
         <span className="flex w-full items-center justify-between gap-4">Je viens <ArrowIcon /></span>
       </Link>
     </Reveal>
