@@ -34,7 +34,7 @@ const waiverSections = [
 
 export default function MemberWaiverPage() {
   return (
-    <main className="min-h-screen bg-[#f6eadf] text-[#351815]">
+    <main className="min-h-dvh bg-[#f6eadf] text-[#351815]">
       <AccountHeader />
       <section className="shell grid gap-8 py-10">
         <div>

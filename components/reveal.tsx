@@ -23,7 +23,6 @@ export function Reveal({ children, className = "", delay = 0, as = "div" }: Reve
     if (!node) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setShown(true);
       return;
     }
 

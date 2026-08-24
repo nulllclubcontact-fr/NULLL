@@ -29,6 +29,7 @@ export default async function RunsPage({ params }: PageProps) {
   const copy = getSiteCopy(locale);
   const contactHref = getRoute(locale, "contact");
   const identificationHref = "/identification";
+  const tickerCopy = "Allure conversation — Personne derrière — Ouvert à tous — After run — Aix-en-Provence";
 
   return (
     <SiteShell current="runs" locale={locale} pathname={getRoute(locale, "runs")}>
@@ -55,7 +56,7 @@ export default async function RunsPage({ params }: PageProps) {
       />
 
       {/* ---------------- AFFICHE D'OUVERTURE ---------------- */}
-      <section className="relative flex min-h-[calc(100svh-124px)] flex-col overflow-hidden bg-[#351815] text-[#f6eadf] xl:min-h-[calc(100svh-82px)]" aria-labelledby="runs-title">
+      <section className="relative flex min-h-[calc(100dvh-82px)] flex-col overflow-hidden bg-[#351815] text-[#f6eadf]" aria-labelledby="runs-title">
         <Image
           alt="Un membre de NULLL.CLUB en pleine foulée sur un chemin, saisi en flou de mouvement"
           className="object-cover object-[50%_54%]"
@@ -104,15 +105,21 @@ export default async function RunsPage({ params }: PageProps) {
           </div>
         </div>
 
-        <div className="relative shrink-0 overflow-hidden border-y-2 border-[#351815] bg-[#ffb000] py-4 text-[#351815]">
-          <p className="whitespace-nowrap font-mono text-xs font-black uppercase tracking-[.16em] sm:text-sm">
-            Allure conversation&nbsp;&nbsp;—&nbsp;&nbsp;Personne derrière&nbsp;&nbsp;—&nbsp;&nbsp;Ouvert à tous&nbsp;&nbsp;—&nbsp;&nbsp;After run&nbsp;&nbsp;—&nbsp;&nbsp;Aix-en-Provence&nbsp;&nbsp;—&nbsp;&nbsp;Allure conversation&nbsp;&nbsp;—&nbsp;&nbsp;Personne derrière&nbsp;&nbsp;—&nbsp;&nbsp;Ouvert à tous
-          </p>
+        <div
+          aria-label={tickerCopy}
+          className="marquee relative shrink-0 border-y-2 border-[#351815] bg-[#ffb000] py-4 text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#d96ab4]"
+          role="region"
+          tabIndex={0}
+        >
+          <div aria-hidden="true" className="marquee-track font-mono text-xs font-black uppercase tracking-[.16em] sm:text-sm">
+            <p className="shrink-0 whitespace-nowrap px-6">{tickerCopy}&nbsp;&nbsp;—&nbsp;&nbsp;</p>
+            <p className="shrink-0 whitespace-nowrap px-6">{tickerCopy}&nbsp;&nbsp;—&nbsp;&nbsp;</p>
+          </div>
         </div>
       </section>
 
       {/* ---------------- PROCHAINES SORTIES ---------------- */}
-      <section className="scroll-mt-[124px] bg-[#351815] text-[#f6eadf] xl:scroll-mt-20" aria-labelledby="runs-list-title" id="prochaines-sorties">
+      <section className="scroll-mt-20 bg-[#351815] text-[#f6eadf]" aria-labelledby="runs-list-title" id="prochaines-sorties">
         <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
           <div className="flex flex-col gap-5 border-b border-[#f6eadf]/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -162,7 +169,7 @@ export default async function RunsPage({ params }: PageProps) {
               <Image alt="" className="principle-photo object-cover object-[50%_42%]" fill sizes="(min-width: 640px) 33vw, 100vw" src="/assets/photos/principle-clear-head.jpg" />
               <span className="podium-medal" aria-hidden="true">02</span>
               <span className="principle-kicker mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">Respirer enfin</span>
-              <h3 className="font-display text-[clamp(2.4rem,4vw,4.5rem)] uppercase leading-[.82]">Se vider<br />la tête</h3>
+              <h3 className="break-normal font-display text-[clamp(2.25rem,4vw,4.5rem)] uppercase leading-[.82] [overflow-wrap:normal]">Se vider<br />la tête</h3>
               <span aria-hidden="true" className="mt-6 block h-2 w-20 bg-[#351815]" />
             </Reveal>
 
@@ -170,7 +177,7 @@ export default async function RunsPage({ params }: PageProps) {
               <Image alt="" className="principle-photo object-cover object-[50%_48%]" fill sizes="(min-width: 640px) 33vw, 100vw" src="/assets/photos/principle-meet.jpg" />
               <span className="podium-medal podium-medal--first" aria-hidden="true">01</span>
               <span className="principle-kicker principle-kicker--first mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">La vraie victoire</span>
-              <h3 className="font-display text-[clamp(2.75rem,4.3vw,4rem)] uppercase leading-[.8]">Faire des<br />rencontres</h3>
+              <h3 className="break-normal font-display text-[clamp(2.15rem,4.3vw,4rem)] uppercase leading-[.8] [overflow-wrap:normal]">Faire des<br />rencontres</h3>
               <p className="mt-6 max-w-[25ch] font-mono text-xs font-black uppercase leading-relaxed tracking-[.08em]">Pas d’écouteurs. Des vraies conversations.</p>
             </Reveal>
 
@@ -178,7 +185,7 @@ export default async function RunsPage({ params }: PageProps) {
               <Image alt="" className="principle-photo object-cover object-[50%_28%]" fill sizes="(min-width: 640px) 33vw, 100vw" src="/assets/photos/principle-fun.jpg" />
               <span className="podium-medal" aria-hidden="true">03</span>
               <span className="principle-kicker mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">Zéro pression</span>
-              <h3 className="font-display text-[clamp(2.4rem,4vw,4.5rem)] uppercase leading-[.82]">S’amuser.<br />C’est tout.</h3>
+              <h3 className="break-normal font-display text-[clamp(2.25rem,4vw,4.5rem)] uppercase leading-[.82] [overflow-wrap:normal]">S’amuser.<br />C’est tout.</h3>
               <span aria-hidden="true" className="mt-6 block h-2 w-20 bg-[#d96ab4]" />
             </Reveal>
           </ol>
@@ -260,7 +267,7 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
         </div>
 
         <div>
-          <h3 className="run-card-date max-w-[10ch] font-display text-[clamp(3.05rem,7.2vw,7.4rem)] uppercase leading-[.86] tracking-[-.04em] sm:leading-[.82]" id={`run-${run.id}`}>
+          <h3 className="run-card-date max-w-[11ch] break-normal font-display text-[clamp(2.55rem,7.2vw,7.4rem)] uppercase leading-[.86] tracking-[-.04em] [overflow-wrap:normal] sm:leading-[.82]" id={`run-${run.id}`}>
             {run.date}
           </h3>
           <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs font-black uppercase tracking-[.1em]">

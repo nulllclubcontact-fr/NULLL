@@ -9,9 +9,6 @@ type HomeExperienceProps = {
   communityHref: string;
   merchHref: string;
   aboutHref: string;
-  contactHref: string;
-  instagram: string;
-  instagramLabel: string;
 };
 
 
@@ -20,17 +17,14 @@ export function HomeExperience({
   runsHref,
   communityHref,
   merchHref,
-  aboutHref,
-  contactHref,
-  instagram,
-  instagramLabel
+  aboutHref
 }: HomeExperienceProps) {
   const nextRun = runs[0];
 
   return (
     <>
       {/* ---------------- HERO ---------------- */}
-      <section className="relative min-h-[calc(100svh-124px)] overflow-hidden bg-[#120908] text-[#f6eadf] xl:min-h-[calc(100svh-82px)]" aria-labelledby="home-title">
+      <section className="relative min-h-[calc(100dvh-82px)] overflow-hidden bg-[#120908] text-[#f6eadf]" aria-labelledby="home-title">
         <Image
           alt="Le groupe NULLL.CLUB court dans une rue d’Aix-en-Provence au lever du soleil"
           className="hero-photo object-cover object-[62%_center]"

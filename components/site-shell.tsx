@@ -22,7 +22,7 @@ export function SiteShell({
   const copy = getSiteCopy(locale) as ShellCopy;
 
   return (
-    <div className="min-h-screen bg-[#f6eadf] text-[#351815]">
+    <div className="min-h-dvh bg-[#f6eadf] text-[#351815]">
       <SiteHeader copy={copy} current={current} locale={locale} pathname={pathname} />
       {children}
       <SiteFooter copy={copy} locale={locale} />
@@ -45,15 +45,15 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-[#351815] bg-[#f6eadf]">
-      <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto] items-stretch xl:grid-cols-[240px_minmax(0,1fr)_150px_190px] 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
-        <Link className="flex items-center border-r-2 border-[#351815] px-4 transition hover:bg-[#ffb000] sm:px-6" href={getRoute(locale, "home")}>
-          <Image alt="NULLL.CLUB" className="h-auto w-36 sm:w-44" height={157} priority src="/assets/nulll-new/logo-burgundy.png" width={1225} />
+      <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto_auto] items-stretch xl:grid-cols-[240px_minmax(0,1fr)_150px_190px] 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
+        <Link className="flex min-w-0 items-center border-r-2 border-[#351815] px-3 transition hover:bg-[#ffb000] focus-visible:bg-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] sm:px-5" href={getRoute(locale, "home")}>
+          <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 2xl:w-44" height={157} priority src="/assets/nulll-new/logo-burgundy.png" width={1225} />
         </Link>
         <nav aria-label="Navigation principale" className="hidden min-w-0 grid-cols-6 font-mono text-xs font-black uppercase xl:grid">
           {copy.nav.map((item: { key: RouteKey; label: string }) => (
             <Link
               aria-current={item.key === current ? "page" : undefined}
-              className={`grid place-items-center border-r-2 border-[#351815] px-2 text-center transition hover:bg-[#d96ab4] ${
+              className={`grid place-items-center border-r-2 border-[#351815] px-2 text-center transition hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] ${
                 item.key === current ? "bg-[#d96ab4]" : ""
               }`}
               href={getRoute(locale, item.key)}
@@ -65,30 +65,30 @@ export function SiteHeader({
         </nav>
         <Link
           aria-current={isIdentification ? "page" : undefined}
-          className={`hidden place-items-center border-r-2 border-[#351815] px-3 text-center font-mono text-xs font-black uppercase transition hover:bg-[#d96ab4] xl:grid ${
+          className={`hidden place-items-center border-r-2 border-[#351815] px-3 text-center font-mono text-xs font-black uppercase transition hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] xl:grid ${
             isIdentification ? "bg-[#d96ab4]" : ""
           }`}
           href="/identification"
         >
           S’identifier
         </Link>
-        <Link className="grid min-h-20 place-items-center bg-[#351815] px-4 text-center font-mono text-xs font-black uppercase text-[#f6eadf] transition hover:bg-[#ffb000] hover:text-[#351815] sm:px-6" href={getRoute(locale, "runs")}>
+        <details className="static xl:hidden">
+          <summary className="flex min-h-20 cursor-pointer items-center border-r-2 border-[#351815] px-3 font-mono text-xs font-black uppercase transition-colors hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] sm:px-5">Menu</summary>
+          <nav aria-label="Navigation mobile" className="absolute inset-x-0 top-full z-50 grid max-h-[calc(100dvh-80px)] overflow-y-auto border-t-2 border-[#351815] bg-[#f6eadf] font-mono text-xs font-black uppercase shadow-[0_8px_0_rgba(53,24,21,.18)]">
+            {copy.nav.map((item: { key: RouteKey; label: string }) => (
+              <Link className={`flex min-h-14 items-center border-b-2 border-[#351815] px-4 py-3 transition-colors hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] ${item.key === current ? "bg-[#d96ab4]" : ""}`} href={getRoute(locale, item.key)} key={item.key}>
+                {item.label}
+              </Link>
+            ))}
+            <Link className={`flex min-h-14 items-center border-b-2 border-[#351815] px-4 py-3 transition-colors hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] ${isIdentification ? "bg-[#d96ab4]" : ""}`} href="/identification">
+              S’identifier
+            </Link>
+          </nav>
+        </details>
+        <Link className="grid min-h-20 place-items-center bg-[#351815] px-4 text-center font-mono text-xs font-black uppercase text-[#f6eadf] transition hover:bg-[#ffb000] hover:text-[#351815] focus-visible:bg-[#ffb000] focus-visible:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#d96ab4] sm:px-6" href={getRoute(locale, "runs")}>
           <span className="sm:hidden">Courir</span><span className="hidden sm:inline">Prochaine sortie</span>
         </Link>
       </div>
-      <details className="border-t-2 border-[#351815] xl:hidden">
-        <summary className="flex min-h-11 cursor-pointer items-center px-4 py-3 font-mono text-xs font-black uppercase">Menu</summary>
-        <nav aria-label="Navigation mobile" className="grid border-t-2 border-[#351815] font-mono text-xs font-black uppercase">
-          {copy.nav.map((item: { key: RouteKey; label: string }) => (
-            <Link className={`border-b-2 border-[#351815] px-4 py-4 ${item.key === current ? "bg-[#d96ab4]" : ""}`} href={getRoute(locale, item.key)} key={item.key}>
-              {item.label}
-            </Link>
-          ))}
-          <Link className={`border-b-2 border-[#351815] px-4 py-4 ${isIdentification ? "bg-[#d96ab4]" : ""}`} href="/identification">
-            S’identifier
-          </Link>
-        </nav>
-      </details>
     </header>
   );
 }

@@ -19,14 +19,14 @@ export default async function AdminPanelLayout({ children }: { children: ReactNo
   }
 
   return (
-    <main className="min-h-screen bg-[#f6eadf] text-[#351815]">
+    <main className="min-h-dvh bg-[#f6eadf] text-[#351815]">
       <header className="sticky top-0 z-50 border-b-2 border-[#351815] bg-[#f6eadf]">
         <div className="shell flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between">
           <Link className="flex items-center gap-4 transition hover:text-[#d96ab4]" href="/fr">
             <Image alt="NULLL.CLUB" className="h-auto w-36" height={157} priority src="/assets/nulll-new/logo-burgundy.png" width={1225} />
             <span className="hidden font-mono text-xs font-black uppercase sm:inline">Admin</span>
           </Link>
-          <nav className="flex flex-wrap gap-2 font-mono text-xs uppercase">
+          <nav className="flex w-full flex-nowrap gap-2 overflow-x-auto pb-1 font-mono text-xs uppercase sm:w-auto sm:pb-0">
             <Link className="nav-link" href="/admin/partenaires">
               Partenaires
             </Link>

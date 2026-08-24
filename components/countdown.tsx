@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 type Parts = { days: number; hours: number; minutes: number; seconds: number };
 
@@ -22,13 +22,20 @@ function diff(target: number): Parts | null {
 export function Countdown({ isoDate, centered = false }: { isoDate: string; centered?: boolean }) {
   const target = new Date(isoDate).getTime();
   const [parts, setParts] = useState<Parts | null>(null);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => undefined,
+    () => true,
+    () => false
+  );
 
   useEffect(() => {
-    setMounted(true);
-    setParts(diff(target));
-    const id = window.setInterval(() => setParts(diff(target)), 1000);
-    return () => window.clearInterval(id);
+    const update = () => setParts(diff(target));
+    const initialId = window.setTimeout(update, 0);
+    const intervalId = window.setInterval(update, 1000);
+    return () => {
+      window.clearTimeout(initialId);
+      window.clearInterval(intervalId);
+    };
   }, [target]);
 
   if (!mounted) {

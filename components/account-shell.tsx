@@ -23,7 +23,7 @@ export function AccountShell({
   imageAlt = "NULLL.CLUB community"
 }: AccountShellProps) {
   return (
-    <main className="min-h-screen bg-[#f6eadf] text-[#351815]">
+    <main className="min-h-dvh bg-[#f6eadf] text-[#351815]">
       <AccountHeader />
       <section className="relative overflow-hidden border-b-2 border-[#351815]">
         <Image

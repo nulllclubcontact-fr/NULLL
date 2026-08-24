@@ -54,7 +54,7 @@ export default async function MemberQrPage() {
   });
 
   return (
-    <section className="grid min-h-[calc(100vh-92px)] bg-[#f6eadf] text-[#351815]">
+    <section className="grid min-h-[calc(100dvh-92px)] bg-[#f6eadf] text-[#351815]">
       <div className="shell grid content-center gap-8 py-8">
         <div>
           <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">QR membre</p>
