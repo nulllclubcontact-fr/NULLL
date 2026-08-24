@@ -20,6 +20,7 @@ pnpm-debug.log*
 # Local QA / Codex artifacts
 .codex-*
 .codex-*.png
+.backup-claude/
 qa-artifacts/
 tsconfig.tsbuildinfo
 *.zip
