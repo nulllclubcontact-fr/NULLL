@@ -73,7 +73,7 @@ export function SiteHeader({
           S’identifier
         </Link>
         <Link className="grid min-h-20 place-items-center bg-[#351815] px-4 text-center font-mono text-xs font-black uppercase text-[#f6eadf] transition hover:bg-[#ffb000] hover:text-[#351815] sm:px-6" href={getRoute(locale, "runs")}>
-          Prochain run
+          <span className="sm:hidden">Courir</span><span className="hidden sm:inline">Prochaine sortie</span>
         </Link>
       </div>
       <details className="border-t-2 border-[#351815] 2xl:hidden">
@@ -96,52 +96,75 @@ export function SiteHeader({
 export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }) {
   return (
     <footer className="border-t-2 border-[#351815] bg-[#351815] text-[#f6eadf]">
-      <div className="mx-auto grid w-full max-w-none gap-10 px-4 py-14 sm:px-6 xl:grid-cols-[1.1fr_0.9fr] xl:px-8">
-        <div className="space-y-5">
-          <p className="font-display text-[clamp(2.6rem,6vw,5.4rem)] uppercase leading-[0.96]">
-            Run club social a Aix-en-Provence.
-          </p>
-          <p className="max-w-2xl text-[#f6eadf]/72">
-            Un point de rendez-vous pour courir ensemble, couper la semaine et revenir avec autre chose qu’un chrono.
-          </p>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <FooterBlock
+      <div className="mx-auto max-w-[1600px] px-5 py-12 sm:px-8 sm:py-14 xl:px-12">
+        <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-12">
+          <div>
+            <p className="max-w-[13ch] font-display text-[clamp(2rem,3.4vw,2.9rem)] uppercase leading-[.96] [overflow-wrap:normal]">
+              Social sport club à Aix-en-Provence.
+            </p>
+            <p className="mt-4 max-w-xs leading-relaxed text-[#f6eadf]/70">
+              Courir ensemble, couper la semaine, et revenir avec autre chose qu’un chrono.
+            </p>
+          </div>
+
+          <FooterColumn
             links={[
-              { href: getRoute(locale, "runs"), label: "Runs" },
-              { href: getRoute(locale, "community"), label: "Communaute" },
+              { href: getRoute(locale, "runs"), label: "Sorties" },
+              { href: getRoute(locale, "community"), label: "Communauté" },
               { href: getRoute(locale, "merch"), label: "Merch" },
+              { href: getRoute(locale, "about"), label: "À propos" },
               { href: getRoute(locale, "contact"), label: "Contact" }
             ]}
             title="Navigation"
           />
-          <FooterBlock
+
+          <FooterColumn
             links={[
-              { href: copy.contact.instagram, label: "Instagram" },
-              { href: `mailto:${copy.contact.email}`, label: "Email" },
+              { href: copy.contact.instagram, label: copy.contact.instagramLabel },
               { href: copy.contact.linkedin, label: "LinkedIn" },
+              { href: `mailto:${copy.contact.email}`, label: copy.contact.email },
               { href: getRoute(locale, "localClub"), label: "Guide local" }
             ]}
-            title="Liens utiles"
+            title="Nous suivre"
           />
+
+          <div>
+            <p className="font-mono text-[.66rem] font-black uppercase tracking-[.16em] text-[#ffb000]">Le rendez-vous</p>
+            <ul className="mt-5 space-y-3 text-[1.02rem] text-[#f6eadf]/80">
+              <li>Tous les samedis</li>
+              <li>08:30</li>
+              <li>Parking Émile Zola</li>
+              <li>Gratuit, sans inscription</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col gap-3 border-t border-[#f6eadf]/20 pt-5 font-mono text-[.66rem] uppercase tracking-[.12em] text-[#f6eadf]/50 sm:flex-row sm:items-center sm:justify-between">
+          <span>© 2026 NULLL.CLUB</span>
+          <span>Aix-en-Provence, France</span>
+          <span className="text-[#ffb000]/70">Ouvert à tous</span>
         </div>
       </div>
     </footer>
   );
 }
 
-function FooterBlock({ title, links }: { title: string; links: Array<{ href: string; label: string }> }) {
+function FooterColumn({ title, links }: { title: string; links: Array<{ href: string; label: string }> }) {
   return (
-    <div className="border-2 border-[#f6eadf] p-5">
-      <p className="mb-4 font-mono text-sm font-black uppercase text-[#ffb000]">{title}</p>
-      <div className="space-y-3">
+    <div>
+      <p className="font-mono text-[.66rem] font-black uppercase tracking-[.16em] text-[#ffb000]">{title}</p>
+      <ul className="mt-5 space-y-3">
         {links.map((link) => (
-          <Link className="group flex items-center justify-between gap-4 text-lg hover:text-[#d96ab4]" href={link.href} key={link.href}>
-            {link.label}
-            <ArrowIcon />
-          </Link>
+          <li key={link.href}>
+            <Link
+              className="text-[1.02rem] text-[#f6eadf]/80 transition-colors hover:text-[#f6eadf] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+              href={link.href}
+            >
+              {link.label}
+            </Link>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
@@ -244,7 +267,7 @@ export function RunCard({ run }: { run: RunEvent }) {
           <strong>Lieu :</strong> {run.location}
         </p>
         <p>
-          <strong>Apres-run :</strong> {run.afterRun}
+          <strong>Après la course :</strong> {run.afterRun}
         </p>
       </div>
       <p className="mt-5 text-[#351815]/72">{run.summary}</p>

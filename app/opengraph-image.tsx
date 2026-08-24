@@ -50,7 +50,7 @@ export default function OpenGraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           <div style={{ fontSize: "78px", lineHeight: 0.9, textTransform: "uppercase", maxWidth: "900px" }}>
-            Run club social à Aix-en-Provence.
+            Social sport club à Aix-en-Provence.
           </div>
           <div style={{ fontSize: "30px", color: "rgba(244,240,232,0.74)", maxWidth: "840px" }}>
             Prochains runs, communauté locale et rendez-vous pour sortir de la bulle.

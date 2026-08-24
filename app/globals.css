@@ -338,6 +338,28 @@ textarea {
   }
 }
 
+.poster-hero-image {
+  animation: poster-reveal 420ms ease-out both;
+}
+
+.poster-title {
+  font-size: clamp(4.4rem, 12vw, 12.5rem);
+  line-height: 0.72;
+}
+
+.poster-title span {
+  display: block;
+}
+
+.poster-title span:last-child {
+  color: #d96ab4;
+}
+
+@keyframes poster-reveal {
+  from { opacity: 0; transform: scale(1.015); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -386,5 +408,91 @@ textarea {
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Titre d'accueil — aéré, lisible par-dessus la photo.
+   ------------------------------------------------------------------ */
+.home-title {
+  font-size: clamp(2.9rem, 6.6vw, 6.6rem);
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+.home-title span {
+  display: block;
+}
+
+/* Arrivee en cascade des elements du hero, une seule fois au chargement. */
+.hero-rise {
+  animation: hero-rise 640ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* La photo se pose : leger recadrage vers l'echelle 1. */
+.hero-photo {
+  animation: hero-photo-settle 1400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes hero-photo-settle {
+  from { opacity: 0; transform: scale(1.06); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ------------------------------------------------------------------
+   Bandeau défilant du bas de page d'accueil.
+   Deux copies identiques se suivent : quand la première sort, la
+   seconde a pris sa place — la boucle est invisible.
+   ------------------------------------------------------------------ */
+.marquee {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 34s linear infinite;
+}
+
+.marquee:hover .marquee-track,
+.marquee:focus-visible .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-run {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding-inline: 1.75rem;
+  white-space: nowrap;
+}
+
+.marquee-item::after {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
   }
 }
