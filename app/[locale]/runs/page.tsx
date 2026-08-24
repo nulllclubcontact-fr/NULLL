@@ -5,6 +5,7 @@ import { StructuredData } from "../../../components/StructuredData";
 import { ArrowIcon } from "../../../components/ArrowIcon";
 import { Countdown } from "../../../components/countdown";
 import { Reveal } from "../../../components/reveal";
+import { RunCarouselNav } from "../../../components/run-carousel-nav";
 import { SmoothAnchor } from "../../../components/smooth-anchor";
 import { SiteShell } from "../../../components/site-shell";
 import { resolveLocale } from "../../../lib/locale";
@@ -13,20 +14,21 @@ import { getRoute, getSiteCopy, type RunEvent } from "../../../lib/site-content"
 
 type PageProps = { params: Promise<{ locale: string }> };
 
+function mapsUrl(address: string) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const locale = resolveLocale((await params).locale);
   const copy = getSiteCopy(locale);
   return buildPageMetadata({ locale, routeKey: "runs", title: copy.meta.runs.title, description: copy.meta.runs.description });
 }
 
-function mapsUrl(address: string) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
-}
-
 export default async function RunsPage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale);
   const copy = getSiteCopy(locale);
   const contactHref = getRoute(locale, "contact");
+  const identificationHref = "/identification";
 
   return (
     <SiteShell current="runs" locale={locale} pathname={getRoute(locale, "runs")}>
@@ -110,87 +112,78 @@ export default async function RunsPage({ params }: PageProps) {
       </section>
 
       {/* ---------------- PROCHAINES SORTIES ---------------- */}
-      <section className="bg-[#351815] text-[#f6eadf]" aria-labelledby="runs-list-title" id="prochaines-sorties">
+      <section className="scroll-mt-[124px] bg-[#351815] text-[#f6eadf] xl:scroll-mt-20" aria-labelledby="runs-list-title" id="prochaines-sorties">
         <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
-          <div className="grid gap-8 border-b border-[#f6eadf]/35 pb-10 lg:grid-cols-[1.15fr_.85fr] lg:items-end">
+          <div className="flex flex-col gap-5 border-b border-[#f6eadf]/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">01 — Le calendrier</p>
-              <h2 className="mt-4 max-w-[13ch] font-display text-[clamp(3.2rem,6vw,6rem)] uppercase leading-[.82] tracking-[-.035em]" id="runs-list-title">
-                Prends ton<br /><span className="text-[#d96ab4]">couloir.</span>
+              <h2 className="mt-4 font-display text-[clamp(3.2rem,6vw,6rem)] uppercase leading-[.82] tracking-[-.035em]" id="runs-list-title">
+                Prochaine <span className="text-[#d96ab4]">sortie.</span>
               </h2>
             </div>
-            <div className="lg:border-l lg:border-[#f6eadf]/35 lg:pl-8">
-              <p className="max-w-sm text-xl font-bold leading-snug">Trois rendez-vous. Même principe : on part ensemble, on revient ensemble.</p>
-              <p className="mt-5 font-mono text-xs font-black uppercase tracking-[.12em] text-[#d96ab4]">Débutants bienvenus · Gratuit</p>
-            </div>
+            <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#d96ab4]">Swipe pour la suite →</p>
           </div>
 
-          <div className="mt-12 border-x-2 border-[#f6eadf]">
+          <div className="mt-6 flex items-center justify-between gap-4 font-mono text-xs font-black uppercase tracking-[.16em]">
+            <span className="text-[#f6eadf]/65">3 sorties</span>
+            <RunCarouselNav runs={copy.runs.map(({ date, id }) => ({ date, id }))} />
+          </div>
+
+          <div
+            aria-label="Prochaines sorties, carrousel horizontal"
+            className="run-carousel mt-5 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6 pr-[10%] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000] sm:gap-6 sm:pr-[18%]"
+            role="region"
+            tabIndex={0}
+          >
             {copy.runs.map((run, index) => (
-              <RunCardCol contactHref={contactHref} index={index} key={run.id} run={run} />
+              <div className="run-carousel-slide w-[90%] shrink-0 snap-center sm:w-[78%] xl:w-[72%]" id={`run-card-${run.id}`} key={run.id}>
+                <RunCardCol index={index} joinHref={identificationHref} run={run} />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ---------------- LE MERCH ---------------- */}
-      <section className="bg-[#351815] text-[#f6eadf]" aria-labelledby="runs-merch">
-        <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-20 xl:px-12">
-          <Reveal className="grid gap-8 lg:grid-cols-[1.2fr_auto] lg:items-end">
-            <div>
-              <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">Avant de courir</p>
-              <h2
-                className="mt-5 max-w-[16ch] font-display text-[clamp(2.4rem,5.2vw,4.6rem)] uppercase leading-[.86] tracking-[-.035em]"
-                id="runs-merch"
-              >
-                Le club se <span className="text-[#d96ab4]">porte.</span>
-              </h2>
-              <p className="mt-6 max-w-md text-lg font-bold leading-snug text-[#f6eadf]/75">
-                Un tee, une casquette. De quoi se reconnaître au départ — et se souvenir de qui était là.
-              </p>
-            </div>
-            <Link
-              className="group inline-flex min-h-[4.25rem] items-center justify-between gap-10 border-2 border-[#ffb000] bg-[#ffb000] px-7 font-display text-[1.35rem] uppercase leading-none text-[#351815] transition-colors hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
-              href={getRoute(locale, "merch")}
-            >
-              <span>Voir les pièces</span>
-              <ArrowIcon />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------------- LE FORMAT ---------------- */}
-      <section className="bg-[#f6eadf] text-[#351815]" aria-labelledby="runs-format">
+      {/* ---------------- LES 3 PILIERS ---------------- */}
+      <section className="principles-section overflow-hidden bg-[#351815] text-[#f6eadf]" aria-labelledby="runs-format">
         <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-28 xl:px-12">
-          <div className="grid gap-8 lg:grid-cols-[1fr_.9fr] lg:items-end">
-            <div>
-              <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#d96ab4]">02 — Le format</p>
-              <h2
-                className="mt-5 font-display text-[clamp(3rem,6.4vw,6.4rem)] uppercase leading-[.82] tracking-[-.04em]"
-                id="runs-format"
-              >
-                Pareil à<br />chaque fois.
-              </h2>
-            </div>
-            <p className="max-w-sm text-xl font-bold leading-snug lg:pb-3">
-              Quatre repères qui ne bougent jamais, d’une sortie à l’autre.
-            </p>
+          <div className="relative z-10 text-center">
+            <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">02 — Les seules règles</p>
+            <h2
+              className="mx-auto mt-5 max-w-[15ch] font-display text-[clamp(3rem,7vw,7.5rem)] uppercase leading-[.8] tracking-[-.045em]"
+              id="runs-format"
+            >
+              Le seul podium<br /><span className="text-[#d96ab4]">qui compte.</span>
+            </h2>
           </div>
 
-          <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-            {copy.runsPage.checklist.map((item, index) => (
-              <Reveal
-                as="li"
-                className="flex min-h-[13rem] flex-col justify-between border-2 border-[#351815] bg-[#f6eadf] p-6 transition-colors hover:bg-[#ffb000]"
-                delay={index * 110}
-                key={item}
-              >
-                <span className="font-display text-5xl leading-none opacity-25">0{index + 1}</span>
-                <span className="mt-8 block font-display text-[1.35rem] uppercase leading-[1.05]">{item}</span>
-              </Reveal>
-            ))}
-          </ul>
+          <ol className="principles-stage relative z-10 mt-24 grid gap-14 sm:mt-32 sm:grid-cols-3 sm:items-end sm:gap-3 lg:gap-5">
+            <Reveal as="li" className="principle-block principle-block--second group order-2 flex min-h-[19rem] flex-col justify-end border-2 border-[#351815] bg-[#d96ab4] p-6 text-[#351815] sm:order-1 sm:min-h-[23rem] lg:p-8" delay={110}>
+              <Image alt="" className="principle-photo object-cover object-[50%_42%]" fill sizes="(min-width: 640px) 33vw, 100vw" src="/assets/photos/principle-clear-head.jpg" />
+              <span className="podium-medal" aria-hidden="true">02</span>
+              <span className="principle-kicker mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">Respirer enfin</span>
+              <h3 className="font-display text-[clamp(2.4rem,4vw,4.5rem)] uppercase leading-[.82]">Se vider<br />la tête</h3>
+              <span aria-hidden="true" className="mt-6 block h-2 w-20 bg-[#351815]" />
+            </Reveal>
+
+            <Reveal as="li" className="principle-block principle-block--first group order-1 flex min-h-[24rem] flex-col justify-end border-2 border-[#351815] bg-[#ffb000] p-6 text-[#351815] sm:order-2 sm:min-h-[32rem] lg:p-9" delay={0}>
+              <Image alt="" className="principle-photo object-cover object-[50%_48%]" fill sizes="(min-width: 640px) 33vw, 100vw" src="/assets/photos/principle-meet.jpg" />
+              <span className="podium-medal podium-medal--first" aria-hidden="true">01</span>
+              <span className="principle-kicker principle-kicker--first mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">La vraie victoire</span>
+              <h3 className="font-display text-[clamp(2.75rem,4.3vw,4rem)] uppercase leading-[.8]">Faire des<br />rencontres</h3>
+              <p className="mt-6 max-w-[25ch] font-mono text-xs font-black uppercase leading-relaxed tracking-[.08em]">Pas d’écouteurs. Des vraies conversations.</p>
+            </Reveal>
+
+            <Reveal as="li" className="principle-block principle-block--third group order-3 flex min-h-[18rem] flex-col justify-end border-2 border-[#351815] bg-[#f6eadf] p-6 text-[#351815] sm:min-h-[20rem] lg:p-8" delay={220}>
+              <Image alt="" className="principle-photo object-cover object-[50%_28%]" fill sizes="(min-width: 640px) 33vw, 100vw" src="/assets/photos/principle-fun.jpg" />
+              <span className="podium-medal" aria-hidden="true">03</span>
+              <span className="principle-kicker mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">Zéro pression</span>
+              <h3 className="font-display text-[clamp(2.4rem,4vw,4.5rem)] uppercase leading-[.82]">S’amuser.<br />C’est tout.</h3>
+              <span aria-hidden="true" className="mt-6 block h-2 w-20 bg-[#d96ab4]" />
+            </Reveal>
+          </ol>
+
+          <div aria-hidden="true" className="finish-line relative z-10 h-7 border-x-2 border-b-2 border-[#351815]" />
         </div>
       </section>
 
@@ -240,74 +233,61 @@ export default async function RunsPage({ params }: PageProps) {
   );
 }
 
-function RunCardCol({ contactHref, index, run }: { contactHref: string; index: number; run: RunEvent }) {
-  const isNext = index === 0;
+function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string; run: RunEvent }) {
+  const visuals = [
+    { src: "/assets/photos/runs-golden.png", position: "object-[50%_58%]", accent: "bg-[#ffb000] text-[#351815]" },
+    { src: "/assets/photos/runs-motion.png", position: "object-center", accent: "bg-[#d96ab4] text-[#351815]" },
+    { src: "/assets/photos/runs-crew.jpg", position: "object-center", accent: "bg-[#f6eadf] text-[#351815]" }
+  ];
+  const visual = visuals[index % visuals.length];
 
   return (
     <Reveal
       as="article"
-      className={`group relative grid border-y-2 border-[#f6eadf] transition-colors duration-300 lg:min-h-[13rem] lg:grid-cols-[7rem_1.3fr_1.15fr_.9fr_10rem] ${
-        isNext ? "bg-[#ffb000] text-[#351815]" : "bg-[#351815] text-[#f6eadf] hover:bg-[#48201c]"
-      }`}
+      className={`run-poster group relative min-h-[31rem] overflow-hidden text-[#f6eadf] sm:min-h-[34rem] lg:min-h-[38rem] ${index === 0 ? "run-poster--featured border-[6px] border-[#ffb000]" : "border-2 border-[#f6eadf]"}`}
       delay={index * 100}
     >
-      <div className={`flex items-center justify-between border-b-2 p-5 lg:flex-col lg:items-start lg:justify-between lg:border-b-0 lg:border-r-2 ${isNext ? "border-[#351815]" : "border-[#f6eadf]"}`}>
-        <span className="font-display text-6xl leading-none tracking-[-.05em]">0{index + 1}</span>
-        <span className="font-mono text-xs font-black uppercase tracking-[.14em] opacity-65">
-          Couloir<br className="hidden lg:block" /> {index + 1}
-        </span>
+      <Image alt="" className={`run-card-image object-cover ${visual.position}`} fill sizes="(min-width: 1280px) 72vw, (min-width: 640px) 78vw, 90vw" src={visual.src} />
+      <div className="run-card-shade absolute inset-0" />
+      <div aria-hidden="true" className={`absolute left-0 top-0 h-3 w-full ${visual.accent.split(" ")[0]}`} />
+
+      <div className="relative z-10 flex min-h-[31rem] flex-col justify-between p-5 sm:min-h-[34rem] sm:p-8 lg:min-h-[38rem] lg:p-10">
+        <div className="flex items-start justify-between gap-4">
+          <span className={`inline-flex min-h-11 items-center px-4 font-mono text-xs font-black uppercase tracking-[.14em] ${visual.accent}`}>
+            {index === 0 ? "À ne pas rater" : `Sortie 0${index + 1}`}
+          </span>
+          <span className="font-display text-5xl leading-none drop-shadow-lg sm:text-7xl">0{index + 1}</span>
+        </div>
+
+        <div>
+          <h3 className="run-card-date max-w-[10ch] font-display text-[clamp(3.05rem,7.2vw,7.4rem)] uppercase leading-[.86] tracking-[-.04em] sm:leading-[.82]" id={`run-${run.id}`}>
+            {run.date}
+          </h3>
+          <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs font-black uppercase tracking-[.1em]">
+            <span className="bg-[#351815] px-4 py-3">{run.time}</span>
+            <span className="bg-[#351815] px-4 py-3">{run.distance}</span>
+            <a
+              aria-label={`Ouvrir le lieu de départ ${run.location} dans Google Maps`}
+              className="inline-flex min-h-14 items-center gap-3 bg-[#f6eadf] px-4 py-2.5 text-[#351815] transition-colors hover:bg-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#ffb000]"
+              href={mapsUrl(run.address)}
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              <span aria-hidden="true" className="text-lg">⌖</span>
+              <span>Lieu de départ</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <Link
+            aria-label={`Je viens à la sortie du ${run.date}, à ${run.time}, ${run.distance}. Départ ${run.location}. ${run.summary}`}
+            className={`mt-5 flex min-h-16 w-full items-center justify-between gap-6 px-5 font-display text-[1.55rem] uppercase leading-none transition-colors focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf] sm:w-fit sm:min-w-72 ${visual.accent}`}
+            href={joinHref}
+          >
+            <span>Je viens</span>
+            <span className="run-cta-arrow"><ArrowIcon /></span>
+          </Link>
+        </div>
       </div>
-
-      <div className={`flex flex-col justify-center border-b-2 p-6 lg:border-b-0 lg:border-r-2 ${isNext ? "border-[#351815]" : "border-[#f6eadf]"}`}>
-        <p className={`font-mono text-[.6rem] font-black uppercase tracking-[.15em] ${isNext ? "text-[#8d3d00]" : "text-[#d96ab4]"}`}>
-          {isNext ? "Départ imminent" : "Prochain passage"}
-        </p>
-        <h2 className="mt-3 font-display text-[clamp(2.5rem,3.6vw,4rem)] uppercase leading-[.78] tracking-[-.035em]" id={`run-${run.id}`}>
-          {run.date}
-        </h2>
-        <p className="mt-4 max-w-md text-sm font-bold leading-snug opacity-70">{run.summary}</p>
-      </div>
-
-      <dl className={`grid grid-cols-2 content-center gap-x-5 gap-y-6 border-b-2 p-6 lg:border-b-0 lg:border-r-2 ${isNext ? "border-[#351815]" : "border-[#f6eadf]"}`}>
-          {[
-            ["Heure", run.time],
-            ["Distance", run.distance],
-            ["Allure", run.pace],
-            ["Départ", run.location]
-          ].map(([label, value]) => (
-            <div key={label}>
-              <dt className="font-mono text-xs font-black uppercase tracking-[.14em] opacity-60">{label}</dt>
-              <dd className="mt-2 text-base font-black uppercase leading-tight">{value}</dd>
-            </div>
-          ))}
-      </dl>
-
-      <div className={`flex flex-col justify-center gap-5 border-b-2 p-6 lg:border-b-0 lg:border-r-2 ${isNext ? "border-[#351815]" : "border-[#f6eadf]"}`}>
-        <p className="text-sm font-bold leading-snug">
-          <span className="block font-mono text-xs font-black uppercase tracking-[.14em] opacity-60">Après la ligne</span>
-          <span className="mt-2 block">{run.afterRun}</span>
-        </p>
-        <a
-          className="font-mono text-[.6rem] font-black uppercase tracking-[.1em] underline decoration-2 underline-offset-4 transition-opacity hover:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-4"
-          href={mapsUrl(run.address)}
-          rel="noreferrer noopener"
-          target="_blank"
-        >
-          Voir le départ ↗
-        </a>
-      </div>
-
-      <Link
-        className={`flex min-h-24 items-center justify-between gap-4 p-6 font-display text-[1.35rem] uppercase leading-none transition-colors focus-visible:outline-4 focus-visible:outline-offset-[-4px] lg:flex-col lg:items-start lg:justify-between ${
-          isNext
-            ? "bg-[#351815] text-[#f6eadf] hover:bg-[#d96ab4] hover:text-[#351815] focus-visible:outline-[#351815]"
-            : "bg-[#f6eadf] text-[#351815] hover:bg-[#d96ab4] focus-visible:outline-[#ffb000]"
-        }`}
-        href={contactHref}
-      >
-        <span className="font-mono text-xs font-black uppercase tracking-[.15em] opacity-65">Arrivée</span>
-        <span className="flex w-full items-center justify-between gap-4">Je viens <ArrowIcon /></span>
-      </Link>
     </Reveal>
   );
 }
