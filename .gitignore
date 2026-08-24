@@ -39,3 +39,4 @@ swisstransfer_*/
 Thumbs.db
 .vscode/
 .vercel
+.env*
