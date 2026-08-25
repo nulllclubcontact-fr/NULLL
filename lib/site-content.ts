@@ -71,7 +71,7 @@ export const productsByLocale: Record<Locale, Product[]> = {
   fr: [
     {
       id: "tee-noir",
-      image: "/assets/merch/tee-black-blank.png",
+      image: "/assets/merch/tee-black-blank.webp",
       alt: "T-shirt noir NULLL.CLUB",
       name: "T-shirt noir club",
       price: 35,
@@ -81,7 +81,7 @@ export const productsByLocale: Record<Locale, Product[]> = {
     },
     {
       id: "tee-blanc",
-      image: "/assets/merch/tee-white-blank.png",
+      image: "/assets/merch/tee-white-blank.webp",
       alt: "T-shirt blanc NULLL.CLUB",
       name: "T-shirt blanc signal",
       price: 35,
@@ -91,7 +91,7 @@ export const productsByLocale: Record<Locale, Product[]> = {
     },
     {
       id: "tee-social",
-      image: "/assets/merch/tee-black-blank.png",
+      image: "/assets/merch/tee-black-blank.webp",
       alt: "T-shirt noir message social NULLL.CLUB",
       name: "T-shirt social warning",
       price: 38,

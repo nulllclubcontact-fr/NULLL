@@ -63,7 +63,7 @@ export default async function RunsPage({ params }: PageProps) {
           fill
           priority
           sizes="100vw"
-          src="/assets/photos/runs-blur.png"
+          src="/assets/photos/runs-blur.webp"
         />
         <div className="absolute inset-0 bg-[rgba(30,14,10,.10)]" />
 
@@ -120,7 +120,7 @@ export default async function RunsPage({ params }: PageProps) {
 
       {/* ---------------- PROCHAINES SORTIES ---------------- */}
       <section className="scroll-mt-20 bg-[#351815] text-[#f6eadf]" aria-labelledby="runs-list-title" id="prochaines-sorties">
-        <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
+        <div className="mx-auto max-w-[1600px] px-5 pb-10 pt-16 sm:px-8 sm:pb-12 sm:pt-24 xl:px-12">
           <div className="flex flex-col gap-5 border-b border-[#f6eadf]/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">01 — Le calendrier</p>
@@ -138,7 +138,7 @@ export default async function RunsPage({ params }: PageProps) {
 
           <div
             aria-label="Prochaines sorties, carrousel horizontal"
-            className="run-carousel mt-5 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6 pr-[10%] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000] sm:gap-6 sm:pr-[18%]"
+            className="run-carousel -ml-4 mt-1 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pl-4 pr-[10%] pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000] sm:-ml-6 sm:gap-8 sm:pl-6 sm:pr-[18%] xl:-ml-10 xl:pl-10"
             role="region"
             tabIndex={0}
           >
@@ -153,7 +153,7 @@ export default async function RunsPage({ params }: PageProps) {
 
       {/* ---------------- LES 3 PILIERS ---------------- */}
       <section className="principles-section overflow-hidden bg-[#351815] text-[#f6eadf]" aria-labelledby="runs-format">
-        <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-28 xl:px-12">
+        <div className="mx-auto max-w-[1600px] px-5 pb-20 pt-12 sm:px-8 sm:pb-28 sm:pt-16 xl:px-12">
           <div className="relative z-10 text-center">
             <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">02 — Les seules règles</p>
             <h2
@@ -166,7 +166,7 @@ export default async function RunsPage({ params }: PageProps) {
 
           <ol className="principles-stage relative z-10 mt-24 grid gap-14 md:mt-32 md:grid-cols-3 md:items-end md:gap-3 lg:gap-5">
             <Reveal as="li" className="principle-block principle-block--second group order-2 flex min-h-[19rem] flex-col justify-end border-2 border-[#351815] bg-[#d96ab4] p-6 text-[#351815] md:order-1 md:min-h-[23rem] lg:p-8" delay={110}>
-              <Image alt="" className="principle-photo object-cover object-[50%_42%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-clear-head.jpg" />
+              <Image alt="" className="principle-photo object-cover object-[50%_42%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-clear-head.webp" />
               <span className="podium-medal" aria-hidden="true">02</span>
               <span className="principle-kicker mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">Respirer enfin</span>
               <h3 className="break-normal font-display text-[clamp(2.25rem,4vw,4.5rem)] uppercase leading-[.82] [overflow-wrap:normal]">Se vider<br />la tête</h3>
@@ -174,7 +174,7 @@ export default async function RunsPage({ params }: PageProps) {
             </Reveal>
 
             <Reveal as="li" className="principle-block principle-block--first group order-1 flex min-h-[24rem] flex-col justify-end border-2 border-[#351815] bg-[#ffb000] p-6 text-[#351815] md:order-2 md:min-h-[32rem] lg:p-9" delay={0}>
-              <Image alt="" className="principle-photo object-cover object-[50%_48%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-meet.jpg" />
+              <Image alt="" className="principle-photo object-cover object-[50%_48%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-meet.webp" />
               <span className="podium-medal podium-medal--first" aria-hidden="true">01</span>
               <span className="principle-kicker principle-kicker--first mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">La vraie victoire</span>
               <h3 className="break-normal font-display text-[clamp(2.15rem,4.3vw,4rem)] uppercase leading-[.8] [overflow-wrap:normal]">Faire des<br />rencontres</h3>
@@ -182,7 +182,7 @@ export default async function RunsPage({ params }: PageProps) {
             </Reveal>
 
             <Reveal as="li" className="principle-block principle-block--third group order-3 flex min-h-[18rem] flex-col justify-end border-2 border-[#351815] bg-[#f6eadf] p-6 text-[#351815] md:min-h-[20rem] lg:p-8" delay={220}>
-              <Image alt="" className="principle-photo object-cover object-[50%_28%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-fun.jpg" />
+              <Image alt="" className="principle-photo object-cover object-[50%_28%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-fun.webp" />
               <span className="podium-medal" aria-hidden="true">03</span>
               <span className="principle-kicker mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">Zéro pression</span>
               <h3 className="break-normal font-display text-[clamp(2.25rem,4vw,4.5rem)] uppercase leading-[.82] [overflow-wrap:normal]">S’amuser.<br />C’est tout.</h3>
@@ -242,9 +242,9 @@ export default async function RunsPage({ params }: PageProps) {
 
 function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string; run: RunEvent }) {
   const visuals = [
-    { src: "/assets/photos/runs-golden.png", position: "object-[50%_58%]", accent: "bg-[#ffb000] text-[#351815]" },
-    { src: "/assets/photos/runs-motion.png", position: "object-center", accent: "bg-[#d96ab4] text-[#351815]" },
-    { src: "/assets/photos/runs-crew.jpg", position: "object-center", accent: "bg-[#f6eadf] text-[#351815]" }
+    { src: "/assets/photos/runs-golden.webp", position: "object-[50%_58%]", accent: "bg-[#ffb000] text-[#351815]" },
+    { src: "/assets/photos/runs-motion.webp", position: "object-center", accent: "bg-[#d96ab4] text-[#351815]" },
+    { src: "/assets/photos/runs-crew.webp", position: "object-center", accent: "bg-[#f6eadf] text-[#351815]" }
   ];
   const visual = visuals[index % visuals.length];
 

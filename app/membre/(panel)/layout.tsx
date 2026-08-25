@@ -4,6 +4,12 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "../../../lib/supabase/server";
 
+
+// Espace protege : les donnees dependent de la session et de Supabase.
+// Sans cette directive Next tente un prerendu au build, et une indisponibilite
+// de Supabase fait echouer le deploiement entier.
+export const dynamic = "force-dynamic";
+
 export default async function MemberPanelLayout({ children }: { children: ReactNode }) {
   let supabase;
 

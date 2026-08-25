@@ -4,6 +4,12 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getProSession } from "../../../lib/pro/guard";
 
+
+// Espace protege : les donnees dependent de la session et de Supabase.
+// Sans cette directive Next tente un prerendu au build, et une indisponibilite
+// de Supabase fait echouer le deploiement entier.
+export const dynamic = "force-dynamic";
+
 export default async function ProPanelLayout({ children }: { children: ReactNode }) {
   const session = await getProSession();
 

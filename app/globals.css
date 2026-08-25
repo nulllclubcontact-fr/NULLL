@@ -131,109 +131,13 @@ textarea {
   font: inherit;
 }
 
-.brutal-title {
-  line-height: 0.9;
-  word-break: normal;
-  overflow-wrap: break-word;
-  text-wrap: balance;
-}
-
 .copy-safe {
   min-width: 0;
   overflow-wrap: break-word;
 }
 
-.display-safe {
-  min-width: 0;
-  line-height: 0.9;
-  word-break: normal;
-  overflow-wrap: break-word;
-  text-wrap: balance;
-}
-
-.display-nowrap {
-  min-width: 0;
-  line-height: 0.9;
-  overflow-wrap: normal;
-  white-space: nowrap;
-}
-
-.grid-paper {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 72px 72px;
-}
-
-.grid-paper-dark {
-  background-image:
-    linear-gradient(var(--grid-line-dark) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line-dark) 1px, transparent 1px);
-  background-size: 72px 72px;
-}
-
-.hard-shadow {
-  box-shadow: 10px 10px 0 #ffffff;
-}
-
-.hard-shadow-dark {
-  box-shadow: 10px 10px 0 #000000;
-}
-
 .image-grit {
   filter: grayscale(0.75) contrast(1.22) saturate(0.72);
-}
-
-.image-warm {
-  filter: contrast(1.18) saturate(0.82);
-}
-
-.vertical-copy {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
-
-.strike-mark {
-  position: relative;
-}
-
-.strike-mark::after {
-  position: absolute;
-  left: -0.04em;
-  right: -0.04em;
-  top: 47%;
-  height: 0.08em;
-  content: "";
-  background: var(--shock);
-  transform: rotate(-1deg);
-}
-
-.outline-title {
-  color: transparent;
-  -webkit-text-stroke: 1px #ffffff;
-  text-stroke: 1px #ffffff;
-}
-
-.outline-title-dark {
-  color: transparent;
-  -webkit-text-stroke: 1px #000000;
-  text-stroke: 1px #000000;
-}
-
-.poster-frame {
-  border: 2px solid #ffffff;
-  background-color: #000000;
-  color: #ffffff;
-}
-
-.tonic-shadow {
-  box-shadow: 8px 8px 0 var(--shock);
-}
-
-.active-noise {
-  background:
-    linear-gradient(90deg, rgba(255, 63, 180, 0.22), transparent 70%),
-    #000000;
 }
 
 @layer components {
@@ -255,15 +159,7 @@ textarea {
 
   .panel-grid {
     box-shadow: 8px 8px 0 #d96ab4;
-  }
-
-  .hero-grid {
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .nav-link,
-  .locale-chip {
+  }.nav-link {
     display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
@@ -278,11 +174,7 @@ textarea {
       background-color 160ms ease,
       color 160ms ease,
       border-color 160ms ease;
-  }
-
-  .nav-link:hover,
-  .locale-chip:hover,
-  .nav-link-active {
+  }.nav-link:hover {
     border-color: #351815;
     background: #d96ab4;
     color: #351815;
@@ -329,31 +221,7 @@ textarea {
   .primary-button:hover {
     transform: translate(-2px, -2px);
     box-shadow: 6px 6px 0 #d96ab4;
-  }
-
-  .icon-button {
-    display: grid;
-    width: 2.75rem;
-    height: 2.75rem;
-    place-items: center;
-    border: 2px solid #351815;
-    background: #f6eadf;
-    color: #351815;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 1.35rem;
-    font-weight: 900;
-    transition:
-      background-color 160ms ease,
-      color 160ms ease;
-  }
-
-  .icon-button:hover {
-    background: #ffb000;
-    color: #351815;
-  }
-
-  .primary-button:disabled,
-  .icon-button:disabled {
+  }.primary-button:disabled {
     cursor: not-allowed;
     opacity: 0.42;
     transform: none;
@@ -368,40 +236,14 @@ textarea {
     color: #351815;
     padding: 0.95rem 1rem;
     outline: none;
-  }
-
-  .field:focus,
-  .nav-link:focus-visible,
-  .locale-chip:focus-visible,
-  .primary-link:focus-visible,
-  .secondary-link:focus-visible,
-  .primary-button:focus-visible,
-  .icon-button:focus-visible {
+  }.field:focus,
+.nav-link:focus-visible,
+.primary-link:focus-visible,
+.secondary-link:focus-visible,
+.primary-button:focus-visible {
     border-color: var(--shock);
     box-shadow: 0 0 0 4px rgba(217, 106, 180, 0.32);
   }
-}
-
-.poster-hero-image {
-  animation: poster-reveal 420ms ease-out both;
-}
-
-.poster-title {
-  font-size: clamp(4.4rem, 12vw, 12.5rem);
-  line-height: 0.72;
-}
-
-.poster-title span {
-  display: block;
-}
-
-.poster-title span:last-child {
-  color: #d96ab4;
-}
-
-@keyframes poster-reveal {
-  from { opacity: 0; transform: scale(1.015); }
-  to { opacity: 1; transform: scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -420,19 +262,6 @@ textarea {
 }
 
 @media (max-width: 640px) {
-  .grid-paper,
-  .grid-paper-dark {
-    background-size: 44px 44px;
-  }
-
-  .poster-frame {
-    border-left-width: 0;
-    border-right-width: 0;
-  }
-
-  .brutal-title {
-    line-height: 0.92;
-  }
 
   .shell {
     width: min(100% - 16px, 1680px);
@@ -452,10 +281,6 @@ textarea {
 }
 
 @media (min-width: 1024px) {
-  .hero-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.68fr);
-    align-items: stretch;
-  }
 }
 
 @keyframes marquee {
@@ -574,10 +399,7 @@ textarea {
     animation-timeline: view();
     animation-range: entry 5% cover 26%;
   }
-}
-
-/* Le grand numero de chaque sortie, en lettrage creux. */
-.run-numeral {
+}/* Le grand numero de chaque sortie {
   position: absolute;
   right: -1rem;
   top: 50%;
@@ -592,54 +414,18 @@ textarea {
   color: transparent;
 }
 
-.run-numeral--ink {
-  -webkit-text-stroke: 2px rgba(53, 24, 21, 0.16);
-}
-
-.run-numeral--cream {
-  -webkit-text-stroke: 2px rgba(246, 234, 223, 0.14);
-}
-
 /* Le grand numero glisse legerement en sens inverse : parallaxe discrete. */
 @supports (animation-timeline: view()) {
-  .run-numeral {
-    animation: numeral-drift linear both;
-    animation-timeline: view();
-    animation-range: cover 0% cover 100%;
   }
-}
 
 @keyframes numeral-drift {
   from { transform: translateY(-38%); }
   to { transform: translateY(-62%); }
 }
 
-/* Repere de defilement sous l'ouverture. */
-.scroll-hint {
-  position: absolute;
-  bottom: 1.75rem;
-  left: 50%;
-  width: 1px;
-  height: 3.5rem;
-  margin-left: -0.5px;
-  background: linear-gradient(to bottom, rgba(246, 234, 223, 0), rgba(255, 176, 0, 0.9));
-  animation: scroll-hint-pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes scroll-hint-pulse {
-  0%, 100% { opacity: 0.25; transform: scaleY(0.55); transform-origin: top; }
-  50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .run-col,
-  .run-numeral,
-  .scroll-hint {
+@media (prefers-reduced-motion: reduce) {.reveal {
     animation: none;
-  }
-  .reveal, .run-col { opacity: 1; transform: none; }
-  .run-numeral { transform: translateY(-50%); }
+  }.reveal { opacity: 1; transform: none; }
 }
 
 /* ------------------------------------------------------------------
@@ -663,10 +449,6 @@ textarea {
     transform: none;
     transition: none;
   }
-}
-
-.scroll-hint--ink {
-  background: linear-gradient(to bottom, rgba(53, 24, 21, 0), rgba(53, 24, 21, 0.85));
 }
 
 /* ------------------------------------------------------------------
@@ -865,28 +647,26 @@ textarea {
 }
 
 .run-carousel-slide {
-  opacity: 0.62;
-  transform: scale(0.9);
   transform-origin: center;
-  transition: opacity 320ms ease-out, transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.run-carousel-slide:first-child {
-  opacity: 1;
-  transform: scale(1);
+/* Toutes les cartes sont a leur taille normale ; seule celle sur laquelle on
+   est calé grossit legerement. La classe est posee par RunCarouselNav, qui
+   calcule deja la carte la plus proche du centre pour les boutons 01/02/03 —
+   un seul listener de scroll pour les deux.
+   1.03 est un maximum : le conteneur calcule overflow-y: auto, donc tout
+   depassement vertical serait rogne. Le padding pt-4 / -ml-4 pl-4 pose sur
+   .run-carousel lui reserve exactement la place necessaire. */
+.run-carousel-slide.is-active {
+  transform: scale(1.03);
 }
 
-@supports (animation-timeline: view(inline)) {
-  .run-carousel-slide {
-    animation: run-slide-focus linear both;
-    animation-timeline: view(inline);
-    animation-range: cover 0% cover 100%;
-  }
-}
-
-@keyframes run-slide-focus {
-  0%, 100% { opacity: 0.58; transform: scale(0.88); }
-  42%, 58% { opacity: 1; transform: scale(1); }
+/* Avant l'hydratation, c'est la premiere carte qui est calee au centre.
+   Des que le composant est monte il pose data-enhanced et ce repli s'eteint,
+   laissant .is-active seul maitre. */
+.run-carousel:not([data-enhanced]) .run-carousel-slide:first-child {
+  transform: scale(1.03);
 }
 
 .run-carousel {
@@ -957,7 +737,12 @@ textarea {
     transition: none;
   }
 
-  .run-carousel-slide {
+  /* .is-active est plus specifique que .run-carousel-slide : sans le citer
+     ici, il repasserait devant cette regle. Aujourd'hui les deux valent
+     taille pleine, mais ce garde-fou evite que l'effet reapparaisse si
+     l'echelle active changeait un jour. */
+  .run-carousel-slide,
+  .run-carousel-slide.is-active {
     animation: none;
     opacity: 1;
     transform: none;

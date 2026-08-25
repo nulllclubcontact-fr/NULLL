@@ -13,34 +13,50 @@ export function RunCarouselNav({ runs }: RunCarouselNavProps) {
     const carousel = document.querySelector<HTMLElement>(".run-carousel");
     if (!carousel) return;
 
+    // Signale que le composant est monte : le repli CSS sur :first-child
+    // s'eteint et .is-active devient la seule source de verite.
+    carousel.setAttribute("data-enhanced", "true");
+
     let frame = 0;
-    const syncActiveRun = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const carouselCenter = carousel.getBoundingClientRect().left + carousel.clientWidth / 2;
-        let closestIndex = 0;
-        let closestDistance = Number.POSITIVE_INFINITY;
 
-        runs.forEach((run, index) => {
-          const card = document.getElementById(`run-card-${run.id}`);
-          if (!card) return;
-          const bounds = card.getBoundingClientRect();
-          const distance = Math.abs(bounds.left + bounds.width / 2 - carouselCenter);
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestIndex = index;
-          }
-        });
+    const applyActiveRun = () => {
+      const carouselCenter = carousel.getBoundingClientRect().left + carousel.clientWidth / 2;
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+      const cards: Array<HTMLElement | null> = [];
 
-        setActiveIndex(closestIndex);
+      runs.forEach((run, index) => {
+        const card = document.getElementById(`run-card-${run.id}`);
+        cards[index] = card;
+        if (!card) return;
+        const bounds = card.getBoundingClientRect();
+        const distance = Math.abs(bounds.left + bounds.width / 2 - carouselCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
       });
+
+      // Seule la carte la plus proche du centre est agrandie.
+      cards.forEach((card, index) => card?.classList.toggle("is-active", index === closestIndex));
+
+      setActiveIndex(closestIndex);
     };
 
-    syncActiveRun();
+    // Pendant le scroll on lisse via rAF ; au montage on applique directement,
+    // sinon un onglet ouvert en arriere-plan (rAF gele) n'aurait aucune carte
+    // marquee active tant qu'on n'a pas scrolle.
+    const syncActiveRun = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(applyActiveRun);
+    };
+
+    applyActiveRun();
     carousel.addEventListener("scroll", syncActiveRun, { passive: true });
     window.addEventListener("resize", syncActiveRun);
     return () => {
       cancelAnimationFrame(frame);
+      carousel.removeAttribute("data-enhanced");
       carousel.removeEventListener("scroll", syncActiveRun);
       window.removeEventListener("resize", syncActiveRun);
     };

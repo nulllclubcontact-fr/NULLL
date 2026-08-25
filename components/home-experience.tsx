@@ -31,7 +31,7 @@ export function HomeExperience({
           fill
           priority
           sizes="100vw"
-          src="/assets/photos/hero-nulll-aix-v2.png"
+          src="/assets/photos/hero-nulll-aix-v2.webp"
         />
         <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(18,9,8,.88)_0%,rgba(18,9,8,.68)_48%,rgba(18,9,8,.2)_100%)] sm:bg-[linear-gradient(100deg,rgba(18,9,8,.82)_0%,rgba(18,9,8,.55)_34%,rgba(18,9,8,.12)_62%,rgba(18,9,8,0)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(to_top,rgba(18,9,8,.75),transparent)]" />

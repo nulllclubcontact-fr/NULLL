@@ -148,7 +148,7 @@ export function buildEventSchema(event: {
     endDate: event.startDate,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
-    image: [`${SITE_URL}/assets/photos/motion-run.png`],
+    image: [`${SITE_URL}/assets/photos/motion-run.webp`],
     location: {
       "@type": "Place",
       name: event.locationName,

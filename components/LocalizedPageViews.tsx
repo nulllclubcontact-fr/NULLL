@@ -24,7 +24,7 @@ export function AboutPageView({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div className="relative min-h-[520px] overflow-hidden border-2 border-[#351815] bg-[#351815]">
-          <Image alt="Portrait lifestyle avec lunettes miroir" className="object-cover" fill sizes="(min-width: 1280px) 54vw, 100vw" src="/assets/photos/editorial-glasses.png" />
+          <Image alt="Portrait lifestyle avec lunettes miroir" className="object-cover" fill sizes="(min-width: 1280px) 54vw, 100vw" src="/assets/photos/editorial-glasses.webp" />
         </div>
       </section>
       <section className="mx-auto grid w-full max-w-none gap-4 px-4 pb-14 sm:px-6 md:grid-cols-2 xl:px-8">
@@ -54,7 +54,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div className="relative min-h-[560px] overflow-hidden border-2 border-[#351815] bg-[#351815]">
-          <Image alt="Portrait d’un coureur NULLL.CLUB à Aix-en-Provence" className="object-cover" fill priority sizes="(min-width: 1280px) 48vw, 100vw" src="/assets/photos/runner-portrait.png" />
+          <Image alt="Portrait d’un coureur NULLL.CLUB à Aix-en-Provence" className="object-cover" fill priority sizes="(min-width: 1280px) 48vw, 100vw" src="/assets/photos/runner-portrait.webp" />
         </div>
       </section>
       <section className="mx-auto grid w-full max-w-none gap-4 px-4 pb-14 sm:px-6 xl:grid-cols-3 xl:px-8">

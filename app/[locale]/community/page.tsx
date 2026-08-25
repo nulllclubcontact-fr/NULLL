@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import { resolveLocale } from "../../../lib/locale";
 import { buildPageMetadata } from "../../../lib/seo";
 import { getRoute, getSiteCopy } from "../../../lib/site-content";
@@ -21,5 +21,5 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CommunityPage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale);
-  redirect(getRoute(locale, "community"));
+  permanentRedirect(getRoute(locale, "community"));
 }

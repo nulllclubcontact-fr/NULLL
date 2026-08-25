@@ -5,6 +5,12 @@ import { redirect } from "next/navigation";
 import { logoutAdmin } from "../actions";
 import { getAdminSession } from "../../../lib/admin/guard";
 
+
+// Espace protege : les donnees dependent de la session et de Supabase.
+// Sans cette directive Next tente un prerendu au build, et une indisponibilite
+// de Supabase fait echouer le deploiement entier.
+export const dynamic = "force-dynamic";
+
 export default async function AdminPanelLayout({ children }: { children: ReactNode }) {
   let session = null;
 

@@ -7,7 +7,7 @@ import { ArrowIcon } from "./ArrowIcon";
 import { parseCart, serializeCart, upsertCartItem, CART_STORAGE_KEY, type CartItem } from "../lib/shop";
 import { getRoute, productsByLocale, type Locale, type Product } from "../lib/site-content";
 
-const productMood = ["/assets/photos/editorial-bed.png", "/assets/photos/editorial-shower.png", "/assets/photos/runner-ground.png"];
+const productMood = ["/assets/photos/editorial-bed.webp", "/assets/photos/editorial-shower.webp", "/assets/photos/runner-ground.webp"];
 
 export function MerchExperience({ locale }: { locale: Locale }) {
   const products = productsByLocale[locale];

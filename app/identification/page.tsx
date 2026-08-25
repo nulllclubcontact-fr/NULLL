@@ -6,7 +6,9 @@ import { getSiteCopy } from "../../lib/site-content";
 
 export const metadata = {
   title: "S'identifier | NULLL.CLUB",
-  description: "Connexion membre, inscription membre et acces professionnel partenaire NULLL.CLUB."
+  description: "Connexion membre, inscription membre et acces professionnel partenaire NULLL.CLUB.",
+  // Page passerelle vers les espaces prives : aucun interet dans les resultats.
+  robots: { index: false, follow: false }
 };
 
 const accessCards = [

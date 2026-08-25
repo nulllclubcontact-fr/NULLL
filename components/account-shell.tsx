@@ -19,7 +19,7 @@ export function AccountShell({
   title,
   intro,
   children,
-  image = "/assets/photos/runners-aix.png",
+  image = "/assets/photos/runners-aix.webp",
   imageAlt = "NULLL.CLUB community"
 }: AccountShellProps) {
   return (
