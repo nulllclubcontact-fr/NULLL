@@ -9,6 +9,8 @@ type HomeExperienceProps = {
   communityHref: string;
   merchHref: string;
   aboutHref: string;
+  localClubHref: string;
+  localRunningHref: string;
 };
 
 
@@ -17,7 +19,9 @@ export function HomeExperience({
   runsHref,
   communityHref,
   merchHref,
-  aboutHref
+  aboutHref,
+  localClubHref,
+  localRunningHref
 }: HomeExperienceProps) {
   const nextRun = runs[0];
 
@@ -122,6 +126,63 @@ export function HomeExperience({
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* ---------------- LE CLUB EN CLAIR ----------------
+           Section informative : elle repond aux questions d'un premier
+           visiteur (qui, quand, ou, combien) et donne enfin a Google le
+           vocabulaire du club — « run club », « club de sport »,
+           « Aix-en-Provence » — absent du hero, qui reste une accroche. */}
+      <section className="border-t-2 border-[#351815] bg-[#f6eadf] text-[#351815]" aria-labelledby="home-le-club">
+        <div className="mx-auto max-w-[1600px] px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 xl:px-12">
+          <h2 className="max-w-[18ch] font-display text-[clamp(2.2rem,4.5vw,4rem)] uppercase leading-[.9] tracking-[-.025em]" id="home-le-club">
+            Un run club <span className="text-[#d96ab4]">à Aix-en-Provence.</span>
+          </h2>
+
+          <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-14">
+            <div className="space-y-4 text-lg leading-relaxed">
+              <p>
+                NULLL.CLUB est un run club associatif basé à Aix-en-Provence. On se retrouve
+                <strong> tous les samedis à 8h30 au parking Émile Zola</strong> pour une sortie de 5 à 6 km,
+                à allure conversation — celle où tu peux encore parler en courant.
+              </p>
+              <p>
+                C’est <strong>gratuit, sans inscription et sans niveau minimum</strong>. La plupart des gens qui
+                viennent pour la première fois n’ont pas de club et ne courent pas en compétition. Personne
+                n’est laissé derrière.
+              </p>
+              <p>
+                C’est aussi ce qui nous sépare d’un club de sport classique à Aix-en-Provence : pas
+                d’abonnement, pas d’engagement, et tu peux venir une fois pour voir.
+              </p>
+            </div>
+
+            <dl className="grid grid-cols-2 gap-px self-start border-2 border-[#351815] bg-[#351815]">
+              {[
+                { t: "Quand", d: "Tous les samedis, 8h30" },
+                { t: "Où", d: "Parking Émile Zola, Aix-en-Provence" },
+                { t: "Distance", d: "5 à 6 km, allure conversation" },
+                { t: "Combien", d: "Gratuit, sans inscription" }
+              ].map((f) => (
+                <div className="bg-[#f6eadf] px-5 py-5" key={f.t}>
+                  <dt className="font-mono text-xs font-black uppercase tracking-[.1em] opacity-70">{f.t}</dt>
+                  <dd className="mt-2 font-black uppercase leading-tight">{f.d}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <p className="mt-10 text-lg leading-relaxed">
+            Plus de détails sur{" "}
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#d96ab4] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]" href={localClubHref}>
+              le run club à Aix-en-Provence
+            </Link>{" "}
+            et sur{" "}
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#d96ab4] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]" href={localRunningHref}>
+              où courir à Aix-en-Provence
+            </Link>.
+          </p>
         </div>
       </section>
 

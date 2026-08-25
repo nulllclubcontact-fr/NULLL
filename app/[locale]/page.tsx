@@ -25,6 +25,8 @@ export default async function LocaleHomePage({ params }: PageProps) {
         aboutHref={getRoute(locale, "about")}
         communityHref={getRoute(locale, "community")}
         merchHref={getRoute(locale, "merch")}
+        localClubHref={getRoute(locale, "localClub")}
+        localRunningHref={getRoute(locale, "localRunning")}
         runs={copy.runs}
         runsHref={getRoute(locale, "runs")}
       />

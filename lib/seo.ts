@@ -113,12 +113,20 @@ export function buildOrganizationSchema(locale: Locale) {
 export function buildSportsLocationSchema(locale: Locale) {
   return {
     "@context": "https://schema.org",
-    "@type": "SportsActivityLocation",
-    name: "NULLL.CLUB Aix-en-Provence",
-    description: "Groupe de course et communauté running à Aix-en-Provence.",
+    // SportsClub est plus precis que SportsActivityLocation et correspond a ce
+    // qu'est NULLL.CLUB : une association, pas un simple lieu de pratique.
+    "@type": ["SportsClub", "SportsActivityLocation"],
+    name: "NULLL.CLUB",
+    alternateName: "NULLL Run Club Aix-en-Provence",
+    description:
+      "Club de course a pied et club de sport associatif a Aix-en-Provence. Sorties running collectives tous les samedis matin, ouvertes a tous les niveaux et gratuites.",
+    sport: "Course a pied",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "Parking Emile Zola",
+      postalCode: "13090",
       addressLocality: "Aix-en-Provence",
+      addressRegion: "Provence-Alpes-Cote d'Azur",
       addressCountry: "FR"
     },
     geo: {
@@ -126,6 +134,29 @@ export function buildSportsLocationSchema(locale: Locale) {
       latitude: 43.5298,
       longitude: 5.4474
     },
+    // Le creneau hebdomadaire est le signal local le plus utile : c'est ce qui
+    // permet a Google de repondre a « run club aix samedi ».
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "https://schema.org/Saturday",
+        opens: "08:30",
+        closes: "10:00"
+      }
+    ],
+    isAccessibleForFree: true,
+    publicAccess: true,
+    areaServed: {
+      "@type": "City",
+      name: "Aix-en-Provence"
+    },
+    email: "contact@nulll.club",
+    image: `${SITE_URL}/assets/photos/hero-nulll-aix-v2.webp`,
+    logo: `${SITE_URL}/assets/brand/nulll-mark.png`,
+    sameAs: [
+      "https://www.instagram.com/nulll.club",
+      "https://www.linkedin.com/company/nulll-club/"
+    ],
     url: `${SITE_URL}/${locale}/runs`
   };
 }

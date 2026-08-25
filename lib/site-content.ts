@@ -402,25 +402,47 @@ export function getSiteCopy(locale: Locale) {
         {
           key: "localClub",
           slug: "run-club-aix-en-provence",
-          title: "Run club Aix-en-Provence | Guide local NULLL.CLUB",
+          title: "Run club à Aix-en-Provence — NULLL.CLUB, sorties gratuites",
           description:
-            "Guide pratique pour trouver un run club à Aix-en-Provence et rejoindre une communauté running locale.",
-          h1: "Trouver un run club à Aix-en-Provence",
+            "NULLL.CLUB est un run club et un club de sport associatif à Aix-en-Provence. Sortie tous les samedis à 8h30, parking Émile Zola, gratuite et ouverte à tous les niveaux.",
+          h1: "Run club à Aix-en-Provence : courir en groupe le samedi",
           intro:
-            "Si tu cherches un run club à Aix-en-Provence, tu veux surtout trois choses : un rendez-vous clair, un groupe accessible et une ambiance qui donne envie de revenir.",
+            "NULLL.CLUB est un run club associatif basé à Aix-en-Provence. On se retrouve tous les samedis matin à 8h30 au parking Émile Zola pour une sortie de 5 à 6 kilomètres, à allure conversation. C’est gratuit, sans inscription et sans niveau minimum.",
           sections: [
             {
-              title: "Pourquoi rejoindre un run club à Aix-en-Provence ?",
+              title: "Le rendez-vous en pratique",
               body: [
-                "Courir seul fonctionne pour l’entraînement, mais pas toujours pour la régularité. Un club de running à Aix-en-Provence aide à garder une routine simple.",
-                "Le bon groupe de course local donne un horaire clair, un rythme accessible et un cadre social qui motive."
+                "Rendez-vous le samedi à 8h30 au parking Émile Zola, à Aix-en-Provence. La sortie fait entre 5 et 6 kilomètres selon les semaines, sur un parcours qui reste accessible aux personnes qui reprennent la course à pied.",
+                "L’allure est une allure conversation : tu dois pouvoir parler en courant. Personne n’est laissé derrière, et il y a toujours quelqu’un pour rester avec le dernier groupe. Il n’y a rien à payer, rien à signer à l’avance et aucun certificat à fournir pour venir essayer.",
+                "Viens en tenue de sport avec de quoi boire. Après la course, on prend un moment ensemble : c’est souvent là que le club se joue vraiment."
               ]
             },
             {
-              title: "Ce que propose NULLL.CLUB",
+              title: "Pour qui : débutants, reprise, coureurs réguliers",
               body: [
-                "Des runs sociaux récurrents, une communication lisible, une identité forte et une vraie ouverture aux nouveaux.",
-                "Le club met l’accent sur la clarté des informations, la qualité du parcours utilisateur et la convivialité après la course."
+                "Un run club à Aix-en-Provence n’a d’intérêt que s’il est réellement ouvert. Chez NULLL.CLUB, la majorité des personnes qui viennent pour la première fois n’ont pas de club et ne courent pas en compétition.",
+                "Si tu reprends après une pause, si tu viens d’arriver à Aix, si tu cherches un club de sport pour rencontrer du monde autrement qu’en salle : le format est fait pour ça. Si tu cours déjà régulièrement, l’allure conversation reste utile comme sortie longue facile en fin de semaine."
+              ]
+            },
+            {
+              title: "Où l’on court autour d’Aix",
+              body: [
+                "Le centre d’Aix permet de partir à pied vers le parc Jourdan et le parc de la Torse, deux boucles courtes et roulantes idéales pour une sortie collective du samedi matin.",
+                "Pour les sorties plus longues, la région ne manque pas de terrain : le lac du Réaltor et ses chemins plats, le plateau de Bibemus, le barrage de Bimont et les sentiers au pied de la montagne Sainte-Victoire. On adapte le parcours à la météo et au groupe présent."
+              ]
+            },
+            {
+              title: "Un club associatif, pas une salle de sport",
+              body: [
+                "NULLL.CLUB est une association loi 1901 déclarée à Aix-en-Provence. Il n’y a ni abonnement, ni engagement, ni objectif de performance : le club existe pour que courir devienne une habitude sociale plutôt qu’une corvée solitaire.",
+                "C’est la différence principale avec un club de sport classique à Aix-en-Provence : le rendez-vous est public, gratuit, et tu peux venir une fois pour voir sans que personne ne te relance."
+              ]
+            },
+            {
+              title: "Comment venir la première fois",
+              body: [
+                "Tu n’as rien à faire à l’avance : présente-toi samedi à 8h25 au parking Émile Zola, dis que c’est ta première fois, on s’occupe du reste.",
+                "Si tu préfères prévenir, écris à contact@nulll.club ou passe par Instagram. La page des prochaines sorties donne la date, l’heure, la distance et le point de départ exact de chaque run."
               ]
             }
           ]
@@ -428,25 +450,40 @@ export function getSiteCopy(locale: Locale) {
         {
           key: "localRunning",
           slug: "courir-a-aix-en-provence",
-          title: "Courir à Aix-en-Provence | Conseils et communauté",
+          title: "Courir à Aix-en-Provence : où, quand et avec qui",
           description:
-            "Où courir à Aix-en-Provence, comment rejoindre un groupe de course et à quoi s’attendre sur un run social.",
-          h1: "Courir à Aix-en-Provence en groupe",
+            "Les meilleurs endroits pour courir à Aix-en-Provence, du parc Jourdan à la Sainte-Victoire, et comment rejoindre un groupe de course gratuit le samedi matin.",
+          h1: "Courir à Aix-en-Provence : les parcours et les groupes",
           intro:
-            "Courir à Aix-en-Provence devient plus simple quand tu connais les bons points de rendez-vous, les bons créneaux et le bon groupe.",
+            "Aix-en-Provence est une ville agréable à courir : centre compact, parcs accessibles à pied, et des chemins de campagne à quelques minutes. Voici où courir selon ce que tu cherches, et comment ne pas le faire seul.",
           sections: [
             {
-              title: "Les bons formats pour courir à Aix",
+              title: "En ville : parc Jourdan, la Torse, Cours Mirabeau",
               body: [
-                "Les runs sociaux en fin de journée sont souvent les plus accessibles pour créer une habitude durable.",
-                "Un groupe de course à Aix qui annonce son allure et sa distance retire une grande partie de la friction."
+                "Le parc Jourdan est le point de départ le plus simple quand on habite le centre : boucle courte, ombragée, parfaite pour un footing de semaine ou une reprise en douceur.",
+                "Le parc de la Torse offre un parcours plus long le long du ruisseau, avec de la terre sous les pieds, ce qui change du bitume. Pour les sorties tôt le matin, remonter le Cours Mirabeau avant l’affluence reste un classique."
               ]
             },
             {
-              title: "Comment choisir le bon groupe",
+              title: "Autour d’Aix : Réaltor, Bibemus, Sainte-Victoire",
               body: [
-                "Regarde la clarté des horaires, le niveau d’accueil des débutants et la qualité du suivi sur Instagram ou par email.",
-                "Privilégie un format qui affiche la distance, le lieu et l’après-run, pas seulement une identité visuelle."
+                "Le lac du Réaltor propose une boucle plate d’une dizaine de kilomètres, très roulante, idéale pour tenir une allure régulière sans dénivelé.",
+                "Le plateau de Bibemus et le barrage de Bimont demandent plus d’engagement, avec du dénivelé et des chemins caillouteux. Les sentiers au pied de la Sainte-Victoire sont magnifiques mais exigeants : mieux vaut y aller accompagné et bien chaussé.",
+                "En été, la chaleur impose de partir tôt. C’est aussi pour ça que les sorties collectives du samedi matin fonctionnent bien à Aix : à 8h30, il fait encore bon."
+              ]
+            },
+            {
+              title: "Courir accompagné change tout",
+              body: [
+                "Le problème de la course à pied n’est presque jamais la performance : c’est la régularité. Un rendez-vous fixe, avec des gens qui remarquent ton absence, tient mieux qu’une bonne résolution.",
+                "C’est ce que fait NULLL.CLUB à Aix-en-Provence : un créneau unique le samedi à 8h30, une allure où l’on peut discuter, et un moment après la course. Gratuit, sans inscription, ouvert à tous les niveaux."
+              ]
+            },
+            {
+              title: "Ce qu’il faut vérifier avant de rejoindre un groupe",
+              body: [
+                "Regarde d’abord si l’allure est annoncée. Un groupe qui ne précise pas son rythme finit souvent par courir trop vite pour les nouveaux venus.",
+                "Vérifie ensuite que le lieu et l’heure sont fixes et publics, et qu’il existe un moyen simple de poser une question avant de venir. Le reste — le logo, les tee-shirts — vient après."
               ]
             }
           ]
@@ -454,25 +491,39 @@ export function getSiteCopy(locale: Locale) {
         {
           key: "localEvents",
           slug: "evenements-running-aix",
-          title: "Événements running Aix | Agenda local NULLL.CLUB",
+          title: "Événements running à Aix-en-Provence — agenda NULLL.CLUB",
           description:
-            "Retrouve les événements running à Aix-en-Provence, les runs sociaux et les rendez-vous communautaires de NULLL.CLUB.",
-          h1: "Les événements running à Aix-en-Provence",
+            "L’agenda des sorties running à Aix-en-Provence : rendez-vous hebdomadaire du samedi 8h30, événements du club et rencontres après la course.",
+          h1: "Événements running à Aix-en-Provence",
           intro:
-            "Un bon agenda running à Aix-en-Provence doit être lisible, local et suffisamment précis pour donner envie de venir dès la première lecture.",
+            "À Aix-en-Provence, l’essentiel de la vie running ne se joue pas sur les courses officielles mais sur les rendez-vous réguliers, gratuits et ouverts. Voici comment se repérer.",
           sections: [
             {
-              title: "Quels événements suivre ?",
+              title: "Le rendez-vous hebdomadaire",
               body: [
-                "Les événements running sociaux sont les plus faciles à rejoindre pour rencontrer du monde et reprendre un rythme.",
-                "Les formats récurrents créent un vrai sentiment de communauté, surtout quand ils s’accompagnent d’un moment après la course."
+                "Le rendez-vous principal de NULLL.CLUB est le samedi à 8h30, au parking Émile Zola. Il a lieu toute l’année, quelle que soit la météo, et ne demande aucune inscription.",
+                "Chaque sortie est annoncée avec sa date, son horaire, sa distance et son point de départ. C’est volontairement le même créneau chaque semaine : on retient plus facilement un rendez-vous fixe qu’un calendrier qui change."
               ]
             },
             {
-              title: "Comment NULLL.CLUB les présente",
+              title: "Les temps forts de l’année à Aix",
               body: [
-                "Chaque run met en avant une date, un horaire, une distance, un lieu de rendez-vous et un contexte clair.",
-                "Cette structure répond mieux à l’intention de recherche qu’une page purement manifeste."
+                "Aix-en-Provence et ses environs accueillent plusieurs courses sur route et trails au fil de la saison, du format court en ville aux parcours dans le massif.",
+                "Le club ne remplace pas ces événements : il sert de préparation sociale. Beaucoup de membres utilisent les sorties du samedi comme entraînement régulier avant de s’aligner, individuellement, sur une course locale."
+              ]
+            },
+            {
+              title: "L’après-course, la vraie raison de revenir",
+              body: [
+                "Le moment qui suit la sortie compte autant que la course. C’est là que les gens se parlent vraiment, et c’est ce qui fait revenir la semaine suivante.",
+                "Ce format convient particulièrement aux personnes qui viennent d’arriver à Aix-en-Provence et cherchent un club de sport pour rencontrer du monde sans passer par une salle."
+              ]
+            },
+            {
+              title: "Se tenir au courant",
+              body: [
+                "La page des prochaines sorties liste les runs à venir avec tous les détails pratiques. Les changements de dernière minute — météo, changement de point de départ — passent par Instagram.",
+                "Pour toute question avant de venir, écris à contact@nulll.club. Une réponse claire avant un premier run vaut mieux qu’une hésitation de plus."
               ]
             }
           ]
