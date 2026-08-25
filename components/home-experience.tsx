@@ -37,7 +37,7 @@ export function HomeExperience({
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(to_top,rgba(18,9,8,.75),transparent)]" />
 
         <div className="relative mx-auto flex max-w-[1800px] flex-col px-5 pb-5 pt-6 sm:px-8 sm:pb-8 sm:pt-8 xl:px-12">
-          <div className="flex items-center justify-between gap-4 border-b border-[#f6eadf]/45 pb-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em] sm:text-xs">
+          <div className="flex flex-col items-start gap-1 border-b border-[#f6eadf]/45 pb-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
             <span>Social sport club · Aix-en-Provence</span>
             <span className="text-[#ffb000]">Ouvert à tous · Gratuit</span>
           </div>
@@ -70,13 +70,13 @@ export function HomeExperience({
           </div>
 
           {/* Prochaine sortie — l'essentiel, rien de plus */}
-          <div className="hero-rise grid border-2 border-[#351815] bg-[#f6eadf] text-[#351815] md:grid-cols-[1.3fr_.55fr_.6fr_1fr_auto]" style={{ animationDelay: "560ms" }}>
+          <div className="hero-rise grid gap-[2px] border-2 border-[#351815] bg-[#351815] text-[#351815] sm:grid-cols-2 lg:grid-cols-[1.3fr_.55fr_.6fr_1fr_auto]" style={{ animationDelay: "560ms" }}>
             <RunDatum emphasis label="Prochaine sortie" value={nextRun.date} />
             <RunDatum label="Heure" value={nextRun.time} />
             <RunDatum label="Distance" value={nextRun.distance} />
             <RunDatum label="Départ" value={nextRun.location} />
             <Link
-              className="group flex min-h-20 items-center justify-between gap-8 bg-[#d96ab4] px-5 font-mono text-xs font-black uppercase text-[#351815] transition-colors hover:bg-[#351815] hover:text-[#f6eadf] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#ffb000] md:min-h-0 md:px-7"
+              className="group flex min-h-20 items-center justify-between gap-8 bg-[#d96ab4] px-5 font-mono text-xs font-black uppercase text-[#351815] transition-colors hover:bg-[#351815] hover:text-[#f6eadf] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#ffb000] sm:col-span-2 lg:col-span-1 lg:min-h-0 lg:px-7"
               href={runsHref}
             >
               <span>Je viens</span>
@@ -132,7 +132,7 @@ export function HomeExperience({
             Le reste du <span className="text-[#d96ab4]">club.</span>
           </h2>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 lg:grid-cols-3">
             <ExploreCard href={communityHref} label="Communauté" text="Qui vient, et ce qui se passe entre les runs." />
             <ExploreCard href={merchHref} label="Merch" text="Les pièces du club, quand elles sont dispo." />
             <ExploreCard href={aboutHref} label="À propos" text="D’où vient NULLL.CLUB." />
@@ -172,7 +172,7 @@ export function HomeExperience({
 
 function RunDatum({ emphasis = false, label, value }: { emphasis?: boolean; label: string; value: string }) {
   return (
-    <div className={`${emphasis ? "bg-[#ffb000]" : ""} border-b border-[#351815] px-5 py-4 last:border-b-0 md:border-b-0 md:border-r`}>
+    <div className={`${emphasis ? "bg-[#ffb000]" : "bg-[#f6eadf]"} px-5 py-4`}>
       <p className="font-mono text-xs font-black uppercase tracking-[.08em] opacity-70">{label}</p>
       <p className={`${emphasis ? "text-xl sm:text-2xl" : "text-lg"} mt-1 font-black uppercase leading-tight`}>{value}</p>
     </div>

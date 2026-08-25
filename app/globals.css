@@ -98,12 +98,22 @@ a {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-.font-display {
-  max-width: 100%;
-  overflow-wrap: anywhere;
+/* Filet de securite : un titre ne doit jamais deborder. `anywhere` autorise
+   la coupure n'importe ou ET reduit la largeur min-content, ce qui permet
+   aux grilles de retrecir sur un jeton insecable (« contact@nulll.club »).
+   IMPORTANT : ce bloc doit rester dans @layer base. Sans lui, la regle
+   passait APRES `@tailwind utilities` et ecrasait silencieusement les
+   `[overflow-wrap:normal]` poses sur les titres d'affiche — d'ou les
+   coupures en plein mot (« RENCONT / RES ») sur le podium. Dans la couche
+   base, ces opt-out explicites l'emportent enfin. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  .font-display {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
 }
 
 summary {
@@ -815,7 +825,10 @@ textarea {
   }
 }
 
-@media (max-width: 639px) {
+/* Le podium ne passe en 3 colonnes qu'a partir de md (768px) : en dessous,
+   les blocs sont empiles, donc l'estrade et la ligne d'arrivee n'ont pas
+   de sens. Doit rester aligne sur le `md:grid-cols-3` de la page sorties. */
+@media (max-width: 767px) {
   .principles-stage::before,
   .finish-line {
     display: none;

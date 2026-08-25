@@ -97,7 +97,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
   return (
     <footer className="border-t-2 border-[#351815] bg-[#351815] text-[#f6eadf]">
       <div className="mx-auto max-w-[1600px] px-5 py-10 sm:px-8 sm:py-14 xl:px-12">
-        <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-12">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-12">
           <div>
             <p className="max-w-[13ch] font-display text-[clamp(2rem,3.4vw,2.9rem)] uppercase leading-[.96] [overflow-wrap:normal]">
               Social sport club à Aix-en-Provence.
