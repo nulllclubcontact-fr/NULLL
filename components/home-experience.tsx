@@ -24,7 +24,7 @@ export function HomeExperience({
   return (
     <>
       {/* ---------------- HERO ---------------- */}
-      <section className="relative min-h-[calc(100dvh-82px)] overflow-hidden bg-[#120908] text-[#f6eadf]" aria-labelledby="home-title">
+      <section className="relative overflow-hidden bg-[#120908] text-[#f6eadf]" aria-labelledby="home-title">
         <Image
           alt="Le groupe NULLL.CLUB court dans une rue d’Aix-en-Provence au lever du soleil"
           className="hero-photo object-cover object-[62%_center]"
