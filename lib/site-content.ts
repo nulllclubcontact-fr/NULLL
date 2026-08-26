@@ -316,23 +316,49 @@ export function getSiteCopy(locale: Locale) {
         ]
       },
       communityPage: {
-        title: "Une communauté running locale, régulière et accueillante.",
+        title: "Tu viens seul. Tu ne repars jamais seul.",
         intro:
-          "NULLL.CLUB n’est pas seulement un groupe de course à Aix. C’est un rendez-vous récurrent pour créer des liens dans une ville où il est facile de rester dans son cercle.",
+          "NULLL.CLUB n’est pas seulement un groupe de course à Aix-en-Provence. C’est un rendez-vous récurrent pour créer des liens dans une ville où il est facile de rester dans son cercle.",
+        tags: ["Zéro écouteurs", "Allure conversation", "Ouvert à tous"],
+        // Faits verifiables, repris tels quels du reste du site.
+        facts: [
+          { label: "Quand", value: "Tous les samedis, 8h30" },
+          { label: "Où", value: "Parking Émile Zola, Aix" },
+          { label: "Distance", value: "5 à 6 km" },
+          { label: "Combien", value: "Gratuit, sans inscription" }
+        ],
+        // Ce que cherche vraiment quelqu'un qui hesite a venir seul.
+        steps: [
+          {
+            title: "Tu arrives",
+            text: "Présente-toi et dis que c’est ta première fois. Quelqu’un te prend en charge, tu n’as rien à préparer et rien à signer."
+          },
+          {
+            title: "On court",
+            text: "5 à 6 km à allure conversation, celle où l’on peut encore parler. Personne n’est laissé derrière, il y a toujours quelqu’un avec le dernier groupe."
+          },
+          {
+            title: "On reste",
+            text: "Le moment qui suit la course compte autant que la course. C’est là que les gens se parlent vraiment, et c’est ce qui fait revenir la semaine d’après."
+          }
+        ],
         pillars: [
           {
             title: "Ouvert aux nouveaux",
-            text: "Chaque run est pensé pour qu’une première venue soit simple et agréable."
+            text: "La majorité des personnes qui viennent pour la première fois n’ont pas de club et ne courent pas en compétition."
           },
           {
             title: "Ancré à Aix-en-Provence",
-            text: "Le club valorise les parcours, les rencontres et les lieux de la ville."
+            text: "Les parcours partent du centre : parc Jourdan, la Torse, et plus loin le Réaltor ou la Sainte-Victoire."
           },
           {
-            title: "Orienté lien social",
-            text: "Le sport est le point de départ, pas la seule promesse."
+            title: "Le lien d’abord",
+            text: "Le sport est le point de départ, pas la seule promesse. On vient pour courir, on revient pour les gens."
           }
-        ]
+        ],
+        galleryTitle: "Le club, en vrai.",
+        ctaTitle: "Le prochain rendez-vous est samedi.",
+        ctaText: "Rien à réserver. Présente-toi à 8h25 au parking Émile Zola, on s’occupe du reste."
       },
       aboutPage: {
         title: "Un club de running social, pas une posture.",
