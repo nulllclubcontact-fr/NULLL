@@ -972,3 +972,30 @@ textarea {
     transform: none;
   }
 }
+
+/* Carte Instagram de la page communaute */
+.social-card-photo {
+  transform: scale(1.02);
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.social-card-arrow {
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .social-card:hover .social-card-photo {
+    transform: scale(1.07);
+  }
+
+  .social-card:hover .social-card-arrow {
+    transform: translateX(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-card-photo,
+  .social-card-arrow {
+    transition: none;
+  }
+}

@@ -90,30 +90,6 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ---------------- BANDEAU DÉFILANT ---------------- */}
-      <div
-        aria-label={page.ticker}
-        className="marquee border-y-2 border-[#351815] bg-[#ffb000] py-4 text-[#351815]"
-        role="region"
-      >
-        <div aria-hidden="true" className="marquee-track font-mono text-xs font-black uppercase tracking-[.16em] sm:text-sm">
-          <p className="shrink-0 whitespace-nowrap px-6">{page.ticker}&nbsp;&nbsp;—&nbsp;&nbsp;</p>
-          <p className="shrink-0 whitespace-nowrap px-6">{page.ticker}&nbsp;&nbsp;—&nbsp;&nbsp;</p>
-        </div>
-      </div>
-
-      {/* ---------------- LES REPÈRES ---------------- */}
-      <section className="bg-[#351815] text-[#f6eadf]" aria-label="Informations pratiques">
-        <dl className="mx-auto grid max-w-[1600px] gap-px bg-[#f6eadf]/25 sm:grid-cols-2 lg:grid-cols-4">
-          {page.facts.map((fact) => (
-            <div className="bg-[#351815] px-5 py-7 sm:px-6" key={fact.label}>
-              <dt className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#ffb000]">{fact.label}</dt>
-              <dd className="mt-2 font-display text-[clamp(1.6rem,2.4vw,2.4rem)] uppercase leading-[.95]">{fact.value}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
       {/* ---------------- TA PREMIÈRE FOIS ---------------- */}
       <section className="border-t-2 border-[#351815] bg-[#f6eadf] text-[#351815]" aria-labelledby="community-steps">
         <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
@@ -159,26 +135,44 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ---------------- LA CARTE DU CLUB ----------------
-          Les piliers etaient une simple liste de trois colonnes. Un reseau de
-          noeuds relies dit mieux ce qu'est une communaute, et rend la section
-          manipulable : chaque pilier reagit au survol, au focus et au clic. */}
-      <section className="border-t-2 border-[#351815] bg-[#351815] text-[#f6eadf]" aria-labelledby="community-map">
-        <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
-          <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">Ce qui ne change pas</p>
-          <h2 className="mt-5 max-w-[14ch] font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[.86] tracking-[-.035em]" id="community-map">
-            {page.mapTitle}
-          </h2>
-          <p className="mt-5 max-w-lg text-lg font-bold leading-snug text-[#f6eadf]/80">{page.mapIntro}</p>
+      {/* ---------------- INSTAGRAM ----------------
+          La vraie preuve sociale du club, et la seule chose que cette page
+          peut montrer que les autres n'ont pas. On renvoie vers le compte
+          plutot que de simuler un flux : afficher des photos du site en
+          grille laisserait croire a un fil Instagram qui n'en est pas un. */}
+      <section className="border-t-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="community-social">
+        <div className="mx-auto grid max-w-[1600px] gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-16 xl:px-12">
+          <div>
+            <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#d96ab4]">{page.social.kicker}</p>
+            <h2 className="mt-5 max-w-[13ch] font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[.86] tracking-[-.035em]" id="community-social">
+              {page.social.title}
+            </h2>
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-[#f6eadf]/80">{page.social.text}</p>
+          </div>
 
-          <ClubMap
-            nodes={page.pillars.map((pillar) => ({
-              label: pillar.title,
-              text: pillar.text,
-              detail: pillar.detail,
-              accent: pillar.accent
-            }))}
-          />
+          <a
+            className="social-card group relative flex flex-col justify-between gap-10 overflow-hidden border-2 border-[#f6eadf]/30 p-7 focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4] sm:p-9"
+            href={copy.contact.instagram}
+            rel="noreferrer noopener"
+            target="_blank"
+          >
+            <Image
+              alt=""
+              className="social-card-photo object-cover object-[50%_38%]"
+              fill
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              src="/assets/photos/runs-crew.webp"
+            />
+            <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(140deg,rgba(18,9,8,.9)_0%,rgba(18,9,8,.6)_100%)]" />
+            <span className="relative font-mono text-xs font-black uppercase tracking-[.16em] text-[#f6eadf]/70">Instagram</span>
+            <span className="relative">
+              <span className="block font-display text-[clamp(2rem,3.4vw,3rem)] uppercase leading-none">{copy.contact.instagramLabel}</span>
+              <span className="mt-5 inline-flex items-center gap-4 border-2 border-[#f6eadf] px-5 py-3 font-mono text-xs font-black uppercase tracking-[.12em] transition-colors group-hover:bg-[#f6eadf] group-hover:text-[#351815]">
+                {page.social.cta}
+                <span aria-hidden="true" className="social-card-arrow">→</span>
+              </span>
+            </span>
+          </a>
         </div>
       </section>
 

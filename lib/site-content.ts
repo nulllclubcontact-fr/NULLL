@@ -414,6 +414,12 @@ export function getSiteCopy(locale: Locale) {
             accent: "bg-[#f6eadf]"
           }
         ],
+        social: {
+          kicker: "La suite se passe là-bas",
+          title: "Le club vit sur Instagram.",
+          text: "Les photos de chaque samedi, les changements de dernière minute, les gens qui viennent : tout est là. C’est le meilleur endroit pour voir à quoi ressemble une sortie avant de venir.",
+          cta: "Voir le compte"
+        },
         ctaTitle: "Le prochain rendez-vous est samedi.",
         ctaText: "Rien à réserver. Présente-toi à 8h25 au parking Émile Zola, on s’occupe du reste."
       },
