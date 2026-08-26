@@ -319,27 +319,76 @@ export function getSiteCopy(locale: Locale) {
         title: "Tu viens seul. Tu ne repars jamais seul.",
         intro:
           "NULLL.CLUB n’est pas seulement un groupe de course à Aix-en-Provence. C’est un rendez-vous récurrent pour créer des liens dans une ville où il est facile de rester dans son cercle.",
-        tags: ["Zéro écouteurs", "Allure conversation", "Ouvert à tous"],
-        // Faits verifiables, repris tels quels du reste du site.
+        ticker: "Zéro écouteurs — Allure conversation — Personne derrière — Ouvert à tous — After run",
         facts: [
-          { label: "Quand", value: "Tous les samedis, 8h30" },
-          { label: "Où", value: "Parking Émile Zola, Aix" },
+          { label: "Quand", value: "Samedi, 8h30" },
+          { label: "Où", value: "Parking Émile Zola" },
           { label: "Distance", value: "5 à 6 km" },
-          { label: "Combien", value: "Gratuit, sans inscription" }
+          { label: "Combien", value: "Gratuit" }
         ],
-        // Ce que cherche vraiment quelqu'un qui hesite a venir seul.
         steps: [
           {
             title: "Tu arrives",
-            text: "Présente-toi et dis que c’est ta première fois. Quelqu’un te prend en charge, tu n’as rien à préparer et rien à signer."
+            text: "Présente-toi et dis que c’est ta première fois. Quelqu’un te prend en charge. Rien à préparer, rien à signer.",
+            photo: "/assets/photos/principle-fun.webp",
+            position: "object-[50%_26%]",
+            alt: "Un membre du club accueille un nouveau venu avant le départ"
           },
           {
             title: "On court",
-            text: "5 à 6 km à allure conversation, celle où l’on peut encore parler. Personne n’est laissé derrière, il y a toujours quelqu’un avec le dernier groupe."
+            text: "5 à 6 km à allure conversation, celle où l’on peut encore parler. Personne n’est laissé derrière.",
+            photo: "/assets/photos/principle-meet.webp",
+            position: "object-[50%_45%]",
+            alt: "Deux coureurs du club sur un chemin ombragé à Aix-en-Provence"
           },
           {
             title: "On reste",
-            text: "Le moment qui suit la course compte autant que la course. C’est là que les gens se parlent vraiment, et c’est ce qui fait revenir la semaine d’après."
+            text: "Le moment qui suit la course compte autant que la course. C’est là que les gens se parlent vraiment.",
+            photo: "/assets/photos/runs-crew.webp",
+            position: "object-[45%_38%]",
+            alt: "Deux membres du club discutent en riant après la sortie"
+          }
+        ],
+        // Les photos editoriales du club — chambre, douche, lunettes miroir —
+        // n'etaient utilisees nulle part. Elles racontent la vie autour du run.
+        galleryTitle: "Les 23 autres heures.",
+        galleryIntro:
+          "Le run dure une heure. Le club, c’est surtout ce qu’il y a autour.",
+        gallery: [
+          {
+            label: "Le réveil",
+            text: "Le samedi à 7h40, la seule vraie difficulté de la semaine.",
+            src: "/assets/photos/editorial-bed.webp",
+            position: "object-[50%_32%]",
+            alt: "Réveil difficile un samedi matin avant la sortie du club"
+          },
+          {
+            label: "Le reflet",
+            text: "Tu arrives seul. Au bout de dix minutes tu es dans le groupe.",
+            src: "/assets/photos/editorial-glasses.webp",
+            position: "object-[52%_48%]",
+            alt: "Le groupe du club se reflète dans le verre miroir de lunettes de sport"
+          },
+          {
+            label: "Le matériel",
+            text: "Une paire, une clé, une gourde. Il n’en faut pas plus.",
+            src: "/assets/photos/runner-ground.webp",
+            position: "object-[50%_52%]",
+            alt: "Chaussures, clés et gourde posées au sol après la course"
+          },
+          {
+            label: "La douche",
+            text: "Et le reste de la journée qui reprend, en mieux.",
+            src: "/assets/photos/editorial-shower.webp",
+            position: "object-[50%_26%]",
+            alt: "Portrait décalé sous la douche après la sortie du samedi"
+          },
+          {
+            label: "Le lendemain",
+            text: "On recommence samedi. C’est tout l’intérêt d’un rendez-vous fixe.",
+            src: "/assets/photos/motion-run.webp",
+            position: "object-[50%_32%]",
+            alt: "Deux membres du club en mouvement, saisis en flou"
           }
         ],
         pillars: [
@@ -348,7 +397,7 @@ export function getSiteCopy(locale: Locale) {
             text: "La majorité des personnes qui viennent pour la première fois n’ont pas de club et ne courent pas en compétition."
           },
           {
-            title: "Ancré à Aix-en-Provence",
+            title: "Ancré à Aix",
             text: "Les parcours partent du centre : parc Jourdan, la Torse, et plus loin le Réaltor ou la Sainte-Victoire."
           },
           {
@@ -356,7 +405,6 @@ export function getSiteCopy(locale: Locale) {
             text: "Le sport est le point de départ, pas la seule promesse. On vient pour courir, on revient pour les gens."
           }
         ],
-        galleryTitle: "Le club, en vrai.",
         ctaTitle: "Le prochain rendez-vous est samedi.",
         ctaText: "Rien à réserver. Présente-toi à 8h25 au parking Émile Zola, on s’occupe du reste."
       },

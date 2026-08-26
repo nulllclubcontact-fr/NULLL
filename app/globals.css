@@ -762,3 +762,94 @@ textarea {
     transform: none;
   }
 }
+
+/* ------------------------------------------------------------------
+   GALERIE DU CLUB — liste de moments, grande photo pilotee au survol
+   (ou au scroll sur tactile, ou il n'y a pas de survol).
+   ------------------------------------------------------------------ */
+.club-gallery-photo {
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 520ms ease-out, transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.club-gallery-photo.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.club-gallery-label,
+.club-gallery-text,
+.club-gallery-arrow {
+  transition: color 260ms ease-out, opacity 260ms ease-out, transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Ligne au repos : en retrait, pour que l'active se detache franchement. */
+.club-gallery-trigger .club-gallery-label {
+  color: rgba(246, 234, 223, 0.42);
+}
+
+.club-gallery-trigger .club-gallery-arrow {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.club-gallery-trigger.is-active .club-gallery-label {
+  color: #ffb000;
+  transform: translateX(6px);
+}
+
+.club-gallery-trigger.is-active .club-gallery-text {
+  transform: translateX(6px);
+}
+
+.club-gallery-trigger.is-active .club-gallery-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: #ffb000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .club-gallery-photo,
+  .club-gallery-label,
+  .club-gallery-text,
+  .club-gallery-arrow {
+    transition: none;
+  }
+
+  .club-gallery-photo {
+    transform: none;
+  }
+
+  .club-gallery-trigger.is-active .club-gallery-label,
+  .club-gallery-trigger.is-active .club-gallery-text {
+    transform: none;
+  }
+}
+
+/* Cartes de la sequence « ta premiere fois » */
+.step-card {
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 300ms ease-out;
+}
+
+.step-photo {
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .step-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 #d96ab4;
+  }
+
+  .step-card:hover .step-photo {
+    transform: scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-card,
+  .step-photo {
+    transition: none;
+  }
+}
