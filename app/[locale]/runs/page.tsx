@@ -190,7 +190,7 @@ export default async function RunsPage({ params }: PageProps) {
             </Reveal>
           </ol>
 
-          <div aria-hidden="true" className="finish-line relative z-10 h-7 border-x-2 border-b-2 border-[#351815]" />
+          <div aria-hidden="true" className="finish-line relative z-10 h-10" />
         </div>
       </section>
 

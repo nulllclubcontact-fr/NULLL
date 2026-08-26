@@ -484,25 +484,32 @@ textarea {
   isolation: isolate;
 }
 
+/* Le fond de la section doit soutenir le podium, pas le contrarier. Les
+   anciennes stries a 165deg opposaient des diagonales a des blocs
+   strictement d'aplomb : c'est ce qui rendait l'ensemble bancal. On garde
+   une profondeur verticale, qui pose le podium au sol. */
 .principles-section::before {
   position: absolute;
   inset: 0;
   z-index: -1;
   content: "";
-  background: repeating-linear-gradient(165deg, transparent 0 112px, rgba(246, 234, 223, 0.055) 113px 115px, transparent 116px 226px);
-  transform: scale(1.15);
+  background:
+    radial-gradient(120% 70% at 50% 100%, rgba(255, 176, 0, 0.07) 0%, transparent 62%),
+    linear-gradient(to bottom, transparent 0%, rgba(18, 9, 8, 0.55) 100%);
 }
 
+/* Ombre portee du podium au sol. Aucune arete : une estrade dessinee
+   derriere les blocs ne montrait que ses debords lateraux et produisait
+   deux traits parasites. Le socle, c'est la ligne d'arrivee ci-dessous. */
 .principles-stage::before {
   position: absolute;
   right: -3rem;
   bottom: -1rem;
   left: -3rem;
   z-index: -1;
-  height: 45%;
+  height: 6rem;
   content: "";
-  background: #24100e;
-  clip-path: polygon(3% 24%, 97% 0, 100% 100%, 0 100%);
+  background: radial-gradient(60% 100% at 50% 100%, rgba(18, 9, 8, 0.75) 0%, transparent 70%);
 }
 
 .principle-block {
@@ -585,8 +592,15 @@ textarea {
   margin-top: 4.75rem;
 }
 
+/* Le socle du podium : la ligne d'arrivee. C'est elle qui porte les trois
+   blocs, d'ou l'arete claire en haut — sans elle les blocs flottaient — et
+   le debord lateral qui lui donne l'assise d'une vraie estrade. */
 .finish-line {
-  background: conic-gradient(from 90deg, #351815 25%, #f6eadf 0 50%, #351815 0 75%, #f6eadf 0) 0 0 / 28px 28px;
+  margin-right: -1.25rem;
+  margin-left: -1.25rem;
+  border-top: 3px solid #f6eadf;
+  box-shadow: 0 10px 0 rgba(18, 9, 8, 0.55);
+  background: conic-gradient(from 90deg, #1c0d0b 25%, #f6eadf 0 50%, #1c0d0b 0 75%, #f6eadf 0) 0 0 / 20px 20px;
 }
 
 @media (hover: hover) {
