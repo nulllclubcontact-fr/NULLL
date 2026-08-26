@@ -58,17 +58,17 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       />
 
       {/* ---------------- AFFICHE ----------------
-          editorial-glasses : le groupe entier se reflete dans le verre. C'est
-          l'image la plus forte du dossier et elle dit exactement le sujet de
-          la page. Elle n'etait utilisee nulle part. */}
+          Cadrage verifie en simulant le recadrage reel du hero : les deux
+          coureurs restent dans le champ et le bas de l'image est assez sombre
+          pour porter le titre. */}
       <section className="relative isolate flex min-h-[86svh] flex-col justify-end overflow-hidden bg-[#120908] text-[#f6eadf]" aria-labelledby="community-title">
         <Image
-          alt="Le groupe NULLL.CLUB se reflète dans le verre miroir des lunettes d’un membre"
-          className="object-cover object-[52%_46%]"
+          alt="Deux membres de NULLL.CLUB courent ensemble au lever du soleil sur un chemin d’Aix-en-Provence"
+          className="object-cover object-[50%_42%]"
           fill
           priority
           sizes="100vw"
-          src="/assets/photos/editorial-glasses.webp"
+          src="/assets/photos/runs-golden.webp"
         />
         <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,9,8,.94)_0%,rgba(18,9,8,.6)_38%,rgba(18,9,8,.15)_72%,rgba(18,9,8,.5)_100%)]" />
 
