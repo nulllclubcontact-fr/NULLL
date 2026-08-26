@@ -391,18 +391,27 @@ export function getSiteCopy(locale: Locale) {
             alt: "Deux membres du club en mouvement, saisis en flou"
           }
         ],
+        mapTitle: "La carte du club.",
+        mapIntro:
+          "Trois piliers, un seul rendez-vous. Survole un pilier pour le détail.",
         pillars: [
           {
             title: "Ouvert aux nouveaux",
-            text: "La majorité des personnes qui viennent pour la première fois n’ont pas de club et ne courent pas en compétition."
+            text: "La majorité des personnes qui viennent pour la première fois n’ont pas de club et ne courent pas en compétition.",
+            detail: "Aucun niveau requis",
+            accent: "bg-[#ffb000]"
           },
           {
             title: "Ancré à Aix",
-            text: "Les parcours partent du centre : parc Jourdan, la Torse, et plus loin le Réaltor ou la Sainte-Victoire."
+            text: "Les parcours partent du centre : parc Jourdan, la Torse, et plus loin le Réaltor ou la Sainte-Victoire.",
+            detail: "Départ parking Émile Zola",
+            accent: "bg-[#d96ab4]"
           },
           {
             title: "Le lien d’abord",
-            text: "Le sport est le point de départ, pas la seule promesse. On vient pour courir, on revient pour les gens."
+            text: "Le sport est le point de départ, pas la seule promesse. On vient pour courir, on revient pour les gens.",
+            detail: "L’after run fait partie du run",
+            accent: "bg-[#f6eadf]"
           }
         ],
         ctaTitle: "Le prochain rendez-vous est samedi.",

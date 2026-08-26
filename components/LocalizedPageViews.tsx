@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ClubGallery } from "./club-gallery";
+import { ClubMap } from "./club-map";
 import { Reveal } from "./reveal";
 import { StructuredData } from "./StructuredData";
 import { CheckoutForm } from "./checkout-form";
@@ -158,20 +159,26 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ---------------- CE QUI NE CHANGE PAS ---------------- */}
-      <section className="border-t-2 border-[#351815] bg-[#351815] text-[#f6eadf]" aria-labelledby="community-pillars">
+      {/* ---------------- LA CARTE DU CLUB ----------------
+          Les piliers etaient une simple liste de trois colonnes. Un reseau de
+          noeuds relies dit mieux ce qu'est une communaute, et rend la section
+          manipulable : chaque pilier reagit au survol, au focus et au clic. */}
+      <section className="border-t-2 border-[#351815] bg-[#351815] text-[#f6eadf]" aria-labelledby="community-map">
         <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
-          <h2 className="max-w-[16ch] font-display text-[clamp(2.4rem,5vw,4.6rem)] uppercase leading-[.88] tracking-[-.03em]" id="community-pillars">
-            Ce qui ne <span className="text-[#ffb000]">change pas.</span>
+          <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">Ce qui ne change pas</p>
+          <h2 className="mt-5 max-w-[14ch] font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[.86] tracking-[-.035em]" id="community-map">
+            {page.mapTitle}
           </h2>
-          <ul className="mt-12 grid gap-10 lg:grid-cols-3 lg:gap-14">
-            {page.pillars.map((pillar, index) => (
-              <Reveal as="li" className="border-t-2 border-[#f6eadf]/35 pt-6" delay={index * 110} key={pillar.title}>
-                <h3 className="font-display text-[clamp(1.9rem,2.8vw,2.8rem)] uppercase leading-[.92] text-[#ffb000]">{pillar.title}</h3>
-                <p className="mt-4 text-lg leading-relaxed text-[#f6eadf]/80">{pillar.text}</p>
-              </Reveal>
-            ))}
-          </ul>
+          <p className="mt-5 max-w-lg text-lg font-bold leading-snug text-[#f6eadf]/80">{page.mapIntro}</p>
+
+          <ClubMap
+            nodes={page.pillars.map((pillar) => ({
+              label: pillar.title,
+              text: pillar.text,
+              detail: pillar.detail,
+              accent: pillar.accent
+            }))}
+          />
         </div>
       </section>
 
