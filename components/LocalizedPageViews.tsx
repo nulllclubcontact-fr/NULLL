@@ -64,12 +64,12 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
           pour porter le titre. */}
       <section className="relative isolate flex min-h-[86svh] flex-col justify-end overflow-hidden bg-[#120908] text-[#f6eadf]" aria-labelledby="community-title">
         <Image
-          alt="Deux membres de NULLL.CLUB courent ensemble au lever du soleil sur un chemin d’Aix-en-Provence"
-          className="object-cover object-[50%_42%]"
+          alt="Deux membres de NULLL.CLUB dans une rue d’Aix-en-Provence après la sortie du samedi"
+          className="object-cover object-[42%_35%]"
           fill
           priority
           sizes="100vw"
-          src="/assets/photos/runs-golden.webp"
+          src="/assets/photos/runners-aix.webp"
         />
         <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,9,8,.94)_0%,rgba(18,9,8,.6)_38%,rgba(18,9,8,.15)_72%,rgba(18,9,8,.5)_100%)]" />
 
