@@ -47,7 +47,7 @@ export function HomeExperience({
           </div>
 
           <div className="max-w-3xl py-12 sm:py-24">
-            <h1 className="home-title font-display uppercase tracking-[-.03em]" id="home-title">
+            <h1 className="home-title font-display uppercase" id="home-title">
               <span className="hero-rise" style={{ animationDelay: "80ms" }}>On court ensemble,</span>
               <span className="hero-rise text-[#d96ab4]" style={{ animationDelay: "200ms" }}>tous les samedis.</span>
             </h1>
@@ -94,7 +94,7 @@ export function HomeExperience({
       <section className="bg-[#f6eadf] text-[#351815]" aria-labelledby="home-next-runs">
         <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
           <div className="flex flex-col gap-5 border-b-2 border-[#351815] pb-8 sm:flex-row sm:items-end sm:justify-between">
-            <h2 className="font-display text-[clamp(2.6rem,5.5vw,5rem)] uppercase leading-[.9] tracking-[-.025em]" id="home-next-runs">
+            <h2 className="font-display text-[clamp(2.6rem,5.5vw,5rem)] uppercase leading-[.9]" id="home-next-runs">
               Les prochaines <span className="text-[#d96ab4]">dates.</span>
             </h2>
             <p className="max-w-sm text-lg font-bold leading-snug">Rendez-vous au même endroit, chaque samedi matin.</p>
@@ -136,7 +136,7 @@ export function HomeExperience({
            « Aix-en-Provence » — absent du hero, qui reste une accroche. */}
       <section className="border-t-2 border-[#351815] bg-[#f6eadf] text-[#351815]" aria-labelledby="home-le-club">
         <div className="mx-auto max-w-[1600px] px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 xl:px-12">
-          <h2 className="max-w-[18ch] font-display text-[clamp(2.2rem,4.5vw,4rem)] uppercase leading-[.9] tracking-[-.025em]" id="home-le-club">
+          <h2 className="max-w-[18ch] font-display text-[clamp(2.2rem,4.5vw,4rem)] uppercase leading-[.9]" id="home-le-club">
             Un run club <span className="text-[#d96ab4]">à Aix-en-Provence.</span>
           </h2>
 
@@ -189,7 +189,7 @@ export function HomeExperience({
       {/* ---------------- ALLER PLUS LOIN ---------------- */}
       <section className="bg-[#120908] text-[#f6eadf]" aria-labelledby="home-explore">
         <div className="mx-auto max-w-[1600px] px-5 py-14 sm:px-8 sm:py-18 xl:px-12">
-          <h2 className="font-display text-[clamp(2.2rem,4.5vw,4rem)] uppercase leading-[.9] tracking-[-.025em]" id="home-explore">
+          <h2 className="font-display text-[clamp(2.2rem,4.5vw,4rem)] uppercase leading-[.9]" id="home-explore">
             Le reste du <span className="text-[#d96ab4]">club.</span>
           </h2>
 
@@ -217,7 +217,7 @@ export function HomeExperience({
                 { big: "Gratuit", meta: nextRun.date }
               ].map((segment) => (
                 <span className="marquee-item" key={segment.big}>
-                  <span className="font-display text-[clamp(1.6rem,3.2vw,2.8rem)] uppercase leading-none tracking-[-.02em]">
+                  <span className="font-display text-[clamp(1.6rem,3.2vw,2.8rem)] uppercase leading-none">
                     {segment.big}
                   </span>
                   <span className="font-mono text-xs font-black uppercase tracking-[.12em] opacity-70">{segment.meta}</span>

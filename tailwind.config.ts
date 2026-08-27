@@ -18,8 +18,10 @@ const config: Config = {
         shock: "#ff3fb4"
       },
       fontFamily: {
-        display: ["Haettenschweiler", "Impact", "Arial Narrow", "Arial", "sans-serif"],
-        mono: ["Courier New", "Courier", "monospace"],
+        // Les variables viennent de next/font (voir app/layout.tsx). Les noms
+        // systeme restent en repli pour le cas ou la police ne charge pas.
+        display: ["var(--font-display)", "Haettenschweiler", "Impact", "Arial Narrow", "sans-serif"],
+        mono: ["var(--font-mono)", "Courier New", "Courier", "monospace"],
         sans: ["Arial", "Helvetica", "sans-serif"]
       },
       animation: {

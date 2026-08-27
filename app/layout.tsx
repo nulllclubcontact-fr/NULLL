@@ -1,6 +1,31 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { Anton, Courier_Prime } from "next/font/google";
 import "./globals.css";
+
+// Le site n'embarquait aucune police : il comptait sur Haettenschweiler,
+// livree avec Microsoft Office. Les visiteurs qui ne l'ont pas retombaient
+// sur Arial, bien plus large — et le letter-spacing negatif des titres,
+// calibre pour une police ultra-condensee, collait les lettres entre elles.
+// next/font telecharge les polices au build et les sert depuis le domaine :
+// pas d'appel externe a l'execution, et pas de saut de mise en page.
+const police_display = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-display",
+  // Ajuste les metriques du repli pour qu'un chargement lent ne decale rien.
+  adjustFontFallback: false,
+  fallback: ["Haettenschweiler", "Impact", "Arial Narrow", "sans-serif"]
+});
+
+const police_mono = Courier_Prime({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-mono",
+  fallback: ["Courier New", "Courier", "monospace"]
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nulll.club"),
@@ -33,7 +58,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html className={`${police_display.variable} ${police_mono.variable}`} lang="fr">
       <body>{children}</body>
     </html>
   );
