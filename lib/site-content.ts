@@ -344,8 +344,8 @@ export function getSiteCopy(locale: Locale) {
           },
           {
             highlight: 4,
-            word: "Lancer",
-            text: "On ne s’arrête pas à la course à pied. D’autres sports sont déjà sur le feu, et avec eux des événements, des ateliers et des voyages."
+            word: "Légèreté",
+            text: "Ni chrono, ni classement, ni dossard. On ne se prend pas au sérieux — c’est encore la meilleure raison de revenir le samedi suivant."
           }
         ],
 
@@ -431,7 +431,7 @@ export function getSiteCopy(locale: Locale) {
           },
           {
             q: "Pourquoi « NULLL » avec trois L ?",
-            a: "Le nom vient de « null » : on n’a pas besoin d’être un sportif de renom pour faire du sport. Les trois L, ce sont nos trois piliers — Libre, Lien, Lancer."
+            a: "Le nom vient de « null » : on n’a pas besoin d’être un sportif de renom pour faire du sport. Les trois L, ce sont nos trois piliers — Libre, Lien, Légèreté."
           },
           {
             q: "Est-ce uniquement un club de course à pied ?",
