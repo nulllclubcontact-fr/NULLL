@@ -83,7 +83,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       <section className="border-t-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="club-timeline">
         <div className="mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#d96ab4]">D’où ça vient</p>
-          <h2 className="mt-5 max-w-[14ch] font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[.86] tracking-[-.035em]" id="club-timeline">
+          <h2 className="mt-5 max-w-[14ch] font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[.9] tracking-[-.035em]" id="club-timeline">
             {page.timelineTitle}
           </h2>
 
@@ -109,7 +109,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
           <ol className="mt-12 grid gap-px bg-[#351815] md:grid-cols-3">
             {page.letters.map((item, index) => (
               <Reveal as="li" className="flex flex-col bg-[#f6eadf] px-6 py-8 sm:px-8 sm:py-10" delay={index * 110} key={item.word}>
-                <p aria-hidden="true" className="font-display text-[clamp(2.6rem,5vw,4.4rem)] uppercase leading-[.8] tracking-[-.02em]">
+                <p aria-hidden="true" className="font-display text-[clamp(2.6rem,5vw,4.4rem)] uppercase leading-[.9] tracking-[-.02em]">
                   {"NULLL".split("").map((lettre, position) => (
                     <span
                       className={position === item.highlight ? "text-[#d96ab4]" : "text-[#351815]/22"}
