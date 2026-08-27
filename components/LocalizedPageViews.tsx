@@ -25,28 +25,53 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       />
       <StructuredData data={buildFaqSchema(page.faq)} />
 
-      {/* ---------------- AFFICHE ---------------- */}
-      <section className="relative isolate flex min-h-[78svh] flex-col justify-end overflow-hidden bg-[#120908] text-[#f6eadf]" aria-labelledby="club-title">
-        <Image
-          alt="Tobias Ringot et Tom Brenier, fondateurs de NULLL.CLUB, dans une rue d’Aix-en-Provence"
-          className="object-cover object-[42%_35%]"
-          fill
-          priority
-          sizes="100vw"
-          src="/assets/photos/runners-aix.webp"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,9,8,.95)_0%,rgba(18,9,8,.62)_42%,rgba(18,9,8,.2)_76%,rgba(18,9,8,.45)_100%)]" />
+      {/* ---------------- OUVERTURE ----------------
+          Les trois autres pages ouvrent sur une photo plein cadre avec le
+          titre pose dessus. Ici la photo devient un objet encadre et la page
+          s'ouvre sur les mots : c'est une page qui raconte, pas une affiche.
+          Ca supprime aussi la collision entre le titre et les personnes. */}
+      <section className="border-b-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="club-title">
+        <div className="mx-auto grid max-w-[1600px] gap-12 px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16 xl:px-12">
+          <div>
+            <h1 className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#ffb000]" id="club-title" style={{ animationDelay: "60ms" }}>
+              {page.title}
+            </h1>
+            <p className="hero-rise mt-6 font-display text-[clamp(2.4rem,4.6vw,4.6rem)] uppercase leading-[.88] tracking-[-.035em]" style={{ animationDelay: "150ms" }}>
+              {page.punchlineLines.map((ligne, index) => (
+                <span className={`block ${index === 1 ? "text-[#ffb000]" : ""}`} key={ligne}>
+                  {ligne}
+                </span>
+              ))}
+            </p>
+            <p className="hero-rise mt-7 max-w-xl text-lg leading-relaxed text-[#f6eadf]/82" style={{ animationDelay: "260ms" }}>
+              {page.intro}
+            </p>
 
-        <div className="relative mx-auto w-full max-w-[1600px] px-5 pb-14 pt-24 sm:px-8 sm:pb-20 xl:px-12">
-          <h1 className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#ffb000]" id="club-title" style={{ animationDelay: "80ms" }}>
-            {page.title}
-          </h1>
-          <p className="hero-rise hero-text-shadow mt-6 max-w-[16ch] font-display text-[clamp(2.6rem,6.6vw,6rem)] uppercase leading-[.86] tracking-[-.04em]" style={{ animationDelay: "180ms" }}>
-            {page.punchline}
-          </p>
-          <p className="hero-rise hero-text-shadow mt-7 max-w-2xl text-lg leading-relaxed sm:text-xl" style={{ animationDelay: "300ms" }}>
-            {page.intro}
-          </p>
+            {/* Amorce de la ligne de vie : elle demarre dans l'ouverture et se
+                poursuit dans la section suivante. */}
+            <p className="hero-rise mt-10 inline-flex items-center gap-4 font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#f6eadf]/50" style={{ animationDelay: "360ms" }}>
+              <span aria-hidden="true" className="block h-4 w-4 bg-[#f6eadf]" />
+              Ça commence en 2025
+            </p>
+          </div>
+
+          {/* La photo, cadree et legendee comme une photo de presse. */}
+          <figure className="hero-rise relative" style={{ animationDelay: "220ms" }}>
+            <div className="relative aspect-[4/3] overflow-hidden border-2 border-[#f6eadf] shadow-[14px_14px_0_#d96ab4]">
+              <Image
+                alt="Tobias Ringot et Tom Brenier, fondateurs de NULLL.CLUB, dans une rue d’Aix-en-Provence"
+                className="object-cover object-[46%_32%]"
+                fill
+                priority
+                sizes="(min-width: 1024px) 46vw, 100vw"
+                src="/assets/photos/runners-aix.webp"
+              />
+            </div>
+            <figcaption className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1 font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#f6eadf]/55">
+              <span className="text-[#ffb000]">Tobias Ringot &amp; Tom Brenier</span>
+              <span>Fondateurs — Aix-en-Provence</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 

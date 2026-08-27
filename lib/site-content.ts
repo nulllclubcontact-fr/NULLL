@@ -316,7 +316,8 @@ export function getSiteCopy(locale: Locale) {
       },
       communityPage: {
         title: "Le social sport club d’Aix-en-Provence",
-        punchline: "On a passé un an à regarder. Maintenant on avance.",
+        // Deux temps : la coupure doit tomber au point, pas au milieu.
+        punchlineLines: ["On a passé un an à regarder.", "Maintenant on avance."],
         intro:
           "On voulait faire de grandes choses. Pendant un an, on n’en a fait aucune — à part du sport, la seule chose qui tenait vraiment dans nos semaines. Un jour, en rentrant des courses, l’idée est venue : en faire avec des gens qu’on ne connaît pas. Notre club, c’est cette excuse-là, devenue association.",
 
