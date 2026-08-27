@@ -322,27 +322,23 @@ export function getSiteCopy(locale: Locale) {
         punchline: "Tu viens seul. Tu ne repars jamais seul.",
         intro:
           "Courir en groupe à Aix-en-Provence ne demande ni licence, ni club, ni niveau. Chaque samedi à 8h30, on se retrouve au parking Émile Zola pour 5 à 6 kilomètres à allure conversation. C’est gratuit, sans inscription, et la moitié des gens présents sont venus seuls la première fois.",
+        // « En trois temps » au sens propre : une feuille de temps. Plus de
+        // photos ici, elles etaient toutes deja vues sur d'autres pages.
         steps: [
           {
+            time: "08:25",
             title: "Tu arrives",
-            text: "Présente-toi et dis que c’est ta première fois. Quelqu’un te prend en charge. Rien à préparer, rien à signer.",
-            photo: "/assets/photos/principle-fun.webp",
-            position: "object-[50%_26%]",
-            alt: "Un membre du club accueille un nouveau venu avant le départ de la sortie du samedi"
+            text: "Présente-toi et dis que c’est ta première fois. Quelqu’un te prend en charge. Rien à préparer, rien à signer."
           },
           {
+            time: "08:30",
             title: "On court",
-            text: "5 à 6 km à allure conversation, celle où l’on peut encore parler. Personne n’est laissé derrière.",
-            photo: "/assets/photos/principle-meet.webp",
-            position: "object-[50%_45%]",
-            alt: "Deux coureurs de la communauté running sur un chemin ombragé à Aix-en-Provence"
+            text: "5 à 6 km à allure conversation, celle où l’on peut encore parler. Personne n’est laissé derrière."
           },
           {
+            time: "09:10",
             title: "On reste",
-            text: "Le moment qui suit la course compte autant que la course. C’est là que les gens se parlent vraiment.",
-            photo: "/assets/photos/runs-crew.webp",
-            position: "object-[45%_38%]",
-            alt: "Deux membres du club de running discutent en riant après la sortie"
+            text: "Le moment qui suit la course compte autant que la course. C’est là que les gens se parlent vraiment."
           }
         ],
         editorialTitle: "Rejoindre une communauté running à Aix-en-Provence",

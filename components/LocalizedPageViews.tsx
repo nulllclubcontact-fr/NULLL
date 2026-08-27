@@ -103,19 +103,32 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             <p className="max-w-xs text-lg font-bold leading-snug">Venir seul est la norme, pas l’exception.</p>
           </div>
 
-          <ol className="mt-10 grid gap-6 md:grid-cols-3 md:gap-5">
+          {/* Une feuille de temps : les bordures hautes des trois cellules se
+              rejoignent en une seule ligne continue sur md, et les reperes
+              carres viennent s'asseoir dessus. Aucune photo — elles etaient
+              toutes deja vues ailleurs sur le site. */}
+          <ol className="mt-12 grid md:grid-cols-3">
             {page.steps.map((step, index) => (
-              <Reveal as="li" className="step-card group flex flex-col border-2 border-[#351815] bg-[#f6eadf]" delay={index * 110} key={step.title}>
-                <div className="relative aspect-[4/3] overflow-hidden border-b-2 border-[#351815]">
-                  <Image alt={step.alt} className={`step-photo object-cover ${step.position}`} fill sizes="(min-width: 768px) 33vw, 100vw" src={step.photo} />
-                  <span className="absolute left-0 top-0 bg-[#351815] px-4 py-2.5 font-display text-2xl leading-none text-[#f6eadf]">
-                    0{index + 1}
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-display text-[clamp(1.7rem,2.4vw,2.3rem)] uppercase leading-[.92]">{step.title}</h3>
-                  <p className="mt-3 text-base leading-relaxed text-[#351815]/78">{step.text}</p>
-                </div>
+              <Reveal
+                as="li"
+                className={`timeline-step relative border-t-2 border-[#351815] pb-10 pt-10 md:pb-0 md:pr-8 ${
+                  index > 0 ? "mt-10 md:mt-0 md:border-l-2 md:pl-8" : ""
+                }`}
+                delay={index * 120}
+                key={step.title}
+              >
+                <span aria-hidden="true" className="timeline-marker" />
+
+                <p className="font-mono text-[.62rem] font-black uppercase tracking-[.24em] text-[#351815]/45">
+                  Temps 0{index + 1}
+                </p>
+                <p className="mt-3 font-display text-[clamp(3.2rem,6vw,5.4rem)] uppercase leading-[.82] tracking-[-.03em]">
+                  {step.time}
+                </p>
+                <h3 className="mt-4 font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-[.95] text-[#d96ab4]">
+                  {step.title}
+                </h3>
+                <p className="mt-4 max-w-[38ch] text-base leading-relaxed text-[#351815]/78">{step.text}</p>
               </Reveal>
             ))}
           </ol>

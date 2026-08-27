@@ -816,3 +816,24 @@ textarea {
     transition: none;
   }
 }
+
+/* Feuille de temps de la page communaute : reperes carres assis sur la
+   ligne formee par les bordures hautes des cellules. */
+.timeline-marker {
+  position: absolute;
+  top: -9px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  background: #351815;
+}
+
+.timeline-step:nth-child(n + 2) .timeline-marker {
+  left: 0;
+}
+
+@media (min-width: 768px) {
+  .timeline-step:nth-child(n + 2) .timeline-marker {
+    left: 2rem;
+  }
+}
