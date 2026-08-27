@@ -1,12 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ClubGallery } from "./club-gallery";
-import { ClubMap } from "./club-map";
 import { Reveal } from "./reveal";
 import { StructuredData } from "./StructuredData";
 import { CheckoutForm } from "./checkout-form";
 import { SectionTitle, SiteShell } from "./site-shell";
-import { buildBreadcrumbSchema } from "../lib/seo";
+import { buildBreadcrumbSchema, buildFaqSchema } from "../lib/seo";
 import { getRoute, getSiteCopy, type Locale } from "../lib/site-content";
 
 export function AboutPageView({ locale }: { locale: Locale }) {
@@ -48,6 +46,8 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
   const copy = getSiteCopy(locale);
   const page = copy.communityPage;
   const runsHref = getRoute(locale, "runs");
+  const localClubHref = getRoute(locale, "localClub");
+  const localRunningHref = getRoute(locale, "localRunning");
 
   return (
     <SiteShell current="community" locale={locale} pathname={getRoute(locale, "community")}>
@@ -57,12 +57,12 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
           { name: "Communauté", url: getRoute(locale, "community") }
         ])}
       />
+      {/* Les questions sont de vraies questions de nouveaux venus : elles
+          servent le visiteur, et Google peut les afficher en resultat enrichi. */}
+      <StructuredData data={buildFaqSchema(page.faq)} />
 
-      {/* ---------------- AFFICHE ----------------
-          Cadrage verifie en simulant le recadrage reel du hero : les deux
-          coureurs restent dans le champ et le bas de l'image est assez sombre
-          pour porter le titre. */}
-      <section className="relative isolate flex min-h-[86svh] flex-col justify-end overflow-hidden bg-[#120908] text-[#f6eadf]" aria-labelledby="community-title">
+      {/* ---------------- AFFICHE ---------------- */}
+      <section className="relative isolate flex min-h-[80svh] flex-col justify-end overflow-hidden bg-[#120908] text-[#f6eadf]" aria-labelledby="community-title">
         <Image
           alt="Deux membres de NULLL.CLUB dans une rue d’Aix-en-Provence après la sortie du samedi"
           className="object-cover object-[42%_35%]"
@@ -71,20 +71,23 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
           sizes="100vw"
           src="/assets/photos/runners-aix.webp"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,9,8,.94)_0%,rgba(18,9,8,.6)_38%,rgba(18,9,8,.15)_72%,rgba(18,9,8,.5)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,9,8,.94)_0%,rgba(18,9,8,.62)_40%,rgba(18,9,8,.2)_75%,rgba(18,9,8,.45)_100%)]" />
 
         <div className="relative mx-auto w-full max-w-[1600px] px-5 pb-14 pt-24 sm:px-8 sm:pb-20 xl:px-12">
-          <p className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#ffb000]" style={{ animationDelay: "80ms" }}>
-            La communauté
-          </p>
           <h1
-            className="hero-rise hero-text-shadow mt-5 max-w-[15ch] font-display text-[clamp(2.7rem,7vw,6.4rem)] uppercase leading-[.85] tracking-[-.04em]"
+            className="hero-rise max-w-[28ch] font-mono text-xs font-black uppercase tracking-[.18em] text-[#ffb000]"
             id="community-title"
-            style={{ animationDelay: "180ms" }}
+            style={{ animationDelay: "80ms" }}
           >
             {page.title}
           </h1>
-          <p className="hero-rise hero-text-shadow mt-7 max-w-xl text-lg font-bold leading-snug sm:text-xl" style={{ animationDelay: "300ms" }}>
+          <p
+            className="hero-rise hero-text-shadow mt-6 max-w-[15ch] font-display text-[clamp(2.7rem,7vw,6.4rem)] uppercase leading-[.85] tracking-[-.04em]"
+            style={{ animationDelay: "180ms" }}
+          >
+            {page.punchline}
+          </p>
+          <p className="hero-rise hero-text-shadow mt-7 max-w-2xl text-lg leading-relaxed sm:text-xl" style={{ animationDelay: "300ms" }}>
             {page.intro}
           </p>
         </div>
@@ -119,35 +122,88 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ---------------- LES 23 AUTRES HEURES ----------------
-          Piece interactive : la liste pilote la grande photo au survol, et au
-          scroll sur tactile. C'est ce qui donne enfin leur place aux photos
-          editoriales du club. */}
-      <section className="border-t-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="community-gallery">
-        <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
-          <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#d96ab4]">Autour du run</p>
-          <h2 className="mt-5 max-w-[14ch] font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[.86] tracking-[-.035em]" id="community-gallery">
-            {page.galleryTitle}
-          </h2>
-          <p className="mt-5 max-w-lg text-lg font-bold leading-snug text-[#f6eadf]/80">{page.galleryIntro}</p>
+      {/* ---------------- ÉDITORIAL ----------------
+          Le texte qui porte le referencement : de la prose reelle sur courir
+          en groupe a Aix, avec les liens internes vers les guides locaux. La
+          bande de photos tient la colonne de droite plutot que d'occuper une
+          section a elle seule. */}
+      <section className="border-t-2 border-[#351815] bg-[#351815] text-[#f6eadf]" aria-labelledby="community-editorial">
+        <div className="mx-auto grid max-w-[1600px] gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.15fr_.85fr] lg:gap-16 xl:px-12">
+          <div>
+            <h2 className="max-w-[20ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] uppercase leading-[.9] tracking-[-.03em]" id="community-editorial">
+              {page.editorialTitle}
+            </h2>
 
-          <ClubGallery items={page.gallery} />
+            <div className="mt-10 space-y-10">
+              {page.editorial.map((bloc) => (
+                <Reveal className="border-t-2 border-[#f6eadf]/25 pt-6" key={bloc.heading}>
+                  <h3 className="font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-[.95] text-[#ffb000]">{bloc.heading}</h3>
+                  <p className="mt-4 text-lg leading-relaxed text-[#f6eadf]/82">{bloc.body}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            <p className="mt-10 text-lg leading-relaxed text-[#f6eadf]/82">
+              Pour aller plus loin :{" "}
+              <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#ffb000] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]" href={localClubHref}>
+                le run club à Aix-en-Provence
+              </Link>
+              ,{" "}
+              <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#ffb000] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]" href={localRunningHref}>
+                où courir à Aix-en-Provence
+              </Link>{" "}
+              et{" "}
+              <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#ffb000] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]" href={runsHref}>
+                les prochaines sorties
+              </Link>
+              .
+            </p>
+          </div>
+
+          <ul className="grid grid-cols-2 gap-3 self-start sm:gap-4">
+            {page.photos.map((photo, index) => (
+              <li className={`relative overflow-hidden border-2 border-[#f6eadf]/25 ${index % 3 === 0 ? "aspect-[4/5]" : "aspect-square"}`} key={photo.src}>
+                <Image alt={photo.alt} className={`object-cover ${photo.position}`} fill sizes="(min-width: 1024px) 20vw, 45vw" src={photo.src} />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* ---------------- INSTAGRAM ----------------
-          La vraie preuve sociale du club, et la seule chose que cette page
-          peut montrer que les autres n'ont pas. On renvoie vers le compte
-          plutot que de simuler un flux : afficher des photos du site en
-          grille laisserait croire a un fil Instagram qui n'en est pas un. */}
-      <section className="border-t-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="community-social">
+      {/* ---------------- FAQ ---------------- */}
+      <section className="border-t-2 border-[#351815] bg-[#ffb000] text-[#351815]" aria-labelledby="community-faq">
+        <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
+          <h2 className="max-w-[14ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] uppercase leading-[.9] tracking-[-.03em]" id="community-faq">
+            {page.faqTitle}
+          </h2>
+
+          <dl className="mt-12 border-t-2 border-[#351815]">
+            {page.faq.map((entry, index) => (
+              <Reveal className="grid gap-3 border-b-2 border-[#351815] py-7 lg:grid-cols-[auto_1fr_1.2fr] lg:items-baseline lg:gap-10" delay={index * 90} key={entry.q}>
+                <span className="font-mono text-xs font-black uppercase tracking-[.14em] opacity-55">0{index + 1}</span>
+                <dt className="font-display text-[clamp(1.4rem,2.2vw,2rem)] uppercase leading-[.98]">{entry.q}</dt>
+                <dd className="text-lg leading-relaxed text-[#351815]/85">{entry.a}</dd>
+              </Reveal>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* ---------------- INSTAGRAM + VENIR SAMEDI ---------------- */}
+      <section className="border-t-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="community-cta">
         <div className="mx-auto grid max-w-[1600px] gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-16 xl:px-12">
           <div>
             <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#d96ab4]">{page.social.kicker}</p>
-            <h2 className="mt-5 max-w-[13ch] font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[.86] tracking-[-.035em]" id="community-social">
-              {page.social.title}
+            <h2 className="mt-5 max-w-[14ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] uppercase leading-[.88] tracking-[-.03em]" id="community-cta">
+              {page.ctaTitle}
             </h2>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-[#f6eadf]/80">{page.social.text}</p>
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-[#f6eadf]/82">{page.ctaText}</p>
+            <Link
+              className="mt-8 inline-flex min-h-16 items-center justify-center border-2 border-[#ffb000] bg-[#ffb000] px-7 font-mono text-xs font-black uppercase tracking-[.1em] text-[#351815] transition-colors hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
+              href={runsHref}
+            >
+              Voir les prochaines sorties
+            </Link>
           </div>
 
           <a
@@ -164,7 +220,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
               src="/assets/photos/runs-crew.webp"
             />
             <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(140deg,rgba(18,9,8,.9)_0%,rgba(18,9,8,.6)_100%)]" />
-            <span className="relative font-mono text-xs font-black uppercase tracking-[.16em] text-[#f6eadf]/70">Instagram</span>
+            <span className="relative font-mono text-xs font-black uppercase tracking-[.16em] text-[#f6eadf]/70">{page.social.title}</span>
             <span className="relative">
               <span className="block font-display text-[clamp(2rem,3.4vw,3rem)] uppercase leading-none">{copy.contact.instagramLabel}</span>
               <span className="mt-5 inline-flex items-center gap-4 border-2 border-[#f6eadf] px-5 py-3 font-mono text-xs font-black uppercase tracking-[.12em] transition-colors group-hover:bg-[#f6eadf] group-hover:text-[#351815]">
@@ -173,34 +229,6 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
               </span>
             </span>
           </a>
-        </div>
-      </section>
-
-      {/* ---------------- VENIR SAMEDI ---------------- */}
-      <section className="border-t-2 border-[#351815] bg-[#d96ab4] text-[#351815]" aria-labelledby="community-cta">
-        <div className="mx-auto flex max-w-[1600px] flex-col gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:flex-row lg:items-center lg:justify-between xl:px-12">
-          <div>
-            <h2 className="max-w-[16ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] uppercase leading-[.9] tracking-[-.03em]" id="community-cta">
-              {page.ctaTitle}
-            </h2>
-            <p className="mt-5 max-w-md text-lg font-bold leading-snug">{page.ctaText}</p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
-            <Link
-              className="inline-flex min-h-16 items-center justify-center border-2 border-[#351815] bg-[#351815] px-7 font-mono text-xs font-black uppercase tracking-[.1em] text-[#f6eadf] transition-colors hover:bg-transparent hover:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#351815]"
-              href={runsHref}
-            >
-              Voir les prochaines sorties
-            </Link>
-            <a
-              className="inline-flex min-h-16 items-center justify-center border-2 border-[#351815] px-7 font-mono text-xs font-black uppercase tracking-[.1em] transition-colors hover:bg-[#351815] hover:text-[#f6eadf] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#351815]"
-              href={copy.contact.instagram}
-              rel="noreferrer noopener"
-              target="_blank"
-            >
-              {copy.contact.instagramLabel}
-            </a>
-          </div>
         </div>
       </section>
     </SiteShell>

@@ -205,9 +205,9 @@ export function getSiteCopy(locale: Locale) {
             "Découvre les prochains runs du club de running à Aix-en-Provence : dates, horaires, distance, ambiance et informations pratiques."
         },
         community: {
-          title: "Communauté running sociale à Aix | NULLL.CLUB",
+          title: "Communauté running à Aix-en-Provence | NULLL.CLUB",
           description:
-            "Une communauté running ouverte à Aix-en-Provence pour courir ensemble, rencontrer du monde et participer à des événements conviviaux."
+            "Rejoins une communauté running ouverte à Aix-en-Provence. Sortie tous les samedis à 8h30, parking Émile Zola : 5 à 6 km à allure conversation, gratuit, sans inscription et sans niveau requis."
         },
         merch: {
           title: "Pièces du club | NULLL.CLUB Aix-en-Provence",
@@ -316,103 +316,78 @@ export function getSiteCopy(locale: Locale) {
         ]
       },
       communityPage: {
-        title: "Tu viens seul. Tu ne repars jamais seul.",
+        // Le H1 porte la requete ; l'accroche de marque passe juste en dessous,
+        // en gros. On garde les deux au lieu de sacrifier l'un pour l'autre.
+        title: "La communauté running de NULLL.CLUB, à Aix-en-Provence",
+        punchline: "Tu viens seul. Tu ne repars jamais seul.",
         intro:
-          "NULLL.CLUB n’est pas seulement un groupe de course à Aix-en-Provence. C’est un rendez-vous récurrent pour créer des liens dans une ville où il est facile de rester dans son cercle.",
-        ticker: "Zéro écouteurs — Allure conversation — Personne derrière — Ouvert à tous — After run",
-        facts: [
-          { label: "Quand", value: "Samedi, 8h30" },
-          { label: "Où", value: "Parking Émile Zola" },
-          { label: "Distance", value: "5 à 6 km" },
-          { label: "Combien", value: "Gratuit" }
-        ],
+          "Courir en groupe à Aix-en-Provence ne demande ni licence, ni club, ni niveau. Chaque samedi à 8h30, on se retrouve au parking Émile Zola pour 5 à 6 kilomètres à allure conversation. C’est gratuit, sans inscription, et la moitié des gens présents sont venus seuls la première fois.",
         steps: [
           {
             title: "Tu arrives",
             text: "Présente-toi et dis que c’est ta première fois. Quelqu’un te prend en charge. Rien à préparer, rien à signer.",
             photo: "/assets/photos/principle-fun.webp",
             position: "object-[50%_26%]",
-            alt: "Un membre du club accueille un nouveau venu avant le départ"
+            alt: "Un membre du club accueille un nouveau venu avant le départ de la sortie du samedi"
           },
           {
             title: "On court",
             text: "5 à 6 km à allure conversation, celle où l’on peut encore parler. Personne n’est laissé derrière.",
             photo: "/assets/photos/principle-meet.webp",
             position: "object-[50%_45%]",
-            alt: "Deux coureurs du club sur un chemin ombragé à Aix-en-Provence"
+            alt: "Deux coureurs de la communauté running sur un chemin ombragé à Aix-en-Provence"
           },
           {
             title: "On reste",
             text: "Le moment qui suit la course compte autant que la course. C’est là que les gens se parlent vraiment.",
             photo: "/assets/photos/runs-crew.webp",
             position: "object-[45%_38%]",
-            alt: "Deux membres du club discutent en riant après la sortie"
+            alt: "Deux membres du club de running discutent en riant après la sortie"
           }
         ],
-        // Les photos editoriales du club — chambre, douche, lunettes miroir —
-        // n'etaient utilisees nulle part. Elles racontent la vie autour du run.
-        galleryTitle: "Les 23 autres heures.",
-        galleryIntro:
-          "Le run dure une heure. Le club, c’est surtout ce qu’il y a autour.",
-        gallery: [
+        editorialTitle: "Rejoindre une communauté running à Aix-en-Provence",
+        editorial: [
           {
-            label: "Le réveil",
-            text: "Le samedi à 7h40, la seule vraie difficulté de la semaine.",
-            src: "/assets/photos/editorial-bed.webp",
-            position: "object-[50%_32%]",
-            alt: "Réveil difficile un samedi matin avant la sortie du club"
+            heading: "Courir en groupe plutôt que seul",
+            body: "La difficulté de la course à pied n’est presque jamais la performance : c’est la régularité. Un rendez-vous fixe, avec des gens qui remarquent ton absence, tient mieux qu’une bonne résolution de janvier. C’est tout l’intérêt d’une communauté running locale : elle transforme une contrainte individuelle en habitude collective. À Aix-en-Provence, beaucoup de coureurs tournent seuls autour du parc Jourdan ou de la Torse sans jamais croiser les mêmes visages. Le club existe pour changer ça."
           },
           {
-            label: "Le reflet",
-            text: "Tu arrives seul. Au bout de dix minutes tu es dans le groupe.",
-            src: "/assets/photos/editorial-glasses.webp",
-            position: "object-[52%_48%]",
-            alt: "Le groupe du club se reflète dans le verre miroir de lunettes de sport"
+            heading: "Une communauté ouverte, sans niveau requis",
+            body: "NULLL.CLUB est une association loi 1901 déclarée à Aix-en-Provence. Il n’y a ni abonnement, ni engagement, ni sélection. La majorité des personnes qui rejoignent le groupe de course n’ont pas de club, ne courent pas en compétition, et reprennent parfois après plusieurs mois d’arrêt. L’allure annoncée est une allure conversation : si tu ne peux plus parler, le groupe ralentit. C’est la seule règle qui compte."
           },
           {
-            label: "Le matériel",
-            text: "Une paire, une clé, une gourde. Il n’en faut pas plus.",
-            src: "/assets/photos/runner-ground.webp",
-            position: "object-[50%_52%]",
-            alt: "Chaussures, clés et gourde posées au sol après la course"
-          },
-          {
-            label: "La douche",
-            text: "Et le reste de la journée qui reprend, en mieux.",
-            src: "/assets/photos/editorial-shower.webp",
-            position: "object-[50%_26%]",
-            alt: "Portrait décalé sous la douche après la sortie du samedi"
-          },
-          {
-            label: "Le lendemain",
-            text: "On recommence samedi. C’est tout l’intérêt d’un rendez-vous fixe.",
-            src: "/assets/photos/motion-run.webp",
-            position: "object-[50%_32%]",
-            alt: "Deux membres du club en mouvement, saisis en flou"
+            heading: "Ancrée à Aix et dans ses parcours",
+            body: "Les sorties partent du centre-ville et empruntent les parcours que les Aixois connaissent : le parc Jourdan pour les boucles courtes, le parc de la Torse pour la terre sous les pieds, et plus loin le lac du Réaltor, le plateau de Bibemus ou les sentiers au pied de la Sainte-Victoire pour les sorties longues. Courir à Aix-en-Provence en groupe, c’est aussi redécouvrir sa propre ville à une heure où elle est encore calme."
           }
         ],
-        mapTitle: "La carte du club.",
-        mapIntro:
-          "Trois piliers, un seul rendez-vous. Survole un pilier pour le détail.",
-        pillars: [
+        faqTitle: "Les questions qu’on nous pose",
+        faq: [
           {
-            title: "Ouvert aux nouveaux",
-            text: "La majorité des personnes qui viennent pour la première fois n’ont pas de club et ne courent pas en compétition.",
-            detail: "Aucun niveau requis",
-            accent: "bg-[#ffb000]"
+            q: "Faut-il être membre pour venir courir ?",
+            a: "Non. Les sorties du samedi matin sont ouvertes à tous, gratuites et sans inscription préalable. Tu peux venir une fois pour voir, sans que personne ne te relance ensuite."
           },
           {
-            title: "Ancré à Aix",
-            text: "Les parcours partent du centre : parc Jourdan, la Torse, et plus loin le Réaltor ou la Sainte-Victoire.",
-            detail: "Départ parking Émile Zola",
-            accent: "bg-[#d96ab4]"
+            q: "Puis-je venir seul à une sortie ?",
+            a: "C’est la norme, pas l’exception. La plupart des personnes qui viennent pour la première fois arrivent seules. Présente-toi à 8h25 et dis que c’est ta première fois : quelqu’un s’occupe de toi."
           },
           {
-            title: "Le lien d’abord",
-            text: "Le sport est le point de départ, pas la seule promesse. On vient pour courir, on revient pour les gens.",
-            detail: "L’after run fait partie du run",
-            accent: "bg-[#f6eadf]"
+            q: "Quel niveau faut-il avoir pour rejoindre le club ?",
+            a: "Aucun niveau minimum. La sortie fait 5 à 6 kilomètres à allure conversation, c’est-à-dire une allure où l’on peut encore discuter en courant. Personne n’est laissé derrière : il y a toujours quelqu’un avec le dernier groupe."
+          },
+          {
+            q: "Où et quand se retrouve la communauté ?",
+            a: "Tous les samedis à 8h30, au parking Émile Zola à Aix-en-Provence. Le créneau ne change pas : c’est volontairement le même rendez-vous chaque semaine, plus facile à retenir qu’un calendrier mouvant."
+          },
+          {
+            q: "Faut-il un certificat médical ou une licence ?",
+            a: "Non, rien n’est demandé pour venir essayer. NULLL.CLUB est une association de sorties collectives, pas un club de compétition affilié."
           }
+        ],
+        photos: [
+          { src: "/assets/photos/editorial-glasses.webp", position: "object-[52%_48%]", alt: "Le groupe de coureurs se reflète dans le verre miroir des lunettes d’un membre du club" },
+          { src: "/assets/photos/runs-golden.webp", position: "object-[50%_42%]", alt: "Sortie de la communauté running au lever du soleil sur un chemin près d’Aix-en-Provence" },
+          { src: "/assets/photos/runner-ground.webp", position: "object-[50%_52%]", alt: "Chaussures de running, clés et gourde posées au sol après la sortie du samedi" },
+          { src: "/assets/photos/motion-run.webp", position: "object-[50%_32%]", alt: "Deux membres de la communauté running d’Aix-en-Provence saisis en mouvement" }
         ],
         social: {
           kicker: "La suite se passe là-bas",
