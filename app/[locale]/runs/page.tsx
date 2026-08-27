@@ -68,14 +68,14 @@ export default async function RunsPage({ params }: PageProps) {
         <div className="absolute inset-0 bg-[rgba(30,14,10,.10)]" />
 
         {/* Barre identique a celle de l'accueil */}
-        <div className="relative mx-auto w-full max-w-[1800px] shrink-0 px-5 pt-6 sm:px-8 sm:pt-8 xl:px-12">
+        <div className="relative mx-auto w-full max-w-[1600px] shrink-0 px-5 pt-6 sm:px-8 sm:pt-8 xl:px-12">
           <div className="hero-text-shadow flex flex-col items-start gap-1 border-b border-[#f6eadf]/45 pb-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
             <span>Social sport club · Aix-en-Provence</span>
             <span className="text-[#ffb000]">Ouvert à tous · Gratuit</span>
           </div>
         </div>
 
-        <div className="relative mx-auto flex w-full max-w-[1800px] flex-1 flex-col items-center justify-center gap-9 px-5 py-8 text-center sm:gap-14 sm:px-8 sm:py-12 xl:px-12">
+        <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col items-center justify-center gap-9 px-5 py-8 text-center sm:gap-14 sm:px-8 sm:py-12 xl:px-12">
           <h1
             className="hero-rise hero-text-shadow whitespace-nowrap font-display text-[clamp(1.9rem,12.4vw,13rem)] uppercase leading-[.9] tracking-[-.045em]"
             id="runs-title"

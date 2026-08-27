@@ -34,7 +34,7 @@ export default async function ContactPage({ params }: PageProps) {
           { name: "Contact", url: getRoute(locale, "contact") }
         ])}
       />
-      <section className="mx-auto w-full max-w-none px-4 py-10 sm:px-6 xl:px-8 xl:py-14">
+      <section className="mx-auto w-full max-w-[1600px] px-5 py-10 sm:px-8 xl:px-12 xl:py-14">
         <SectionTitle as="h1" index="09" text={copy.contactPage.intro} title={copy.contactPage.title} />
         <div className="mt-10 grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
           <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-1">

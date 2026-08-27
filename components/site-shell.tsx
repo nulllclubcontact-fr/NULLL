@@ -45,13 +45,13 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-[#351815] bg-[#f6eadf]">
-      <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto_auto] items-stretch xl:grid-cols-[240px_minmax(0,1fr)_150px_190px] 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
+      <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto_auto] items-stretch lg:grid-cols-[200px_minmax(0,1fr)_132px_172px] xl:grid-cols-[240px_minmax(0,1fr)_150px_190px] 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
         <Link className="flex min-w-0 items-center border-r-2 border-[#351815] px-3 transition hover:bg-[#ffb000] focus-visible:bg-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] sm:px-5" href={getRoute(locale, "home")}>
-          <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 2xl:w-44" height={157} priority src="/assets/nulll-new/logo-burgundy.png" width={1225} />
+          <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 lg:w-32 xl:w-40 2xl:w-44" height={157} priority src="/assets/nulll-new/logo-burgundy.png" width={1225} />
         </Link>
         <nav
           aria-label="Navigation principale"
-          className="hidden min-w-0 font-mono text-xs font-black uppercase xl:grid"
+          className="hidden min-w-0 font-mono text-xs font-black uppercase lg:grid"
           // Le nombre de colonnes suit le nombre d'entrees : il etait fige a 6
           // et laissait une colonne vide depuis la fusion des pages.
           style={{ gridTemplateColumns: `repeat(${copy.nav.length}, minmax(0, 1fr))` }}
@@ -71,14 +71,14 @@ export function SiteHeader({
         </nav>
         <Link
           aria-current={isIdentification ? "page" : undefined}
-          className={`hidden place-items-center border-r-2 border-[#351815] px-3 text-center font-mono text-xs font-black uppercase transition hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] xl:grid ${
+          className={`hidden place-items-center border-r-2 border-[#351815] px-3 text-center font-mono text-xs font-black uppercase transition hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] lg:grid ${
             isIdentification ? "bg-[#d96ab4]" : ""
           }`}
           href="/identification"
         >
           S’identifier
         </Link>
-        <details className="static xl:hidden">
+        <details className="static lg:hidden">
           <summary className="flex min-h-20 cursor-pointer items-center border-r-2 border-[#351815] px-3 font-mono text-xs font-black uppercase transition-colors hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] sm:px-5">Menu</summary>
           <nav aria-label="Navigation mobile" className="absolute inset-x-0 top-full z-50 grid max-h-[calc(100dvh-80px)] overflow-y-auto border-t-2 border-[#351815] bg-[#f6eadf] font-mono text-xs font-black uppercase shadow-[0_8px_0_rgba(53,24,21,.18)]">
             {copy.nav.map((item: { key: RouteKey; label: string }) => (
@@ -194,7 +194,7 @@ export function HeroPanel({
   facts: Array<{ label: string; value: string }>;
 }) {
   return (
-    <section className="mx-auto grid w-full max-w-none gap-6 px-4 py-8 sm:px-6 xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.68fr)] xl:px-8 xl:py-12">
+    <section className="mx-auto grid w-full max-w-[1600px] gap-6 px-5 py-8 sm:px-8 xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.68fr)] xl:px-12 xl:py-12">
       <div className="min-w-0 border-2 border-[#351815] bg-[#f6eadf] p-5 shadow-[6px_6px_0_#d96ab4] sm:p-6 sm:shadow-[8px_8px_0_#d96ab4] xl:p-10">
         <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-xs font-black uppercase">{stamp} / {label}</p>
         <h1 className="mt-6 max-w-4xl font-display text-[clamp(2.8rem,7.5vw,7.4rem)] uppercase leading-[0.94] sm:mt-8">{title}</h1>

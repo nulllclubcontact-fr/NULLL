@@ -33,7 +33,7 @@ export default async function MerchPage({ params }: PageProps) {
           { name: "Merch", url: getRoute(locale, "merch") }
         ])}
       />
-      <section className="mx-auto w-full max-w-none px-4 py-10 sm:px-6 xl:px-8 xl:py-14">
+      <section className="mx-auto w-full max-w-[1600px] px-5 py-10 sm:px-8 xl:px-12 xl:py-14">
         <SectionTitle as="h1" index="10" text={copy.merchPage.intro} title={copy.merchPage.title} />
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {copy.merchPage.trust.map((item, index) => (

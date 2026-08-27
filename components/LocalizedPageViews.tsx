@@ -81,7 +81,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
 
       {/* ---------------- LA LIGNE DE VIE ---------------- */}
       <section className="border-t-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="club-timeline">
-        <div className="mx-auto max-w-[1100px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
+        <div className="mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#d96ab4]">D’où ça vient</p>
           <h2 className="mt-5 max-w-[14ch] font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[.86] tracking-[-.035em]" id="club-timeline">
             {page.timelineTitle}
@@ -148,21 +148,23 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
 
       {/* ---------------- ÉDITORIAL ---------------- */}
       <section className="border-t-2 border-[#351815] bg-[#351815] text-[#f6eadf]" aria-labelledby="club-editorial">
-        <div className="mx-auto max-w-[1100px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
+        <div className="mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
           <h2 className="max-w-[20ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] uppercase leading-[.9] tracking-[-.03em]" id="club-editorial">
             {page.editorialTitle}
           </h2>
 
-          <div className="mt-10 space-y-10">
+          {/* Le cadre suit les autres sections a 1600px, mais la prose est bridee :
+              une ligne de 150 caracteres ne se lit pas. */}
+            <div className="mt-10 max-w-[72ch] space-y-10">
             {page.editorial.map((bloc) => (
               <Reveal className="border-t-2 border-[#f6eadf]/25 pt-6" key={bloc.heading}>
                 <h3 className="font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-[.95] text-[#ffb000]">{bloc.heading}</h3>
-                <p className="mt-4 text-lg leading-relaxed text-[#f6eadf]/82">{bloc.body}</p>
+                <p className="mt-4 max-w-[68ch] text-lg leading-relaxed text-[#f6eadf]/82">{bloc.body}</p>
               </Reveal>
             ))}
           </div>
 
-          <p className="mt-10 text-lg leading-relaxed text-[#f6eadf]/82">
+          <p className="mt-10 max-w-[72ch] text-lg leading-relaxed text-[#f6eadf]/82">
             Pour aller plus loin :{" "}
             <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#ffb000] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]" href={localClubHref}>
               le run club à Aix-en-Provence
@@ -244,7 +246,7 @@ export function CheckoutPageView({ locale }: { locale: Locale }) {
 
   return (
     <SiteShell current="merch" locale={locale} pathname={getRoute(locale, "checkout")}>
-      <section className="mx-auto w-full max-w-none px-4 py-10 sm:px-6 xl:px-8 xl:py-14">
+      <section className="mx-auto w-full max-w-[1600px] px-5 py-10 sm:px-8 xl:px-12 xl:py-14">
         <SectionTitle as="h1" index="11" text={copy.checkoutPage.intro} title={copy.checkoutPage.title} />
         <div className="mt-10 max-w-4xl border-2 border-[#351815] bg-[#f6eadf] p-5 shadow-[8px_8px_0_#ffb000]">
           <CheckoutForm locale={locale} />

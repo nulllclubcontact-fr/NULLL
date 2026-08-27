@@ -40,7 +40,7 @@ export function HomeExperience({
         <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(18,9,8,.88)_0%,rgba(18,9,8,.68)_48%,rgba(18,9,8,.2)_100%)] sm:bg-[linear-gradient(100deg,rgba(18,9,8,.82)_0%,rgba(18,9,8,.55)_34%,rgba(18,9,8,.12)_62%,rgba(18,9,8,0)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(to_top,rgba(18,9,8,.75),transparent)]" />
 
-        <div className="relative mx-auto flex max-w-[1800px] flex-col px-5 pb-5 pt-6 sm:px-8 sm:pb-8 sm:pt-8 xl:px-12">
+        <div className="relative mx-auto flex w-full max-w-[1600px] flex-col px-5 pb-5 pt-6 sm:px-8 sm:pb-8 sm:pt-8 xl:px-12">
           <div className="flex flex-col items-start gap-1 border-b border-[#f6eadf]/45 pb-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
             <span>Social sport club · Aix-en-Provence</span>
             <span className="text-[#ffb000]">Ouvert à tous · Gratuit</span>
