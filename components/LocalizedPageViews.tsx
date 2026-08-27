@@ -36,7 +36,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             <h1 className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#ffb000]" id="club-title" style={{ animationDelay: "60ms" }}>
               {page.title}
             </h1>
-            <p className="hero-rise mt-6 font-display text-[clamp(2.4rem,4.6vw,4.6rem)] uppercase leading-[.88]" style={{ animationDelay: "150ms" }}>
+            <p className="hero-rise mt-6 font-display text-[clamp(2.4rem,4.6vw,4.6rem)] uppercase leading-[.88] tracking-[-.035em]" style={{ animationDelay: "150ms" }}>
               {page.punchlineLines.map((ligne, index) => (
                 <span className={`block ${index === 1 ? "text-[#ffb000]" : ""}`} key={ligne}>
                   {ligne}
@@ -83,7 +83,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       <section className="border-t-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="club-timeline">
         <div className="mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#d96ab4]">D’où ça vient</p>
-          <h2 className="mt-5 max-w-[14ch] font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[.86]" id="club-timeline">
+          <h2 className="mt-5 max-w-[14ch] font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[.86] tracking-[-.035em]" id="club-timeline">
             {page.timelineTitle}
           </h2>
 
@@ -95,7 +95,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       <section className="border-t-2 border-[#351815] bg-[#f6eadf] text-[#351815]" aria-labelledby="club-letters">
         <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
           <div className="flex flex-col gap-5 border-b-2 border-[#351815] pb-8 lg:flex-row lg:items-end lg:justify-between">
-            <h2 className="max-w-[14ch] font-display text-[clamp(2.4rem,5vw,4.6rem)] uppercase leading-[.88]" id="club-letters">
+            <h2 className="max-w-[14ch] font-display text-[clamp(2.4rem,5vw,4.6rem)] uppercase leading-[.88] tracking-[-.03em]" id="club-letters">
               {page.lettersTitle}
             </h2>
             <p className="max-w-md text-lg font-bold leading-snug">{page.lettersIntro}</p>
@@ -109,7 +109,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
           <ol className="mt-12 grid gap-px bg-[#351815] md:grid-cols-3">
             {page.letters.map((item, index) => (
               <Reveal as="li" className="flex flex-col bg-[#f6eadf] px-6 py-8 sm:px-8 sm:py-10" delay={index * 110} key={item.word}>
-                <p aria-hidden="true" className="font-display text-[clamp(2.6rem,5vw,4.4rem)] uppercase leading-[.8]">
+                <p aria-hidden="true" className="font-display text-[clamp(2.6rem,5vw,4.4rem)] uppercase leading-[.8] tracking-[-.02em]">
                   {"NULLL".split("").map((lettre, position) => (
                     <span
                       className={position === item.highlight ? "text-[#d96ab4]" : "text-[#351815]/22"}
@@ -149,7 +149,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       {/* ---------------- ÉDITORIAL ---------------- */}
       <section className="border-t-2 border-[#351815] bg-[#351815] text-[#f6eadf]" aria-labelledby="club-editorial">
         <div className="mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
-          <h2 className="max-w-[20ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] uppercase leading-[.9]" id="club-editorial">
+          <h2 className="max-w-[20ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] uppercase leading-[.9] tracking-[-.03em]" id="club-editorial">
             {page.editorialTitle}
           </h2>
 
@@ -185,7 +185,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       {/* ---------------- FAQ ---------------- */}
       <section className="border-t-2 border-[#351815] bg-[#ffb000] text-[#351815]" aria-labelledby="club-faq">
         <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
-          <h2 className="max-w-[14ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] uppercase leading-[.9]" id="club-faq">
+          <h2 className="max-w-[14ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] uppercase leading-[.9] tracking-[-.03em]" id="club-faq">
             {page.faqTitle}
           </h2>
 
@@ -206,7 +206,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
         <div className="mx-auto grid max-w-[1600px] gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-16 xl:px-12">
           <div>
             <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#d96ab4]">{page.social.kicker}</p>
-            <h2 className="mt-5 max-w-[15ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] uppercase leading-[.88]" id="club-cta">
+            <h2 className="mt-5 max-w-[15ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] uppercase leading-[.88] tracking-[-.03em]" id="club-cta">
               {page.firstRunTitle}
             </h2>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-[#f6eadf]/82">{page.firstRunText}</p>

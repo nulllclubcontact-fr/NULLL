@@ -77,7 +77,7 @@ export default async function RunsPage({ params }: PageProps) {
 
         <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col items-center justify-center gap-9 px-5 py-8 text-center sm:gap-14 sm:px-8 sm:py-12 xl:px-12">
           <h1
-            className="hero-rise hero-text-shadow whitespace-nowrap font-display text-[clamp(1.9rem,12.4vw,13rem)] uppercase leading-[.9]"
+            className="hero-rise hero-text-shadow whitespace-nowrap font-display text-[clamp(1.9rem,12.4vw,13rem)] uppercase leading-[.9] tracking-[-.045em]"
             id="runs-title"
             style={{ animationDelay: "120ms" }}
           >
@@ -124,7 +124,7 @@ export default async function RunsPage({ params }: PageProps) {
           <div className="flex flex-col gap-5 border-b border-[#f6eadf]/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">01 — Le calendrier</p>
-              <h2 className="mt-4 font-display text-[clamp(3.2rem,6vw,6rem)] uppercase leading-[.82]" id="runs-list-title">
+              <h2 className="mt-4 font-display text-[clamp(3.2rem,6vw,6rem)] uppercase leading-[.82] tracking-[-.035em]" id="runs-list-title">
                 Prochaine <span className="text-[#d96ab4]">sortie.</span>
               </h2>
             </div>
@@ -157,7 +157,7 @@ export default async function RunsPage({ params }: PageProps) {
           <div className="relative z-10 text-center">
             <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">02 — Les seules règles</p>
             <h2
-              className="mx-auto mt-5 max-w-[15ch] font-display text-[clamp(3rem,7vw,7.5rem)] uppercase leading-[.8]"
+              className="mx-auto mt-5 max-w-[15ch] font-display text-[clamp(3rem,7vw,7.5rem)] uppercase leading-[.8] tracking-[-.045em]"
               id="runs-format"
             >
               Le seul podium<br /><span className="text-[#d96ab4]">qui compte.</span>
@@ -199,7 +199,7 @@ export default async function RunsPage({ params }: PageProps) {
         <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-28 xl:px-12">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em]">03 — Les questions</p>
           <h2
-            className="mt-5 max-w-[12ch] font-display text-[clamp(3rem,6.4vw,6.4rem)] uppercase leading-[.82]"
+            className="mt-5 max-w-[12ch] font-display text-[clamp(3rem,6.4vw,6.4rem)] uppercase leading-[.82] tracking-[-.04em]"
             id="runs-faq"
           >
             Avant de venir.
@@ -267,7 +267,7 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
         </div>
 
         <div>
-          <h3 className="run-card-date max-w-[11ch] break-normal font-display text-[clamp(2.55rem,7.2vw,7.4rem)] uppercase leading-[.86] [overflow-wrap:normal] sm:leading-[.82]" id={`run-${run.id}`}>
+          <h3 className="run-card-date max-w-[11ch] break-normal font-display text-[clamp(2.55rem,7.2vw,7.4rem)] uppercase leading-[.86] tracking-[-.04em] [overflow-wrap:normal] sm:leading-[.82]" id={`run-${run.id}`}>
             {run.date}
           </h3>
           <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs font-black uppercase tracking-[.1em]">
