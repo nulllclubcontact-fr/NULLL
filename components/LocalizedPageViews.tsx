@@ -56,19 +56,23 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
           </div>
 
           {/* La photo, cadree et legendee comme une photo de presse. */}
-          <figure className="hero-rise relative" style={{ animationDelay: "220ms" }}>
-            <div className="relative aspect-[4/3] overflow-hidden border-2 border-[#f6eadf] shadow-[14px_14px_0_#d96ab4]">
+          {/* Borne tant que la colonne est empilee : en pleine largeur sur tablette,
+              un cadre en 4/5 depassait la hauteur d'un ecran. */}
+          <figure className="hero-rise relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none" style={{ animationDelay: "220ms" }}>
+            {/* Cadre en portrait : la photo est en 3:4, un cadre paysage lui
+                aurait coupe les tetes ou les jambes. */}
+            <div className="relative aspect-[4/5] overflow-hidden border-2 border-[#f6eadf] shadow-[14px_14px_0_#d96ab4]">
               <Image
-                alt="Tobias Ringot et Tom Brenier, fondateurs de NULLL.CLUB, dans une rue d’Aix-en-Provence"
-                className="object-cover object-[46%_32%]"
+                alt="Tom Brenier et Tobias Ringot, fondateurs de NULLL.CLUB, dans une rue d’Aix-en-Provence"
+                className="object-cover object-[50%_38%]"
                 fill
                 priority
                 sizes="(min-width: 1024px) 46vw, 100vw"
-                src="/assets/photos/runners-aix.webp"
+                src="/assets/photos/fondateurs.webp"
               />
             </div>
             <figcaption className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1 font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#f6eadf]/55">
-              <span className="text-[#ffb000]">Tobias Ringot &amp; Tom Brenier</span>
+              <span className="text-[#ffb000]">Tom Brenier &amp; Tobias Ringot</span>
               <span>Fondateurs — Aix-en-Provence</span>
             </figcaption>
           </figure>
