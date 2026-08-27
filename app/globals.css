@@ -431,16 +431,26 @@ textarea {
 /* ------------------------------------------------------------------
    Apparition au scroll, pilotee par IntersectionObserver.
    ------------------------------------------------------------------ */
+/* L'etat de depart etait identique a l'etat final : l'animation ne faisait
+   rien. Il lui manquait simplement un point de depart.
+   Le voile n'est pose que si le script tourne : sans JavaScript, aucun
+   observateur ne viendrait retirer la classe et le contenu resterait
+   invisible. */
 .io-reveal {
-  opacity: 1;
-  transform: none;
   transition: opacity 720ms cubic-bezier(0.22, 1, 0.36, 1), transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 
-.io-reveal.is-in {
-  opacity: 1;
-  transform: none;
+@media (scripting: enabled) {
+  .io-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  .io-reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -897,5 +907,39 @@ textarea {
     top: 0.45rem;
     width: 1.5rem;
     height: 1.5rem;
+  }
+}
+
+/* Le repere et le trait suivent l'apparition de leur moment : la ligne se
+   construit au fur et a mesure de la descente. */
+.timeline-entry .timeline-dot {
+  transform: scale(0.4);
+  opacity: 0;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1), opacity 380ms ease-out;
+  transition-delay: 90ms;
+}
+
+.timeline-entry.is-in .timeline-dot {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.timeline-entry .timeline-line {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 200ms;
+}
+
+.timeline-entry.is-in .timeline-line {
+  transform: scaleY(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-entry .timeline-dot,
+  .timeline-entry .timeline-line {
+    transform: none;
+    opacity: 1;
+    transition: none;
   }
 }

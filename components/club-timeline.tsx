@@ -25,6 +25,7 @@ export function ClubTimeline({ entries }: { entries: TimelineEntry[] }) {
             entry.status === "aVenir" ? "is-future" : ""
           }`}
           delay={index * 90}
+          repeat
           key={entry.label}
         >
           {/* Segment de ligne : il s'arrete au dernier repere. */}
