@@ -101,20 +101,35 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             <p className="max-w-md text-lg font-bold leading-snug">{page.lettersIntro}</p>
           </div>
 
+          {/* Chaque pilier reaffiche NULLL en entier avec son propre L
+              allume. Trois L isoles ne disaient pas d'ou ils venaient ;
+              la, la derivation se voit sans etre expliquee. Et cadrer la
+              chose colonne par colonne evite d'aligner du texte sous des
+              lettres, dont la largeur varie avec la police. */}
           <ol className="mt-12 grid gap-px bg-[#351815] md:grid-cols-3">
             {page.letters.map((item, index) => (
               <Reveal as="li" className="flex flex-col bg-[#f6eadf] px-6 py-8 sm:px-8 sm:py-10" delay={index * 110} key={item.word}>
-                <span aria-hidden="true" className="font-display text-[clamp(4rem,7vw,6.5rem)] leading-[.72] text-[#d96ab4]">
-                  {item.letter}
-                </span>
-                <h3 className="mt-5 font-display text-[clamp(1.7rem,2.6vw,2.4rem)] uppercase leading-[.94]">{item.word}</h3>
+                <p aria-hidden="true" className="font-display text-[clamp(2.6rem,5vw,4.4rem)] uppercase leading-[.8] tracking-[-.02em]">
+                  {"NULLL".split("").map((lettre, position) => (
+                    <span
+                      className={position === item.highlight ? "text-[#d96ab4]" : "text-[#351815]/22"}
+                      key={position}
+                    >
+                      {lettre}
+                    </span>
+                  ))}
+                </p>
+
+                <h3 className="mt-6 font-display text-[clamp(1.9rem,2.8vw,2.6rem)] uppercase leading-[.94]">
+                  {item.word}
+                </h3>
                 <p className="mt-4 text-base leading-relaxed text-[#351815]/78">{item.text}</p>
               </Reveal>
             ))}
           </ol>
 
           {/* Les fondateurs, juste apres : ce sont eux les trois L en pratique. */}
-          <div className="mt-14 flex flex-col gap-6 border-t-2 border-[#351815] pt-8 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mt-14 border-t-2 border-[#351815] pt-8">
             <div>
               <p className="font-mono text-xs font-black uppercase tracking-[.16em] opacity-55">{page.foundersTitle}</p>
               <ul className="mt-4 flex flex-wrap gap-x-10 gap-y-3">
@@ -126,9 +141,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
                 ))}
               </ul>
             </div>
-            <p className="max-w-xs font-mono text-[.62rem] font-black uppercase leading-relaxed tracking-[.14em] opacity-55">
-              Association loi 1901 déclarée le 12 mai 2026, publiée au Journal officiel le 23 juin 2026.
-            </p>
+
           </div>
         </div>
       </section>

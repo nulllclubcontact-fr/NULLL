@@ -324,13 +324,29 @@ export function getSiteCopy(locale: Locale) {
         // Les trois L du nom. Ils tiennent en un mot chacun : c'est ce qui les
         // rend citables. L'ordre suit l'histoire : on entre libre, on reste
         // pour le lien, on avance ensemble.
+        // Le titre pose la question, les cartes y repondent visuellement.
         lettersTitle: "Pourquoi trois L.",
         lettersIntro:
-          "Notre nom vient de « null » : on n’a pas besoin d’être un sportif de renom pour faire du sport. Les trois L, eux, ce sont nos trois piliers.",
+          "Notre nom vient de « null » : on n’a pas besoin d’être un sportif de renom pour faire du sport. Et si on l’écrit avec trois L, c’est que chacun porte un pilier du club.",
+        // Chaque pilier reaffiche le nom entier avec SON L allume : on voit
+        // d'ou vient chaque lettre sans avoir a l'expliquer. `highlight` est
+        // l'index de la lettre a mettre en avant dans « NULLL ».
         letters: [
-          { letter: "L", word: "Libre", text: "Aucun niveau requis, aucune licence, aucune cotisation pour venir essayer. On retire l’intimidation, pas l’exigence." },
-          { letter: "L", word: "Lien", text: "Le sport n’est que notre prétexte. On vient courir, on revient pour les gens — c’est notre raison d’être depuis le premier jour." },
-          { letter: "L", word: "Loin", text: "On a passé un an à regarder la vie des autres. Maintenant on construit, ensemble — et le running n’est que le début." }
+          {
+            highlight: 2,
+            word: "Libre",
+            text: "Aucun niveau requis, aucune licence, aucune cotisation pour venir essayer. On retire l’intimidation, pas l’exigence."
+          },
+          {
+            highlight: 3,
+            word: "Lien",
+            text: "Le sport n’est que notre prétexte. On vient courir, on revient pour les gens — c’est notre raison d’être depuis le premier jour."
+          },
+          {
+            highlight: 4,
+            word: "Lancer",
+            text: "On ne s’arrête pas à la course à pied. D’autres sports sont déjà sur le feu, et avec eux des événements, des ateliers et des voyages."
+          }
         ],
 
         // Ligne de vie. Toutes les dates sont verifiables : PV d'assemblee
@@ -352,7 +368,7 @@ export function getSiteCopy(locale: Locale) {
           {
             date: "12 mai 2026",
             label: "L’assemblée constitutive",
-            text: "On dépose les statuts : NULLL.CLUB devient une association loi 1901 à Aix-en-Provence. Adoptés à l’unanimité — on est deux. Tobias président, Tom trésorier.",
+            text: "On dépose les statuts. NULLL.CLUB devient officiellement une association à Aix-en-Provence, adoptés à l’unanimité — on est deux. Tobias président, Tom trésorier.",
             status: "passe" as const
           },
           {
@@ -421,7 +437,7 @@ export function getSiteCopy(locale: Locale) {
           },
           {
             q: "Pourquoi « NULLL » avec trois L ?",
-            a: "Le nom vient de « null » : on n’a pas besoin d’être un sportif de renom pour faire du sport. Les trois L, ce sont nos trois piliers — Libre, Lien, Loin."
+            a: "Le nom vient de « null » : on n’a pas besoin d’être un sportif de renom pour faire du sport. Les trois L, ce sont nos trois piliers — Libre, Lien, Lancer."
           },
           {
             q: "Est-ce uniquement un club de course à pied ?",
@@ -536,7 +552,7 @@ export function getSiteCopy(locale: Locale) {
             {
               title: "Un club associatif, pas une salle de sport",
               body: [
-                "NULLL.CLUB est une association loi 1901 déclarée à Aix-en-Provence. Il n’y a ni abonnement, ni engagement, ni objectif de performance : le club existe pour que courir devienne une habitude sociale plutôt qu’une corvée solitaire.",
+                "Il n’y a ni abonnement, ni engagement, ni objectif de performance. On veut juste que courir devienne une habitude sociale plutôt qu’une corvée solitaire, et que ceux qui viennent seuls repartent avec des gens.",
                 "C’est la différence principale avec un club de sport classique à Aix-en-Provence : le rendez-vous est public, gratuit, et tu peux venir une fois pour voir sans que personne ne te relance."
               ]
             },
