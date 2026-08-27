@@ -22,7 +22,7 @@ export default async function LocaleHomePage({ params }: PageProps) {
     <SiteShell current="home" locale={locale} pathname={`/${locale}`}>
       <StructuredData data={[buildOrganizationSchema(locale), buildSportsLocationSchema(locale), buildWebSiteSchema(locale), buildFaqSchema(copy.home.faq)]} />
       <HomeExperience
-        aboutHref={getRoute(locale, "about")}
+        aboutHref={getRoute(locale, "contact")}
         communityHref={getRoute(locale, "community")}
         merchHref={getRoute(locale, "merch")}
         localClubHref={getRoute(locale, "localClub")}

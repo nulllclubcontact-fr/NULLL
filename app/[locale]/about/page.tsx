@@ -13,13 +13,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const copy = getSiteCopy(locale);
   return buildPageMetadata({
     locale,
-    routeKey: "about",
-    title: copy.meta.about.title,
-    description: copy.meta.about.description
+    routeKey: "community",
+    title: copy.meta.community.title,
+    description: copy.meta.community.description
   });
 }
 
 export default async function AboutPage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale);
-  permanentRedirect(getRoute(locale, "about"));
+  // Vise directement la cible finale : enchainer about -> a-propos -> communaute
+  // ferait une chaine de redirections, que Google deconseille.
+  permanentRedirect(getRoute(locale, "community"));
 }

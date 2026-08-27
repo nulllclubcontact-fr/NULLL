@@ -49,7 +49,13 @@ export function SiteHeader({
         <Link className="flex min-w-0 items-center border-r-2 border-[#351815] px-3 transition hover:bg-[#ffb000] focus-visible:bg-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] sm:px-5" href={getRoute(locale, "home")}>
           <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 2xl:w-44" height={157} priority src="/assets/nulll-new/logo-burgundy.png" width={1225} />
         </Link>
-        <nav aria-label="Navigation principale" className="hidden min-w-0 grid-cols-6 font-mono text-xs font-black uppercase xl:grid">
+        <nav
+          aria-label="Navigation principale"
+          className="hidden min-w-0 font-mono text-xs font-black uppercase xl:grid"
+          // Le nombre de colonnes suit le nombre d'entrees : il etait fige a 6
+          // et laissait une colonne vide depuis la fusion des pages.
+          style={{ gridTemplateColumns: `repeat(${copy.nav.length}, minmax(0, 1fr))` }}
+        >
           {copy.nav.map((item: { key: RouteKey; label: string }) => (
             <Link
               aria-current={item.key === current ? "page" : undefined}
@@ -110,9 +116,8 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
           <FooterColumn
             links={[
               { href: getRoute(locale, "runs"), label: "Sorties" },
-              { href: getRoute(locale, "community"), label: "Communauté" },
+              { href: getRoute(locale, "community"), label: "Le club" },
               { href: getRoute(locale, "merch"), label: "Merch" },
-              { href: getRoute(locale, "about"), label: "À propos" },
               { href: getRoute(locale, "contact"), label: "Contact" }
             ]}
             title="Navigation"

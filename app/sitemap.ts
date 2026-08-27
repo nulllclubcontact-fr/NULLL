@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 import { getRoute, type RouteKey } from "../lib/site-content";
 
-const routeKeys: RouteKey[] = ["home", "runs", "community", "merch", "about", "contact", "localClub", "localRunning", "localEvents"];
+// « about » n'est plus une page : elle redirige en 308 vers « community ».
+// Une URL qui redirige n'a rien a faire dans un sitemap.
+const routeKeys: RouteKey[] = ["home", "runs", "community", "merch", "contact", "localClub", "localRunning", "localEvents"];
 // Date de generation du sitemap. Une date figee dans le passe indique a tort
 // a Google que le site n'a pas bouge depuis.
 const lastModified = new Date();

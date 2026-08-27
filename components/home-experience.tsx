@@ -194,9 +194,9 @@ export function HomeExperience({
           </h2>
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            <ExploreCard href={communityHref} label="Communauté" text="Qui vient, et ce qui se passe entre les runs." />
+            <ExploreCard href={communityHref} label="Le club" text="D’où vient NULLL.CLUB, et pourquoi trois L." />
             <ExploreCard href={merchHref} label="Merch" text="Les pièces du club, quand elles sont dispo." />
-            <ExploreCard href={aboutHref} label="À propos" text="D’où vient NULLL.CLUB." />
+            <ExploreCard href={aboutHref} label="Contact" text="Une question avant de venir samedi." />
           </div>
         </div>
       </section>
