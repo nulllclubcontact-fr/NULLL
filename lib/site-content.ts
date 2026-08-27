@@ -366,15 +366,9 @@ export function getSiteCopy(locale: Locale) {
             status: "passe" as const
           },
           {
-            date: "12 mai 2026",
-            label: "L’assemblée constitutive",
-            text: "On dépose les statuts. NULLL.CLUB devient officiellement une association à Aix-en-Provence, adoptés à l’unanimité — on est deux. Tobias président, Tom trésorier.",
-            status: "passe" as const
-          },
-          {
-            date: "23 juin 2026",
-            label: "Publication au Journal officiel",
-            text: "Notre association existe légalement. Ce qu’on a déclaré : créer et animer une communauté autour du sport, du bien-être, de la créativité et du lien social.",
+            date: "Puis il a fallu un nom",
+            label: "NULLL",
+            text: "On le voulait démarquant, et on le voulait honnête : « null », parce qu’on n’a pas besoin d’être un sportif de renom pour faire du sport. Trois L, un par pilier — c’est juste en dessous.",
             status: "passe" as const
           },
           {
@@ -386,7 +380,7 @@ export function getSiteCopy(locale: Locale) {
           {
             date: "Ensuite",
             label: "Pas que la course",
-            text: "On est un social sport club, pas un running club. D’autres sports sont déjà sur le feu, et nos statuts prévoient aussi ateliers, événements et voyages.",
+            text: "On est un social sport club, pas un running club. D’autres sports sont déjà sur le feu, et avec eux des événements, des ateliers et des voyages.",
             status: "aVenir" as const
           }
         ],
@@ -405,7 +399,7 @@ export function getSiteCopy(locale: Locale) {
         editorial: [
           {
             heading: "Un social sport club, pas un club de running",
-            body: "On commence par la course à pied parce que c’est le sport le plus simple à partager : pas de terrain à réserver, pas de niveau minimum, pas de matériel. Mais ce qu’on a déposé en préfecture est plus large : créer et animer une communauté autour du sport, du bien-être, de la créativité et du lien social. D’autres formats suivront."
+            body: "On commence par la course à pied parce que c’est le sport le plus simple à partager : pas de terrain à réserver, pas de niveau minimum, pas de matériel. Mais l’idée de départ est plus large — créer une communauté autour du sport, du bien-être, de la créativité et du lien social. D’autres formats suivront."
           },
           {
             heading: "Courir en groupe plutôt que seul",
@@ -421,7 +415,7 @@ export function getSiteCopy(locale: Locale) {
         faq: [
           {
             q: "Le club a-t-il déjà commencé ?",
-            a: "Notre première sortie collective a lieu le samedi 12 septembre 2026 à 8h30, au parking Émile Zola. L’association, elle, est déclarée depuis le 12 mai 2026 et publiée au Journal officiel le 23 juin 2026."
+            a: "Notre première sortie collective a lieu le samedi 12 septembre 2026 à 8h30, au parking Émile Zola. Le club, lui, se prépare depuis le printemps 2026."
           },
           {
             q: "Faut-il être membre pour venir courir ?",
@@ -441,7 +435,7 @@ export function getSiteCopy(locale: Locale) {
           },
           {
             q: "Est-ce uniquement un club de course à pied ?",
-            a: "Non. On est un social sport club. La course à pied est notre premier format, mais nos statuts prévoient aussi entraînements, rencontres, événements, ateliers et voyages."
+            a: "Non. On est un social sport club. La course à pied est notre premier format, mais d’autres sports arrivent, avec des événements, des ateliers et des voyages."
           }
         ],
 
