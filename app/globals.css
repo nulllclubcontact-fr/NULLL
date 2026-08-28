@@ -943,3 +943,143 @@ textarea {
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------------
+   Page contact — lignes de canaux et retours du formulaire.
+   Toutes les transitions sont neutralisees plus bas si le visiteur a
+   demande moins de mouvement.
+   ------------------------------------------------------------------ */
+
+/* Le fond balaie la ligne depuis la gauche au lieu d'apparaitre d'un
+   bloc : c'est ce qui donne la sensation de ligne vivante. */
+.contact-row-link {
+  position: relative;
+  isolation: isolate;
+}
+
+.contact-row-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #d96ab4;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-row-link:hover::before,
+.contact-row-link:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.contact-row-value,
+.contact-row-arrow {
+  transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-row-link:hover .contact-row-value,
+.contact-row-link:focus-visible .contact-row-value {
+  transform: translateX(0.6rem);
+}
+
+.contact-row-link:hover .contact-row-arrow,
+.contact-row-link:focus-visible .contact-row-arrow {
+  transform: translateX(0.7rem);
+}
+
+/* Le descriptif reste replie tant qu'on ne survole pas : la liste se lit
+   d'abord comme quatre adresses, le detail vient a la demande. */
+.contact-row-text {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 460ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 300ms ease,
+    margin-top 460ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-row-link:hover .contact-row-text,
+.contact-row-link:focus-visible .contact-row-text {
+  max-height: 6rem;
+  margin-top: 0.9rem;
+  opacity: 1;
+}
+
+/* Le titre arrive lettre par lettre, une seule fois au chargement. */
+.letter-rise {
+  display: inline-block;
+  animation: hero-rise 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Confirmation de copie : la pastille passe au jaune puis redescend. */
+.copy-done {
+  animation: copy-done 1600ms ease;
+}
+
+@keyframes copy-done {
+  0% { transform: scale(1); }
+  18% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Filet qui se trace sous le champ actif. */
+.field-rule {
+  position: relative;
+}
+
+.field-rule::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 3px;
+  background: #ffb000;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.field-rule:focus-within::after {
+  transform: scaleX(1);
+}
+
+/* Sur un ecran tactile il n'y a pas de survol : le descriptif ne doit pas
+   rester replie pour toujours. */
+@media (hover: none) {
+  .contact-row-text {
+    max-height: none;
+    margin-top: 0.9rem;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-row-link::before {
+    transition: none;
+  }
+
+  .contact-row-value,
+  .contact-row-arrow {
+    transition: none;
+  }
+
+  /* Sans animation, le descriptif reste visible en permanence : il ne
+     doit pas devenir inaccessible pour eviter un mouvement. */
+  .contact-row-text {
+    max-height: none;
+    margin-top: 0.9rem;
+    opacity: 1;
+    transition: none;
+  }
+
+  .letter-rise,
+  .copy-done {
+    animation: none;
+  }
+
+  .field-rule::after {
+    transition: none;
+  }
+}
