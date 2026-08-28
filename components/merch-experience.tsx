@@ -195,43 +195,26 @@ function CadreModal({
   );
 }
 
-const NOTICE_STORAGE_KEY = "nulll-merch-notice-v1";
-
 /**
  * Dit d'entree de jeu que la boutique est un brouillon. Les etiquettes sur
  * les photos le rappellent, mais elles se lisent apres coup : quelqu'un qui
- * arrive ici croit tomber sur une vraie boutique. Vu une fois, plus jamais.
+ * arrive ici croit tomber sur une vraie boutique.
+ *
+ * Elle s'ouvre a chaque arrivee sur la page, sans memoire : la boutique
+ * n'est pas reelle, le visiteur doit le lire a chaque fois, pas seulement
+ * a sa premiere visite.
  */
 export function MerchNotice({ runsHref }: { runsHref: string }) {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    let dejaVu = false;
-    try {
-      dejaVu = window.localStorage.getItem(NOTICE_STORAGE_KEY) === "1";
-    } catch {
-      // Navigation privee ou stockage refuse : on affiche, c'est le defaut sur.
-    }
     // Un dialog ferme est display:none et hors de l'arbre d'accessibilite :
     // pas besoin d'un etat pour ne pas le monter.
-    if (dejaVu) return;
     ouvrirCadre(ref.current);
   }, []);
 
   return (
-    <CadreModal
-      cadreRef={ref}
-      // Echap ferme sans passer par le bouton : la memoire se pose ici,
-      // pas dans le onClick, sinon la popup revient au rechargement.
-      onClose={() => {
-        try {
-          window.localStorage.setItem(NOTICE_STORAGE_KEY, "1");
-        } catch {
-          // Rien a faire : elle se remontrera, c'est tout.
-        }
-      }}
-      titreId="merch-notice-title"
-    >
+    <CadreModal cadreRef={ref} titreId="merch-notice-title">
       <>
         <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#ffb000] [word-spacing:.22em]">Petit problème</p>
         <h2 className="mt-5 font-display text-[clamp(2rem,6vw,2.9rem)] uppercase leading-[.9] tracking-[-.03em] [word-spacing:.08em]" id="merch-notice-title">
