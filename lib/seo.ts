@@ -140,8 +140,8 @@ export function buildSportsLocationSchema(locale: Locale) {
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: "https://schema.org/Saturday",
-        opens: "08:30",
-        closes: "10:00"
+        opens: "08:00",
+        closes: "12:00"
       }
     ],
     isAccessibleForFree: true,
@@ -151,6 +151,7 @@ export function buildSportsLocationSchema(locale: Locale) {
       name: "Aix-en-Provence"
     },
     email: "contact@nulll.club",
+    telephone: "+33626755273",
     image: `${SITE_URL}/assets/photos/hero-nulll-aix-v2.webp`,
     logo: `${SITE_URL}/assets/brand/nulll-mark.png`,
     sameAs: [

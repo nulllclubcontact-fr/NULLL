@@ -183,6 +183,10 @@ export function getSiteCopy(locale: Locale) {
         instagram: "https://www.instagram.com/nulll.club",
         instagramLabel: "@nulll.club",
         email: "contact@nulll.club",
+        // Meme numero que la fiche Google : les coordonnees doivent se
+        // recouper d'une source a l'autre.
+        phone: "+33626755273",
+        phoneLabel: "06 26 75 52 73",
         linkedin: "https://www.linkedin.com/company/nulll-club/"
       },
       nav: [
@@ -485,6 +489,12 @@ export function getSiteCopy(locale: Locale) {
             value: "contact@nulll.club",
             text: "Le bon canal pour les commandes, partenariats, médias et demandes détaillées.",
             href: "mailto:contact@nulll.club"
+          },
+          {
+            title: "Téléphone",
+            value: "06 26 75 52 73",
+            text: "Pour une question rapide avant de venir, ou le samedi matin si tu nous cherches.",
+            href: "tel:+33626755273"
           },
           {
             title: "LinkedIn",
