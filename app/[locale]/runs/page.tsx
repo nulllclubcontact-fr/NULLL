@@ -77,7 +77,7 @@ export default async function RunsPage({ params }: PageProps) {
 
         <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col items-center justify-center gap-9 px-5 py-8 text-center sm:gap-14 sm:px-8 sm:py-12 xl:px-12">
           <h1
-            className="hero-rise hero-text-shadow whitespace-nowrap font-display text-[clamp(1.9rem,12.4vw,13rem)] uppercase leading-[.9] tracking-[-.045em]"
+            className="hero-rise hero-text-shadow whitespace-nowrap font-display text-[clamp(1.9rem,12.4vw,13rem)] uppercase leading-[1.12] tracking-[-.045em]"
             id="runs-title"
             style={{ animationDelay: "120ms" }}
           >
@@ -124,7 +124,7 @@ export default async function RunsPage({ params }: PageProps) {
           <div className="flex flex-col gap-5 border-b border-[#f6eadf]/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">01 — Le calendrier</p>
-              <h2 className="mt-4 font-display text-[clamp(3.2rem,6vw,6rem)] uppercase leading-[.9] tracking-[-.035em]" id="runs-list-title">
+              <h2 className="mt-4 font-display text-[clamp(3.2rem,6vw,6rem)] uppercase leading-[1.12] tracking-[-.035em]" id="runs-list-title">
                 Prochaine <span className="text-[#d96ab4]">sortie.</span>
               </h2>
             </div>
@@ -157,7 +157,7 @@ export default async function RunsPage({ params }: PageProps) {
           <div className="relative z-10 text-center">
             <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">02 — Les seules règles</p>
             <h2
-              className="mx-auto mt-5 max-w-[15ch] font-display text-[clamp(3rem,7vw,7.5rem)] uppercase leading-[.9] tracking-[-.045em]"
+              className="mx-auto mt-5 max-w-[15ch] font-display text-[clamp(3rem,7vw,7.5rem)] uppercase leading-[1.12] tracking-[-.045em]"
               id="runs-format"
             >
               Le seul podium<br /><span className="text-[#d96ab4]">qui compte.</span>
@@ -169,7 +169,7 @@ export default async function RunsPage({ params }: PageProps) {
               <Image alt="" className="principle-photo object-cover object-[50%_42%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-clear-head.webp" />
               <span className="podium-medal" aria-hidden="true">02</span>
               <span className="principle-kicker mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">Respirer enfin</span>
-              <h3 className="break-normal font-display text-[clamp(2.25rem,4vw,4.5rem)] uppercase leading-[.9] [overflow-wrap:normal]">Se vider<br />la tête</h3>
+              <h3 className="break-normal font-display text-[clamp(2.25rem,4vw,4.5rem)] uppercase leading-[1.12] [overflow-wrap:normal]">Se vider<br />la tête</h3>
               <span aria-hidden="true" className="mt-6 block h-2 w-20 bg-[#351815]" />
             </Reveal>
 
@@ -177,7 +177,7 @@ export default async function RunsPage({ params }: PageProps) {
               <Image alt="" className="principle-photo object-cover object-[50%_48%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-meet.webp" />
               <span className="podium-medal podium-medal--first" aria-hidden="true">01</span>
               <span className="principle-kicker principle-kicker--first mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">La vraie victoire</span>
-              <h3 className="break-normal font-display text-[clamp(2.15rem,4.3vw,4rem)] uppercase leading-[.9] [overflow-wrap:normal]">Faire des<br />rencontres</h3>
+              <h3 className="break-normal font-display text-[clamp(2.15rem,4.3vw,4rem)] uppercase leading-[1.12] [overflow-wrap:normal]">Faire des<br />rencontres</h3>
               <p className="mt-6 max-w-[25ch] font-mono text-xs font-black uppercase leading-relaxed tracking-[.08em]">Pas d’écouteurs. Des vraies conversations.</p>
             </Reveal>
 
@@ -185,7 +185,7 @@ export default async function RunsPage({ params }: PageProps) {
               <Image alt="" className="principle-photo object-cover object-[50%_28%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-fun.webp" />
               <span className="podium-medal" aria-hidden="true">03</span>
               <span className="principle-kicker mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">Zéro pression</span>
-              <h3 className="break-normal font-display text-[clamp(2.25rem,4vw,4.5rem)] uppercase leading-[.9] [overflow-wrap:normal]">S’amuser.<br />C’est tout.</h3>
+              <h3 className="break-normal font-display text-[clamp(2.25rem,4vw,4.5rem)] uppercase leading-[1.12] [overflow-wrap:normal]">S’amuser.<br />C’est tout.</h3>
               <span aria-hidden="true" className="mt-6 block h-2 w-20 bg-[#d96ab4]" />
             </Reveal>
           </ol>
@@ -199,7 +199,7 @@ export default async function RunsPage({ params }: PageProps) {
         <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-28 xl:px-12">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em]">03 — Les questions</p>
           <h2
-            className="mt-5 max-w-[12ch] font-display text-[clamp(3rem,6.4vw,6.4rem)] uppercase leading-[.9] tracking-[-.04em]"
+            className="mt-5 max-w-[12ch] font-display text-[clamp(3rem,6.4vw,6.4rem)] uppercase leading-[1.12] tracking-[-.04em]"
             id="runs-faq"
           >
             Avant de venir.
@@ -215,14 +215,14 @@ export default async function RunsPage({ params }: PageProps) {
                 <span className="font-mono text-xs font-black uppercase tracking-[.14em] opacity-60">
                   0{index + 1}
                 </span>
-                <dt className="font-display text-[clamp(1.5rem,2.6vw,2.3rem)] uppercase leading-[.95]">{entry.q}</dt>
+                <dt className="font-display text-[clamp(1.5rem,2.6vw,2.3rem)] uppercase leading-[1.12]">{entry.q}</dt>
                 <dd className="text-lg font-bold leading-snug">{entry.a}</dd>
               </Reveal>
             ))}
           </dl>
 
           <div className="mt-14 flex flex-col gap-4 border-2 border-[#351815] bg-[#351815] p-8 text-[#f6eadf] sm:flex-row sm:items-center sm:justify-between sm:p-10">
-            <p className="max-w-md font-display text-[clamp(1.6rem,3vw,2.6rem)] uppercase leading-[.95]">
+            <p className="max-w-md font-display text-[clamp(1.6rem,3vw,2.6rem)] uppercase leading-[1.12]">
               Il reste une question ?
             </p>
             <Link
@@ -267,7 +267,7 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
         </div>
 
         <div>
-          <h3 className="run-card-date max-w-[11ch] break-normal font-display text-[clamp(2.55rem,7.2vw,7.4rem)] uppercase leading-[.9] tracking-[-.04em] [overflow-wrap:normal] sm:leading-[.9]" id={`run-${run.id}`}>
+          <h3 className="run-card-date max-w-[11ch] break-normal font-display text-[clamp(2.55rem,7.2vw,7.4rem)] uppercase leading-[1.12] tracking-[-.04em] [overflow-wrap:normal] sm:leading-[1.12]" id={`run-${run.id}`}>
             {run.date}
           </h3>
           <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs font-black uppercase tracking-[.1em]">

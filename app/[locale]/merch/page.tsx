@@ -46,7 +46,7 @@ export default async function MerchPage({ params }: PageProps) {
         <div className="mx-auto w-full max-w-[1600px] px-5 pb-16 pt-8 sm:px-8 sm:pb-24 sm:pt-10 xl:px-12">
           <div className="flex flex-col gap-5 border-b-2 border-[#351815] pb-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
             <div>
-              <h1 className="font-display text-[clamp(2.2rem,4.6vw,3.8rem)] uppercase leading-[.88] tracking-[-.035em]">{page.title}</h1>
+              <h1 className="font-display text-[clamp(2.2rem,4.6vw,3.8rem)] uppercase leading-[1.12] tracking-[-.035em]">{page.title}</h1>
               <p className="mt-4 max-w-lg text-base leading-relaxed text-[#351815]/72">{page.intro}</p>
             </div>
             {/* Les photos des cartes sont des images d'ambiance, pas les

@@ -306,7 +306,10 @@ textarea {
    ------------------------------------------------------------------ */
 .home-title {
   font-size: clamp(2.9rem, 6.6vw, 6.6rem);
-  line-height: 0.92;
+  /* 1.12 et pas moins : l'encre d'une capitale accentuee monte a 1.101 em
+     dans Anton, donc sous cette valeur le É de la ligne suivante percute
+     la ligne du dessus. Mesure au canvas, pas a l'oeil. */
+  line-height: 1.12;
   text-wrap: balance;
 }
 

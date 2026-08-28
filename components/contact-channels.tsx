@@ -70,7 +70,7 @@ export function ContactChannels({ channels }: { channels: Channel[] }) {
                 <span className="block font-mono text-[.62rem] font-black uppercase tracking-[.16em] opacity-55 [word-spacing:.18em]">
                   {channel.title}
                 </span>
-                <span className="contact-row-value copy-safe mt-2 block font-display text-[clamp(1.15rem,4vw,3rem)] uppercase leading-[.92] tracking-[-.03em]">
+                <span className="contact-row-value copy-safe mt-2 block font-display text-[clamp(1.15rem,4vw,3rem)] uppercase leading-[1.12] tracking-[-.03em]">
                   {channel.value}
                 </span>
                 <span className="contact-row-text block max-w-[56ch] text-base leading-relaxed opacity-80">{channel.text}</span>

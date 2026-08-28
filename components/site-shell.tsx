@@ -105,7 +105,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
       <div className="mx-auto max-w-[1600px] px-5 py-10 sm:px-8 sm:py-14 xl:px-12">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-12">
           <div>
-            <p className="max-w-[13ch] font-display text-[clamp(2rem,3.4vw,2.9rem)] uppercase leading-[.96] [overflow-wrap:normal]">
+            <p className="max-w-[13ch] font-display text-[clamp(2rem,3.4vw,2.9rem)] uppercase leading-[1.12] [overflow-wrap:normal]">
               Social sport club à Aix-en-Provence.
             </p>
             <p className="mt-4 max-w-xs leading-relaxed text-[#f6eadf]/70">

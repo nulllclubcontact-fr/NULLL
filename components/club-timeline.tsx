@@ -33,7 +33,7 @@ export function ClubTimeline({ entries }: { entries: TimelineEntry[] }) {
           <span aria-hidden="true" className="timeline-dot" />
 
           <p className="timeline-date font-mono text-xs font-black uppercase tracking-[.16em]">{entry.date}</p>
-          <h3 className="mt-3 font-display text-[clamp(1.7rem,3vw,2.8rem)] uppercase leading-[.92]">{entry.label}</h3>
+          <h3 className="mt-3 font-display text-[clamp(1.7rem,3vw,2.8rem)] uppercase leading-[1.12]">{entry.label}</h3>
           <p className="mt-4 max-w-[52ch] text-lg leading-relaxed text-[#f6eadf]/78">{entry.text}</p>
 
           {entry.status === "aVenir" ? (
