@@ -52,7 +52,7 @@ export default async function ContactPage({ params }: PageProps) {
                 entier : lettre par lettre, un lecteur d'ecran epellerait. */}
             <h1
               aria-label="Parle-nous."
-              className="mt-6 font-display text-[clamp(3.4rem,10vw,8rem)] uppercase leading-[.84] tracking-[-.04em] [word-spacing:.06em]"
+              className="mt-6 font-display text-[clamp(3.4rem,10vw,8rem)] uppercase leading-[.84] tracking-[-.04em]"
               id="contact-title"
             >
               <span aria-hidden="true">
@@ -111,7 +111,7 @@ export default async function ContactPage({ params }: PageProps) {
               Message direct
             </p>
             <h2
-              className="mt-6 font-display text-[clamp(2.6rem,6vw,5rem)] uppercase leading-[.86] tracking-[-.035em] text-[#ffb000] [word-spacing:.08em]"
+              className="mt-6 font-display text-[clamp(2.6rem,6vw,5rem)] uppercase leading-[.86] tracking-[-.035em] text-[#ffb000]"
               id="contact-write"
             >
               Écris-nous.

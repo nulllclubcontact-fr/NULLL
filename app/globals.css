@@ -114,6 +114,15 @@ a {
     max-width: 100%;
     overflow-wrap: anywhere;
   }
+
+  /* La police d'affichage est tres condensee et les titres portent un
+     tracking negatif : l'espace-mot se retrouvait a peine plus large que
+     l'espace-lettre, et « TOUS LES SAMEDIS » se lisait comme un bloc. On
+     le rouvre ici, une fois pour tout le site. Dans la couche base, un
+     `[word-spacing:...]` pose sur un element l'emporte toujours. */
+  .font-display {
+    word-spacing: 0.14em;
+  }
 }
 
 summary {

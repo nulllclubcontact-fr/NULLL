@@ -60,7 +60,7 @@ export function MerchExperience({ locale }: { locale: Locale }) {
 
       <aside className="sticky top-28 h-fit border-2 border-[#351815] bg-[#1c0d0b] p-6 text-[#f6eadf] shadow-[10px_10px_0_#d96ab4]">
         <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000] [word-spacing:.18em]">Panier</p>
-        <p className="mt-4 font-display text-[clamp(2.4rem,3.6vw,3.6rem)] uppercase leading-[.9] tracking-[-.03em] [word-spacing:.08em]">
+        <p className="mt-4 font-display text-[clamp(2.4rem,3.6vw,3.6rem)] uppercase leading-[.9] tracking-[-.03em]">
           {count} pièce
           {count > 1 ? "s" : ""}
         </p>
@@ -120,7 +120,7 @@ export function MerchExperience({ locale }: { locale: Locale }) {
         <CadreModal cadreRef={commandeRef} titreId="merch-commande-title">
           <>
             <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#d96ab4] [word-spacing:.22em]">Erreur 404 : le t-shirt</p>
-            <h2 className="mt-5 font-display text-[clamp(2rem,6vw,2.9rem)] uppercase leading-[.9] tracking-[-.03em] [word-spacing:.08em]" id="merch-commande-title">
+            <h2 className="mt-5 font-display text-[clamp(2rem,6vw,2.9rem)] uppercase leading-[.9] tracking-[-.03em]" id="merch-commande-title">
               Wesh brother, t&rsquo;as pas compris ?
             </h2>
 
@@ -217,7 +217,7 @@ export function MerchNotice({ runsHref }: { runsHref: string }) {
     <CadreModal cadreRef={ref} titreId="merch-notice-title">
       <>
         <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#ffb000] [word-spacing:.22em]">Petit problème</p>
-        <h2 className="mt-5 font-display text-[clamp(2rem,6vw,2.9rem)] uppercase leading-[.9] tracking-[-.03em] [word-spacing:.08em]" id="merch-notice-title">
+        <h2 className="mt-5 font-display text-[clamp(2rem,6vw,2.9rem)] uppercase leading-[.9] tracking-[-.03em]" id="merch-notice-title">
           La boutique est vide.
         </h2>
 
@@ -243,7 +243,7 @@ export function MerchNotice({ runsHref }: { runsHref: string }) {
         </p>
 
         {/* La chute : en display, elle se detache du reste du texte. */}
-        <p className="mt-6 font-display text-[clamp(1.35rem,3.4vw,1.8rem)] uppercase leading-[.98] tracking-[-.02em] text-[#ffb000] [word-spacing:.08em]">
+        <p className="mt-6 font-display text-[clamp(1.35rem,3.4vw,1.8rem)] uppercase leading-[.98] tracking-[-.02em] text-[#ffb000]">
           De toute façon, on ne peut littéralement rien te vendre.
         </p>
 
@@ -309,7 +309,7 @@ function ProductCard({
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#d96ab4]">{product.badge}</p>
-        <h3 className="mt-3 font-display text-[clamp(1.8rem,2.6vw,2.4rem)] uppercase leading-[.92] tracking-[-.03em] [word-spacing:.08em]">{product.name}</h3>
+        <h3 className="mt-3 font-display text-[clamp(1.8rem,2.6vw,2.4rem)] uppercase leading-[.92] tracking-[-.03em]">{product.name}</h3>
         <p className="mt-4 text-base leading-relaxed text-[#351815]/72">{product.description}</p>
         <p className="mt-3 font-mono text-[.62rem] font-black uppercase tracking-[.06em] text-[#351815]/50 [word-spacing:.14em]">{product.fit}</p>
 
