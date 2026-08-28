@@ -14,17 +14,27 @@ export const metadata = {
 };
 
 /**
- * Le mecanisme reel, tel qu'il tourne aujourd'hui. Le credit automatique
- * de points n'est pas encore en place (voir la page de scan pro), donc on
- * ne le promet pas ici : on decrit le QR, le palier et la reduction.
+ * Ce que l'inscription apporte aujourd'hui, et rien de plus. Il n'y a pas
+ * encore de commercants partenaires ni de credit de points : la page ne
+ * vend donc aucune reduction. Elle parle de la decharge, du fait d'etre
+ * compte, et de la carte de membre — trois choses qui existent.
  */
 const etapes = [
-  { titre: "Tu crées ton compte", texte: "Deux minutes, la décharge à signer, et c’est fait." },
-  { titre: "Tu reçois ton QR", texte: "Il vit dans ton espace membre, toujours sur ton téléphone." },
-  { titre: "Le partenaire le scanne", texte: "Il voit ton palier et applique ta réduction directement en caisse." }
+  {
+    titre: "Tu signes une fois",
+    texte: "La décharge est réglée pour de bon. Plus rien à remplir le samedi matin."
+  },
+  {
+    titre: "Tu comptes vraiment",
+    texte: "Le nombre de membres, c’est ce qu’on présente à la mairie pour faire avancer le club."
+  },
+  {
+    titre: "Ta carte t’attend",
+    texte: "Ton QR de membre est prêt, et servira dès que les premiers partenaires arriveront."
+  }
 ];
 
-const TITRE = "Jusqu’en caisse.";
+const TITRE = "ça se compte.";
 
 export default function IdentificationPage() {
   const copy = getSiteCopy("fr");
@@ -46,13 +56,13 @@ export default function IdentificationPage() {
             {/* Les lettres arrivent en cascade. aria-label porte la phrase
                 entiere : lettre par lettre, un lecteur d'ecran epellerait. */}
             <h1
-              aria-label={`Le club te suit ${TITRE}`}
+              aria-label={`Un club, ${TITRE}`}
               className="mt-6 font-display text-[clamp(2.6rem,6.4vw,5rem)] uppercase leading-[1.12] tracking-[-.035em]"
               id="identification-titre"
             >
               <span aria-hidden="true">
                 <span className="hero-rise block" style={{ animationDelay: "140ms" }}>
-                  Le club te suit
+                  Un club,
                 </span>
                 <span className="block text-[#d96ab4]">
                   {TITRE.split("").map((lettre, index) => (
@@ -67,8 +77,9 @@ export default function IdentificationPage() {
             </h1>
 
             <p className="hero-rise mt-7 max-w-xl text-lg leading-relaxed text-[#f6eadf]/82" style={{ animationDelay: "420ms" }}>
-              Ton compte te donne un QR. Les commerçants partenaires du club le scannent, voient ton palier, et la
-              réduction s’applique en caisse. C’est gratuit, et ça ne prend que deux minutes.
+              T’inscrire prend deux minutes. Tu signes la décharge une seule fois, tu deviens officiellement membre, et
+              tu comptes dans les chiffres qui permettent au club d’avancer. C’est gratuit, et ça n’engage à rien
+              d’autre qu’à venir courir.
             </p>
 
             <div className="hero-rise mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "520ms" }}>
@@ -92,7 +103,7 @@ export default function IdentificationPage() {
           <div className="hero-rise mx-auto w-full max-w-sm lg:mr-0" style={{ animationDelay: "300ms" }}>
             <QrAnime />
             <p className="mt-5 text-center font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#f6eadf]/55 [word-spacing:.18em] lg:text-right">
-              Ton QR, dans ton espace membre
+              Ta carte de membre
             </p>
           </div>
         </div>
