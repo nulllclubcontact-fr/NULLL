@@ -187,7 +187,7 @@ export function getSiteCopy(locale: Locale) {
         // recouper d'une source a l'autre.
         phone: "+33626755273",
         phoneLabel: "06 26 75 52 73",
-        linkedin: "https://www.linkedin.com/company/nulll-club/"
+        linkedin: "https://www.linkedin.com/company/nulll-club/?viewAsMember=true"
       },
       nav: [
         { key: "home" as const, label: "Accueil" },
@@ -500,7 +500,7 @@ export function getSiteCopy(locale: Locale) {
             title: "LinkedIn",
             value: "NULLL.CLUB",
             text: "Pour les partenaires, collaborations locales et projets de marque.",
-            href: "https://www.linkedin.com/company/nulll-club/"
+            href: "https://www.linkedin.com/company/nulll-club/?viewAsMember=true"
           }
         ]
       },
