@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 
-const CONTACT_EMAIL = "contact@nulll.club";
+/**
+ * Destinataire des messages. Configurable parce que tant que le domaine
+ * n'est pas verifie chez Resend, l'envoi n'est autorise que vers l'adresse
+ * du compte Resend — pas encore vers contact@nulll.club. Une fois le
+ * domaine verifie, retirer CONTACT_TO et cette valeur reprend la main.
+ */
+const CONTACT_EMAIL = process.env.CONTACT_TO || "contact@nulll.club";
 
 /**
  * Adresse d'expedition : elle doit appartenir a un domaine verifie chez
