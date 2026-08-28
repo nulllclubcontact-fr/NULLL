@@ -46,7 +46,11 @@ export function HomeExperience({
             <span className="text-[#ffb000]">Ouvert à tous · Gratuit</span>
           </div>
 
-          <div className="max-w-3xl py-12 sm:py-24">
+          {/* max-w-4xl et pas 3xl : la police du titre monte jusqu'a 105px
+              (clamp 6.6rem) alors que 3xl bloquait a 768px — « ON COURT
+              ENSEMBLE, » passait a la ligne au-dela de 1600px de large et
+              la punchline se retrouvait sur trois lignes. */}
+          <div className="max-w-4xl py-12 sm:py-24">
             <h1 className="home-title font-display uppercase tracking-[-.03em]" id="home-title">
               <span className="hero-rise" style={{ animationDelay: "80ms" }}>On court ensemble,</span>
               <span className="hero-rise text-[#d96ab4]" style={{ animationDelay: "200ms" }}>tous les samedis.</span>
@@ -136,7 +140,7 @@ export function HomeExperience({
            « Aix-en-Provence » — absent du hero, qui reste une accroche. */}
       <section className="border-t-2 border-[#351815] bg-[#f6eadf] text-[#351815]" aria-labelledby="home-le-club">
         <div className="mx-auto max-w-[1600px] px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 xl:px-12">
-          <h2 className="max-w-[18ch] font-display text-[clamp(2.2rem,4.5vw,4rem)] uppercase leading-[1.12] tracking-[-.025em]" id="home-le-club">
+          <h2 className="font-display text-[clamp(2.2rem,4.5vw,4rem)] uppercase leading-[1.12] tracking-[-.025em]" id="home-le-club">
             Un run club <span className="text-[#d96ab4]">à Aix-en-Provence.</span>
           </h2>
 

@@ -83,7 +83,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       <section className="border-t-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="club-timeline">
         <div className="mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#d96ab4]">D’où ça vient</p>
-          <h2 className="mt-5 max-w-[14ch] font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[1.12] tracking-[-.035em]" id="club-timeline">
+          <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[1.12] tracking-[-.035em]" id="club-timeline">
             {page.timelineTitle}
           </h2>
 

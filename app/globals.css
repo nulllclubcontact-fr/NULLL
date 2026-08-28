@@ -306,10 +306,13 @@ textarea {
    ------------------------------------------------------------------ */
 .home-title {
   font-size: clamp(2.9rem, 6.6vw, 6.6rem);
-  /* 1.12 et pas moins : l'encre d'une capitale accentuee monte a 1.101 em
-     dans Anton, donc sous cette valeur le É de la ligne suivante percute
-     la ligne du dessus. Mesure au canvas, pas a l'oeil. */
-  line-height: 1.12;
+  /* 0.95 et pas 1.12 comme les autres titres : la punchline d'accueil ne
+     contient aucune capitale accentuee, et c'est l'accent qui impose
+     l'interligne large (l'encre d'un É monte a 1.101 em dans Anton, contre
+     0.867 em pour une capitale nue). ATTENTION : si la punchline gagne un
+     jour un É, un À ou un Ê, il faut repasser a 1.12, sinon la ligne du
+     dessus sera percutee. */
+  line-height: 0.95;
   text-wrap: balance;
 }
 
