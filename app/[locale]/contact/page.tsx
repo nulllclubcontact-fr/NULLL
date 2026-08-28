@@ -117,7 +117,7 @@ export default async function ContactPage({ params }: PageProps) {
               Écris-nous.
             </h2>
             <p className="mt-8 max-w-md text-lg leading-relaxed text-[#f6eadf]/75">
-              Ça ouvre ta messagerie avec le message déjà écrit. Tu n’as plus qu’à envoyer.
+              Le message part directement d’ici, sans passer par ta messagerie. On répond à l’adresse que tu laisses.
             </p>
           </div>
 
