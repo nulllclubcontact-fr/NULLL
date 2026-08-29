@@ -33,15 +33,15 @@ export default function IdentificationPage() {
         <Image
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute -left-8 bottom-8 h-auto w-[130%] max-w-none opacity-[.05] sm:w-[112%]"
+          className="pointer-events-none absolute -left-8 bottom-4 h-auto w-[150%] max-w-none opacity-[.055] sm:w-[125%]"
           height={313}
           priority
           src="/assets/nulll-new/logo-cream.png"
           width={2449}
         />
 
-        <div className="relative mx-auto grid w-full max-w-4xl items-center gap-12 lg:grid-cols-[minmax(0,.8fr)_minmax(0,1fr)] lg:gap-16">
-          <div className="hero-rise mx-auto w-full max-w-[16rem] lg:mx-0" style={{ animationDelay: "160ms" }}>
+        <div className="relative mx-auto grid w-full max-w-[1500px] items-center gap-14 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1fr)] lg:gap-24 xl:px-6">
+          <div className="hero-rise mx-auto w-full max-w-[15rem] sm:max-w-[20rem] lg:mx-0 lg:max-w-[28rem]" style={{ animationDelay: "160ms" }}>
             <QrAnime />
           </div>
 
@@ -49,25 +49,25 @@ export default function IdentificationPage() {
             <p className="hero-rise font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#ffb000] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
               Espace membre
             </p>
-            <h1 className="hero-rise mt-5 font-display text-[clamp(2.4rem,5.2vw,3.6rem)] uppercase leading-[1.12] tracking-[-.03em]" style={{ animationDelay: "140ms" }}>
+            <h1 className="hero-rise mt-6 font-display text-[clamp(2.8rem,6.4vw,5.4rem)] uppercase leading-[1.12] tracking-[-.035em]" style={{ animationDelay: "140ms" }}>
               Un club, <span className="text-[#d96ab4]">ça se compte.</span>
             </h1>
             {/* Une phrase, pas trois blocs : le visiteur doit savoir a quoi
                 sert un compte sans avoir a lire la page. */}
-            <p className="hero-rise mt-5 max-w-md text-lg leading-relaxed text-[#f6eadf]/78" style={{ animationDelay: "220ms" }}>
+            <p className="hero-rise mt-7 max-w-lg text-lg leading-relaxed text-[#f6eadf]/78 sm:text-xl" style={{ animationDelay: "220ms" }}>
               Ton compte, ta carte de membre, et la décharge signée une seule fois.
             </p>
 
-            <div className="hero-rise mt-9 flex flex-col gap-3" style={{ animationDelay: "300ms" }}>
+            <div className="hero-rise mt-10 flex max-w-xl flex-col gap-4" style={{ animationDelay: "300ms" }}>
               <Link
-                className="inline-flex min-h-16 items-center justify-between gap-8 border-2 border-[#ffb000] bg-[#ffb000] px-6 font-mono text-xs font-black uppercase tracking-[.1em] text-[#351815] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
+                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#ffb000] bg-[#ffb000] px-7 font-mono text-sm font-black uppercase tracking-[.1em] text-[#351815] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
                 href="/membre/register"
               >
                 <span>Créer mon compte</span>
                 <ArrowIcon />
               </Link>
               <Link
-                className="inline-flex min-h-16 items-center justify-between gap-8 border-2 border-[#f6eadf]/55 px-6 font-mono text-xs font-black uppercase tracking-[.1em] transition-colors [word-spacing:.12em] hover:border-[#f6eadf] hover:bg-[#f6eadf] hover:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#f6eadf]/55 px-7 font-mono text-sm font-black uppercase tracking-[.1em] transition-colors [word-spacing:.12em] hover:border-[#f6eadf] hover:bg-[#f6eadf] hover:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
                 href="/membre/login"
               >
                 <span>Se connecter</span>
