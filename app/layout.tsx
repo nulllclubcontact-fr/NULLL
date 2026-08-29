@@ -36,9 +36,14 @@ export const metadata: Metadata = {
     google: "fNfY1cH-yZV7xIDDC6nfD4skGeF04uJSexk94VyoQSY"
   },
   icons: {
-    icon: "/assets/brand/nulll-mark.png",
-    shortcut: "/assets/brand/nulll-mark.png",
-    apple: "/assets/brand/nulll-mark.png"
+    // Trois tailles plutot qu'un seul fichier : l'onglet prend le 32,
+    // l'ecran d'accueil iOS le 180, le reste le 512.
+    icon: [
+      { url: "/assets/brand/icone-n-rose-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/assets/brand/icone-n-rose.png", sizes: "512x512", type: "image/png" }
+    ],
+    shortcut: "/assets/brand/icone-n-rose-32.png",
+    apple: "/assets/brand/icone-n-rose-180.png"
   },
   openGraph: {
     title: "NULLL.CLUB",

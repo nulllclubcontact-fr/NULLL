@@ -48,18 +48,18 @@ export default function IdentificationPage() {
           Le QR est ce que le compte donne : il est a l'ecran, et il se
           construit module par module au chargement. */}
       <section className="relative overflow-hidden border-b-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="identification-titre">
-        {/* La photo precedente etait un flou de mouvement : sous le voile
-            necessaire a la lisibilite du texte, on ne distinguait plus rien.
-            La flamme de la marque tient mieux ce role — elle reste lisible
-            a n'importe quelle opacite. */}
+        {/* Le mot-logo en filigrane, en creme : c'est la seule declinaison
+            qui ressort sur ce fond sombre — le bordeaux s'y confond, le
+            jaune et le rose tirent l'oeil au detriment du texte. Il barre
+            toute la largeur et deborde volontairement des deux cotes. */}
         <Image
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute -right-16 -top-24 h-auto w-[min(46rem,80vw)] max-w-none opacity-[.07] sm:-right-24 sm:opacity-[.09]"
-          height={1545}
+          className="pointer-events-none absolute -left-8 bottom-6 h-auto w-[130%] max-w-none opacity-[.06] sm:bottom-10 sm:w-[112%] sm:opacity-[.07]"
+          height={313}
           priority
-          src="/assets/nulll-new/flamme-cream.png"
-          width={1169}
+          src="/assets/nulll-new/logo-cream.png"
+          width={2449}
         />
         <div className="relative mx-auto grid w-full max-w-[1600px] items-center gap-12 px-5 pb-14 pt-12 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 xl:px-12">
           <div>
