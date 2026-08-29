@@ -48,18 +48,19 @@ export default function IdentificationPage() {
           Le QR est ce que le compte donne : il est a l'ecran, et il se
           construit module par module au chargement. */}
       <section className="relative overflow-hidden border-b-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="identification-titre">
+        {/* La photo precedente etait un flou de mouvement : sous le voile
+            necessaire a la lisibilite du texte, on ne distinguait plus rien.
+            La flamme de la marque tient mieux ce role — elle reste lisible
+            a n'importe quelle opacite. */}
         <Image
           alt=""
           aria-hidden="true"
-          className="hero-photo object-cover object-[60%_center]"
-          fill
+          className="pointer-events-none absolute -right-16 -top-24 h-auto w-[min(46rem,80vw)] max-w-none opacity-[.07] sm:-right-24 sm:opacity-[.09]"
+          height={1545}
           priority
-          sizes="100vw"
-          src="/assets/photos/motion-run.webp"
+          src="/assets/nulll-new/flamme-cream.png"
+          width={1169}
         />
-        {/* Le texte passe sur toute la largeur en mobile : le voile doit
-            rester lisible des deux cotes, pas seulement a gauche. */}
-        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(18,9,8,.93)_0%,rgba(18,9,8,.78)_46%,rgba(18,9,8,.5)_100%)] sm:bg-[linear-gradient(100deg,rgba(18,9,8,.9)_0%,rgba(18,9,8,.62)_36%,rgba(18,9,8,.24)_100%)]" />
         <div className="relative mx-auto grid w-full max-w-[1600px] items-center gap-12 px-5 pb-14 pt-12 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 xl:px-12">
           <div>
             <p className="hero-rise font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#ffb000] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
@@ -168,13 +169,25 @@ export default function IdentificationPage() {
               Un groupe qui court tous les samedis matin à Aix, et qui cherche où aller ensuite. Café, boulangerie,
               restaurant, magasin de sport : le club peut envoyer ses membres chez vous.
             </p>
-            <Link
-              className="mt-9 inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#ffb000] bg-[#ffb000] px-6 font-mono text-xs font-black uppercase tracking-[.1em] text-[#351815] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
-              href="/fr/contact"
-            >
-              <span>En parler avec nous</span>
-              <ArrowIcon />
-            </Link>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link
+                className="inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#ffb000] bg-[#ffb000] px-6 font-mono text-xs font-black uppercase tracking-[.1em] text-[#351815] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
+                href="/fr/contact"
+              >
+                <span>Devenir partenaire</span>
+                <ArrowIcon />
+              </Link>
+              {/* Les partenaires deja inscrits viennent ici pour se
+                  connecter : le lien merite un bouton, pas une ligne
+                  de texte perdue en bas de page. */}
+              <Link
+                className="inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#f6eadf]/60 px-6 font-mono text-xs font-black uppercase tracking-[.1em] transition-colors [word-spacing:.12em] hover:border-[#f6eadf] hover:bg-[#f6eadf] hover:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+                href="/pro/login"
+              >
+                <span>Espace pro</span>
+                <ArrowIcon />
+              </Link>
+            </div>
           </div>
 
           <dl className="h-fit border-t-2 border-[#f6eadf]/25">
@@ -200,22 +213,6 @@ export default function IdentificationPage() {
               </div>
             ))}
           </dl>
-        </div>
-      </section>
-
-      {/* Les partenaires deja inscrits, eux, cherchent juste a se connecter. */}
-      <section className="bg-[#f6eadf]">
-        <div className="mx-auto w-full max-w-[1600px] px-5 py-10 sm:px-8 sm:py-14 xl:px-12">
-          <p className="text-base leading-relaxed text-[#351815]/72">
-            Déjà partenaire ?{" "}
-            <Link
-              className="font-bold underline decoration-2 underline-offset-4 transition-colors hover:text-[#d96ab4] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]"
-              href="/pro/login"
-            >
-              L’espace pro est par ici
-            </Link>{" "}
-            — scan des QR et statistiques.
-          </p>
         </div>
       </section>
 

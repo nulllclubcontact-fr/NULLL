@@ -30,9 +30,9 @@ export function AccountShell({
           alt=""
           aria-hidden="true"
           className="absolute -right-24 top-20 hidden h-auto w-[36vw] rotate-6 opacity-10 xl:block"
-          height={784}
+          height={1568}
           src="/assets/nulll-new/n-burgundy.png"
-          width={900}
+          width={1800}
         />
         <div className="mx-auto grid w-full max-w-none xl:grid-cols-[minmax(0,0.82fr)_minmax(360px,0.68fr)]">
           <div className="flex flex-col justify-center border-b-2 border-[#351815] px-4 py-8 sm:px-6 xl:min-h-[620px] xl:border-b-0 xl:border-r-2 xl:px-8">

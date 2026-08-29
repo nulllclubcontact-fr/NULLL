@@ -47,7 +47,7 @@ export function SiteHeader({
     <header className="sticky top-0 z-50 border-b-2 border-[#351815] bg-[#f6eadf]">
       <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto_auto] items-stretch lg:grid-cols-[200px_minmax(0,1fr)_132px_172px] xl:grid-cols-[240px_minmax(0,1fr)_150px_190px] 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
         <Link className="flex min-w-0 items-center border-r-2 border-[#351815] px-3 transition hover:bg-[#ffb000] focus-visible:bg-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] sm:px-5" href={getRoute(locale, "home")}>
-          <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 lg:w-32 xl:w-40 2xl:w-44" height={157} priority src="/assets/nulll-new/logo-burgundy.png" width={1225} />
+          <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 lg:w-32 xl:w-40 2xl:w-44" height={313} priority src="/assets/nulll-new/logo-burgundy.png" width={2449} />
         </Link>
         <nav
           aria-label="Navigation principale"
