@@ -64,7 +64,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             <div className="relative aspect-[4/5] overflow-hidden border-2 border-[#f6eadf] shadow-[14px_14px_0_#d96ab4]">
               <Image
                 alt="Tom Brenier et Tobias Ringot, fondateurs de NULLL.CLUB, dans une rue d’Aix-en-Provence"
-                className="object-cover object-[50%_38%]"
+                className="-scale-x-100 object-cover object-[50%_38%]"
                 fill
                 priority
                 sizes="(min-width: 1024px) 46vw, 100vw"
