@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { AccountHeader } from "../../components/account-shell";
 import { ArrowIcon } from "../../components/ArrowIcon";
@@ -46,8 +47,20 @@ export default function IdentificationPage() {
       {/* ---------------- OUVERTURE ----------------
           Le QR est ce que le compte donne : il est a l'ecran, et il se
           construit module par module au chargement. */}
-      <section className="border-b-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="identification-titre">
-        <div className="mx-auto grid w-full max-w-[1600px] items-center gap-12 px-5 pb-14 pt-12 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 xl:px-12">
+      <section className="relative overflow-hidden border-b-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="identification-titre">
+        <Image
+          alt=""
+          aria-hidden="true"
+          className="hero-photo object-cover object-[60%_center]"
+          fill
+          priority
+          sizes="100vw"
+          src="/assets/photos/motion-run.webp"
+        />
+        {/* Le texte passe sur toute la largeur en mobile : le voile doit
+            rester lisible des deux cotes, pas seulement a gauche. */}
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(18,9,8,.93)_0%,rgba(18,9,8,.78)_46%,rgba(18,9,8,.5)_100%)] sm:bg-[linear-gradient(100deg,rgba(18,9,8,.9)_0%,rgba(18,9,8,.62)_36%,rgba(18,9,8,.24)_100%)]" />
+        <div className="relative mx-auto grid w-full max-w-[1600px] items-center gap-12 px-5 pb-14 pt-12 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 xl:px-12">
           <div>
             <p className="hero-rise font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#ffb000] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
               Espace membre
@@ -102,7 +115,7 @@ export default function IdentificationPage() {
 
           <div className="hero-rise mx-auto w-full max-w-sm lg:mr-0" style={{ animationDelay: "300ms" }}>
             <QrAnime />
-            <p className="mt-5 text-center font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#f6eadf]/55 [word-spacing:.18em] lg:text-right">
+            <p className="hero-text-shadow mt-5 text-center font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#f6eadf]/75 [word-spacing:.18em] lg:text-right">
               Ta carte de membre
             </p>
           </div>
@@ -134,11 +147,67 @@ export default function IdentificationPage() {
         </ol>
       </section>
 
-      {/* L'acces partenaire ne concerne que les commercants : une ligne suffit. */}
+      {/* ---------------- RECRUTER DES COMMERCANTS ----------------
+          Il n'y a pas encore de partenaires : cette section ne les affiche
+          pas, elle les cherche. Elle decrit ce que l'espace pro fait
+          reellement — scan, palier, tableau de bord — sans inventer de
+          conditions commerciales, qui restent a la main du club. */}
+      <section className="border-t-2 border-[#351815] bg-[#351815] text-[#f6eadf]" aria-labelledby="identification-partenaires">
+        <div className="mx-auto grid w-full max-w-[1600px] gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_1fr] lg:gap-20 xl:px-12">
+          <div>
+            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#d96ab4] [word-spacing:.22em]">
+              Commerçants d’Aix
+            </p>
+            <h2
+              className="mt-6 font-display text-[clamp(2.2rem,5vw,4rem)] uppercase leading-[1.12] tracking-[-.03em]"
+              id="identification-partenaires"
+            >
+              Devenez <span className="text-[#ffb000]">partenaire.</span>
+            </h2>
+            <p className="mt-7 max-w-lg text-lg leading-relaxed text-[#f6eadf]/82">
+              Un groupe qui court tous les samedis matin à Aix, et qui cherche où aller ensuite. Café, boulangerie,
+              restaurant, magasin de sport : le club peut envoyer ses membres chez vous.
+            </p>
+            <Link
+              className="mt-9 inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#ffb000] bg-[#ffb000] px-6 font-mono text-xs font-black uppercase tracking-[.1em] text-[#351815] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
+              href="/fr/contact"
+            >
+              <span>En parler avec nous</span>
+              <ArrowIcon />
+            </Link>
+          </div>
+
+          <dl className="h-fit border-t-2 border-[#f6eadf]/25">
+            {[
+              {
+                titre: "Vous fixez la réduction",
+                texte: "C’est vous qui décidez du geste commercial, et vous pouvez le changer quand vous voulez."
+              },
+              {
+                titre: "Un scan, rien à installer",
+                texte: "Le membre montre son QR, vous le scannez depuis un téléphone. Vous voyez son palier, vous appliquez."
+              },
+              {
+                titre: "Vous mesurez ce que ça rapporte",
+                texte: "Votre tableau de bord suit le chiffre d’affaires, les clients uniques et les passages, jour par jour."
+              }
+            ].map((point) => (
+              <div className="border-b-2 border-[#f6eadf]/25 py-6" key={point.titre}>
+                <dt className="font-display text-[clamp(1.3rem,1.9vw,1.6rem)] uppercase leading-[1.12] tracking-[-.02em] text-[#ffb000]">
+                  {point.titre}
+                </dt>
+                <dd className="mt-3 max-w-[52ch] text-base leading-relaxed text-[#f6eadf]/78">{point.texte}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* Les partenaires deja inscrits, eux, cherchent juste a se connecter. */}
       <section className="bg-[#f6eadf]">
         <div className="mx-auto w-full max-w-[1600px] px-5 py-10 sm:px-8 sm:py-14 xl:px-12">
           <p className="text-base leading-relaxed text-[#351815]/72">
-            Tu es un commerçant partenaire ?{" "}
+            Déjà partenaire ?{" "}
             <Link
               className="font-bold underline decoration-2 underline-offset-4 transition-colors hover:text-[#d96ab4] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]"
               href="/pro/login"
