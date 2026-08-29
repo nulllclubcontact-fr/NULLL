@@ -60,14 +60,14 @@ export default function IdentificationPage() {
 
             <div className="hero-rise mt-10 flex max-w-xl flex-col gap-4" style={{ animationDelay: "300ms" }}>
               <Link
-                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#ffb000] bg-[#ffb000] px-7 font-mono text-sm font-black uppercase tracking-[.1em] text-[#351815] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
+                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#ffb000] bg-[#ffb000] px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl text-[#351815] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
                 href="/membre/register"
               >
                 <span>Créer mon compte</span>
                 <ArrowIcon />
               </Link>
               <Link
-                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#f6eadf]/55 px-7 font-mono text-sm font-black uppercase tracking-[.1em] transition-colors [word-spacing:.12em] hover:border-[#f6eadf] hover:bg-[#f6eadf] hover:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#f6eadf]/55 px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl transition-colors [word-spacing:.12em] hover:border-[#f6eadf] hover:bg-[#f6eadf] hover:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
                 href="/membre/login"
               >
                 <span>Se connecter</span>
