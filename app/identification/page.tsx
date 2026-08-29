@@ -50,7 +50,7 @@ export default function IdentificationPage() {
               Espace membre
             </p>
             <h1 className="hero-rise mt-6 font-display text-[clamp(2.8rem,6.4vw,5.4rem)] uppercase leading-[1.12] tracking-[-.035em]" style={{ animationDelay: "140ms" }}>
-              Un club, <span className="text-[#d96ab4]">ça se compte.</span>
+              Le club <span className="text-[#d96ab4]">prend forme ici.</span>
             </h1>
             {/* Une phrase, pas trois blocs : le visiteur doit savoir a quoi
                 sert un compte sans avoir a lire la page. */}
