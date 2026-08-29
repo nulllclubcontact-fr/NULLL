@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowIcon } from "../../../components/ArrowIcon";
 import { ContactChannels } from "../../../components/contact-channels";
 import { StructuredData } from "../../../components/StructuredData";
 import { ContactMailForm } from "../../../components/contact-mail-form";
@@ -100,6 +101,61 @@ export default async function ContactPage({ params }: PageProps) {
           quatre couleurs sans rapport. */}
       <h2 className="sr-only">{page.title}</h2>
       <ContactChannels channels={page.channels} />
+
+      {/* ---------------- RECRUTER DES COMMERCANTS ----------------
+          Deplace depuis la page d'identification, ou il noyait les deux
+          boutons de connexion. Un commercant qui veut joindre le club
+          arrive ici : c'est sa place. */}
+      <section className="border-b-2 border-[#351815] bg-[#351815] text-[#f6eadf]" aria-labelledby="contact-partenaires">
+        <div className="mx-auto grid w-full max-w-[1600px] gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_1fr] lg:gap-20 xl:px-12">
+          <div>
+            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#d96ab4] [word-spacing:.22em]">
+              Commerçants d’Aix
+            </p>
+            <h2
+              className="mt-6 font-display text-[clamp(2.2rem,5vw,4rem)] uppercase leading-[1.12] tracking-[-.03em]"
+              id="contact-partenaires"
+            >
+              Devenez <span className="text-[#ffb000]">partenaire.</span>
+            </h2>
+            <p className="mt-7 max-w-lg text-lg leading-relaxed text-[#f6eadf]/82">
+              Un groupe qui court tous les samedis matin à Aix, et qui cherche où aller ensuite. Café, boulangerie,
+              restaurant, magasin de sport : le club peut envoyer ses membres chez vous.
+            </p>
+            <Link
+              className="mt-9 inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#f6eadf]/60 px-6 font-mono text-xs font-black uppercase tracking-[.1em] transition-colors [word-spacing:.12em] hover:border-[#f6eadf] hover:bg-[#f6eadf] hover:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+              href="/pro/login"
+            >
+              <span>Déjà partenaire : espace pro</span>
+              <ArrowIcon />
+            </Link>
+          </div>
+
+          <dl className="h-fit border-t-2 border-[#f6eadf]/25">
+            {[
+              {
+                titre: "Vous fixez la réduction",
+                texte: "C’est vous qui décidez du geste commercial, et vous pouvez le changer quand vous voulez."
+              },
+              {
+                titre: "Un scan, rien à installer",
+                texte: "Le membre montre son QR, vous le scannez depuis un téléphone. Vous voyez son palier, vous appliquez."
+              },
+              {
+                titre: "Vous mesurez ce que ça rapporte",
+                texte: "Votre tableau de bord suit le chiffre d’affaires, les clients uniques et les passages, jour par jour."
+              }
+            ].map((point) => (
+              <div className="border-b-2 border-[#f6eadf]/25 py-6" key={point.titre}>
+                <dt className="font-display text-[clamp(1.3rem,1.9vw,1.6rem)] uppercase leading-[1.12] tracking-[-.02em] text-[#ffb000]">
+                  {point.titre}
+                </dt>
+                <dd className="mt-3 max-w-[52ch] text-base leading-relaxed text-[#f6eadf]/78">{point.texte}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
 
       {/* ---------------- ÉCRIRE ----------------
           Bande sombre pleine largeur : le titre a gauche, les champs a
