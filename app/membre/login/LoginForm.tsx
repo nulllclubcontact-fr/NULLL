@@ -34,10 +34,19 @@ export function LoginForm() {
         </button>
       </form>
 
+      {/* « Mot de passe oublie » nommait la section, pas le champ : rien ne
+          disait qu'il fallait y remettre son e-mail. Le bloc annonce
+          maintenant ce qu'il fait, et le champ ce qu'il attend. */}
       <form action={resetAction} className="mt-5 grid gap-3 border-t-2 border-[#351815] pt-5" style={{ "--pas": 1 } as React.CSSProperties}>
+        <div>
+          <p className="font-mono text-xs font-black uppercase tracking-[.1em]">Mot de passe oublié ?</p>
+          <p className="mt-1.5 text-sm font-bold leading-snug text-[#351815]/70">
+            Donne ton e-mail, on t’envoie un lien pour en choisir un nouveau.
+          </p>
+        </div>
         <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
-          <span>Mot de passe oublié</span>
-          <input autoComplete="email" className="field" name="email" required type="email" />
+          <span>Ton e-mail</span>
+          <input autoComplete="email" className="field" name="email" placeholder="prenom@exemple.fr" required type="email" />
         </label>
         {resetState.error ? <p className="text-sm font-bold text-[#351815]">{resetState.error}</p> : null}
         {resetState.message ? <p className="text-sm font-bold text-[#351815]/72">{resetState.message}</p> : null}
