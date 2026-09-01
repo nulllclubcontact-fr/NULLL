@@ -13,6 +13,8 @@ export default function ProLoginPage() {
       image="/assets/photos/apres-course-sol.webp"
       imageAlt="Partenaire NULLL.CLUB"
       intro="Code fourni par NULLL. Pas d'inscription. Pas de blabla. Juste scanner, appliquer, crediter."
+      steps={["Ton code", "Le scan", "L’avantage"]}
+      ticker="Partenaire NULLL.CLUB — Scanner — Appliquer — Créditer"
       title="Scan. Caisse. Points."
     >
       <ProLoginForm />

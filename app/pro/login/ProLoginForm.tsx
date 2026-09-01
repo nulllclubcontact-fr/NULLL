@@ -10,9 +10,9 @@ export function ProLoginForm() {
   const [state, formAction, pending] = useActionState(loginPro, initialState);
 
   return (
-    <form action={formAction} className="panel panel-grid grid gap-4 p-5 sm:p-6" aria-label="Connexion pro">
-      <label className="grid gap-2 font-mono text-xs font-black uppercase">
-        Code d’accès
+    <form action={formAction} aria-label="Connexion pro" className="panel panel-grid account-stagger grid gap-4 p-5 sm:p-6">
+      <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 0 } as React.CSSProperties}>
+        <span>Code d’accès</span>
         <input autoComplete="one-time-code" className="field" name="code" required />
       </label>
       {state.error ? (
@@ -20,10 +20,15 @@ export function ProLoginForm() {
           {state.error}
         </p>
       ) : null}
-      <button className="primary-button" disabled={pending} type="submit">
-        {pending ? "Verification..." : "Entrer pro"}
+      <button
+        className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#ffb000] enabled:hover:text-[#351815]"
+        disabled={pending}
+        style={{ "--pas": 1 } as React.CSSProperties}
+        type="submit"
+      >
+        {pending ? "Vérification…" : "Entrer pro"}
       </button>
-      <Link className="secondary-link" href="/identification">
+      <Link className="secondary-link" href="/identification" style={{ "--pas": 2 } as React.CSSProperties}>
         Retour site
       </Link>
     </form>

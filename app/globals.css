@@ -1148,3 +1148,82 @@ textarea {
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------------
+   Pages de compte (inscription, connexions membre / pro / admin).
+   La colonne du formulaire etait figee : rien n'arrivait, rien ne
+   reagissait. Elle reprend ici le vocabulaire du reste du site —
+   arrivee en cascade, survol qui souleve, accent au focus.
+   ------------------------------------------------------------------ */
+
+/* Chaque bloc du formulaire monte a la suite du precedent. Le rang est
+   pose en ligne (--pas) par le formulaire : l'ordre suit le markup,
+   sans une classe par champ. */
+.account-stagger > * {
+  animation: hero-rise 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--pas, 0) * 70ms + 260ms);
+}
+
+/* Le libelle prend l'accent quand on est dans le champ : on voit ou on
+   ecrit sans avoir a chercher le curseur. */
+.account-field > span:first-child {
+  transition: color 220ms ease-out, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.account-field:focus-within > span:first-child {
+  color: #d96ab4;
+  transform: translateX(3px);
+}
+
+/* Les trois raisons, sur la photo : cartes vivantes plutot que cadres. */
+.account-benefit {
+  transition:
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 300ms ease-out;
+}
+
+.account-benefit:hover {
+  transform: translateY(-5px);
+  background-color: rgba(18, 9, 8, 0.96);
+}
+
+.account-benefit__num {
+  transition: color 300ms ease-out, transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.account-benefit:hover .account-benefit__num {
+  color: #d96ab4;
+  transform: translateX(5px);
+}
+
+/* Fil des etapes : la pastille de l'etape en cours respire. */
+.account-step__dot {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: rgba(246, 234, 223, 0.35);
+}
+
+.account-step.is-active .account-step__dot {
+  background: #d96ab4;
+  animation: account-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes account-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 106, 180, 0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(217, 106, 180, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .account-stagger > *,
+  .account-step.is-active .account-step__dot {
+    animation: none;
+  }
+
+  .account-benefit,
+  .account-benefit__num,
+  .account-field > span:first-child {
+    transition: none;
+  }
+}

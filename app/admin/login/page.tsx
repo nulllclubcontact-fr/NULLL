@@ -28,6 +28,7 @@ export default async function AdminLoginPage() {
       image="/assets/photos/runners-aix.webp"
       imageAlt="NULLL.CLUB admin access"
       intro="Un code serveur. Des partenaires. Rien de plus."
+      ticker="NULLL.CLUB — Espace d’administration"
       title="Backdoor propre."
     >
       <div className="grid gap-4">
