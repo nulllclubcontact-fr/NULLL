@@ -15,7 +15,8 @@ export default function ProLoginPage() {
       intro="Code fourni par NULLL. Pas d'inscription. Pas de blabla. Juste scanner, appliquer, crediter."
       steps={["Ton code", "Le scan", "L’avantage"]}
       ticker="Partenaire NULLL.CLUB — Scanner — Appliquer — Créditer"
-      title="Scan. Caisse. Points."
+      title="Scan. Caisse."
+      titleAccent="Points."
     >
       <ProLoginForm />
     </AccountShell>

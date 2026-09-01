@@ -29,7 +29,8 @@ export default async function AdminLoginPage() {
       imageAlt="NULLL.CLUB admin access"
       intro="Un code serveur. Des partenaires. Rien de plus."
       ticker="NULLL.CLUB — Espace d’administration"
-      title="Backdoor propre."
+      title="Backdoor"
+      titleAccent="propre."
     >
       <div className="grid gap-4">
         <AdminLoginForm />

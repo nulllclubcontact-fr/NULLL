@@ -8,6 +8,8 @@ import { getSiteCopy } from "../lib/site-content";
 type AccountShellProps = {
   eyebrow: string;
   title: string;
+  /** Fin du titre, mise en couleur sur sa propre ligne — comme le reste du site. */
+  titleAccent?: string;
   intro: string;
   children: ReactNode;
   image?: string;
@@ -38,6 +40,7 @@ export function AccountShell({
   intro,
   children,
   image = "/assets/photos/coucher-soleil-calanques.webp",
+  titleAccent,
   imageAlt = "Coucher de soleil sur la mer depuis les hauteurs, après une sortie NULLL.CLUB",
   imagePosition = "50% 45%",
   benefits = BENEFITS_PAR_DEFAUT,
@@ -76,7 +79,8 @@ export function AccountShell({
               className="hero-rise hero-text-shadow mt-5 max-w-[14ch] font-display text-[clamp(2.6rem,6vw,5.4rem)] uppercase leading-[.9]"
               style={{ animationDelay: "150ms" }}
             >
-              {title}
+              <span className="block">{title}</span>
+              {titleAccent ? <span className="block text-[#d96ab4]">{titleAccent}</span> : null}
             </h1>
             <p
               className="hero-rise hero-text-shadow mt-5 max-w-lg text-lg font-bold leading-snug"
