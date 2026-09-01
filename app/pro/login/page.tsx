@@ -10,8 +10,8 @@ export default function ProLoginPage() {
         { label: "Suivre", text: "Le nombre de passages et ce qu’ils rapportent, visibles à tout moment." }
       ]}
       eyebrow="Espace pro"
-      image="/assets/photos/apres-course-sol.webp"
-      imageAlt="Partenaire NULLL.CLUB"
+      image="/assets/photos/runs-golden.webp"
+      imageAlt="Deux membres de NULLL.CLUB courent au lever du soleil sur un chemin près d’Aix-en-Provence"
       intro="Code fourni par NULLL. Pas d'inscription. Pas de blabla. Juste scanner, appliquer, crediter."
       steps={["Ton code", "Le scan", "L’avantage"]}
       ticker="Partenaire NULLL.CLUB — Scanner — Appliquer — Créditer"
