@@ -5,6 +5,8 @@ export default function MemberRegisterPage() {
   return (
     <AccountShell
       eyebrow="Inscription membre"
+      image="/assets/photos/runs-golden.webp"
+      imageAlt="Deux membres de NULLL.CLUB courent au lever du soleil sur un chemin près d’Aix-en-Provence"
       footerLink={{ label: "Déjà un compte ?", href: "/membre/login", cta: "Se connecter" }}
       intro="Un compte, un QR, des points. Trois minutes pour t’inscrire, et tu es des nôtres."
       steps={["Tes infos", "La décharge", "Ton QR"]}
