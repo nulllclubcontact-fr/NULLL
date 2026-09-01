@@ -52,10 +52,8 @@ export default function IdentificationPage() {
             <h1 className="hero-rise mt-6 font-display text-[clamp(2.8rem,6.4vw,5.4rem)] uppercase leading-[1.12] tracking-[-.035em]" style={{ animationDelay: "140ms" }}>
               {/* Coupure imposee : laisse au navigateur, le titre rejetait
                   « ici. » seul sur la seconde ligne. */}
-              <span className="block">
-                Le club <span className="text-[#d96ab4]">prend</span>
-              </span>
-              <span className="block text-[#d96ab4]">forme ici.</span>
+              <span className="block">Viens faire</span>
+              <span className="block text-[#d96ab4]">ton premier pas.</span>
             </h1>
             {/* Une phrase, pas trois blocs : le visiteur doit savoir a quoi
                 sert un compte sans avoir a lire la page. */}

@@ -146,15 +146,18 @@ export function HomeExperience({
 
           <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-14">
             <div className="space-y-4 text-lg leading-relaxed">
+              {/* Le club n'a pas encore couru : la premiere sortie est le 26
+                  septembre. Le present laissait croire a une habitude installee.
+                  Le futur est plus juste — et plus fort comme argument. */}
               <p>
-                NULLL.CLUB est un run club associatif basé à Aix-en-Provence. On se retrouve
+                NULLL.CLUB est un run club associatif basé à Aix-en-Provence. On se retrouvera
                 <strong> tous les samedis à 8h30 au parking Émile Zola</strong> pour une sortie de 5 à 6 km,
                 à allure conversation — celle où tu peux encore parler en courant.
               </p>
               <p>
-                C’est <strong>gratuit, sans inscription et sans niveau minimum</strong>. La plupart des gens qui
-                viennent pour la première fois n’ont pas de club et ne courent pas en compétition. Personne
-                n’est laissé derrière.
+                C’est <strong>gratuit, sans inscription et sans niveau minimum</strong>. Personne ne sera
+                laissé derrière, et personne n’aura d’avance : le
+                <strong> 26 septembre, ce sera la première fois pour tout le monde</strong>, nous les premiers.
               </p>
               <p>
                 C’est aussi ce qui nous sépare d’un club de sport classique à Aix-en-Provence : pas

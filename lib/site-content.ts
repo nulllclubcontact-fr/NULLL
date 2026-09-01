@@ -104,33 +104,34 @@ export const productsByLocale: Record<Locale, Product[]> = {
 
 const sharedEvents: Array<Omit<RunEvent, "title" | "summary" | "afterRun" | "pace">> = [
   {
-    id: "sept-12",
-    date: "Samedi 12 septembre 2026",
-    isoDate: "2026-09-12T08:30:00+02:00",
+    id: "sept-26",
+    date: "Samedi 26 septembre 2026",
+    isoDate: "2026-09-26T08:30:00+02:00",
     time: "08:30",
     distance: "5 km",
     location: "GF56+VC Aix-en-Provence",
     address: "GF56+VC Aix-en-Provence"
   },
   {
-    id: "sept-19",
-    date: "Samedi 19 septembre 2026",
-    isoDate: "2026-09-19T08:30:00+02:00",
+    id: "oct-03",
+    date: "Samedi 3 octobre 2026",
+    isoDate: "2026-10-03T08:30:00+02:00",
     time: "08:30",
     distance: "6 km",
     location: "GF56+VC Aix-en-Provence",
     address: "GF56+VC Aix-en-Provence"
   },
   {
-    id: "sept-26",
-    date: "Samedi 26 septembre 2026",
-    isoDate: "2026-09-26T08:30:00+02:00",
+    id: "oct-10",
+    date: "Samedi 10 octobre 2026",
+    isoDate: "2026-10-10T08:30:00+02:00",
     time: "08:30",
     distance: "5,5 km",
     location: "GF56+VC Aix-en-Provence",
     address: "GF56+VC Aix-en-Provence"
   }
 ];
+
 
 function buildRuns(): RunEvent[] {
   return [
@@ -376,7 +377,7 @@ export function getSiteCopy(locale: Locale) {
             status: "passe" as const
           },
           {
-            date: "12 septembre 2026",
+            date: "26 septembre 2026",
             label: "Le premier run",
             text: "Notre première sortie collective, 8h30 au parking Émile Zola. 5 à 6 kilomètres à allure conversation. Tout le monde y sera pour la première fois, nous les premiers.",
             status: "aVenir" as const
@@ -395,7 +396,7 @@ export function getSiteCopy(locale: Locale) {
           { name: "Tom Brenier", role: "Trésorier" }
         ],
 
-        firstRunTitle: "Le premier run, c’est le 12 septembre.",
+        firstRunTitle: "Le premier run, c’est le 26 septembre.",
         firstRunText:
           "Rien à réserver. Présente-toi à 8h25 au parking Émile Zola à Aix-en-Provence, dis que c’est ta première fois — ce sera le cas de tout le monde, nous compris.",
 
@@ -419,7 +420,7 @@ export function getSiteCopy(locale: Locale) {
         faq: [
           {
             q: "Le club a-t-il déjà commencé ?",
-            a: "Notre première sortie collective a lieu le samedi 12 septembre 2026 à 8h30, au parking Émile Zola. Le club, lui, se prépare depuis le printemps 2026."
+            a: "Notre première sortie collective a lieu le samedi 26 septembre 2026 à 8h30, au parking Émile Zola. Le club, lui, se prépare depuis le printemps 2026."
           },
           {
             q: "Faut-il être membre pour venir courir ?",
