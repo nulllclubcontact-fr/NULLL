@@ -17,6 +17,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Artefacts d'outils de test locaux
+.playwright-mcp/
+
 # Local QA / Codex artifacts
 .codex-*
 .codex-*.png
