@@ -12,6 +12,8 @@ type AccountShellProps = {
   children: ReactNode;
   image?: string;
   imageAlt?: string;
+  /** Cadrage vertical de la photo. Monter la valeur remonte l’image. */
+  imagePosition?: string;
   /** Trois raisons concretes de creer un compte. */
   benefits?: Array<{ label: string; text: string }>;
   /** Fil des etapes au-dessus du formulaire. La premiere est l'etape en cours. */
@@ -37,6 +39,7 @@ export function AccountShell({
   children,
   image = "/assets/photos/coucher-soleil-calanques.webp",
   imageAlt = "Coucher de soleil sur la mer depuis les hauteurs, après une sortie NULLL.CLUB",
+  imagePosition = "50% 45%",
   benefits = BENEFITS_PAR_DEFAUT,
   steps,
   footerLink,
@@ -53,11 +56,12 @@ export function AccountShell({
         <div className="relative isolate flex min-h-[62svh] flex-col justify-end overflow-hidden bg-[#120908] text-[#f6eadf] lg:min-h-[calc(100dvh-8.6rem)]">
           <Image
             alt={imageAlt}
-            className="hero-photo object-cover object-[50%_45%]"
+            className="hero-photo object-cover"
             fill
             priority
             sizes="(min-width: 1024px) 55vw, 100vw"
             src={image}
+            style={{ objectPosition: imagePosition }}
           />
           <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,9,8,.94)_0%,rgba(18,9,8,.66)_42%,rgba(18,9,8,.24)_78%,rgba(18,9,8,.5)_100%)]" />
 
