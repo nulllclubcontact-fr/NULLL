@@ -5,9 +5,7 @@ export default function MemberRegisterPage() {
   return (
     <AccountShell
       eyebrow="Inscription membre"
-      image="/assets/photos/editorial-glasses.webp"
-      imageAlt="Lifestyle NULLL.CLUB"
-      intro="Un compte. Un QR bientot. Des points qui ne dorment pas."
+      intro="Un compte, un QR, des points. Trois minutes pour t’inscrire, et tu es des nôtres."
       title="Entre dans le club."
     >
       <RegisterForm />

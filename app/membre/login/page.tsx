@@ -5,7 +5,7 @@ export default function MemberLoginPage() {
   return (
     <AccountShell
       eyebrow="Espace membre"
-      image="/assets/photos/runner-portrait.webp"
+      image="/assets/photos/medaille-bouche.webp"
       imageAlt="Ambiance membre NULLL.CLUB"
       intro="Tes points, ton palier, ton QR. Rien de magique. Juste ton compte et une raison de revenir."
       title="Reviens au reel."

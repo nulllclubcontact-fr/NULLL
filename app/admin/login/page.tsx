@@ -19,6 +19,11 @@ export default async function AdminLoginPage() {
 
   return (
     <AccountShell
+      benefits={[
+        { label: "Partenaires", text: "Créer, activer et révoquer les accès des commerçants." },
+        { label: "Fidélité", text: "Les paliers, les points et les passages, au même endroit." },
+        { label: "Chiffres", text: "Ce que le club génère, sans tableur." }
+      ]}
       eyebrow="Admin"
       image="/assets/photos/runners-aix.webp"
       imageAlt="NULLL.CLUB admin access"
