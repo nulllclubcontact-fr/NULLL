@@ -1,7 +1,22 @@
 import { LoginForm } from "./LoginForm";
 import { AccountShell } from "../../../components/account-shell";
 
-export default function MemberLoginPage() {
+const MESSAGES_ERREUR: Record<string, string> = {
+  lien: "Ce lien a expiré ou a déjà servi. Redemande-en un plus bas.",
+  config: "Connexion indisponible pour le moment. Réessaie dans un instant."
+};
+
+export default async function MemberLoginPage({
+  searchParams
+}: {
+  searchParams: Promise<{ erreur?: string }>;
+}) {
+  const { erreur } = await searchParams;
+  // /auth/callback renvoie ici quand le lien recu par mail ne vaut plus
+  // rien. Sans ce message, le visiteur retombait sur le formulaire sans
+  // savoir pourquoi son lien n'avait pas marche.
+  const message = erreur ? MESSAGES_ERREUR[erreur] : undefined;
+
   return (
     <AccountShell
       eyebrow="Espace membre"
@@ -13,6 +28,14 @@ export default function MemberLoginPage() {
       title="Reviens dans le"
       titleAccent="club."
     >
+      {message ? (
+        <p
+          className="mb-4 border-2 border-[#351815] bg-[#ffb000] px-4 py-3 font-mono text-sm font-black uppercase text-[#351815]"
+          role="alert"
+        >
+          {message}
+        </p>
+      ) : null}
       <LoginForm />
     </AccountShell>
   );
