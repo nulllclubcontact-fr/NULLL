@@ -49,14 +49,14 @@ export function CancelButton({ registrationId }: { registrationId: string }) {
     <form action={formAction} className="grid gap-2">
       <input name="registration_id" type="hidden" value={registrationId} />
       <button
-        className="inline-flex min-h-11 w-fit items-center font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#351815]/45 underline decoration-[#351815]/25 decoration-2 underline-offset-4 transition hover:text-[#351815] hover:decoration-[#d96ab4]"
+        className="inline-flex min-h-11 w-fit items-center font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#f6eadf]/55 underline decoration-[#f6eadf]/30 decoration-2 underline-offset-4 transition hover:text-[#f6eadf] hover:decoration-[#d96ab4] focus-visible:text-[#f6eadf] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
         disabled={pending}
         type="submit"
       >
         {pending ? "Annulation…" : "Je ne pourrai pas venir"}
       </button>
       {state.error ? (
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#351815]" role="alert">
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#ffb000]" role="alert">
           {state.error}
         </p>
       ) : null}

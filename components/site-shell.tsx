@@ -34,13 +34,22 @@ export function SiteHeader({
   copy,
   current,
   locale,
-  pathname
+  pathname,
+  compte
 }: {
   copy: ShellCopy;
   current: HeaderCurrent;
   locale: Locale;
   pathname: string;
+  /**
+   * Porte d'entree du compte. Une fois connecte l'espace membre passe
+   * « Mon compte », ce qui evite de proposer de s'identifier a quelqu'un
+   * qui l'est deja — et surtout permet a l'espace membre de garder la
+   * vraie barre du site au lieu d'un bandeau a lui.
+   */
+  compte?: { label: string; href: string };
 }) {
+  const porteCompte = compte ?? { label: "S’identifier", href: "/identification" };
   const isIdentification = current === "identification" || pathname === "/identification";
 
   return (
@@ -74,9 +83,9 @@ export function SiteHeader({
           className={`hidden place-items-center border-r-2 border-[#351815] px-3 text-center font-mono text-xs font-black uppercase transition hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] lg:grid ${
             isIdentification ? "bg-[#d96ab4]" : ""
           }`}
-          href="/identification"
+          href={porteCompte.href}
         >
-          S’identifier
+          {porteCompte.label}
         </Link>
         <details className="static lg:hidden">
           <summary className="flex min-h-20 cursor-pointer items-center border-r-2 border-[#351815] px-3 font-mono text-xs font-black uppercase transition-colors hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] sm:px-5">Menu</summary>
@@ -86,8 +95,8 @@ export function SiteHeader({
                 {item.label}
               </Link>
             ))}
-            <Link className={`flex min-h-14 items-center border-b-2 border-[#351815] px-4 py-3 transition-colors hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] ${isIdentification ? "bg-[#d96ab4]" : ""}`} href="/identification">
-              S’identifier
+            <Link className={`flex min-h-14 items-center border-b-2 border-[#351815] px-4 py-3 transition-colors hover:bg-[#d96ab4] focus-visible:bg-[#d96ab4] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815] ${isIdentification ? "bg-[#d96ab4]" : ""}`} href={porteCompte.href}>
+              {porteCompte.label}
             </Link>
           </nav>
         </details>

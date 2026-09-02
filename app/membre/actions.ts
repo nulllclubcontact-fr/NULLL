@@ -207,3 +207,17 @@ export async function updateMemberPassword(_previousState: LoginState, formData:
 
   redirect("/membre");
 }
+
+/** Fermer sa session depuis l'espace membre. */
+export async function logoutMember() {
+  let supabase;
+
+  try {
+    supabase = await createSupabaseServerClient();
+  } catch {
+    redirect("/membre/login");
+  }
+
+  await supabase.auth.signOut();
+  redirect("/membre/login");
+}
