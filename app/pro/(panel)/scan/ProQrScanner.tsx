@@ -94,13 +94,13 @@ export function ProQrScanner() {
       </div>
 
       <aside className="panel p-5">
-        <p className="font-mono text-sm font-black uppercase text-[#d96ab4]">Resultat scan</p>
+        <p className="font-mono text-sm font-black uppercase text-[#b03583]">Resultat scan</p>
         {isPending ? <p className="mt-5 font-bold text-[#351815]/72">Verification...</p> : null}
         {member?.ok ? (
           <div className="mt-5 grid gap-5">
             <div>
               <h2 className="font-display text-[clamp(3rem,8vw,6rem)] uppercase leading-none">{member.firstName}</h2>
-              <p className="mt-3 font-mono text-sm font-black uppercase text-[#d96ab4]">
+              <p className="mt-3 font-mono text-sm font-black uppercase text-[#b03583]">
                 {member.tierName} - {formatDiscount(member.discountPercent)}% de reduction a appliquer
               </p>
               <p className="mt-3 font-bold text-[#351815]/60">{member.currentMonthPoints} points ce mois-ci.</p>

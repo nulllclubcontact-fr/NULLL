@@ -27,7 +27,7 @@ export default async function AdminScannerPage({
       <header>
         <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#351815]/55">Administration</p>
         <h1 className="mt-3 font-display text-[clamp(2.2rem,6vw,3.6rem)] uppercase leading-[.95]">
-          Scanner<span className="text-[#d96ab4]">.</span>
+          Scanner<span className="text-[#b03583]">.</span>
         </h1>
       </header>
 

@@ -66,7 +66,7 @@ export default async function MemberDashboardPage() {
         <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#351815]/55">Espace membre</p>
         <h1 className="mt-4 font-display text-[clamp(2.6rem,7vw,5rem)] uppercase leading-[.95]">
           Salut {profile?.first_name ?? "toi"}
-          <span className="text-[#d96ab4]">.</span>
+          <span className="text-[#b03583]">.</span>
         </h1>
         <p className="mt-4 max-w-lg text-lg font-bold leading-snug text-[#351815]/72">
           {aVenir.length > 0
@@ -183,7 +183,7 @@ function CarteInscription({ inscription, qrSvg }: { inscription: RegistrationWit
   return (
     <li className="panel panel-grid flex flex-col gap-5 p-5 sm:p-6">
       <div>
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#d96ab4]">
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#b03583]">
           {formatJour(course.start_datetime)} · {formatHeure(course.start_datetime)}
         </p>
         <h3 className="mt-3 font-display text-[clamp(1.6rem,3.4vw,2.2rem)] uppercase leading-[1.02]">{course.title}</h3>

@@ -57,7 +57,7 @@ export default function MemberWaiverPage() {
           <div className="mt-8 grid gap-6">
             {waiverSections.map((section) => (
               <section className="border-t-2 border-[#351815] pt-5" key={section.title}>
-                <h3 className="font-mono text-sm font-black uppercase text-[#d96ab4]">{section.title}</h3>
+                <h3 className="font-mono text-sm font-black uppercase text-[#b03583]">{section.title}</h3>
                 <p className="mt-3 leading-relaxed text-[#351815]/78">{section.text}</p>
               </section>
             ))}

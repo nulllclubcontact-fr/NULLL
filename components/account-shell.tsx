@@ -80,7 +80,7 @@ export function AccountShell({
               style={{ animationDelay: "150ms" }}
             >
               <span className="block">{title}</span>
-              {titleAccent ? <span className="block text-[#d96ab4]">{titleAccent}</span> : null}
+              {titleAccent ? <span className="block text-[#b03583]">{titleAccent}</span> : null}
             </h1>
             <p
               className="hero-rise hero-text-shadow mt-5 max-w-lg text-lg font-bold leading-snug"

@@ -119,7 +119,7 @@ export function MerchExperience({ locale }: { locale: Locale }) {
 
         <CadreModal cadreRef={commandeRef} titreId="merch-commande-title">
           <>
-            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#d96ab4] [word-spacing:.22em]">Erreur 404 : le t-shirt</p>
+            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#b03583] [word-spacing:.22em]">Erreur 404 : le t-shirt</p>
             <h2 className="mt-5 font-display text-[clamp(2rem,6vw,2.9rem)] uppercase leading-[1.12] tracking-[-.03em]" id="merch-commande-title">
               Wesh brother, t&rsquo;as pas compris ?
             </h2>
@@ -308,8 +308,12 @@ function ProductCard({
       </div>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#d96ab4]">{product.badge}</p>
-        <h3 className="mt-3 font-display text-[clamp(1.8rem,2.6vw,2.4rem)] uppercase leading-[1.12] tracking-[-.03em]">{product.name}</h3>
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#b03583]">{product.badge}</p>
+        {/* h2 et non h3 : les pieces sont des elements de premier niveau de
+            la page, freres du panneau de commande. En h3 elles suivaient
+            directement le h1, et un lecteur d'ecran qui navigue par titres
+            sautait une marche. */}
+        <h2 className="mt-3 font-display text-[clamp(1.8rem,2.6vw,2.4rem)] uppercase leading-[1.12] tracking-[-.03em]">{product.name}</h2>
         <p className="mt-4 text-base leading-relaxed text-[#351815]/72">{product.description}</p>
         <p className="mt-3 font-mono text-[.62rem] font-black uppercase tracking-[.06em] text-[#351815]/50 [word-spacing:.14em]">{product.fit}</p>
 

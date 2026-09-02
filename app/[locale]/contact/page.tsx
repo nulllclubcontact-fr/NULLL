@@ -59,7 +59,7 @@ export default async function ContactPage({ params }: PageProps) {
               <span aria-hidden="true">
                 {"Parle-nous.".split("").map((lettre, index) => (
                   <span
-                    className={`letter-rise ${lettre === "." ? "text-[#d96ab4]" : ""}`}
+                    className={`letter-rise ${lettre === "." ? "text-[#b03583]" : ""}`}
                     key={`${lettre}-${index}`}
                     style={{ animationDelay: `${120 + index * 45}ms` }}
                   >

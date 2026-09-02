@@ -33,7 +33,7 @@ export default async function AdminCoursesPage() {
       <header>
         <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#351815]/55">Administration</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[.95]">
-          Les sorties<span className="text-[#d96ab4]">.</span>
+          Les sorties<span className="text-[#b03583]">.</span>
         </h1>
       </header>
 
@@ -53,7 +53,7 @@ export default async function AdminCoursesPage() {
               <li className="panel flex flex-col gap-4 p-5 lg:flex-row lg:items-center lg:justify-between" key={course.id}>
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-3">
-                    <Link className="font-display text-2xl uppercase leading-none hover:text-[#d96ab4]" href={`/admin/courses/${course.id}`}>
+                    <Link className="font-display text-2xl uppercase leading-none hover:text-[#b03583]" href={`/admin/courses/${course.id}`}>
                       {course.title}
                     </Link>
                     <span className="inline-flex border-2 border-[#351815] px-2 py-1 font-mono text-[.55rem] font-black uppercase tracking-[.12em]">

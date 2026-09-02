@@ -155,7 +155,7 @@ export default async function AdminKpiPage({ searchParams }: KpiPageProps) {
   return (
     <section className="shell grid gap-8 py-8 lg:py-12">
       <div>
-        <p className="font-mono text-sm uppercase  text-[#d96ab4]">Admin KPI</p>
+        <p className="font-mono text-sm uppercase  text-[#b03583]">Admin KPI</p>
         <h1 className="mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Vue totale.</h1>
         <p className="mt-5 max-w-xl text-[#351815]/72">Tous les partenaires. Tous les scans. Une periode.</p>
       </div>
@@ -201,7 +201,7 @@ export default async function AdminKpiPage({ searchParams }: KpiPageProps) {
                     </div>
                   </div>
                   <div className="font-mono text-sm font-black uppercase md:text-right">
-                    <p className="text-[#d96ab4]">{formatEuro(day.revenue)}</p>
+                    <p className="text-[#b03583]">{formatEuro(day.revenue)}</p>
                     <p>{day.clients.size} client(s)</p>
                     <p>{day.scans} scan(s)</p>
                     <p>{day.points} points</p>
@@ -217,7 +217,7 @@ export default async function AdminKpiPage({ searchParams }: KpiPageProps) {
               {partners.map((partner) => (
                 <div className="grid gap-2 border-b border-[#351815]/20 pb-3 last:border-b-0 md:grid-cols-[1fr_auto_auto_auto]" key={partner.id}>
                   <p className="font-mono text-sm font-black uppercase">{partner.name}</p>
-                  <p className="font-mono text-sm font-black uppercase text-[#d96ab4]">{formatEuro(partner.revenue)}</p>
+                  <p className="font-mono text-sm font-black uppercase text-[#b03583]">{formatEuro(partner.revenue)}</p>
                   <p className="font-mono text-sm uppercase text-[#351815]/60">{partner.clients.size} client(s)</p>
                   <p className="font-mono text-sm uppercase text-[#351815]/60">{partner.scans} scan(s)</p>
                 </div>

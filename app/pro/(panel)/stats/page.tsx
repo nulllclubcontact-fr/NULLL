@@ -169,7 +169,7 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
                   </div>
                 </div>
                 <div className="font-mono text-sm font-black uppercase md:text-right">
-                  <p className="text-[#d96ab4]">{formatEuro(day.revenue)}</p>
+                  <p className="text-[#b03583]">{formatEuro(day.revenue)}</p>
                   <p>{day.clients.size} client(s)</p>
                   <p>{day.scans} scan(s)</p>
                   <p>{day.points} points</p>
@@ -182,7 +182,7 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
                     <p className="font-mono text-xs font-black uppercase text-[#351815]/50">{formatTime(order.created_at)}</p>
                     <p>{order.label}</p>
                     <p className="font-mono text-sm font-black uppercase">{formatEuro(Number(order.amount_eur))}</p>
-                    <p className="font-mono text-sm font-black uppercase text-[#d96ab4]">+{order.points_awarded} pts</p>
+                    <p className="font-mono text-sm font-black uppercase text-[#b03583]">+{order.points_awarded} pts</p>
                   </div>
                 ))}
               </div>

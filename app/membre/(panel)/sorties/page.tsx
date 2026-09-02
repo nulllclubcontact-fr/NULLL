@@ -37,7 +37,7 @@ export default async function MemberSortiesPage() {
       <header>
         <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#351815]/55">Espace membre</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4rem)] uppercase leading-[.95]">
-          Tes sorties<span className="text-[#d96ab4]">.</span>
+          Tes sorties<span className="text-[#b03583]">.</span>
         </h1>
       </header>
 

@@ -53,7 +53,7 @@ export default function IdentificationPage() {
               {/* Coupure imposee : laisse au navigateur, le titre rejetait
                   « ici. » seul sur la seconde ligne. */}
               <span className="block">Viens faire</span>
-              <span className="block text-[#d96ab4]">ton premier pas.</span>
+              <span className="block text-[#b03583]">ton premier pas.</span>
             </h1>
             {/* Une phrase, pas trois blocs : le visiteur doit savoir a quoi
                 sert un compte sans avoir a lire la page. */}

@@ -53,7 +53,7 @@ export function HomeExperience({
           <div className="max-w-4xl py-12 sm:py-24">
             <h1 className="home-title font-display uppercase tracking-[-.03em]" id="home-title">
               <span className="hero-rise" style={{ animationDelay: "80ms" }}>On court ensemble,</span>
-              <span className="hero-rise text-[#d96ab4]" style={{ animationDelay: "200ms" }}>tous les samedis.</span>
+              <span className="hero-rise text-[#b03583]" style={{ animationDelay: "200ms" }}>tous les samedis.</span>
             </h1>
             <p className="hero-rise mt-7 max-w-md text-lg font-bold leading-snug sm:text-xl" style={{ animationDelay: "340ms" }}>
               On vient pour courir. On revient pour les gens.
@@ -99,7 +99,7 @@ export function HomeExperience({
         <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
           <div className="flex flex-col gap-5 border-b-2 border-[#351815] pb-8 sm:flex-row sm:items-end sm:justify-between">
             <h2 className="font-display text-[clamp(2.6rem,5.5vw,5rem)] uppercase leading-[1.12] tracking-[-.025em]" id="home-next-runs">
-              Les prochaines <span className="text-[#d96ab4]">dates.</span>
+              Les prochaines <span className="text-[#b03583]">dates.</span>
             </h2>
             <p className="max-w-sm text-lg font-bold leading-snug">Rendez-vous au même endroit, chaque samedi matin.</p>
           </div>
@@ -141,7 +141,7 @@ export function HomeExperience({
       <section className="border-t-2 border-[#351815] bg-[#f6eadf] text-[#351815]" aria-labelledby="home-le-club">
         <div className="mx-auto max-w-[1600px] px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 xl:px-12">
           <h2 className="font-display text-[clamp(2.2rem,4.5vw,4rem)] uppercase leading-[1.12] tracking-[-.025em]" id="home-le-club">
-            Un run club <span className="text-[#d96ab4]">à Aix-en-Provence.</span>
+            Un run club <span className="text-[#b03583]">à Aix-en-Provence.</span>
           </h2>
 
           <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-14">
@@ -182,11 +182,11 @@ export function HomeExperience({
 
           <p className="mt-10 text-lg leading-relaxed">
             Plus de détails sur{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#d96ab4] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]" href={localClubHref}>
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#b03583] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]" href={localClubHref}>
               le run club à Aix-en-Provence
             </Link>{" "}
             et sur{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#d96ab4] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]" href={localRunningHref}>
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#b03583] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]" href={localRunningHref}>
               où courir à Aix-en-Provence
             </Link>.
           </p>
@@ -197,7 +197,7 @@ export function HomeExperience({
       <section className="bg-[#120908] text-[#f6eadf]" aria-labelledby="home-explore">
         <div className="mx-auto max-w-[1600px] px-5 py-14 sm:px-8 sm:py-18 xl:px-12">
           <h2 className="font-display text-[clamp(2.2rem,4.5vw,4rem)] uppercase leading-[1.12] tracking-[-.025em]" id="home-explore">
-            Le reste du <span className="text-[#d96ab4]">club.</span>
+            Le reste du <span className="text-[#b03583]">club.</span>
           </h2>
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">

@@ -112,7 +112,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
                 <p aria-hidden="true" className="font-display text-[clamp(2.6rem,5vw,4.4rem)] uppercase leading-[1.12] tracking-[-.02em]">
                   {"NULLL".split("").map((lettre, position) => (
                     <span
-                      className={position === item.highlight ? "text-[#d96ab4]" : "text-[#351815]/22"}
+                      className={position === item.highlight ? "text-[#b03583]" : "text-[#351815]/22"}
                       key={position}
                     >
                       {lettre}
@@ -205,7 +205,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       <section className="border-t-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="club-cta">
         <div className="mx-auto grid max-w-[1600px] gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-16 xl:px-12">
           <div>
-            <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#d96ab4]">{page.social.kicker}</p>
+            <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#b03583]">{page.social.kicker}</p>
             <h2 className="mt-5 max-w-[15ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] uppercase leading-[1.12] tracking-[-.03em]" id="club-cta">
               {page.firstRunTitle}
             </h2>
