@@ -37,13 +37,13 @@ export default async function MemberPanelLayout({ children }: { children: ReactN
           </Link>
           <nav className="flex w-full flex-nowrap gap-2 overflow-x-auto pb-1 font-mono text-xs uppercase sm:w-auto sm:pb-0">
             <Link className="nav-link" href="/membre">
-              Dashboard
+              Accueil
             </Link>
-            <Link className="nav-link" href="/membre/qr">
-              QR
+            <Link className="nav-link" href="/membre/sorties">
+              Mes sorties
             </Link>
-            <Link className="nav-link" href="/membre/historique">
-              Historique
+            <Link className="nav-link" href="/membre/profil">
+              Mon profil
             </Link>
           </nav>
         </div>
