@@ -36,18 +36,33 @@ function readText(formData: FormData, key: string) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+// Meme correction que cote pro : le user-agent est choisi par l'appelant.
+// Le garder dans la cle offrait cinq essais neufs par valeur inventee, sur
+// un code qui ouvre les partenaires, les paliers et le ratio points/euro.
 async function getAdminAttemptKey() {
   const headerStore = await headers();
   const forwardedFor = headerStore.get("x-forwarded-for")?.split(",")[0]?.trim();
   const realIp = headerStore.get("x-real-ip")?.trim();
-  const userAgent = headerStore.get("user-agent")?.slice(0, 160) ?? "unknown-agent";
   const identity = forwardedFor || realIp || "local";
 
-  return createHash("sha256").update(`admin:${identity}:${userAgent}`).digest("hex");
+  return createHash("sha256").update(`admin:${identity}`).digest("hex");
+}
+
+function elagueTentativesAdmin(now: number) {
+  if (adminAttempts.size < 2000) {
+    return;
+  }
+
+  for (const [cle, etat] of adminAttempts) {
+    if (etat.resetAt < now && etat.lockedUntil < now) {
+      adminAttempts.delete(cle);
+    }
+  }
 }
 
 function getAdminAttemptState(key: string) {
   const now = Date.now();
+  elagueTentativesAdmin(now);
   const current = adminAttempts.get(key);
 
   if (!current || current.resetAt <= now) {
@@ -133,20 +148,20 @@ export async function loginAdmin(_previousState: AdminLoginState, formData: Form
   const attemptKey = await getAdminAttemptKey();
 
   if (isAdminLocked(attemptKey)) {
-    return { error: "Trop d'essais. Reessaie dans quelques minutes." };
+    return { error: "Trop d’essais. Réessaie dans quelques minutes." };
   }
 
   if (!isAdminCodeValid(code)) {
     const failedAttempts = registerAdminFailure(attemptKey);
     await wait(Math.min(failedAttempts * 250, 1500));
-    return { error: "Acces refuse." };
+    return { error: "Accès refusé." };
   }
 
   try {
     await setAdminSession();
     clearAdminFailures(attemptKey);
   } catch {
-    return { error: "Session admin indisponible: secret serveur manquant." };
+    return { error: "Session admin indisponible : secret serveur manquant." };
   }
 
   redirect("/admin/partenaires");

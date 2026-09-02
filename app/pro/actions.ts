@@ -58,21 +58,39 @@ function readText(formData: FormData, key: string) {
 }
 
 function formatRpcError() {
-  return "Achat refuse. Verifie le QR et le montant.";
+  return "Achat refusé. Vérifie le QR et le montant.";
 }
 
+// La cle ne retient que l'adresse. Le user-agent y figurait : c'est un
+// en-tete choisi par l'appelant, donc il suffisait de le faire varier a
+// chaque essai pour repartir avec un compteur neuf. Le verrou ne freinait
+// que les navigateurs honnetes.
 async function getAttemptKey() {
   const headerStore = await headers();
   const forwardedFor = headerStore.get("x-forwarded-for")?.split(",")[0]?.trim();
   const realIp = headerStore.get("x-real-ip")?.trim();
-  const userAgent = headerStore.get("user-agent")?.slice(0, 160) ?? "unknown-agent";
   const identity = forwardedFor || realIp || "local";
-  return createHash("sha256").update(`pro:${identity}:${userAgent}`).digest("hex");
+  return createHash("sha256").update(`pro:${identity}`).digest("hex");
+}
+
+// Une entree par adresse vue, jamais retiree : la table grossit sans fin.
+// On elague les entrees eteintes quand elle devient grosse.
+function elagueTentatives(now: number) {
+  if (attempts.size < 2000) {
+    return;
+  }
+
+  for (const [cle, etat] of attempts) {
+    if (etat.resetAt < now && etat.lockedUntil < now) {
+      attempts.delete(cle);
+    }
+  }
 }
 
 async function isRateLimited() {
   const key = await getAttemptKey();
   const now = Date.now();
+  elagueTentatives(now);
   const current = attempts.get(key);
 
   if (!current || current.resetAt < now) {
@@ -114,7 +132,7 @@ export async function loginPro(_previousState: ProLoginState, formData: FormData
   try {
     supabase = createSupabaseServiceClient();
   } catch {
-    return { error: "Espace pro indisponible: variables Supabase manquantes." };
+    return { error: "Espace pro indisponible : variables Supabase manquantes." };
   }
 
   const { data: accessCodes, error } = await supabase
@@ -149,7 +167,7 @@ export async function lookupMember(token: string): Promise<LookupMemberResult> {
   const session = await getProSession();
 
   if (!session) {
-    return { ok: false, error: "Session pro expiree" };
+    return { ok: false, error: "Session pro expirée" };
   }
 
   const cleanToken = token.trim();
@@ -163,7 +181,7 @@ export async function lookupMember(token: string): Promise<LookupMemberResult> {
   try {
     supabase = createSupabaseServiceClient();
   } catch {
-    return { ok: false, error: "Espace pro indisponible: variables Supabase manquantes." };
+    return { ok: false, error: "Espace pro indisponible : variables Supabase manquantes." };
   }
 
   const [{ data: profile, error: profileError }, { data: tiers, error: tiersError }] = await Promise.all([
@@ -199,7 +217,7 @@ export async function creditPurchase(_previousState: CreditPurchaseState, formDa
   const session = await getProSession();
 
   if (!session) {
-    return { error: "Session pro expiree" };
+    return { error: "Session pro expirée" };
   }
 
   const token = readText(formData, "qr_token");
@@ -212,7 +230,7 @@ export async function creditPurchase(_previousState: CreditPurchaseState, formDa
   }
 
   if (!label || label.length > 80) {
-    return { error: "Libelle requis. Court." };
+    return { error: "Libellé requis. Court." };
   }
 
   if (!Number.isFinite(amount) || amount <= 0 || amount > 1000) {
@@ -224,7 +242,7 @@ export async function creditPurchase(_previousState: CreditPurchaseState, formDa
   try {
     supabase = createSupabaseServiceClient();
   } catch {
-    return { error: "Espace pro indisponible: variables Supabase manquantes." };
+    return { error: "Espace pro indisponible : variables Supabase manquantes." };
   }
 
   const { data: profile, error: profileError } = await supabase
@@ -249,7 +267,7 @@ export async function creditPurchase(_previousState: CreditPurchaseState, formDa
     .maybeSingle<{ id: string }>();
 
   if (duplicate) {
-    return { error: "Doublon bloque. Attends avant de revalider." };
+    return { error: "Doublon bloqué. Attends avant de revalider." };
   }
 
   const { data, error } = await supabase.rpc("credit_from_purchase", {
