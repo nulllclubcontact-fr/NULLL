@@ -102,6 +102,16 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
     return { error: "Compte créé, profil bloqué. Réessaie la connexion." };
   }
 
+  // Quand la confirmation d'e-mail est activee cote Supabase — le reglage
+  // par defaut d'un projet — signUp cree le compte mais n'ouvre aucune
+  // session. Rediriger vers /membre renvoyait alors le nouvel inscrit sur
+  // le formulaire de connexion, sans un mot d'explication, juste apres
+  // avoir rempli le sien. On teste la session plutot que de supposer le
+  // reglage : les deux cas sont traites.
+  if (!data.session) {
+    redirect("/membre/login?message=confirme");
+  }
+
   redirect("/membre");
 }
 

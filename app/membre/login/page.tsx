@@ -1,21 +1,26 @@
 import { LoginForm } from "./LoginForm";
 import { AccountShell } from "../../../components/account-shell";
 
+// /auth/callback renvoie ici quand le lien recu par mail ne vaut plus rien.
 const MESSAGES_ERREUR: Record<string, string> = {
   lien: "Ce lien a expiré ou a déjà servi. Redemande-en un plus bas.",
   config: "Connexion indisponible pour le moment. Réessaie dans un instant."
 };
 
+// L'inscription renvoie ici quand Supabase demande une confirmation par
+// e-mail : le compte existe, mais la session ne s'ouvrira qu'apres le clic.
+const MESSAGES_INFO: Record<string, string> = {
+  confirme: "Compte créé. Ouvre le mail qu’on vient de t’envoyer pour confirmer ton adresse, puis connecte-toi ici."
+};
+
 export default async function MemberLoginPage({
   searchParams
 }: {
-  searchParams: Promise<{ erreur?: string }>;
+  searchParams: Promise<{ erreur?: string; message?: string }>;
 }) {
-  const { erreur } = await searchParams;
-  // /auth/callback renvoie ici quand le lien recu par mail ne vaut plus
-  // rien. Sans ce message, le visiteur retombait sur le formulaire sans
-  // savoir pourquoi son lien n'avait pas marche.
-  const message = erreur ? MESSAGES_ERREUR[erreur] : undefined;
+  const { erreur, message } = await searchParams;
+  const alerte = erreur ? MESSAGES_ERREUR[erreur] : undefined;
+  const info = message ? MESSAGES_INFO[message] : undefined;
 
   return (
     <AccountShell
@@ -28,14 +33,22 @@ export default async function MemberLoginPage({
       title="Reviens dans le"
       titleAccent="club."
     >
-      {message ? (
+      {alerte ? (
         <p
           className="mb-4 border-2 border-[#351815] bg-[#ffb000] px-4 py-3 font-mono text-sm font-black uppercase text-[#351815]"
           role="alert"
         >
-          {message}
+          {alerte}
         </p>
       ) : null}
+
+      {/* Une bonne nouvelle ne doit pas porter l'habit d'une erreur. */}
+      {info ? (
+        <p className="mb-4 border-2 border-[#f6eadf] bg-[#f6eadf]/10 px-4 py-3 text-sm font-bold leading-snug text-[#f6eadf]" role="status">
+          {info}
+        </p>
+      ) : null}
+
       <LoginForm />
     </AccountShell>
   );
