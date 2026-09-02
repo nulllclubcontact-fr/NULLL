@@ -1,9 +1,16 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { SiteHeader, SiteFooter } from "../../../components/site-shell";
+import { getSiteCopy } from "../../../lib/site-content";
 import { requireAdminUser } from "../../../lib/admin/require-admin";
+import { logoutMember } from "../../membre/actions";
 
 export const dynamic = "force-dynamic";
+
+const ONGLETS = [
+  { href: "/admin/dashboard", label: "Vue d’ensemble" },
+  { href: "/admin/courses", label: "Sorties" }
+];
 
 export default async function AdminCoursesLayout({ children }: { children: ReactNode }) {
   // Verifie a chaque requete, jamais deduit d'un cookie : un membre
@@ -11,33 +18,64 @@ export default async function AdminCoursesLayout({ children }: { children: React
   const { prenom } = await requireAdminUser();
 
   return (
-    <main className="min-h-dvh bg-[#f6eadf] text-[#351815]">
-      <header className="sticky top-0 z-50 border-b-2 border-[#351815] bg-[#f6eadf]">
-        <div className="shell flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between">
-          <Link className="flex items-center gap-4 transition hover:text-[#b03583]" href="/admin/dashboard">
-            <Image alt="NULLL.CLUB" className="h-auto w-32" height={313} priority src="/assets/nulll-new/logo-burgundy.png" width={2449} />
-            <span className="font-mono text-xs font-black uppercase">Courses</span>
+    <div className="min-h-dvh bg-[#f6eadf] text-[#351815]">
+      {/* Meme parti pris que l'espace membre : on garde la barre du site
+          plutot qu'un bandeau a part, pour ne pas perdre la navigation en
+          entrant dans l'administration. */}
+      <SiteHeader
+        compte={{ label: "Mon compte", href: "/membre" }}
+        copy={getSiteCopy("fr")}
+        current="identification"
+        locale="fr"
+        pathname="/admin"
+      />
+
+      {/* Sous-navigation rose : l'administration ne doit pas pouvoir etre
+          confondue avec l'espace membre, qui porte le jaune. */}
+      <div className="sticky top-20 z-40 border-b-2 border-[#351815] bg-[#d96ab4]">
+        <div className="shell flex flex-wrap items-center gap-x-1 gap-y-2 py-2">
+          <span className="mr-2 hidden font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#351815]/70 sm:inline">
+            Admin
+          </span>
+
+          {ONGLETS.map((onglet) => (
+            <Link
+              className="inline-flex min-h-11 items-center border-2 border-transparent px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition hover:border-[#351815] hover:bg-[#f6eadf] focus-visible:border-[#351815] focus-visible:bg-[#f6eadf] focus-visible:outline-none"
+              href={onglet.href}
+              key={onglet.href}
+            >
+              {onglet.label}
+            </Link>
+          ))}
+
+          {/* Le scanner est l'outil du jour de course : il se distingue. */}
+          <Link
+            className="inline-flex min-h-11 items-center border-2 border-[#351815] bg-[#351815] px-3 font-mono text-xs font-black uppercase tracking-[.1em] text-[#f6eadf] transition hover:bg-[#ffb000] hover:text-[#351815]"
+            href="/admin/scanner"
+          >
+            Scanner
           </Link>
 
-          <nav className="flex w-full flex-nowrap gap-2 overflow-x-auto pb-1 font-mono text-xs uppercase lg:w-auto lg:pb-0">
-            <Link className="nav-link" href="/admin/dashboard">
-              Vue d’ensemble
-            </Link>
-            <Link className="nav-link" href="/admin/courses">
-              Sorties
-            </Link>
-            {/* Le scanner passe en premier plan sur mobile : c'est l'outil
-                du jour de course, et il se tient a bout de bras. */}
-            <Link className="nav-link border-[#351815] bg-[#ffb000]" href="/admin/scanner">
-              Scanner
-            </Link>
-            <Link className="nav-link" href="/membre">
-              {prenom ? `Espace de ${prenom}` : "Mon espace"}
-            </Link>
-          </nav>
+          <Link
+            className="inline-flex min-h-11 items-center border-2 border-transparent px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition hover:border-[#351815] hover:bg-[#f6eadf] focus-visible:border-[#351815] focus-visible:bg-[#f6eadf] focus-visible:outline-none"
+            href="/membre"
+          >
+            {prenom ? `Espace de ${prenom}` : "Mon espace"}
+          </Link>
+
+          <form action={logoutMember} className="ml-auto">
+            <button
+              className="inline-flex min-h-11 items-center border-2 border-transparent px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition hover:border-[#351815] hover:bg-[#f6eadf] focus-visible:border-[#351815] focus-visible:bg-[#f6eadf] focus-visible:outline-none"
+              type="submit"
+            >
+              Déconnexion
+            </button>
+          </form>
         </div>
-      </header>
+      </div>
+
       {children}
-    </main>
+      <SiteFooter copy={getSiteCopy("fr")} locale="fr" />
+    </div>
   );
 }

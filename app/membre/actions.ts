@@ -131,16 +131,25 @@ export async function loginMember(_previousState: LoginState, formData: FormData
     return { error: "Connexion membre indisponible : variables Supabase manquantes." };
   }
 
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password
   });
 
-  if (error) {
+  if (error || !data.user) {
     return { error: "Accès refusé. Vérifie tes infos." };
   }
 
-  redirect("/membre");
+  // Un compte administrateur atterrit directement sur sa vue d'ensemble :
+  // passer par l'espace membre pour cliquer ensuite sur « Administration »
+  // est un detour inutile le jour d'une course.
+  const { data: profil } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", data.user.id)
+    .maybeSingle<{ role: string | null }>();
+
+  redirect(profil?.role === "admin" ? "/admin/dashboard" : "/membre");
 }
 
 export async function resetMemberPassword(_previousState: LoginState, formData: FormData): Promise<LoginState> {

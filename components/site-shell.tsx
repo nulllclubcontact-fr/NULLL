@@ -49,7 +49,13 @@ export function SiteHeader({
    */
   compte?: { label: string; href: string };
 }) {
-  const porteCompte = compte ?? { label: "S’identifier", href: "/identification" };
+  // « Mon compte » plutot que « S'identifier », et par defaut sur toutes
+  // les pages. Lire la session ici la rendrait dynamique : les vingt et
+  // quelques pages publiques sont generees statiquement, et on ne va pas
+  // perdre ca pour un libelle. /membre renvoie de lui-meme vers la
+  // connexion quand personne n'est connecte — le visiteur non inscrit
+  // arrive donc au bon endroit, et celui qui l'est va droit chez lui.
+  const porteCompte = compte ?? { label: "Mon compte", href: "/membre" };
   const isIdentification = current === "identification" || pathname === "/identification";
 
   return (
