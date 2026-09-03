@@ -2,6 +2,7 @@ import QRCode from "qrcode";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { CancelButton, RegisterButton } from "../../../components/races/RegisterButton";
+import { DownloadQRButton } from "../../../components/races/DownloadQRButton";
 import { formatDistance, formatHeure, formatJour } from "../../../components/races/format";
 import { listMyRegistrations, listUpcomingRaces, splitRegistrations } from "../../../lib/races/repo";
 import { encodeMemberQrToken } from "../../../lib/qr/token";
@@ -231,11 +232,12 @@ function CarteInscription({ inscription, qrSvg }: { inscription: RegistrationWit
             </p>
           )}
 
-          {inscription.checked_in ? null : (
-            <div className="mt-4">
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            {inscription.checked_in ? null : (
               <CancelButton registrationId={inscription.id} />
-            </div>
-          )}
+            )}
+            <DownloadQRButton nom={course.title} token={inscription.qr_code_token} />
+          </div>
         </div>
       </div>
     </li>
