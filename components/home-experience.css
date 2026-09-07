@@ -415,7 +415,9 @@ body:has(.home-cinema) header{ position: relative; transform: none; visibility: 
 
 .cinema-backdrop-photo{
   object-fit:cover;
-  object-position:50% 54%;
+  /* Image verticale recadree en bandeau : on vise les visages, sinon un
+     ecran large ne garde que les torses. */
+  object-position:50% 30%;
   /* Une derive tres lente : l'image n'est jamais tout a fait immobile,
      ce qui suffit a suggerer la course sans distraire du texte. */
   animation:cinema-derive 24s ease-in-out infinite alternate;

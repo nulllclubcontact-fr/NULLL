@@ -36,7 +36,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
               fill
               priority
               sizes="100vw"
-              src="/assets/photos/runs-blur.webp"
+              src="/assets/photos/motion-run.webp"
             />
           </div>
           <a className="cinema-skip home-label" href="#home-next-runs">Passer l’intro <span aria-hidden="true">↘</span></a>
