@@ -170,11 +170,15 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
 
       <section className="home-explore home-section" aria-labelledby="home-explore">
         <div className="home-section-top home-label"><span>03 — Au-delà des kilomètres</span><span>NULLL.CLUB</span></div>
-        <h2 id="home-explore" data-home-reveal>Le reste<br />du <span>club.</span></h2>
-        <div className="home-explore-links" data-home-reveal>
-          <ExploreLink href={communityHref} index="01" label="Le club" text="D’où vient NULLL.CLUB, et pourquoi trois L." />
-          <ExploreLink href={merchHref} index="02" label="Merch" text="Les pièces du club, quand elles sont dispo." />
-          <ExploreLink href={aboutHref} index="03" label="Contact" text="Une question avant de venir samedi." />
+        {/* Titre et liens se repondent en deux colonnes. Empiles, le titre
+            prenait toute la largeur et les liens tombaient dessous. */}
+        <div className="home-explore-body">
+          <h2 id="home-explore" data-home-reveal>Le reste<br />du <span>club.</span></h2>
+          <div className="home-explore-links" data-home-reveal>
+            <ExploreLink href={communityHref} index="01" label="Le club" text="D’où vient NULLL.CLUB, et pourquoi trois L." />
+            <ExploreLink href={merchHref} index="02" label="Merch" text="Les pièces du club, quand elles sont dispo." />
+            <ExploreLink href={aboutHref} index="03" label="Contact" text="Une question avant de venir samedi." />
+          </div>
         </div>
         <Link className="home-final-cta" href={runsHref}><span>Je viens samedi</span><ArrowIcon /></Link>
         {nextRun && <p className="home-label home-final-meta">{nextRun.date} · {nextRun.time} · {nextRun.location} · {nextRun.distance} · {nextRun.pace}</p>}

@@ -61,10 +61,14 @@
 .home-journey .home-facts dt>span{color:var(--home-pink-text)}
 .home-journey .home-facts dd{font-weight:700;font-size:17px;line-height:1.4;margin-top:16px;max-width:240px}
 .home-journey .home-local-links{position:relative;z-index:2;margin-top:26px;font-size:14px;line-height:1.7}
+/* Titre a gauche, liens a droite, sur la meme ligne de depart. Ils
+   etaient empiles : le titre occupait toute la largeur et les liens
+   passaient dessous, sans jamais se repondre. */
 .home-journey .home-explore{background:var(--home-ink);color:var(--home-cream);padding-bottom:50px;isolation:isolate}
-.home-journey .home-explore h2{position:relative;z-index:2;font-size:clamp(65px,9vw,136px)}
+.home-journey .home-explore-body{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:60px;align-items:start}
+.home-journey .home-explore h2{position:relative;z-index:2;margin:0;font-size:clamp(56px,6.6vw,112px)}
 .home-journey .home-explore h2 span{color:var(--home-pink)}
-.home-journey .home-explore-links{position:relative;z-index:2;margin:40px 0 65px;background:var(--home-ink)}
+.home-journey .home-explore-links{position:relative;z-index:2;margin:0 0 65px;background:var(--home-ink)}
 .home-journey .home-explore-link{display:grid;grid-template-columns:25px 1fr 1.2fr 25px;align-items:center;gap:20px;padding:25px 0;border-bottom:1px solid #f6eadf66;transition:color .2s}
 .home-journey .home-explore-link:first-child{border-top:1px solid #f6eadf66}
 .home-journey .home-explore-link h3{font-size:40px;line-height:1.1}
@@ -86,7 +90,7 @@
 .home-journey .home-run-date>strong{font-size:75px}
 .home-journey .home-run-date>p{font-size:18px}
 .home-journey .home-club-copy{font-size:16px;line-height:1.7}
-.home-journey .home-explore-links{margin-left:20%}}
+.home-journey .home-explore-body{grid-template-columns:minmax(0,1fr);gap:28px}}
 
 @media(max-width:760px){.home-journey .home-section{padding:30px 24px 56px}
 .home-journey .home-section-top{margin-bottom:38px;font-size:10px}
@@ -124,7 +128,7 @@
 .home-journey .home-facts dd{font-size:15px}
 .home-journey .home-facts dt{gap:10px;font-size:10px}
 .home-journey .home-explore h2{font-size:78px}
-.home-journey .home-explore-links{margin:35px 0 40px}
+.home-journey .home-explore-links{margin:0 0 40px}
 .home-journey .home-explore-link{grid-template-columns:20px 1fr 24px;gap:12px;padding:22px 0}
 .home-journey .home-explore-link h3{font-size:36px}
 .home-journey .home-explore-link>p{grid-column:2;grid-row:2;max-width:none}
@@ -392,19 +396,21 @@ body:has(.home-cinema) header{ position: relative; transform: none; visibility: 
   z-index:0;
   overflow:hidden;
   pointer-events:none;
-  /* .3 rendait « ON COURT ENSEMBLE » gris sur une photo chargee, donc
-     illisible. A .13, et sous le voile ci-dessous, la photo se devine
-     sans jamais disputer le texte. */
-  opacity:calc(.13 * (1 - clamp(0, (var(--scene-progress, 0) - .38) * 5.9, 1)));
+  /* Le reglage tient en deux essais rates : a .3 sous un voile uniforme
+     « On court ensemble » devenait illisible, a .13 on ne voyait plus
+     rien du tout. La photo remonte donc a .42, et c'est le voile qui
+     fait le travail — tres dense a gauche ou se pose le texte, presque
+     transparent a droite ou l'image peut respirer. */
+  opacity:calc(.42 * (1 - clamp(0, (var(--scene-progress, 0) - .38) * 5.9, 1)));
 }
 
-/* Un voile sombre par-dessus la photo : le texte doit rester lisible
-   quelle que soit la zone de l'image qui passe derriere lui. */
 .cinema-backdrop::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(100deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.7) 45%,rgba(0,0,0,.5) 100%);
+  background:
+    linear-gradient(96deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.88) 28%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.12) 100%),
+    linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,0) 34%);
 }
 
 .cinema-backdrop-photo{
