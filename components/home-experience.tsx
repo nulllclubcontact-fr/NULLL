@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { RunEvent } from "../lib/site-content";
+import { PARCOURS_SAMEDI } from "../lib/parcours";
 import { ArrowIcon } from "./ArrowIcon";
+import { Countdown } from "./countdown";
+import { HomeJourney } from "./home-journey";
+import "./home-experience.css";
 
 type HomeExperienceProps = {
   runs: RunEvent[];
@@ -13,142 +17,112 @@ type HomeExperienceProps = {
   localRunningHref: string;
 };
 
-
-export function HomeExperience({
-  runs,
-  runsHref,
-  communityHref,
-  merchHref,
-  aboutHref,
-  localClubHref,
-  localRunningHref
-}: HomeExperienceProps) {
+export function HomeExperience({ runs, runsHref, communityHref, merchHref, aboutHref, localClubHref, localRunningHref }: HomeExperienceProps) {
   const nextRun = runs[0];
 
   return (
-    <>
-      {/* ---------------- HERO ---------------- */}
-      <section className="relative overflow-hidden bg-[#120908] text-[#f6eadf]" aria-labelledby="home-title">
-        <Image
-          alt="Le groupe NULLL.CLUB court dans une rue d’Aix-en-Provence au lever du soleil"
-          className="hero-photo object-cover object-[62%_center]"
-          fill
-          priority
-          sizes="100vw"
-          src="/assets/photos/hero-nulll-aix-v2.webp"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(18,9,8,.88)_0%,rgba(18,9,8,.68)_48%,rgba(18,9,8,.2)_100%)] sm:bg-[linear-gradient(100deg,rgba(18,9,8,.82)_0%,rgba(18,9,8,.55)_34%,rgba(18,9,8,.12)_62%,rgba(18,9,8,0)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(to_top,rgba(18,9,8,.75),transparent)]" />
+    <HomeJourney>
+      <section className="home-cinema" aria-label="Découvrir NULLL.CLUB au fil du parcours">
+        <span className="cinema-anchor cinema-infos-anchor" id="home-intro-infos" />
+        <div className="cinema-stage">
+          <a className="cinema-skip home-label" href="#home-next-runs">Passer l’intro <span aria-hidden="true">↘</span></a>
 
-        <div className="relative mx-auto flex w-full max-w-[1600px] flex-col px-5 pb-5 pt-6 sm:px-8 sm:pb-8 sm:pt-8 xl:px-12">
-          <div className="flex flex-col items-start gap-1 border-b border-[#f6eadf]/45 pb-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
-            <span>Social sport club · Aix-en-Provence</span>
-            <span className="text-[#ffb000]">Ouvert à tous · Gratuit</span>
+          <div className="cinema-logo-scene">
+            <h1 id="home-title"><Image src="/assets/nulll-new/logo-cream.png" alt="NULLL.CLUB — run club à Aix-en-Provence" width={2449} height={313} priority sizes="85vw" /></h1>
+            <p className="home-label cinema-logo-location">Aix-en-Provence · Social sport club</p>
+            <a href="#home-intro-infos" className="cinema-scroll home-label">Tout commence ici.<span>Scroll pour découvrir <span aria-hidden="true">↓</span></span></a>
           </div>
 
-          {/* max-w-4xl et pas 3xl : la police du titre monte jusqu'a 105px
-              (clamp 6.6rem) alors que 3xl bloquait a 768px — « ON COURT
-              ENSEMBLE, » passait a la ligne au-dela de 1600px de large et
-              la punchline se retrouvait sur trois lignes. */}
-          <div className="max-w-4xl py-12 sm:py-24">
-            <h1 className="home-title font-display uppercase tracking-[-.03em]" id="home-title">
-              <span className="hero-rise" style={{ animationDelay: "80ms" }}>On court ensemble,</span>
-              <span className="hero-rise text-[#b03583]" style={{ animationDelay: "200ms" }}>tous les samedis.</span>
-            </h1>
-            <p className="hero-rise mt-7 max-w-md text-lg font-bold leading-snug sm:text-xl" style={{ animationDelay: "340ms" }}>
-              On vient pour courir. On revient pour les gens.
-            </p>
+          <section className="cinema-stats-scene" aria-labelledby="cinema-stats-title">
+            <div className="cinema-stats-heading"><p className="home-label">Pas besoin d’être un grand coureur.</p><h2 id="cinema-stats-title">On court<br /><span>ensemble.</span></h2><p>Tous les samedis.<br />On vient pour courir. On revient pour les gens.</p></div>
+            <dl className="cinema-stats">
+              <div><dt className="home-label">Le parcours du samedi</dt><dd>5,07<span>km</span></dd><dd className="cinema-stat-note">Allure conversation · +45 m</dd></div>
+              <div><dt className="home-label">Le rendez-vous</dt><dd>8<span>h</span>30</dd><dd className="cinema-stat-note">Parking Émile Zola · Aix-en-Provence</dd></div>
+              <div><dt className="home-label">Pour tout le monde</dt><dd>0<span>€</span></dd><dd className="cinema-stat-note">Gratuit · Sans inscription<br />Sans niveau minimum</dd></div>
+            </dl>
+          </section>
 
-            <div className="hero-rise mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "450ms" }}>
-              <Link
-                className="group inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#ffb000] bg-[#ffb000] px-6 font-mono text-xs font-black uppercase text-[#351815] transition-colors hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
-                href={runsHref}
-              >
-                <span>Je viens samedi</span>
-                <ArrowIcon />
-              </Link>
-              <Link
-                className="group inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#f6eadf]/60 px-6 font-mono text-xs font-black uppercase transition-colors hover:border-[#f6eadf] hover:bg-[#f6eadf] hover:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
-                href={aboutHref}
-              >
-                <span>Le club</span>
-                <ArrowIcon />
-              </Link>
+          <section className="cinema-map-scene" aria-labelledby="cinema-map-title">
+            <div className="cinema-map-background" />
+            <div className="cinema-map-heading"><span className="home-label">Le parcours du samedi</span><h2 id="cinema-map-title">Un tracé.<br /><span>Notre point de rencontre.</span></h2></div>
+            <div className="cinema-map-canvas">
+              <svg className="cinema-map-svg" viewBox={PARCOURS_SAMEDI.viewBox} role="img" aria-label="Carte du parcours de 5,07 km à Aix-en-Provence. Départ au parking Émile Zola.">
+                <g className="cinema-streets" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <g className="cinema-water">{PARCOURS_SAMEDI.eau.map((path, i) => <path key={i} d={path} />)}</g>
+                  <g className="cinema-minor-roads">{PARCOURS_SAMEDI.mineures.map((path, i) => <path key={i} d={path} />)}</g>
+                  <g className="cinema-major-roads">{PARCOURS_SAMEDI.majeures.map((path, i) => <path key={i} d={path} />)}</g>
+                </g>
+                <path className="cinema-route-halo" d={PARCOURS_SAMEDI.trace} fill="none" />
+                <path className="cinema-route-white" d={PARCOURS_SAMEDI.trace} fill="none" pathLength={1} strokeDasharray="1" />
+                <path className="cinema-route-yellow" d={PARCOURS_SAMEDI.trace} fill="none" pathLength={1} strokeDasharray="1" />
+                <g className="cinema-depart-marker" transform={`translate(${PARCOURS_SAMEDI.depart.x} ${PARCOURS_SAMEDI.depart.y})`}>
+                  <circle r="13" /><circle r="4" />
+                  <path d="M 0 -16 L 0 -57 L 65 -57" fill="none" />
+                  <rect x="55" y="-87" width="200" height="49" rx="0" />
+                  <text x="68" y="-67">DÉPART / ARRIVÉE</text><text x="68" y="-49">Parking Émile Zola</text>
+                </g>
+              </svg>
             </div>
-          </div>
-
-          {/* Prochaine sortie — l'essentiel, rien de plus */}
-          <div className="hero-rise grid gap-[2px] border-2 border-[#351815] bg-[#351815] text-[#351815] sm:grid-cols-2 lg:grid-cols-[1.3fr_.55fr_.6fr_1fr_auto]" style={{ animationDelay: "560ms" }}>
-            <RunDatum emphasis label="Prochaine sortie" value={nextRun.date} />
-            <RunDatum label="Heure" value={nextRun.time} />
-            <RunDatum label="Distance" value={nextRun.distance} />
-            <RunDatum label="Départ" value={nextRun.location} />
-            <Link
-              className="group flex min-h-20 items-center justify-between gap-8 bg-[#d96ab4] px-5 font-mono text-xs font-black uppercase text-[#351815] transition-colors hover:bg-[#351815] hover:text-[#f6eadf] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#ffb000] sm:col-span-2 lg:col-span-1 lg:min-h-0 lg:px-7"
-              href={runsHref}
-            >
-              <span>Je viens</span>
-              <ArrowIcon />
-            </Link>
-          </div>
+            <div className="cinema-map-geography home-label"><span>Aix-en-Provence</span><span>43.50989° N / 5.46133° E</span></div>
+            <div className="cinema-route-distance"><strong>5,07</strong><span className="home-label">km ensemble<br />+45 m · Allure conversation</span></div>
+            {nextRun && <div className="cinema-meetup"><span className="home-label">Prochaine sortie</span><strong>{nextRun.date}</strong><p>Parking Émile Zola · Aix-en-Provence<br />{nextRun.time} · {nextRun.distance} · {nextRun.location}</p><Link href={runsHref} className="home-label">Je viens samedi <ArrowIcon /></Link></div>}
+            <span className="cinema-map-credit">© les contributeurs OpenStreetMap</span>
+          </section>
+          <div className="cinema-progress" aria-hidden="true"><span className="home-label cinema-progress-label">NULLL.CLUB</span><div><span /></div><span className="home-label">Scroll ↓</span></div>
         </div>
       </section>
+      <span data-flow-point className="home-flow-point home-flow-start" />
 
-      {/* ---------------- LES PROCHAINES DATES ---------------- */}
-      <section className="bg-[#f6eadf] text-[#351815]" aria-labelledby="home-next-runs">
-        <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
-          <div className="flex flex-col gap-5 border-b-2 border-[#351815] pb-8 sm:flex-row sm:items-end sm:justify-between">
-            <h2 className="font-display text-[clamp(2.6rem,5.5vw,5rem)] uppercase leading-[1.12] tracking-[-.025em]" id="home-next-runs">
-              Les prochaines <span className="text-[#b03583]">dates.</span>
-            </h2>
-            <p className="max-w-sm text-lg font-bold leading-snug">Rendez-vous au même endroit, chaque samedi matin.</p>
+      <div className="home-manifesto-strip" aria-label="Gratuit, sans inscription, sans niveau minimum">
+        <span>Pas de chrono.</span><span className="home-strip-star" aria-hidden="true">✳</span><span>Pas de pression.</span><span className="home-strip-star" aria-hidden="true">✳</span><span>Juste nous.</span>
+      </div>
+
+      <section className="home-dates home-section" id="home-dates-section" aria-labelledby="home-next-runs">
+        <span data-flow-point className="home-flow-point home-dates-point" />
+        <div className="home-section-top home-label"><span>01 — On se retrouve</span><span>Le samedi, c’est ici.</span></div>
+        <div className="home-dates-layout">
+          <div className="home-dates-intro" data-home-reveal>
+            <h2 id="home-next-runs">Les prochaines<br /><span>dates.</span></h2>
+            <p>Rendez-vous au même endroit,<br />chaque samedi matin.</p>
+            {nextRun && <div className="home-countdown"><Countdown isoDate={nextRun.isoDate} /></div>}
+            <figure className="home-dates-photo">
+              <Image src="/assets/photos/runs-blur.webp" alt="Un coureur en mouvement sur un chemin" fill sizes="(max-width: 760px) 85vw, 30vw" />
+              <figcaption className="home-label">Le seul rythme qui compte : le tien.</figcaption>
+            </figure>
           </div>
-
-          <ol className="mt-10 grid gap-4 lg:grid-cols-3">
-            {runs.map((run, index) => (
-              <li key={run.id}>
-                <article className={`flex h-full flex-col justify-between gap-6 border-2 border-[#351815] p-6 sm:p-7 ${index === 0 ? "bg-[#ffb000]" : ""}`}>
-                  <div>
-                    <p className="font-mono text-xs font-black uppercase tracking-[.1em] opacity-70">
-                      {index === 0 ? "Prochaine sortie" : `Sortie ${index + 1}`}
-                    </p>
-                    <p className="mt-3 font-display text-3xl uppercase leading-none sm:text-4xl">{run.date}</p>
-                    <p className="mt-4 font-mono text-xs font-black uppercase tracking-[.06em]">
-                      {run.time} · {run.distance} · {run.pace}
-                    </p>
-                    <p className="mt-2 font-mono text-xs font-black uppercase tracking-[.06em] opacity-70">{run.location}</p>
-                  </div>
-
-                  <Link
-                    className="group inline-flex min-h-14 items-center justify-between gap-6 border-2 border-[#351815] px-5 font-mono text-xs font-black uppercase transition-colors hover:bg-[#351815] hover:text-[#f6eadf] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]"
-                    href={runsHref}
-                  >
-                    <span>{index === 0 ? "Je viens" : "Détails"}</span>
-                    <ArrowIcon />
-                  </Link>
-                </article>
-              </li>
-            ))}
+          <ol className="home-run-list">
+            {runs.map((run, index) => {
+              const [weekday, day, ...month] = run.date.split(" ");
+              return <li className={`home-run-row ${index === 0 ? "home-run-first" : ""}`} key={run.id} data-home-reveal>
+                <div className="home-run-kicker home-label"><span>{index === 0 ? "Prochaine sortie" : `Sortie ${index + 1}`}</span><span>0{index + 1}</span></div>
+                <div className="home-run-date"><strong>{day?.padStart(2, "0")}</strong><p><span className="home-label">{weekday}</span><span>{month.join(" ")}</span></p></div>
+                <p className="home-label home-run-details">{run.time} · {run.distance} · {run.pace}</p>
+                <p className="home-run-location">{run.location}</p>
+                <Link className="home-run-link home-label" href={runsHref}><span>{index === 0 ? "Je viens" : "Détails"}</span><ArrowIcon /></Link>
+              </li>;
+            })}
           </ol>
         </div>
       </section>
 
-      {/* ---------------- LE CLUB EN CLAIR ----------------
-           Section informative : elle repond aux questions d'un premier
-           visiteur (qui, quand, ou, combien) et donne enfin a Google le
-           vocabulaire du club — « run club », « club de sport »,
-           « Aix-en-Provence » — absent du hero, qui reste une accroche. */}
-      <section className="border-t-2 border-[#351815] bg-[#f6eadf] text-[#351815]" aria-labelledby="home-le-club">
-        <div className="mx-auto max-w-[1600px] px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 xl:px-12">
-          <h2 className="font-display text-[clamp(2.2rem,4.5vw,4rem)] uppercase leading-[1.12] tracking-[-.025em]" id="home-le-club">
-            Un run club <span className="text-[#b03583]">à Aix-en-Provence.</span>
-          </h2>
+      <section className="home-together" aria-label="Courir ensemble, à allure conversation">
+        <Image src="/assets/photos/hero-nulll-aix-v2.webp" alt="Le groupe NULLL.CLUB court dans une rue d’Aix-en-Provence au lever du soleil" fill sizes="100vw" />
+        <div className="home-together-shade" />
+        <span data-flow-point className="home-flow-point home-together-point" />
+        <div className="home-together-copy" data-home-reveal><span className="home-label">5 à 6 km · Allure conversation</span><p>On vient pour courir.<br /><span>On revient<br />pour les gens.</span></p></div>
+        <span className="home-together-note home-label">Personne ne sera laissé derrière.</span>
+      </section>
 
-          <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-14">
-            <div className="space-y-4 text-lg leading-relaxed">
-              {/* Le club n'a pas encore couru : la premiere sortie est le 26
-                  septembre. Le present laissait croire a une habitude installee.
-                  Le futur est plus juste — et plus fort comme argument. */}
+      <section className="home-club home-section" aria-labelledby="home-le-club">
+        <span data-flow-point className="home-flow-point home-club-point" />
+        <div className="home-section-top home-label"><span>02 — Bienvenue au club</span><span>Aucune avance. Aucune pression.</span></div>
+        <div className="home-club-heading" data-home-reveal><h2 id="home-le-club">Un run club<br /><span>à Aix-en-Provence.</span></h2><div className="home-free"><strong>0€</strong><span className="home-label">Pas d’abonnement.<br />Pas d’engagement.</span></div></div>
+        <div className="home-club-layout">
+          <div className="home-club-visual" data-home-reveal>
+            <figure className="home-crew-photo"><Image src="/assets/photos/runs-crew.webp" alt="Un groupe de coureurs réunis en plein air" fill sizes="(max-width: 760px) 90vw, 45vw" /></figure>
+            <div className="home-first-time"><span className="home-label">26 septembre 2026</span><p>La première fois.<br />Pour tout le monde.</p><span className="home-label">Nous les premiers.</span></div>
+          </div>
+          <div className="home-club-copy" data-home-reveal>
               <p>
                 NULLL.CLUB est un run club associatif basé à Aix-en-Provence. On se retrouvera
                 <strong> tous les samedis à 8h30 au parking Émile Zola</strong> pour une sortie de 5 à 6 km,
@@ -163,24 +137,17 @@ export function HomeExperience({
                 C’est aussi ce qui nous sépare d’un club de sport classique à Aix-en-Provence : pas
                 d’abonnement, pas d’engagement, et tu peux venir une fois pour voir.
               </p>
-            </div>
-
-            <dl className="grid grid-cols-2 gap-px self-start border-2 border-[#351815] bg-[#351815]">
-              {[
-                { t: "Quand", d: "Tous les samedis, 8h30" },
-                { t: "Où", d: "Parking Émile Zola, Aix-en-Provence" },
-                { t: "Distance", d: "5 à 6 km, allure conversation" },
-                { t: "Combien", d: "Gratuit, sans inscription" }
-              ].map((f) => (
-                <div className="bg-[#f6eadf] px-5 py-5" key={f.t}>
-                  <dt className="font-mono text-xs font-black uppercase tracking-[.1em] opacity-70">{f.t}</dt>
-                  <dd className="mt-2 font-black uppercase leading-tight">{f.d}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
-
-          <p className="mt-10 text-lg leading-relaxed">
+        </div>
+        <dl className="home-facts" data-home-reveal>
+          {[
+            { t: "Quand", d: "Tous les samedis, 8h30" },
+            { t: "Où", d: "Parking Émile Zola, Aix-en-Provence" },
+            { t: "Distance", d: "5 à 6 km, allure conversation" },
+            { t: "Combien", d: "Gratuit, sans inscription" }
+          ].map((fact, i) => <div key={fact.t}><dt className="home-label"><span>0{i + 1}</span>{fact.t}</dt><dd>{fact.d}</dd></div>)}
+        </dl>
+          <p className="home-local-links">
             Plus de détails sur{" "}
             <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#b03583] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]" href={localClubHref}>
               le run club à Aix-en-Provence
@@ -190,76 +157,26 @@ export function HomeExperience({
               où courir à Aix-en-Provence
             </Link>.
           </p>
-        </div>
       </section>
 
-      {/* ---------------- ALLER PLUS LOIN ---------------- */}
-      <section className="bg-[#120908] text-[#f6eadf]" aria-labelledby="home-explore">
-        <div className="mx-auto max-w-[1600px] px-5 py-14 sm:px-8 sm:py-18 xl:px-12">
-          <h2 className="font-display text-[clamp(2.2rem,4.5vw,4rem)] uppercase leading-[1.12] tracking-[-.025em]" id="home-explore">
-            Le reste du <span className="text-[#b03583]">club.</span>
-          </h2>
-
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            <ExploreCard href={communityHref} label="Le club" text="D’où vient NULLL.CLUB, et pourquoi trois L." />
-            <ExploreCard href={merchHref} label="Merch" text="Les pièces du club, quand elles sont dispo." />
-            <ExploreCard href={aboutHref} label="Contact" text="Une question avant de venir samedi." />
-          </div>
+      <section className="home-explore home-section" aria-labelledby="home-explore">
+        <span data-flow-point className="home-flow-point home-explore-point" />
+        <div className="home-section-top home-label"><span>03 — Au-delà des kilomètres</span><span>NULLL.CLUB</span></div>
+        <h2 id="home-explore" data-home-reveal>Le reste<br />du <span>club.</span></h2>
+        <div className="home-explore-links" data-home-reveal>
+          <ExploreLink href={communityHref} index="01" label="Le club" text="D’où vient NULLL.CLUB, et pourquoi trois L." />
+          <ExploreLink href={merchHref} index="02" label="Merch" text="Les pièces du club, quand elles sont dispo." />
+          <ExploreLink href={aboutHref} index="03" label="Contact" text="Une question avant de venir samedi." />
         </div>
+        <Link className="home-final-cta" href={runsHref}><span>Je viens samedi</span><ArrowIcon /></Link>
+        {nextRun && <p className="home-label home-final-meta">{nextRun.date} · {nextRun.time} · {nextRun.location} · {nextRun.distance} · {nextRun.pace}</p>}
+        <p className="home-label home-final-meta">Ouvert à tous · Gratuit · Sans inscription</p>
+        <span data-flow-point className="home-flow-point home-flow-end" />
       </section>
-
-      {/* ---------------- BANDEAU DÉFILANT ---------------- */}
-      <Link
-        aria-label={`Je viens samedi — prochaine sortie le ${nextRun.date} à ${nextRun.time}, ${nextRun.location}, ${nextRun.distance}, ${nextRun.pace}. Ouvert à tous, gratuit.`}
-        className="marquee group block border-y-2 border-[#351815] bg-[#ffb000] py-5 text-[#351815] transition-colors hover:bg-[#351815] hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#351815]"
-        href={runsHref}
-      >
-        <div className="marquee-track" aria-hidden="true">
-          {[0, 1].map((copyIndex) => (
-            <div className="marquee-run" key={copyIndex}>
-              {[
-                { big: "Je viens samedi", meta: nextRun.time },
-                { big: "Ouvert à tous", meta: nextRun.location },
-                { big: "Allure conversation", meta: nextRun.distance },
-                { big: "Gratuit", meta: nextRun.date }
-              ].map((segment) => (
-                <span className="marquee-item" key={segment.big}>
-                  <span className="font-display text-[clamp(1.6rem,3.2vw,2.8rem)] uppercase leading-none tracking-[-.02em]">
-                    {segment.big}
-                  </span>
-                  <span className="font-mono text-xs font-black uppercase tracking-[.12em] opacity-70">{segment.meta}</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </Link>
-    </>
+    </HomeJourney>
   );
 }
 
-function RunDatum({ emphasis = false, label, value }: { emphasis?: boolean; label: string; value: string }) {
-  return (
-    <div className={`${emphasis ? "bg-[#ffb000]" : "bg-[#f6eadf]"} px-5 py-4`}>
-      <p className="font-mono text-xs font-black uppercase tracking-[.08em] opacity-70">{label}</p>
-      <p className={`${emphasis ? "text-xl sm:text-2xl" : "text-lg"} mt-1 font-black uppercase leading-tight`}>{value}</p>
-    </div>
-  );
-}
-
-function ExploreCard({ href, label, text }: { href: string; label: string; text: string }) {
-  return (
-    <Link
-      className="group flex items-center justify-between gap-6 border-2 border-[#f6eadf]/30 p-6 transition-colors hover:border-[#ffb000] hover:bg-[#1c0f0d] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
-      href={href}
-    >
-      <div>
-        <h3 className="font-display text-3xl uppercase leading-none">{label}</h3>
-        <p className="mt-3 max-w-xs text-base font-bold leading-relaxed opacity-75">{text}</p>
-      </div>
-      <span className="text-[#ffb000]">
-        <ArrowIcon />
-      </span>
-    </Link>
-  );
+function ExploreLink({ href, index, label, text }: { href: string; index: string; label: string; text: string }) {
+  return <Link className="home-explore-link" href={href}><span className="home-label">{index}</span><h3>{label}</h3><p>{text}</p><ArrowIcon /></Link>;
 }
