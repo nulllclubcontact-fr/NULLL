@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { RunEvent } from "../lib/site-content";
 import { PARCOURS_SAMEDI } from "../lib/parcours";
 import { ArrowIcon } from "./ArrowIcon";
-import { Countdown } from "./countdown";
 import { HomeJourney } from "./home-journey";
 import "./home-experience.css";
 
@@ -25,6 +24,21 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
       <section className="home-cinema" aria-label="Découvrir NULLL.CLUB au fil du parcours">
         <span className="cinema-anchor cinema-infos-anchor" id="home-intro-infos" />
         <div className="cinema-stage">
+          {/* Les deux premiers panneaux etaient du texte sur du noir : ca
+              manquait de sport et de mouvement. Un coureur en flou de
+              filé passe derriere, tres assombri, et s'efface avant que la
+              carte n'arrive pour ne pas lui disputer l'ecran.
+              Purement decoratif : alt vide, aria-hidden. */}
+          <div aria-hidden="true" className="cinema-backdrop">
+            <Image
+              alt=""
+              className="cinema-backdrop-photo"
+              fill
+              priority
+              sizes="100vw"
+              src="/assets/photos/runs-blur.webp"
+            />
+          </div>
           <a className="cinema-skip home-label" href="#home-next-runs">Passer l’intro <span aria-hidden="true">↘</span></a>
 
           <div className="cinema-logo-scene">
@@ -71,20 +85,17 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
           <div className="cinema-progress" aria-hidden="true"><span className="home-label cinema-progress-label">NULLL.CLUB</span><div><span /></div><span className="home-label">Scroll ↓</span></div>
         </div>
       </section>
-      <span data-flow-point className="home-flow-point home-flow-start" />
 
       <div className="home-manifesto-strip" aria-label="Gratuit, sans inscription, sans niveau minimum">
         <span>Pas de chrono.</span><span className="home-strip-star" aria-hidden="true">✳</span><span>Pas de pression.</span><span className="home-strip-star" aria-hidden="true">✳</span><span>Juste nous.</span>
       </div>
 
       <section className="home-dates home-section" id="home-dates-section" aria-labelledby="home-next-runs">
-        <span data-flow-point className="home-flow-point home-dates-point" />
         <div className="home-section-top home-label"><span>01 — On se retrouve</span><span>Le samedi, c’est ici.</span></div>
         <div className="home-dates-layout">
           <div className="home-dates-intro" data-home-reveal>
             <h2 id="home-next-runs">Les prochaines<br /><span>dates.</span></h2>
             <p>Rendez-vous au même endroit,<br />chaque samedi matin.</p>
-            {nextRun && <div className="home-countdown"><Countdown isoDate={nextRun.isoDate} /></div>}
             <figure className="home-dates-photo">
               <Image src="/assets/photos/runs-blur.webp" alt="Un coureur en mouvement sur un chemin" fill sizes="(max-width: 760px) 85vw, 30vw" />
               <figcaption className="home-label">Le seul rythme qui compte : le tien.</figcaption>
@@ -108,15 +119,13 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
       <section className="home-together" aria-label="Courir ensemble, à allure conversation">
         <Image src="/assets/photos/hero-nulll-aix-v2.webp" alt="Le groupe NULLL.CLUB court dans une rue d’Aix-en-Provence au lever du soleil" fill sizes="100vw" />
         <div className="home-together-shade" />
-        <span data-flow-point className="home-flow-point home-together-point" />
         <div className="home-together-copy" data-home-reveal><span className="home-label">5 à 6 km · Allure conversation</span><p>On vient pour courir.<br /><span>On revient<br />pour les gens.</span></p></div>
         <span className="home-together-note home-label">Personne ne sera laissé derrière.</span>
       </section>
 
       <section className="home-club home-section" aria-labelledby="home-le-club">
-        <span data-flow-point className="home-flow-point home-club-point" />
         <div className="home-section-top home-label"><span>02 — Bienvenue au club</span><span>Aucune avance. Aucune pression.</span></div>
-        <div className="home-club-heading" data-home-reveal><h2 id="home-le-club">Un run club<br /><span>à Aix-en-Provence.</span></h2><div className="home-free"><strong>0€</strong><span className="home-label">Pas d’abonnement.<br />Pas d’engagement.</span></div></div>
+        <div className="home-club-heading" data-home-reveal><h2 id="home-le-club">Un run club<br /><span>à Aix-en-Provence.</span></h2></div>
         <div className="home-club-layout">
           <div className="home-club-visual" data-home-reveal>
             <figure className="home-crew-photo"><Image src="/assets/photos/runs-crew.webp" alt="Un groupe de coureurs réunis en plein air" fill sizes="(max-width: 760px) 90vw, 45vw" /></figure>
@@ -160,7 +169,6 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
       </section>
 
       <section className="home-explore home-section" aria-labelledby="home-explore">
-        <span data-flow-point className="home-flow-point home-explore-point" />
         <div className="home-section-top home-label"><span>03 — Au-delà des kilomètres</span><span>NULLL.CLUB</span></div>
         <h2 id="home-explore" data-home-reveal>Le reste<br />du <span>club.</span></h2>
         <div className="home-explore-links" data-home-reveal>
@@ -171,7 +179,6 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         <Link className="home-final-cta" href={runsHref}><span>Je viens samedi</span><ArrowIcon /></Link>
         {nextRun && <p className="home-label home-final-meta">{nextRun.date} · {nextRun.time} · {nextRun.location} · {nextRun.distance} · {nextRun.pace}</p>}
         <p className="home-label home-final-meta">Ouvert à tous · Gratuit · Sans inscription</p>
-        <span data-flow-point className="home-flow-point home-flow-end" />
       </section>
     </HomeJourney>
   );

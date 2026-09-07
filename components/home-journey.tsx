@@ -24,8 +24,6 @@ export function HomeJourney({ children }: { children: ReactNode }) {
       const logo = node.querySelector<HTMLElement>(".cinema-logo-scene");
       const stats = node.querySelector<HTMLElement>(".cinema-stats-scene");
       const progressLabel = node.querySelector<HTMLElement>(".cinema-progress-label");
-      const flow = node.querySelector<SVGSVGElement>(".home-flow");
-      const paths = node.querySelectorAll<SVGPathElement>(".home-flow path");
       const reveals = node.querySelectorAll<HTMLElement>("[data-home-reveal]");
       const reduced = preference.matches;
       let frame = 0;
@@ -64,9 +62,6 @@ export function HomeJourney({ children }: { children: ReactNode }) {
           const label = progress < .16 ? "01 — NULLL.CLUB" : progress < .46 ? "02 — Ensemble" : progress < .71 ? "03 — Le tracé" : "04 — Aix-en-Provence";
           if (progressLabel && label !== lastLabel) { progressLabel.textContent = label; lastLabel = label; }
         }
-        const remaining = Math.max(1, height - cinemaHeight);
-        const flowProgress = reduced ? 1 : clamp((y + window.innerHeight * .8 - top - cinemaHeight) / remaining);
-        paths[1]?.style.setProperty("stroke-dashoffset", String(1 - flowProgress));
       };
       const measure = () => {
         const rect = node.getBoundingClientRect();
@@ -77,18 +72,6 @@ export function HomeJourney({ children }: { children: ReactNode }) {
           cinemaHeight = cinema.offsetHeight;
           scrollRange = Math.max(1, cinemaHeight - stage.offsetHeight);
         }
-        flow?.setAttribute("viewBox", `0 0 ${rect.width} ${height}`);
-        const points = Array.from(node.querySelectorAll<HTMLElement>("[data-flow-point]")).map((el, i) => {
-          const box = el.getBoundingClientRect();
-          return i === 0 ? { x: rect.width * .92, y: cinemaHeight } : { x: box.left - rect.left, y: box.top - rect.top };
-        });
-        const d = points.map((p, i) => {
-          if (!i) return `M ${p.x} ${p.y}`;
-          const prev = points[i - 1];
-          const middle = (prev.y + p.y) / 2;
-          return `C ${prev.x} ${middle}, ${p.x} ${middle}, ${p.x} ${p.y}`;
-        }).join(" ");
-        paths.forEach((path) => path.setAttribute("d", d));
         draw();
       };
       const onScroll = () => { if (!frame) frame = requestAnimationFrame(draw); };
@@ -141,7 +124,6 @@ export function HomeJourney({ children }: { children: ReactNode }) {
         .home-journey .cinema-progress,.home-journey .cinema-skip { display:none; }
         body:has(.home-cinema) header { position:relative; transform:none; visibility:visible; }
       `}</style></noscript>
-      <svg className="home-flow" aria-hidden="true" preserveAspectRatio="none"><path fill="none" /><path fill="none" pathLength={1} strokeDasharray="1" /></svg>
       {children}
     </main>
   );
