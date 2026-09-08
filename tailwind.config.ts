@@ -20,9 +20,14 @@ const config: Config = {
       fontFamily: {
         // Les variables viennent de next/font (voir app/layout.tsx). Les noms
         // systeme restent en repli pour le cas ou la police ne charge pas.
-        display: ["var(--font-display)", "Haettenschweiler", "Impact", "Arial Narrow", "sans-serif"],
-        mono: ["var(--font-mono)", "Courier New", "Courier", "monospace"],
-        sans: ["Arial", "Helvetica", "sans-serif"]
+        display: ["var(--font-display)", "Arial Narrow", "Helvetica Neue", "Arial", "sans-serif"],
+        // « mono » designe ici un role — l intitule technique en capitales —
+        // et non une chasse fixe. Le nom est conserve parce qu il est cite
+        // 260 fois dans le projet.
+        mono: ["var(--font-mono)", "Arial Narrow", "Arial", "sans-serif"],
+        sans: ["var(--font-display)", "Arial Narrow", "Helvetica Neue", "Arial", "sans-serif"],
+        // L ecriture manuscrite, pour les titres decontractes. A garder rare.
+        hand: ["var(--font-hand)", "Bradley Hand", "Segoe Script", "cursive"]
       },
       animation: {
         marquee: "marquee 24s linear infinite",

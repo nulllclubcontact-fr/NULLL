@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Anton, Courier_Prime } from "next/font/google";
+import { Roboto_Condensed, Caveat } from "next/font/google";
 import "./globals.css";
 
 // Le site n'embarquait aucune police : il comptait sur Haettenschweiler,
@@ -9,22 +9,53 @@ import "./globals.css";
 // calibre pour une police ultra-condensee, collait les lettres entre elles.
 // next/font telecharge les polices au build et les sert depuis le domaine :
 // pas d'appel externe a l'execution, et pas de saut de mise en page.
-const police_display = Anton({
+/**
+ * Trois roles, deux familles telechargees.
+ *
+ * Roboto Condensed porte tout le texte : en 900 pour les titres, en 400
+ * pour la lecture courante, en 500/700 pour les intitules en capitales.
+ * Une seule famille pour trois usages, ce qui tient l'ensemble.
+ *
+ * Caveat est l'ecriture manuscrite, reservee aux titres qu'on veut
+ * decontractes. A garder rare : c'est ce qui la rend efficace.
+ *
+ * Arpona, la police du logo, n'est pas chargee — elle n'a pas a l'etre.
+ * Le logo est servi en image partout (logo-cream.png, logo-burgundy.png),
+ * donc son dessin est deja fige dedans.
+ */
+const police_display = Roboto_Condensed({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "700", "900"],
   display: "swap",
   variable: "--font-display",
   // Ajuste les metriques du repli pour qu'un chargement lent ne decale rien.
   adjustFontFallback: false,
-  fallback: ["Haettenschweiler", "Impact", "Arial Narrow", "sans-serif"]
+  fallback: ["Arial Narrow", "Helvetica Neue", "Arial", "sans-serif"]
 });
 
-const police_mono = Courier_Prime({
+/**
+ * Les intitules en capitales du site — « 01 — NULLL.CLUB », les chapeaux —
+ * passaient par une machine a ecrire. Ils prennent desormais la meme
+ * famille condensee que le reste.
+ *
+ * La variable garde son nom : elle est citee 260 fois dans le projet, et
+ * la renommer partout pour un gain cosmetique serait un mauvais echange.
+ * Elle designe ici un role — l'intitule technique — pas une chasse fixe.
+ */
+const police_mono = Roboto_Condensed({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
   display: "swap",
   variable: "--font-mono",
-  fallback: ["Courier New", "Courier", "monospace"]
+  fallback: ["Arial Narrow", "Arial", "sans-serif"]
+});
+
+const police_main = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  display: "swap",
+  variable: "--font-hand",
+  fallback: ["Bradley Hand", "Segoe Script", "cursive"]
 });
 
 export const metadata: Metadata = {
@@ -63,7 +94,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html className={`${police_display.variable} ${police_mono.variable}`} lang="fr">
+    <html className={`${police_display.variable} ${police_mono.variable} ${police_main.variable}`} lang="fr">
       <body>{children}</body>
     </html>
   );

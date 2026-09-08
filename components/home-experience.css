@@ -1,7 +1,7 @@
 /* Scoped to the homepage: shared styles and all other pages are unchanged. */
 .home-journey{--home-cream:#f6eadf;--home-ink:#351815;--home-dark:#120908;--home-yellow:#ffb000;--home-pink:#d96ab4;--home-pink-text:#b03583;position:relative;isolation:isolate;overflow:clip;background:var(--home-cream);color:var(--home-ink)}
-.home-journey h1, .home-journey h2, .home-journey h3, .home-journey .home-run-date>strong, .home-journey .home-first-time p, .home-journey .home-together-copy>p, .home-journey .home-final-cta, .home-journey .home-manifesto-strip{font-family:var(--font-display),Impact,sans-serif;font-weight:400;text-transform:uppercase}
-.home-journey .home-label{font-family:var(--font-mono),"Courier New",monospace;font-size:11px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.home-journey h1, .home-journey h2, .home-journey h3, .home-journey .home-run-date>strong, .home-journey .home-first-time p, .home-journey .home-together-copy>p, .home-journey .home-final-cta, 
+.home-journey .home-label{font-family:var(--font-mono),"Arial Narrow",sans-serif;font-size:11px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
 .home-journey a{touch-action:manipulation}
 .home-journey a:focus-visible{outline:3px solid var(--home-pink-text);outline-offset:5px}
 .home-journey h2{font-size:clamp(48px,6.5vw,96px);line-height:1.02;letter-spacing:-.02em}
@@ -239,7 +239,7 @@ body:has(.home-past-intro) header{ transform: none; visibility: visible; }
 .home-journey .cinema-stats{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 4vw; }
 .home-journey .cinema-stats>div{ border-top: 1px solid #535353; padding-top: 19px; }
 .home-journey .cinema-stats dt{ color: #a4a4a4; }
-.home-journey .cinema-stats dd:not(.cinema-stat-note){ font-family: var(--font-display), Impact, sans-serif; font-size: clamp(70px,7.5vw,112px); line-height: 1.15; margin-top: 12px; }
+.home-journey .cinema-stats dd:not(.cinema-stat-note){ font-family: var(--font-display), "Arial Narrow", sans-serif; font-weight: 900; font-size: clamp(70px,7.5vw,112px); line-height: 1.15; margin-top: 12px; }
 .home-journey .cinema-stats dd>span{ font-size: .45em; margin-left: 5px; }
 .home-journey .cinema-stat-note{ font-size: 13px; line-height: 1.6; margin-top: 10px; color: #c3c3c3; }
 .home-journey .cinema-map-scene{ opacity: var(--route-opacity); }
@@ -263,12 +263,12 @@ body:has(.home-past-intro) header{ transform: none; visibility: visible; }
 .home-journey .cinema-depart-marker circle:nth-child(2){ fill: #ffb000; }
 .home-journey .cinema-depart-marker>path{ stroke: #ffb000; stroke-width: 1.2; }
 .home-journey .cinema-depart-marker rect{ fill: #ffb000; }
-.home-journey .cinema-depart-marker text{ font-family: var(--font-mono),monospace; font-size: 11px; font-weight: 700; fill: #120908; }
+.home-journey .cinema-depart-marker text{ font-family: var(--font-mono),"Arial Narrow",sans-serif; font-size: 11px; font-weight: 700; fill: #120908; }
 .home-journey .cinema-map-geography{ position: absolute; top: 10vh; right: 5vw; display: flex; flex-direction: column; align-items: flex-end; gap: 9px; opacity: var(--map-details-opacity); }
 .home-journey .cinema-map-geography>span:first-child{ font-size: 17px; color: #ffb000; letter-spacing: .13em; }
 .home-journey .cinema-map-geography>span:last-child{ color: #bbc4be; font-size: 10px; }
 .home-journey .cinema-route-distance{ position: absolute; bottom: 12vh; left: 5vw; display: flex; align-items: end; gap: 20px; }
-.home-journey .cinema-route-distance strong{ font-family: var(--font-display),Impact,sans-serif; font-weight: 400; font-size: clamp(65px,7.5vw,112px); line-height: 1; }
+.home-journey .cinema-route-distance strong{ font-family: var(--font-display),"Arial Narrow",sans-serif; font-weight: 900; font-size: clamp(65px,7.5vw,112px); line-height: 1; }
 .home-journey .cinema-route-distance>span{ padding-bottom: 6px; color: #c9cfcb; }
 .home-journey .cinema-meetup{ position: absolute; bottom: 12vh; right: 5vw; width: 345px; padding: 20px 23px; background: #080e0c; border: 1px solid #566459; border-top: 2px solid #ffb000; opacity: var(--map-details-opacity); }
 .home-journey .cinema-meetup>.home-label{ color: #ffb000; }
@@ -436,4 +436,31 @@ body:has(.home-cinema) header{ position: relative; transform: none; visibility: 
 
 @media (prefers-reduced-motion:reduce){
   .cinema-backdrop-photo{animation:none}
+}
+
+
+/* ---------- La phrase du bandeau, a la main ----------
+   Le seul endroit du site ou l'ecriture manuscrite intervient. Ce n'est
+   pas une information a lire vite, c'est une phrase qu'on lance : elle
+   supporte donc un ton different du reste.
+
+   Pas de capitales : Caveat est un script, ses majuscules se collent et
+   perdent le geste. Et une taille superieure au reste, parce qu'une
+   ecriture manuscrite parait toujours plus petite a corps egal. */
+.home-journey .home-manifesto-strip{
+  font-family:var(--font-hand),"Bradley Hand","Segoe Script",cursive;
+  font-weight:600;
+  text-transform:none;
+  font-size:clamp(28px,3.4vw,52px);
+  letter-spacing:0;
+}
+
+.home-journey .home-strip-star{
+  /* L'etoile n'existe pas dans un script : elle garde la condensee. */
+  font-family:var(--font-display),"Arial Narrow",sans-serif;
+  font-size:.5em;
+}
+
+@media(max-width:760px){
+  .home-journey .home-manifesto-strip{font-size:clamp(20px,4.6vw,34px)}
 }

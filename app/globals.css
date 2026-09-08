@@ -113,6 +113,12 @@ a {
   .font-display {
     max-width: 100%;
     overflow-wrap: anywhere;
+    /* Anton n'avait qu'une graisse, tres noire, et « font-display »
+       suffisait donc a obtenir un titre. Roboto Condensed en a huit :
+       sans cette ligne, tous les titres du site sortiraient en romain
+       maigre. Pose dans @layer base pour qu'un font-bold ou un
+       font-normal explicite puisse encore l'emporter. */
+    font-weight: 900;
   }
 
   /* La police d'affichage est tres condensee et les titres portent un
@@ -585,7 +591,8 @@ textarea {
   border-radius: 999px;
   background: #f6eadf;
   color: #351815;
-  font-family: var(--font-display), Impact, sans-serif;
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  font-weight: 900;
   font-size: 2.75rem;
   line-height: 1;
   transform: translateX(-50%) rotate(-5deg);
