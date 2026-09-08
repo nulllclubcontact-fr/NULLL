@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Roboto_Condensed, Caveat } from "next/font/google";
+import { Anton, Roboto_Condensed, Caveat } from "next/font/google";
 import "./globals.css";
 
 // Le site n'embarquait aucune police : il comptait sur Haettenschweiler,
@@ -10,11 +10,11 @@ import "./globals.css";
 // next/font telecharge les polices au build et les sert depuis le domaine :
 // pas d'appel externe a l'execution, et pas de saut de mise en page.
 /**
- * Trois roles, deux familles telechargees.
+ * Trois roles, trois familles.
  *
- * Roboto Condensed porte tout le texte : en 900 pour les titres, en 400
- * pour la lecture courante, en 500/700 pour les intitules en capitales.
- * Une seule famille pour trois usages, ce qui tient l'ensemble.
+ * Anton pour les gros titres, Roboto Condensed pour tout ce qui se lit —
+ * texte courant et intitules en capitales — et Caveat pour les phrases
+ * qu'on lance.
  *
  * Caveat est l'ecriture manuscrite, reservee aux titres qu'on veut
  * decontractes. A garder rare : c'est ce qui la rend efficace.
@@ -23,14 +23,20 @@ import "./globals.css";
  * Le logo est servi en image partout (logo-cream.png, logo-burgundy.png),
  * donc son dessin est deja fige dedans.
  */
-const police_display = Roboto_Condensed({
+/**
+ * Anton porte les gros titres. Roboto Condensed a ete essayee a sa place :
+ * meme en 900, sa graisse maximale, elle paraissait fine a cote. Anton
+ * n'est pas une graisse mais une police d'affiche — beaucoup plus etroite,
+ * elle noircit la page a corps egal. C'est ce qu'on veut pour un titre.
+ */
+const police_display = Anton({
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
+  weight: "400",
   display: "swap",
   variable: "--font-display",
   // Ajuste les metriques du repli pour qu'un chargement lent ne decale rien.
   adjustFontFallback: false,
-  fallback: ["Arial Narrow", "Helvetica Neue", "Arial", "sans-serif"]
+  fallback: ["Haettenschweiler", "Impact", "Arial Narrow", "sans-serif"]
 });
 
 /**

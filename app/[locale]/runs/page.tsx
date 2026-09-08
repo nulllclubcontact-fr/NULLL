@@ -151,53 +151,10 @@ export default async function RunsPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ---------------- LES 3 PILIERS ---------------- */}
-      <section className="principles-section overflow-hidden bg-[#351815] text-[#f6eadf]" aria-labelledby="runs-format">
-        <div className="mx-auto max-w-[1600px] px-5 pb-20 pt-12 sm:px-8 sm:pb-28 sm:pt-16 xl:px-12">
-          <div className="relative z-10 text-center">
-            <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">02 — Les seules règles</p>
-            <h2
-              className="mx-auto mt-5 max-w-[15ch] font-display text-[clamp(3rem,7vw,7.5rem)] uppercase leading-[1.12] tracking-[-.045em]"
-              id="runs-format"
-            >
-              Le seul podium<br /><span className="text-[#d96ab4]">qui compte.</span>
-            </h2>
-          </div>
-
-          <ol className="principles-stage relative z-10 mt-24 grid gap-14 md:mt-32 md:grid-cols-3 md:items-end md:gap-3 lg:gap-5">
-            <Reveal as="li" className="principle-block principle-block--second group order-2 flex min-h-[19rem] flex-col justify-end border-2 border-[#351815] bg-[#d96ab4] p-6 text-[#351815] md:order-1 md:min-h-[23rem] lg:p-8" delay={110}>
-              <Image alt="" className="principle-photo object-cover object-[50%_42%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-clear-head.webp" />
-              <span className="podium-medal" aria-hidden="true">02</span>
-              <span className="principle-kicker mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">Respirer enfin</span>
-              <h3 className="break-normal font-display text-[clamp(2.25rem,4vw,4.5rem)] uppercase leading-[1.12] [overflow-wrap:normal]">Se vider<br />la tête</h3>
-              <span aria-hidden="true" className="mt-6 block h-2 w-20 bg-[#351815]" />
-            </Reveal>
-
-            <Reveal as="li" className="principle-block principle-block--first group order-1 flex min-h-[24rem] flex-col justify-end border-2 border-[#351815] bg-[#ffb000] p-6 text-[#351815] md:order-2 md:min-h-[32rem] lg:p-9" delay={0}>
-              <Image alt="" className="principle-photo object-cover object-[50%_48%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-meet.webp" />
-              <span className="podium-medal podium-medal--first" aria-hidden="true">01</span>
-              <span className="principle-kicker principle-kicker--first mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">La vraie victoire</span>
-              <h3 className="break-normal font-display text-[clamp(2.15rem,4.3vw,4rem)] uppercase leading-[1.12] [overflow-wrap:normal]">Faire des<br />rencontres</h3>
-              <p className="mt-6 max-w-[25ch] font-mono text-xs font-black uppercase leading-relaxed tracking-[.08em]">Pas d’écouteurs. Des vraies conversations.</p>
-            </Reveal>
-
-            <Reveal as="li" className="principle-block principle-block--third group order-3 flex min-h-[18rem] flex-col justify-end border-2 border-[#351815] bg-[#f6eadf] p-6 text-[#351815] md:min-h-[20rem] lg:p-8" delay={220}>
-              <Image alt="" className="principle-photo object-cover object-[50%_28%]" fill sizes="(min-width: 768px) 33vw, 100vw" src="/assets/photos/principle-fun.webp" />
-              <span className="podium-medal" aria-hidden="true">03</span>
-              <span className="principle-kicker mb-auto font-mono text-[.65rem] font-black uppercase tracking-[.16em]">Zéro pression</span>
-              <h3 className="break-normal font-display text-[clamp(2.25rem,4vw,4.5rem)] uppercase leading-[1.12] [overflow-wrap:normal]">S’amuser.<br />C’est tout.</h3>
-              <span aria-hidden="true" className="mt-6 block h-2 w-20 bg-[#d96ab4]" />
-            </Reveal>
-          </ol>
-
-          <div aria-hidden="true" className="finish-line relative z-10 h-10" />
-        </div>
-      </section>
-
       {/* ---------------- FAQ ---------------- */}
       <section className="bg-[#ffb000] text-[#351815]" aria-labelledby="runs-faq">
         <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-28 xl:px-12">
-          <p className="font-mono text-xs font-black uppercase tracking-[.16em]">03 — Les questions</p>
+          <p className="font-mono text-xs font-black uppercase tracking-[.16em]">02 — Les questions</p>
           <h2
             className="mt-5 max-w-[12ch] font-display text-[clamp(3rem,6.4vw,6.4rem)] uppercase leading-[1.12] tracking-[-.04em]"
             id="runs-faq"

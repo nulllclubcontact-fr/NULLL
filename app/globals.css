@@ -60,7 +60,11 @@ body {
   overflow-x: hidden;
   background: #f6eadf;
   color: #351815;
-  font-family: Arial, Helvetica, sans-serif;
+  /* Le texte courant prend la condensee en graisse normale — jamais
+     Anton, qui est une police d'affiche et ne se lit pas en paragraphe.
+     La page tombait jusqu'ici sur Arial. */
+  font-family: var(--font-mono), "Arial Narrow", Arial, Helvetica, sans-serif;
+  font-weight: 400;
   text-rendering: geometricPrecision;
 }
 
@@ -104,8 +108,8 @@ a {
    IMPORTANT : ce bloc doit rester dans @layer base. Sans lui, la regle
    passait APRES `@tailwind utilities` et ecrasait silencieusement les
    `[overflow-wrap:normal]` poses sur les titres d'affiche — d'ou les
-   coupures en plein mot (« RENCONT / RES ») sur le podium. Dans la couche
-   base, ces opt-out explicites l'emportent enfin. */
+   coupures en plein mot (« RENCONT / RES ») sur les titres d'affiche.
+   Dans la couche base, ces opt-out explicites l'emportent enfin. */
 @layer base {
   h1,
   h2,
@@ -514,179 +518,6 @@ textarea {
 /* Relief du texte sur photo : remplace le voile sombre, l'image reste intacte. */
 .hero-text-shadow {
   text-shadow: 0 2px 18px rgba(18, 9, 8, 0.55), 0 1px 3px rgba(18, 9, 8, 0.45);
-}
-
-/* Podium des principes — volumes francs et codes de competition. */
-.principles-section {
-  position: relative;
-  isolation: isolate;
-}
-
-/* Le fond de la section doit soutenir le podium, pas le contrarier. Les
-   anciennes stries a 165deg opposaient des diagonales a des blocs
-   strictement d'aplomb : c'est ce qui rendait l'ensemble bancal. On garde
-   une profondeur verticale, qui pose le podium au sol. */
-.principles-section::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  background:
-    radial-gradient(120% 70% at 50% 100%, rgba(255, 176, 0, 0.07) 0%, transparent 62%),
-    linear-gradient(to bottom, transparent 0%, rgba(18, 9, 8, 0.55) 100%);
-}
-
-/* Ombre portee du podium au sol. Aucune arete : une estrade dessinee
-   derriere les blocs ne montrait que ses debords lateraux et produisait
-   deux traits parasites. Le socle, c'est la ligne d'arrivee ci-dessous. */
-.principles-stage::before {
-  position: absolute;
-  right: -3rem;
-  bottom: -1rem;
-  left: -3rem;
-  z-index: -1;
-  height: 6rem;
-  content: "";
-  background: radial-gradient(60% 100% at 50% 100%, rgba(18, 9, 8, 0.75) 0%, transparent 70%);
-}
-
-.principle-block {
-  position: relative;
-  box-shadow: 10px 10px 0 #24100e;
-  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms ease-out;
-}
-
-.principle-block--first {
-  box-shadow: 14px 14px 0 #d96ab4;
-}
-
-.principle-block::after {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  content: "";
-  background: linear-gradient(135deg, rgba(255,255,255,.16), transparent 32%);
-}
-
-.principle-block > :not(.principle-photo) {
-  z-index: 1;
-}
-
-.principle-photo {
-  z-index: 0;
-  filter: grayscale(1) contrast(1.35);
-  mix-blend-mode: multiply;
-  opacity: 0.32;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 4%, #000 20%, #000 72%, transparent 94%);
-  mask-image: linear-gradient(to bottom, transparent 4%, #000 20%, #000 72%, transparent 94%);
-  transition: filter 350ms ease-out, opacity 350ms ease-out, transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.principle-block--first .principle-photo {
-  opacity: 0.38;
-}
-
-.podium-medal {
-  position: absolute;
-  top: -3.8rem;
-  left: 50%;
-  display: grid;
-  width: 6.5rem;
-  height: 6.5rem;
-  place-items: center;
-  border: 3px solid #351815;
-  border-radius: 999px;
-  background: #f6eadf;
-  color: #351815;
-  font-family: var(--font-display), "Arial Narrow", sans-serif;
-  font-weight: 900;
-  font-size: 2.75rem;
-  line-height: 1;
-  transform: translateX(-50%) rotate(-5deg);
-  box-shadow: 7px 7px 0 #24100e;
-}
-
-.podium-medal--first {
-  top: -4.5rem;
-  width: 8rem;
-  height: 8rem;
-  background: #ffb000;
-  font-size: 3.8rem;
-  box-shadow: 9px 9px 0 #d96ab4;
-  transform: translateX(-50%) rotate(5deg);
-}
-
-.principle-kicker {
-  align-self: center;
-  margin-top: 4rem;
-  padding: .55rem .75rem;
-  background: rgba(53, 24, 21, .9);
-  color: #f6eadf;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.principle-kicker--first {
-  margin-top: 4.75rem;
-}
-
-/* Le socle du podium : la ligne d'arrivee. C'est elle qui porte les trois
-   blocs, d'ou l'arete claire en haut — sans elle les blocs flottaient — et
-   le debord lateral qui lui donne l'assise d'une vraie estrade. */
-.finish-line {
-  margin-right: -1.25rem;
-  margin-left: -1.25rem;
-  border-top: 3px solid #f6eadf;
-  box-shadow: 0 10px 0 rgba(18, 9, 8, 0.55);
-  background: conic-gradient(from 90deg, #1c0d0b 25%, #f6eadf 0 50%, #1c0d0b 0 75%, #f6eadf 0) 0 0 / 20px 20px;
-}
-
-@media (hover: hover) {
-  .principle-block:hover {
-    z-index: 2;
-    transform: translateY(-14px) rotate(-1deg);
-    box-shadow: 16px 20px 0 #d96ab4;
-  }
-
-  .principle-block--first:hover {
-    transform: translateY(-18px) rotate(1deg);
-  }
-
-  .principle-block:hover .principle-photo {
-    filter: grayscale(.2) contrast(1.12);
-    opacity: .5;
-    transform: scale(1.06);
-  }
-}
-
-/* Le podium ne passe en 3 colonnes qu'a partir de md (768px) : en dessous,
-   les blocs sont empiles, donc l'estrade et la ligne d'arrivee n'ont pas
-   de sens. Doit rester aligne sur le `md:grid-cols-3` de la page sorties. */
-@media (max-width: 767px) {
-  .principles-stage::before,
-  .finish-line {
-    display: none;
-  }
-
-  .principle-block {
-    margin-top: 2rem;
-  }
-
-  .principle-kicker,
-  .principle-kicker--first {
-    margin-top: 3.5rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .principle-block {
-    transition: none;
-  }
-
-  .principle-photo {
-    transition: none;
-  }
 }
 
 /* Affiches photo du carrousel — mouvement court, image dominante. */
