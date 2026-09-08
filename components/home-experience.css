@@ -464,3 +464,39 @@ body:has(.home-cinema) header{ position: relative; transform: none; visibility: 
 @media(max-width:760px){
   .home-journey .home-manifesto-strip{font-size:clamp(20px,4.6vw,34px)}
 }
+
+
+/* ---------- L'ecriture manuscrite ----------
+   Le troisieme registre du systeme. Elle sert aux phrases qu'on lance,
+   jamais aux informations qu'on doit lire vite.
+
+   Jamais de capitales : un script y colle ses majuscules et perd le
+   geste. Et toujours un corps superieur au voisinage, une ecriture a la
+   main paraissant plus petite a taille egale. */
+.home-journey .home-hand{
+  font-family:var(--font-hand),"Bradley Hand","Segoe Script",cursive;
+  font-weight:600;
+  text-transform:none;
+  letter-spacing:0;
+  font-size:1.7em;
+  line-height:1.1;
+}
+
+.home-journey .home-hand-kicker{
+  display:block;
+  margin-bottom:14px;
+  font-size:clamp(26px,2.6vw,40px);
+  color:var(--home-yellow);
+  /* Le chapeau vit dans une grille a deux colonnes. La classe qu'il
+     portait avant lui donnait « grid-column: 1 / -1 » ; sans cette
+     reprise, il occupe la premiere cellule et rejette le titre dans la
+     colonne etroite de droite, ou il se coupe en plein mot. */
+  grid-column:1 / -1;
+}
+
+/* Les mentions de bas de section vivent dans une ligne en flex : a 1.7em
+   elles feraient sauter la ligne. Elles gardent un corps mesure. */
+.home-journey .home-section-top .home-hand{
+  font-size:1.45em;
+  line-height:1;
+}

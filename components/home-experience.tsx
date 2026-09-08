@@ -44,11 +44,11 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
           <div className="cinema-logo-scene">
             <h1 id="home-title"><Image src="/assets/nulll-new/logo-cream.png" alt="NULLL.CLUB — run club à Aix-en-Provence" width={2449} height={313} priority sizes="85vw" /></h1>
             <p className="home-label cinema-logo-location">Aix-en-Provence · Social sport club</p>
-            <a href="#home-intro-infos" className="cinema-scroll home-label">Tout commence ici.<span>Scroll pour découvrir <span aria-hidden="true">↓</span></span></a>
+            <a href="#home-intro-infos" className="cinema-scroll home-label"><span className="home-hand">Tout commence ici.</span><span>Scroll pour découvrir <span aria-hidden="true">↓</span></span></a>
           </div>
 
           <section className="cinema-stats-scene" aria-labelledby="cinema-stats-title">
-            <div className="cinema-stats-heading"><p className="home-label">Pas besoin d’être un grand coureur.</p><h2 id="cinema-stats-title">On court<br /><span>ensemble.</span></h2><p>Tous les samedis.<br />On vient pour courir. On revient pour les gens.</p></div>
+            <div className="cinema-stats-heading"><p className="home-hand home-hand-kicker">Pas besoin d’être un grand coureur.</p><h2 id="cinema-stats-title">On court<br /><span>ensemble.</span></h2><p>Tous les samedis.<br />On vient pour courir. On revient pour les gens.</p></div>
             <dl className="cinema-stats">
               <div><dt className="home-label">Le parcours du samedi</dt><dd>5,07<span>km</span></dd><dd className="cinema-stat-note">Allure conversation · +45 m</dd></div>
               <div><dt className="home-label">Le rendez-vous</dt><dd>8<span>h</span>30</dd><dd className="cinema-stat-note">Parking Émile Zola · Aix-en-Provence</dd></div>
@@ -91,7 +91,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
       </div>
 
       <section className="home-dates home-section" id="home-dates-section" aria-labelledby="home-next-runs">
-        <div className="home-section-top home-label"><span>01 — On se retrouve</span><span>Le samedi, c’est ici.</span></div>
+        <div className="home-section-top home-label"><span>01 — On se retrouve</span><span className="home-hand">Le samedi, c’est ici.</span></div>
         <div className="home-dates-layout">
           <div className="home-dates-intro" data-home-reveal>
             <h2 id="home-next-runs">Les prochaines<br /><span>dates.</span></h2>
@@ -124,7 +124,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
       </section>
 
       <section className="home-club home-section" aria-labelledby="home-le-club">
-        <div className="home-section-top home-label"><span>02 — Bienvenue au club</span><span>Aucune avance. Aucune pression.</span></div>
+        <div className="home-section-top home-label"><span>02 — Bienvenue au club</span><span className="home-hand">Aucune avance. Aucune pression.</span></div>
         <div className="home-club-heading" data-home-reveal><h2 id="home-le-club">Un run club<br /><span>à Aix-en-Provence.</span></h2></div>
         <div className="home-club-layout">
           <div className="home-club-visual" data-home-reveal>
