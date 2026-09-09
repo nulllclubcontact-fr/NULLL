@@ -22,7 +22,7 @@ export default async function AdminPartnersPage() {
   return (
     <section className="shell grid gap-8 py-8 lg:py-12">
       <div>
-        <p className="font-mono text-sm uppercase  text-[#C32986]">Admin partenaires</p>
+        <p className="font-mono text-sm uppercase  text-[#773331]">Admin partenaires</p>
         <h1 className="mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Codes. Hash. Silence.</h1>
         <p className="mt-5 max-w-xl text-[#773331]/72">Le code clair apparait une fois. Apres, il n’existe plus ici.</p>
       </div>
@@ -82,7 +82,7 @@ function PartnerBlock({ partner }: { partner: AdminPartner }) {
       </div>
 
       <div className="mt-5 grid gap-3">
-        <p className="font-mono text-xs font-black uppercase  text-[#C32986]">
+        <p className="font-mono text-xs font-black uppercase  text-[#773331]">
           {activeCodes.length} code(s) actif(s)
         </p>
         {partner.partner_access_codes.length === 0 ? (

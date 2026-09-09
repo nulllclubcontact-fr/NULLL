@@ -308,7 +308,7 @@ function ProductCard({
       </div>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#C32986]">{product.badge}</p>
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#773331]">{product.badge}</p>
         {/* h2 et non h3 : les pieces sont des elements de premier niveau de
             la page, freres du panneau de commande. En h3 elles suivaient
             directement le h1, et un lecteur d'ecran qui navigue par titres

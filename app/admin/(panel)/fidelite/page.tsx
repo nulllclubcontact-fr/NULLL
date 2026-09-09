@@ -17,7 +17,7 @@ export default async function AdminLoyaltyPage() {
   return (
     <section className="shell grid gap-8 py-8 lg:py-12">
       <div>
-        <p className="font-mono text-sm uppercase  text-[#C32986]">Admin fidelite</p>
+        <p className="font-mono text-sm uppercase  text-[#773331]">Admin fidelite</p>
         <h1 className="mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Points. Paliers. Cash.</h1>
         <p className="mt-5 max-w-xl text-[#773331]/72">Le ratio nourrit les achats. Les paliers pilotent les reductions.</p>
       </div>

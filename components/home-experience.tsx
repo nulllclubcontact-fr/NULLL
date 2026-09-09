@@ -110,11 +110,11 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         </dl>
           <p className="home-local-links">
             Plus de détails sur{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#C32986] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]" href={localClubHref}>
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#773331] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]" href={localClubHref}>
               le run club à Aix-en-Provence
             </Link>{" "}
             et sur{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#C32986] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]" href={localRunningHref}>
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#773331] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]" href={localRunningHref}>
               où courir à Aix-en-Provence
             </Link>.
           </p>

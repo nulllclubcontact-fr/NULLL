@@ -20,7 +20,7 @@ export function GenerateCodeForm({ partnerId }: { partnerId: string }) {
         </p>
       ) : null}
       {state.error ? (
-        <p className="border-2 border-[#773331] px-4 py-3 font-mono text-sm font-black uppercase text-[#C32986]" role="alert">
+        <p className="border-2 border-[#773331] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">
           {state.error}
         </p>
       ) : null}

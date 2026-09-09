@@ -60,7 +60,7 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
     <section className="shell grid gap-8 py-8 lg:py-12">
       <header className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <Link className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]/50 hover:text-[#C32986]" href="/admin/courses">
+          <Link className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]/50 hover:text-[#773331]" href="/admin/courses">
             ← Toutes les sorties
           </Link>
           <h1 className="mt-4 font-display text-[clamp(2.2rem,5.5vw,3.8rem)] uppercase leading-[.98]">{course.title}</h1>
