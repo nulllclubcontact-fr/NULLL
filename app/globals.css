@@ -6,10 +6,10 @@
    depuis un seul endroit.
    ------------------------------------------------------------------ */
 :root {
-  --nulll-cream: #f6eadf;
-  --nulll-ink: #351815;
-  --nulll-amber: #ffb000;
-  --nulll-pink: #d96ab4;
+  --nulll-cream: #F1EDE9;
+  --nulll-ink: #773331;
+  --nulll-amber: #D3ED66;
+  --nulll-pink: #EBA0CD;
 
   /* Roles */
   --surface: var(--nulll-cream);
@@ -51,15 +51,15 @@
 
 html {
   scroll-behavior: smooth;
-  background: #f6eadf;
+  background: #F1EDE9;
 }
 
 body {
   min-height: 100dvh;
   margin: 0;
   overflow-x: hidden;
-  background: #f6eadf;
-  color: #351815;
+  background: #F1EDE9;
+  color: #773331;
   /* Le texte courant prend la condensee en graisse normale — jamais
      Anton, qui est une police d'affiche et ne se lit pas en paragraphe.
      La page tombait jusqu'ici sur Arial. */
@@ -93,8 +93,8 @@ body::before {
 }
 
 ::selection {
-  background: #ffb000;
-  color: #351815;
+  background: #D3ED66;
+  color: #773331;
 }
 
 a {
@@ -174,22 +174,22 @@ textarea {
   }
 
   .panel {
-    border: 2px solid #351815;
+    border: 2px solid #773331;
     background:
       linear-gradient(rgba(53, 24, 21, 0.055) 1px, transparent 1px),
       linear-gradient(90deg, rgba(53, 24, 21, 0.055) 1px, transparent 1px),
-      #f6eadf;
+      #F1EDE9;
     background-size: 42px 42px;
-    color: #351815;
+    color: #773331;
   }
 
   .panel-grid {
-    box-shadow: 8px 8px 0 #d96ab4;
+    box-shadow: 8px 8px 0 #EBA0CD;
   }.nav-link {
     display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
-    border: 2px solid #351815;
+    border: 2px solid #773331;
     padding: 0.7rem 0.9rem;
     font-family: "Courier New", Courier, monospace;
     font-size: 0.78rem;
@@ -201,9 +201,9 @@ textarea {
       color 160ms ease,
       border-color 160ms ease;
   }.nav-link:hover {
-    border-color: #351815;
-    background: #d96ab4;
-    color: #351815;
+    border-color: #773331;
+    background: #EBA0CD;
+    color: #773331;
   }
 
   .primary-link,
@@ -215,7 +215,7 @@ textarea {
     gap: 1rem;
     min-height: 3.25rem;
     min-width: 0;
-    border: 2px solid #351815;
+    border: 2px solid #773331;
     padding: 0.95rem 1.1rem;
     font-family: "Courier New", Courier, monospace;
     font-size: 0.9rem;
@@ -233,20 +233,20 @@ textarea {
 
   .primary-link,
   .primary-button {
-    background: #351815;
-    color: #f6eadf;
+    background: #773331;
+    color: #F1EDE9;
   }
 
   .secondary-link {
-    background: #f6eadf;
-    color: #351815;
+    background: #F1EDE9;
+    color: #773331;
   }
 
   .primary-link:hover,
   .secondary-link:hover,
   .primary-button:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 #d96ab4;
+    box-shadow: 6px 6px 0 #EBA0CD;
   }.primary-button:disabled {
     cursor: not-allowed;
     opacity: 0.42;
@@ -257,9 +257,9 @@ textarea {
   .field {
     width: 100%;
     min-height: 3.25rem;
-    border: 2px solid #351815;
-    background: #fff8ef;
-    color: #351815;
+    border: 2px solid #773331;
+    background: #F1EDE9;
+    color: #773331;
     padding: 0.95rem 1rem;
     outline: none;
   }.field:focus,
@@ -527,7 +527,7 @@ textarea {
 }
 
 .run-poster--featured {
-  box-shadow: 14px 14px 0 #d96ab4;
+  box-shadow: 14px 14px 0 #EBA0CD;
 }
 
 .run-carousel-slide {
@@ -556,7 +556,7 @@ textarea {
 .run-carousel {
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
-  scrollbar-color: #ffb000 rgba(246, 234, 223, 0.18);
+  scrollbar-color: #D3ED66 rgba(246, 234, 223, 0.18);
   scrollbar-width: thin;
 }
 
@@ -569,7 +569,7 @@ textarea {
 }
 
 .run-carousel::-webkit-scrollbar-thumb {
-  background: #ffb000;
+  background: #D3ED66;
 }
 
 .run-card-image {
@@ -592,7 +592,7 @@ textarea {
 
 @media (hover: hover) {
   .run-poster:hover {
-    box-shadow: 16px 16px 0 #d96ab4;
+    box-shadow: 16px 16px 0 #EBA0CD;
     transform: translate(-4px, -4px);
   }
 
@@ -645,7 +645,7 @@ textarea {
 @media (hover: hover) {
   .step-card:hover {
     transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0 #d96ab4;
+    box-shadow: 12px 12px 0 #EBA0CD;
   }
 
   .step-card:hover .step-photo {
@@ -695,7 +695,7 @@ textarea {
   left: 0;
   width: 16px;
   height: 16px;
-  background: #351815;
+  background: #773331;
 }
 
 .timeline-step:nth-child(n + 2) .timeline-marker {
@@ -732,7 +732,7 @@ textarea {
   left: 0;
   width: 1rem;
   height: 1rem;
-  background: #f6eadf;
+  background: #F1EDE9;
 }
 
 .timeline-date {
@@ -742,12 +742,12 @@ textarea {
 /* Moments a venir : repere creux et ambre, pour qu'on voie d'un coup d'oeil
    ou en est reellement le club. */
 .timeline-entry.is-future .timeline-dot {
-  background: #1c0d0b;
-  box-shadow: inset 0 0 0 3px #ffb000;
+  background: #3A1A18;
+  box-shadow: inset 0 0 0 3px #D3ED66;
 }
 
 .timeline-entry.is-future .timeline-date {
-  color: #ffb000;
+  color: #D3ED66;
 }
 
 .timeline-entry.is-future .timeline-line {
@@ -822,7 +822,7 @@ textarea {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: #d96ab4;
+  background: #EBA0CD;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -895,7 +895,7 @@ textarea {
   inset-inline: 0;
   bottom: 0;
   height: 3px;
-  background: #ffb000;
+  background: #D3ED66;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -1016,7 +1016,7 @@ textarea {
 }
 
 .account-field:focus-within > span:first-child {
-  color: #d96ab4;
+  color: #EBA0CD;
   transform: translateX(3px);
 }
 
@@ -1037,7 +1037,7 @@ textarea {
 }
 
 .account-benefit:hover .account-benefit__num {
-  color: #d96ab4;
+  color: #EBA0CD;
   transform: translateX(5px);
 }
 
@@ -1051,7 +1051,7 @@ textarea {
 }
 
 .account-step.is-active .account-step__dot {
-  background: #d96ab4;
+  background: #EBA0CD;
   animation: account-pulse 2.6s ease-in-out infinite;
 }
 

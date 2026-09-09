@@ -80,7 +80,7 @@ export function ProQrScanner() {
       <div className="panel panel-grid p-4">
         <video
           aria-label="Camera de scan QR"
-          className="aspect-[3/4] w-full border-2 border-[#351815] bg-[#351815] object-cover sm:aspect-video"
+          className="aspect-[3/4] w-full border-2 border-[#773331] bg-[#773331] object-cover sm:aspect-video"
           muted
           playsInline
           ref={videoRef}
@@ -89,31 +89,31 @@ export function ProQrScanner() {
           <button className="primary-button" onClick={() => void startScanner()} type="button">
             Nouveau scan
           </button>
-          <p className="self-center font-mono text-xs font-black uppercase text-[#351815]/60">{status}</p>
+          <p className="self-center font-mono text-xs font-black uppercase text-[#773331]/60">{status}</p>
         </div>
       </div>
 
       <aside className="panel p-5">
-        <p className="font-mono text-sm font-black uppercase text-[#b03583]">Resultat scan</p>
-        {isPending ? <p className="mt-5 font-bold text-[#351815]/72">Verification...</p> : null}
+        <p className="font-mono text-sm font-black uppercase text-[#C32986]">Resultat scan</p>
+        {isPending ? <p className="mt-5 font-bold text-[#773331]/72">Verification...</p> : null}
         {member?.ok ? (
           <div className="mt-5 grid gap-5">
             <div>
               <h2 className="font-display text-[clamp(3rem,8vw,6rem)] uppercase leading-none">{member.firstName}</h2>
-              <p className="mt-3 font-mono text-sm font-black uppercase text-[#b03583]">
+              <p className="mt-3 font-mono text-sm font-black uppercase text-[#C32986]">
                 {member.tierName} - {formatDiscount(member.discountPercent)}% de reduction a appliquer
               </p>
-              <p className="mt-3 font-bold text-[#351815]/60">{member.currentMonthPoints} points ce mois-ci.</p>
+              <p className="mt-3 font-bold text-[#773331]/60">{member.currentMonthPoints} points ce mois-ci.</p>
             </div>
             <PurchaseForm key={rawToken} qrToken={rawToken} />
           </div>
         ) : null}
         {member && !member.ok ? (
-          <p className="mt-5 border-2 border-[#351815] bg-[#ffb000] px-4 py-3 font-mono text-sm font-black uppercase text-[#351815]">
+          <p className="mt-5 border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]">
             {member.error}
           </p>
         ) : null}
-        {!member && !isPending ? <p className="mt-5 font-bold text-[#351815]/72">Scanne un QR membre NULLL. Rien d’autre.</p> : null}
+        {!member && !isPending ? <p className="mt-5 font-bold text-[#773331]/72">Scanne un QR membre NULLL. Rien d’autre.</p> : null}
       </aside>
     </div>
   );
@@ -124,7 +124,7 @@ function PurchaseForm({ qrToken }: { qrToken: string }) {
 
   if (purchaseState.confirmation) {
     return (
-      <div className="border-2 border-[#351815] bg-[#ffb000] p-4 text-[#351815]">
+      <div className="border-2 border-[#773331] bg-[#D3ED66] p-4 text-[#773331]">
         <p className="font-mono text-xs font-black uppercase">Achat valide</p>
         <p className="mt-2 font-display text-[clamp(2.2rem,6vw,4rem)] uppercase leading-none">
           +{purchaseState.confirmation.pointsAwarded} points crédités à {purchaseState.confirmation.memberFirstName}
@@ -137,7 +137,7 @@ function PurchaseForm({ qrToken }: { qrToken: string }) {
   }
 
   return (
-    <form action={purchaseAction} className="grid gap-3 border-t-2 border-[#351815] pt-5">
+    <form action={purchaseAction} className="grid gap-3 border-t-2 border-[#773331] pt-5">
       <input name="qr_token" readOnly type="hidden" value={qrToken} />
       <label className="grid gap-2 font-mono text-xs font-black uppercase">
         Libellé de l’achat
@@ -148,7 +148,7 @@ function PurchaseForm({ qrToken }: { qrToken: string }) {
         <input className="field" min="0.01" max="1000" name="amount_eur" required step="0.01" type="number" />
       </label>
       {purchaseState.error ? (
-        <p className="border-2 border-[#351815] bg-[#ffb000] px-4 py-3 font-mono text-sm font-black uppercase text-[#351815]">
+        <p className="border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]">
           {purchaseState.error}
         </p>
       ) : null}

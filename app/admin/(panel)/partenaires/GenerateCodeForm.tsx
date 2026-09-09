@@ -15,12 +15,12 @@ export function GenerateCodeForm({ partnerId }: { partnerId: string }) {
         {pending ? "Generation..." : "Generer code"}
       </button>
       {state.code ? (
-        <p className="border-2 border-[#351815] bg-[#ffb000] px-4 py-3 font-mono text-sm font-black uppercase text-[#351815]" role="status">
+        <p className="border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="status">
           Code clair: {state.code}
         </p>
       ) : null}
       {state.error ? (
-        <p className="border-2 border-[#351815] px-4 py-3 font-mono text-sm font-black uppercase text-[#b03583]" role="alert">
+        <p className="border-2 border-[#773331] px-4 py-3 font-mono text-sm font-black uppercase text-[#C32986]" role="alert">
           {state.error}
         </p>
       ) : null}

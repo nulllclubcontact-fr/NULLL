@@ -55,7 +55,7 @@ export default async function MemberDashboardPage() {
         type: "svg",
         errorCorrectionLevel: "M",
         margin: 1,
-        color: { dark: "#351815", light: "#ffffff" }
+        color: { dark: "#773331", light: "#ffffff" }
       })
     );
   }
@@ -63,14 +63,14 @@ export default async function MemberDashboardPage() {
   return (
     <>
       {/* ---------------- BANDEAU D'ACCUEIL ---------------- */}
-      <section className="border-b-2 border-[#351815] bg-[#351815] text-[#f6eadf]">
+      <section className="border-b-2 border-[#773331] bg-[#773331] text-[#F1EDE9]">
         <div className="shell py-10 lg:py-14">
-          <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#ffb000]">Espace membre</p>
+          <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#D3ED66]">Espace membre</p>
           <h1 className="mt-4 font-display text-[clamp(2.8rem,8vw,5.6rem)] uppercase leading-[.92]">
             Salut {profile?.first_name ?? "toi"}
-            <span className="text-[#d96ab4]">.</span>
+            <span className="text-[#EBA0CD]">.</span>
           </h1>
-          <p className="mt-4 max-w-xl text-lg font-bold leading-snug text-[#f6eadf]/78">
+          <p className="mt-4 max-w-xl text-lg font-bold leading-snug text-[#F1EDE9]/78">
             {aVenir.length > 0
               ? "Ton QR est juste en dessous. Montre-le en arrivant, c’est tout."
               : "Choisis une sortie, et ton QR apparaîtra ici."}
@@ -79,14 +79,14 @@ export default async function MemberDashboardPage() {
       </section>
 
       {/* ---------------- MES PROCHAINES SORTIES ---------------- */}
-      <section className="border-b-2 border-[#351815] bg-[#f6eadf]">
+      <section className="border-b-2 border-[#773331] bg-[#F1EDE9]">
         <div className="shell py-10 lg:py-14">
-          <h2 className="inline-flex border-2 border-[#351815] bg-[#d96ab4] px-4 py-2 font-mono text-xs font-black uppercase tracking-[.14em] text-[#351815]">
+          <h2 className="inline-flex border-2 border-[#773331] bg-[#EBA0CD] px-4 py-2 font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]">
             Mes prochaines sorties {aVenir.length > 0 ? `· ${aVenir.length}` : ""}
           </h2>
 
           {aVenir.length === 0 ? (
-            <p className="mt-6 border-2 border-dashed border-[#351815]/35 bg-[#fff8ef] p-6 font-bold text-[#351815]/60">
+            <p className="mt-6 border-2 border-dashed border-[#773331]/35 bg-[#F1EDE9] p-6 font-bold text-[#773331]/60">
               Aucune sortie prévue. Choisis-en une juste en dessous — il en reste {disponibles.length}.
             </p>
           ) : (
@@ -100,11 +100,11 @@ export default async function MemberDashboardPage() {
       </section>
 
       {/* ---------------- SORTIES OUVERTES ---------------- */}
-      <section className="border-b-2 border-[#351815] bg-[#ffb000] text-[#351815]">
+      <section className="border-b-2 border-[#773331] bg-[#D3ED66] text-[#773331]">
         <div className="shell py-10 lg:py-14">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="font-display text-[clamp(2rem,5vw,3.2rem)] uppercase leading-[.98]">
-              Sorties ouvertes<span className="text-[#351815]/40">.</span>
+              Sorties ouvertes<span className="text-[#773331]/40">.</span>
             </h2>
             <p className="font-mono text-xs font-black uppercase tracking-[.14em]">
               Gratuit · Tous les niveaux
@@ -112,7 +112,7 @@ export default async function MemberDashboardPage() {
           </div>
 
           {disponibles.length === 0 ? (
-            <p className="mt-6 border-2 border-[#351815] bg-[#fff8ef] p-6 font-bold">
+            <p className="mt-6 border-2 border-[#773331] bg-[#F1EDE9] p-6 font-bold">
               {coursesAVenir.length === 0
                 ? "Rien d’annoncé pour le moment. On prépare la suite."
                 : "Tu es inscrit à tout ce qui est ouvert. Beau travail."}
@@ -126,35 +126,35 @@ export default async function MemberDashboardPage() {
 
                 return (
                   <li
-                    className="flex flex-col gap-4 border-2 border-[#351815] bg-[#f6eadf] p-5 shadow-[8px_8px_0_#351815] transition duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0_#351815]"
+                    className="flex flex-col gap-4 border-2 border-[#773331] bg-[#F1EDE9] p-5 shadow-[8px_8px_0_#773331] transition duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0_#773331]"
                     key={course.id}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <p className="font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#351815]/60">
+                      <p className="font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#773331]/60">
                         {formatJour(course.start_datetime)}
-                        <span className="mt-1 block text-[#351815]">{formatHeure(course.start_datetime)}</span>
+                        <span className="mt-1 block text-[#773331]">{formatHeure(course.start_datetime)}</span>
                       </p>
-                      <span className="shrink-0 border-2 border-[#351815] bg-[#d96ab4] px-2 py-1 font-display text-lg leading-none">
+                      <span className="shrink-0 border-2 border-[#773331] bg-[#EBA0CD] px-2 py-1 font-display text-lg leading-none">
                         0{index + 1}
                       </span>
                     </div>
 
                     <h3 className="font-display text-2xl uppercase leading-[1.05]">{course.title}</h3>
                     {course.description ? (
-                      <p className="text-sm leading-snug text-[#351815]/72">{course.description}</p>
+                      <p className="text-sm leading-snug text-[#773331]/72">{course.description}</p>
                     ) : null}
 
-                    <dl className="grid gap-1 border-t-2 border-[#351815]/15 pt-3 font-mono text-[.62rem] font-black uppercase tracking-[.1em] text-[#351815]/65">
+                    <dl className="grid gap-1 border-t-2 border-[#773331]/15 pt-3 font-mono text-[.62rem] font-black uppercase tracking-[.1em] text-[#773331]/65">
                       {course.distance_km !== null ? (
                         <div className="flex justify-between gap-3">
                           <dt>Distance</dt>
-                          <dd className="text-[#351815]">{formatDistance(course.distance_km)}</dd>
+                          <dd className="text-[#773331]">{formatDistance(course.distance_km)}</dd>
                         </div>
                       ) : null}
                       {course.location ? (
                         <div className="flex justify-between gap-3">
                           <dt>Départ</dt>
-                          <dd className="text-right text-[#351815]">{course.location}</dd>
+                          <dd className="text-right text-[#773331]">{course.location}</dd>
                         </div>
                       ) : null}
                     </dl>
@@ -175,7 +175,7 @@ export default async function MemberDashboardPage() {
       </section>
 
       {/* ---------------- PIED D'ESPACE ---------------- */}
-      <section className="bg-[#f6eadf]">
+      <section className="bg-[#F1EDE9]">
         <div className="shell grid gap-5 py-10 sm:grid-cols-2 lg:py-14">
           <Link className="primary-link" href="/membre/profil">
             Mes informations
@@ -183,7 +183,7 @@ export default async function MemberDashboardPage() {
           <Link className="secondary-link" href="/membre/sorties">
             Historique de mes sorties
           </Link>
-          <p className="sm:col-span-2 font-mono text-[.62rem] font-black uppercase leading-relaxed tracking-[.14em] text-[#351815]/40">
+          <p className="sm:col-span-2 font-mono text-[.62rem] font-black uppercase leading-relaxed tracking-[.14em] text-[#773331]/40">
             Un système de points arrive plus tard. Pour l’instant, viens courir.
           </p>
         </div>
@@ -200,13 +200,13 @@ function CarteInscription({ inscription, qrSvg }: { inscription: RegistrationWit
   }
 
   return (
-    <li className="flex flex-col gap-5 border-2 border-[#351815] bg-[#351815] p-5 text-[#f6eadf] shadow-[10px_10px_0_#d96ab4] sm:p-6">
+    <li className="flex flex-col gap-5 border-2 border-[#773331] bg-[#773331] p-5 text-[#F1EDE9] shadow-[10px_10px_0_#EBA0CD] sm:p-6">
       <div>
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#ffb000]">
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#D3ED66]">
           {formatJour(course.start_datetime)} · {formatHeure(course.start_datetime)}
         </p>
         <h3 className="mt-3 font-display text-[clamp(1.7rem,3.6vw,2.4rem)] uppercase leading-[1.02]">{course.title}</h3>
-        <p className="mt-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#f6eadf]/60">
+        <p className="mt-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#F1EDE9]/60">
           {[course.location, formatDistance(course.distance_km)].filter(Boolean).join(" · ")}
         </p>
       </div>
@@ -215,7 +215,7 @@ function CarteInscription({ inscription, qrSvg }: { inscription: RegistrationWit
         {qrSvg ? (
           <div
             aria-label="QR code de ton inscription"
-            className="w-[9rem] shrink-0 border-2 border-[#f6eadf] bg-white p-2 [&>svg]:block [&>svg]:h-auto [&>svg]:w-full"
+            className="w-[9rem] shrink-0 border-2 border-[#F1EDE9] bg-white p-2 [&>svg]:block [&>svg]:h-auto [&>svg]:w-full"
             dangerouslySetInnerHTML={{ __html: qrSvg }}
             role="img"
           />
@@ -223,11 +223,11 @@ function CarteInscription({ inscription, qrSvg }: { inscription: RegistrationWit
 
         <div className="min-w-[10rem] flex-1">
           {inscription.checked_in ? (
-            <p className="inline-flex border-2 border-[#351815] bg-[#ffb000] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#351815]">
+            <p className="inline-flex border-2 border-[#773331] bg-[#D3ED66] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#773331]">
               Présence validée
             </p>
           ) : (
-            <p className="text-sm font-bold leading-snug text-[#f6eadf]/75">
+            <p className="text-sm font-bold leading-snug text-[#F1EDE9]/75">
               Montre ce code en arrivant. Un scan, et c’est réglé.
             </p>
           )}

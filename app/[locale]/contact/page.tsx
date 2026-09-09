@@ -43,10 +43,10 @@ export default async function ContactPage({ params }: PageProps) {
       {/* ---------------- EN-TÊTE ----------------
           Bande sombre pleine largeur : le titre occupe la moitie gauche,
           l'orientation la droite. Rien n'est centre, rien ne flotte. */}
-      <section className="border-b-2 border-[#351815] bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="contact-title">
+      <section className="border-b-2 border-[#773331] bg-[#3A1A18] text-[#F1EDE9]" aria-labelledby="contact-title">
         <div className="mx-auto grid w-full max-w-[1600px] gap-10 px-5 pb-14 pt-12 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-[1.15fr_.85fr] lg:items-end lg:gap-16 xl:px-12">
           <div>
-            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#ffb000] [word-spacing:.22em]">
+            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#D3ED66] [word-spacing:.22em]">
               Contact · Aix-en-Provence
             </p>
             {/* Les lettres arrivent en cascade. aria-label porte le mot
@@ -59,7 +59,7 @@ export default async function ContactPage({ params }: PageProps) {
               <span aria-hidden="true">
                 {"Parle-nous.".split("").map((lettre, index) => (
                   <span
-                    className={`letter-rise ${lettre === "." ? "text-[#b03583]" : ""}`}
+                    className={`letter-rise ${lettre === "." ? "text-[#EBA0CD]" : ""}`}
                     key={`${lettre}-${index}`}
                     style={{ animationDelay: `${120 + index * 45}ms` }}
                   >
@@ -71,20 +71,20 @@ export default async function ContactPage({ params }: PageProps) {
           </div>
 
           <div className="lg:pb-4">
-            <p className="text-lg leading-relaxed text-[#f6eadf]/82">{page.intro}</p>
+            <p className="text-lg leading-relaxed text-[#F1EDE9]/82">{page.intro}</p>
             {/* Orienter avant de faire ecrire : la plupart des questions
                 sont deja traitees ailleurs sur le site. */}
-            <p className="mt-6 border-t-2 border-[#f6eadf]/25 pt-6 text-base leading-relaxed text-[#f6eadf]/70">
+            <p className="mt-6 border-t-2 border-[#F1EDE9]/25 pt-6 text-base leading-relaxed text-[#F1EDE9]/70">
               Pour venir courir, il n’y a rien à demander — tout est sur{" "}
               <Link
-                className="font-bold text-[#ffb000] underline decoration-2 underline-offset-4 transition-colors hover:text-[#f6eadf] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+                className="font-bold text-[#D3ED66] underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
                 href={runsHref}
               >
                 les sorties
               </Link>{" "}
               et{" "}
               <Link
-                className="font-bold text-[#ffb000] underline decoration-2 underline-offset-4 transition-colors hover:text-[#f6eadf] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+                className="font-bold text-[#D3ED66] underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
                 href={communityHref}
               >
                 la page du club
@@ -106,24 +106,24 @@ export default async function ContactPage({ params }: PageProps) {
           Deplace depuis la page d'identification, ou il noyait les deux
           boutons de connexion. Un commercant qui veut joindre le club
           arrive ici : c'est sa place. */}
-      <section className="border-b-2 border-[#351815] bg-[#351815] text-[#f6eadf]" aria-labelledby="contact-partenaires">
+      <section className="border-b-2 border-[#773331] bg-[#773331] text-[#F1EDE9]" aria-labelledby="contact-partenaires">
         <div className="mx-auto grid w-full max-w-[1600px] gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_1fr] lg:gap-20 xl:px-12">
           <div>
-            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#d96ab4] [word-spacing:.22em]">
+            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#EBA0CD] [word-spacing:.22em]">
               Commerçants d’Aix
             </p>
             <h2
               className="mt-6 font-display text-[clamp(2.2rem,5vw,4rem)] uppercase leading-[1.12] tracking-[-.03em]"
               id="contact-partenaires"
             >
-              Devenez <span className="text-[#ffb000]">partenaire.</span>
+              Devenez <span className="text-[#D3ED66]">partenaire.</span>
             </h2>
-            <p className="mt-7 max-w-lg text-lg leading-relaxed text-[#f6eadf]/82">
+            <p className="mt-7 max-w-lg text-lg leading-relaxed text-[#F1EDE9]/82">
               Un groupe qui court tous les samedis matin à Aix, et qui cherche où aller ensuite. Café, boulangerie,
               restaurant, magasin de sport : le club peut envoyer ses membres chez vous.
             </p>
             <Link
-              className="mt-9 inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#f6eadf]/60 px-6 font-mono text-xs font-black uppercase tracking-[.1em] transition-colors [word-spacing:.12em] hover:border-[#f6eadf] hover:bg-[#f6eadf] hover:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+              className="mt-9 inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#F1EDE9]/60 px-6 font-mono text-xs font-black uppercase tracking-[.1em] transition-colors [word-spacing:.12em] hover:border-[#F1EDE9] hover:bg-[#F1EDE9] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
               href="/pro/login"
             >
               <span>Déjà partenaire : espace pro</span>
@@ -131,7 +131,7 @@ export default async function ContactPage({ params }: PageProps) {
             </Link>
           </div>
 
-          <dl className="h-fit border-t-2 border-[#f6eadf]/25">
+          <dl className="h-fit border-t-2 border-[#F1EDE9]/25">
             {[
               {
                 titre: "Vous fixez la réduction",
@@ -146,11 +146,11 @@ export default async function ContactPage({ params }: PageProps) {
                 texte: "Votre tableau de bord suit le chiffre d’affaires, les clients uniques et les passages, jour par jour."
               }
             ].map((point) => (
-              <div className="border-b-2 border-[#f6eadf]/25 py-6" key={point.titre}>
-                <dt className="font-display text-[clamp(1.3rem,1.9vw,1.6rem)] uppercase leading-[1.12] tracking-[-.02em] text-[#ffb000]">
+              <div className="border-b-2 border-[#F1EDE9]/25 py-6" key={point.titre}>
+                <dt className="font-display text-[clamp(1.3rem,1.9vw,1.6rem)] uppercase leading-[1.12] tracking-[-.02em] text-[#D3ED66]">
                   {point.titre}
                 </dt>
-                <dd className="mt-3 max-w-[52ch] text-base leading-relaxed text-[#f6eadf]/78">{point.texte}</dd>
+                <dd className="mt-3 max-w-[52ch] text-base leading-relaxed text-[#F1EDE9]/78">{point.texte}</dd>
               </div>
             ))}
           </dl>
@@ -160,19 +160,19 @@ export default async function ContactPage({ params }: PageProps) {
       {/* ---------------- ÉCRIRE ----------------
           Bande sombre pleine largeur : le titre a gauche, les champs a
           droite. Le formulaire n'a plus de cadre, la bande fait le cadre. */}
-      <section className="bg-[#1c0d0b] text-[#f6eadf]" aria-labelledby="contact-write">
+      <section className="bg-[#3A1A18] text-[#F1EDE9]" aria-labelledby="contact-write">
         <div className="mx-auto grid w-full max-w-[1600px] gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[.9fr_1.1fr] lg:gap-20 xl:px-12">
           <div>
-            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#d96ab4] [word-spacing:.22em]">
+            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#EBA0CD] [word-spacing:.22em]">
               Message direct
             </p>
             <h2
-              className="mt-6 font-display text-[clamp(2.6rem,6vw,5rem)] uppercase leading-[1.12] tracking-[-.035em] text-[#ffb000]"
+              className="mt-6 font-display text-[clamp(2.6rem,6vw,5rem)] uppercase leading-[1.12] tracking-[-.035em] text-[#D3ED66]"
               id="contact-write"
             >
               Écris-nous.
             </h2>
-            <p className="mt-8 max-w-md text-lg leading-relaxed text-[#f6eadf]/75">
+            <p className="mt-8 max-w-md text-lg leading-relaxed text-[#F1EDE9]/75">
               Le message part directement d’ici, sans passer par ta messagerie. On répond à l’adresse que tu laisses.
             </p>
           </div>

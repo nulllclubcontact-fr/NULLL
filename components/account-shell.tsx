@@ -49,14 +49,14 @@ export function AccountShell({
   ticker = TICKER_PAR_DEFAUT
 }: AccountShellProps) {
   return (
-    <main className="flex min-h-dvh flex-col bg-[#f6eadf] text-[#351815]">
+    <main className="flex min-h-dvh flex-col bg-[#F1EDE9] text-[#773331]">
       <AccountHeader />
 
       {/* La photo occupait un bandeau court au-dessus du formulaire, ce qui
           recadrait les portraits verticaux sur un sourcil. Elle prend
           desormais toute la hauteur de sa colonne, et porte le titre. */}
-      <section className="grid flex-1 border-b-2 border-[#351815] lg:grid-cols-[minmax(0,1fr)_minmax(440px,0.92fr)]">
-        <div className="relative isolate flex min-h-[62svh] flex-col justify-end overflow-hidden bg-[#120908] text-[#f6eadf] lg:min-h-[calc(100dvh-8.6rem)]">
+      <section className="grid flex-1 border-b-2 border-[#773331] lg:grid-cols-[minmax(0,1fr)_minmax(440px,0.92fr)]">
+        <div className="relative isolate flex min-h-[62svh] flex-col justify-end overflow-hidden bg-[#3A1A18] text-[#F1EDE9] lg:min-h-[calc(100dvh-8.6rem)]">
           <Image
             alt={imageAlt}
             className="hero-photo object-cover"
@@ -70,7 +70,7 @@ export function AccountShell({
 
           <div className="relative px-5 pb-10 pt-16 sm:px-8 sm:pb-14 lg:pb-10 lg:pt-10 xl:px-12">
             <p
-              className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#ffb000]"
+              className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#D3ED66]"
               style={{ animationDelay: "60ms" }}
             >
               {eyebrow}
@@ -80,7 +80,7 @@ export function AccountShell({
               style={{ animationDelay: "150ms" }}
             >
               <span className="block">{title}</span>
-              {titleAccent ? <span className="block text-[#b03583]">{titleAccent}</span> : null}
+              {titleAccent ? <span className="block text-[#EBA0CD]">{titleAccent}</span> : null}
             </h1>
             <p
               className="hero-rise hero-text-shadow mt-5 max-w-lg text-lg font-bold leading-snug"
@@ -92,36 +92,36 @@ export function AccountShell({
             {/* Trois raisons concretes remplacent l'ancienne bande rose, qui
                 alignait trois libelles sans rien expliquer. Chacune arrive a
                 son tour et repond au survol. */}
-            <ul className="mt-9 grid gap-px border-2 border-[#f6eadf]/30 bg-[#f6eadf]/30 sm:grid-cols-3 lg:mt-7">
+            <ul className="mt-9 grid gap-px border-2 border-[#F1EDE9]/30 bg-[#F1EDE9]/30 sm:grid-cols-3 lg:mt-7">
               {benefits.map((b, i) => (
                 <li
-                  className="account-benefit hero-rise bg-[#120908]/85 px-4 py-5 lg:py-4"
+                  className="account-benefit hero-rise bg-[#3A1A18]/85 px-4 py-5 lg:py-4"
                   key={b.label}
                   style={{ animationDelay: `${360 + i * 90}ms` }}
                 >
-                  <span className="account-benefit__num block font-display text-3xl leading-none text-[#ffb000]">
+                  <span className="account-benefit__num block font-display text-3xl leading-none text-[#D3ED66]">
                     0{i + 1}
                   </span>
                   <span className="mt-3 block font-display text-lg uppercase leading-none">{b.label}</span>
-                  <span className="mt-2 block text-sm leading-snug text-[#f6eadf]/72">{b.text}</span>
+                  <span className="mt-2 block text-sm leading-snug text-[#F1EDE9]/72">{b.text}</span>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col justify-center bg-[#351815] px-5 py-10 text-[#f6eadf] sm:px-8 sm:py-14 lg:py-8 xl:px-12">
+        <div className="flex flex-col justify-center bg-[#773331] px-5 py-10 text-[#F1EDE9] sm:px-8 sm:py-14 lg:py-8 xl:px-12">
           <div className="mx-auto w-full max-w-xl">
             {/* Le fil des etapes remplit le haut de la colonne, qui etait
                 vide, et dit ce qui attend le visiteur apres le formulaire. */}
             {steps ? (
               <ol
-                className="hero-rise flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-[#f6eadf]/25 pb-5 font-mono text-[.62rem] font-black uppercase tracking-[.18em]"
+                className="hero-rise flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-[#F1EDE9]/25 pb-5 font-mono text-[.62rem] font-black uppercase tracking-[.18em]"
                 style={{ animationDelay: "120ms" }}
               >
                 {steps.map((step, i) => (
                   <li
-                    className={`account-step flex items-center gap-2.5 ${i === 0 ? "is-active text-[#f6eadf]" : "text-[#f6eadf]/45"}`}
+                    className={`account-step flex items-center gap-2.5 ${i === 0 ? "is-active text-[#F1EDE9]" : "text-[#F1EDE9]/45"}`}
                     key={step}
                   >
                     <span aria-hidden="true" className="account-step__dot" />
@@ -137,12 +137,12 @@ export function AccountShell({
 
             {footerLink ? (
               <p
-                className="hero-rise mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs font-black uppercase tracking-[.14em] text-[#f6eadf]/60"
+                className="hero-rise mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs font-black uppercase tracking-[.14em] text-[#F1EDE9]/60"
                 style={{ animationDelay: "620ms" }}
               >
                 {footerLink.label}
                 <Link
-                  className="group inline-flex items-center gap-2 text-[#ffb000] underline decoration-[#ffb000]/40 decoration-2 underline-offset-4 transition hover:decoration-[#ffb000]"
+                  className="group inline-flex items-center gap-2 text-[#D3ED66] underline decoration-[#D3ED66]/40 decoration-2 underline-offset-4 transition hover:decoration-[#D3ED66]"
                   href={footerLink.href}
                 >
                   {footerLink.cta}
@@ -160,7 +160,7 @@ export function AccountShell({
           la seule privee, et c'est ce qui la faisait sonner etrangere. */}
       <div
         aria-label={ticker}
-        className="marquee shrink-0 bg-[#ffb000] py-4 text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#d96ab4]"
+        className="marquee shrink-0 bg-[#D3ED66] py-4 text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD]"
         role="region"
         tabIndex={0}
       >
@@ -180,8 +180,8 @@ export function AccountHeader() {
 export function AccountLink({ href, children, secondary = false }: { href: string; children: ReactNode; secondary?: boolean }) {
   return (
     <Link
-      className={`group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-[#351815] px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
-        secondary ? "bg-[#f6eadf] text-[#351815] hover:bg-[#351815] hover:text-[#f6eadf]" : "bg-[#351815] text-[#f6eadf] hover:bg-[#ffb000] hover:text-[#351815]"
+      className={`group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-[#773331] px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
+        secondary ? "bg-[#F1EDE9] text-[#773331] hover:bg-[#773331] hover:text-[#F1EDE9]" : "bg-[#773331] text-[#F1EDE9] hover:bg-[#D3ED66] hover:text-[#773331]"
       }`}
       href={href}
     >

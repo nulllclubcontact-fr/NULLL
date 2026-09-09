@@ -18,7 +18,7 @@ export function DownloadQRButton({ token, nom }: { token: string; nom: string })
         type: "image/png",
         width: 400,
         margin: 1,
-        color: { dark: "#351815", light: "#ffffff" }
+        color: { dark: "#773331", light: "#ffffff" }
       });
 
       const lien = document.createElement("a");
@@ -34,7 +34,7 @@ export function DownloadQRButton({ token, nom }: { token: string; nom: string })
 
   return (
     <button
-      className="inline-flex min-h-11 items-center border-2 border-[#351815] bg-[#351815] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#f6eadf] transition hover:bg-[#d96ab4] hover:text-[#351815] focus-visible:bg-[#d96ab4] focus-visible:text-[#351815] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb000]"
+      className="inline-flex min-h-11 items-center border-2 border-[#773331] bg-[#773331] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#F1EDE9] transition hover:bg-[#EBA0CD] hover:text-[#773331] focus-visible:bg-[#EBA0CD] focus-visible:text-[#773331] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D3ED66]"
       onClick={telecharger}
       type="button"
     >

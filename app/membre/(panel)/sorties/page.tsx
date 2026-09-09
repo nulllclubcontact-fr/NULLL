@@ -6,10 +6,10 @@ import { createSupabaseServerClient } from "../../../../lib/supabase/server";
 export const metadata = { robots: { index: false, follow: false } };
 
 const ETIQUETTES: Record<string, { texte: string; classe: string }> = {
-  checked_in: { texte: "Présent", classe: "bg-[#ffb000]" },
-  registered: { texte: "Inscrit", classe: "bg-[#f6eadf]" },
-  cancelled: { texte: "Annulée", classe: "bg-[#351815] text-[#f6eadf]" },
-  no_show: { texte: "Absent", classe: "bg-[#d96ab4]" }
+  checked_in: { texte: "Présent", classe: "bg-[#D3ED66]" },
+  registered: { texte: "Inscrit", classe: "bg-[#F1EDE9]" },
+  cancelled: { texte: "Annulée", classe: "bg-[#773331] text-[#F1EDE9]" },
+  no_show: { texte: "Absent", classe: "bg-[#EBA0CD]" }
 };
 
 export default async function MemberSortiesPage() {
@@ -35,14 +35,14 @@ export default async function MemberSortiesPage() {
   return (
     <section className="shell grid gap-10 py-8 lg:py-12">
       <header>
-        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#351815]/55">Espace membre</p>
+        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#773331]/55">Espace membre</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4rem)] uppercase leading-[.95]">
-          Tes sorties<span className="text-[#b03583]">.</span>
+          Tes sorties<span className="text-[#C32986]">.</span>
         </h1>
       </header>
 
       {inscriptions.length === 0 ? (
-        <p className="border-2 border-dashed border-[#351815]/30 p-6 font-bold text-[#351815]/60">
+        <p className="border-2 border-dashed border-[#773331]/30 p-6 font-bold text-[#773331]/60">
           Rien encore. Ça commencera par une première.
         </p>
       ) : (
@@ -60,7 +60,7 @@ type Ligne = Awaited<ReturnType<typeof listMyRegistrations>>[number];
 function Tableau({ titre, lignes }: { titre: string; lignes: Ligne[] }) {
   return (
     <div>
-      <h2 className="border-b-2 border-[#351815] pb-3 font-mono text-xs font-black uppercase tracking-[.18em]">
+      <h2 className="border-b-2 border-[#773331] pb-3 font-mono text-xs font-black uppercase tracking-[.18em]">
         {titre} ({lignes.length})
       </h2>
 
@@ -71,13 +71,13 @@ function Tableau({ titre, lignes }: { titre: string; lignes: Ligne[] }) {
 
           return (
             <li
-              className="flex flex-wrap items-center justify-between gap-4 border-2 border-[#351815] bg-[#f6eadf] p-4"
+              className="flex flex-wrap items-center justify-between gap-4 border-2 border-[#773331] bg-[#F1EDE9] p-4"
               key={ligne.id}
             >
               <div className="min-w-[12rem]">
                 <p className="font-display text-xl uppercase leading-none">{course?.title ?? "Sortie"}</p>
                 {course ? (
-                  <p className="mt-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#351815]/55">
+                  <p className="mt-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#773331]/55">
                     {formatJour(course.start_datetime)} · {formatHeure(course.start_datetime)}
                     {course.distance_km !== null ? ` · ${formatDistance(course.distance_km)}` : ""}
                   </p>
@@ -85,7 +85,7 @@ function Tableau({ titre, lignes }: { titre: string; lignes: Ligne[] }) {
               </div>
 
               <span
-                className={`inline-flex shrink-0 border-2 border-[#351815] px-3 py-2 font-mono text-[.6rem] font-black uppercase tracking-[.14em] ${etiquette.classe}`}
+                className={`inline-flex shrink-0 border-2 border-[#773331] px-3 py-2 font-mono text-[.6rem] font-black uppercase tracking-[.14em] ${etiquette.classe}`}
               >
                 {etiquette.texte}
               </span>

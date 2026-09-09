@@ -11,7 +11,7 @@ export function RegisterButton({ raceId, disabled, disabledLabel }: { raceId: st
 
   if (disabled) {
     return (
-      <p className="inline-flex min-h-12 items-center border-2 border-dashed border-[#351815]/35 px-4 font-mono text-xs font-black uppercase tracking-[.12em] text-[#351815]/50">
+      <p className="inline-flex min-h-12 items-center border-2 border-dashed border-[#773331]/35 px-4 font-mono text-xs font-black uppercase tracking-[.12em] text-[#773331]/50">
         {disabledLabel ?? "Inscriptions fermées"}
       </p>
     );
@@ -21,19 +21,19 @@ export function RegisterButton({ raceId, disabled, disabledLabel }: { raceId: st
     <form action={formAction} className="grid gap-2">
       <input name="race_id" type="hidden" value={raceId} />
       <button
-        className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#ffb000] enabled:hover:text-[#351815]"
+        className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#D3ED66] enabled:hover:text-[#773331]"
         disabled={pending}
         type="submit"
       >
         {pending ? "Inscription…" : "Je viens"}
       </button>
       {state.error ? (
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#351815]" role="alert">
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#773331]" role="alert">
           {state.error}
         </p>
       ) : null}
       {state.message ? (
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#351815]/60" role="status">
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#773331]/60" role="status">
           {state.message}
         </p>
       ) : null}
@@ -49,14 +49,14 @@ export function CancelButton({ registrationId }: { registrationId: string }) {
     <form action={formAction} className="grid gap-2">
       <input name="registration_id" type="hidden" value={registrationId} />
       <button
-        className="inline-flex min-h-11 w-fit items-center font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#f6eadf]/55 underline decoration-[#f6eadf]/30 decoration-2 underline-offset-4 transition hover:text-[#f6eadf] hover:decoration-[#d96ab4] focus-visible:text-[#f6eadf] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+        className="inline-flex min-h-11 w-fit items-center font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#F1EDE9]/55 underline decoration-[#F1EDE9]/30 decoration-2 underline-offset-4 transition hover:text-[#F1EDE9] hover:decoration-[#EBA0CD] focus-visible:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
         disabled={pending}
         type="submit"
       >
         {pending ? "Annulation…" : "Je ne pourrai pas venir"}
       </button>
       {state.error ? (
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#ffb000]" role="alert">
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#D3ED66]" role="alert">
           {state.error}
         </p>
       ) : null}

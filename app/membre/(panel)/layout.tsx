@@ -41,7 +41,7 @@ export default async function MemberPanelLayout({ children }: { children: ReactN
     .maybeSingle<{ role: string | null }>();
 
   return (
-    <div className="min-h-dvh bg-[#f6eadf] text-[#351815]">
+    <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
       {/* L'espace membre avait son propre bandeau, qui remplacait la barre
           du site : on perdait la navigation en entrant dans son compte.
           On garde desormais la vraie barre, avec « Mon compte » a la place
@@ -56,11 +56,11 @@ export default async function MemberPanelLayout({ children }: { children: ReactN
 
       {/* Sous-navigation de l'espace, en jaune : on voit d'un coup d'oeil
           qu'on a change de territoire. */}
-      <div className="sticky top-20 z-40 border-b-2 border-[#351815] bg-[#ffb000]">
+      <div className="sticky top-20 z-40 border-b-2 border-[#773331] bg-[#D3ED66]">
         <div className="shell flex flex-wrap items-center gap-x-1 gap-y-2 py-2">
           {ONGLETS.map((onglet) => (
             <Link
-              className="inline-flex min-h-11 items-center border-2 border-transparent px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition hover:border-[#351815] hover:bg-[#f6eadf] focus-visible:border-[#351815] focus-visible:bg-[#f6eadf] focus-visible:outline-none"
+              className="inline-flex min-h-11 items-center border-2 border-transparent px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition hover:border-[#773331] hover:bg-[#F1EDE9] focus-visible:border-[#773331] focus-visible:bg-[#F1EDE9] focus-visible:outline-none"
               href={onglet.href}
               key={onglet.href}
             >
@@ -70,7 +70,7 @@ export default async function MemberPanelLayout({ children }: { children: ReactN
 
           {profil?.role === "admin" ? (
             <Link
-              className="inline-flex min-h-11 items-center border-2 border-[#351815] bg-[#351815] px-3 font-mono text-xs font-black uppercase tracking-[.1em] text-[#f6eadf] transition hover:bg-[#d96ab4] hover:text-[#351815]"
+              className="inline-flex min-h-11 items-center border-2 border-[#773331] bg-[#773331] px-3 font-mono text-xs font-black uppercase tracking-[.1em] text-[#F1EDE9] transition hover:bg-[#EBA0CD] hover:text-[#773331]"
               href="/admin/dashboard"
             >
               Administration
@@ -79,7 +79,7 @@ export default async function MemberPanelLayout({ children }: { children: ReactN
 
           <form action={logoutMember} className="ml-auto">
             <button
-              className="inline-flex min-h-11 items-center border-2 border-transparent px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition hover:border-[#351815] hover:bg-[#f6eadf] focus-visible:border-[#351815] focus-visible:bg-[#f6eadf] focus-visible:outline-none"
+              className="inline-flex min-h-11 items-center border-2 border-transparent px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition hover:border-[#773331] hover:bg-[#F1EDE9] focus-visible:border-[#773331] focus-visible:bg-[#F1EDE9] focus-visible:outline-none"
               type="submit"
             >
               Déconnexion

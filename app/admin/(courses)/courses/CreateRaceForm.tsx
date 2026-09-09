@@ -60,18 +60,18 @@ export function CreateRaceForm() {
           </label>
         </div>
 
-        <label className="flex cursor-pointer items-center gap-3 border-2 border-[#351815] bg-[#fff8ef] p-4 text-sm font-bold">
-          <input className="h-5 w-5 accent-[#d96ab4]" defaultChecked name="registration_open" type="checkbox" />
+        <label className="flex cursor-pointer items-center gap-3 border-2 border-[#773331] bg-[#F1EDE9] p-4 text-sm font-bold">
+          <input className="h-5 w-5 accent-[#EBA0CD]" defaultChecked name="registration_open" type="checkbox" />
           <span>Inscriptions ouvertes</span>
         </label>
 
         {state.error ? (
-          <p className="border-2 border-[#351815] bg-[#ffb000] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
+          <p className="border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
             {state.error}
           </p>
         ) : null}
         {state.message ? (
-          <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#351815]/60" role="status">
+          <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#773331]/60" role="status">
             {state.message}
           </p>
         ) : null}

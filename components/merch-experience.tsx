@@ -42,7 +42,7 @@ export function MerchExperience({ locale }: { locale: Locale }) {
           chaque piece ferme son bas et sa droite. Les pieces se touchent sur
           un seul filet, et une derniere rangee incomplete ne laisse pas de
           case noire — ce que ferait l'astuce gap-px sur fond sombre. */}
-      <div className="grid border-l-2 border-t-2 border-[#351815] md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid border-l-2 border-t-2 border-[#773331] md:grid-cols-2 xl:grid-cols-3">
         {products.map((product, index) => {
           const quantity = cartMap.get(product.id) ?? 0;
           return (
@@ -58,8 +58,8 @@ export function MerchExperience({ locale }: { locale: Locale }) {
         })}
       </div>
 
-      <aside className="sticky top-28 h-fit border-2 border-[#351815] bg-[#1c0d0b] p-6 text-[#f6eadf] shadow-[10px_10px_0_#d96ab4]">
-        <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000] [word-spacing:.18em]">Panier</p>
+      <aside className="sticky top-28 h-fit border-2 border-[#773331] bg-[#3A1A18] p-6 text-[#F1EDE9] shadow-[10px_10px_0_#EBA0CD]">
+        <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#D3ED66] [word-spacing:.18em]">Panier</p>
         <p className="mt-4 font-display text-[clamp(2.4rem,3.6vw,3.6rem)] uppercase leading-[1.12] tracking-[-.03em]">
           {count} pièce
           {count > 1 ? "s" : ""}
@@ -67,18 +67,18 @@ export function MerchExperience({ locale }: { locale: Locale }) {
 
         <div className="mt-8 space-y-5">
           {count === 0 ? (
-            <p className="text-base leading-relaxed text-[#f6eadf]/70">
+            <p className="text-base leading-relaxed text-[#F1EDE9]/70">
               Le panier est vide. Ajoute une pièce du club pour passer commande.
             </p>
           ) : (
             products
               .filter((product) => cartMap.get(product.id))
               .map((product) => (
-                <div className="border-b-2 border-[#f6eadf]/25 pb-5" key={product.id}>
+                <div className="border-b-2 border-[#F1EDE9]/25 pb-5" key={product.id}>
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="font-display text-[1.15rem] uppercase leading-[1.12] tracking-[-.02em]">{product.name}</p>
-                      <p className="mt-2 font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#f6eadf]/55">
+                      <p className="mt-2 font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#F1EDE9]/55">
                         {cartMap.get(product.id)} × {product.price} EUR
                       </p>
                     </div>
@@ -89,10 +89,10 @@ export function MerchExperience({ locale }: { locale: Locale }) {
           )}
         </div>
 
-        <div className="mt-8 border-t-2 border-[#f6eadf] pt-6">
+        <div className="mt-8 border-t-2 border-[#F1EDE9] pt-6">
           <div className="flex items-baseline justify-between gap-4">
-            <span className="font-mono text-[.62rem] font-black uppercase tracking-[.18em] text-[#f6eadf]/55">Total estimé</span>
-            <strong className="font-display text-[clamp(1.8rem,2.6vw,2.4rem)] uppercase leading-none tracking-[-.02em] text-[#ffb000]">{total} EUR</strong>
+            <span className="font-mono text-[.62rem] font-black uppercase tracking-[.18em] text-[#F1EDE9]/55">Total estimé</span>
+            <strong className="font-display text-[clamp(1.8rem,2.6vw,2.4rem)] uppercase leading-none tracking-[-.02em] text-[#D3ED66]">{total} EUR</strong>
           </div>
         </div>
 
@@ -100,10 +100,10 @@ export function MerchExperience({ locale }: { locale: Locale }) {
             expedier. Le bouton ouvre la fenetre qui le dit et renvoie
             vers les sorties. */}
         <button
-          className={`mt-7 inline-flex min-h-16 w-full items-center justify-between gap-4 border-2 px-6 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] transition-colors focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf] ${
+          className={`mt-7 inline-flex min-h-16 w-full items-center justify-between gap-4 border-2 px-6 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] transition-colors focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9] ${
             count === 0
-              ? "border-[#f6eadf]/30 text-[#f6eadf]/40"
-              : "border-[#ffb000] bg-[#ffb000] text-[#351815] hover:bg-transparent hover:text-[#ffb000]"
+              ? "border-[#F1EDE9]/30 text-[#F1EDE9]/40"
+              : "border-[#D3ED66] bg-[#D3ED66] text-[#773331] hover:bg-transparent hover:text-[#D3ED66]"
           }`}
           disabled={count === 0}
           onClick={() => ouvrirCadre(commandeRef.current)}
@@ -113,35 +113,35 @@ export function MerchExperience({ locale }: { locale: Locale }) {
           <ArrowIcon />
         </button>
 
-        <p className="mt-5 text-sm leading-relaxed text-[#f6eadf]/55">
+        <p className="mt-5 text-sm leading-relaxed text-[#F1EDE9]/55">
           La commande reste simple : tu envoies la demande, le club confirme ensuite par email.
         </p>
 
         <CadreModal cadreRef={commandeRef} titreId="merch-commande-title">
           <>
-            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#b03583] [word-spacing:.22em]">Erreur 404 : le t-shirt</p>
+            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#EBA0CD] [word-spacing:.22em]">Erreur 404 : le t-shirt</p>
             <h2 className="mt-5 font-display text-[clamp(2rem,6vw,2.9rem)] uppercase leading-[1.12] tracking-[-.03em]" id="merch-commande-title">
               Wesh brother, t&rsquo;as pas compris ?
             </h2>
 
-            <p className="mt-6 text-base leading-relaxed text-[#f6eadf]/82">
+            <p className="mt-6 text-base leading-relaxed text-[#F1EDE9]/82">
               On les a pas. Zéro t-shirt, zéro carton, zéro colis à t&rsquo;envoyer. Ton panier est un très beau geste,
               mais il ne part nulle part.
             </p>
 
-            <p className="mt-4 text-base leading-relaxed text-[#f6eadf]/82">
+            <p className="mt-4 text-base leading-relaxed text-[#F1EDE9]/82">
               Par contre, samedi, on court. Ça, on l&rsquo;a vraiment.
             </p>
 
             <div className="mt-8 flex flex-col gap-3">
               <Link
-                className="inline-flex min-h-14 items-center justify-center border-2 border-[#ffb000] bg-[#ffb000] px-6 text-center font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#351815] transition-colors hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
+                className="inline-flex min-h-14 items-center justify-center border-2 border-[#D3ED66] bg-[#D3ED66] px-6 text-center font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#773331] transition-colors hover:bg-transparent hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
                 href={getRoute(locale, "runs")}
               >
                 Va courir plutôt
               </Link>
               <button
-                className="inline-flex min-h-14 items-center justify-center border-2 border-[#f6eadf]/40 px-6 text-center font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] transition-colors hover:border-[#f6eadf] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]"
+                className="inline-flex min-h-14 items-center justify-center border-2 border-[#F1EDE9]/40 px-6 text-center font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] transition-colors hover:border-[#F1EDE9] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]"
                 onClick={() => commandeRef.current?.close()}
                 type="button"
               >
@@ -185,7 +185,7 @@ function CadreModal({
       aria-labelledby={titreId}
       // Le texte peut etre long : la fenetre se borne a la hauteur d'ecran
       // et defile a l'interieur plutot que de deborder.
-      className="max-h-[calc(100dvh-3rem)] w-[min(32rem,calc(100vw-2.5rem))] overflow-y-auto border-2 border-[#f6eadf] bg-[#1c0d0b] p-0 text-[#f6eadf] shadow-[14px_14px_0_#d96ab4] backdrop:bg-[#1c0d0b]/85 focus:outline-none"
+      className="max-h-[calc(100dvh-3rem)] w-[min(32rem,calc(100vw-2.5rem))] overflow-y-auto border-2 border-[#F1EDE9] bg-[#3A1A18] p-0 text-[#F1EDE9] shadow-[14px_14px_0_#EBA0CD] backdrop:bg-[#3A1A18]/85 focus:outline-none"
       onClose={onClose}
       ref={cadreRef}
       tabIndex={-1}
@@ -216,34 +216,34 @@ export function MerchNotice({ runsHref }: { runsHref: string }) {
   return (
     <CadreModal cadreRef={ref} titreId="merch-notice-title">
       <>
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#ffb000] [word-spacing:.22em]">Petit problème</p>
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#D3ED66] [word-spacing:.22em]">Petit problème</p>
         <h2 className="mt-5 font-display text-[clamp(2rem,6vw,2.9rem)] uppercase leading-[1.12] tracking-[-.03em]" id="merch-notice-title">
           La boutique est vide.
         </h2>
 
-        <p className="mt-6 text-base leading-relaxed text-[#f6eadf]/82">
+        <p className="mt-6 text-base leading-relaxed text-[#F1EDE9]/82">
           Enfin&hellip; techniquement, elle est pleine. Pleine de t-shirts qu&rsquo;on n&rsquo;a jamais produits.
         </p>
 
         {/* Le releve reste en mono : c'est la seule enumeration gardee, et
             c'est celle qui porte la blague le plus vite. */}
-        <ul className="mt-5 space-y-2 border-l-2 border-[#ffb000] pl-4 font-mono text-[.72rem] font-black uppercase leading-snug tracking-[.06em] text-[#f6eadf]/75 [word-spacing:.14em]">
+        <ul className="mt-5 space-y-2 border-l-2 border-[#D3ED66] pl-4 font-mono text-[.72rem] font-black uppercase leading-snug tracking-[.06em] text-[#F1EDE9]/75 [word-spacing:.14em]">
           <li>Stock : 0.</li>
           <li>Impressions : 0.</li>
           <li>Budget : on préfère ne pas en parler.</li>
         </ul>
 
-        <p className="mt-6 text-base leading-relaxed text-[#f6eadf]/82">
+        <p className="mt-6 text-base leading-relaxed text-[#F1EDE9]/82">
           Et les photos ? Aucun rapport. Une fille dans un lit, un mec sous la douche, des baskets par terre. Nous, on
           appelle ça une direction artistique.
         </p>
 
-        <p className="mt-4 text-base leading-relaxed text-[#f6eadf]/82">
+        <p className="mt-4 text-base leading-relaxed text-[#F1EDE9]/82">
           Un jour ça sortira vraiment, sûrement autour d&rsquo;un événement du club. En retard, probablement.
         </p>
 
         {/* La chute : en display, elle se detache du reste du texte. */}
-        <p className="mt-6 font-display text-[clamp(1.35rem,3.4vw,1.8rem)] uppercase leading-[1.12] tracking-[-.02em] text-[#ffb000]">
+        <p className="mt-6 font-display text-[clamp(1.35rem,3.4vw,1.8rem)] uppercase leading-[1.12] tracking-[-.02em] text-[#D3ED66]">
           De toute façon, on ne peut littéralement rien te vendre.
         </p>
 
@@ -251,14 +251,14 @@ export function MerchNotice({ runsHref }: { runsHref: string }) {
             la ligne au milieu d'un mot. */}
         <div className="mt-8 flex flex-col gap-3">
           <button
-            className="inline-flex min-h-14 flex-1 items-center justify-center border-2 border-[#ffb000] bg-[#ffb000] px-6 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#351815] transition-colors hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
+            className="inline-flex min-h-14 flex-1 items-center justify-center border-2 border-[#D3ED66] bg-[#D3ED66] px-6 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#773331] transition-colors hover:bg-transparent hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
             onClick={() => ref.current?.close()}
             type="button"
           >
             Ok, je fais semblant
           </button>
           <Link
-            className="inline-flex min-h-14 flex-1 items-center justify-center border-2 border-[#f6eadf]/40 px-6 text-center font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] transition-colors hover:border-[#f6eadf] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]"
+            className="inline-flex min-h-14 flex-1 items-center justify-center border-2 border-[#F1EDE9]/40 px-6 text-center font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] transition-colors hover:border-[#F1EDE9] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]"
             href={runsHref}
           >
             Venir courir, ça oui
@@ -284,8 +284,8 @@ function ProductCard({
 }) {
   const inCart = quantity > 0;
   return (
-    <article className="group flex flex-col border-b-2 border-r-2 border-[#351815] bg-[#f6eadf]">
-      <div className="relative aspect-[3/4] overflow-hidden border-b-2 border-[#351815]">
+    <article className="group flex flex-col border-b-2 border-r-2 border-[#773331] bg-[#F1EDE9]">
+      <div className="relative aspect-[3/4] overflow-hidden border-b-2 border-[#773331]">
         {/* Photo d'ambiance, pas une photo du produit : elle ne decrit rien
             que le titre et le descriptif ne disent deja, donc decorative.
             Au survol le grain tombe et la piece reprend ses couleurs. */}
@@ -296,31 +296,31 @@ function ProductCard({
           sizes="(min-width: 1280px) 26vw, (min-width: 768px) 44vw, 100vw"
           src={productMood[index % productMood.length]}
         />
-        <span className="absolute left-0 top-0 border-b-2 border-r-2 border-[#351815] bg-[#f6eadf] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.16em]">
+        <span className="absolute left-0 top-0 border-b-2 border-r-2 border-[#773331] bg-[#F1EDE9] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.16em]">
           Drop 00{index + 1}
         </span>
         {/* Dit franchement ce que la photo est : ces visuels sont des images
             d'ambiance, pas le t-shirt. Sans ca le visiteur croit acheter ce
             qu'il voit. A retirer le jour ou les vraies photos arrivent. */}
-        <span className="absolute bottom-0 right-0 border-l-2 border-t-2 border-[#351815] bg-[#351815] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#f6eadf] [word-spacing:.1em]">
+        <span className="absolute bottom-0 right-0 border-l-2 border-t-2 border-[#773331] bg-[#773331] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#F1EDE9] [word-spacing:.1em]">
           Visuel d’ambiance
         </span>
       </div>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#b03583]">{product.badge}</p>
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#C32986]">{product.badge}</p>
         {/* h2 et non h3 : les pieces sont des elements de premier niveau de
             la page, freres du panneau de commande. En h3 elles suivaient
             directement le h1, et un lecteur d'ecran qui navigue par titres
             sautait une marche. */}
         <h2 className="mt-3 font-display text-[clamp(1.8rem,2.6vw,2.4rem)] uppercase leading-[1.12] tracking-[-.03em]">{product.name}</h2>
-        <p className="mt-4 text-base leading-relaxed text-[#351815]/72">{product.description}</p>
-        <p className="mt-3 font-mono text-[.62rem] font-black uppercase tracking-[.06em] text-[#351815]/50 [word-spacing:.14em]">{product.fit}</p>
+        <p className="mt-4 text-base leading-relaxed text-[#773331]/72">{product.description}</p>
+        <p className="mt-3 font-mono text-[.62rem] font-black uppercase tracking-[.06em] text-[#773331]/50 [word-spacing:.14em]">{product.fit}</p>
 
         <div className="mt-auto pt-7">
           {/* Prix et quantite sur la meme ligne : c'est la decision d'achat,
               elle se lit d'un coup juste au-dessus du bouton. */}
-          <div className="flex items-end justify-between gap-4 border-t-2 border-[#351815] pt-5">
+          <div className="flex items-end justify-between gap-4 border-t-2 border-[#773331] pt-5">
             <p className="font-display text-[clamp(1.9rem,2.6vw,2.4rem)] leading-none tracking-[-.02em]">
               {product.price}
               <span className="ml-1 align-baseline font-mono text-xs font-black tracking-[.08em]">EUR</span>
@@ -328,7 +328,7 @@ function ProductCard({
             <div className="flex items-center gap-2">
               <button
                 aria-label={`Retirer un exemplaire de ${product.name}`}
-                className="grid h-11 w-11 place-items-center border-2 border-[#351815] font-mono text-lg font-black transition-colors hover:bg-[#351815] hover:text-[#f6eadf] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#d96ab4] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#351815]"
+                className="grid h-11 w-11 place-items-center border-2 border-[#773331] font-mono text-lg font-black transition-colors hover:bg-[#773331] hover:text-[#F1EDE9] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#EBA0CD] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#773331]"
                 disabled={quantity === 0}
                 onClick={() => setCart((current) => upsertCartItem(current, product.id, Math.max(0, quantity - 1)))}
                 type="button"
@@ -338,7 +338,7 @@ function ProductCard({
               <span aria-hidden="true" className="w-9 text-center font-display text-2xl leading-none">{quantity}</span>
               <button
                 aria-label={`Ajouter un exemplaire de ${product.name}`}
-                className="grid h-11 w-11 place-items-center border-2 border-[#351815] font-mono text-lg font-black transition-colors hover:bg-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#d96ab4]"
+                className="grid h-11 w-11 place-items-center border-2 border-[#773331] font-mono text-lg font-black transition-colors hover:bg-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#EBA0CD]"
                 onClick={() => setCart((current) => upsertCartItem(current, product.id, quantity + 1))}
                 type="button"
               >
@@ -356,7 +356,7 @@ function ProductCard({
               ensuite il ne fait plus qu'emmener au panier. */}
           {inCart ? (
             <Link
-              className="mt-5 flex min-h-16 w-full items-center justify-between border-2 border-[#351815] bg-[#ffb000] px-5 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#351815] transition-colors hover:bg-[#351815] hover:text-[#f6eadf] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]"
+              className="mt-5 flex min-h-16 w-full items-center justify-between border-2 border-[#773331] bg-[#D3ED66] px-5 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#773331] transition-colors hover:bg-[#773331] hover:text-[#F1EDE9] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]"
               href={checkoutHref}
             >
               <span>Voir le panier</span>
@@ -365,7 +365,7 @@ function ProductCard({
           ) : (
             <button
               aria-label={`Ajouter ${product.name} au panier`}
-              className="mt-5 flex min-h-16 w-full items-center justify-between border-2 border-[#351815] bg-[#351815] px-5 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#f6eadf] transition-colors hover:bg-[#ffb000] hover:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#d96ab4]"
+              className="mt-5 flex min-h-16 w-full items-center justify-between border-2 border-[#773331] bg-[#773331] px-5 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#F1EDE9] transition-colors hover:bg-[#D3ED66] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]"
               onClick={() => setCart((current) => upsertCartItem(current, product.id, 1))}
               type="button"
             >

@@ -35,28 +35,28 @@ export function RegisterForm() {
       <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 2 } as React.CSSProperties}>
         <span>Mot de passe</span>
         <input autoComplete="new-password" className="field" minLength={6} name="password" required type="password" />
-        <span className="font-mono text-[.62rem] font-bold normal-case tracking-normal text-[#351815]/55">
+        <span className="font-mono text-[.62rem] font-bold normal-case tracking-normal text-[#773331]/55">
           Six caractères au minimum.
         </span>
       </label>
 
       <label
-        className="flex cursor-pointer gap-3 border-2 border-[#351815] bg-[#fff8ef] p-4 text-sm font-bold leading-tight text-[#351815]/78 transition-colors duration-300 has-[:checked]:bg-[#d96ab4]/12"
+        className="flex cursor-pointer gap-3 border-2 border-[#773331] bg-[#F1EDE9] p-4 text-sm font-bold leading-tight text-[#773331]/78 transition-colors duration-300 has-[:checked]:bg-[#EBA0CD]/12"
         style={{ "--pas": 3 } as React.CSSProperties}
       >
-        <input checked={accepted} className="mt-0.5 h-6 w-6 shrink-0 accent-[#d96ab4]" name="waiver" onChange={(event) => setAccepted(event.target.checked)} type="checkbox" />
+        <input checked={accepted} className="mt-0.5 h-6 w-6 shrink-0 accent-[#EBA0CD]" name="waiver" onChange={(event) => setAccepted(event.target.checked)} type="checkbox" />
         <span>
           J’ai lu et j’accepte la décharge de responsabilité : je participe aux activités de NULLL.CLUB sous ma propre
           responsabilité, je reconnais les risques liés à la course à pied et je renonce à tout recours, sauf faute de
           l’organisateur.{" "}
-          <Link className="inline-flex min-h-11 items-center font-black text-[#351815] underline decoration-[#d96ab4] decoration-2 underline-offset-4" href="/membre/decharge">
+          <Link className="inline-flex min-h-11 items-center font-black text-[#773331] underline decoration-[#EBA0CD] decoration-2 underline-offset-4" href="/membre/decharge">
             lire la décharge complète
           </Link>
         </span>
       </label>
 
       {state.error ? (
-        <p className="border-2 border-[#351815] bg-[#ffb000] px-4 py-3 font-mono text-sm font-black uppercase text-[#351815]" role="alert">
+        <p className="border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">
           {state.error}
         </p>
       ) : null}
@@ -66,14 +66,14 @@ export function RegisterForm() {
           site des qu'il est actif. */}
       <div className="grid gap-2" style={{ "--pas": 4 } as React.CSSProperties}>
         <button
-          className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#ffb000] enabled:hover:text-[#351815]"
+          className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#D3ED66] enabled:hover:text-[#773331]"
           disabled={!accepted || pending}
           type="submit"
         >
           {pending ? "Création…" : "Créer mon compte"}
         </button>
         {!accepted && !pending ? (
-          <span aria-live="polite" className="font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#351815]/50">
+          <span aria-live="polite" className="font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#773331]/50">
             Coche la décharge pour continuer.
           </span>
         ) : null}

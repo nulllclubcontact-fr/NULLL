@@ -36,7 +36,7 @@ export function ProfilForm({ valeurs, email }: { valeurs: Valeurs; email: string
         <span>E-mail</span>
         {/* L'adresse sert d'identifiant de connexion : elle se change
             depuis l'authentification, pas depuis ce formulaire. */}
-        <p className="field flex items-center bg-[#351815]/5 font-mono text-sm font-bold normal-case text-[#351815]/60">{email}</p>
+        <p className="field flex items-center bg-[#773331]/5 font-mono text-sm font-bold normal-case text-[#773331]/60">{email}</p>
       </div>
 
       <div className="grid gap-3.5 sm:grid-cols-2" style={{ "--pas": 2 } as React.CSSProperties}>
@@ -55,9 +55,9 @@ export function ProfilForm({ valeurs, email }: { valeurs: Valeurs; email: string
         <input className="field" defaultValue={valeurs.instagram_handle ?? ""} name="instagram_handle" placeholder="@ton.pseudo" />
       </label>
 
-      <fieldset className="grid gap-3.5 border-2 border-[#351815] p-4" style={{ "--pas": 4 } as React.CSSProperties}>
+      <fieldset className="grid gap-3.5 border-2 border-[#773331] p-4" style={{ "--pas": 4 } as React.CSSProperties}>
         <legend className="px-2 font-mono text-[.62rem] font-black uppercase tracking-[.14em]">En cas de pépin</legend>
-        <p className="text-sm font-bold leading-snug text-[#351815]/60">
+        <p className="text-sm font-bold leading-snug text-[#773331]/60">
           Facultatif, mais ça nous évite de chercher pendant qu’il faudrait agir.
         </p>
         <div className="grid gap-3.5 sm:grid-cols-2">
@@ -77,18 +77,18 @@ export function ProfilForm({ valeurs, email }: { valeurs: Valeurs; email: string
       </fieldset>
 
       {state.error ? (
-        <p className="border-2 border-[#351815] bg-[#ffb000] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
+        <p className="border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
           {state.error}
         </p>
       ) : null}
       {state.message ? (
-        <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#351815]/60" role="status">
+        <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#773331]/60" role="status">
           {state.message}
         </p>
       ) : null}
 
       <button
-        className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#ffb000] enabled:hover:text-[#351815]"
+        className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#D3ED66] enabled:hover:text-[#773331]"
         disabled={pending}
         style={{ "--pas": 5 } as React.CSSProperties}
         type="submit"

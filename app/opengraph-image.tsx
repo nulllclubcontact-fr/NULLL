@@ -19,8 +19,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "56px",
-          background: "linear-gradient(140deg, #0b0b0c 0%, #161619 100%)",
-          color: "#f4f0e8"
+          background: "linear-gradient(140deg, #23100F 0%, #3A1A18 100%)",
+          color: "#F1EDE9"
         }}
       >
         <div
@@ -35,7 +35,7 @@ export default function OpenGraphImage() {
               style={{
                 width: "64px",
                 height: "64px",
-                border: "2px solid #f4f0e8",
+                border: "2px solid #F1EDE9",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -46,7 +46,7 @@ export default function OpenGraphImage() {
             </div>
             <div style={{ fontSize: "28px", textTransform: "uppercase", letterSpacing: "0.1em" }}>NULLL.CLUB</div>
           </div>
-          <div style={{ color: "#ff6b47", fontSize: "22px", textTransform: "uppercase" }}>Aix-en-Provence</div>
+          <div style={{ color: "#E06CB2", fontSize: "22px", textTransform: "uppercase" }}>Aix-en-Provence</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           <div style={{ fontSize: "78px", lineHeight: 0.9, textTransform: "uppercase", maxWidth: "900px" }}>

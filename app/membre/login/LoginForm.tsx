@@ -21,12 +21,12 @@ export function LoginForm() {
           <input autoComplete="current-password" className="field" name="password" required type="password" />
         </label>
         {loginState.error ? (
-          <p className="border-2 border-[#351815] bg-[#ffb000] px-4 py-3 font-mono text-sm font-black uppercase text-[#351815]" role="alert">
+          <p className="border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">
             {loginState.error}
           </p>
         ) : null}
         <button
-          className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#ffb000] enabled:hover:text-[#351815]"
+          className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#D3ED66] enabled:hover:text-[#773331]"
           disabled={loginPending}
           type="submit"
         >
@@ -37,10 +37,10 @@ export function LoginForm() {
       {/* « Mot de passe oublie » nommait la section, pas le champ : rien ne
           disait qu'il fallait y remettre son e-mail. Le bloc annonce
           maintenant ce qu'il fait, et le champ ce qu'il attend. */}
-      <form action={resetAction} className="mt-5 grid gap-3 border-t-2 border-[#351815] pt-5" style={{ "--pas": 1 } as React.CSSProperties}>
+      <form action={resetAction} className="mt-5 grid gap-3 border-t-2 border-[#773331] pt-5" style={{ "--pas": 1 } as React.CSSProperties}>
         <div>
           <p className="font-mono text-xs font-black uppercase tracking-[.1em]">Mot de passe oublié ?</p>
-          <p className="mt-1.5 text-sm font-bold leading-snug text-[#351815]/70">
+          <p className="mt-1.5 text-sm font-bold leading-snug text-[#773331]/70">
             Donne ton e-mail, on t’envoie un lien pour en choisir un nouveau.
           </p>
         </div>
@@ -48,8 +48,8 @@ export function LoginForm() {
           <span>Ton e-mail</span>
           <input autoComplete="email" className="field" name="email" placeholder="prenom@exemple.fr" required type="email" />
         </label>
-        {resetState.error ? <p className="text-sm font-bold text-[#351815]">{resetState.error}</p> : null}
-        {resetState.message ? <p className="text-sm font-bold text-[#351815]/72">{resetState.message}</p> : null}
+        {resetState.error ? <p className="text-sm font-bold text-[#773331]">{resetState.error}</p> : null}
+        {resetState.message ? <p className="text-sm font-bold text-[#773331]/72">{resetState.message}</p> : null}
         <button className="secondary-link justify-center" disabled={resetPending} type="submit">
           Recevoir le lien
         </button>

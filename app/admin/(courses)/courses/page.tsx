@@ -31,16 +31,16 @@ export default async function AdminCoursesPage() {
   return (
     <section className="shell grid gap-8 py-8 lg:py-12">
       <header>
-        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#351815]/55">Administration</p>
+        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#773331]/55">Administration</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[.95]">
-          Les sorties<span className="text-[#b03583]">.</span>
+          Les sorties<span className="text-[#C32986]">.</span>
         </h1>
       </header>
 
       <CreateRaceForm />
 
       {courses.length === 0 ? (
-        <p className="border-2 border-dashed border-[#351815]/30 p-6 font-bold text-[#351815]/60">
+        <p className="border-2 border-dashed border-[#773331]/30 p-6 font-bold text-[#773331]/60">
           Aucune sortie pour l’instant.
         </p>
       ) : (
@@ -53,19 +53,19 @@ export default async function AdminCoursesPage() {
               <li className="panel flex flex-col gap-4 p-5 lg:flex-row lg:items-center lg:justify-between" key={course.id}>
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-3">
-                    <Link className="font-display text-2xl uppercase leading-none hover:text-[#b03583]" href={`/admin/courses/${course.id}`}>
+                    <Link className="font-display text-2xl uppercase leading-none hover:text-[#C32986]" href={`/admin/courses/${course.id}`}>
                       {course.title}
                     </Link>
-                    <span className="inline-flex border-2 border-[#351815] px-2 py-1 font-mono text-[.55rem] font-black uppercase tracking-[.12em]">
+                    <span className="inline-flex border-2 border-[#773331] px-2 py-1 font-mono text-[.55rem] font-black uppercase tracking-[.12em]">
                       {LIBELLE_STATUT[course.status] ?? course.status}
                     </span>
                     {!course.registration_open ? (
-                      <span className="font-mono text-[.55rem] font-black uppercase tracking-[.12em] text-[#351815]/45">
+                      <span className="font-mono text-[.55rem] font-black uppercase tracking-[.12em] text-[#773331]/45">
                         inscriptions fermées
                       </span>
                     ) : null}
                   </div>
-                  <p className="mt-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#351815]/55">
+                  <p className="mt-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#773331]/55">
                     {formatJour(course.start_datetime)} · {formatHeure(course.start_datetime)}
                     {course.distance_km !== null ? ` · ${formatDistance(course.distance_km)}` : ""}
                     {` · ${actives.length} inscrit${actives.length > 1 ? "s" : ""}`}

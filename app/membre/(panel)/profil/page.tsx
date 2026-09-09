@@ -30,9 +30,9 @@ export default async function MemberProfilPage() {
   return (
     <section className="shell grid max-w-3xl gap-8 py-8 lg:py-12">
       <header>
-        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#351815]/55">Espace membre</p>
+        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#773331]/55">Espace membre</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4rem)] uppercase leading-[.95]">
-          Tes infos<span className="text-[#b03583]">.</span>
+          Tes infos<span className="text-[#C32986]">.</span>
         </h1>
       </header>
 

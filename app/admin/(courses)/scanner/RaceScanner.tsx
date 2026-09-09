@@ -10,12 +10,12 @@ type Course = { id: string; title: string; start_datetime: string };
 
 /** Chaque issue a sa couleur : sur le terrain on lit l'ecran d'un coup d'oeil. */
 const ALLURE: Record<string, string> = {
-  success: "bg-[#ffb000] text-[#351815]",
-  already_checked_in: "bg-[#f6eadf] text-[#351815]",
-  wrong_race: "bg-[#d96ab4] text-[#351815]",
-  cancelled_registration: "bg-[#351815] text-[#f6eadf]",
-  invalid_qr: "bg-[#351815] text-[#f6eadf]",
-  forbidden: "bg-[#351815] text-[#f6eadf]"
+  success: "bg-[#D3ED66] text-[#773331]",
+  already_checked_in: "bg-[#F1EDE9] text-[#773331]",
+  wrong_race: "bg-[#EBA0CD] text-[#773331]",
+  cancelled_registration: "bg-[#773331] text-[#F1EDE9]",
+  invalid_qr: "bg-[#773331] text-[#F1EDE9]",
+  forbidden: "bg-[#773331] text-[#F1EDE9]"
 };
 
 export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; courseInitiale?: string }) {
@@ -123,7 +123,7 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
           </select>
         </label>
 
-        <div className="border-2 border-[#351815] bg-[#351815] p-2">
+        <div className="border-2 border-[#773331] bg-[#773331] p-2">
           <video className="aspect-square w-full bg-black object-cover" muted playsInline ref={videoRef} />
         </div>
 
@@ -140,7 +140,7 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
       <aside className="grid content-start gap-4">
         <div
           aria-live="polite"
-          className={`border-2 border-[#351815] p-5 ${resultat ? ALLURE[resultat.result] ?? "bg-[#f6eadf]" : "bg-[#f6eadf]"}`}
+          className={`border-2 border-[#773331] p-5 ${resultat ? ALLURE[resultat.result] ?? "bg-[#F1EDE9]" : "bg-[#F1EDE9]"}`}
         >
           <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] opacity-70">
             {enCours ? "Lecture…" : "Dernier scan"}
@@ -152,7 +152,7 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
           <p className="mt-3 font-mono text-[.62rem] font-black uppercase tracking-[.12em] opacity-70">{statut}</p>
         </div>
 
-        <p className="font-mono text-[.6rem] font-black uppercase leading-relaxed tracking-[.12em] text-[#351815]/45">
+        <p className="font-mono text-[.6rem] font-black uppercase leading-relaxed tracking-[.12em] text-[#773331]/45">
           Un QR d’une autre sortie est refusé, et le refus est tracé. Chaque scan est enregistré, même raté.
         </p>
       </aside>

@@ -50,11 +50,11 @@ export function QrAnime() {
   }
 
   return (
-    <div aria-hidden="true" className="qr-cadre relative border-2 border-[#f6eadf] bg-[#f6eadf] p-4 sm:p-6">
+    <div aria-hidden="true" className="qr-cadre relative border-2 border-[#F1EDE9] bg-[#F1EDE9] p-4 sm:p-6">
       <div className="grid gap-[2px]" style={{ gridTemplateColumns: `repeat(${TAILLE}, minmax(0, 1fr))` }}>
         {modules.map(({ x, y, plein }) => (
           <span
-            className={`qr-module aspect-square ${plein ? "bg-[#351815]" : "bg-transparent"}`}
+            className={`qr-module aspect-square ${plein ? "bg-[#773331]" : "bg-transparent"}`}
             key={`${x}-${y}`}
             // La vague part du coin haut gauche et descend en diagonale.
             style={{ animationDelay: `${140 + (x + y) * 26}ms` }}

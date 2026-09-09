@@ -25,10 +25,10 @@ export default function IdentificationPage() {
   const copy = getSiteCopy("fr");
 
   return (
-    <main className="flex min-h-dvh flex-col bg-[#1c0d0b]">
+    <main className="flex min-h-dvh flex-col bg-[#3A1A18]">
       <AccountHeader />
 
-      <section className="relative flex flex-1 items-center overflow-hidden px-5 py-14 text-[#f6eadf] sm:px-8 sm:py-20">
+      <section className="relative flex flex-1 items-center overflow-hidden px-5 py-14 text-[#F1EDE9] sm:px-8 sm:py-20">
         {/* Filigrane discret : il ne doit rien disputer a la carte. */}
         <Image
           alt=""
@@ -46,31 +46,31 @@ export default function IdentificationPage() {
           </div>
 
           <div>
-            <p className="hero-rise font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#ffb000] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
+            <p className="hero-rise font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#D3ED66] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
               Espace membre
             </p>
             <h1 className="hero-rise mt-6 font-display text-[clamp(2.8rem,6.4vw,5.4rem)] uppercase leading-[1.12] tracking-[-.035em]" style={{ animationDelay: "140ms" }}>
               {/* Coupure imposee : laisse au navigateur, le titre rejetait
                   « ici. » seul sur la seconde ligne. */}
               <span className="block">Viens faire</span>
-              <span className="block text-[#b03583]">ton premier pas.</span>
+              <span className="block text-[#C32986]">ton premier pas.</span>
             </h1>
             {/* Une phrase, pas trois blocs : le visiteur doit savoir a quoi
                 sert un compte sans avoir a lire la page. */}
-            <p className="hero-rise mt-7 max-w-lg text-lg leading-relaxed text-[#f6eadf]/78 sm:text-xl" style={{ animationDelay: "220ms" }}>
+            <p className="hero-rise mt-7 max-w-lg text-lg leading-relaxed text-[#F1EDE9]/78 sm:text-xl" style={{ animationDelay: "220ms" }}>
               Ton compte, ta carte de membre, et la décharge signée une seule fois.
             </p>
 
             <div className="hero-rise mt-10 flex max-w-xl flex-col gap-4" style={{ animationDelay: "300ms" }}>
               <Link
-                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#ffb000] bg-[#ffb000] px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl text-[#351815] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
+                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#D3ED66] bg-[#D3ED66] px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl text-[#773331] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
                 href="/membre/register"
               >
                 <span>Créer mon compte</span>
                 <ArrowIcon />
               </Link>
               <Link
-                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#f6eadf]/55 px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl transition-colors [word-spacing:.12em] hover:border-[#f6eadf] hover:bg-[#f6eadf] hover:text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#F1EDE9]/55 px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl transition-colors [word-spacing:.12em] hover:border-[#F1EDE9] hover:bg-[#F1EDE9] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
                 href="/membre/login"
               >
                 <span>Se connecter</span>
@@ -80,10 +80,10 @@ export default function IdentificationPage() {
 
             {/* Troisieme chemin, rare : un lien suffit, il ne doit pas peser
                 autant que les deux boutons. */}
-            <p className="hero-rise mt-8 text-sm leading-relaxed text-[#f6eadf]/55" style={{ animationDelay: "380ms" }}>
+            <p className="hero-rise mt-8 text-sm leading-relaxed text-[#F1EDE9]/55" style={{ animationDelay: "380ms" }}>
               Commerçant partenaire ?{" "}
               <Link
-                className="font-bold text-[#f6eadf]/80 underline decoration-2 underline-offset-4 transition-colors hover:text-[#ffb000] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000]"
+                className="font-bold text-[#F1EDE9]/80 underline decoration-2 underline-offset-4 transition-colors hover:text-[#D3ED66] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
                 href="/pro/login"
               >
                 Espace pro

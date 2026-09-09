@@ -16,10 +16,10 @@ type Inscrit = {
 };
 
 const ETIQUETTES: Record<string, { texte: string; classe: string }> = {
-  checked_in: { texte: "Présent", classe: "bg-[#ffb000]" },
-  registered: { texte: "Inscrit", classe: "bg-[#f6eadf]" },
-  cancelled: { texte: "Annulée", classe: "bg-[#351815] text-[#f6eadf]" },
-  no_show: { texte: "Absent", classe: "bg-[#d96ab4]" }
+  checked_in: { texte: "Présent", classe: "bg-[#D3ED66]" },
+  registered: { texte: "Inscrit", classe: "bg-[#F1EDE9]" },
+  cancelled: { texte: "Annulée", classe: "bg-[#773331] text-[#F1EDE9]" },
+  no_show: { texte: "Absent", classe: "bg-[#EBA0CD]" }
 };
 
 export default async function AdminCourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -60,11 +60,11 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
     <section className="shell grid gap-8 py-8 lg:py-12">
       <header className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <Link className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#351815]/50 hover:text-[#b03583]" href="/admin/courses">
+          <Link className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]/50 hover:text-[#C32986]" href="/admin/courses">
             ← Toutes les sorties
           </Link>
           <h1 className="mt-4 font-display text-[clamp(2.2rem,5.5vw,3.8rem)] uppercase leading-[.98]">{course.title}</h1>
-          <p className="mt-3 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#351815]/55">
+          <p className="mt-3 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#773331]/55">
             {formatJour(course.start_datetime)} · {formatHeure(course.start_datetime)}
             {course.location ? ` · ${course.location}` : ""}
             {course.distance_km !== null ? ` · ${formatDistance(course.distance_km)}` : ""}
@@ -84,30 +84,30 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
       <dl className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {chiffres.map((c) => (
           <div className="panel p-5" key={c.label}>
-            <dt className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#351815]/55">{c.label}</dt>
+            <dt className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#773331]/55">{c.label}</dt>
             <dd className="mt-3 font-display text-[clamp(2.4rem,6vw,3.4rem)] leading-none">{c.valeur}</dd>
           </div>
         ))}
       </dl>
 
       <div>
-        <h2 className="border-b-2 border-[#351815] pb-3 font-mono text-xs font-black uppercase tracking-[.18em]">
+        <h2 className="border-b-2 border-[#773331] pb-3 font-mono text-xs font-black uppercase tracking-[.18em]">
           Les inscrits ({lignes.length})
         </h2>
 
         {lignes.length === 0 ? (
-          <p className="mt-5 border-2 border-dashed border-[#351815]/30 p-6 font-bold text-[#351815]/60">
+          <p className="mt-5 border-2 border-dashed border-[#773331]/30 p-6 font-bold text-[#773331]/60">
             Personne pour l’instant.
           </p>
         ) : (
           <div className="mt-5 overflow-x-auto">
             <table className="w-full min-w-[42rem] border-collapse text-left">
               <thead>
-                <tr className="font-mono text-[.6rem] font-black uppercase tracking-[.14em] text-[#351815]/55">
-                  <th className="border-b-2 border-[#351815] pb-2 pr-4">Participant</th>
-                  <th className="border-b-2 border-[#351815] pb-2 pr-4">Contact</th>
-                  <th className="border-b-2 border-[#351815] pb-2 pr-4">Statut</th>
-                  <th className="border-b-2 border-[#351815] pb-2">Scanné à</th>
+                <tr className="font-mono text-[.6rem] font-black uppercase tracking-[.14em] text-[#773331]/55">
+                  <th className="border-b-2 border-[#773331] pb-2 pr-4">Participant</th>
+                  <th className="border-b-2 border-[#773331] pb-2 pr-4">Contact</th>
+                  <th className="border-b-2 border-[#773331] pb-2 pr-4">Statut</th>
+                  <th className="border-b-2 border-[#773331] pb-2">Scanné à</th>
                 </tr>
               </thead>
               <tbody>
@@ -117,14 +117,14 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
                   const nom = [p?.first_name, p?.last_name].filter(Boolean).join(" ") || "Membre";
 
                   return (
-                    <tr className="border-b border-[#351815]/20" key={ligne.id}>
+                    <tr className="border-b border-[#773331]/20" key={ligne.id}>
                       <td className="py-3 pr-4 font-bold">{nom}</td>
-                      <td className="py-3 pr-4 font-mono text-xs text-[#351815]/70">
+                      <td className="py-3 pr-4 font-mono text-xs text-[#773331]/70">
                         {p?.email ?? "—"}
                         {p?.phone ? <span className="block">{p.phone}</span> : null}
                       </td>
                       <td className="py-3 pr-4">
-                        <span className={`inline-flex border-2 border-[#351815] px-2 py-1 font-mono text-[.55rem] font-black uppercase tracking-[.12em] ${etiquette.classe}`}>
+                        <span className={`inline-flex border-2 border-[#773331] px-2 py-1 font-mono text-[.55rem] font-black uppercase tracking-[.12em] ${etiquette.classe}`}>
                           {etiquette.texte}
                         </span>
                       </td>

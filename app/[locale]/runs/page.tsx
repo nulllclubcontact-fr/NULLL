@@ -56,7 +56,7 @@ export default async function RunsPage({ params }: PageProps) {
       />
 
       {/* ---------------- AFFICHE D'OUVERTURE ---------------- */}
-      <section className="relative flex min-h-[calc(100dvh-82px)] flex-col overflow-hidden bg-[#351815] text-[#f6eadf]" aria-labelledby="runs-title">
+      <section className="relative flex min-h-[calc(100dvh-82px)] flex-col overflow-hidden bg-[#773331] text-[#F1EDE9]" aria-labelledby="runs-title">
         <Image
           alt="Un membre de NULLL.CLUB en pleine foulée sur un chemin, saisi en flou de mouvement"
           className="object-cover object-[50%_54%]"
@@ -69,9 +69,9 @@ export default async function RunsPage({ params }: PageProps) {
 
         {/* Barre identique a celle de l'accueil */}
         <div className="relative mx-auto w-full max-w-[1600px] shrink-0 px-5 pt-6 sm:px-8 sm:pt-8 xl:px-12">
-          <div className="hero-text-shadow flex flex-col items-start gap-1 border-b border-[#f6eadf]/45 pb-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
+          <div className="hero-text-shadow flex flex-col items-start gap-1 border-b border-[#F1EDE9]/45 pb-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
             <span>Social sport club · Aix-en-Provence</span>
-            <span className="text-[#ffb000]">Ouvert à tous · Gratuit</span>
+            <span className="text-[#D3ED66]">Ouvert à tous · Gratuit</span>
           </div>
         </div>
 
@@ -81,11 +81,11 @@ export default async function RunsPage({ params }: PageProps) {
             id="runs-title"
             style={{ animationDelay: "120ms" }}
           >
-            Samedi on <span className="text-[#d96ab4]">sort.</span>
+            Samedi on <span className="text-[#EBA0CD]">sort.</span>
           </h1>
 
           <div className="hero-rise hero-text-shadow flex w-full flex-col items-center" style={{ animationDelay: "280ms" }}>
-            <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#ffb000]">
+            <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#D3ED66]">
               Prochaine sortie
             </p>
             <p className="mt-3 font-display text-[clamp(1.9rem,4vw,3.4rem)] uppercase leading-none [overflow-wrap:normal]">
@@ -96,7 +96,7 @@ export default async function RunsPage({ params }: PageProps) {
               <Countdown centered isoDate={copy.runs[0].isoDate} />
             </div>
             <SmoothAnchor
-              className="group mt-6 inline-flex min-h-[4.25rem] cursor-pointer items-center justify-center gap-8 border-2 border-[#ffb000] bg-[#ffb000] px-8 font-display text-[1.35rem] uppercase leading-none text-[#351815] [text-shadow:none] transition-colors hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
+              className="group mt-6 inline-flex min-h-[4.25rem] cursor-pointer items-center justify-center gap-8 border-2 border-[#D3ED66] bg-[#D3ED66] px-8 font-display text-[1.35rem] uppercase leading-none text-[#773331] [text-shadow:none] transition-colors hover:bg-transparent hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
               targetId="prochaines-sorties"
             >
               <span>Choisir une date</span>
@@ -107,7 +107,7 @@ export default async function RunsPage({ params }: PageProps) {
 
         <div
           aria-label={tickerCopy}
-          className="marquee relative shrink-0 border-y-2 border-[#351815] bg-[#ffb000] py-4 text-[#351815] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#d96ab4]"
+          className="marquee relative shrink-0 border-y-2 border-[#773331] bg-[#D3ED66] py-4 text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD]"
           role="region"
           tabIndex={0}
         >
@@ -119,26 +119,26 @@ export default async function RunsPage({ params }: PageProps) {
       </section>
 
       {/* ---------------- PROCHAINES SORTIES ---------------- */}
-      <section className="scroll-mt-20 bg-[#351815] text-[#f6eadf]" aria-labelledby="runs-list-title" id="prochaines-sorties">
+      <section className="scroll-mt-20 bg-[#773331] text-[#F1EDE9]" aria-labelledby="runs-list-title" id="prochaines-sorties">
         <div className="mx-auto max-w-[1600px] px-5 pb-10 pt-16 sm:px-8 sm:pb-12 sm:pt-24 xl:px-12">
-          <div className="flex flex-col gap-5 border-b border-[#f6eadf]/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col gap-5 border-b border-[#F1EDE9]/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#ffb000]">01 — Le calendrier</p>
+              <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#D3ED66]">01 — Le calendrier</p>
               <h2 className="mt-4 font-display text-[clamp(3.2rem,6vw,6rem)] uppercase leading-[1.12] tracking-[-.035em]" id="runs-list-title">
-                Prochaine <span className="text-[#d96ab4]">sortie.</span>
+                Prochaine <span className="text-[#EBA0CD]">sortie.</span>
               </h2>
             </div>
-            <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#d96ab4]">Swipe pour la suite →</p>
+            <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#EBA0CD]">Swipe pour la suite →</p>
           </div>
 
           <div className="mt-6 flex items-center justify-between gap-4 font-mono text-xs font-black uppercase tracking-[.16em]">
-            <span className="text-[#f6eadf]/65">3 sorties</span>
+            <span className="text-[#F1EDE9]/65">3 sorties</span>
             <RunCarouselNav runs={copy.runs.map(({ date, id }) => ({ date, id }))} />
           </div>
 
           <div
             aria-label="Prochaines sorties, carrousel horizontal"
-            className="run-carousel -ml-4 mt-1 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pl-4 pr-[10%] pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffb000] sm:-ml-6 sm:gap-8 sm:pl-6 sm:pr-[18%] xl:-ml-10 xl:pl-10"
+            className="run-carousel -ml-4 mt-1 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pl-4 pr-[10%] pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66] sm:-ml-6 sm:gap-8 sm:pl-6 sm:pr-[18%] xl:-ml-10 xl:pl-10"
             role="region"
             tabIndex={0}
           >
@@ -152,7 +152,7 @@ export default async function RunsPage({ params }: PageProps) {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <section className="bg-[#ffb000] text-[#351815]" aria-labelledby="runs-faq">
+      <section className="bg-[#D3ED66] text-[#773331]" aria-labelledby="runs-faq">
         <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-28 xl:px-12">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em]">02 — Les questions</p>
           <h2
@@ -162,10 +162,10 @@ export default async function RunsPage({ params }: PageProps) {
             Avant de venir.
           </h2>
 
-          <dl className="mt-14 border-t-2 border-[#351815]">
+          <dl className="mt-14 border-t-2 border-[#773331]">
             {copy.runsPage.faq.map((entry, index) => (
               <Reveal
-                className="grid gap-4 border-b-2 border-[#351815] py-8 lg:grid-cols-[auto_1fr_1.1fr] lg:items-baseline lg:gap-10"
+                className="grid gap-4 border-b-2 border-[#773331] py-8 lg:grid-cols-[auto_1fr_1.1fr] lg:items-baseline lg:gap-10"
                 delay={index * 110}
                 key={entry.q}
               >
@@ -178,12 +178,12 @@ export default async function RunsPage({ params }: PageProps) {
             ))}
           </dl>
 
-          <div className="mt-14 flex flex-col gap-4 border-2 border-[#351815] bg-[#351815] p-8 text-[#f6eadf] sm:flex-row sm:items-center sm:justify-between sm:p-10">
+          <div className="mt-14 flex flex-col gap-4 border-2 border-[#773331] bg-[#773331] p-8 text-[#F1EDE9] sm:flex-row sm:items-center sm:justify-between sm:p-10">
             <p className="max-w-md font-display text-[clamp(1.6rem,3vw,2.6rem)] uppercase leading-[1.12]">
               Il reste une question ?
             </p>
             <Link
-              className="group inline-flex min-h-[4rem] items-center justify-between gap-10 border-2 border-[#ffb000] bg-[#ffb000] px-7 font-display text-[1.35rem] uppercase leading-none text-[#351815] transition-colors hover:bg-transparent hover:text-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf]"
+              className="group inline-flex min-h-[4rem] items-center justify-between gap-10 border-2 border-[#D3ED66] bg-[#D3ED66] px-7 font-display text-[1.35rem] uppercase leading-none text-[#773331] transition-colors hover:bg-transparent hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
               href={contactHref}
             >
               <span>{copy.runsPage.cta}</span>
@@ -199,16 +199,16 @@ export default async function RunsPage({ params }: PageProps) {
 
 function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string; run: RunEvent }) {
   const visuals = [
-    { src: "/assets/photos/runs-golden.webp", position: "object-[50%_58%]", accent: "bg-[#ffb000] text-[#351815]" },
-    { src: "/assets/photos/runs-motion.webp", position: "object-center", accent: "bg-[#d96ab4] text-[#351815]" },
-    { src: "/assets/photos/runs-crew.webp", position: "object-center", accent: "bg-[#f6eadf] text-[#351815]" }
+    { src: "/assets/photos/runs-golden.webp", position: "object-[50%_58%]", accent: "bg-[#D3ED66] text-[#773331]" },
+    { src: "/assets/photos/runs-motion.webp", position: "object-center", accent: "bg-[#EBA0CD] text-[#773331]" },
+    { src: "/assets/photos/runs-crew.webp", position: "object-center", accent: "bg-[#F1EDE9] text-[#773331]" }
   ];
   const visual = visuals[index % visuals.length];
 
   return (
     <Reveal
       as="article"
-      className={`run-poster group relative overflow-hidden text-[#f6eadf] ${index === 0 ? "run-poster--featured border-[6px] border-[#ffb000]" : "border-2 border-[#f6eadf]"}`}
+      className={`run-poster group relative overflow-hidden text-[#F1EDE9] ${index === 0 ? "run-poster--featured border-[6px] border-[#D3ED66]" : "border-2 border-[#F1EDE9]"}`}
       delay={index * 100}
     >
       <Image alt="" className={`run-card-image object-cover ${visual.position}`} fill sizes="(min-width: 1280px) 72vw, (min-width: 640px) 78vw, 90vw" src={visual.src} />
@@ -228,11 +228,11 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
             {run.date}
           </h3>
           <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs font-black uppercase tracking-[.1em]">
-            <span className="bg-[#351815] px-4 py-3">{run.time}</span>
-            <span className="bg-[#351815] px-4 py-3">{run.distance}</span>
+            <span className="bg-[#773331] px-4 py-3">{run.time}</span>
+            <span className="bg-[#773331] px-4 py-3">{run.distance}</span>
             <a
               aria-label={`Ouvrir le lieu de départ ${run.location} dans Google Maps`}
-              className="inline-flex min-h-14 items-center gap-3 bg-[#f6eadf] px-4 py-2.5 text-[#351815] transition-colors hover:bg-[#ffb000] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#ffb000]"
+              className="inline-flex min-h-14 items-center gap-3 bg-[#F1EDE9] px-4 py-2.5 text-[#773331] transition-colors hover:bg-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#D3ED66]"
               href={mapsUrl(run.address)}
               rel="noreferrer noopener"
               target="_blank"
@@ -244,7 +244,7 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
           </div>
           <Link
             aria-label={`Je viens à la sortie du ${run.date}, à ${run.time}, ${run.distance}. Départ ${run.location}. ${run.summary}`}
-            className={`mt-5 flex min-h-16 w-full items-center justify-between gap-6 px-5 font-display text-[1.55rem] uppercase leading-none transition-colors focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f6eadf] sm:w-fit sm:min-w-72 ${visual.accent}`}
+            className={`mt-5 flex min-h-16 w-full items-center justify-between gap-6 px-5 font-display text-[1.55rem] uppercase leading-none transition-colors focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9] sm:w-fit sm:min-w-72 ${visual.accent}`}
             href={joinHref}
           >
             <span>Je viens</span>

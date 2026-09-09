@@ -35,7 +35,7 @@ export default async function MemberLoginPage({
     >
       {alerte ? (
         <p
-          className="mb-4 border-2 border-[#351815] bg-[#ffb000] px-4 py-3 font-mono text-sm font-black uppercase text-[#351815]"
+          className="mb-4 border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]"
           role="alert"
         >
           {alerte}
@@ -44,7 +44,7 @@ export default async function MemberLoginPage({
 
       {/* Une bonne nouvelle ne doit pas porter l'habit d'une erreur. */}
       {info ? (
-        <p className="mb-4 border-2 border-[#f6eadf] bg-[#f6eadf]/10 px-4 py-3 text-sm font-bold leading-snug text-[#f6eadf]" role="status">
+        <p className="mb-4 border-2 border-[#F1EDE9] bg-[#F1EDE9]/10 px-4 py-3 text-sm font-bold leading-snug text-[#F1EDE9]" role="status">
           {info}
         </p>
       ) : null}
