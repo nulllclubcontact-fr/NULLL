@@ -1,5 +1,5 @@
 /* Scoped to the homepage: shared styles and all other pages are unchanged. */
-.home-journey{--home-cream:#F1EDE9;--home-ink:#773331;--home-dark:#3A1A18;--home-yellow:#D3ED66;--home-pink:#EBA0CD;--home-pink-text:#C32986;position:relative;isolation:isolate;overflow:clip;background:var(--home-cream);color:var(--home-ink)}
+.home-journey{--home-cream:#F1EDE9;--home-ink:#773331;--home-dark:#3A1A18;--home-yellow:#FFB200;--home-pink:#EBA0CD;--home-pink-text:#C32986;position:relative;isolation:isolate;overflow:clip;background:var(--home-cream);color:var(--home-ink)}
 .home-journey h1, .home-journey h2, .home-journey h3, .home-journey .home-run-date>strong, .home-journey .home-first-time p, .home-journey .home-together-copy>p, .home-journey .home-final-cta{font-family:var(--font-display),Impact,sans-serif;font-weight:400;text-transform:uppercase}
 .home-journey .home-label{font-family:var(--font-mono),"Arial Narrow",sans-serif;font-size:11px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
 .home-journey a{touch-action:manipulation}
@@ -243,7 +243,7 @@
 
 .home-journey .home-hero-contenu{width:100%;max-width:1250px;margin:0 auto}
 
-.home-journey .home-hero-chapeau{margin:0 0 14px;color:#D3ED66}
+.home-journey .home-hero-chapeau{margin:0 0 14px;color:#FFB200}
 
 .home-journey .home-hero h1{
   margin:0 0 34px;
@@ -253,7 +253,7 @@
   text-shadow:0 2px 24px rgba(18,9,8,.6),0 1px 4px rgba(18,9,8,.5);
 }
 
-.home-journey .home-hero h1 span{color:#D3ED66}
+.home-journey .home-hero h1 span{color:#FFB200}
 
 .home-journey .home-hero-chiffres{
   display:grid;
@@ -274,7 +274,7 @@
 
 .home-journey .home-hero-chiffres dd span{font-size:.42em;margin-left:.06em}
 .home-journey .home-hero-chiffres div:nth-child(2) dd{color:#EBA0CD}
-.home-journey .home-hero-chiffres div:nth-child(3) dd{color:#D3ED66}
+.home-journey .home-hero-chiffres div:nth-child(3) dd{color:#FFB200}
 
 .home-journey .home-hero-action{
   display:inline-flex;
@@ -282,7 +282,7 @@
   gap:22px;
   min-height:60px;
   padding:0 26px;
-  background:#D3ED66;
+  background:#FFB200;
   color:#773331;
   border:2px solid #773331;
   font-family:var(--font-mono),Arial,sans-serif;
@@ -293,7 +293,7 @@
   transition:background-color .2s,color .2s;
 }
 
-.home-journey .home-hero-action:hover{background:#773331;color:#D3ED66}
+.home-journey .home-hero-action:hover{background:#773331;color:#FFB200}
 
 @media(max-width:760px){
   .home-journey .home-hero{min-height:clamp(440px,76svh,700px);padding:32px 24px}

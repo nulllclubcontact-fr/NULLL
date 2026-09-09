@@ -56,7 +56,7 @@ export function RegisterForm() {
       </label>
 
       {state.error ? (
-        <p className="border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">
+        <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">
           {state.error}
         </p>
       ) : null}
@@ -66,7 +66,7 @@ export function RegisterForm() {
           site des qu'il est actif. */}
       <div className="grid gap-2" style={{ "--pas": 4 } as React.CSSProperties}>
         <button
-          className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#D3ED66] enabled:hover:text-[#773331]"
+          className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#FFB200] enabled:hover:text-[#773331]"
           disabled={!accepted || pending}
           type="submit"
         >

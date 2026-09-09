@@ -8,7 +8,7 @@
 :root {
   --nulll-cream: #F1EDE9;
   --nulll-ink: #773331;
-  --nulll-amber: #D3ED66;
+  --nulll-amber: #FFB200;
   --nulll-pink: #EBA0CD;
 
   /* Roles */
@@ -93,7 +93,7 @@ body::before {
 }
 
 ::selection {
-  background: #D3ED66;
+  background: #FFB200;
   color: #773331;
 }
 
@@ -556,7 +556,7 @@ textarea {
 .run-carousel {
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
-  scrollbar-color: #D3ED66 rgba(246, 234, 223, 0.18);
+  scrollbar-color: #FFB200 rgba(246, 234, 223, 0.18);
   scrollbar-width: thin;
 }
 
@@ -569,7 +569,7 @@ textarea {
 }
 
 .run-carousel::-webkit-scrollbar-thumb {
-  background: #D3ED66;
+  background: #FFB200;
 }
 
 .run-card-image {
@@ -743,11 +743,11 @@ textarea {
    ou en est reellement le club. */
 .timeline-entry.is-future .timeline-dot {
   background: #3A1A18;
-  box-shadow: inset 0 0 0 3px #D3ED66;
+  box-shadow: inset 0 0 0 3px #FFB200;
 }
 
 .timeline-entry.is-future .timeline-date {
-  color: #D3ED66;
+  color: #FFB200;
 }
 
 .timeline-entry.is-future .timeline-line {
@@ -895,7 +895,7 @@ textarea {
   inset-inline: 0;
   bottom: 0;
   height: 3px;
-  background: #D3ED66;
+  background: #FFB200;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);

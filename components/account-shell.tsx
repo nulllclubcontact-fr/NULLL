@@ -70,7 +70,7 @@ export function AccountShell({
 
           <div className="relative px-5 pb-10 pt-16 sm:px-8 sm:pb-14 lg:pb-10 lg:pt-10 xl:px-12">
             <p
-              className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#D3ED66]"
+              className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFB200]"
               style={{ animationDelay: "60ms" }}
             >
               {eyebrow}
@@ -99,7 +99,7 @@ export function AccountShell({
                   key={b.label}
                   style={{ animationDelay: `${360 + i * 90}ms` }}
                 >
-                  <span className="account-benefit__num block font-display text-3xl leading-none text-[#D3ED66]">
+                  <span className="account-benefit__num block font-display text-3xl leading-none text-[#FFB200]">
                     0{i + 1}
                   </span>
                   <span className="mt-3 block font-display text-lg uppercase leading-none">{b.label}</span>
@@ -142,7 +142,7 @@ export function AccountShell({
               >
                 {footerLink.label}
                 <Link
-                  className="group inline-flex items-center gap-2 text-[#D3ED66] underline decoration-[#D3ED66]/40 decoration-2 underline-offset-4 transition hover:decoration-[#D3ED66]"
+                  className="group inline-flex items-center gap-2 text-[#FFB200] underline decoration-[#FFB200]/40 decoration-2 underline-offset-4 transition hover:decoration-[#FFB200]"
                   href={footerLink.href}
                 >
                   {footerLink.cta}
@@ -160,7 +160,7 @@ export function AccountShell({
           la seule privee, et c'est ce qui la faisait sonner etrangere. */}
       <div
         aria-label={ticker}
-        className="marquee shrink-0 bg-[#D3ED66] py-4 text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD]"
+        className="marquee shrink-0 bg-[#FFB200] py-4 text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD]"
         role="region"
         tabIndex={0}
       >
@@ -181,7 +181,7 @@ export function AccountLink({ href, children, secondary = false }: { href: strin
   return (
     <Link
       className={`group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-[#773331] px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
-        secondary ? "bg-[#F1EDE9] text-[#773331] hover:bg-[#773331] hover:text-[#F1EDE9]" : "bg-[#773331] text-[#F1EDE9] hover:bg-[#D3ED66] hover:text-[#773331]"
+        secondary ? "bg-[#F1EDE9] text-[#773331] hover:bg-[#773331] hover:text-[#F1EDE9]" : "bg-[#773331] text-[#F1EDE9] hover:bg-[#FFB200] hover:text-[#773331]"
       }`}
       href={href}
     >

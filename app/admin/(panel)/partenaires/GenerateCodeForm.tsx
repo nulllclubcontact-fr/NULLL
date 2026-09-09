@@ -15,7 +15,7 @@ export function GenerateCodeForm({ partnerId }: { partnerId: string }) {
         {pending ? "Generation..." : "Generer code"}
       </button>
       {state.code ? (
-        <p className="border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="status">
+        <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="status">
           Code clair: {state.code}
         </p>
       ) : null}

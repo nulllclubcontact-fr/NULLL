@@ -10,7 +10,7 @@ type Course = { id: string; title: string; start_datetime: string };
 
 /** Chaque issue a sa couleur : sur le terrain on lit l'ecran d'un coup d'oeil. */
 const ALLURE: Record<string, string> = {
-  success: "bg-[#D3ED66] text-[#773331]",
+  success: "bg-[#FFB200] text-[#773331]",
   already_checked_in: "bg-[#F1EDE9] text-[#773331]",
   wrong_race: "bg-[#EBA0CD] text-[#773331]",
   cancelled_registration: "bg-[#773331] text-[#F1EDE9]",

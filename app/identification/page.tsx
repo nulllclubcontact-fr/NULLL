@@ -46,7 +46,7 @@ export default function IdentificationPage() {
           </div>
 
           <div>
-            <p className="hero-rise font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#D3ED66] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
+            <p className="hero-rise font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#FFB200] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
               Espace membre
             </p>
             <h1 className="hero-rise mt-6 font-display text-[clamp(2.8rem,6.4vw,5.4rem)] uppercase leading-[1.12] tracking-[-.035em]" style={{ animationDelay: "140ms" }}>
@@ -63,14 +63,14 @@ export default function IdentificationPage() {
 
             <div className="hero-rise mt-10 flex max-w-xl flex-col gap-4" style={{ animationDelay: "300ms" }}>
               <Link
-                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#D3ED66] bg-[#D3ED66] px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl text-[#773331] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
+                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#FFB200] bg-[#FFB200] px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl text-[#773331] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
                 href="/membre/register"
               >
                 <span>Créer mon compte</span>
                 <ArrowIcon />
               </Link>
               <Link
-                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#F1EDE9]/55 px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl transition-colors [word-spacing:.12em] hover:border-[#F1EDE9] hover:bg-[#F1EDE9] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
+                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#F1EDE9]/55 px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl transition-colors [word-spacing:.12em] hover:border-[#F1EDE9] hover:bg-[#F1EDE9] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
                 href="/membre/login"
               >
                 <span>Se connecter</span>
@@ -83,7 +83,7 @@ export default function IdentificationPage() {
             <p className="hero-rise mt-8 text-sm leading-relaxed text-[#F1EDE9]/55" style={{ animationDelay: "380ms" }}>
               Commerçant partenaire ?{" "}
               <Link
-                className="font-bold text-[#F1EDE9]/80 underline decoration-2 underline-offset-4 transition-colors hover:text-[#D3ED66] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
+                className="font-bold text-[#F1EDE9]/80 underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
                 href="/pro/login"
               >
                 Espace pro

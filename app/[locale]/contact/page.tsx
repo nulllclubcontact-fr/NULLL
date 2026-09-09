@@ -46,7 +46,7 @@ export default async function ContactPage({ params }: PageProps) {
       <section className="border-b-2 border-[#773331] bg-[#3A1A18] text-[#F1EDE9]" aria-labelledby="contact-title">
         <div className="mx-auto grid w-full max-w-[1600px] gap-10 px-5 pb-14 pt-12 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-[1.15fr_.85fr] lg:items-end lg:gap-16 xl:px-12">
           <div>
-            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#D3ED66] [word-spacing:.22em]">
+            <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#FFB200] [word-spacing:.22em]">
               Contact · Aix-en-Provence
             </p>
             {/* Les lettres arrivent en cascade. aria-label porte le mot
@@ -77,14 +77,14 @@ export default async function ContactPage({ params }: PageProps) {
             <p className="mt-6 border-t-2 border-[#F1EDE9]/25 pt-6 text-base leading-relaxed text-[#F1EDE9]/70">
               Pour venir courir, il n’y a rien à demander — tout est sur{" "}
               <Link
-                className="font-bold text-[#D3ED66] underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
+                className="font-bold text-[#FFB200] underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
                 href={runsHref}
               >
                 les sorties
               </Link>{" "}
               et{" "}
               <Link
-                className="font-bold text-[#D3ED66] underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
+                className="font-bold text-[#FFB200] underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
                 href={communityHref}
               >
                 la page du club
@@ -116,14 +116,14 @@ export default async function ContactPage({ params }: PageProps) {
               className="mt-6 font-display text-[clamp(2.2rem,5vw,4rem)] uppercase leading-[1.12] tracking-[-.03em]"
               id="contact-partenaires"
             >
-              Devenez <span className="text-[#D3ED66]">partenaire.</span>
+              Devenez <span className="text-[#FFB200]">partenaire.</span>
             </h2>
             <p className="mt-7 max-w-lg text-lg leading-relaxed text-[#F1EDE9]/82">
               Un groupe qui court tous les samedis matin à Aix, et qui cherche où aller ensuite. Café, boulangerie,
               restaurant, magasin de sport : le club peut envoyer ses membres chez vous.
             </p>
             <Link
-              className="mt-9 inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#F1EDE9]/60 px-6 font-mono text-xs font-black uppercase tracking-[.1em] transition-colors [word-spacing:.12em] hover:border-[#F1EDE9] hover:bg-[#F1EDE9] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
+              className="mt-9 inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#F1EDE9]/60 px-6 font-mono text-xs font-black uppercase tracking-[.1em] transition-colors [word-spacing:.12em] hover:border-[#F1EDE9] hover:bg-[#F1EDE9] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
               href="/pro/login"
             >
               <span>Déjà partenaire : espace pro</span>
@@ -147,7 +147,7 @@ export default async function ContactPage({ params }: PageProps) {
               }
             ].map((point) => (
               <div className="border-b-2 border-[#F1EDE9]/25 py-6" key={point.titre}>
-                <dt className="font-display text-[clamp(1.3rem,1.9vw,1.6rem)] uppercase leading-[1.12] tracking-[-.02em] text-[#D3ED66]">
+                <dt className="font-display text-[clamp(1.3rem,1.9vw,1.6rem)] uppercase leading-[1.12] tracking-[-.02em] text-[#FFB200]">
                   {point.titre}
                 </dt>
                 <dd className="mt-3 max-w-[52ch] text-base leading-relaxed text-[#F1EDE9]/78">{point.texte}</dd>
@@ -167,7 +167,7 @@ export default async function ContactPage({ params }: PageProps) {
               Message direct
             </p>
             <h2
-              className="mt-6 font-display text-[clamp(2.6rem,6vw,5rem)] uppercase leading-[1.12] tracking-[-.035em] text-[#D3ED66]"
+              className="mt-6 font-display text-[clamp(2.6rem,6vw,5rem)] uppercase leading-[1.12] tracking-[-.035em] text-[#FFB200]"
               id="contact-write"
             >
               Écris-nous.

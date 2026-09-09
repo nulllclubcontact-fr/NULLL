@@ -81,10 +81,10 @@ export function RunCarouselNav({ runs }: RunCarouselNavProps) {
         <button
           aria-current={activeIndex === index ? "true" : undefined}
           aria-label={`Afficher la sortie ${index + 1} : ${run.date}`}
-          className={`grid h-11 w-11 cursor-pointer place-items-center border-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D3ED66] ${
+          className={`grid h-11 w-11 cursor-pointer place-items-center border-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFB200] ${
             activeIndex === index
-              ? "border-[#D3ED66] bg-[#D3ED66] text-[#773331]"
-              : "border-[#F1EDE9]/50 hover:border-[#D3ED66] hover:bg-[#D3ED66] hover:text-[#773331]"
+              ? "border-[#FFB200] bg-[#FFB200] text-[#773331]"
+              : "border-[#F1EDE9]/50 hover:border-[#FFB200] hover:bg-[#FFB200] hover:text-[#773331]"
           }`}
           key={run.id}
           onClick={() => selectRun(run.id, index)}

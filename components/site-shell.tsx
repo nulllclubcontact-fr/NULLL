@@ -61,7 +61,7 @@ export function SiteHeader({
   return (
     <header className="sticky top-0 z-50 border-b-2 border-[#773331] bg-[#F1EDE9]">
       <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto_auto] items-stretch lg:grid-cols-[200px_minmax(0,1fr)_132px_172px] xl:grid-cols-[240px_minmax(0,1fr)_150px_190px] 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
-        <Link className="flex min-w-0 items-center border-r-2 border-[#773331] px-3 transition hover:bg-[#D3ED66] focus-visible:bg-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] sm:px-5" href={getRoute(locale, "home")}>
+        <Link className="flex min-w-0 items-center border-r-2 border-[#773331] px-3 transition hover:bg-[#FFB200] focus-visible:bg-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] sm:px-5" href={getRoute(locale, "home")}>
           <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 lg:w-32 xl:w-40 2xl:w-44" height={313} priority src="/assets/nulll-new/logo-burgundy.png" width={2449} />
         </Link>
         <nav
@@ -106,7 +106,7 @@ export function SiteHeader({
             </Link>
           </nav>
         </details>
-        <Link className="grid min-h-20 place-items-center bg-[#773331] px-4 text-center font-mono text-xs font-black uppercase text-[#F1EDE9] transition hover:bg-[#D3ED66] hover:text-[#773331] focus-visible:bg-[#D3ED66] focus-visible:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD] sm:px-6" href={getRoute(locale, "runs")}>
+        <Link className="grid min-h-20 place-items-center bg-[#773331] px-4 text-center font-mono text-xs font-black uppercase text-[#F1EDE9] transition hover:bg-[#FFB200] hover:text-[#773331] focus-visible:bg-[#FFB200] focus-visible:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD] sm:px-6" href={getRoute(locale, "runs")}>
           <span className="sm:hidden">Courir</span><span className="hidden sm:inline">Prochaine sortie</span>
         </Link>
       </div>
@@ -150,7 +150,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
           />
 
           <div>
-            <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#D3ED66]">Le rendez-vous</p>
+            <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">Le rendez-vous</p>
             <ul className="mt-5 space-y-3 text-[1.02rem] text-[#F1EDE9]/80">
               <li>Tous les samedis</li>
               <li>08:30</li>
@@ -163,7 +163,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
         <div className="mt-10 flex flex-col gap-3 border-t border-[#F1EDE9]/20 pt-5 font-mono text-xs uppercase tracking-[.12em] text-[#F1EDE9]/60 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 NULLL.CLUB</span>
           <span>Aix-en-Provence, France</span>
-          <span className="text-[#D3ED66]/70">Ouvert à tous</span>
+          <span className="text-[#FFB200]/70">Ouvert à tous</span>
         </div>
       </div>
     </footer>
@@ -173,12 +173,12 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
 function FooterColumn({ title, links }: { title: string; links: Array<{ href: string; label: string }> }) {
   return (
     <div>
-      <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#D3ED66]">{title}</p>
+      <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">{title}</p>
       <ul className="mt-5 space-y-3">
         {links.map((link) => (
           <li key={link.href}>
             <Link
-              className="inline-flex min-h-11 items-center py-2 text-[1.02rem] text-[#F1EDE9]/80 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
+              className="inline-flex min-h-11 items-center py-2 text-[1.02rem] text-[#F1EDE9]/80 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
               href={link.href}
             >
               {link.label}
@@ -212,7 +212,7 @@ export function HeroPanel({
   return (
     <section className="mx-auto grid w-full max-w-[1600px] gap-6 px-5 py-8 sm:px-8 xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.68fr)] xl:px-12 xl:py-12">
       <div className="min-w-0 border-2 border-[#773331] bg-[#F1EDE9] p-5 shadow-[6px_6px_0_#EBA0CD] sm:p-6 sm:shadow-[8px_8px_0_#EBA0CD] xl:p-10">
-        <p className="inline-flex border-2 border-[#773331] bg-[#D3ED66] px-3 py-2 font-mono text-xs font-black uppercase">{stamp} / {label}</p>
+        <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">{stamp} / {label}</p>
         <h1 className="mt-6 max-w-4xl font-display text-[clamp(2.8rem,7.5vw,7.4rem)] uppercase leading-[0.94] sm:mt-8">{title}</h1>
         <p className="mt-6 max-w-2xl text-lg font-bold leading-tight text-[#773331]/80 xl:text-xl">{intro}</p>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">{actions}</div>
@@ -246,7 +246,7 @@ export function SectionTitle({
   const HeadingTag = as;
   return (
     <div className="space-y-4">
-      <p className="inline-flex border-2 border-[#773331] bg-[#D3ED66] px-3 py-2 font-mono text-xs font-black uppercase">{index} / NULLL.CLUB</p>
+      <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">{index} / NULLL.CLUB</p>
       <HeadingTag className="max-w-4xl font-display text-[clamp(2.8rem,6.4vw,6rem)] uppercase leading-[0.94]">{title}</HeadingTag>
       {text ? <p className="max-w-2xl text-xl font-bold leading-tight text-[#773331]/76">{text}</p> : null}
     </div>
@@ -257,7 +257,7 @@ export function PrimaryLink({ href, children, secondary = false }: { href: strin
   return (
     <Link
       className={`group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-[#773331] px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
-        secondary ? "bg-[#F1EDE9] text-[#773331] hover:bg-[#773331] hover:text-[#F1EDE9]" : "bg-[#773331] text-[#F1EDE9] hover:bg-[#D3ED66] hover:text-[#773331]"
+        secondary ? "bg-[#F1EDE9] text-[#773331] hover:bg-[#773331] hover:text-[#F1EDE9]" : "bg-[#773331] text-[#F1EDE9] hover:bg-[#FFB200] hover:text-[#773331]"
       }`}
       href={href}
     >
@@ -269,13 +269,13 @@ export function PrimaryLink({ href, children, secondary = false }: { href: strin
 
 export function RunCard({ run }: { run: RunEvent }) {
   return (
-    <article className="flex h-full flex-col border-2 border-[#773331] bg-[#F1EDE9] p-5 transition hover:-translate-y-1 hover:shadow-[8px_8px_0_#D3ED66]">
+    <article className="flex h-full flex-col border-2 border-[#773331] bg-[#F1EDE9] p-5 transition hover:-translate-y-1 hover:shadow-[8px_8px_0_#FFB200]">
       <div className="flex items-start justify-between gap-4 border-b-2 border-[#773331] pb-4">
         <div>
           <p className="font-mono text-xs font-black uppercase text-[#C32986]">{run.date}</p>
           <h3 className="mt-2 font-display text-[clamp(2rem,4vw,3.6rem)] uppercase leading-[0.92]">{run.title}</h3>
         </div>
-        <p className="border-2 border-[#773331] bg-[#D3ED66] px-2 py-1 text-right font-mono text-xs font-black uppercase">{run.time}</p>
+        <p className="border-2 border-[#773331] bg-[#FFB200] px-2 py-1 text-right font-mono text-xs font-black uppercase">{run.time}</p>
       </div>
       <div className="mt-5 grid gap-2 text-[#773331]/78">
         <p>

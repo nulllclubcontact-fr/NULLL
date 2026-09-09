@@ -90,17 +90,17 @@ export function ResetReminder({ currentMonthPoints }: ResetReminderProps) {
     <section
       aria-live="polite"
       className={`border-2 p-5 md:p-6 ${
-        isUrgent ? "border-[#773331] bg-[#D3ED66] text-[#773331]" : "border-[#773331] bg-[#773331] text-[#F1EDE9] panel-grid"
+        isUrgent ? "border-[#773331] bg-[#FFB200] text-[#773331]" : "border-[#773331] bg-[#773331] text-[#F1EDE9] panel-grid"
       }`}
     >
       <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
         <div>
-          <p className={`font-mono text-sm font-black uppercase ${isUrgent ? "text-[#773331]/70" : "text-[#D3ED66]"}`}>
+          <p className={`font-mono text-sm font-black uppercase ${isUrgent ? "text-[#773331]/70" : "text-[#FFB200]"}`}>
             Reset mensuel
           </p>
           <p className="mt-3 font-display text-[clamp(2.8rem,8vw,6.6rem)] uppercase leading-none">{message}</p>
         </div>
-        <div className={`border-2 p-4 text-right ${isUrgent ? "border-[#773331] bg-[#773331] text-[#D3ED66]" : "border-[#F1EDE9] bg-[#F1EDE9] text-[#773331]"}`}>
+        <div className={`border-2 p-4 text-right ${isUrgent ? "border-[#773331] bg-[#773331] text-[#FFB200]" : "border-[#F1EDE9] bg-[#F1EDE9] text-[#773331]"}`}>
           <p className="font-mono text-xs font-black uppercase tracking-[0.18em]">Reset dans</p>
           <p className="mt-2 font-display text-[clamp(3rem,8vw,6rem)] uppercase leading-none">{formatTimeLeft(timeLeft)}</p>
         </div>

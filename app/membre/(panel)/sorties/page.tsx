@@ -6,7 +6,7 @@ import { createSupabaseServerClient } from "../../../../lib/supabase/server";
 export const metadata = { robots: { index: false, follow: false } };
 
 const ETIQUETTES: Record<string, { texte: string; classe: string }> = {
-  checked_in: { texte: "Présent", classe: "bg-[#D3ED66]" },
+  checked_in: { texte: "Présent", classe: "bg-[#FFB200]" },
   registered: { texte: "Inscrit", classe: "bg-[#F1EDE9]" },
   cancelled: { texte: "Annulée", classe: "bg-[#773331] text-[#F1EDE9]" },
   no_show: { texte: "Absent", classe: "bg-[#EBA0CD]" }

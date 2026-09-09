@@ -127,7 +127,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
         <p className="mt-4 max-w-2xl text-[#773331]/76">
           Nous avons enregistré ta demande. Conserve cette référence et surveille ta boîte mail pour la confirmation.
         </p>
-        <div className="mt-6 inline-flex border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 text-[#773331]">
+        <div className="mt-6 inline-flex border-2 border-[#773331] bg-[#FFB200] px-4 py-3 text-[#773331]">
           <strong>{status.reference}</strong>
         </div>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -182,7 +182,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
             Méthode de remise
           </span>
           <select
-            className="w-full border-2 border-[#773331] bg-[#F1EDE9] p-3 font-mono text-sm outline-none transition focus:bg-[#D3ED66]/20"
+            className="w-full border-2 border-[#773331] bg-[#F1EDE9] p-3 font-mono text-sm outline-none transition focus:bg-[#FFB200]/20"
             onChange={(event) => setForm((current) => ({ ...current, deliveryMethod: event.target.value }))}
             required
             value={form.deliveryMethod}
@@ -197,7 +197,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
             Notes
           </span>
           <textarea
-            className="min-h-[140px] w-full border-2 border-[#773331] bg-[#F1EDE9] p-3 font-mono text-sm outline-none transition focus:bg-[#D3ED66]/20"
+            className="min-h-[140px] w-full border-2 border-[#773331] bg-[#F1EDE9] p-3 font-mono text-sm outline-none transition focus:bg-[#FFB200]/20"
             onChange={(event) => setForm((current) => ({ ...current, notes: event.target.value }))}
             placeholder="Taille souhaitée, préférence de remise, message utile..."
             value={form.notes}
@@ -206,7 +206,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
 
         {status.type === "error" ? <p className="mt-4 text-sm text-[#EBA0CD]" role="alert">{status.message}</p> : null}
 
-        <button aria-busy={status.type === "loading"} className="mt-6 inline-flex min-h-14 w-full items-center justify-center border-2 border-[#773331] bg-[#773331] px-4 py-3 font-mono text-sm font-black uppercase text-[#F1EDE9] transition hover:bg-[#D3ED66] hover:text-[#773331] disabled:opacity-50" disabled={status.type === "loading"} type="submit">
+        <button aria-busy={status.type === "loading"} className="mt-6 inline-flex min-h-14 w-full items-center justify-center border-2 border-[#773331] bg-[#773331] px-4 py-3 font-mono text-sm font-black uppercase text-[#F1EDE9] transition hover:bg-[#FFB200] hover:text-[#773331] disabled:opacity-50" disabled={status.type === "loading"} type="submit">
           {status.type === "loading" ? "Envoi en cours..." : "Envoyer ma demande"}
         </button>
       </form>
@@ -266,7 +266,7 @@ function Field({
   return (
     <label className="block">
       <span className="mb-2 block font-mono text-xs font-black uppercase text-[#773331]/58">{label}</span>
-      <input autoComplete={autoComplete} className="w-full border-2 border-[#773331] bg-[#F1EDE9] p-3 font-mono text-sm outline-none transition focus:bg-[#D3ED66]/20" onChange={(event) => onChange(event.target.value)} required={required} type={type} value={value} />
+      <input autoComplete={autoComplete} className="w-full border-2 border-[#773331] bg-[#F1EDE9] p-3 font-mono text-sm outline-none transition focus:bg-[#FFB200]/20" onChange={(event) => onChange(event.target.value)} required={required} type={type} value={value} />
     </label>
   );
 }

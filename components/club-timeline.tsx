@@ -37,7 +37,7 @@ export function ClubTimeline({ entries }: { entries: TimelineEntry[] }) {
           <p className="mt-4 max-w-[52ch] text-lg leading-relaxed text-[#F1EDE9]/78">{entry.text}</p>
 
           {entry.status === "aVenir" ? (
-            <span className="mt-5 inline-flex border-2 border-dashed border-[#D3ED66]/60 px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#D3ED66]">
+            <span className="mt-5 inline-flex border-2 border-dashed border-[#FFB200]/60 px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#FFB200]">
               À venir
             </span>
           ) : null}

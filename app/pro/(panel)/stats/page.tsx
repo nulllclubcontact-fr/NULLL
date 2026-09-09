@@ -126,7 +126,7 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
   return (
     <section className="shell grid gap-8 py-8 lg:py-12">
       <div>
-        <p className="inline-flex border-2 border-[#773331] bg-[#D3ED66] px-3 py-2 font-mono text-xs font-black uppercase">Stats pro</p>
+        <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">Stats pro</p>
         <h1 className="mt-6 font-display text-[clamp(3.6rem,10vw,8rem)] uppercase leading-[0.94]">Ton vrai CA.</h1>
         <p className="mt-5 max-w-xl font-bold leading-tight text-[#773331]/72">Addition des commandes scannées. Filtré sur ton partenaire. Rien d’autre.</p>
       </div>
@@ -165,7 +165,7 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
                 <div>
                   <h2 className="font-display text-[clamp(2.4rem,6vw,5rem)] uppercase leading-[0.96]">{formatDate(day.day)}</h2>
                   <div className="mt-4 h-4 border-2 border-[#773331] bg-[#F1EDE9]">
-                    <div className="h-full bg-[#D3ED66]" style={{ width: `${(day.revenue / maxRevenue) * 100}%` }} />
+                    <div className="h-full bg-[#FFB200]" style={{ width: `${(day.revenue / maxRevenue) * 100}%` }} />
                   </div>
                 </div>
                 <div className="font-mono text-sm font-black uppercase md:text-right">

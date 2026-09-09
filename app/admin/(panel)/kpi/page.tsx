@@ -197,7 +197,7 @@ export default async function AdminKpiPage({ searchParams }: KpiPageProps) {
                   <div>
                     <p className="font-mono text-xs uppercase  text-[#773331]/55">{formatDate(day.day)}</p>
                     <div className="mt-3 h-4 border-2 border-[#773331] bg-[#F1EDE9]">
-                      <div className="h-full bg-[#D3ED66]" style={{ width: `${(day.revenue / maxRevenue) * 100}%` }} />
+                      <div className="h-full bg-[#FFB200]" style={{ width: `${(day.revenue / maxRevenue) * 100}%` }} />
                     </div>
                   </div>
                   <div className="font-mono text-sm font-black uppercase md:text-right">

@@ -71,7 +71,7 @@ export default async function RunsPage({ params }: PageProps) {
         <div className="relative mx-auto w-full max-w-[1600px] shrink-0 px-5 pt-6 sm:px-8 sm:pt-8 xl:px-12">
           <div className="hero-text-shadow flex flex-col items-start gap-1 border-b border-[#F1EDE9]/45 pb-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
             <span>Social sport club · Aix-en-Provence</span>
-            <span className="text-[#D3ED66]">Ouvert à tous · Gratuit</span>
+            <span className="text-[#FFB200]">Ouvert à tous · Gratuit</span>
           </div>
         </div>
 
@@ -85,7 +85,7 @@ export default async function RunsPage({ params }: PageProps) {
           </h1>
 
           <div className="hero-rise hero-text-shadow flex w-full flex-col items-center" style={{ animationDelay: "280ms" }}>
-            <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#D3ED66]">
+            <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFB200]">
               Prochaine sortie
             </p>
             <p className="mt-3 font-display text-[clamp(1.9rem,4vw,3.4rem)] uppercase leading-none [overflow-wrap:normal]">
@@ -96,7 +96,7 @@ export default async function RunsPage({ params }: PageProps) {
               <Countdown centered isoDate={copy.runs[0].isoDate} />
             </div>
             <SmoothAnchor
-              className="group mt-6 inline-flex min-h-[4.25rem] cursor-pointer items-center justify-center gap-8 border-2 border-[#D3ED66] bg-[#D3ED66] px-8 font-display text-[1.35rem] uppercase leading-none text-[#773331] [text-shadow:none] transition-colors hover:bg-transparent hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
+              className="group mt-6 inline-flex min-h-[4.25rem] cursor-pointer items-center justify-center gap-8 border-2 border-[#FFB200] bg-[#FFB200] px-8 font-display text-[1.35rem] uppercase leading-none text-[#773331] [text-shadow:none] transition-colors hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
               targetId="prochaines-sorties"
             >
               <span>Choisir une date</span>
@@ -107,7 +107,7 @@ export default async function RunsPage({ params }: PageProps) {
 
         <div
           aria-label={tickerCopy}
-          className="marquee relative shrink-0 border-y-2 border-[#773331] bg-[#D3ED66] py-4 text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD]"
+          className="marquee relative shrink-0 border-y-2 border-[#773331] bg-[#FFB200] py-4 text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD]"
           role="region"
           tabIndex={0}
         >
@@ -123,7 +123,7 @@ export default async function RunsPage({ params }: PageProps) {
         <div className="mx-auto max-w-[1600px] px-5 pb-10 pt-16 sm:px-8 sm:pb-12 sm:pt-24 xl:px-12">
           <div className="flex flex-col gap-5 border-b border-[#F1EDE9]/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#D3ED66]">01 — Le calendrier</p>
+              <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">01 — Le calendrier</p>
               <h2 className="mt-4 font-display text-[clamp(3.2rem,6vw,6rem)] uppercase leading-[1.12] tracking-[-.035em]" id="runs-list-title">
                 Prochaine <span className="text-[#EBA0CD]">sortie.</span>
               </h2>
@@ -138,7 +138,7 @@ export default async function RunsPage({ params }: PageProps) {
 
           <div
             aria-label="Prochaines sorties, carrousel horizontal"
-            className="run-carousel -ml-4 mt-1 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pl-4 pr-[10%] pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66] sm:-ml-6 sm:gap-8 sm:pl-6 sm:pr-[18%] xl:-ml-10 xl:pl-10"
+            className="run-carousel -ml-4 mt-1 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pl-4 pr-[10%] pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200] sm:-ml-6 sm:gap-8 sm:pl-6 sm:pr-[18%] xl:-ml-10 xl:pl-10"
             role="region"
             tabIndex={0}
           >
@@ -152,7 +152,7 @@ export default async function RunsPage({ params }: PageProps) {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <section className="bg-[#D3ED66] text-[#773331]" aria-labelledby="runs-faq">
+      <section className="bg-[#FFB200] text-[#773331]" aria-labelledby="runs-faq">
         <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-28 xl:px-12">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em]">02 — Les questions</p>
           <h2
@@ -183,7 +183,7 @@ export default async function RunsPage({ params }: PageProps) {
               Il reste une question ?
             </p>
             <Link
-              className="group inline-flex min-h-[4rem] items-center justify-between gap-10 border-2 border-[#D3ED66] bg-[#D3ED66] px-7 font-display text-[1.35rem] uppercase leading-none text-[#773331] transition-colors hover:bg-transparent hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
+              className="group inline-flex min-h-[4rem] items-center justify-between gap-10 border-2 border-[#FFB200] bg-[#FFB200] px-7 font-display text-[1.35rem] uppercase leading-none text-[#773331] transition-colors hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
               href={contactHref}
             >
               <span>{copy.runsPage.cta}</span>
@@ -199,7 +199,7 @@ export default async function RunsPage({ params }: PageProps) {
 
 function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string; run: RunEvent }) {
   const visuals = [
-    { src: "/assets/photos/runs-golden.webp", position: "object-[50%_58%]", accent: "bg-[#D3ED66] text-[#773331]" },
+    { src: "/assets/photos/runs-golden.webp", position: "object-[50%_58%]", accent: "bg-[#FFB200] text-[#773331]" },
     { src: "/assets/photos/runs-motion.webp", position: "object-center", accent: "bg-[#EBA0CD] text-[#773331]" },
     { src: "/assets/photos/runs-crew.webp", position: "object-center", accent: "bg-[#F1EDE9] text-[#773331]" }
   ];
@@ -208,7 +208,7 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
   return (
     <Reveal
       as="article"
-      className={`run-poster group relative overflow-hidden text-[#F1EDE9] ${index === 0 ? "run-poster--featured border-[6px] border-[#D3ED66]" : "border-2 border-[#F1EDE9]"}`}
+      className={`run-poster group relative overflow-hidden text-[#F1EDE9] ${index === 0 ? "run-poster--featured border-[6px] border-[#FFB200]" : "border-2 border-[#F1EDE9]"}`}
       delay={index * 100}
     >
       <Image alt="" className={`run-card-image object-cover ${visual.position}`} fill sizes="(min-width: 1280px) 72vw, (min-width: 640px) 78vw, 90vw" src={visual.src} />
@@ -232,7 +232,7 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
             <span className="bg-[#773331] px-4 py-3">{run.distance}</span>
             <a
               aria-label={`Ouvrir le lieu de départ ${run.location} dans Google Maps`}
-              className="inline-flex min-h-14 items-center gap-3 bg-[#F1EDE9] px-4 py-2.5 text-[#773331] transition-colors hover:bg-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#D3ED66]"
+              className="inline-flex min-h-14 items-center gap-3 bg-[#F1EDE9] px-4 py-2.5 text-[#773331] transition-colors hover:bg-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#FFB200]"
               href={mapsUrl(run.address)}
               rel="noreferrer noopener"
               target="_blank"

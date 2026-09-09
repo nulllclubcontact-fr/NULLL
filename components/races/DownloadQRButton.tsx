@@ -34,7 +34,7 @@ export function DownloadQRButton({ token, nom }: { token: string; nom: string })
 
   return (
     <button
-      className="inline-flex min-h-11 items-center border-2 border-[#773331] bg-[#773331] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#F1EDE9] transition hover:bg-[#EBA0CD] hover:text-[#773331] focus-visible:bg-[#EBA0CD] focus-visible:text-[#773331] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D3ED66]"
+      className="inline-flex min-h-11 items-center border-2 border-[#773331] bg-[#773331] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#F1EDE9] transition hover:bg-[#EBA0CD] hover:text-[#773331] focus-visible:bg-[#EBA0CD] focus-visible:text-[#773331] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFB200]"
       onClick={telecharger}
       type="button"
     >

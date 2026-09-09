@@ -50,7 +50,7 @@ export default async function AdminCoursesLayout({ children }: { children: React
 
           {/* Le scanner est l'outil du jour de course : il se distingue. */}
           <Link
-            className="inline-flex min-h-11 items-center border-2 border-[#773331] bg-[#773331] px-3 font-mono text-xs font-black uppercase tracking-[.1em] text-[#F1EDE9] transition hover:bg-[#D3ED66] hover:text-[#773331]"
+            className="inline-flex min-h-11 items-center border-2 border-[#773331] bg-[#773331] px-3 font-mono text-xs font-black uppercase tracking-[.1em] text-[#F1EDE9] transition hover:bg-[#FFB200] hover:text-[#773331]"
             href="/admin/scanner"
           >
             Scanner

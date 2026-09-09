@@ -21,7 +21,7 @@ export function RegisterButton({ raceId, disabled, disabledLabel }: { raceId: st
     <form action={formAction} className="grid gap-2">
       <input name="race_id" type="hidden" value={raceId} />
       <button
-        className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#D3ED66] enabled:hover:text-[#773331]"
+        className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#FFB200] enabled:hover:text-[#773331]"
         disabled={pending}
         type="submit"
       >
@@ -49,14 +49,14 @@ export function CancelButton({ registrationId }: { registrationId: string }) {
     <form action={formAction} className="grid gap-2">
       <input name="registration_id" type="hidden" value={registrationId} />
       <button
-        className="inline-flex min-h-11 w-fit items-center font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#F1EDE9]/55 underline decoration-[#F1EDE9]/30 decoration-2 underline-offset-4 transition hover:text-[#F1EDE9] hover:decoration-[#EBA0CD] focus-visible:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]"
+        className="inline-flex min-h-11 w-fit items-center font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#F1EDE9]/55 underline decoration-[#F1EDE9]/30 decoration-2 underline-offset-4 transition hover:text-[#F1EDE9] hover:decoration-[#EBA0CD] focus-visible:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
         disabled={pending}
         type="submit"
       >
         {pending ? "Annulation…" : "Je ne pourrai pas venir"}
       </button>
       {state.error ? (
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#D3ED66]" role="alert">
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#FFB200]" role="alert">
           {state.error}
         </p>
       ) : null}

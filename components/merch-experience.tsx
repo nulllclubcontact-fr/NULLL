@@ -59,7 +59,7 @@ export function MerchExperience({ locale }: { locale: Locale }) {
       </div>
 
       <aside className="sticky top-28 h-fit border-2 border-[#773331] bg-[#3A1A18] p-6 text-[#F1EDE9] shadow-[10px_10px_0_#EBA0CD]">
-        <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#D3ED66] [word-spacing:.18em]">Panier</p>
+        <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200] [word-spacing:.18em]">Panier</p>
         <p className="mt-4 font-display text-[clamp(2.4rem,3.6vw,3.6rem)] uppercase leading-[1.12] tracking-[-.03em]">
           {count} pièce
           {count > 1 ? "s" : ""}
@@ -92,7 +92,7 @@ export function MerchExperience({ locale }: { locale: Locale }) {
         <div className="mt-8 border-t-2 border-[#F1EDE9] pt-6">
           <div className="flex items-baseline justify-between gap-4">
             <span className="font-mono text-[.62rem] font-black uppercase tracking-[.18em] text-[#F1EDE9]/55">Total estimé</span>
-            <strong className="font-display text-[clamp(1.8rem,2.6vw,2.4rem)] uppercase leading-none tracking-[-.02em] text-[#D3ED66]">{total} EUR</strong>
+            <strong className="font-display text-[clamp(1.8rem,2.6vw,2.4rem)] uppercase leading-none tracking-[-.02em] text-[#FFB200]">{total} EUR</strong>
           </div>
         </div>
 
@@ -103,7 +103,7 @@ export function MerchExperience({ locale }: { locale: Locale }) {
           className={`mt-7 inline-flex min-h-16 w-full items-center justify-between gap-4 border-2 px-6 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] transition-colors focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9] ${
             count === 0
               ? "border-[#F1EDE9]/30 text-[#F1EDE9]/40"
-              : "border-[#D3ED66] bg-[#D3ED66] text-[#773331] hover:bg-transparent hover:text-[#D3ED66]"
+              : "border-[#FFB200] bg-[#FFB200] text-[#773331] hover:bg-transparent hover:text-[#FFB200]"
           }`}
           disabled={count === 0}
           onClick={() => ouvrirCadre(commandeRef.current)}
@@ -135,7 +135,7 @@ export function MerchExperience({ locale }: { locale: Locale }) {
 
             <div className="mt-8 flex flex-col gap-3">
               <Link
-                className="inline-flex min-h-14 items-center justify-center border-2 border-[#D3ED66] bg-[#D3ED66] px-6 text-center font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#773331] transition-colors hover:bg-transparent hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
+                className="inline-flex min-h-14 items-center justify-center border-2 border-[#FFB200] bg-[#FFB200] px-6 text-center font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#773331] transition-colors hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
                 href={getRoute(locale, "runs")}
               >
                 Va courir plutôt
@@ -216,7 +216,7 @@ export function MerchNotice({ runsHref }: { runsHref: string }) {
   return (
     <CadreModal cadreRef={ref} titreId="merch-notice-title">
       <>
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#D3ED66] [word-spacing:.22em]">Petit problème</p>
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#FFB200] [word-spacing:.22em]">Petit problème</p>
         <h2 className="mt-5 font-display text-[clamp(2rem,6vw,2.9rem)] uppercase leading-[1.12] tracking-[-.03em]" id="merch-notice-title">
           La boutique est vide.
         </h2>
@@ -227,7 +227,7 @@ export function MerchNotice({ runsHref }: { runsHref: string }) {
 
         {/* Le releve reste en mono : c'est la seule enumeration gardee, et
             c'est celle qui porte la blague le plus vite. */}
-        <ul className="mt-5 space-y-2 border-l-2 border-[#D3ED66] pl-4 font-mono text-[.72rem] font-black uppercase leading-snug tracking-[.06em] text-[#F1EDE9]/75 [word-spacing:.14em]">
+        <ul className="mt-5 space-y-2 border-l-2 border-[#FFB200] pl-4 font-mono text-[.72rem] font-black uppercase leading-snug tracking-[.06em] text-[#F1EDE9]/75 [word-spacing:.14em]">
           <li>Stock : 0.</li>
           <li>Impressions : 0.</li>
           <li>Budget : on préfère ne pas en parler.</li>
@@ -243,7 +243,7 @@ export function MerchNotice({ runsHref }: { runsHref: string }) {
         </p>
 
         {/* La chute : en display, elle se detache du reste du texte. */}
-        <p className="mt-6 font-display text-[clamp(1.35rem,3.4vw,1.8rem)] uppercase leading-[1.12] tracking-[-.02em] text-[#D3ED66]">
+        <p className="mt-6 font-display text-[clamp(1.35rem,3.4vw,1.8rem)] uppercase leading-[1.12] tracking-[-.02em] text-[#FFB200]">
           De toute façon, on ne peut littéralement rien te vendre.
         </p>
 
@@ -251,7 +251,7 @@ export function MerchNotice({ runsHref }: { runsHref: string }) {
             la ligne au milieu d'un mot. */}
         <div className="mt-8 flex flex-col gap-3">
           <button
-            className="inline-flex min-h-14 flex-1 items-center justify-center border-2 border-[#D3ED66] bg-[#D3ED66] px-6 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#773331] transition-colors hover:bg-transparent hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
+            className="inline-flex min-h-14 flex-1 items-center justify-center border-2 border-[#FFB200] bg-[#FFB200] px-6 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#773331] transition-colors hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
             onClick={() => ref.current?.close()}
             type="button"
           >
@@ -338,7 +338,7 @@ function ProductCard({
               <span aria-hidden="true" className="w-9 text-center font-display text-2xl leading-none">{quantity}</span>
               <button
                 aria-label={`Ajouter un exemplaire de ${product.name}`}
-                className="grid h-11 w-11 place-items-center border-2 border-[#773331] font-mono text-lg font-black transition-colors hover:bg-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#EBA0CD]"
+                className="grid h-11 w-11 place-items-center border-2 border-[#773331] font-mono text-lg font-black transition-colors hover:bg-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#EBA0CD]"
                 onClick={() => setCart((current) => upsertCartItem(current, product.id, quantity + 1))}
                 type="button"
               >
@@ -356,7 +356,7 @@ function ProductCard({
               ensuite il ne fait plus qu'emmener au panier. */}
           {inCart ? (
             <Link
-              className="mt-5 flex min-h-16 w-full items-center justify-between border-2 border-[#773331] bg-[#D3ED66] px-5 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#773331] transition-colors hover:bg-[#773331] hover:text-[#F1EDE9] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]"
+              className="mt-5 flex min-h-16 w-full items-center justify-between border-2 border-[#773331] bg-[#FFB200] px-5 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#773331] transition-colors hover:bg-[#773331] hover:text-[#F1EDE9] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]"
               href={checkoutHref}
             >
               <span>Voir le panier</span>
@@ -365,7 +365,7 @@ function ProductCard({
           ) : (
             <button
               aria-label={`Ajouter ${product.name} au panier`}
-              className="mt-5 flex min-h-16 w-full items-center justify-between border-2 border-[#773331] bg-[#773331] px-5 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#F1EDE9] transition-colors hover:bg-[#D3ED66] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]"
+              className="mt-5 flex min-h-16 w-full items-center justify-between border-2 border-[#773331] bg-[#773331] px-5 font-mono text-xs font-black uppercase tracking-[.1em] [word-spacing:.12em] text-[#F1EDE9] transition-colors hover:bg-[#FFB200] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]"
               onClick={() => setCart((current) => upsertCartItem(current, product.id, 1))}
               type="button"
             >

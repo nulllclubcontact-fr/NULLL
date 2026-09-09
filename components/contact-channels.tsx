@@ -48,7 +48,7 @@ export function ContactChannels({ channels }: { channels: Channel[] }) {
   }
 
   return (
-    <ul className="border-b-2 border-[#773331] bg-[#D3ED66] text-[#773331]">
+    <ul className="border-b-2 border-[#773331] bg-[#FFB200] text-[#773331]">
       {channels.map((channel, index) => {
         const externe = channel.href.startsWith("http");
         const copiable = valeurCopiable(channel);
@@ -83,7 +83,7 @@ export function ContactChannels({ channels }: { channels: Channel[] }) {
 
             <button
                 aria-label={`Copier ${channel.title.toLowerCase()} : ${copiable}`}
-                className={`${actif ? `copy-done bg-[#773331] ${actif.ok ? "text-[#D3ED66]" : "text-[#EBA0CD]"}` : "bg-transparent"} w-[4.5rem] shrink-0 border-l-2 border-[#773331] font-mono text-[.58rem] font-black uppercase tracking-[.1em] sm:text-[.62rem] sm:tracking-[.14em] transition-colors hover:bg-[#773331] hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-[#773331] sm:w-32`}
+                className={`${actif ? `copy-done bg-[#773331] ${actif.ok ? "text-[#FFB200]" : "text-[#EBA0CD]"}` : "bg-transparent"} w-[4.5rem] shrink-0 border-l-2 border-[#773331] font-mono text-[.58rem] font-black uppercase tracking-[.1em] sm:text-[.62rem] sm:tracking-[.14em] transition-colors hover:bg-[#773331] hover:text-[#FFB200] focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-[#773331] sm:w-32`}
               onClick={() => copier(channel.title, copiable)}
               type="button"
             >

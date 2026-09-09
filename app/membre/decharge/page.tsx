@@ -38,7 +38,7 @@ export default function MemberWaiverPage() {
       <AccountHeader />
       <section className="shell grid gap-8 py-10">
         <div>
-          <p className="inline-flex border-2 border-[#773331] bg-[#D3ED66] px-3 py-2 font-mono text-xs font-black uppercase">Décharge / membre</p>
+          <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">Décharge / membre</p>
           <h1 className="mt-6 font-display text-[clamp(3.4rem,9vw,7.6rem)] uppercase leading-[0.94]">
             Décharge de responsabilité.
           </h1>

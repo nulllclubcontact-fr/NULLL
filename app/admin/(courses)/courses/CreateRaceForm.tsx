@@ -66,7 +66,7 @@ export function CreateRaceForm() {
         </label>
 
         {state.error ? (
-          <p className="border-2 border-[#773331] bg-[#D3ED66] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
+          <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
             {state.error}
           </p>
         ) : null}

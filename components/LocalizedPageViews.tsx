@@ -33,12 +33,12 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       <section className="border-b-2 border-[#773331] bg-[#3A1A18] text-[#F1EDE9]" aria-labelledby="club-title">
         <div className="mx-auto grid max-w-[1600px] gap-12 px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16 xl:px-12">
           <div>
-            <h1 className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#D3ED66]" id="club-title" style={{ animationDelay: "60ms" }}>
+            <h1 className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFB200]" id="club-title" style={{ animationDelay: "60ms" }}>
               {page.title}
             </h1>
             <p className="hero-rise mt-6 font-display text-[clamp(2.4rem,4.6vw,4.6rem)] uppercase leading-[1.12] tracking-[-.035em]" style={{ animationDelay: "150ms" }}>
               {page.punchlineLines.map((ligne, index) => (
-                <span className={`block ${index === 1 ? "text-[#D3ED66]" : ""}`} key={ligne}>
+                <span className={`block ${index === 1 ? "text-[#FFB200]" : ""}`} key={ligne}>
                   {ligne}
                 </span>
               ))}
@@ -72,7 +72,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
               />
             </div>
             <figcaption className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1 font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#F1EDE9]/55">
-              <span className="text-[#D3ED66]">Tom Brenier &amp; Tobias Ringot</span>
+              <span className="text-[#FFB200]">Tom Brenier &amp; Tobias Ringot</span>
               <span>Fondateurs — Aix-en-Provence</span>
             </figcaption>
           </figure>
@@ -158,7 +158,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             <div className="mt-10 max-w-[72ch] space-y-10">
             {page.editorial.map((bloc) => (
               <Reveal className="border-t-2 border-[#F1EDE9]/25 pt-6" key={bloc.heading}>
-                <h3 className="font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-[1.12] text-[#D3ED66]">{bloc.heading}</h3>
+                <h3 className="font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-[1.12] text-[#FFB200]">{bloc.heading}</h3>
                 <p className="mt-4 max-w-[68ch] text-lg leading-relaxed text-[#F1EDE9]/82">{bloc.body}</p>
               </Reveal>
             ))}
@@ -166,15 +166,15 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
 
           <p className="mt-10 max-w-[72ch] text-lg leading-relaxed text-[#F1EDE9]/82">
             Pour aller plus loin :{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#D3ED66] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]" href={localClubHref}>
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]" href={localClubHref}>
               le run club à Aix-en-Provence
             </Link>
             ,{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#D3ED66] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]" href={localRunningHref}>
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]" href={localRunningHref}>
               où courir à Aix-en-Provence
             </Link>{" "}
             et{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#D3ED66] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D3ED66]" href={runsHref}>
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]" href={runsHref}>
               les prochaines sorties
             </Link>
             .
@@ -183,7 +183,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <section className="border-t-2 border-[#773331] bg-[#D3ED66] text-[#773331]" aria-labelledby="club-faq">
+      <section className="border-t-2 border-[#773331] bg-[#FFB200] text-[#773331]" aria-labelledby="club-faq">
         <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
           <h2 className="max-w-[14ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] uppercase leading-[1.12] tracking-[-.03em]" id="club-faq">
             {page.faqTitle}
@@ -211,7 +211,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             </h2>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-[#F1EDE9]/82">{page.firstRunText}</p>
             <Link
-              className="mt-8 inline-flex min-h-16 items-center justify-center border-2 border-[#D3ED66] bg-[#D3ED66] px-7 font-mono text-xs font-black uppercase tracking-[.1em] text-[#773331] transition-colors hover:bg-transparent hover:text-[#D3ED66] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
+              className="mt-8 inline-flex min-h-16 items-center justify-center border-2 border-[#FFB200] bg-[#FFB200] px-7 font-mono text-xs font-black uppercase tracking-[.1em] text-[#773331] transition-colors hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
               href={runsHref}
             >
               Voir les prochaines sorties
@@ -248,7 +248,7 @@ export function CheckoutPageView({ locale }: { locale: Locale }) {
     <SiteShell current="merch" locale={locale} pathname={getRoute(locale, "checkout")}>
       <section className="mx-auto w-full max-w-[1600px] px-5 py-10 sm:px-8 xl:px-12 xl:py-14">
         <SectionTitle as="h1" index="11" text={copy.checkoutPage.intro} title={copy.checkoutPage.title} />
-        <div className="mt-10 max-w-4xl border-2 border-[#773331] bg-[#F1EDE9] p-5 shadow-[8px_8px_0_#D3ED66]">
+        <div className="mt-10 max-w-4xl border-2 border-[#773331] bg-[#F1EDE9] p-5 shadow-[8px_8px_0_#FFB200]">
           <CheckoutForm locale={locale} />
         </div>
       </section>

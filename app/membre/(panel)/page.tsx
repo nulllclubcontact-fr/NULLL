@@ -65,7 +65,7 @@ export default async function MemberDashboardPage() {
       {/* ---------------- BANDEAU D'ACCUEIL ---------------- */}
       <section className="border-b-2 border-[#773331] bg-[#773331] text-[#F1EDE9]">
         <div className="shell py-10 lg:py-14">
-          <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#D3ED66]">Espace membre</p>
+          <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFB200]">Espace membre</p>
           <h1 className="mt-4 font-display text-[clamp(2.8rem,8vw,5.6rem)] uppercase leading-[.92]">
             Salut {profile?.first_name ?? "toi"}
             <span className="text-[#EBA0CD]">.</span>
@@ -100,7 +100,7 @@ export default async function MemberDashboardPage() {
       </section>
 
       {/* ---------------- SORTIES OUVERTES ---------------- */}
-      <section className="border-b-2 border-[#773331] bg-[#D3ED66] text-[#773331]">
+      <section className="border-b-2 border-[#773331] bg-[#FFB200] text-[#773331]">
         <div className="shell py-10 lg:py-14">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="font-display text-[clamp(2rem,5vw,3.2rem)] uppercase leading-[.98]">
@@ -202,7 +202,7 @@ function CarteInscription({ inscription, qrSvg }: { inscription: RegistrationWit
   return (
     <li className="flex flex-col gap-5 border-2 border-[#773331] bg-[#773331] p-5 text-[#F1EDE9] shadow-[10px_10px_0_#EBA0CD] sm:p-6">
       <div>
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#D3ED66]">
+        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#FFB200]">
           {formatJour(course.start_datetime)} · {formatHeure(course.start_datetime)}
         </p>
         <h3 className="mt-3 font-display text-[clamp(1.7rem,3.6vw,2.4rem)] uppercase leading-[1.02]">{course.title}</h3>
@@ -223,7 +223,7 @@ function CarteInscription({ inscription, qrSvg }: { inscription: RegistrationWit
 
         <div className="min-w-[10rem] flex-1">
           {inscription.checked_in ? (
-            <p className="inline-flex border-2 border-[#773331] bg-[#D3ED66] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#773331]">
+            <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#773331]">
               Présence validée
             </p>
           ) : (
