@@ -21,74 +21,26 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
 
   return (
     <HomeJourney>
-      <section className="home-cinema" aria-label="Découvrir NULLL.CLUB au fil du parcours">
-        <span className="cinema-anchor cinema-infos-anchor" id="home-intro-infos" />
-        <div className="cinema-stage">
-          {/* Les deux premiers panneaux etaient du texte sur du noir : ca
-              manquait de sport et de mouvement. Un coureur en flou de
-              filé passe derriere, tres assombri, et s'efface avant que la
-              carte n'arrive pour ne pas lui disputer l'ecran.
-              Purement decoratif : alt vide, aria-hidden. */}
-          <div aria-hidden="true" className="cinema-backdrop">
-            <Image
-              alt=""
-              className="cinema-backdrop-photo"
-              fill
-              priority
-              sizes="100vw"
-              src="/assets/photos/motion-run.webp"
-            />
-          </div>
-          <a className="cinema-skip home-label" href="#home-next-runs">Passer l’intro <span aria-hidden="true">↘</span></a>
-
-          <div className="cinema-logo-scene">
-            <h1 id="home-title"><Image src="/assets/nulll-new/logo-cream.png" alt="NULLL.CLUB — run club à Aix-en-Provence" width={2449} height={313} priority sizes="85vw" /></h1>
-            <p className="home-label cinema-logo-location">Aix-en-Provence · Social sport club</p>
-            <a href="#home-intro-infos" className="cinema-scroll home-label"><span className="home-hand">Tout commence ici.</span><span>Scroll pour découvrir <span aria-hidden="true">↓</span></span></a>
-          </div>
-
-          <section className="cinema-stats-scene" aria-labelledby="cinema-stats-title">
-            <div className="cinema-stats-heading"><p className="home-hand home-hand-kicker">Pas besoin d’être un grand coureur.</p><h2 id="cinema-stats-title">On court<br /><span>ensemble.</span></h2><p>Tous les samedis.<br />On vient pour courir. On revient pour les gens.</p></div>
-            <dl className="cinema-stats">
-              <div><dt className="home-label">Le parcours du samedi</dt><dd>5,07<span>km</span></dd><dd className="cinema-stat-note">Allure conversation · +45 m</dd></div>
-              <div><dt className="home-label">Le rendez-vous</dt><dd>8<span>h</span>30</dd><dd className="cinema-stat-note">Parking Émile Zola · Aix-en-Provence</dd></div>
-              <div><dt className="home-label">Pour tout le monde</dt><dd>0<span>€</span></dd><dd className="cinema-stat-note">Gratuit · Sans inscription<br />Sans niveau minimum</dd></div>
-            </dl>
-          </section>
-
-          <section className="cinema-map-scene" aria-labelledby="cinema-map-title">
-            <div className="cinema-map-background" />
-            <div className="cinema-map-heading"><span className="home-label">Le parcours du samedi</span><h2 id="cinema-map-title">Un tracé.<br /><span>Notre point de rencontre.</span></h2></div>
-            <div className="cinema-map-canvas">
-              <svg className="cinema-map-svg" viewBox={PARCOURS_SAMEDI.viewBox} role="img" aria-label="Carte du parcours de 5,07 km à Aix-en-Provence. Départ au parking Émile Zola.">
-                <g className="cinema-streets" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <g className="cinema-water">{PARCOURS_SAMEDI.eau.map((path, i) => <path key={i} d={path} />)}</g>
-                  <g className="cinema-minor-roads">{PARCOURS_SAMEDI.mineures.map((path, i) => <path key={i} d={path} />)}</g>
-                  <g className="cinema-major-roads">{PARCOURS_SAMEDI.majeures.map((path, i) => <path key={i} d={path} />)}</g>
-                </g>
-                <path className="cinema-route-halo" d={PARCOURS_SAMEDI.trace} fill="none" />
-                <path className="cinema-route-white" d={PARCOURS_SAMEDI.trace} fill="none" pathLength={1} strokeDasharray="1" />
-                <path className="cinema-route-yellow" d={PARCOURS_SAMEDI.trace} fill="none" pathLength={1} strokeDasharray="1" />
-                <g className="cinema-depart-marker" transform={`translate(${PARCOURS_SAMEDI.depart.x} ${PARCOURS_SAMEDI.depart.y})`}>
-                  <circle r="13" /><circle r="4" />
-                  <path d="M 0 -16 L 0 -57 L 65 -57" fill="none" />
-                  <rect x="55" y="-87" width="200" height="49" rx="0" />
-                  <text x="68" y="-67">DÉPART / ARRIVÉE</text><text x="68" y="-49">Parking Émile Zola</text>
-                </g>
-              </svg>
-            </div>
-            <div className="cinema-map-geography home-label"><span>Aix-en-Provence</span><span>43.50989° N / 5.46133° E</span></div>
-            <div className="cinema-route-distance"><strong>5,07</strong><span className="home-label">km ensemble<br />+45 m · Allure conversation</span></div>
-            {nextRun && <div className="cinema-meetup"><span className="home-label">Prochaine sortie</span><strong>{nextRun.date}</strong><p>Parking Émile Zola · Aix-en-Provence<br />{nextRun.time} · {nextRun.distance} · {nextRun.location}</p><Link href={runsHref} className="home-label">Je viens samedi <ArrowIcon /></Link></div>}
-            <span className="cinema-map-credit">© les contributeurs OpenStreetMap</span>
-          </section>
-          <div className="cinema-progress" aria-hidden="true"><span className="home-label cinema-progress-label">NULLL.CLUB</span><div><span /></div><span className="home-label">Scroll ↓</span></div>
+      {/* ---------------- LE HERO ----------------
+           L'intro tenait en quatre panneaux epingles, pilotes par le
+           defilement : 3500 px a franchir avant le premier contenu, et
+           une sensation de rame sur telephone. Une affiche suffit —
+           une photo, une phrase, trois chiffres, une action. */}
+      <section className="home-hero" aria-labelledby="home-title">
+        {/* Le groupe qui court dans une rue d'Aix : le club, la ville et
+            le collectif dans la meme image. */}
+        <Image alt="" className="home-hero-photo" fill priority sizes="100vw" src="/assets/photos/hero-nulll-aix-v2.webp" />
+        <div className="home-hero-contenu">
+          <p className="home-label home-hero-chapeau">Run club · Aix-en-Provence</p>
+          <h1 id="home-title">Samedi<br /><span>on sort.</span></h1>
+          <dl className="home-hero-chiffres">
+            <div><dt className="home-label">Le samedi</dt><dd>8<span>h</span>30</dd></div>
+            <div><dt className="home-label">Allure conversation</dt><dd>5–6<span>km</span></dd></div>
+            <div><dt className="home-label">Sans inscription</dt><dd>0<span>€</span></dd></div>
+          </dl>
+          <a className="home-hero-action" href="#home-dates-section">Prochaines sorties <ArrowIcon /></a>
         </div>
       </section>
-
-      <div className="home-manifesto-strip" aria-label="Gratuit, sans inscription, sans niveau minimum">
-        <span>Pas de chrono.</span><span className="home-strip-star" aria-hidden="true">✳</span><span>Pas de pression.</span><span className="home-strip-star" aria-hidden="true">✳</span><span>Juste nous.</span>
-      </div>
 
       <section className="home-dates home-section" id="home-dates-section" aria-labelledby="home-next-runs">
         <div className="home-section-top home-label"><span>01 — On se retrouve</span><span className="home-hand">Le samedi, c’est ici.</span></div>
