@@ -26,6 +26,8 @@ export type RunEvent = {
   address: string;
   summary: string;
   afterRun: string;
+  /** Photo choisie dans l'admin ; a defaut, la page prend une photo du club. */
+  image?: string | null;
 };
 
 export type Product = {

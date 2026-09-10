@@ -5,6 +5,10 @@ import { SiteShell } from "../../components/site-shell";
 import { resolveLocale } from "../../lib/locale";
 import { buildFaqSchema, buildOrganizationSchema, buildPageMetadata, buildSportsLocationSchema, buildWebSiteSchema } from "../../lib/seo";
 import { getRoute, getSiteCopy } from "../../lib/site-content";
+import { listPublicRuns } from "../../lib/races/repo";
+
+// Memes sorties que la page « Sorties », lues en base et regenerees chaque minute.
+export const revalidate = 60;
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -27,7 +31,7 @@ export default async function LocaleHomePage({ params }: PageProps) {
         merchHref={getRoute(locale, "merch")}
         localClubHref={getRoute(locale, "localClub")}
         localRunningHref={getRoute(locale, "localRunning")}
-        runs={copy.runs}
+        runs={await listPublicRuns()}
         runsHref={getRoute(locale, "runs")}
       />
     </SiteShell>

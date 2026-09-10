@@ -62,6 +62,12 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
             </figure>
           </div>
           <ol className="home-run-list">
+            {runs.length === 0 ? (
+              <li className="home-run-row home-run-first" data-home-reveal>
+                <p className="home-run-location">Nouvelles dates très bientôt.</p>
+                <Link className="home-run-link home-label" href={runsHref}><span>Voir les sorties</span><ArrowIcon /></Link>
+              </li>
+            ) : null}
             {runs.map((run, index) => {
               const [weekday, day, ...month] = run.date.split(" ");
               return <li className={`home-run-row ${index === 0 ? "home-run-first" : ""}`} key={run.id} data-home-reveal>

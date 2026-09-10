@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { requireAdminUser } from "../../../../../lib/admin/require-admin";
 import { formatDistance, formatHeure, formatJour } from "../../../../../components/races/format";
 import type { Race } from "../../../../../lib/races/types";
+import { Intitule } from "../../../../../components/admin/graphiques";
+import { FormulairePhotoCourse } from "../../../../../components/admin/champ-photo";
+import { SuppressionCourse } from "../SuppressionCourse";
 
 export const metadata = { robots: { index: false, follow: false } };
 
@@ -78,6 +81,7 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
           <a className="secondary-link" href={`/admin/courses/${course.id}/export`}>
             Export CSV
           </a>
+          <SuppressionCourse id={course.id} inscrits={actifs.length} titre={course.title} />
         </div>
       </header>
 
@@ -89,6 +93,13 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
           </div>
         ))}
       </dl>
+
+      <div>
+        <Intitule>Photo de la sortie</Intitule>
+        <div className="mt-5">
+          <FormulairePhotoCourse initiale={course.cover_image_url} raceId={course.id} />
+        </div>
+      </div>
 
       <div>
         <h2 className="border-b-2 border-[#773331] pb-3 font-mono text-xs font-black uppercase tracking-[.18em]">

@@ -1,12 +1,15 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { createRace, type CourseState } from "../../courses-actions";
+import { ChampPhoto } from "../../../../components/admin/champ-photo";
 
 const initial: CourseState = {};
 
 export function CreateRaceForm() {
   const [state, formAction, pending] = useActionState(createRace, initial);
+  // Tant que la photo part vers Supabase, on ne cree pas la sortie sans elle.
+  const [envoiPhoto, setEnvoiPhoto] = useState(false);
 
   return (
     <details className="panel p-5">
@@ -30,6 +33,10 @@ export function CreateRaceForm() {
           <span>Description</span>
           <textarea className="field min-h-20" name="description" rows={2} />
         </label>
+
+        {/* La cle change a chaque creation reussie : le champ repart vide
+            au lieu de proposer la photo de la sortie precedente. */}
+        <ChampPhoto key={state.cle ?? 0} onEnvoi={setEnvoiPhoto} />
 
         <div className="grid gap-3.5 sm:grid-cols-2">
           <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
@@ -55,7 +62,7 @@ export function CreateRaceForm() {
             <span>Statut</span>
             <select className="field" defaultValue="draft" name="status">
               <option value="draft">Brouillon</option>
-              <option value="published">Publiée</option>
+              <option value="published">Publiée (visible sur le site)</option>
             </select>
           </label>
         </div>
@@ -71,13 +78,13 @@ export function CreateRaceForm() {
           </p>
         ) : null}
         {state.message ? (
-          <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#773331]/60" role="status">
+          <p className="font-mono text-xs font-black uppercase tracking-[.12em]" role="status">
             {state.message}
           </p>
         ) : null}
 
-        <button className="primary-button" disabled={pending} type="submit">
-          {pending ? "Création…" : "Créer"}
+        <button className="primary-button" disabled={pending || envoiPhoto} type="submit">
+          {pending ? "Création…" : envoiPhoto ? "Photo en cours d’envoi…" : "Créer"}
         </button>
       </form>
     </details>

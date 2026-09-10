@@ -3,10 +3,23 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { isAdminUser } from "../../lib/admin/require-admin";
+import { supabaseUrl } from "../../lib/supabase/config";
+import { createSupabaseServiceClient } from "../../lib/supabase/service";
 import type { CheckinOutcome, RaceStatus } from "../../lib/races/types";
 
-export type CourseState = { error?: string; message?: string };
+export type CourseState = { error?: string; message?: string; cle?: number };
 export type ScanState = { resultat?: CheckinOutcome; error?: string };
+export type EnvoiPhoto = { ok: true; path: string; token: string; url: string } | { ok: false; error: string };
+
+const BUCKET_PHOTOS = "sorties";
+const TYPES_PHOTO: Record<string, string> = {
+  "image/jpeg": "jpg",
+  "image/png": "png",
+  "image/webp": "webp",
+  "image/avif": "avif"
+};
+const POIDS_MAX_PHOTO = 10 * 1024 * 1024;
+const PREFIXE_PHOTOS = `${supabaseUrl}/storage/v1/object/public/${BUCKET_PHOTOS}/`;
 
 function lire(formData: FormData, cle: string, max = 400) {
   const valeur = formData.get(cle);
@@ -25,6 +38,72 @@ function slugifier(texte: string) {
 }
 
 const STATUTS: RaceStatus[] = ["draft", "published", "closed", "completed", "cancelled"];
+
+/** Accueil et page « Sorties » lisent la base : on les regenere tout de suite. */
+function rafraichirPagesPubliques() {
+  revalidatePath("/fr");
+  revalidatePath("/fr/runs");
+}
+
+/** N'accepte qu'une photo deposee dans notre bucket, jamais une URL arbitraire. */
+function lirePhoto(formData: FormData) {
+  const url = lire(formData, "cover_image_url", 500);
+  return url.startsWith(PREFIXE_PHOTOS) ? url : null;
+}
+
+async function supprimerPhoto(url: string | null) {
+  if (!url?.startsWith(PREFIXE_PHOTOS)) return;
+  await createSupabaseServiceClient().storage.from(BUCKET_PHOTOS).remove([url.slice(PREFIXE_PHOTOS.length)]);
+}
+
+/**
+ * Prepare l'envoi d'une photo. Le fichier part ensuite du navigateur
+ * directement vers Supabase, par une URL signee a usage unique : il ne
+ * transite pas par le serveur, dont Vercel plafonne les requetes a 4,5 Mo.
+ */
+export async function preparerEnvoiPhoto(type: string, poids: number): Promise<EnvoiPhoto> {
+  const admin = await isAdminUser();
+
+  if (!admin) {
+    return { ok: false, error: "Accès refusé." };
+  }
+
+  const extension = TYPES_PHOTO[type];
+
+  if (!extension) {
+    return { ok: false, error: "Photo en JPG, PNG, WebP ou AVIF." };
+  }
+
+  if (poids > POIDS_MAX_PHOTO) {
+    return { ok: false, error: "Photo trop lourde : 10 Mo maximum." };
+  }
+
+  const service = createSupabaseServiceClient();
+
+  // Le bucket se cree au premier envoi : rien a configurer dans Supabase.
+  const { data: bucket } = await service.storage.getBucket(BUCKET_PHOTOS);
+
+  if (!bucket) {
+    const { error } = await service.storage.createBucket(BUCKET_PHOTOS, {
+      public: true,
+      fileSizeLimit: POIDS_MAX_PHOTO,
+      allowedMimeTypes: Object.keys(TYPES_PHOTO)
+    });
+
+    if (error && !error.message.toLowerCase().includes("exist")) {
+      return { ok: false, error: "Stockage des photos indisponible." };
+    }
+  }
+
+  const path = `${crypto.randomUUID()}.${extension}`;
+  const { data, error } = await service.storage.from(BUCKET_PHOTOS).createSignedUploadUrl(path);
+
+  if (error || !data) {
+    return { ok: false, error: "Envoi impossible. Réessaie." };
+  }
+
+  return { ok: true, path, token: data.token, url: `${PREFIXE_PHOTOS}${path}` };
+}
 
 export async function createRace(_previousState: CourseState, formData: FormData): Promise<CourseState> {
   const admin = await isAdminUser();
@@ -65,7 +144,8 @@ export async function createRace(_previousState: CourseState, formData: FormData
     distance_km: distance ? Number(distance) : null,
     max_participants: max ? Number(max) : null,
     registration_open: formData.get("registration_open") === "on",
-    status: STATUTS.includes(statut) ? statut : "draft"
+    status: STATUTS.includes(statut) ? statut : "draft",
+    cover_image_url: lirePhoto(formData)
   });
 
   if (error) {
@@ -73,7 +153,9 @@ export async function createRace(_previousState: CourseState, formData: FormData
   }
 
   revalidatePath("/admin/courses");
-  return { message: "Sortie créée." };
+  revalidatePath("/admin/dashboard");
+  rafraichirPagesPubliques();
+  return { message: "Sortie créée.", cle: Date.now() };
 }
 
 export async function updateRace(formData: FormData) {
@@ -109,6 +191,7 @@ export async function updateRace(formData: FormData) {
 
   revalidatePath(`/admin/courses/${id}`);
   revalidatePath("/admin/courses");
+  rafraichirPagesPubliques();
   redirect(`/admin/courses/${id}`);
 }
 
@@ -129,6 +212,67 @@ export async function setRaceStatus(formData: FormData) {
 
   revalidatePath("/admin/courses");
   revalidatePath("/admin/dashboard");
+  rafraichirPagesPubliques();
+}
+
+/** Ajoute, remplace ou retire la photo d'une sortie existante. */
+export async function changerPhotoCourse(_previousState: CourseState, formData: FormData): Promise<CourseState> {
+  const admin = await isAdminUser();
+
+  if (!admin) {
+    return { error: "Accès refusé." };
+  }
+
+  const id = lire(formData, "race_id", 40);
+
+  if (!id) {
+    return { error: "Sortie manquante." };
+  }
+
+  const { data: avant } = await admin.supabase.from("races").select("cover_image_url").eq("id", id).maybeSingle<{ cover_image_url: string | null }>();
+  const photo = lirePhoto(formData);
+  const { error } = await admin.supabase.from("races").update({ cover_image_url: photo }).eq("id", id);
+
+  if (error) {
+    return { error: "Enregistrement refusé." };
+  }
+
+  if (avant?.cover_image_url && avant.cover_image_url !== photo) {
+    await supprimerPhoto(avant.cover_image_url);
+  }
+
+  revalidatePath(`/admin/courses/${id}`);
+  revalidatePath("/admin/courses");
+  rafraichirPagesPubliques();
+  return { message: photo ? "Photo enregistrée." : "Photo retirée." };
+}
+
+/**
+ * Supprime une sortie. Ses inscriptions et l'historique des scans partent
+ * avec elle (on delete cascade en base) ; la photo est retiree du stockage.
+ */
+export async function supprimerCourse(formData: FormData) {
+  const admin = await isAdminUser();
+
+  if (!admin) {
+    redirect("/membre");
+  }
+
+  const id = lire(formData, "race_id", 40);
+
+  if (id) {
+    const { data: course } = await admin.supabase.from("races").select("cover_image_url").eq("id", id).maybeSingle<{ cover_image_url: string | null }>();
+    const { error } = await admin.supabase.from("races").delete().eq("id", id);
+
+    if (!error) {
+      await supprimerPhoto(course?.cover_image_url ?? null);
+    }
+  }
+
+  revalidatePath("/admin/courses");
+  revalidatePath("/admin/dashboard");
+  rafraichirPagesPubliques();
+  redirect("/admin/courses");
 }
 
 /**
@@ -166,4 +310,3 @@ export async function scanRegistration(_previousState: ScanState, formData: Form
 
   return { resultat };
 }
-

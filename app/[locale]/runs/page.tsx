@@ -11,6 +11,12 @@ import { SiteShell } from "../../../components/site-shell";
 import { resolveLocale } from "../../../lib/locale";
 import { buildBreadcrumbSchema, buildEventSchema, buildFaqSchema, buildPageMetadata } from "../../../lib/seo";
 import { getRoute, getSiteCopy, type RunEvent } from "../../../lib/site-content";
+import { listPublicRuns } from "../../../lib/races/repo";
+
+// Les sorties viennent de la base. La page se regenere au plus tard chaque
+// minute (et aussitot qu'une sortie change dans l'admin) : une sortie
+// passee en disparait d'elle-meme, la plus proche prend la tete.
+export const revalidate = 60;
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -30,10 +36,12 @@ export default async function RunsPage({ params }: PageProps) {
   const contactHref = getRoute(locale, "contact");
   const identificationHref = "/identification";
   const tickerCopy = "Allure conversation — Personne derrière — Ouvert à tous — After run — Aix-en-Provence";
+  const runs = await listPublicRuns();
+  const prochaine = runs[0];
 
   return (
     <SiteShell current="runs" locale={locale} pathname={getRoute(locale, "runs")}>
-      {copy.runs.map((run) => (
+      {runs.map((run) => (
         <StructuredData
           data={buildEventSchema({
             locale,
@@ -89,12 +97,14 @@ export default async function RunsPage({ params }: PageProps) {
               Prochaine sortie
             </p>
             <p className="mt-3 font-display text-[clamp(1.9rem,4vw,3.4rem)] uppercase leading-none [overflow-wrap:normal]">
-              {copy.runs[0].date}
+              {prochaine ? prochaine.date : "Nouvelles dates très bientôt"}
             </p>
 
-            <div className="mt-7">
-              <Countdown centered isoDate={copy.runs[0].isoDate} />
-            </div>
+            {prochaine ? (
+              <div className="mt-7">
+                <Countdown centered isoDate={prochaine.isoDate} />
+              </div>
+            ) : null}
             <SmoothAnchor
               className="group mt-6 inline-flex min-h-[4.25rem] cursor-pointer items-center justify-center gap-8 border-2 border-[#FFB200] bg-[#FFB200] px-8 font-display text-[1.35rem] uppercase leading-none text-[#773331] transition-colors hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
               targetId="prochaines-sorties"
@@ -132,22 +142,30 @@ export default async function RunsPage({ params }: PageProps) {
           </div>
 
           <div className="mt-6 flex items-center justify-between gap-4 font-mono text-xs font-black uppercase tracking-[.16em]">
-            <span className="text-[#F1EDE9]/65">3 sorties</span>
-            <RunCarouselNav runs={copy.runs.map(({ date, id }) => ({ date, id }))} />
+            <span className="text-[#F1EDE9]/65">
+              {runs.length} sortie{runs.length > 1 ? "s" : ""}
+            </span>
+            {runs.length > 1 ? <RunCarouselNav runs={runs.map(({ date, id }) => ({ date, id }))} /> : null}
           </div>
 
+          {runs.length === 0 ? (
+            <p className="mt-6 border-2 border-dashed border-[#F1EDE9] p-8 font-display text-[clamp(1.6rem,3vw,2.6rem)] uppercase leading-[1.12]">
+              Pas de sortie programmée pour l’instant. Les prochaines dates arrivent ici dès qu’elles sont publiées.
+            </p>
+          ) : (
           <div
             aria-label="Prochaines sorties, carrousel horizontal"
             className="run-carousel -ml-4 mt-1 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pl-4 pr-[10%] pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200] sm:-ml-6 sm:gap-8 sm:pl-6 sm:pr-[18%] xl:-ml-10 xl:pl-10"
             role="region"
             tabIndex={0}
           >
-            {copy.runs.map((run, index) => (
+            {runs.map((run, index) => (
               <div className="run-carousel-slide w-[90%] shrink-0 snap-center sm:w-[78%] xl:w-[72%]" id={`run-card-${run.id}`} key={run.id}>
                 <RunCardCol index={index} joinHref={identificationHref} run={run} />
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
 
@@ -211,7 +229,17 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
       className={`run-poster group relative overflow-hidden text-[#F1EDE9] ${index === 0 ? "run-poster--featured border-[6px] border-[#FFB200]" : "border-2 border-[#F1EDE9]"}`}
       delay={index * 100}
     >
-      <Image alt="" className={`run-card-image object-cover ${visual.position}`} fill sizes="(min-width: 1280px) 72vw, (min-width: 640px) 78vw, 90vw" src={visual.src} />
+      {/* La photo de la sortie si l'admin en a mis une, sinon une photo du
+          club. Servie telle quelle depuis Supabase : aucun domaine distant
+          a declarer dans next.config. */}
+      <Image
+        alt=""
+        className={`run-card-image object-cover ${run.image ? "object-center" : visual.position}`}
+        fill
+        sizes="(min-width: 1280px) 72vw, (min-width: 640px) 78vw, 90vw"
+        src={run.image || visual.src}
+        unoptimized={Boolean(run.image)}
+      />
       <div className="run-card-shade absolute inset-0" />
       <div aria-hidden="true" className={`absolute left-0 top-0 h-3 w-full ${visual.accent.split(" ")[0]}`} />
 

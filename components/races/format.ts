@@ -32,6 +32,12 @@ export function formatJourCourt(iso: string) {
   return JOUR_COURT.format(new Date(iso));
 }
 
+const EURO = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
+
+export function formatEuro(montant: number) {
+  return EURO.format(montant);
+}
+
 export function formatDistance(km: number | null) {
   if (km === null) return null;
   const texte = Number.isInteger(km) ? String(km) : String(km).replace(".", ",");
