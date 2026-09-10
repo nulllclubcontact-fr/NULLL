@@ -2,17 +2,23 @@
 
 import { useActionState } from "react";
 import { loginMember, resetMemberPassword, verifierCodeReinitialisation, type LoginState } from "../actions";
+import { BoutonsSociaux } from "../../../components/auth/boutons-sociaux";
 import { CodeSms } from "../../../components/auth/code-sms";
+import type { FournisseursAuth } from "../../../lib/auth/reglages";
 
 const initialState: LoginState = {};
 
-export function LoginForm({ telephoneActif }: { telephoneActif: boolean }) {
+export function LoginForm({ fournisseurs }: { fournisseurs: FournisseursAuth }) {
   const [loginState, loginAction, loginPending] = useActionState(loginMember, initialState);
   const [resetState, resetAction, resetPending] = useActionState(resetMemberPassword, initialState);
+  const telephoneActif = fournisseurs.telephone;
   const libelle = telephoneActif ? "E-mail ou téléphone" : "E-mail";
 
   return (
     <div className="panel panel-grid account-stagger p-5 sm:p-6">
+      <div className="mb-4">
+        <BoutonsSociaux apple={fournisseurs.apple} google={fournisseurs.google} separateur="ou avec ton compte" />
+      </div>
       <form action={loginAction} aria-label="Connexion membre" className="grid gap-4" style={{ "--pas": 0 } as React.CSSProperties}>
         <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
           <span>{libelle}</span>

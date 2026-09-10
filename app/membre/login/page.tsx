@@ -1,11 +1,12 @@
 import { LoginForm } from "./LoginForm";
 import { AccountShell } from "../../../components/account-shell";
-import { telephoneDisponible } from "../../../lib/auth/telephone-serveur";
+import { fournisseursAuth } from "../../../lib/auth/reglages";
 
 // /auth/callback renvoie ici quand le lien recu par mail ne vaut plus rien.
 const MESSAGES_ERREUR: Record<string, string> = {
   lien: "Ce lien a expiré ou a déjà servi. Redemande-en un plus bas.",
-  config: "Connexion indisponible pour le moment. Réessaie dans un instant."
+  config: "Connexion indisponible pour le moment. Réessaie dans un instant.",
+  fournisseur: "Connexion avec Google ou Apple interrompue. Réessaie, ou passe par ton e-mail."
 };
 
 // L'inscription renvoie ici quand Supabase demande une confirmation par
@@ -19,7 +20,7 @@ export default async function MemberLoginPage({
 }: {
   searchParams: Promise<{ erreur?: string; message?: string }>;
 }) {
-  const [{ erreur, message }, telephoneActif] = await Promise.all([searchParams, telephoneDisponible()]);
+  const [{ erreur, message }, fournisseurs] = await Promise.all([searchParams, fournisseursAuth()]);
   const alerte = erreur ? MESSAGES_ERREUR[erreur] : undefined;
   const info = message ? MESSAGES_INFO[message] : undefined;
 
@@ -50,7 +51,7 @@ export default async function MemberLoginPage({
         </p>
       ) : null}
 
-      <LoginForm telephoneActif={telephoneActif} />
+      <LoginForm fournisseurs={fournisseurs} />
     </AccountShell>
   );
 }

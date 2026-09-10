@@ -372,6 +372,62 @@ export async function updateMemberPassword(_previousState: LoginState, formData:
   redirect("/membre");
 }
 
+/**
+ * Premiere arrivee par Google ou Apple : le membre verifie son nom et
+ * signe la decharge, que le formulaire d'inscription recueillait sinon.
+ */
+export async function accepterDecharge(_previousState: CodeState, formData: FormData): Promise<CodeState> {
+  const firstName = readRequiredString(formData, "first_name");
+  const lastName = readRequiredString(formData, "last_name");
+
+  if (!firstName || !lastName) {
+    return { error: "Ton prénom et ton nom, pour ta carte de membre." };
+  }
+
+  if (formData.get("waiver") !== "on") {
+    return { error: "Lis et accepte la décharge. Obligatoire." };
+  }
+
+  let supabase;
+  let serviceSupabase;
+
+  try {
+    supabase = await createSupabaseServerClient();
+    serviceSupabase = createSupabaseServiceClient();
+  } catch {
+    return { error: "Connexion membre indisponible : variables Supabase manquantes." };
+  }
+
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/membre/login");
+  }
+
+  const { error } = await serviceSupabase.from("profiles").upsert(
+    {
+      id: user.id,
+      email: user.email ?? null,
+      first_name: firstName,
+      last_name: lastName,
+      consent_waiver: true,
+      consent_waiver_version: WAIVER_VERSION,
+      consent_at: new Date().toISOString()
+    },
+    { onConflict: "id" }
+  );
+
+  if (error) {
+    return { error: "Enregistrement bloqué. Réessaie." };
+  }
+
+  const { data: profil } = await serviceSupabase.from("profiles").select("role").eq("id", user.id).maybeSingle<{ role: string | null }>();
+
+  redirect(profil?.role === "admin" ? "/admin/dashboard" : "/membre");
+}
+
 /** Fermer sa session depuis l'espace membre. */
 export async function logoutMember() {
   let supabase;

@@ -1,9 +1,9 @@
 import { RegisterForm } from "./RegisterForm";
 import { AccountShell } from "../../../components/account-shell";
-import { telephoneDisponible } from "../../../lib/auth/telephone-serveur";
+import { fournisseursAuth } from "../../../lib/auth/reglages";
 
 export default async function MemberRegisterPage() {
-  const telephoneActif = await telephoneDisponible();
+  const fournisseurs = await fournisseursAuth();
 
   return (
     <AccountShell
@@ -18,7 +18,7 @@ export default async function MemberRegisterPage() {
       title="Entre dans le"
       titleAccent="club."
     >
-      <RegisterForm telephoneActif={telephoneActif} />
+      <RegisterForm fournisseurs={fournisseurs} />
     </AccountShell>
   );
 }

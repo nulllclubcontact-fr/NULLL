@@ -36,9 +36,15 @@ export default async function MemberPanelLayout({ children }: { children: ReactN
 
   const { data: profil } = await supabase
     .from("profiles")
-    .select("role")
+    .select("role,consent_waiver")
     .eq("id", user.id)
-    .maybeSingle<{ role: string | null }>();
+    .maybeSingle<{ role: string | null; consent_waiver: boolean | null }>();
+
+  // Un compte ouvert par Google ou Apple n'a pas signe la decharge : il la
+  // signe avant d'acceder a quoi que ce soit, QR compris.
+  if (!profil?.consent_waiver) {
+    redirect("/membre/bienvenue");
+  }
 
   return (
     <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
