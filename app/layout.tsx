@@ -101,7 +101,10 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html className={`${police_display.variable} ${police_mono.variable} ${police_main.variable}`} lang="fr">
+    // data-scroll-behavior : Next coupe le defilement doux le temps d'un
+    // changement de page. Sans lui, chaque clic faisait glisser la page
+    // vers le haut au lieu d'y sauter, ce qui donnait une navigation molle.
+    <html className={`${police_display.variable} ${police_mono.variable} ${police_main.variable}`} data-scroll-behavior="smooth" lang="fr">
       <body>
         {children}
         <BandeauCookies />

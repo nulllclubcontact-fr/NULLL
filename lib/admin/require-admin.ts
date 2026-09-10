@@ -1,5 +1,6 @@
 import "server-only";
 
+import { cache } from "react";
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "../supabase/server";
 
@@ -15,8 +16,12 @@ import { createSupabaseServerClient } from "../supabase/server";
  * La verification est refaite en base a chaque requete, jamais deduite
  * d'un cookie ou d'un etat client. Meme si quelqu'un atteint l'URL, la
  * RLS refuserait les donnees.
+ *
+ * Le layout et la page l'appellent tous les deux : cache() partage le
+ * resultat le temps d'une requete, au lieu de refaire deux fois les deux
+ * allers-retours vers Supabase. Chaque nouvelle requete reverifie tout.
  */
-export async function requireAdminUser() {
+export const requireAdminUser = cache(async () => {
   let supabase;
 
   try {
@@ -45,7 +50,7 @@ export async function requireAdminUser() {
   }
 
   return { supabase, user, prenom: profil.first_name };
-}
+});
 
 /** Variante sans redirection, pour les actions qui renvoient une erreur. */
 export async function isAdminUser() {
