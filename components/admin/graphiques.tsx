@@ -101,7 +101,81 @@ export function fenetreJours(n: number) {
   };
 }
 
-/** Histogramme par jour ; aujourd'hui en jaune. */
+export type Granularite = "jour" | "semaine" | "mois";
+
+// Cles « AAAA-MM-JJ » : on calcule sur des dates a midi UTC, sans heure
+// d'ete ni fuseau pour decaler un jour.
+const ETIQUETTE_JOUR_CLE = new Intl.DateTimeFormat("fr-FR", { weekday: "narrow", day: "numeric", timeZone: "UTC" });
+const ETIQUETTE_SEMAINE = new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "numeric", timeZone: "UTC" });
+const ETIQUETTE_MOIS = new Intl.DateTimeFormat("fr-FR", { month: "short", timeZone: "UTC" });
+
+function dateDeCle(cle: string) {
+  return new Date(`${cle}T12:00:00Z`);
+}
+
+/** Jour de Paris d'un instant, en « AAAA-MM-JJ ». */
+export function cleParisDe(instant: string | Date) {
+  return CLE_JOUR.format(new Date(instant));
+}
+
+export function decalerJours(cle: string, jours: number) {
+  const date = dateDeCle(cle);
+  date.setUTCDate(date.getUTCDate() + jours);
+  return date.toISOString().slice(0, 10);
+}
+
+export function lundiDe(cle: string) {
+  return decalerJours(cle, -((dateDeCle(cle).getUTCDay() + 6) % 7));
+}
+
+export function premierDuMois(cle: string, decalageMois = 0) {
+  const date = dateDeCle(`${cle.slice(0, 7)}-01`);
+  date.setUTCMonth(date.getUTCMonth() + decalageMois);
+  return date.toISOString().slice(0, 10);
+}
+
+function clePeriode(cleJour: string, granularite: Granularite) {
+  if (granularite === "semaine") return lundiDe(cleJour);
+  if (granularite === "mois") return cleJour.slice(0, 7);
+  return cleJour;
+}
+
+function etiquettePeriode(cle: string, granularite: Granularite) {
+  if (granularite === "semaine") return ETIQUETTE_SEMAINE.format(dateDeCle(cle));
+  if (granularite === "mois") return ETIQUETTE_MOIS.format(dateDeCle(`${cle}-01`));
+  return ETIQUETTE_JOUR_CLE.format(dateDeCle(cle));
+}
+
+/**
+ * Jours, semaines (du lundi) ou mois entre deux jours de Paris inclus,
+ * avec un compteur a remplir. Une vente hors de la fenetre est ignoree.
+ */
+export function fenetrePeriodes(debut: string, fin: string, granularite: Granularite) {
+  const periodes: Jour[] = [];
+  const parCle = new Map<string, Jour>();
+
+  for (let cle = debut; cle <= fin; cle = decalerJours(cle, 1)) {
+    const cleP = clePeriode(cle, granularite);
+
+    if (!parCle.has(cleP)) {
+      const periode = { cle: cleP, etiquette: etiquettePeriode(cleP, granularite), total: 0 };
+      parCle.set(cleP, periode);
+      periodes.push(periode);
+    }
+  }
+
+  return {
+    periodes,
+    ajouter(iso: string, valeur = 1) {
+      const jour = cleParisDe(iso);
+      if (jour < debut || jour > fin) return;
+      const periode = parCle.get(clePeriode(jour, granularite));
+      if (periode) periode.total += valeur;
+    }
+  };
+}
+
+/** Histogramme par jour (ou par periode) ; la derniere colonne en jaune. */
 export function ColonnesParJour({
   jours,
   description,
