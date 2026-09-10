@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createHash } from "node:crypto";
+import { blocCitation, echapper, rendreEmail } from "../../../lib/email/gabarit";
 
 /**
  * Destinataire des messages. Configurable parce que tant que le domaine
@@ -121,8 +122,20 @@ export async function POST(request: Request) {
         to: [CONTACT_EMAIL],
         // Repondre depuis la boite du club ecrit directement au visiteur.
         reply_to: email,
-        subject: `Message depuis nulll.club — ${email}`,
-        text: [`De : ${email}`, "", message].join("\n")
+        subject: `Message depuis nulll.club · ${email}`,
+        // Les deux versions partent ensemble : le client affiche le HTML
+        // s'il le peut, le texte sinon. Un e-mail sans version texte est
+        // aussi plus souvent classe en indesirable.
+        text: [`De : ${email}`, "", message].join("\n"),
+        html: rendreEmail({
+          preheader: `Nouveau message de ${email}`,
+          titre: "Nouveau message",
+          // L'adresse passe le controle de format mais peut contenir < ou > :
+          // echappee, elle ne peut pas injecter de HTML dans le message.
+          intro: `Envoyé depuis le formulaire de <strong>nulll.club</strong> par <strong>${echapper(email)}</strong>.`,
+          corps: blocCitation(message),
+          pied: "Réponds directement à cet e-mail, ta réponse partira vers l’expéditeur."
+        })
       })
     });
   } catch {
