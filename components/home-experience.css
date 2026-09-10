@@ -1,11 +1,15 @@
 /* Scoped to the homepage: shared styles and all other pages are unchanged. */
-.home-journey{--home-cream:#F1EDE9;--home-ink:#773331;--home-dark:#3A1A18;--home-yellow:#FFB200;--home-pink:#EBA0CD;--home-pink-text:#773331;position:relative;isolation:isolate;overflow:clip;background:var(--home-cream);color:var(--home-ink)}
+.home-journey{--home-cream:#F1EDE9;--home-ink:#773331;--home-dark:#3A1A18;--home-yellow:#FFB200;--home-pink:#EBA0CD;position:relative;isolation:isolate;overflow:clip;background:var(--home-cream);color:var(--home-ink)}
 .home-journey h1, .home-journey h2, .home-journey h3, .home-journey .home-run-date>strong, .home-journey .home-first-time p, .home-journey .home-together-copy>p, .home-journey .home-final-cta{font-family:var(--font-display),Impact,sans-serif;font-weight:400;text-transform:uppercase}
 .home-journey .home-label{font-family:var(--font-mono),"Arial Narrow",sans-serif;font-size:11px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
 .home-journey a{touch-action:manipulation}
-.home-journey a:focus-visible{outline:3px solid var(--home-pink-text);outline-offset:5px}
+.home-journey a:focus-visible{outline:3px solid var(--home-ink);outline-offset:5px}
+.home-journey .home-hero a:focus-visible,
+.home-journey .home-hero-facts a:focus-visible,
+.home-journey .home-together a:focus-visible,
+.home-journey .home-explore a:focus-visible{outline-color:var(--home-pink)}
 .home-journey h2{font-size:clamp(48px,6.5vw,96px);line-height:1.02;letter-spacing:-.02em}
-.home-journey h2 span{color:var(--home-pink-text)}
+.home-journey h2 span{color:var(--home-ink);background-image:linear-gradient(var(--home-pink),var(--home-pink));background-repeat:no-repeat;background-size:100% .95em;background-position:0 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .12em}
 .home-journey .home-section{position:relative;padding:42px max(6vw,24px) 90px}
 .home-journey .home-section-top{position:relative;z-index:2;display:flex;justify-content:space-between;gap:20px;border-top:1px solid currentColor;padding-top:16px;margin-bottom:64px}
 .home-journey .home-dates-point{top:58%;left:96%}
@@ -15,7 +19,7 @@
 .home-journey h1{font-size:clamp(80px,10.5vw,170px);line-height:.99;letter-spacing:-.025em;margin-left:-3px}
 .home-journey h1>span{color:var(--home-yellow)}
 .home-journey .home-explore a:focus-visible{outline-color:var(--home-yellow)}
-.home-journey .home-manifesto-strip{position:relative;z-index:2;background:var(--home-ink);color:var(--home-cream);padding:22px 6vw;display:flex;align-items:center;justify-content:space-between;gap:18px;font-size:clamp(20px,2.4vw,36px);letter-spacing:.015em;border-top:1px solid #F1EDE933}
+.home-journey .home-manifesto-strip{position:relative;z-index:2;margin:0;background:var(--home-ink);color:var(--home-cream);padding:22px 6vw;display:flex;align-items:center;justify-content:center;gap:26px;font-size:clamp(20px,2.4vw,36px);letter-spacing:.015em;border-top:1px solid #F1EDE933}
 .home-journey .home-strip-star{color:var(--home-pink);font-size:40px;line-height:1}
 .home-journey .home-dates{padding-top:48px}
 .home-journey .home-dates-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:8vw;position:relative;z-index:2}
@@ -36,7 +40,11 @@
 .home-journey .home-run-link svg{transition:transform .2s}
 .home-journey .home-run-link:hover svg{transform:translateX(6px)}
 .home-journey .home-together{position:relative;min-height:570px;color:var(--home-cream);background:var(--home-ink);isolation:isolate}
-.home-journey .home-together>img{object-fit:cover;object-position:center 45%;z-index:-2}
+/* Photo en portrait (1350x2400) dans une bande de 2,65:1 : on n'en voit
+   qu'environ 21% de la hauteur. Valeur trouvee en decoupant l'image aux
+   positions candidates : a 16% il n'y a que le feuillage, a 45% la coupe
+   passe sous les mentons. 22% tient les deux visages. */
+.home-journey .home-together>img{object-fit:cover;object-position:center 22%;z-index:-2}
 .home-journey .home-together-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,9,8,.75),rgba(18,9,8,.1));z-index:-1}
 .home-journey .home-together-copy{position:relative;z-index:2;padding:65px 12vw}
 .home-journey .home-together-copy>p{font-size:clamp(26px,3vw,44px);line-height:1.12;margin-top:30px}
@@ -58,7 +66,7 @@
 .home-journey .home-facts>div:first-child{padding-left:0}
 .home-journey .home-facts>div:last-child{border-right:0}
 .home-journey .home-facts dt{display:flex;align-items:center;gap:15px}
-.home-journey .home-facts dt>span{color:var(--home-pink-text)}
+.home-journey .home-facts dt>span{color:var(--home-ink);background:var(--home-pink);padding:.2em .5em;border-radius:2px}
 .home-journey .home-facts dd{font-weight:700;font-size:17px;line-height:1.4;margin-top:16px;max-width:240px}
 .home-journey .home-local-links{position:relative;z-index:2;margin-top:26px;font-size:14px;line-height:1.7}
 /* Titre a gauche, liens a droite, sur la meme ligne de depart. Ils
@@ -67,7 +75,7 @@
 .home-journey .home-explore{background:var(--home-ink);color:var(--home-cream);padding-bottom:50px;isolation:isolate}
 .home-journey .home-explore-body{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:60px;align-items:start}
 .home-journey .home-explore h2{position:relative;z-index:2;margin:0;font-size:clamp(56px,6.6vw,112px)}
-.home-journey .home-explore h2 span{color:var(--home-pink)}
+.home-journey .home-explore h2 span{color:var(--home-pink);background-image:none;padding:0}
 .home-journey .home-explore-links{position:relative;z-index:2;margin:0 0 65px;background:var(--home-ink)}
 .home-journey .home-explore-link{display:grid;grid-template-columns:25px 1fr 1.2fr 25px;align-items:center;gap:20px;padding:25px 0;border-bottom:1px solid #F1EDE966;transition:color .2s}
 .home-journey .home-explore-link:first-child{border-top:1px solid #F1EDE966}
@@ -209,96 +217,92 @@
   line-height:1;
 }
 
-/* ---------- LE HERO ----------
-   L'intro tenait en quatre panneaux epingles, pilotes par le
-   defilement : 3500 px a franchir avant le premier contenu, et une
-   sensation de rame sur telephone. Une affiche suffit. */
+/* ---------- LE HERO ---------- */
 .home-journey .home-hero{
   position:relative;
   isolation:isolate;
   display:flex;
-  align-items:flex-end;
-  min-height:clamp(460px,80svh,860px);
-  padding:48px 6vw;
-  background:#3A1A18;
-  color:#F1EDE9;
-  overflow:clip;
-}
-
-.home-journey .home-hero-photo{
-  object-fit:cover;
-  object-position:62% center;
-  z-index:-2;
-}
-
-/* Un voile depuis le bas : le texte se pose sur la photo, il doit rester
-   lisible quelle que soit la zone qui passe dessous. */
-.home-journey .home-hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-1;
-  background:linear-gradient(to top,rgba(18,9,8,.92) 0%,rgba(18,9,8,.6) 42%,rgba(18,9,8,.15) 100%);
-}
-
-.home-journey .home-hero-contenu{width:100%;max-width:1250px;margin:0 auto}
-
-.home-journey .home-hero-chapeau{margin:0 0 14px;color:#FFB200}
-
-.home-journey .home-hero h1{
-  margin:0 0 34px;
-  font-size:clamp(58px,11vw,150px);
-  line-height:.92;
-  letter-spacing:-.03em;
-  text-shadow:0 2px 24px rgba(18,9,8,.6),0 1px 4px rgba(18,9,8,.5);
-}
-
-.home-journey .home-hero h1 span{color:#FFB200}
-
-.home-journey .home-hero-chiffres{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:4vw;
-  margin:0 0 34px;
-  border-top:1px solid rgba(246,234,223,.32);
-  padding-top:22px;
-}
-
-.home-journey .home-hero-chiffres dd{
-  margin:6px 0 0;
-  font-family:var(--font-display),Impact,sans-serif;
-  font-size:clamp(46px,6.4vw,92px);
-  line-height:1;
-  text-transform:uppercase;
-}
-
-.home-journey .home-hero-chiffres dd span{font-size:.42em;margin-left:.06em}
-.home-journey .home-hero-chiffres div:nth-child(2) dd{color:#EBA0CD}
-.home-journey .home-hero-chiffres div:nth-child(3) dd{color:#FFB200}
-
-.home-journey .home-hero-action{
-  display:inline-flex;
   align-items:center;
-  gap:22px;
-  min-height:60px;
-  padding:0 26px;
-  background:#FFB200;
-  color:#773331;
-  border:2px solid #773331;
-  font-family:var(--font-mono),Arial,sans-serif;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  transition:background-color .2s,color .2s;
+  min-height:clamp(620px,calc(100svh - 82px),900px);
+  padding:clamp(48px,8vh,90px) max(5vw,28px);
+  overflow:hidden;
+  background:#120908;
+  color:var(--home-cream);
 }
 
-.home-journey .home-hero-action:hover{background:#773331;color:#FFB200}
+.home-journey .home-hero-media{position:absolute;top:0;bottom:0;right:0;width:45%;z-index:-3;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%);mask-image:linear-gradient(90deg,transparent 0,#000 18%)}
+.home-journey .home-hero-image{object-fit:cover;object-position:center 58%}
+.home-journey .home-hero-overlay{display:none}
+.home-journey .home-hero-copy{width:min(1050px,86vw)}
+.home-journey .home-hero-copy>p{margin-bottom:24px;color:var(--home-yellow)}
+.home-journey .home-hero h1{margin:0;font-size:clamp(72px,9.5vw,154px);line-height:1.12;letter-spacing:-.02em}
+.home-journey .home-hero h1 span{color:var(--home-pink)}
+.home-journey .home-hero-invitation{display:flex;align-items:center;gap:22px;margin-top:36px;flex-wrap:wrap}
+.home-journey .home-hero-link{display:inline-flex;align-items:center;justify-content:space-between;gap:36px;min-height:66px;padding:12px 24px;background:var(--home-pink);color:var(--home-dark);font-family:var(--font-display),Impact,sans-serif;font-size:26px;line-height:1.1;text-transform:uppercase;transition:background-color .2s ease,color .2s ease,transform .2s ease}
+.home-journey .home-hero-reassurance{color:var(--home-cream)}
+.home-journey .home-hero-link:hover{transform:translateY(-3px);border-color:var(--home-yellow);background:var(--home-yellow)}
+.home-journey .home-hero-link svg{width:20px;height:20px}
+
+.home-journey .home-hero-facts{background:var(--home-ink);color:var(--home-cream);border-top:2px solid var(--home-cream)}
+.home-journey .home-hero-facts>dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid rgba(241,237,233,.25)}
+.home-journey .home-hero-facts>dl>div{min-width:0;padding:22px max(2.5vw,20px);border-right:1px solid rgba(241,237,233,.25)}
+.home-journey .home-hero-facts>dl>div:last-child{border-right:0}
+.home-journey .home-hero-facts dt{color:var(--home-yellow)}
+.home-journey .home-hero-facts dd{margin-top:10px;font-family:var(--font-display),Impact,sans-serif;font-size:clamp(18px,1.85vw,34px);line-height:1.2;text-transform:uppercase;white-space:nowrap}
+.home-journey .home-hero-facts dd span{color:var(--home-pink)}
+.home-journey .home-hero-facts .home-manifesto-strip{border-top:0;padding:14px max(4vw,24px);font-size:clamp(24px,2.4vw,36px);line-height:1.2}
+
+@media(max-width:1100px){
+  .home-journey .home-hero h1{font-size:clamp(68px,10vw,112px)}
+}
 
 @media(max-width:760px){
-  .home-journey .home-hero{min-height:clamp(440px,76svh,700px);padding:32px 24px}
-  .home-journey .home-hero-photo{object-position:57% 30%}
-  .home-journey .home-hero h1{font-size:clamp(48px,15vw,88px);margin-bottom:26px}
-  .home-journey .home-hero-chiffres{gap:14px;margin-bottom:26px}
-  .home-journey .home-hero-chiffres dd{font-size:clamp(30px,9vw,46px)}
+  .home-journey .home-hero{align-items:flex-end;min-height:650px;padding:42px 22px}
+  .home-journey .home-hero-media{width:100%;-webkit-mask-image:none;mask-image:none}
+  .home-journey .home-hero-image{object-position:52% center}
+  .home-journey .home-hero-overlay{display:block;background:linear-gradient(0deg,rgba(18,9,8,.94) 0%,rgba(18,9,8,.45) 60%,rgba(18,9,8,.08) 100%)}
+  .home-journey .home-hero-copy{width:100%}
+  .home-journey .home-hero-copy>p{margin-bottom:18px;font-size:9px}
+  .home-journey .home-hero h1{font-size:clamp(36px,10.5vw,78px);line-height:1.14}
+  .home-journey .home-hero-invitation{margin-top:28px;gap:14px}
+  .home-journey .home-hero-link{min-height:58px;font-size:23px}
+  .home-journey .home-hero-reassurance{width:100%;font-size:10px}
+  .home-journey .home-hero-facts>dl{grid-template-columns:1fr}
+  .home-journey .home-hero-facts>dl>div{padding:18px 16px}
+  .home-journey .home-hero-facts>dl>div:nth-child(2){border-right:0}
+  .home-journey .home-hero-facts>dl>div:nth-child(n+3){border-top:1px solid rgba(241,237,233,.25)}
+  .home-journey .home-hero-facts>dl>div{display:flex;align-items:center;justify-content:space-between;gap:16px;border-right:0;border-bottom:1px solid rgba(241,237,233,.25)}
+  .home-journey .home-hero-facts>dl>div:nth-child(n+3){border-top:0}
+  .home-journey .home-hero-facts dd{margin-top:0;font-size:clamp(20px,5.5vw,30px)}
+  .home-journey .home-hero-facts .home-manifesto-strip{display:flex;justify-content:space-between;gap:8px;padding:14px 16px;font-size:clamp(16px,4vw,26px)}
+  .home-journey .home-hero-facts .home-manifesto-strip .home-strip-star{display:none}
+}
+
+
+/* ---------- Le slogan ----------
+   Il tient la bande juste sous l'heure et le lieu : la these du club vient
+   apres les informations pratiques, jamais avant. Centre, dans l'ecriture
+   manuscrite deja definie plus haut pour la bande. */
+.home-journey .home-slogan{text-align:center}
+
+/* ---------- La signature ----------
+   Le dernier mot avant l'appel final. Sur le fond sombre de la section,
+   le rose passe en texte plein : 9:1, il n'a pas besoin du surligneur
+   qu'on applique aux titres poses sur le fond clair. */
+.home-journey .home-signoff{
+  position:relative;
+  z-index:2;
+  margin:0 0 28px;
+  font-family:var(--font-display),Impact,sans-serif;
+  font-weight:400;
+  text-transform:uppercase;
+  font-size:clamp(34px,5vw,78px);
+  line-height:1.06;
+  letter-spacing:-.01em;
+}
+.home-journey .home-signoff span{color:var(--home-pink)}
+
+@media(max-width:760px){
+  .home-journey .home-manifesto-strip{padding-left:20px;padding-right:20px}
+  .home-journey .home-signoff{font-size:clamp(28px,8vw,46px);margin-bottom:20px}
 }

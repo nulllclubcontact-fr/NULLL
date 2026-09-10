@@ -515,11 +515,6 @@ textarea {
   transform: translateY(-0.35rem);
 }
 
-/* Relief du texte sur photo : remplace le voile sombre, l'image reste intacte. */
-.hero-text-shadow {
-  text-shadow: 0 2px 18px rgba(18, 9, 8, 0.55), 0 1px 3px rgba(18, 9, 8, 0.45);
-}
-
 /* Affiches photo du carrousel — mouvement court, image dominante. */
 .run-poster {
   box-shadow: 10px 10px 0 rgba(246, 234, 223, 0.18);

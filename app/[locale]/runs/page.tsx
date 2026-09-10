@@ -69,7 +69,7 @@ export default async function RunsPage({ params }: PageProps) {
 
         {/* Barre identique a celle de l'accueil */}
         <div className="relative mx-auto w-full max-w-[1600px] shrink-0 px-5 pt-6 sm:px-8 sm:pt-8 xl:px-12">
-          <div className="hero-text-shadow flex flex-col items-start gap-1 border-b border-[#F1EDE9]/45 pb-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
+          <div className="flex flex-col items-start gap-1 border-b border-[#F1EDE9]/45 pb-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
             <span>Social sport club · Aix-en-Provence</span>
             <span className="text-[#FFB200]">Ouvert à tous · Gratuit</span>
           </div>
@@ -77,14 +77,14 @@ export default async function RunsPage({ params }: PageProps) {
 
         <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col items-center justify-center gap-9 px-5 py-8 text-center sm:gap-14 sm:px-8 sm:py-12 xl:px-12">
           <h1
-            className="hero-rise hero-text-shadow whitespace-nowrap font-display text-[clamp(1.9rem,12.4vw,13rem)] uppercase leading-[1.12] tracking-[-.045em]"
+            className="hero-rise whitespace-nowrap font-display text-[clamp(1.9rem,12.4vw,13rem)] uppercase leading-[1.12] tracking-[-.045em]"
             id="runs-title"
             style={{ animationDelay: "120ms" }}
           >
             Samedi on <span className="text-[#EBA0CD]">sort.</span>
           </h1>
 
-          <div className="hero-rise hero-text-shadow flex w-full flex-col items-center" style={{ animationDelay: "280ms" }}>
+          <div className="hero-rise flex w-full flex-col items-center" style={{ animationDelay: "280ms" }}>
             <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFB200]">
               Prochaine sortie
             </p>
@@ -96,7 +96,7 @@ export default async function RunsPage({ params }: PageProps) {
               <Countdown centered isoDate={copy.runs[0].isoDate} />
             </div>
             <SmoothAnchor
-              className="group mt-6 inline-flex min-h-[4.25rem] cursor-pointer items-center justify-center gap-8 border-2 border-[#FFB200] bg-[#FFB200] px-8 font-display text-[1.35rem] uppercase leading-none text-[#773331] [text-shadow:none] transition-colors hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
+              className="group mt-6 inline-flex min-h-[4.25rem] cursor-pointer items-center justify-center gap-8 border-2 border-[#FFB200] bg-[#FFB200] px-8 font-display text-[1.35rem] uppercase leading-none text-[#773331] transition-colors hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
               targetId="prochaines-sorties"
             >
               <span>Choisir une date</span>
@@ -220,7 +220,7 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
           <span className={`inline-flex min-h-11 items-center px-4 font-mono text-xs font-black uppercase tracking-[.14em] ${visual.accent}`}>
             {index === 0 ? "À ne pas rater" : `Sortie 0${index + 1}`}
           </span>
-          <span className="font-display text-5xl leading-none drop-shadow-lg sm:text-7xl">0{index + 1}</span>
+          <span className="font-display text-5xl leading-none sm:text-7xl">0{index + 1}</span>
         </div>
 
         <div>

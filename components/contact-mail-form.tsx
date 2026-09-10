@@ -103,7 +103,7 @@ export function ContactMailForm() {
         {etat === "envoye" ? (
           <span className="font-bold text-[#FFB200]">C’est parti. On te répond à cette adresse.</span>
         ) : null}
-        {etat === "erreur" ? <span className="font-bold text-[#773331]">{erreur}</span> : null}
+        {etat === "erreur" ? <span className="font-bold text-[#EBA0CD]">{erreur}</span> : null}
       </p>
     </form>
   );

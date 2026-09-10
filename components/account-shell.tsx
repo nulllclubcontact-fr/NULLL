@@ -76,14 +76,14 @@ export function AccountShell({
               {eyebrow}
             </p>
             <h1
-              className="hero-rise hero-text-shadow mt-5 max-w-[14ch] font-display text-[clamp(2.6rem,6vw,5.4rem)] uppercase leading-[.9]"
+              className="hero-rise mt-5 max-w-[14ch] font-display text-[clamp(2.6rem,6vw,5.4rem)] uppercase leading-[.9]"
               style={{ animationDelay: "150ms" }}
             >
               <span className="block">{title}</span>
               {titleAccent ? <span className="block text-[#EBA0CD]">{titleAccent}</span> : null}
             </h1>
             <p
-              className="hero-rise hero-text-shadow mt-5 max-w-lg text-lg font-bold leading-snug"
+              className="hero-rise mt-5 max-w-lg text-lg font-bold leading-snug"
               style={{ animationDelay: "250ms" }}
             >
               {intro}

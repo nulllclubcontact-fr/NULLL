@@ -272,7 +272,7 @@ export function RunCard({ run }: { run: RunEvent }) {
     <article className="flex h-full flex-col border-2 border-[#773331] bg-[#F1EDE9] p-5 transition hover:-translate-y-1 hover:shadow-[8px_8px_0_#FFB200]">
       <div className="flex items-start justify-between gap-4 border-b-2 border-[#773331] pb-4">
         <div>
-          <p className="font-mono text-xs font-black uppercase text-[#773331]">{run.date}</p>
+          <p className="font-mono text-xs font-black uppercase text-[#EBA0CD]">{run.date}</p>
           <h3 className="mt-2 font-display text-[clamp(2rem,4vw,3.6rem)] uppercase leading-[0.92]">{run.title}</h3>
         </div>
         <p className="border-2 border-[#773331] bg-[#FFB200] px-2 py-1 text-right font-mono text-xs font-black uppercase">{run.time}</p>

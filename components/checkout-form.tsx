@@ -120,7 +120,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
   if (status.type === "success") {
     return (
       <div className="border-2 border-[#773331] bg-[#F1EDE9] p-8" role="status">
-        <p className="font-mono text-xs font-black uppercase text-[#773331]">Commande reçue</p>
+        <p className="font-mono text-xs font-black uppercase text-[#EBA0CD]">Commande reçue</p>
         <h2 className="mt-4 font-display text-[clamp(2.6rem,5vw,4rem)] uppercase leading-[0.92]">
           Demande confirmée.
         </h2>
@@ -212,7 +212,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
       </form>
 
       <aside className="border-2 border-[#773331] bg-[#773331] p-6 text-[#F1EDE9]">
-        <p className="font-mono text-xs font-black uppercase text-[#773331]">Récapitulatif</p>
+        <p className="font-mono text-xs font-black uppercase text-[#EBA0CD]">Récapitulatif</p>
         <div className="mt-4 space-y-4">
           {items.length ? (
             items.map((item) => (

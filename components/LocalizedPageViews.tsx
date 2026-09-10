@@ -112,7 +112,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
                 <p aria-hidden="true" className="font-display text-[clamp(2.6rem,5vw,4.4rem)] uppercase leading-[1.12] tracking-[-.02em]">
                   {"NULLL".split("").map((lettre, position) => (
                     <span
-                      className={position === item.highlight ? "text-[#773331]" : "text-[#773331]/22"}
+                      className={position === item.highlight ? "text-[#EBA0CD]" : "text-[#773331]/22"}
                       key={position}
                     >
                       {lettre}

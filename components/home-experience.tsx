@@ -21,29 +21,37 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
 
   return (
     <HomeJourney>
-      {/* ---------------- LE HERO ----------------
-           L'intro tenait en quatre panneaux epingles, pilotes par le
-           defilement : 3500 px a franchir avant le premier contenu, et
-           une sensation de rame sur telephone. Une affiche suffit —
-           une photo, une phrase, trois chiffres, une action. */}
       <section className="home-hero" aria-labelledby="home-title">
-        {/* Le groupe qui court dans une rue d'Aix : le club, la ville et
-            le collectif dans la meme image. */}
-        <Image alt="" className="home-hero-photo" fill priority sizes="100vw" src="/assets/photos/hero-nulll-aix-v2.webp" />
-        <div className="home-hero-contenu">
-          <p className="home-label home-hero-chapeau">Run club · Aix-en-Provence</p>
-          <h1 id="home-title">Samedi<br /><span>on sort.</span></h1>
-          <dl className="home-hero-chiffres">
-            <div><dt className="home-label">Le samedi</dt><dd>8<span>h</span>30</dd></div>
-            <div><dt className="home-label">Allure conversation</dt><dd>5–6<span>km</span></dd></div>
-            <div><dt className="home-label">Sans inscription</dt><dd>0<span>€</span></dd></div>
-          </dl>
-          <a className="home-hero-action" href="#home-dates-section">Prochaines sorties <ArrowIcon /></a>
+        <div className="home-hero-media">
+          <Image alt="Un groupe court ensemble en ville" className="home-hero-image" fill priority sizes="(max-width: 760px) 100vw, 45vw" src="/assets/photos/hero-city.jpg" />
+        </div>
+        <div className="home-hero-overlay" aria-hidden="true" />
+        <div className="home-hero-copy">
+          <p className="home-label">Aix-en-Provence · Social sport club</p>
+          <h1 id="home-title">Courir.<br /><span>Rencontrer.</span><br />Recommencer.</h1>
+          <div className="home-hero-invitation">
+            <Link className="home-hero-link" href={runsHref}><span>Je viens courir</span><ArrowIcon /></Link>
+            <span className="home-label home-hero-reassurance">Gratuit · Tous niveaux</span>
+          </div>
         </div>
       </section>
 
+      <section className="home-hero-facts" aria-label="Informations pratiques">
+        <dl>
+          <div><dt className="home-label">Quand</dt><dd>Samedi <span>8h30</span></dd></div>
+          <div><dt className="home-label">Où</dt><dd>Parking <span>Émile Zola</span></dd></div>
+          <div><dt className="home-label">Distance</dt><dd>5 à 6 <span>km</span></dd></div>
+          <div><dt className="home-label">Combien</dt><dd>0 <span>€</span></dd></div>
+        </dl>
+        <p className="home-manifesto-strip">
+          <span className="home-strip-star" aria-hidden="true">＊</span>
+          <span className="home-slogan">Le sport n’est qu’un prétexte pour la rencontre.</span>
+          <span className="home-strip-star" aria-hidden="true">＊</span>
+        </p>
+      </section>
+
       <section className="home-dates home-section" id="home-dates-section" aria-labelledby="home-next-runs">
-        <div className="home-section-top home-label"><span>01 — On se retrouve</span><span className="home-hand">Le samedi, c’est ici.</span></div>
+        <div className="home-section-top home-label"><span>01 · On se retrouve</span><span className="home-hand">Le samedi, c’est ici.</span></div>
         <div className="home-dates-layout">
           <div className="home-dates-intro" data-home-reveal>
             <h2 id="home-next-runs">Les prochaines<br /><span>dates.</span></h2>
@@ -69,14 +77,14 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
       </section>
 
       <section className="home-together" aria-label="Courir ensemble, à allure conversation">
-        <Image src="/assets/photos/hero-nulll-aix-v2.webp" alt="Le groupe NULLL.CLUB court dans une rue d’Aix-en-Provence au lever du soleil" fill sizes="100vw" />
+        <Image src="/assets/photos/principle-meet.webp" alt="Deux coureurs de NULLL.CLUB courent côte à côte sur un chemin bordé d’arbres" fill sizes="100vw" />
         <div className="home-together-shade" />
         <div className="home-together-copy" data-home-reveal><span className="home-label">5 à 6 km · Allure conversation</span><p>On vient pour courir.<br /><span>On revient<br />pour les gens.</span></p></div>
         <span className="home-together-note home-label">Personne ne sera laissé derrière.</span>
       </section>
 
       <section className="home-club home-section" aria-labelledby="home-le-club">
-        <div className="home-section-top home-label"><span>02 — Bienvenue au club</span><span className="home-hand">Aucune avance. Aucune pression.</span></div>
+        <div className="home-section-top home-label"><span>02 · Bienvenue au club</span><span className="home-hand">Aucune avance. Aucune pression.</span></div>
         <div className="home-club-heading" data-home-reveal><h2 id="home-le-club">Un run club<br /><span>à Aix-en-Provence.</span></h2></div>
         <div className="home-club-layout">
           <div className="home-club-visual" data-home-reveal>
@@ -87,7 +95,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
               <p>
                 NULLL.CLUB est un run club associatif basé à Aix-en-Provence. On se retrouvera
                 <strong> tous les samedis à 8h30 au parking Émile Zola</strong> pour une sortie de 5 à 6 km,
-                à allure conversation — celle où tu peux encore parler en courant.
+                à allure conversation, celle où tu peux encore parler en courant.
               </p>
               <p>
                 C’est <strong>gratuit, sans inscription et sans niveau minimum</strong>. Personne ne sera
@@ -110,18 +118,18 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         </dl>
           <p className="home-local-links">
             Plus de détails sur{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#773331] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]" href={localClubHref}>
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#EBA0CD] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]" href={localClubHref}>
               le run club à Aix-en-Provence
             </Link>{" "}
             et sur{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#773331] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]" href={localRunningHref}>
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#EBA0CD] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]" href={localRunningHref}>
               où courir à Aix-en-Provence
             </Link>.
           </p>
       </section>
 
       <section className="home-explore home-section" aria-labelledby="home-explore">
-        <div className="home-section-top home-label"><span>03 — Au-delà des kilomètres</span><span>NULLL.CLUB</span></div>
+        <div className="home-section-top home-label"><span>03 · Au-delà des kilomètres</span><span>NULLL.CLUB</span></div>
         {/* Titre et liens se repondent en deux colonnes. Empiles, le titre
             prenait toute la largeur et les liens tombaient dessous. */}
         <div className="home-explore-body">
@@ -132,6 +140,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
             <ExploreLink href={aboutHref} index="03" label="Contact" text="Une question avant de venir samedi." />
           </div>
         </div>
+        <p className="home-signoff" data-home-reveal>Soyons nous.<br /><span>Soyons NULLL.</span></p>
         <Link className="home-final-cta" href={runsHref}><span>Je viens samedi</span><ArrowIcon /></Link>
         {nextRun && <p className="home-label home-final-meta">{nextRun.date} · {nextRun.time} · {nextRun.location} · {nextRun.distance} · {nextRun.pace}</p>}
         <p className="home-label home-final-meta">Ouvert à tous · Gratuit · Sans inscription</p>

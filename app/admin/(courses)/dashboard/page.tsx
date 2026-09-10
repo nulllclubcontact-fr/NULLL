@@ -62,7 +62,7 @@ export default async function AdminDashboardPage() {
       <header>
         <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#773331]/55">Administration</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[.95]">
-          Vue d’ensemble<span className="text-[#773331]">.</span>
+          Vue d’ensemble<span className="text-[#EBA0CD]">.</span>
         </h1>
       </header>
 
@@ -91,7 +91,7 @@ export default async function AdminDashboardPage() {
               return (
                 <li className="flex flex-wrap items-center justify-between gap-4 border-2 border-[#773331] p-4" key={c.id}>
                   <div>
-                    <Link className="font-display text-xl uppercase leading-none hover:text-[#773331]" href={`/admin/courses/${c.id}`}>
+                    <Link className="font-display text-xl uppercase leading-none hover:text-[#EBA0CD]" href={`/admin/courses/${c.id}`}>
                       {c.title}
                     </Link>
                     <p className="mt-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#773331]/55">
@@ -131,7 +131,7 @@ export default async function AdminDashboardPage() {
                 return (
                   <tr className="border-b border-[#773331]/20" key={c.id}>
                     <td className="py-3 pr-4">
-                      <Link className="font-bold hover:text-[#773331]" href={`/admin/courses/${c.id}`}>
+                      <Link className="font-bold hover:text-[#EBA0CD]" href={`/admin/courses/${c.id}`}>
                         {c.title}
                       </Link>
                     </td>

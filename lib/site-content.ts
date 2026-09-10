@@ -109,8 +109,8 @@ const sharedEvents: Array<Omit<RunEvent, "title" | "summary" | "afterRun" | "pac
     isoDate: "2026-09-26T08:30:00+02:00",
     time: "08:30",
     distance: "5 km",
-    location: "GF56+VC Aix-en-Provence",
-    address: "GF56+VC Aix-en-Provence"
+    location: "Parking Émile Zola",
+    address: "Parking Émile Zola, Aix-en-Provence"
   },
   {
     id: "oct-03",
@@ -118,8 +118,8 @@ const sharedEvents: Array<Omit<RunEvent, "title" | "summary" | "afterRun" | "pac
     isoDate: "2026-10-03T08:30:00+02:00",
     time: "08:30",
     distance: "6 km",
-    location: "GF56+VC Aix-en-Provence",
-    address: "GF56+VC Aix-en-Provence"
+    location: "Parking Émile Zola",
+    address: "Parking Émile Zola, Aix-en-Provence"
   },
   {
     id: "oct-10",
@@ -127,8 +127,8 @@ const sharedEvents: Array<Omit<RunEvent, "title" | "summary" | "afterRun" | "pac
     isoDate: "2026-10-10T08:30:00+02:00",
     time: "08:30",
     distance: "5,5 km",
-    location: "GF56+VC Aix-en-Provence",
-    address: "GF56+VC Aix-en-Provence"
+    location: "Parking Émile Zola",
+    address: "Parking Émile Zola, Aix-en-Provence"
   }
 ];
 
