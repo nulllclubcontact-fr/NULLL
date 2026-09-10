@@ -19,7 +19,7 @@ export function buildWebSiteSchema(locale: Locale) {
       "@type": "Organization",
       name: "NULLL.CLUB",
       url: SITE_URL,
-      logo: `${SITE_URL}/assets/brand/nulll-mark.png`
+      logo: `${SITE_URL}/assets/brand/icone-n-rose.png`
     }
   };
 }
@@ -99,7 +99,7 @@ export function buildOrganizationSchema(locale: Locale) {
     "@type": "Organization",
     name: "NULLL.CLUB",
     url: `${SITE_URL}${getRoute(locale, "home")}`,
-    logo: `${SITE_URL}/assets/brand/nulll-mark.png`,
+    logo: `${SITE_URL}/assets/brand/icone-n-rose.png`,
     sameAs: [
       "https://www.instagram.com/nulll.club",
       "https://www.linkedin.com/company/nulll-club/"
@@ -153,7 +153,7 @@ export function buildSportsLocationSchema(locale: Locale) {
     email: "contact@nulll.club",
     telephone: "+33626755273",
     image: `${SITE_URL}/assets/photos/hero-nulll-aix-v2.webp`,
-    logo: `${SITE_URL}/assets/brand/nulll-mark.png`,
+    logo: `${SITE_URL}/assets/brand/icone-n-rose.png`,
     sameAs: [
       "https://www.instagram.com/nulll.club",
       "https://www.linkedin.com/company/nulll-club/"

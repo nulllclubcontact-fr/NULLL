@@ -201,7 +201,7 @@ export function getSiteCopy(locale: Locale) {
       ],
       meta: {
         home: {
-          title: "NULLL.CLUB — Club de course à Aix-en-Provence",
+          title: "NULLL.CLUB | Club de course à Aix-en-Provence",
           description:
             "NULLL.CLUB est un club de course à Aix-en-Provence. Rejoins un groupe ouvert à tous avec des sorties et des événements locaux."
         },
@@ -527,7 +527,7 @@ export function getSiteCopy(locale: Locale) {
         {
           key: "localClub",
           slug: "run-club-aix-en-provence",
-          title: "Run club à Aix-en-Provence — NULLL.CLUB, sorties gratuites",
+          title: "Run club à Aix-en-Provence | NULLL.CLUB, sorties gratuites",
           description:
             "NULLL.CLUB est un run club et un club de sport associatif à Aix-en-Provence. Sortie tous les samedis à 8h30, parking Émile Zola, gratuite et ouverte à tous les niveaux.",
           h1: "Run club à Aix-en-Provence : courir en groupe le samedi",
@@ -616,7 +616,7 @@ export function getSiteCopy(locale: Locale) {
         {
           key: "localEvents",
           slug: "evenements-running-aix",
-          title: "Événements running à Aix-en-Provence — agenda NULLL.CLUB",
+          title: "Événements running à Aix-en-Provence | agenda NULLL.CLUB",
           description:
             "L’agenda des sorties running à Aix-en-Provence : rendez-vous hebdomadaire du samedi 8h30, événements du club et rencontres après la course.",
           h1: "Événements running à Aix-en-Provence",
