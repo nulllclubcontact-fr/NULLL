@@ -2,11 +2,12 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "./ArrowIcon";
+import { LienCompte } from "./lien-compte";
 import { PosterPhoto } from "./PosterPhoto";
 import { getRoute, getSiteCopy, type Locale, type RouteKey, type RunEvent } from "../lib/site-content";
 
 type ShellCopy = ReturnType<typeof getSiteCopy>;
-type HeaderCurrent = RouteKey | "identification";
+type HeaderCurrent = RouteKey | "identification" | "confidentialite";
 
 export function SiteShell({
   locale,
@@ -49,13 +50,9 @@ export function SiteHeader({
    */
   compte?: { label: string; href: string };
 }) {
-  // « Mon compte » plutot que « S'identifier », et par defaut sur toutes
-  // les pages. Lire la session ici la rendrait dynamique : les vingt et
-  // quelques pages publiques sont generees statiquement, et on ne va pas
-  // perdre ca pour un libelle. /membre renvoie de lui-meme vers la
-  // connexion quand personne n'est connecte — le visiteur non inscrit
-  // arrive donc au bon endroit, et celui qui l'est va droit chez lui.
-  const porteCompte = compte ?? { label: "Mon compte", href: "/membre" };
+  // Le libelle suit la session, mais c'est LienCompte qui s'en charge :
+  // le lire ici rendrait les trente-deux pages dynamiques. L'en-tete
+  // reste donc rendu sur le serveur, seul ce lien s'hydrate.
   const isIdentification = current === "identification" || pathname === "/identification";
 
   return (
@@ -84,15 +81,13 @@ export function SiteHeader({
             </Link>
           ))}
         </nav>
-        <Link
-          aria-current={isIdentification ? "page" : undefined}
+        <LienCompte
+          actif={isIdentification}
           className={`hidden place-items-center border-r-2 border-[#773331] px-3 text-center font-mono text-xs font-black uppercase transition hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] lg:grid ${
             isIdentification ? "bg-[#EBA0CD]" : ""
           }`}
-          href={porteCompte.href}
-        >
-          {porteCompte.label}
-        </Link>
+          fige={compte}
+        />
         <details className="static lg:hidden">
           <summary className="flex min-h-20 cursor-pointer items-center border-r-2 border-[#773331] px-3 font-mono text-xs font-black uppercase transition-colors hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] sm:px-5">Menu</summary>
           <nav aria-label="Navigation mobile" className="absolute inset-x-0 top-full z-50 grid max-h-[calc(100dvh-80px)] overflow-y-auto border-t-2 border-[#773331] bg-[#F1EDE9] font-mono text-xs font-black uppercase shadow-[0_8px_0_rgba(53,24,21,.18)]">
@@ -101,9 +96,11 @@ export function SiteHeader({
                 {item.label}
               </Link>
             ))}
-            <Link className={`flex min-h-14 items-center border-b-2 border-[#773331] px-4 py-3 transition-colors hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] ${isIdentification ? "bg-[#EBA0CD]" : ""}`} href={porteCompte.href}>
-              {porteCompte.label}
-            </Link>
+            <LienCompte
+              actif={isIdentification}
+              className={`flex min-h-14 items-center border-b-2 border-[#773331] px-4 py-3 transition-colors hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] ${isIdentification ? "bg-[#EBA0CD]" : ""}`}
+              fige={compte}
+            />
           </nav>
         </details>
         <Link className="grid min-h-20 place-items-center bg-[#773331] px-4 text-center font-mono text-xs font-black uppercase text-[#F1EDE9] transition hover:bg-[#FFB200] hover:text-[#773331] focus-visible:bg-[#FFB200] focus-visible:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD] sm:px-6" href={getRoute(locale, "runs")}>
@@ -162,6 +159,12 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
 
         <div className="mt-10 flex flex-col gap-3 border-t border-[#F1EDE9]/20 pt-5 font-mono text-xs uppercase tracking-[.12em] text-[#F1EDE9]/60 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 NULLL.CLUB</span>
+          <Link
+            className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
+            href="/confidentialite"
+          >
+            Confidentialité
+          </Link>
           <span>Aix-en-Provence, France</span>
           <span className="text-[#FFB200]/70">Ouvert à tous</span>
         </div>
