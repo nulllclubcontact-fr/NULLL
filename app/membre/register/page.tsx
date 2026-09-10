@@ -1,7 +1,10 @@
 import { RegisterForm } from "./RegisterForm";
 import { AccountShell } from "../../../components/account-shell";
+import { telephoneDisponible } from "../../../lib/auth/telephone-serveur";
 
-export default function MemberRegisterPage() {
+export default async function MemberRegisterPage() {
+  const telephoneActif = await telephoneDisponible();
+
   return (
     <AccountShell
       eyebrow="Inscription membre"
@@ -15,7 +18,7 @@ export default function MemberRegisterPage() {
       title="Entre dans le"
       titleAccent="club."
     >
-      <RegisterForm />
+      <RegisterForm telephoneActif={telephoneActif} />
     </AccountShell>
   );
 }

@@ -2,13 +2,30 @@
 
 import Link from "next/link";
 import { useActionState, useState } from "react";
-import { registerMember, type RegisterState } from "../actions";
+import { registerMember, renvoyerCodeInscription, verifierCodeInscription, type RegisterState } from "../actions";
+import { CodeSms } from "../../../components/auth/code-sms";
 
 const initialState: RegisterState = {};
 
-export function RegisterForm() {
+export function RegisterForm({ telephoneActif }: { telephoneActif: boolean }) {
   const [state, formAction, pending] = useActionState(registerMember, initialState);
   const [accepted, setAccepted] = useState(false);
+  const [mode, setMode] = useState<"email" | "telephone">("email");
+
+  // Compte cree par telephone : il reste a confirmer le numero avec le SMS.
+  if (state.etape === "code" && state.telephone) {
+    return (
+      <div className="panel panel-grid p-5 sm:p-6">
+        <CodeSms
+          renvoyer={renvoyerCodeInscription}
+          retour={{ href: "/membre/register", label: "Changer de numéro" }}
+          telephone={state.telephone}
+          texteBouton="Valider mon numéro"
+          verifier={verifierCodeInscription}
+        />
+      </div>
+    );
+  }
 
   return (
     <form
@@ -27,10 +44,45 @@ export function RegisterForm() {
         </label>
       </div>
 
-      <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 1 } as React.CSSProperties}>
-        <span>E-mail</span>
-        <input autoComplete="email" className="field" name="email" required type="email" />
-      </label>
+      {telephoneActif ? (
+        <div
+          aria-label="S’inscrire avec"
+          className="grid grid-cols-2 border-2 border-[#773331]"
+          role="radiogroup"
+          style={{ "--pas": 1 } as React.CSSProperties}
+        >
+          {(["email", "telephone"] as const).map((choix) => (
+            <button
+              aria-checked={mode === choix}
+              className={`min-h-11 font-mono text-xs font-black uppercase tracking-[.12em] transition ${
+                mode === choix ? "bg-[#773331] text-[#F1EDE9]" : "bg-[#F1EDE9] text-[#773331] hover:bg-[#EBA0CD]"
+              }`}
+              key={choix}
+              onClick={() => setMode(choix)}
+              role="radio"
+              type="button"
+            >
+              {choix === "email" ? "E-mail" : "Téléphone"}
+            </button>
+          ))}
+        </div>
+      ) : null}
+      <input name="mode" type="hidden" value={mode} />
+
+      {mode === "email" ? (
+        <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 1 } as React.CSSProperties}>
+          <span>E-mail</span>
+          <input autoComplete="email" className="field" name="email" required type="email" />
+        </label>
+      ) : (
+        <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 1 } as React.CSSProperties}>
+          <span>Téléphone</span>
+          <input autoComplete="tel" className="field" inputMode="tel" name="phone" placeholder="06 12 34 56 78" required type="tel" />
+          <span className="font-mono text-[.62rem] font-bold normal-case tracking-normal">
+            On t’envoie un code par SMS pour vérifier ton numéro.
+          </span>
+        </label>
+      )}
 
       <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 2 } as React.CSSProperties}>
         <span>Mot de passe</span>
@@ -70,7 +122,7 @@ export function RegisterForm() {
           disabled={!accepted || pending}
           type="submit"
         >
-          {pending ? "Création…" : "Créer mon compte"}
+          {pending ? "Création…" : mode === "telephone" ? "Recevoir mon code" : "Créer mon compte"}
         </button>
         {!accepted && !pending ? (
           <span aria-live="polite" className="font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#773331]/50">

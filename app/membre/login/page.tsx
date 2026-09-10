@@ -1,5 +1,6 @@
 import { LoginForm } from "./LoginForm";
 import { AccountShell } from "../../../components/account-shell";
+import { telephoneDisponible } from "../../../lib/auth/telephone-serveur";
 
 // /auth/callback renvoie ici quand le lien recu par mail ne vaut plus rien.
 const MESSAGES_ERREUR: Record<string, string> = {
@@ -18,7 +19,7 @@ export default async function MemberLoginPage({
 }: {
   searchParams: Promise<{ erreur?: string; message?: string }>;
 }) {
-  const { erreur, message } = await searchParams;
+  const [{ erreur, message }, telephoneActif] = await Promise.all([searchParams, telephoneDisponible()]);
   const alerte = erreur ? MESSAGES_ERREUR[erreur] : undefined;
   const info = message ? MESSAGES_INFO[message] : undefined;
 
@@ -49,7 +50,7 @@ export default async function MemberLoginPage({
         </p>
       ) : null}
 
-      <LoginForm />
+      <LoginForm telephoneActif={telephoneActif} />
     </AccountShell>
   );
 }

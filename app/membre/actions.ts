@@ -1,19 +1,25 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { normaliserTelephone } from "../../lib/auth/telephone";
 import { createSupabaseServerClient } from "../../lib/supabase/server";
 import { createSupabaseServiceClient } from "../../lib/supabase/service";
+import { MARQUEUR_SESSION_COURTE } from "../../lib/supabase/session";
 
-export type RegisterState = {
-  error?: string;
-};
-
-export type LoginState = {
+/** Etat commun des formulaires d'acces ; etape « code » = attente du SMS. */
+export type CodeState = {
   error?: string;
   message?: string;
+  etape?: "code";
+  telephone?: string;
 };
 
+export type RegisterState = CodeState;
+export type LoginState = CodeState;
+
 const WAIVER_VERSION = "v1-2026-06";
+const NUMERO_ILLISIBLE = "Numéro illisible. Exemple : 06 12 34 56 78.";
 
 function readRequiredString(formData: FormData, key: string) {
   const value = formData.get(key);
@@ -25,28 +31,59 @@ function readRequiredString(formData: FormData, key: string) {
   return value.trim();
 }
 
-function getSignupMessage(message: string) {
+function getSignupMessage(message: string, parTelephone: boolean) {
   const normalized = message.toLowerCase();
 
   if (normalized.includes("already") || normalized.includes("registered")) {
-    return "Ce mail existe déjà. Connecte-toi.";
+    return parTelephone ? "Ce numéro a déjà un compte. Connecte-toi." : "Ce mail existe déjà. Connecte-toi.";
   }
 
   if (normalized.includes("password")) {
     return "Mot de passe trop fragile. Mets plus solide.";
   }
 
+  if (parTelephone && (normalized.includes("disabled") || normalized.includes("provider"))) {
+    return "Inscription par téléphone indisponible pour le moment. Passe par l’e-mail.";
+  }
+
+  if (parTelephone && (normalized.includes("sms") || normalized.includes("otp"))) {
+    return "SMS impossible à envoyer. Vérifie le numéro ou réessaie dans une minute.";
+  }
+
   return "Inscription bloquée. Vérifie les infos.";
 }
 
+/** « Se souvenir de moi » : le marqueur survit a la connexion pour les renouvellements. */
+async function noterChoixSouvenir(souvenir: boolean) {
+  const cookieStore = await cookies();
+
+  if (souvenir) {
+    cookieStore.delete(MARQUEUR_SESSION_COURTE);
+    return;
+  }
+
+  cookieStore.set(MARQUEUR_SESSION_COURTE, "1", {
+    path: "/",
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production"
+  });
+}
+
 export async function registerMember(_previousState: RegisterState, formData: FormData): Promise<RegisterState> {
+  const parTelephone = formData.get("mode") === "telephone";
   const firstName = readRequiredString(formData, "first_name");
   const lastName = readRequiredString(formData, "last_name");
-  const email = readRequiredString(formData, "email").toLowerCase();
+  const email = parTelephone ? "" : readRequiredString(formData, "email").toLowerCase();
+  const saisieTelephone = parTelephone ? readRequiredString(formData, "phone") : "";
+  const telephone = parTelephone ? normaliserTelephone(saisieTelephone) : null;
   const password = readRequiredString(formData, "password");
   const acceptsWaiver = formData.get("waiver") === "on";
 
-  if (!firstName || !lastName || !email || !password) {
+  if (parTelephone && saisieTelephone && !telephone) {
+    return { error: NUMERO_ILLISIBLE };
+  }
+
+  if (!firstName || !lastName || !password || (parTelephone ? !telephone : !email)) {
     return { error: "Tous les champs. Pas à moitié." };
   }
 
@@ -76,19 +113,21 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
     return { error: "Connexion membre indisponible : variables Supabase manquantes." };
   }
 
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password
-  });
+  // Par telephone, Supabase envoie un code SMS (via /api/auth/sms) et
+  // n'ouvre la session qu'une fois ce code saisi.
+  const { data, error } = telephone
+    ? await supabase.auth.signUp({ phone: telephone, password })
+    : await supabase.auth.signUp({ email, password });
 
   if (error || !data.user) {
-    return { error: getSignupMessage(error?.message ?? "") };
+    return { error: getSignupMessage(error?.message ?? "", parTelephone) };
   }
 
   const { error: profileError } = await serviceSupabase.from("profiles").upsert(
     {
       id: data.user.id,
-      email,
+      email: email || null,
+      ...(telephone ? { phone: telephone } : {}),
       first_name: firstName,
       last_name: lastName,
       consent_waiver: true,
@@ -100,6 +139,10 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
 
   if (profileError) {
     return { error: "Compte créé, profil bloqué. Réessaie la connexion." };
+  }
+
+  if (telephone) {
+    return { etape: "code", telephone };
   }
 
   // Quand la confirmation d'e-mail est activee cote Supabase — le reglage
@@ -115,12 +158,13 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
   redirect("/membre");
 }
 
-export async function loginMember(_previousState: LoginState, formData: FormData): Promise<LoginState> {
-  const email = readRequiredString(formData, "email").toLowerCase();
-  const password = readRequiredString(formData, "password");
+/** Le code SMS de l'inscription confirme le numero et ouvre la session. */
+export async function verifierCodeInscription(_previousState: CodeState, formData: FormData): Promise<CodeState> {
+  const telephone = normaliserTelephone(readRequiredString(formData, "telephone"));
+  const code = readRequiredString(formData, "code").replace(/\D/g, "");
 
-  if (!email || !password) {
-    return { error: "Mail et mot de passe. Les deux." };
+  if (!telephone || code.length !== 6) {
+    return { etape: "code", telephone: telephone ?? undefined, error: "Le code fait 6 chiffres." };
   }
 
   let supabase;
@@ -128,17 +172,81 @@ export async function loginMember(_previousState: LoginState, formData: FormData
   try {
     supabase = await createSupabaseServerClient();
   } catch {
+    return { etape: "code", telephone, error: "Vérification indisponible pour le moment." };
+  }
+
+  const { error } = await supabase.auth.verifyOtp({ phone: telephone, token: code, type: "sms" });
+
+  if (error) {
+    return { etape: "code", telephone, error: "Code faux ou expiré. Redemande-en un." };
+  }
+
+  redirect("/membre");
+}
+
+export async function renvoyerCodeInscription(_previousState: CodeState, formData: FormData): Promise<CodeState> {
+  const telephone = normaliserTelephone(readRequiredString(formData, "telephone"));
+
+  if (!telephone) {
+    return { error: NUMERO_ILLISIBLE };
+  }
+
+  let supabase;
+
+  try {
+    supabase = await createSupabaseServerClient();
+  } catch {
+    return { etape: "code", telephone, error: "Envoi indisponible pour le moment." };
+  }
+
+  const { error } = await supabase.auth.resend({ type: "sms", phone: telephone });
+
+  if (error) {
+    return { etape: "code", telephone, error: "Attends une minute avant de redemander un code." };
+  }
+
+  return { etape: "code", telephone, message: "Nouveau code envoyé." };
+}
+
+export async function loginMember(_previousState: LoginState, formData: FormData): Promise<LoginState> {
+  // « email » reste lu pour un formulaire encore en cache d'une ancienne version.
+  const identifiant = readRequiredString(formData, "identifiant") || readRequiredString(formData, "email");
+  const password = readRequiredString(formData, "password");
+  const souvenir = formData.get("souvenir") === "on";
+
+  if (!identifiant || !password) {
+    return { error: "Identifiant et mot de passe. Les deux." };
+  }
+
+  let identifiants: { email: string; password: string } | { phone: string; password: string };
+
+  if (identifiant.includes("@")) {
+    identifiants = { email: identifiant.toLowerCase(), password };
+  } else {
+    const telephone = normaliserTelephone(identifiant);
+
+    if (!telephone) {
+      return { error: NUMERO_ILLISIBLE };
+    }
+
+    identifiants = { phone: telephone, password };
+  }
+
+  let supabase;
+
+  try {
+    supabase = await createSupabaseServerClient({ sessionCourte: !souvenir });
+  } catch {
     return { error: "Connexion membre indisponible : variables Supabase manquantes." };
   }
 
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password
-  });
+  const { data, error } = await supabase.auth.signInWithPassword(identifiants);
 
   if (error || !data.user) {
     return { error: "Accès refusé. Vérifie tes infos." };
   }
+
+  await noterChoixSouvenir(souvenir);
 
   // Un compte administrateur atterrit directement sur sa vue d'ensemble :
   // passer par l'espace membre pour cliquer ensuite sur « Administration »
@@ -153,10 +261,12 @@ export async function loginMember(_previousState: LoginState, formData: FormData
 }
 
 export async function resetMemberPassword(_previousState: LoginState, formData: FormData): Promise<LoginState> {
-  const email = readRequiredString(formData, "email").toLowerCase();
+  // « telephone » : le bouton « Renvoyer le code » repasse par ici.
+  const identifiant =
+    readRequiredString(formData, "identifiant") || readRequiredString(formData, "email") || readRequiredString(formData, "telephone");
 
-  if (!email) {
-    return { error: "Mets ton e-mail." };
+  if (!identifiant) {
+    return { error: "Mets ton e-mail ou ton numéro." };
   }
 
   let supabase;
@@ -167,7 +277,25 @@ export async function resetMemberPassword(_previousState: LoginState, formData: 
     return { error: "Réinitialisation indisponible : variables Supabase manquantes." };
   }
 
-  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+  if (!identifiant.includes("@")) {
+    const telephone = normaliserTelephone(identifiant);
+
+    if (!telephone) {
+      return { error: NUMERO_ILLISIBLE };
+    }
+
+    const { error } = await supabase.auth.signInWithOtp({ phone: telephone, options: { shouldCreateUser: false } });
+
+    if (error && /disabled|provider/i.test(error.message)) {
+      return { error: "Réinitialisation par SMS indisponible pour le moment. Passe par ton e-mail." };
+    }
+
+    // Meme reponse que le numero ait un compte ou non : on ne revele pas
+    // qui est inscrit au club.
+    return { etape: "code", telephone, message: "Code envoyé si ce numéro a un compte." };
+  }
+
+  const { error } = await supabase.auth.resetPasswordForEmail(identifiant.toLowerCase(), {
     redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://nulll.club"}/auth/callback?next=/membre/mot-de-passe`
   });
 
@@ -176,6 +304,32 @@ export async function resetMemberPassword(_previousState: LoginState, formData: 
   }
 
   return { message: "Lien envoye si le compte existe." };
+}
+
+/** Code SMS du mot de passe oublie : ouvre la session, puis le choix du nouveau mot de passe. */
+export async function verifierCodeReinitialisation(_previousState: CodeState, formData: FormData): Promise<CodeState> {
+  const telephone = normaliserTelephone(readRequiredString(formData, "telephone"));
+  const code = readRequiredString(formData, "code").replace(/\D/g, "");
+
+  if (!telephone || code.length !== 6) {
+    return { etape: "code", telephone: telephone ?? undefined, error: "Le code fait 6 chiffres." };
+  }
+
+  let supabase;
+
+  try {
+    supabase = await createSupabaseServerClient();
+  } catch {
+    return { etape: "code", telephone, error: "Vérification indisponible pour le moment." };
+  }
+
+  const { error } = await supabase.auth.verifyOtp({ phone: telephone, token: code, type: "sms" });
+
+  if (error) {
+    return { etape: "code", telephone, error: "Code faux ou expiré. Redemande-en un." };
+  }
+
+  redirect("/membre/mot-de-passe");
 }
 
 export async function updateMemberPassword(_previousState: LoginState, formData: FormData): Promise<LoginState> {
@@ -198,8 +352,9 @@ export async function updateMemberPassword(_previousState: LoginState, formData:
     return { error: "Changement indisponible : variables Supabase manquantes." };
   }
 
-  // La session vient du lien reçu par mail, échangé par /auth/callback.
-  // Sans elle, updateUser changerait le mot de passe de personne.
+  // La session vient du lien reçu par mail (échangé par /auth/callback) ou
+  // du code reçu par SMS. Sans elle, updateUser changerait le mot de passe
+  // de personne.
   const {
     data: { user }
   } = await supabase.auth.getUser();
@@ -228,5 +383,6 @@ export async function logoutMember() {
   }
 
   await supabase.auth.signOut();
+  (await cookies()).delete(MARQUEUR_SESSION_COURTE);
   redirect("/membre/login");
 }
