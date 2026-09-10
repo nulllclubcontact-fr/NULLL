@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { preparerProfilFournisseur } from "../../lib/auth/profil-fournisseur";
 import { normaliserTelephone } from "../../lib/auth/telephone";
 import { createSupabaseServerClient } from "../../lib/supabase/server";
 import { createSupabaseServiceClient } from "../../lib/supabase/service";
@@ -426,6 +427,40 @@ export async function accepterDecharge(_previousState: CodeState, formData: Form
   const { data: profil } = await serviceSupabase.from("profiles").select("role").eq("id", user.id).maybeSingle<{ role: string | null }>();
 
   redirect(profil?.role === "admin" ? "/admin/dashboard" : "/membre");
+}
+
+/**
+ * Apres une connexion par le bouton Google officiel, faite dans la page :
+ * meme suite que /auth/callback (profil, decharge), puis la bonne porte.
+ */
+export async function destinationApresFournisseur(): Promise<string> {
+  let supabase;
+
+  try {
+    supabase = await createSupabaseServerClient();
+  } catch {
+    return "/membre/login?erreur=config";
+  }
+
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return "/membre/login?erreur=fournisseur";
+  }
+
+  try {
+    if (await preparerProfilFournisseur(user)) {
+      return "/membre/bienvenue";
+    }
+  } catch {
+    // Sans service role, l'espace membre renverra lui-meme vers la decharge.
+  }
+
+  const { data: profil } = await supabase.from("profiles").select("role").eq("id", user.id).maybeSingle<{ role: string | null }>();
+
+  return profil?.role === "admin" ? "/admin/dashboard" : "/membre";
 }
 
 /** Fermer sa session depuis l'espace membre. */

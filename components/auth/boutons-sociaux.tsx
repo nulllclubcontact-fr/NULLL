@@ -1,9 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import Script from "next/script";
+import { useEffect, useRef, useState } from "react";
+import { destinationApresFournisseur } from "../../app/membre/actions";
 import { createSupabaseBrowserClient } from "../../lib/supabase/client";
 
 type Fournisseur = "google" | "apple";
+
+type GoogleIdentite = {
+  accounts: {
+    id: {
+      initialize(options: Record<string, unknown>): void;
+      renderButton(element: HTMLElement, options: Record<string, unknown>): void;
+    };
+  };
+};
+
+declare global {
+  interface Window {
+    google?: GoogleIdentite;
+  }
+}
+
+// Identifiant public par nature : Google l'affiche dans chaque page de connexion.
+const GOOGLE_CLIENT_ID =
+  process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "745605124032-mbhj0advn250o4ec4ma0uvmovt6l2v2s.apps.googleusercontent.com";
+
+/**
+ * Nonce contre le rejeu d'un jeton : Google recoit son empreinte SHA-256,
+ * Supabase la valeur brute, et verifie que les deux correspondent.
+ */
+async function creerNonce() {
+  const brut = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(32))));
+  const empreinte = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(brut));
+  const hache = Array.from(new Uint8Array(empreinte))
+    .map((octet) => octet.toString(16).padStart(2, "0"))
+    .join("");
+
+  return { brut, hache };
+}
 
 function LogoGoogle() {
   // Le « G » officiel, couleurs comprises : les regles de marque Google
@@ -26,13 +61,98 @@ function LogoApple() {
   );
 }
 
+const BOUTON =
+  "flex min-h-12 w-full items-center justify-center gap-3 border-2 border-[#773331] px-4 font-mono text-xs font-black uppercase tracking-[.1em] transition disabled:opacity-60";
+
 /**
- * « Continuer avec Google / Apple ». Au retour, /auth/callback cree le
- * profil et fait passer par /membre/bienvenue pour la decharge.
+ * Bouton officiel de Google, dessine par Google dans la page. La connexion
+ * se fait dans sa fenetre, sans redirection par l'adresse technique de
+ * Supabase : Google annonce donc nulll.club, et non « skyq….supabase.co ».
+ */
+function BoutonGoogleOfficiel({ onErreur, onIndisponible }: { onErreur: (message: string) => void; onIndisponible: () => void }) {
+  const conteneur = useRef<HTMLDivElement>(null);
+  const [scriptPret, setScriptPret] = useState(false);
+  const [connexion, setConnexion] = useState(false);
+
+  useEffect(() => {
+    const google = window.google;
+    const element = conteneur.current;
+
+    if (!scriptPret || !google || !element) return;
+
+    let annule = false;
+
+    creerNonce().then(({ brut, hache }) => {
+      if (annule) return;
+
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        nonce: hache,
+        ux_mode: "popup",
+        callback: async ({ credential }: { credential: string }) => {
+          setConnexion(true);
+          onErreur("");
+
+          const { error } = await createSupabaseBrowserClient().auth.signInWithIdToken({
+            provider: "google",
+            token: credential,
+            nonce: brut
+          });
+
+          if (error) {
+            setConnexion(false);
+            onErreur("Connexion Google refusée. Réessaie ou passe par ton e-mail.");
+            return;
+          }
+
+          window.location.assign(await destinationApresFournisseur());
+        }
+      });
+
+      google.accounts.id.renderButton(element, {
+        type: "standard",
+        theme: "outline",
+        size: "large",
+        text: "continue_with",
+        shape: "rectangular",
+        logo_alignment: "center",
+        locale: "fr",
+        width: Math.max(200, Math.min(400, element.offsetWidth))
+      });
+    });
+
+    return () => {
+      annule = true;
+    };
+  }, [scriptPret, onErreur]);
+
+  return (
+    <>
+      <Script onError={onIndisponible} onReady={() => setScriptPret(true)} src="https://accounts.google.com/gsi/client" strategy="afterInteractive" />
+      {connexion ? (
+        <p className={`${BOUTON} bg-white text-[#1f1f1f]`} role="status">
+          Connexion en cours…
+        </p>
+      ) : (
+        // Hauteur reservee : la page ne saute pas quand Google dessine son bouton.
+        <div className="flex min-h-11 w-full justify-center" ref={conteneur} />
+      )}
+    </>
+  );
+}
+
+/**
+ * « Continuer avec Google / Apple ». Google passe par son bouton officiel ;
+ * Apple, et Google si son script est bloque, par redirection vers
+ * /auth/callback. Dans tous les cas, le profil se cree au premier passage
+ * et la decharge se signe sur /membre/bienvenue.
  */
 export function BoutonsSociaux({ google, apple, separateur }: { google: boolean; apple: boolean; separateur: string }) {
   const [enCours, setEnCours] = useState<Fournisseur | null>(null);
   const [erreur, setErreur] = useState("");
+  // Script Google bloque (bloqueur de publicite, reseau filtre) : on revient
+  // au bouton par redirection, qui marche partout.
+  const [googleParRedirection, setGoogleParRedirection] = useState(false);
 
   if (!google && !apple) {
     return null;
@@ -47,26 +167,26 @@ export function BoutonsSociaux({ google, apple, separateur }: { google: boolean;
       options: { redirectTo: `${window.location.origin}/auth/callback?next=/membre` }
     });
 
-    // En cas de succes, le navigateur part deja vers Google ou Apple.
+    // En cas de succes, le navigateur part deja vers le fournisseur.
     if (error) {
       setErreur("Connexion impossible pour le moment. Réessaie ou passe par ton e-mail.");
       setEnCours(null);
     }
   }
 
-  const bouton =
-    "flex min-h-12 w-full items-center justify-center gap-3 border-2 border-[#773331] px-4 font-mono text-xs font-black uppercase tracking-[.1em] transition disabled:opacity-60";
-
   return (
     <div className="grid gap-3">
-      {google ? (
-        <button className={`${bouton} bg-white text-[#1f1f1f] hover:bg-[#F1EDE9]`} disabled={enCours !== null} onClick={() => continuer("google")} type="button">
+      {google && !googleParRedirection ? (
+        <BoutonGoogleOfficiel onErreur={setErreur} onIndisponible={() => setGoogleParRedirection(true)} />
+      ) : null}
+      {google && googleParRedirection ? (
+        <button className={`${BOUTON} bg-white text-[#1f1f1f] hover:bg-[#F1EDE9]`} disabled={enCours !== null} onClick={() => continuer("google")} type="button">
           <LogoGoogle />
           {enCours === "google" ? "Ouverture de Google…" : "Continuer avec Google"}
         </button>
       ) : null}
       {apple ? (
-        <button className={`${bouton} bg-black text-white hover:bg-[#3A1A18]`} disabled={enCours !== null} onClick={() => continuer("apple")} type="button">
+        <button className={`${BOUTON} bg-black text-white hover:bg-[#3A1A18]`} disabled={enCours !== null} onClick={() => continuer("apple")} type="button">
           <LogoApple />
           {enCours === "apple" ? "Ouverture d’Apple…" : "Continuer avec Apple"}
         </button>
