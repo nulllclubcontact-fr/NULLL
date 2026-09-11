@@ -35,8 +35,8 @@ export function LoginForm({ fournisseurs, sortie }: { fournisseurs: Fournisseurs
         <label className="flex cursor-pointer items-center gap-3 text-sm font-bold">
           <input className="h-5 w-5 shrink-0 accent-[#EBA0CD]" defaultChecked name="souvenir" type="checkbox" />
           <span>
-            Se souvenir de moi
-            <span className="block text-xs font-normal">Décoche sur un ordinateur partagé : tu seras déconnecté en fermant le navigateur.</span>
+            Rester connecté sur cet appareil
+            <span className="block text-xs font-normal">À éviter sur un appareil partagé.</span>
           </span>
         </label>
 

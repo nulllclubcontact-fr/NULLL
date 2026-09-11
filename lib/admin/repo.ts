@@ -1,7 +1,7 @@
 import "server-only";
 
 import bcrypt from "bcryptjs";
-import { randomBytes } from "node:crypto";
+import { createHash, randomBytes } from "node:crypto";
 import { createSupabaseServiceClient } from "../supabase/service";
 
 export type AdminPartner = {
@@ -88,15 +88,37 @@ const SALES_PAGE_SIZE = 1000;
  * plafonne une lecture a 1000 lignes : on pagine pour que les totaux restent
  * justes quand l'historique grossit.
  */
-export async function listAdminPartnerSales(partnerId?: string) {
+/**
+ * Empreinte SHA-256 d'un code partenaire : elle retrouve la bonne ligne a
+ * la connexion sans comparer le code a tous les autres. Les codes sont
+ * aleatoires et longs, l'empreinte n'aide pas a les deviner ; bcrypt reste
+ * la verification finale.
+ */
+export function empreinteCode(code: string) {
+  return createHash("sha256").update(code.trim().toUpperCase()).digest("hex");
+}
+
+export async function updateAdminPartner(partnerId: string, champs: { name: string; contactEmail: string | null }) {
+  const supabase = createSupabaseServiceClient();
+  const { error } = await supabase.from("partners").update({ name: champs.name, contact_email: champs.contactEmail }).eq("id", partnerId);
+
+  if (error) {
+    throw new Error("Partner update failed");
+  }
+}
+
+/** bornes : instants ISO, pour ne lire que la periode affichee. */
+export async function listAdminPartnerSales(partnerId?: string, bornes?: { depuis?: string; jusqua?: string }) {
   const supabase = createSupabaseServiceClient();
   const sales: AdminPartnerSale[] = [];
 
   for (let from = 0; ; from += SALES_PAGE_SIZE) {
-    const base = supabase
+    let filtered = supabase
       .from("transactions")
       .select("id,partner_id,member_id,label,amount_eur,points_awarded,created_at,profiles(first_name,last_name)");
-    const filtered = partnerId ? base.eq("partner_id", partnerId) : base;
+    if (partnerId) filtered = filtered.eq("partner_id", partnerId);
+    if (bornes?.depuis) filtered = filtered.gte("created_at", bornes.depuis);
+    if (bornes?.jusqua) filtered = filtered.lte("created_at", bornes.jusqua);
     const { data, error } = await filtered
       .order("created_at", { ascending: false })
       .order("id", { ascending: true })
@@ -170,7 +192,11 @@ export async function issueAdminPartnerCode(partnerId: string) {
   // Revocation des anciens et creation du nouveau dans une seule
   // transaction, sous verrou du partenaire (migration 0008) : deux
   // generations simultanees ne laissent plus deux codes actifs, ni aucun.
-  const { error } = await supabase.rpc("emettre_code_partenaire", { p_partner_id: partnerId, p_code_hash: codeHash });
+  const { error } = await supabase.rpc("emettre_code_partenaire", {
+    p_partner_id: partnerId,
+    p_code_hash: codeHash,
+    p_empreinte: empreinteCode(code)
+  });
 
   if (error) {
     throw new Error("Code create failed");

@@ -37,10 +37,10 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         </div>
         <div className="home-hero-overlay" aria-hidden="true" />
         <div className="home-hero-copy">
-          <p className="home-label">Aix-en-Provence · Social sport club</p>
+          <p className="home-label">NULLL.CLUB · Social sport club · Aix</p>
           <h1 id="home-title">Courir.<br /><span>Rencontrer.</span><br />Recommencer.</h1>
           <div className="home-hero-invitation">
-            <Link className="home-hero-link" href={runsHref}><span>Je viens courir</span><ArrowIcon /></Link>
+            <Link className="home-hero-link" href={runsHref}><span>Choisir ma sortie</span><ArrowIcon /></Link>
             <span className="home-label home-hero-reassurance">Gratuit · Tous niveaux</span>
           </div>
         </div>
@@ -68,7 +68,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
             <p>Rendez-vous au même endroit,<br />chaque samedi matin.</p>
             <figure className="home-dates-photo">
               <Image src="/assets/photos/runs-blur.webp" alt="Un coureur en mouvement sur un chemin" fill sizes="(max-width: 760px) 85vw, 30vw" />
-              <figcaption className="home-label">Le seul rythme qui compte : le tien.</figcaption>
+              <figcaption className="home-label">De quoi courir. De quoi discuter.</figcaption>
             </figure>
           </div>
           <ol className="home-run-list">
@@ -85,7 +85,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
                 <div className="home-run-date"><strong>{day?.padStart(2, "0")}</strong><p><span className="home-label">{weekday}</span><span>{month.join(" ")}</span></p></div>
                 <p className="home-label home-run-details">{run.time} · {run.distance} · {run.pace}</p>
                 <p className="home-run-location">{run.location}</p>
-                <Link className="home-run-link home-label" href={runsHref}><span>{index === 0 ? "Je viens" : "Détails"}</span><ArrowIcon /></Link>
+                <Link className="home-run-link home-label" href={runsHref}><span>{index === 0 ? "Choisir cette sortie" : "Voir la sortie"}</span><ArrowIcon /></Link>
               </li>;
             })}
           </ol>
@@ -152,12 +152,12 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
           </p>
       </section>
 
-      <section className="home-explore home-section" aria-labelledby="home-explore">
+      <section className="home-explore home-section" aria-labelledby="home-explore-title">
         <div className="home-section-top home-label"><span>03 · Au-delà des kilomètres</span><span>NULLL.CLUB</span></div>
         {/* Titre et liens se repondent en deux colonnes. Empiles, le titre
             prenait toute la largeur et les liens tombaient dessous. */}
         <div className="home-explore-body">
-          <h2 id="home-explore" data-home-reveal>Le reste<br />du <span>club.</span></h2>
+          <h2 id="home-explore-title" data-home-reveal>Le reste<br />du <span>club.</span></h2>
           <div className="home-explore-links" data-home-reveal>
             <ExploreLink href={communityHref} index="01" label="Le club" text="D’où vient NULLL.CLUB, et pourquoi trois L." />
             <ExploreLink href={merchHref} index="02" label="Merch" text="Les pièces du club, quand elles sont dispo." />
@@ -165,7 +165,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
           </div>
         </div>
         <p className="home-signoff" data-home-reveal>Soyons nous.<br /><span>Soyons NULLL.</span></p>
-        <Link className="home-final-cta" href={runsHref}><span>Je viens samedi</span><ArrowIcon /></Link>
+        <Link className="home-final-cta" href={runsHref}><span>Voir les sorties</span><ArrowIcon /></Link>
         {nextRun && <p className="home-label home-final-meta">{nextRun.date} · {nextRun.time} · {nextRun.location} · {nextRun.distance} · {nextRun.pace}</p>}
         <p className="home-label home-final-meta">Ouvert à tous · Gratuit · Inscription en ligne</p>
       </section>

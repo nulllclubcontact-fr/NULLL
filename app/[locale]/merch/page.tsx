@@ -59,7 +59,7 @@ export default async function MerchPage({ params }: PageProps) {
             <p className="shrink-0 font-mono text-xs font-black uppercase leading-[1.7] text-[#773331] lg:text-right">
               <span className="block tracking-[.18em]">{products.length} pièces en ligne</span>
               <span className="block tracking-[.06em] text-[#773331] [word-spacing:.14em]">
-                Photos d’ambiance : les visuels des pièces arrivent
+                Photos d’ambiance. Les visuels des pièces arrivent.
               </span>
             </p>
           </div>

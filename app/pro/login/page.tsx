@@ -1,4 +1,6 @@
 import { ProLoginForm } from "./ProLoginForm";
+
+export const metadata = { title: "Connexion partenaire | NULLL.CLUB", robots: { index: false, follow: false } };
 import { AccountShell } from "../../../components/account-shell";
 
 export default function ProLoginPage() {
@@ -14,7 +16,7 @@ export default function ProLoginPage() {
       imageAlt="Deux membres de NULLL.CLUB courent au lever du soleil sur un chemin près d’Aix-en-Provence"
       intro="Code fourni par NULLL. Pas d’inscription, pas de blabla : juste ton espace partenaire."
       steps={["Ton code", "Ton espace"]}
-      ticker="Partenaire NULLL.CLUB · Ton espace · Tes chiffres"
+      ticker="Partenaires NULLL.CLUB"
       title="Espace"
       titleAccent="partenaire."
     >

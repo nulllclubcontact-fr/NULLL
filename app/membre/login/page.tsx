@@ -1,4 +1,6 @@
 import { LoginForm } from "./LoginForm";
+
+export const metadata = { title: "Connexion membre | NULLL.CLUB", robots: { index: false, follow: false } };
 import { AccountShell } from "../../../components/account-shell";
 import { fournisseursAuth } from "../../../lib/auth/reglages";
 import { sortieValide, suiteSortie } from "../../../lib/races/sortie-choisie";

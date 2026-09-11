@@ -119,8 +119,7 @@ export default async function ContactPage({ params }: PageProps) {
               Deviens <span className="text-[#FFB200]">partenaire.</span>
             </h2>
             <p className="mt-7 max-w-lg text-lg leading-relaxed text-[#F1EDE9]">
-              Un groupe qui court tous les samedis matin à Aix, et qui cherche où aller ensuite. Café, boulangerie,
-              restaurant, magasin de sport : le club peut envoyer ses membres chez toi.
+              Tu tiens un commerce à Aix ? Parlons d’une façon de se retrouver après les sorties.
             </p>
             <Link
               className="mt-9 inline-flex min-h-16 items-center justify-between gap-10 border-2 border-[#F1EDE9]/60 px-6 font-mono text-xs font-black uppercase tracking-[.1em] transition-colors [word-spacing:.12em] hover:border-[#F1EDE9] hover:bg-[#F1EDE9] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"

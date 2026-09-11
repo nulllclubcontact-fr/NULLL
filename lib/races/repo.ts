@@ -84,7 +84,9 @@ export async function listPublicRuns(): Promise<RunEvent[] | null> {
       address: course.address || (course.location ? `${course.location}, Aix-en-Provence` : DEPART.adresse),
       summary: course.description || "Sortie ouverte à tous, à allure conversation. Personne ne reste derrière.",
       afterRun: "On reste un moment ensemble après la sortie",
-      image: course.cover_image_url
+      image: course.cover_image_url,
+      inscriptionsOuvertes:
+        course.registration_open && (course.registration_deadline === null || new Date(course.registration_deadline).getTime() > Date.now())
     };
   });
 }

@@ -3,9 +3,11 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { isAdminUser } from "../../lib/admin/require-admin";
-import { createAdminPartner, deleteAdminPartner, issueAdminPartnerCode, setAdminPartnerActive } from "../../lib/admin/repo";
+import { createAdminPartner, deleteAdminPartner, issueAdminPartnerCode, setAdminPartnerActive, updateAdminPartner } from "../../lib/admin/repo";
 
-export type PartenaireState = { error?: string; code?: string; partenaireId?: string; nom?: string };
+export type PartenaireState = { error?: string; message?: string; code?: string; partenaireId?: string; nom?: string };
+
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function lire(formData: FormData, cle: string, max = 200) {
   const valeur = formData.get(cle);
@@ -63,6 +65,34 @@ export async function genererNouveauCode(_previousState: PartenaireState, formDa
   } catch {
     return { error: "Génération impossible. Réessaie." };
   }
+}
+
+/** Corriger le nom ou l'e-mail d'un partenaire sans toucher a ses codes ni a ses ventes. */
+export async function modifierPartenaire(_previousState: PartenaireState, formData: FormData): Promise<PartenaireState> {
+  if (!(await isAdminUser())) {
+    return { error: "Accès refusé." };
+  }
+
+  const partenaireId = lire(formData, "partner_id", 40);
+  const nom = lire(formData, "name", 120);
+  const email = lire(formData, "contact_email").toLowerCase();
+
+  if (!partenaireId || !nom) {
+    return { error: "Il faut au moins un nom." };
+  }
+
+  if (email && !EMAIL.test(email)) {
+    return { error: "E-mail invalide." };
+  }
+
+  try {
+    await updateAdminPartner(partenaireId, { name: nom, contactEmail: email || null });
+  } catch {
+    return { error: "Enregistrement refusé. Réessaie." };
+  }
+
+  rafraichir(partenaireId);
+  return { message: "Enregistré." };
 }
 
 export async function basculerPartenaire(formData: FormData) {

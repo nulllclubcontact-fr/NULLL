@@ -6,6 +6,8 @@ import { destinationMembre, sortieValide } from "../../../lib/races/sortie-chois
 
 export const dynamic = "force-dynamic";
 
+export const metadata = { title: "Bienvenue | NULLL.CLUB", robots: { index: false, follow: false } };
+
 /**
  * Etape unique des comptes ouverts par Google ou Apple : verifier son nom
  * et signer la decharge. L'espace membre y renvoie tant que ce n'est pas fait.
@@ -44,8 +46,8 @@ export default async function BienvenuePage({ searchParams }: { searchParams: Pr
       image="/assets/photos/apres-course-sol.webp"
       imageAlt="Un membre de NULLL.CLUB assis au sol après une sortie, médaille de finisher et clés posées à côté de ses chaussures"
       imagePosition="50% 66%"
-      intro="Ton compte est prêt. Vérifie ton nom pour ta carte de membre, accepte la décharge, et tu es des nôtres."
-      ticker="Rejoins le club · Samedi 8h30 · Aix-en-Provence · Gratuit · Tous les niveaux"
+      intro="Vérifie ton nom et lis la décharge avant de choisir ta sortie."
+      ticker="Bienvenue au club"
       title="Bienvenue au"
       titleAccent="club."
     >

@@ -173,6 +173,8 @@ export function buildEventSchema(event: {
   locationName: string;
   address: string;
   image?: string | null;
+  /** Inscriptions fermees : pas d'offre annoncee comme disponible. */
+  ouverte?: boolean;
   route: string;
 }) {
   // Pas de endDate : l'heure de fin n'est pas connue, et une fin egale au
@@ -201,12 +203,16 @@ export function buildEventSchema(event: {
       name: "NULLL.CLUB",
       url: `${SITE_URL}${getRoute(event.locale, "home")}`
     },
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "EUR",
-      availability: "https://schema.org/InStock",
-      url: `${SITE_URL}${event.route}`
-    }
+    ...(event.ouverte === false
+      ? {}
+      : {
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "EUR",
+            availability: "https://schema.org/InStock",
+            url: `${SITE_URL}${event.route}`
+          }
+        })
   };
 }

@@ -45,6 +45,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Payload invalide." }, { status: 400 });
   }
 
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return NextResponse.json({ message: "Payload invalide." }, { status: 400 });
+  }
+
   const locale = getLocale(payload.locale);
 
   if (!locale) {

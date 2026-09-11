@@ -49,13 +49,13 @@ export function AccountShell({
   ticker = TICKER_PAR_DEFAUT
 }: AccountShellProps) {
   return (
-    <main className="flex min-h-dvh flex-col bg-[#F1EDE9] text-[#773331]">
+    <div className="flex min-h-dvh flex-col bg-[#F1EDE9] text-[#773331]">
       <AccountHeader />
 
       {/* La photo occupait un bandeau court au-dessus du formulaire, ce qui
           recadrait les portraits verticaux sur un sourcil. Elle prend
           desormais toute la hauteur de sa colonne, et porte le titre. */}
-      <section className="grid flex-1 border-b-2 border-[#773331] lg:grid-cols-[minmax(0,1fr)_minmax(440px,0.92fr)]">
+      <main className="grid flex-1 border-b-2 border-[#773331] lg:grid-cols-[minmax(0,1fr)_minmax(440px,0.92fr)]" id="contenu" tabIndex={-1}>
         <div className="relative isolate flex min-h-[62svh] flex-col justify-end overflow-hidden bg-[#3A1A18] text-[#F1EDE9] lg:min-h-[calc(100dvh-8.6rem)]">
           <Image
             alt={imageAlt}
@@ -154,7 +154,7 @@ export function AccountShell({
             ) : null}
           </div>
         </div>
-      </section>
+      </main>
 
       {/* Le bandeau defilant du reste du site : la page de compte en etait
           la seule privee, et c'est ce qui la faisait sonner etrangere. */}
@@ -169,7 +169,7 @@ export function AccountShell({
           <p className="shrink-0 whitespace-nowrap px-6">{ticker}&nbsp;&nbsp;·&nbsp;&nbsp;</p>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
 

@@ -35,7 +35,7 @@ export default async function MemberPasswordPage() {
       image="/assets/photos/medaille-bouche.webp"
       imageAlt="Un membre de NULLL.CLUB mord sa médaille de finisher, la mer en arrière-plan"
       intro={connecte ? "Choisis-en un nouveau, et tu repars comme avant." : "Ce lien a expiré ou a déjà servi. Demande-en un nouveau, il arrive en quelques secondes."}
-      ticker="Samedi 8h30 · Aix-en-Provence · Gratuit · Tous les niveaux"
+      ticker="Un nouveau mot de passe"
       title="Un nouveau"
       titleAccent="mot de passe."
     >

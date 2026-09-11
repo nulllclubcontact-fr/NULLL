@@ -9,5 +9,5 @@ import type { ReactNode } from "react";
  * plus besoin de rien.
  */
 export function HomeJourney({ children }: { children: ReactNode }) {
-  return <main className="home-journey" id="home-main">{children}</main>;
+  return <div className="home-journey" id="home-main">{children}</div>;
 }

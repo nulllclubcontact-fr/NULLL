@@ -75,7 +75,7 @@ export default async function AdminCoursesLayout({ children }: { children: React
         </div>
       </div>
 
-      {children}
+      <main id="contenu">{children}</main>
       <SiteFooter copy={getSiteCopy("fr")} locale="fr" />
     </div>
   );

@@ -157,7 +157,7 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
                     <tr className="border-b border-[#773331]/20" key={ligne.id}>
                       <td className="py-3 pr-4 font-bold">{nom}</td>
                       <td className="py-3 pr-4 font-mono text-xs text-[#773331]">
-                        {p?.email ?? "—"}
+                        {p?.email ?? "Non renseigné"}
                         {p?.phone ? <span className="block">{p.phone}</span> : null}
                       </td>
                       <td className="py-3 pr-4">
@@ -166,7 +166,7 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
                         </span>
                       </td>
                       <td className="py-3 font-mono text-xs">
-                        {ligne.checked_in_at ? formatHeure(ligne.checked_in_at) : "—"}
+                        {ligne.checked_in_at ? formatHeure(ligne.checked_in_at) : "Non pointé"}
                       </td>
                     </tr>
                   );

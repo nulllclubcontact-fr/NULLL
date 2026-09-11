@@ -41,7 +41,7 @@ export default async function RunsPage({ params }: PageProps) {
   const copy = getSiteCopy(locale);
   const contactHref = getRoute(locale, "contact");
   const identificationHref = "/identification";
-  const tickerCopy = "Allure conversation · Personne derrière · Ouvert à tous · After run · Aix-en-Provence";
+  const tickerCopy = "On court ensemble · On prend le temps de se parler";
   const lecture = await listPublicRuns();
   const panne = lecture === null;
   const runs = lecture ?? [];
@@ -59,6 +59,7 @@ export default async function RunsPage({ params }: PageProps) {
             locationName: run.location,
             address: run.address,
             image: run.image,
+            ouverte: run.inscriptionsOuvertes !== false,
             route: getRoute(locale, "runs")
           })}
           key={run.id}
@@ -252,7 +253,6 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
         fill
         sizes="(min-width: 1280px) 72vw, (min-width: 640px) 78vw, 90vw"
         src={run.image || visual.src}
-        unoptimized={Boolean(run.image)}
       />
       <div className="run-card-shade absolute inset-0" />
       <div aria-hidden="true" className={`absolute left-0 top-0 h-3 w-full ${visual.accent.split(" ")[0]}`} />
@@ -284,14 +284,20 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
               <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <Link
-            aria-label={`Je viens à la sortie du ${run.date}, à ${run.time}, ${run.distance}. Départ ${run.location}. ${run.summary}`}
-            className={`mt-5 flex min-h-16 w-full items-center justify-between gap-6 px-5 font-display text-[1.55rem] uppercase leading-none transition-colors focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9] sm:w-fit sm:min-w-72 ${visual.accent}`}
-            href={joinHref}
-          >
-            <span>Je viens</span>
-            <span className="run-cta-arrow"><ArrowIcon /></span>
-          </Link>
+          {run.inscriptionsOuvertes === false ? (
+            <p className="mt-5 flex min-h-16 w-full items-center border-2 border-dashed border-[#F1EDE9] px-5 font-display text-[1.55rem] uppercase leading-none sm:w-fit sm:min-w-72">
+              Inscriptions fermées
+            </p>
+          ) : (
+            <Link
+              aria-label={`Choisir la sortie du ${run.date}, à ${run.time}, ${run.distance}. Départ ${run.location}.`}
+              className={`mt-5 flex min-h-16 w-full items-center justify-between gap-6 px-5 font-display text-[1.55rem] uppercase leading-none transition-colors focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9] sm:w-fit sm:min-w-72 ${visual.accent}`}
+              href={joinHref}
+            >
+              <span>Choisir cette sortie</span>
+              <span className="run-cta-arrow"><ArrowIcon /></span>
+            </Link>
+          )}
         </div>
       </div>
     </Reveal>

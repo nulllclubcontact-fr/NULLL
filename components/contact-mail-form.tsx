@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { ArrowIcon } from "./ArrowIcon";
 
@@ -96,6 +97,13 @@ export function ContactMailForm() {
         <span className="copy-safe text-left">{etat === "envoi" ? "Envoi en cours…" : "Envoyer le message"}</span>
         <ArrowIcon />
       </button>
+
+      <p className="text-sm leading-relaxed text-[#F1EDE9]">
+        Ton adresse sert seulement à te répondre.{" "}
+        <Link className="underline decoration-2 underline-offset-4 hover:text-[#FFB200]" href="/confidentialite">
+          Confidentialité
+        </Link>
+      </p>
 
       {/* Le resultat est annonce aux lecteurs d'ecran, pas seulement
           affiche : l'envoi ne change pas de page. */}

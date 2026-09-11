@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 // `noindex` plutot qu'un Disallow robots.txt, car une URL bloquee au crawl
 // peut quand meme etre indexee sans son contenu.
 export const metadata = {
+  title: "Administration | NULLL.CLUB",
   robots: { index: false, follow: false }
 };
 

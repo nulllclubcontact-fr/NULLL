@@ -10,7 +10,7 @@ import { sortieValide } from "../../../lib/races/sortie-choisie";
 import { createSupabaseServerClient } from "../../../lib/supabase/server";
 import type { RegistrationWithRace } from "../../../lib/races/types";
 
-export const metadata = { robots: { index: false, follow: false } };
+export const metadata = { title: "Mon espace | NULLL.CLUB", robots: { index: false, follow: false } };
 
 /**
  * Espace compte.

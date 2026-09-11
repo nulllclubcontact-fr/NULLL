@@ -33,7 +33,7 @@ export function BienvenueForm({ prenom, nom, sortie }: { prenom: string; nom: st
           J’ai lu et j’accepte la décharge de responsabilité : je participe aux activités de NULLL.CLUB sous ma propre
           responsabilité, je reconnais les risques liés à la course à pied et je renonce à tout recours, sauf faute de
           l’organisateur.{" "}
-          <Link className="inline-flex min-h-11 items-center font-black text-[#773331] underline decoration-[#EBA0CD] decoration-2 underline-offset-4" href="/membre/decharge">
+          <Link className="inline-flex min-h-11 items-center font-black text-[#773331] underline decoration-[#EBA0CD] decoration-2 underline-offset-4" href="/membre/decharge?depuis=bienvenue" rel="noopener" target="_blank">
             lire la décharge complète
           </Link>
         </span>

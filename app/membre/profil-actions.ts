@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { normaliserTelephone } from "../../lib/auth/telephone";
 import { createSupabaseServerClient } from "../../lib/supabase/server";
 
 export type ProfilState = { error?: string; message?: string };
@@ -56,16 +57,26 @@ export async function updateProfil(_previousState: ProfilState, formData: FormDa
     return { error: "Date de naissance invalide." };
   }
 
+  // Numeros au format international, comme ceux de l'inscription par SMS.
+  const saisieTelephone = lire(formData, "phone", 30);
+  const saisieUrgence = lire(formData, "emergency_contact_phone", 30);
+  const telephone = saisieTelephone ? normaliserTelephone(saisieTelephone) : null;
+  const telephoneUrgence = saisieUrgence ? normaliserTelephone(saisieUrgence) : null;
+
+  if ((saisieTelephone && !telephone) || (saisieUrgence && !telephoneUrgence)) {
+    return { error: "Numéro illisible. Exemple : 06 12 34 56 78." };
+  }
+
   const { error } = await supabase
     .from("profiles")
     .update({
       first_name: firstName,
       last_name: lastName,
-      phone: lire(formData, "phone", 30) || null,
+      phone: telephone,
       birth_date: birthDate || null,
       instagram_handle: lire(formData, "instagram_handle", 60) || null,
       emergency_contact_name: lire(formData, "emergency_contact_name", 120) || null,
-      emergency_contact_phone: lire(formData, "emergency_contact_phone", 30) || null
+      emergency_contact_phone: telephoneUrgence
     })
     .eq("id", user.id);
 

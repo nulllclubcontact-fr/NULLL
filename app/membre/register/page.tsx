@@ -1,4 +1,6 @@
 import { RegisterForm } from "./RegisterForm";
+
+export const metadata = { title: "Créer mon compte | NULLL.CLUB", robots: { index: false, follow: false } };
 import { AccountShell } from "../../../components/account-shell";
 import { fournisseursAuth } from "../../../lib/auth/reglages";
 import { sortieValide, suiteSortie } from "../../../lib/races/sortie-choisie";
@@ -15,7 +17,7 @@ export default async function MemberRegisterPage({ searchParams }: { searchParam
       footerLink={{ label: "Déjà un compte ?", href: `/membre/login${suiteSortie(sortie)}`, cta: "Se connecter" }}
       intro="Crée ton compte, choisis une sortie et retrouve son QR. Trois minutes, et tu es des nôtres."
       steps={["Tes infos", "La décharge", "Ta sortie"]}
-      ticker="Rejoins le club · Samedi 8h30 · Aix-en-Provence · Gratuit · Tous les niveaux"
+      ticker="Rejoins le club · Samedi 8h30 · Aix-en-Provence"
       title="Entre dans le"
       titleAccent="club."
     >

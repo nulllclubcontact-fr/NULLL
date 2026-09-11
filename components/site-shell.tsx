@@ -27,9 +27,9 @@ export function SiteShell({
   return (
     <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
       <SiteHeader copy={copy} current={current} locale={locale} pathname={pathname} />
-      <div id="contenu" tabIndex={-1} className="outline-none">
+      <main id="contenu" tabIndex={-1} className="outline-none">
         {children}
-      </div>
+      </main>
       <SiteFooter copy={copy} locale={locale} />
     </div>
   );

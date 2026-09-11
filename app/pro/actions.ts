@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { clearProSession, getActiveProSession, setProSession } from "../../lib/pro/guard";
+import { empreinteCode } from "../../lib/admin/repo";
 import { adresseAppelant, essaiAutorise, oublierEssais } from "../../lib/limite";
 import { getTierForPoints, type LoyaltyTier } from "../../lib/loyalty/tiers";
 import { createSupabaseServiceClient } from "../../lib/supabase/service";
@@ -50,7 +51,7 @@ const PRO_MAX_ESSAIS = 8;
 
 function readCode(formData: FormData) {
   const value = formData.get("code");
-  return typeof value === "string" ? value.trim() : "";
+  return typeof value === "string" ? value.trim().toUpperCase() : "";
 }
 
 function readText(formData: FormData, key: string) {
@@ -89,14 +90,31 @@ export async function loginPro(_previousState: ProLoginState, formData: FormData
     return { error: "Espace pro indisponible : variables Supabase manquantes." };
   }
 
-  const { data: accessCodes, error } = await supabase
+  // D'abord par empreinte (codes emis depuis la migration 0009) : une seule
+  // ligne a verifier en bcrypt. Les codes plus anciens, sans empreinte,
+  // gardent l'ancien parcours jusqu'a leur remplacement.
+  const { data: parEmpreinte } = await supabase
     .from("partner_access_codes")
     .select("id,partner_id,code_hash,partners(active)")
     .eq("active", true)
+    .eq("code_empreinte", empreinteCode(code))
     .returns<PartnerAccessCode[]>();
 
-  if (error || !accessCodes?.length) {
-    return { error: "Code invalide" };
+  let accessCodes = parEmpreinte ?? [];
+
+  if (!accessCodes.length) {
+    const { data: anciens, error } = await supabase
+      .from("partner_access_codes")
+      .select("id,partner_id,code_hash,partners(active)")
+      .eq("active", true)
+      .is("code_empreinte", null)
+      .returns<PartnerAccessCode[]>();
+
+    if (error) {
+      return { error: "Code invalide" };
+    }
+
+    accessCodes = anciens ?? [];
   }
 
   for (const accessCode of accessCodes) {

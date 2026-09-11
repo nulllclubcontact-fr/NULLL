@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useActionState, useState } from "react";
-import { creerPartenaire, genererNouveauCode, supprimerPartenaire, type PartenaireState } from "../../app/admin/reseau-actions";
+import { creerPartenaire, genererNouveauCode, modifierPartenaire, supprimerPartenaire, type PartenaireState } from "../../app/admin/reseau-actions";
 
 const BOUTON =
   "inline-flex min-h-11 items-center justify-center border-2 border-[#773331] px-4 font-mono text-xs font-black uppercase tracking-[.1em] transition disabled:opacity-60";
@@ -81,6 +81,40 @@ export function CreerPartenaireForm() {
               Voir sa fiche →
             </Link>
           </>
+        ) : null}
+      </div>
+    </details>
+  );
+}
+
+export function ModifierPartenaireForm({ partnerId, nom, email }: { partnerId: string; nom: string; email: string }) {
+  const [state, formAction, pending] = useActionState(modifierPartenaire, initial);
+
+  return (
+    <details className="border-2 border-[#773331] bg-[#F1EDE9] p-5">
+      <summary className="cursor-pointer font-mono text-xs font-black uppercase tracking-[.14em]">Modifier le nom ou l’e-mail</summary>
+
+      <form action={formAction} className="mt-5 grid gap-4 md:grid-cols-[1fr_1fr_auto] md:items-end">
+        <input name="partner_id" type="hidden" value={partnerId} />
+        <label className="grid gap-2 font-mono text-xs font-black uppercase">
+          Nom du commerce
+          <input className="field" defaultValue={nom} maxLength={120} name="name" required />
+        </label>
+        <label className="grid gap-2 font-mono text-xs font-black uppercase">
+          E-mail de contact
+          <input className="field" defaultValue={email} name="contact_email" type="email" />
+        </label>
+        <button className={`${BOUTON} bg-[#773331] text-[#F1EDE9] hover:bg-[#FFB200] hover:text-[#773331]`} disabled={pending} type="submit">
+          {pending ? "Enregistrement…" : "Enregistrer"}
+        </button>
+      </form>
+
+      <div className="mt-4 grid gap-3">
+        <Erreur texte={state.error} />
+        {state.message ? (
+          <p className="font-mono text-xs font-black uppercase tracking-[.12em]" role="status">
+            {state.message}
+          </p>
         ) : null}
       </div>
     </details>

@@ -97,7 +97,7 @@ function CarteCourse({ course, prochaine = false }: { course: LigneCourse; proch
     <li className={`flex flex-col gap-4 border-2 border-[#773331] p-4 lg:flex-row lg:items-center ${prochaine ? "shadow-[6px_6px_0_#EBA0CD]" : ""}`}>
       <div className="relative h-24 w-full shrink-0 overflow-hidden border-2 border-[#773331] bg-[#EBA0CD] sm:w-40">
         {course.cover_image_url ? (
-          <Image alt="" className="object-cover" fill sizes="160px" src={course.cover_image_url} unoptimized />
+          <Image alt="" className="object-cover" fill sizes="160px" src={course.cover_image_url} />
         ) : (
           <span className="grid h-full place-items-center font-mono text-xs font-black uppercase tracking-[.12em]">Pas de photo</span>
         )}

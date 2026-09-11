@@ -28,10 +28,10 @@ export default async function IdentificationPage({ searchParams }: { searchParam
   const suite = suiteSortie((await searchParams).sortie);
 
   return (
-    <main className="flex min-h-dvh flex-col bg-[#3A1A18]">
+    <div className="flex min-h-dvh flex-col bg-[#3A1A18]">
       <AccountHeader />
 
-      <section className="relative flex flex-1 items-center overflow-hidden px-5 py-14 text-[#F1EDE9] sm:px-8 sm:py-20">
+      <main className="relative flex flex-1 items-center overflow-hidden px-5 py-14 text-[#F1EDE9] sm:px-8 sm:py-20" id="contenu" tabIndex={-1}>
         {/* Filigrane discret : il ne doit rien disputer a la carte. */}
         <Image
           alt=""
@@ -111,9 +111,9 @@ export default async function IdentificationPage({ searchParams }: { searchParam
             </p>
           </div>
         </div>
-      </section>
+      </main>
 
       <SiteFooter copy={copy} locale="fr" />
-    </main>
+    </div>
   );
 }

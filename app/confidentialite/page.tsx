@@ -23,7 +23,7 @@ export default function ConfidentialitePage() {
     <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
       <SiteHeader copy={copy} current="confidentialite" locale="fr" pathname="/confidentialite" />
 
-      <main className="mx-auto max-w-[900px] px-5 py-14 sm:px-8 sm:py-20">
+      <main className="mx-auto max-w-[900px] px-5 py-14 sm:px-8 sm:py-20" id="contenu" tabIndex={-1}>
         <p className="font-mono text-xs font-black uppercase tracking-[.16em]">
           Mise à jour du {MAJ}
         </p>

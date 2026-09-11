@@ -4,7 +4,7 @@ import { requireAdminUser } from "../../../../../lib/admin/require-admin";
 import { getAdminPartner, listAdminPartnerSales, summarizePartnerSales } from "../../../../../lib/admin/repo";
 import { formatEuro, formatHeure, formatJourCourt } from "../../../../../components/races/format";
 import { BarresClassement, ColonnesParJour, Etiquette, Intitule, Tuiles, fenetreJours } from "../../../../../components/admin/graphiques";
-import { NouveauCodeForm, SuppressionPartenaire } from "../../../../../components/admin/formulaires-partenaire";
+import { ModifierPartenaireForm, NouveauCodeForm, SuppressionPartenaire } from "../../../../../components/admin/formulaires-partenaire";
 import { basculerPartenaire } from "../../../reseau-actions";
 
 export const metadata = { robots: { index: false, follow: false } };
@@ -120,6 +120,9 @@ export default async function AdminPartenairePage({ params }: { params: Promise<
             "pas de contact"
           )}
         </p>
+        <div className="mt-5">
+          <ModifierPartenaireForm email={partenaire.contact_email ?? ""} nom={partenaire.name} partnerId={partenaire.id} />
+        </div>
       </header>
 
       <Tuiles

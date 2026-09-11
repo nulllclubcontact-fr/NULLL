@@ -111,7 +111,12 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
 
   // Toutes les ventes du partenaire (lecture paginee, au-dela de 1000),
   // triees de la plus recente ; la periode se filtre en jours de Paris.
-  const [ventes, partenaire] = await Promise.all([listAdminPartnerSales(session.partnerId), getAdminPartner(session.partnerId)]);
+  const [ventes, partenaire] = await Promise.all([listAdminPartnerSales(session.partnerId, {
+      // Un jour de marge de chaque cote : le filtre fin, en jours de Paris, suit.
+      depuis: new Date(Date.parse(`${debut}T00:00:00Z`) - 86_400_000).toISOString(),
+      jusqua: new Date(Date.parse(`${fin}T23:59:59Z`) + 86_400_000).toISOString()
+    }),
+    getAdminPartner(session.partnerId)]);
   const transactions = ventes.filter((vente) => {
     const jour = cleParisDe(vente.created_at);
     return jour >= debut && jour <= fin;

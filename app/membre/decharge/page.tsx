@@ -1,76 +1,90 @@
 import Link from "next/link";
 import { AccountHeader } from "../../../components/account-shell";
+import { DECHARGES, VERSION_DECHARGE } from "../../../lib/decharge";
 
-const waiverSections = [
-  {
-    title: "1. Reconnaissance des risques.",
-    text:
-      "Je reconnais que la pratique de la course à pied et la participation aux runs, sorties, événements et activités organisés par NULLL.CLUB comportent des risques inhérents (chutes, blessures, malaises, accidents, aléas liés à la voie publique, à la circulation et aux conditions météorologiques). Je déclare y participer librement et en pleine connaissance de ces risques."
-  },
-  {
-    title: "2. État de santé.",
-    text:
-      "Je déclare être en condition physique me permettant de pratiquer la course à pied, ne pas avoir connaissance de contre-indication médicale, et participer sous ma propre responsabilité. Il m'appartient de m'assurer de mon aptitude et, en cas de doute, de consulter un médecin."
-  },
-  {
-    title: "3. Renonciation à recours.",
-    text:
-      "Je participe sous mon entière responsabilité et renonce à tout recours contre NULLL.CLUB, ses organisateurs, ses bénévoles et ses membres en cas de dommages, blessures ou séquelles consécutifs à ma participation, notamment ceux résultant de mon propre état de santé ou d'une préparation insuffisante, sauf faute avérée de l'organisateur."
-  },
-  {
-    title: "4. Effets personnels.",
-    text: "NULLL.CLUB décline toute responsabilité en cas de vol, perte ou dégradation des effets personnels et du matériel."
-  },
-  {
-    title: "5. Mineurs.",
-    text: "La participation d'une personne mineure requiert l'autorisation préalable d'un représentant légal."
-  },
-  {
-    title: "6. Données personnelles.",
-    text:
-      "J'accepte que mes nom, prénom et e-mail soient utilisés pour la gestion de mon compte membre et de mes inscriptions aux sorties, conformément au RGPD. Je dispose d'un droit d'accès, de rectification et de suppression."
-  }
-];
+export const metadata = {
+  title: "Décharge de participation | NULLL.CLUB",
+  robots: { index: false, follow: false }
+};
 
-export default function MemberWaiverPage() {
+const RETOURS: Record<string, { href: string; label: string }> = {
+  bienvenue: { href: "/membre/bienvenue", label: "Retour à mon inscription" },
+  compte: { href: "/membre", label: "Retour à mon compte" },
+  inscription: { href: "/membre/register", label: "Retour à mon inscription" }
+};
+
+/**
+ * La decharge s'ouvre dans un nouvel onglet depuis les formulaires : la
+ * saisie en cours n'est pas perdue. ?depuis= choisit le bon retour,
+ * ?version= affiche une version anterieure, telle qu'elle a ete acceptee.
+ */
+export default async function MemberWaiverPage({
+  searchParams
+}: {
+  searchParams: Promise<{ depuis?: string; version?: string }>;
+}) {
+  const { depuis, version } = await searchParams;
+  const cle = version && DECHARGES[version] ? version : VERSION_DECHARGE;
+  const decharge = DECHARGES[cle];
+  const retour = RETOURS[depuis ?? ""] ?? RETOURS.inscription;
+  const anciennes = Object.keys(DECHARGES).filter((v) => v !== VERSION_DECHARGE);
+
   return (
-    <main className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
+    <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
       <AccountHeader />
-      <section className="shell grid gap-8 py-10">
+      <main className="shell grid gap-8 py-10" id="contenu" tabIndex={-1}>
         <div>
           <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">Décharge / membre</p>
-          <h1 className="mt-6 font-display text-[clamp(3.4rem,9vw,7.6rem)] uppercase leading-[0.94]">
-            Décharge de responsabilité.
-          </h1>
-          <p className="mt-5 max-w-xl text-lg font-bold leading-tight text-[#773331]">
-            NULLL.CLUB. Lis. Comprends. Accepte si tu es ok.
+          <h1 className="mt-6 font-display text-[clamp(3rem,8vw,6.4rem)] uppercase leading-[1.04]">Décharge de responsabilité.</h1>
+          <p className="mt-5 max-w-xl text-lg font-bold leading-snug">
+            Lis les conditions de participation avant de les accepter. Une question ?{" "}
+            <Link className="underline decoration-2 underline-offset-4" href="/fr/contact">
+              Écris au club
+            </Link>
+            .
           </p>
         </div>
 
         <article className="panel panel-grid max-w-4xl p-5 md:p-8">
-          <h2 className="font-display text-[clamp(2.6rem,7vw,5rem)] uppercase leading-none">
-            Décharge de responsabilité - NULLL.CLUB
-          </h2>
-          <p className="mt-6 text-lg font-bold leading-tight text-[#773331]">
+          <h2 className="font-display text-[clamp(2rem,5vw,3.4rem)] uppercase leading-[1.1]">Décharge de responsabilité, NULLL.CLUB</h2>
+          <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em]">
+            Version {cle} · en vigueur depuis {decharge.depuis}
+            {cle !== VERSION_DECHARGE ? " · version antérieure" : ""}
+          </p>
+          <p className="mt-6 text-lg font-bold leading-snug">
             En cochant la case d’acceptation et en validant mon inscription, je reconnais et j’accepte ce qui suit :
           </p>
           <div className="mt-8 grid gap-6">
-            {waiverSections.map((section) => (
+            {decharge.sections.map((section) => (
               <section className="border-t-2 border-[#773331] pt-5" key={section.title}>
-                <h3 className="font-mono text-sm font-black uppercase text-[#773331]">{section.title}</h3>
-                <p className="mt-3 leading-relaxed text-[#773331]">{section.text}</p>
+                <h3 className="font-mono text-sm font-black uppercase">{section.title}</h3>
+                <p className="mt-3 max-w-[70ch] leading-relaxed">{section.text}</p>
               </section>
             ))}
           </div>
-          <p className="mt-8 border-t-2 border-[#773331] pt-5 font-mono text-sm font-black uppercase text-[#773331]">
+          <p className="mt-8 border-t-2 border-[#773331] pt-5 font-mono text-sm font-black uppercase">
             Je certifie avoir lu et compris la présente décharge et l’accepter sans réserve.
           </p>
         </article>
 
-        <Link className="primary-link w-fit" href="/membre/register">
-          Retour inscription
+        {anciennes.length > 0 ? (
+          <p className="text-sm">
+            Versions précédentes :{" "}
+            {anciennes.map((v, i) => (
+              <span key={v}>
+                {i > 0 ? " · " : ""}
+                <Link className="underline decoration-2 underline-offset-4" href={`/membre/decharge?version=${v}`}>
+                  {v}
+                </Link>
+              </span>
+            ))}
+          </p>
+        ) : null}
+
+        <Link className="primary-link w-fit" href={retour.href}>
+          {retour.label}
         </Link>
-      </section>
-    </main>
+      </main>
+    </div>
   );
 }

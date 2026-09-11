@@ -94,7 +94,7 @@ export default async function MemberPanelLayout({ children }: { children: ReactN
         </div>
       </div>
 
-      {children}
+      <main id="contenu">{children}</main>
       <SiteFooter copy={getSiteCopy("fr")} locale="fr" />
     </div>
   );

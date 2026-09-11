@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { preparerProfilFournisseur } from "../../lib/auth/profil-fournisseur";
 import { normaliserTelephone } from "../../lib/auth/telephone";
+import { VERSION_DECHARGE } from "../../lib/decharge";
 import { destinationMembre, suiteSortie } from "../../lib/races/sortie-choisie";
 import { createSupabaseServerClient } from "../../lib/supabase/server";
 import { createSupabaseServiceClient } from "../../lib/supabase/service";
@@ -20,7 +21,7 @@ export type CodeState = {
 export type RegisterState = CodeState;
 export type LoginState = CodeState;
 
-const WAIVER_VERSION = "v1-2026-06";
+const WAIVER_VERSION = VERSION_DECHARGE;
 const NUMERO_ILLISIBLE = "Numéro illisible. Exemple : 06 12 34 56 78.";
 
 function readRequiredString(formData: FormData, key: string) {

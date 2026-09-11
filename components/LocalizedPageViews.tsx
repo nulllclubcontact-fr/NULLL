@@ -33,16 +33,18 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       <section className="border-b-2 border-[#773331] bg-[#3A1A18] text-[#F1EDE9]" aria-labelledby="club-title">
         <div className="mx-auto grid max-w-[1600px] gap-12 px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16 xl:px-12">
           <div>
-            <h1 className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFB200]" id="club-title" style={{ animationDelay: "60ms" }}>
+            <p className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFB200]" style={{ animationDelay: "60ms" }}>
               {page.title}
-            </h1>
-            <p className="hero-rise mt-6 font-display text-[clamp(2.4rem,4.6vw,4.6rem)] uppercase leading-[1.12] tracking-[-.035em]" style={{ animationDelay: "150ms" }}>
+            </p>
+            {/* Le h1 est la grande phrase : l'etiquette au-dessus ressemblait a
+                un titre de page pour les lecteurs d'ecran et pour Google. */}
+            <h1 className="hero-rise mt-6 font-display text-[clamp(2.4rem,4.6vw,4.6rem)] uppercase leading-[1.12] tracking-[-.035em]" id="club-title" style={{ animationDelay: "150ms" }}>
               {page.punchlineLines.map((ligne, index) => (
                 <span className={`block ${index === 1 ? "text-[#FFB200]" : ""}`} key={ligne}>
                   {ligne}
                 </span>
               ))}
-            </p>
+            </h1>
             <p className="hero-rise mt-7 max-w-xl text-lg leading-relaxed text-[#F1EDE9]" style={{ animationDelay: "260ms" }}>
               {page.intro}
             </p>

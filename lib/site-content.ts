@@ -28,6 +28,8 @@ export type RunEvent = {
   afterRun: string;
   /** Photo choisie dans l'admin ; a defaut, la page prend une photo du club. */
   image?: string | null;
+  /** Faux si l'admin a ferme les inscriptions ou si la date limite est passee. */
+  inscriptionsOuvertes?: boolean;
 };
 
 export type Product = {
@@ -78,7 +80,7 @@ export const productsByLocale: Record<Locale, Product[]> = {
       name: "T-shirt noir club",
       price: 35,
       badge: "Edition Aix 001",
-      description: "T-shirt noir épais pour les runs sociaux à Aix-en-Provence.",
+      description: "Le t-shirt noir du club.",
       fit: "Coupe droite, coton lourd, unisexe."
     },
     {
@@ -88,7 +90,7 @@ export const productsByLocale: Record<Locale, Product[]> = {
       name: "T-shirt blanc signal",
       price: 35,
       badge: "Edition Aix 001",
-      description: "Version claire pour les sorties de fin de journée et les événements running à Aix.",
+      description: "La version claire du t-shirt du club.",
       fit: "Coupe droite, coton lourd, unisexe."
     },
     {
@@ -97,8 +99,8 @@ export const productsByLocale: Record<Locale, Product[]> = {
       alt: "T-shirt noir message social NULLL.CLUB",
       name: "T-shirt social warning",
       price: 38,
-      badge: "Edition limitée",
-      description: "Pièce statement pour soutenir le run club et les prochaines dates.",
+      badge: "Edition 001",
+      description: "Une pièce avec un message, pour soutenir le club.",
       fit: "Coupe droite, coton lourd, unisexe."
     }
   ]
@@ -201,24 +203,24 @@ export function getSiteCopy(locale: Locale) {
       ],
       meta: {
         home: {
-          title: "NULLL.CLUB | Club de course à Aix-en-Provence",
+          title: "NULLL.CLUB | Courir ensemble à Aix",
           description:
-            "NULLL.CLUB est un club de course à Aix-en-Provence. Rejoins un groupe ouvert à tous avec des sorties et des événements locaux."
+            "Le social sport club d’Aix-en-Provence : une sortie gratuite chaque samedi à 8h30, à une allure qui permet de discuter."
         },
         runs: {
-          title: "Prochains runs à Aix-en-Provence | NULLL.CLUB",
+          title: "Sorties à Aix-en-Provence | NULLL.CLUB",
           description:
-            "Découvre les prochains runs du club de running à Aix-en-Provence : dates, horaires, distance, ambiance et informations pratiques."
+            "Les prochaines sorties du club à Aix-en-Provence : date, heure, distance et point de départ. Choisis la tienne."
         },
         community: {
-          title: "Communauté running à Aix-en-Provence | NULLL.CLUB",
+          title: "Le club et son histoire | NULLL.CLUB",
           description:
-            "Un social sport club à Aix-en-Provence. Tous les samedis à 8h30 : 5 à 6 km à allure conversation, gratuit et sans niveau requis."
+            "NULLL.CLUB, le club du samedi à Aix-en-Provence. On court pour se rencontrer. Découvre le club et les prochaines sorties gratuites."
         },
         merch: {
-          title: "Pièces du club | NULLL.CLUB Aix-en-Provence",
+          title: "Les pièces du club | NULLL.CLUB",
           description:
-            "Découvre les pièces NULLL.CLUB quand elles sont disponibles, comme prolongement naturel du run club à Aix-en-Provence."
+            "Les pièces NULLL.CLUB arrivent. En attendant, les sorties du samedi sont déjà là."
         },
         about: {
           title: "À propos du club de running | NULLL.CLUB",
@@ -226,9 +228,9 @@ export function getSiteCopy(locale: Locale) {
             "Comprends la vision de NULLL.CLUB, run club social à Aix-en-Provence centré sur la communauté, la régularité et le plaisir de courir ensemble."
         },
         contact: {
-          title: "Contacter le run club à Aix-en-Provence | NULLL.CLUB",
+          title: "Contacter NULLL.CLUB",
           description:
-            "Contacte NULLL.CLUB pour rejoindre un run, poser une question, proposer un partenariat ou suivre les prochains événements running à Aix."
+            "Une question avant ta première sortie, une idée de partenariat ou un projet ? Écris à NULLL.CLUB."
         },
         checkout: {
           title: "Finaliser ma commande | NULLL.CLUB",
@@ -326,7 +328,7 @@ export function getSiteCopy(locale: Locale) {
         // Deux temps : la coupure doit tomber au point, pas au milieu.
         punchlineLines: ["On a passé un an à regarder.", "Maintenant on avance."],
         intro:
-          "On voulait faire de grandes choses. Pendant un an, on n’en a fait aucune, à part du sport, la seule chose qui tenait vraiment dans nos semaines. Un jour, en rentrant des courses, l’idée est venue : en faire avec des gens qu’on ne connaît pas. Notre club, c’est cette excuse-là, devenue association.",
+          "Pendant un an, on a eu de grandes idées. Le sport était la seule qui tenait dans nos semaines. Alors on s’est dit : pourquoi ne pas le partager avec des gens qu’on ne connaît pas ? NULLL.CLUB est parti de là.",
 
         // Les trois L du nom. Ils tiennent en un mot chacun : c'est ce qui les
         // rend citables. L'ordre suit l'histoire : on entre libre, on reste
@@ -342,17 +344,17 @@ export function getSiteCopy(locale: Locale) {
           {
             highlight: 2,
             word: "Libre",
-            text: "Aucun niveau requis, aucune licence, aucune cotisation pour venir essayer. On retire l’intimidation, pas l’exigence."
+            text: "Pas besoin d’un chrono à défendre. Tu viens pour courir et rencontrer du monde."
           },
           {
             highlight: 3,
             word: "Lien",
-            text: "Le sport n’est que notre prétexte. On vient courir, on revient pour les gens : c’est notre raison d’être depuis le premier jour."
+            text: "Le sport n’est que notre prétexte. On vient courir. On revient pour les gens."
           },
           {
             highlight: 4,
             word: "Légèreté",
-            text: "Ni chrono, ni classement, ni dossard. On ne se prend pas au sérieux, et c’est encore la meilleure raison de revenir le samedi suivant."
+            text: "Ni chrono, ni classement, ni dossard. On garde le plaisir de se retrouver samedi."
           }
         ],
 
@@ -375,7 +377,7 @@ export function getSiteCopy(locale: Locale) {
           {
             date: "Puis il a fallu un nom",
             label: "NULLL",
-            text: "On le voulait différent, et on le voulait honnête : « null », parce qu’on n’a pas besoin d’être un sportif de renom pour faire du sport. Trois L, un par pilier : c’est juste en dessous.",
+            text: "Le nom vient de « null ». Pas besoin d’être un grand sportif pour faire partie du club. Les trois L racontent le reste : Libre, Lien, Légèreté.",
             status: "passe" as const
           },
           {
@@ -387,7 +389,7 @@ export function getSiteCopy(locale: Locale) {
           {
             date: "Ensuite",
             label: "Pas que la course",
-            text: "On est un social sport club, pas un running club. D’autres sports sont déjà sur le feu, et avec eux des événements, des ateliers et des voyages.",
+            text: "On est un social sport club, pas seulement un club de course. D’autres formats seront annoncés quand ils seront prêts.",
             status: "aVenir" as const
           }
         ],
@@ -410,11 +412,11 @@ export function getSiteCopy(locale: Locale) {
           },
           {
             heading: "Courir en groupe plutôt que seul",
-            body: "La difficulté de la course à pied n’est presque jamais la performance : c’est la régularité. Un rendez-vous fixe, avec des gens qui remarquent ton absence, tient mieux qu’une bonne résolution. À Aix-en-Provence, beaucoup de coureurs tournent seuls autour du parc Jourdan ou de la Torse sans jamais croiser les mêmes visages. C’est ce qu’on veut changer."
+            body: "Un rendez-vous dans la semaine. Des gens à retrouver. C’est déjà une bonne raison de sortir, plutôt que de tourner seul autour du parc Jourdan."
           },
           {
             heading: "Ancré à Aix et dans ses parcours",
-            body: "Nos sorties partent du centre-ville et empruntent les parcours que les Aixois connaissent : le parc Jourdan pour les boucles courtes, le parc de la Torse pour la terre sous les pieds, et plus loin le lac du Réaltor, le plateau de Bibemus ou les sentiers au pied de la Sainte-Victoire pour les sorties longues."
+            body: "Chaque sortie annonce son point de départ et sa distance. Consulte la date qui t’intéresse pour savoir où l’on se retrouve."
           }
         ],
 
@@ -430,7 +432,7 @@ export function getSiteCopy(locale: Locale) {
           },
           {
             q: "Puis-je venir seul ?",
-            a: "C’est même notre idée de départ. On a créé le club justement pour rencontrer du monde : venir seul est la situation la plus normale ici."
+            a: "Oui. Rencontrer du monde, c’est justement l’idée."
           },
           {
             q: "Quel niveau faut-il avoir ?",
@@ -442,7 +444,7 @@ export function getSiteCopy(locale: Locale) {
           },
           {
             q: "Est-ce uniquement un club de course à pied ?",
-            a: "Non. On est un social sport club. La course à pied est notre premier format, mais d’autres sports arrivent, avec des événements, des ateliers et des voyages."
+            a: "Pour l’instant, on commence par la course à pied. Les autres formats seront annoncés quand ils seront prêts."
           }
         ],
 
@@ -527,9 +529,9 @@ export function getSiteCopy(locale: Locale) {
         {
           key: "localClub",
           slug: "run-club-aix-en-provence",
-          title: "Run club à Aix-en-Provence | NULLL.CLUB, sorties gratuites",
+          title: "Run club à Aix-en-Provence | NULLL.CLUB",
           description:
-            "NULLL.CLUB est un run club associatif à Aix-en-Provence. Tous les samedis à 8h30, près du lycée Émile Zola : gratuit et ouvert à tous les niveaux.",
+            "Courir en groupe le samedi à Aix-en-Provence avec NULLL.CLUB. Retrouve les prochaines dates et les informations pratiques pour venir.",
           h1: "Run club à Aix-en-Provence : courir en groupe le samedi",
           intro:
             "NULLL.CLUB est un run club associatif basé à Aix-en-Provence. On se retrouve tous les samedis matin à 8h30 au parking du chemin de la Cible, près du lycée Émile Zola, pour une sortie de 5 à 6 kilomètres à allure conversation. C’est gratuit et sans niveau minimum : il suffit de créer ton compte.",
@@ -537,8 +539,8 @@ export function getSiteCopy(locale: Locale) {
             {
               title: "Le rendez-vous en pratique",
               body: [
-                "Rendez-vous le samedi à 8h30 au parking du chemin de la Cible, près du lycée Émile Zola. La sortie fait entre 5 et 6 kilomètres selon les semaines, sur un parcours qui reste accessible aux personnes qui reprennent la course à pied.",
-                "L’allure est une allure conversation : tu dois pouvoir parler en courant. Personne n’est laissé derrière. Il n’y a rien à payer et aucun certificat à fournir : un compte gratuit et l’inscription à la sortie suffisent.",
+                "Le départ habituel est à 8h30, au parking du chemin de la Cible, près du lycée Émile Zola. Vérifie les informations de la sortie choisie avant de venir.",
+                "On court à une allure qui permet de discuter. Il n’y a rien à payer : un compte gratuit et l’inscription à la sortie suffisent. Si tu hésites sur le format, écris-nous avant de venir.",
                 "Viens en tenue de sport avec de quoi boire. Après la course, on prend un moment ensemble : c’est souvent là que le club se joue vraiment."
               ]
             },
@@ -552,8 +554,8 @@ export function getSiteCopy(locale: Locale) {
             {
               title: "Où l’on court autour d’Aix",
               body: [
-                "Le centre d’Aix permet de partir à pied vers le parc Jourdan et le parc de la Torse, deux boucles courtes et roulantes idéales pour une sortie collective du samedi matin.",
-                "Pour les sorties plus longues, la région ne manque pas de terrain : le lac du Réaltor et ses chemins plats, le plateau de Bibemus, le barrage de Bimont et les sentiers au pied de la montagne Sainte-Victoire. On adapte le parcours à la météo et au groupe présent."
+                "Le centre d’Aix permet de partir à pied vers le parc Jourdan et le parc de la Torse, deux boucles courtes et roulantes.",
+                "Pour les sorties plus longues, la région ne manque pas de terrain : le lac du Réaltor, le plateau de Bibemus, le barrage de Bimont et les sentiers au pied de la Sainte-Victoire. Chaque sortie du club annonce son propre parcours."
               ]
             },
             {
@@ -575,9 +577,9 @@ export function getSiteCopy(locale: Locale) {
         {
           key: "localRunning",
           slug: "courir-a-aix-en-provence",
-          title: "Courir à Aix-en-Provence : où, quand et avec qui",
+          title: "Courir à Aix-en-Provence | Lieux et repères",
           description:
-            "Où courir à Aix-en-Provence, du parc Jourdan à la Sainte-Victoire, et comment rejoindre un groupe de course gratuit le samedi matin.",
+            "Courir à Aix-en-Provence : des lieux à découvrir et les informations à vérifier avant de partir, seul ou en groupe.",
           h1: "Courir à Aix-en-Provence : les parcours et les groupes",
           intro:
             "Aix-en-Provence est une ville agréable à courir : centre compact, parcs accessibles à pied, et des chemins de campagne à quelques minutes. Voici où courir selon ce que tu cherches, et comment ne pas le faire seul.",
@@ -585,7 +587,7 @@ export function getSiteCopy(locale: Locale) {
             {
               title: "En ville : parc Jourdan, la Torse, Cours Mirabeau",
               body: [
-                "Le parc Jourdan est le point de départ le plus simple quand on habite le centre : boucle courte, ombragée, parfaite pour un footing de semaine ou une reprise en douceur.",
+                "Le parc Jourdan est le point de départ le plus simple quand on habite le centre : une boucle courte et ombragée, pour un footing de semaine ou une reprise. Vérifie ses horaires d’ouverture avant de partir.",
                 "Le parc de la Torse offre un parcours plus long le long du ruisseau, avec de la terre sous les pieds, ce qui change du bitume. Pour les sorties tôt le matin, remonter le Cours Mirabeau avant l’affluence reste un classique."
               ]
             },
@@ -600,8 +602,8 @@ export function getSiteCopy(locale: Locale) {
             {
               title: "Courir accompagné change tout",
               body: [
-                "Le problème de la course à pied n’est presque jamais la performance : c’est la régularité. Un rendez-vous fixe, avec des gens qui remarquent ton absence, tient mieux qu’une bonne résolution.",
-                "C’est ce que fait NULLL.CLUB à Aix-en-Provence : un créneau unique le samedi à 8h30, une allure où l’on peut discuter, et un moment après la course. Gratuit et ouvert à tous les niveaux."
+                "Un rendez-vous dans la semaine, des gens à retrouver : c’est souvent ce qui fait tenir l’habitude.",
+                "Pour courir en groupe le samedi, retrouve les prochaines sorties de NULLL.CLUB."
               ]
             },
             {
@@ -616,7 +618,7 @@ export function getSiteCopy(locale: Locale) {
         {
           key: "localEvents",
           slug: "evenements-running-aix",
-          title: "Événements running à Aix-en-Provence | agenda NULLL.CLUB",
+          title: "Les rendez-vous du club à Aix | NULLL.CLUB",
           description:
             "L’agenda des sorties running à Aix-en-Provence : rendez-vous hebdomadaire du samedi 8h30, événements du club et rencontres après la course.",
           h1: "Événements running à Aix-en-Provence",

@@ -11,6 +11,8 @@ import { logoutPro } from "../actions";
 // de Supabase fait echouer le deploiement entier.
 export const dynamic = "force-dynamic";
 
+export const metadata = { title: "Espace partenaire | NULLL.CLUB", robots: { index: false, follow: false } };
+
 export default async function ProPanelLayout({ children }: { children: ReactNode }) {
   const session = await getActiveProSession();
 
@@ -19,7 +21,7 @@ export default async function ProPanelLayout({ children }: { children: ReactNode
   }
 
   return (
-    <main className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
+    <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
       <header className="sticky top-0 z-50 border-b-2 border-[#773331] bg-[#F1EDE9]">
         <div className="shell flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between">
           <Link className="flex items-center gap-4 transition hover:text-[#EBA0CD]" href="/fr">
@@ -41,7 +43,7 @@ export default async function ProPanelLayout({ children }: { children: ReactNode
           </nav>
         </div>
       </header>
-      {children}
-    </main>
+      <main id="contenu">{children}</main>
+    </div>
   );
 }

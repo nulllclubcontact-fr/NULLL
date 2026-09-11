@@ -67,7 +67,7 @@ const police_main = Caveat({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nulll.club"),
-  title: "NULLL.CLUB | Club de course à Aix-en-Provence",
+  title: "NULLL.CLUB | Courir ensemble à Aix",
   description:
     "NULLL.CLUB est un club de course ouvert à tous à Aix-en-Provence.",
   verification: {
