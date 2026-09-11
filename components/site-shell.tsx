@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowIcon } from "./ArrowIcon";
 import { LienCompte } from "./lien-compte";
 import { PosterPhoto } from "./PosterPhoto";
+import { FermetureMenu } from "./fermeture-menu";
 import { DEPART } from "../lib/rendez-vous";
 import { getRoute, getSiteCopy, type Locale, type RouteKey, type RunEvent } from "../lib/site-content";
 
@@ -68,7 +69,7 @@ export function SiteHeader({
       </a>
       <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto_auto] items-stretch lg:grid-cols-[200px_minmax(0,1fr)_132px_172px] xl:grid-cols-[240px_minmax(0,1fr)_150px_190px] 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
         <Link className="flex min-w-0 items-center border-r-2 border-[#773331] px-3 transition hover:bg-[#FFB200] focus-visible:bg-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] sm:px-5" href={getRoute(locale, "home")}>
-          <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 lg:w-32 xl:w-40 2xl:w-44" height={313} priority src="/assets/nulll-new/logo-burgundy.png" width={2449} />
+          <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 lg:w-32 xl:w-40 2xl:w-44" height={313} priority sizes="(min-width: 1536px) 176px, (min-width: 1280px) 160px, (min-width: 1024px) 128px, (min-width: 640px) 160px, 112px" src="/assets/nulll-new/logo-burgundy.png" width={2449} />
         </Link>
         <nav
           aria-label="Navigation principale"
@@ -99,9 +100,10 @@ export function SiteHeader({
         />
         <details className="static lg:hidden">
           <summary className="flex min-h-20 cursor-pointer items-center border-r-2 border-[#773331] px-3 font-mono text-xs font-black uppercase transition-colors hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] sm:px-5">Menu</summary>
+          <FermetureMenu />
           <nav aria-label="Navigation mobile" className="absolute inset-x-0 top-full z-50 grid max-h-[calc(100dvh-80px)] overflow-y-auto border-t-2 border-[#773331] bg-[#F1EDE9] font-mono text-xs font-black uppercase shadow-[0_8px_0_rgba(53,24,21,.18)]">
             {copy.nav.map((item: { key: RouteKey; label: string }) => (
-              <Link className={`flex min-h-14 items-center border-b-2 border-[#773331] px-4 py-3 transition-colors hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] ${item.key === current ? "bg-[#EBA0CD]" : ""}`} href={getRoute(locale, item.key)} key={item.key}>
+              <Link className={`flex min-h-14 items-center border-b-2 border-[#773331] px-4 py-3 transition-colors hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] ${item.key === current ? "bg-[#EBA0CD]" : ""}`} aria-current={item.key === current ? "page" : undefined} href={getRoute(locale, item.key)} key={item.key}>
                 {item.label}
               </Link>
             ))}
@@ -173,6 +175,12 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
             href="/confidentialite"
           >
             Confidentialité
+          </Link>
+          <Link
+            className="inline-flex min-h-11 items-center underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
+            href="/mentions-legales"
+          >
+            Mentions légales
           </Link>
           <span>Aix-en-Provence, France</span>
           <span className="text-[#FFB200]">Ouvert à tous</span>

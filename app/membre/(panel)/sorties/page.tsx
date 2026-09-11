@@ -48,7 +48,7 @@ export default async function MemberSortiesPage() {
       ) : (
         <>
           {aVenir.length > 0 ? <Tableau titre="À venir" lignes={aVenir} /> : null}
-          {passees.length > 0 ? <Tableau titre="Déjà courues" lignes={passees} /> : null}
+          {passees.length > 0 ? <Tableau titre="Sorties passées" lignes={passees} /> : null}
         </>
       )}
     </section>

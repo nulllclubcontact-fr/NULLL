@@ -14,7 +14,6 @@ function lire(formData: FormData, cle: string, max = 200) {
 
 function rafraichir(partenaireId?: string) {
   revalidatePath("/admin/reseau");
-  revalidatePath("/admin/partenaires");
   if (partenaireId) revalidatePath(`/admin/reseau/${partenaireId}`);
 }
 

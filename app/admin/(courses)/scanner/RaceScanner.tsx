@@ -13,6 +13,7 @@ const ALLURE: Record<string, string> = {
   success: "bg-[#FFB200] text-[#773331]",
   already_checked_in: "bg-[#F1EDE9] text-[#773331]",
   wrong_race: "bg-[#EBA0CD] text-[#773331]",
+  race_unavailable: "bg-[#EBA0CD] text-[#773331]",
   cancelled_registration: "bg-[#773331] text-[#F1EDE9]",
   invalid_qr: "bg-[#773331] text-[#F1EDE9]",
   forbidden: "bg-[#773331] text-[#F1EDE9]"

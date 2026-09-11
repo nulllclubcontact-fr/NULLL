@@ -1,6 +1,7 @@
 import { LoginForm } from "./LoginForm";
 import { AccountShell } from "../../../components/account-shell";
 import { fournisseursAuth } from "../../../lib/auth/reglages";
+import { sortieValide, suiteSortie } from "../../../lib/races/sortie-choisie";
 
 // /auth/callback renvoie ici quand le lien recu par mail ne vaut plus rien.
 const MESSAGES_ERREUR: Record<string, string> = {
@@ -18,9 +19,9 @@ const MESSAGES_INFO: Record<string, string> = {
 export default async function MemberLoginPage({
   searchParams
 }: {
-  searchParams: Promise<{ erreur?: string; message?: string }>;
+  searchParams: Promise<{ erreur?: string; message?: string; sortie?: string }>;
 }) {
-  const [{ erreur, message }, fournisseurs] = await Promise.all([searchParams, fournisseursAuth()]);
+  const [{ erreur, message, sortie }, fournisseurs] = await Promise.all([searchParams, fournisseursAuth()]);
   const alerte = erreur ? MESSAGES_ERREUR[erreur] : undefined;
   const info = message ? MESSAGES_INFO[message] : undefined;
 
@@ -29,7 +30,7 @@ export default async function MemberLoginPage({
       eyebrow="Espace membre"
       image="/assets/photos/medaille-bouche.webp"
       imageAlt="Un membre de NULLL.CLUB mord sa médaille de finisher, la mer en arrière-plan"
-      footerLink={{ label: "Pas encore de compte ?", href: "/membre/register", cta: "S’inscrire" }}
+      footerLink={{ label: "Pas encore de compte ?", href: `/membre/register${suiteSortie(sortie)}`, cta: "S’inscrire" }}
       intro="Tes sorties et le QR à montrer en arrivant. Rien de magique : juste ton compte."
       ticker="Samedi 8h30 · Aix-en-Provence · Gratuit · Tous les niveaux"
       title="Reviens dans le"
@@ -51,7 +52,7 @@ export default async function MemberLoginPage({
         </p>
       ) : null}
 
-      <LoginForm fournisseurs={fournisseurs} />
+      <LoginForm fournisseurs={fournisseurs} sortie={sortieValide(sortie) ? sortie : undefined} />
     </AccountShell>
   );
 }

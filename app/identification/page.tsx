@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AccountHeader } from "../../components/account-shell";
 import { ArrowIcon } from "../../components/ArrowIcon";
 import { QrAnime } from "../../components/qr-anime";
+import { suiteSortie } from "../../lib/races/sortie-choisie";
 import { getSiteCopy } from "../../lib/site-content";
 import { SiteFooter } from "../../components/site-shell";
 
@@ -15,14 +16,16 @@ export const metadata = {
 
 /**
  * Page passerelle, volontairement pauvre. Elle ne fait qu'une chose :
- * envoyer vers l'inscription ou la connexion.
+ * envoyer vers l'inscription ou la connexion, en gardant la sortie choisie
+ * sur la page « Sorties » (?sortie=) pour la retrouver dans l'espace membre.
  *
  * La version precedente empilait trois etapes explicatives et un
  * argumentaire partenaires ; on ne savait plus ou cliquer. Le bloc
  * partenaires est parti sur la page contact, ou un commercant le cherche.
  */
-export default function IdentificationPage() {
+export default async function IdentificationPage({ searchParams }: { searchParams: Promise<{ sortie?: string }> }) {
   const copy = getSiteCopy("fr");
+  const suite = suiteSortie((await searchParams).sortie);
 
   return (
     <main className="flex min-h-dvh flex-col bg-[#3A1A18]">
@@ -41,11 +44,17 @@ export default function IdentificationPage() {
         />
 
         <div className="relative mx-auto grid w-full max-w-[1500px] items-center gap-14 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1fr)] lg:gap-24 xl:px-6">
-          <div className="hero-rise mx-auto w-full max-w-[15rem] sm:max-w-[20rem] lg:mx-0 lg:max-w-[28rem]" style={{ animationDelay: "160ms" }}>
+          {/* Motif decoratif, pas le QR personnel : cache aux lecteurs d'ecran,
+              et place apres les boutons sur mobile pour qu'ils arrivent en premier. */}
+          <div
+            aria-hidden="true"
+            className="hero-rise order-2 mx-auto w-full max-w-[12rem] sm:max-w-[18rem] lg:order-1 lg:mx-0 lg:max-w-[28rem]"
+            style={{ animationDelay: "160ms" }}
+          >
             <QrAnime />
           </div>
 
-          <div>
+          <div className="order-1 lg:order-2">
             <p className="hero-rise font-mono text-xs font-black uppercase tracking-[.2em] text-[#FFB200] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
               Espace membre
             </p>
@@ -58,32 +67,43 @@ export default function IdentificationPage() {
             {/* Une phrase, pas trois blocs : le visiteur doit savoir a quoi
                 sert un compte sans avoir a lire la page. */}
             <p className="hero-rise mt-7 max-w-lg text-lg leading-relaxed text-[#F1EDE9] sm:text-xl" style={{ animationDelay: "220ms" }}>
-              Ton compte, ta carte de membre, et la décharge signée une seule fois.
+              {suite
+                ? "Ta sortie est notée. Crée ton compte ou connecte-toi pour confirmer ta place et retrouver ton QR."
+                : "Crée ton compte gratuit pour choisir une sortie et retrouver son QR. La décharge se signe une seule fois."}
             </p>
 
             <div className="hero-rise mt-10 flex max-w-xl flex-col gap-4" style={{ animationDelay: "300ms" }}>
               <Link
-                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#FFB200] bg-[#FFB200] px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl text-[#773331] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
-                href="/membre/register"
+                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#FFB200] bg-[#FFB200] px-7 font-mono text-base font-black uppercase tracking-[.06em] text-[#773331] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9] sm:text-xl"
+                href={`/membre/register${suite}`}
               >
                 <span>Créer mon compte</span>
                 <ArrowIcon />
               </Link>
               <Link
-                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#F1EDE9]/55 px-7 font-mono text-base font-black uppercase tracking-[.06em] sm:text-xl transition-colors [word-spacing:.12em] hover:border-[#F1EDE9] hover:bg-[#F1EDE9] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
-                href="/membre/login"
+                className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#F1EDE9]/80 px-7 font-mono text-base font-black uppercase tracking-[.06em] transition-colors [word-spacing:.12em] hover:border-[#F1EDE9] hover:bg-[#F1EDE9] hover:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200] sm:text-xl"
+                href={`/membre/login${suite}`}
               >
                 <span>Se connecter</span>
                 <ArrowIcon />
               </Link>
             </div>
 
-            {/* Troisieme chemin, rare : un lien suffit, il ne doit pas peser
-                autant que les deux boutons. */}
-            <p className="hero-rise mt-8 text-sm leading-relaxed text-[#F1EDE9]/80" style={{ animationDelay: "380ms" }}>
+            <p className="hero-rise mt-8 text-sm leading-relaxed text-[#F1EDE9]" style={{ animationDelay: "380ms" }}>
+              {suite ? (
+                <>
+                  Déjà connecté ?{" "}
+                  <Link className="font-bold underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200]" href={`/membre${suite}`}>
+                    Aller à mon espace
+                  </Link>
+                  {" · "}
+                </>
+              ) : null}
+              {/* Troisieme chemin, rare : un lien suffit, il ne doit pas peser
+                  autant que les deux boutons. */}
               Commerçant partenaire ?{" "}
               <Link
-                className="font-bold text-[#F1EDE9]/80 underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
+                className="font-bold underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
                 href="/pro/login"
               >
                 Espace pro

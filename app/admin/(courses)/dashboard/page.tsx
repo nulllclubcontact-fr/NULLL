@@ -47,6 +47,13 @@ export default async function AdminDashboardPage() {
   const liste = courses ?? [];
   const maintenant = instantPresent();
 
+  // Reprend l indicateur « nouveaux membres » de l ancienne admin a code.
+  const depuis30Jours = new Date(maintenant - 30 * 24 * 60 * 60 * 1000).toISOString();
+  const [{ count: membres }, { count: nouveaux }] = await Promise.all([
+    supabase.from("profiles").select("id", { count: "exact", head: true }),
+    supabase.from("profiles").select("id", { count: "exact", head: true }).gte("created_at", depuis30Jours)
+  ]);
+
   let inscriptions = 0;
   let presences = 0;
   let annulations = 0;
@@ -112,6 +119,9 @@ export default async function AdminDashboardPage() {
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[.95]">
           Vue d’ensemble<span className="text-[#EBA0CD]">.</span>
         </h1>
+        <p className="mt-4 font-mono text-xs font-black uppercase tracking-[.14em]">
+          {membres ?? 0} membre{(membres ?? 0) > 1 ? "s" : ""} · {nouveaux ?? 0} {(nouveaux ?? 0) > 1 ? "nouveaux" : "nouveau"} ces 30 derniers jours
+        </p>
       </header>
 
       <Tuiles

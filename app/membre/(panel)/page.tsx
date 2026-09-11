@@ -6,6 +6,7 @@ import { DownloadQRButton } from "../../../components/races/DownloadQRButton";
 import { formatDistance, formatHeure, formatJour } from "../../../components/races/format";
 import { listMyRegistrations, listUpcomingRaces, splitRegistrations } from "../../../lib/races/repo";
 import { encodeMemberQrToken } from "../../../lib/qr/token";
+import { sortieValide } from "../../../lib/races/sortie-choisie";
 import { createSupabaseServerClient } from "../../../lib/supabase/server";
 import type { RegistrationWithRace } from "../../../lib/races/types";
 
@@ -20,7 +21,7 @@ export const metadata = { robots: { index: false, follow: false } };
  * arrive et son QR, le jaune pour les sorties ouvertes, le rose pour ce
  * qui accroche l'oeil.
  */
-export default async function MemberDashboardPage() {
+export default async function MemberDashboardPage({ searchParams }: { searchParams: Promise<{ sortie?: string }> }) {
   let supabase;
 
   try {
@@ -46,6 +47,15 @@ export default async function MemberDashboardPage() {
   const { aVenir } = splitRegistrations(inscriptions.filter((i) => i.status !== "cancelled"));
   const dejaInscrit = new Set(aVenir.map((i) => i.race_id));
   const disponibles = coursesAVenir.filter((c) => !dejaInscrit.has(c.id));
+
+  // Sortie choisie sur la page « Sorties » : mise en avant, jamais inscrite
+  // d office. Le membre confirme d un clic.
+  const { sortie } = await searchParams;
+  const choisie = sortieValide(sortie) ? (disponibles.find((c) => c.id === sortie) ?? null) : null;
+  const dejaChoisie = sortieValide(sortie) && dejaInscrit.has(sortie);
+  const choisieFermee = choisie
+    ? !choisie.registration_open || (choisie.registration_deadline !== null && new Date(choisie.registration_deadline) < new Date())
+    : false;
 
   const qrs = new Map<string, string>();
   for (const inscription of aVenir) {
@@ -77,6 +87,26 @@ export default async function MemberDashboardPage() {
           </p>
         </div>
       </section>
+
+      {choisie || dejaChoisie ? (
+        <section aria-labelledby="sortie-choisie" className="border-b-2 border-[#773331] bg-[#EBA0CD] text-[#773331]">
+          <div className="shell grid gap-5 py-8 sm:grid-cols-[1fr_auto] sm:items-center">
+            <div>
+              <h2 className="font-mono text-xs font-black uppercase tracking-[.16em]" id="sortie-choisie">
+                La sortie que tu as choisie
+              </h2>
+              {choisie ? (
+                <p className="mt-3 font-display text-[clamp(1.6rem,4vw,2.4rem)] uppercase leading-[1.1]">
+                  {formatJour(choisie.start_datetime)} · {formatHeure(choisie.start_datetime)}
+                </p>
+              ) : (
+                <p className="mt-3 font-bold">Tu es déjà inscrit à cette sortie : ton QR est juste en dessous.</p>
+              )}
+            </div>
+            {choisie ? <RegisterButton disabled={choisieFermee} raceId={choisie.id} /> : null}
+          </div>
+        </section>
+      ) : null}
 
       {/* ---------------- MES PROCHAINES SORTIES ---------------- */}
       <section className="border-b-2 border-[#773331] bg-[#F1EDE9]">
@@ -185,9 +215,6 @@ export default async function MemberDashboardPage() {
           <Link className="secondary-link" href="/membre/sorties">
             Historique de mes sorties
           </Link>
-          <p className="sm:col-span-2 font-mono text-xs font-black uppercase leading-relaxed tracking-[.14em] text-[#773331]/40">
-            Un système de points arrive plus tard. Pour l’instant, viens courir.
-          </p>
         </div>
       </section>
     </>

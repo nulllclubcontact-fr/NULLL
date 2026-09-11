@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "node:crypto";
+import { essaiAutorise } from "../../../../lib/limite";
 
 /**
  * Send SMS Hook de Supabase : a chaque code a envoyer (inscription par
@@ -83,6 +84,12 @@ export async function POST(request: Request) {
 
   if (!telephone || !code || !/^\d{6}$/.test(code)) {
     return erreur("Numéro ou code manquant.", 400);
+  }
+
+  // Un rejeu du meme appel signe, ou des demandes en rafale, ne doivent pas
+  // vider le forfait du telephone du club : 3 codes par numero et par 10 minutes.
+  if (!(await essaiAutorise("sms", telephone, 10 * 60, 3))) {
+    return erreur("Trop de codes demandés pour ce numéro. Réessaie dans quelques minutes.", 429);
   }
 
   // Supabase coupe le hook au bout de quelques secondes : on n'attend pas plus.

@@ -132,10 +132,6 @@ export default function ConfidentialitePage() {
               <code className="font-mono text-[.9em]">nulll_pro_session</code>, réservé aux
               partenaires du club, valable <strong>12 heures</strong>.
             </li>
-            <li>
-              <code className="font-mono text-[.9em]">nulll_admin_session</code>, réservé à
-              l’administration, valable <strong>4 heures</strong>.
-            </li>
           </ul>
           <p>
             Ces cookies sont indispensables au service que tu demandes, ils sont donc{" "}

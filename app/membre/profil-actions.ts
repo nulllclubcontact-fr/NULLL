@@ -10,6 +10,13 @@ function lire(formData: FormData, cle: string, max: number) {
   return typeof valeur === "string" ? valeur.trim().slice(0, max) : "";
 }
 
+function dateDeNaissanceValide(valeur: string) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(valeur)) return false;
+  const date = new Date(`${valeur}T12:00:00Z`);
+  // « 2026-02-31 » devient le 3 mars : la relecture le revele.
+  return date.toISOString().slice(0, 10) === valeur && valeur >= "1900-01-01" && date.getTime() < Date.now();
+}
+
 /**
  * Mise a jour du profil par son proprietaire.
  *
@@ -42,6 +49,12 @@ export async function updateProfil(_previousState: ProfilState, formData: FormDa
   }
 
   const birthDate = lire(formData, "birth_date", 10);
+
+  // Une date civile reelle, passee, et plausible : le champ date du
+  // navigateur ne protege pas d'un envoi direct.
+  if (birthDate && !dateDeNaissanceValide(birthDate)) {
+    return { error: "Date de naissance invalide." };
+  }
 
   const { error } = await supabase
     .from("profiles")

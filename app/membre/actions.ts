@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { preparerProfilFournisseur } from "../../lib/auth/profil-fournisseur";
 import { normaliserTelephone } from "../../lib/auth/telephone";
+import { destinationMembre, suiteSortie } from "../../lib/races/sortie-choisie";
 import { createSupabaseServerClient } from "../../lib/supabase/server";
 import { createSupabaseServiceClient } from "../../lib/supabase/service";
 import { MARQUEUR_SESSION_COURTE } from "../../lib/supabase/session";
@@ -109,7 +110,7 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
   const { error: configError } = await serviceSupabase.from("app_config").select("key").limit(1);
 
   if (configError) {
-    return { error: "Base pas prête. Lance la migration Supabase d’abord." };
+    return { error: "La création de compte est indisponible. Réessaie dans quelques minutes." };
   }
 
   let supabase;
@@ -162,7 +163,7 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
     redirect("/membre/login?message=confirme");
   }
 
-  redirect("/membre");
+  redirect(destinationMembre(formData.get("sortie")));
 }
 
 /** Le code SMS de l'inscription confirme le numero et ouvre la session. */
@@ -188,7 +189,7 @@ export async function verifierCodeInscription(_previousState: CodeState, formDat
     return { etape: "code", telephone, error: "Code faux ou expiré. Redemande-en un." };
   }
 
-  redirect("/membre");
+  redirect(destinationMembre(formData.get("sortie")));
 }
 
 export async function renvoyerCodeInscription(_previousState: CodeState, formData: FormData): Promise<CodeState> {
@@ -264,7 +265,7 @@ export async function loginMember(_previousState: LoginState, formData: FormData
     .eq("id", data.user.id)
     .maybeSingle<{ role: string | null }>();
 
-  redirect(profil?.role === "admin" ? "/admin/dashboard" : "/membre");
+  redirect(profil?.role === "admin" ? "/admin/dashboard" : destinationMembre(formData.get("sortie")));
 }
 
 export async function resetMemberPassword(_previousState: LoginState, formData: FormData): Promise<LoginState> {
@@ -376,7 +377,7 @@ export async function updateMemberPassword(_previousState: LoginState, formData:
     return { error: "Mot de passe refusé. Essaie-en un autre." };
   }
 
-  redirect("/membre");
+  redirect(destinationMembre(formData.get("sortie")));
 }
 
 /**
@@ -432,14 +433,14 @@ export async function accepterDecharge(_previousState: CodeState, formData: Form
 
   const { data: profil } = await serviceSupabase.from("profiles").select("role").eq("id", user.id).maybeSingle<{ role: string | null }>();
 
-  redirect(profil?.role === "admin" ? "/admin/dashboard" : "/membre");
+  redirect(profil?.role === "admin" ? "/admin/dashboard" : destinationMembre(formData.get("sortie")));
 }
 
 /**
  * Apres une connexion par le bouton Google officiel, faite dans la page :
  * meme suite que /auth/callback (profil, decharge), puis la bonne porte.
  */
-export async function destinationApresFournisseur(): Promise<string> {
+export async function destinationApresFournisseur(sortie?: string): Promise<string> {
   let supabase;
 
   try {
@@ -458,7 +459,7 @@ export async function destinationApresFournisseur(): Promise<string> {
 
   try {
     if (await preparerProfilFournisseur(user)) {
-      return "/membre/bienvenue";
+      return `/membre/bienvenue${suiteSortie(sortie)}`;
     }
   } catch {
     // Sans service role, l'espace membre renverra lui-meme vers la decharge.
@@ -466,7 +467,7 @@ export async function destinationApresFournisseur(): Promise<string> {
 
   const { data: profil } = await supabase.from("profiles").select("role").eq("id", user.id).maybeSingle<{ role: string | null }>();
 
-  return profil?.role === "admin" ? "/admin/dashboard" : "/membre";
+  return profil?.role === "admin" ? "/admin/dashboard" : destinationMembre(sortie);
 }
 
 /** Fermer sa session depuis l'espace membre. */

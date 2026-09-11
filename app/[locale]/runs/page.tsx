@@ -12,6 +12,7 @@ import { resolveLocale } from "../../../lib/locale";
 import { buildBreadcrumbSchema, buildEventSchema, buildFaqSchema, buildPageMetadata } from "../../../lib/seo";
 import { getRoute, getSiteCopy, type RunEvent } from "../../../lib/site-content";
 import { listPublicRuns } from "../../../lib/races/repo";
+import { DEPART } from "../../../lib/rendez-vous";
 
 // Les sorties viennent de la base. La page se regenere au plus tard chaque
 // minute (et aussitot qu'une sortie change dans l'admin) : une sortie
@@ -20,8 +21,13 @@ export const revalidate = 60;
 
 type PageProps = { params: Promise<{ locale: string }> };
 
-function mapsUrl(address: string) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+/**
+ * Le depart habituel s'ouvre sur ses coordonnees : chercher « parking du
+ * chemin de la Cible » en texte ne tombe pas toujours au bon endroit.
+ */
+function mapsUrl(run: RunEvent) {
+  const requete = run.location === DEPART.nom ? `${DEPART.latitude},${DEPART.longitude}` : run.address;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(requete)}`;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -166,7 +172,7 @@ export default async function RunsPage({ params }: PageProps) {
           >
             {runs.map((run, index) => (
               <div className="run-carousel-slide w-[90%] shrink-0 snap-center sm:w-[78%] xl:w-[72%]" id={`run-card-${run.id}`} key={run.id}>
-                <RunCardCol index={index} joinHref={identificationHref} run={run} />
+                <RunCardCol index={index} joinHref={`${identificationHref}?sortie=${run.id}`} run={run} />
               </div>
             ))}
           </div>
@@ -188,14 +194,17 @@ export default async function RunsPage({ params }: PageProps) {
           <dl className="mt-14 border-t-2 border-[#773331]">
             {copy.runsPage.faq.map((entry, index) => (
               <Reveal
-                className="grid gap-4 border-b-2 border-[#773331] py-8 lg:grid-cols-[auto_1fr_1.1fr] lg:items-baseline lg:gap-10"
+                className="grid gap-4 border-b-2 border-[#773331] py-8 lg:grid-cols-[1fr_1.1fr] lg:items-baseline lg:gap-10"
                 delay={index * 110}
                 key={entry.q}
               >
-                <span className="font-mono text-xs font-black uppercase tracking-[.14em] opacity-60">
-                  0{index + 1}
-                </span>
-                <dt className="font-display text-[clamp(1.5rem,2.6vw,2.3rem)] uppercase leading-[1.12]">{entry.q}</dt>
+                {/* Le numero vit dans le dt : un span entre dt et dd rendait la liste invalide. */}
+                <dt className="flex items-baseline gap-5 font-display text-[clamp(1.5rem,2.6vw,2.3rem)] uppercase leading-[1.12]">
+                  <span aria-hidden="true" className="font-mono text-xs font-black tracking-[.14em]">
+                    0{index + 1}
+                  </span>
+                  <span>{entry.q}</span>
+                </dt>
                 <dd className="text-lg font-bold leading-snug">{entry.a}</dd>
               </Reveal>
             ))}
@@ -266,7 +275,7 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
             <a
               aria-label={`Ouvrir le lieu de départ ${run.location} dans Google Maps`}
               className="inline-flex min-h-14 items-center gap-3 bg-[#F1EDE9] px-4 py-2.5 text-[#773331] transition-colors hover:bg-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#FFB200]"
-              href={mapsUrl(run.address)}
+              href={mapsUrl(run)}
               rel="noreferrer noopener"
               target="_blank"
             >

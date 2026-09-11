@@ -129,8 +129,14 @@ export function buildSportsLocationSchema(locale: Locale) {
       addressRegion: "Provence-Alpes-Cote d'Azur",
       addressCountry: "FR"
     },
-    // Pas de coordonnees GPS tant que le point exact du parking n'est pas
-    // releve : les anciennes pointaient l'ancien depart.
+    // Parking public du chemin de la Cible, a cote du lycee Emile Zola,
+    // releve sur OpenStreetMap (way 248421512). Les anciennes coordonnees
+    // tombaient a plus de 2 km, sur l'ancien depart.
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 43.5096,
+      longitude: 5.4611
+    },
     // Le creneau hebdomadaire est le signal local le plus utile : c'est ce qui
     // permet a Google de repondre a « run club aix samedi ».
     openingHoursSpecification: [

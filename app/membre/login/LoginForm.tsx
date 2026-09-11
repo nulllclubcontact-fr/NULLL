@@ -8,7 +8,7 @@ import type { FournisseursAuth } from "../../../lib/auth/reglages";
 
 const initialState: LoginState = {};
 
-export function LoginForm({ fournisseurs }: { fournisseurs: FournisseursAuth }) {
+export function LoginForm({ fournisseurs, sortie }: { fournisseurs: FournisseursAuth; sortie?: string }) {
   const [loginState, loginAction, loginPending] = useActionState(loginMember, initialState);
   const [resetState, resetAction, resetPending] = useActionState(resetMemberPassword, initialState);
   const telephoneActif = fournisseurs.telephone;
@@ -17,9 +17,10 @@ export function LoginForm({ fournisseurs }: { fournisseurs: FournisseursAuth }) 
   return (
     <div className="panel panel-grid account-stagger p-5 sm:p-6">
       <div className="mb-4">
-        <BoutonsSociaux apple={fournisseurs.apple} google={fournisseurs.google} separateur="ou avec ton compte" />
+        <BoutonsSociaux apple={fournisseurs.apple} google={fournisseurs.google} separateur="ou avec ton compte" sortie={sortie} />
       </div>
       <form action={loginAction} aria-label="Connexion membre" className="grid gap-4" style={{ "--pas": 0 } as React.CSSProperties}>
+        <input name="sortie" type="hidden" value={sortie ?? ""} />
         <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
           <span>{libelle}</span>
           <input autoComplete="username" className="field" name="identifiant" required type={telephoneActif ? "text" : "email"} />

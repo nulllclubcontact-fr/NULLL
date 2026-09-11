@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { BienvenueForm } from "./BienvenueForm";
 import { AccountShell } from "../../../components/account-shell";
 import { createSupabaseServerClient } from "../../../lib/supabase/server";
+import { destinationMembre, sortieValide } from "../../../lib/races/sortie-choisie";
 
 export const dynamic = "force-dynamic";
 
@@ -9,7 +10,8 @@ export const dynamic = "force-dynamic";
  * Etape unique des comptes ouverts par Google ou Apple : verifier son nom
  * et signer la decharge. L'espace membre y renvoie tant que ce n'est pas fait.
  */
-export default async function BienvenuePage() {
+export default async function BienvenuePage({ searchParams }: { searchParams: Promise<{ sortie?: string }> }) {
+  const { sortie } = await searchParams;
   let supabase;
 
   try {
@@ -33,7 +35,7 @@ export default async function BienvenuePage() {
     .maybeSingle<{ first_name: string | null; last_name: string | null; consent_waiver: boolean | null }>();
 
   if (profil?.consent_waiver) {
-    redirect("/membre");
+    redirect(destinationMembre(sortie));
   }
 
   return (
@@ -47,7 +49,7 @@ export default async function BienvenuePage() {
       title="Bienvenue au"
       titleAccent="club."
     >
-      <BienvenueForm nom={profil?.last_name ?? ""} prenom={profil?.first_name ?? ""} />
+      <BienvenueForm nom={profil?.last_name ?? ""} prenom={profil?.first_name ?? ""} sortie={sortieValide(sortie) ? sortie : undefined} />
     </AccountShell>
   );
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { createHash } from "node:crypto";
 import { blocCitation, echapper, rendreEmail } from "../../../lib/email/gabarit";
+import { adresseAppelant, essaiAutorise } from "../../../lib/limite";
 
 /**
  * Destinataire des messages. Configurable parce que tant que le domaine
@@ -18,49 +18,13 @@ const CONTACT_EMAIL = process.env.CONTACT_TO || "contact@nulll.club";
 const FROM = process.env.RESEND_FROM || "NULLL.CLUB <onboarding@resend.dev>";
 
 /**
- * Limite d'envoi.
- *
- * Les connexions pro et admin en avaient une, ce formulaire non : on
- * pouvait le marteler en boucle, vider le quota Resend et faire taire le
- * formulaire pour les vrais visiteurs. Le piege a robots ne suffit pas —
- * il n'arrete que ceux qui remplissent tous les champs.
- *
- * Comme ailleurs dans le projet, le compteur vit en memoire : sur une
- * plateforme sans etat il ne freine que par instance, mais c'est deja
- * beaucoup mieux que rien.
+ * Limite d'envoi : 5 messages par quart d'heure et par adresse, comptes en
+ * base pour valoir sur toutes les instances. Sans elle on pouvait marteler
+ * le formulaire, vider le quota Resend et le faire taire pour les vrais
+ * visiteurs. Le piege a robots n'arrete que ceux qui remplissent tout.
  */
-const FENETRE_MS = 15 * 60 * 1000;
+const FENETRE_SECONDES = 15 * 60;
 const MAX_ENVOIS = 5;
-const envois = new Map<string, { compte: number; finFenetre: number }>();
-
-function cleAppelant(request: Request) {
-  const transmise = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  const reelle = request.headers.get("x-real-ip")?.trim();
-  // Uniquement l'adresse : un en-tete choisi par l'appelant, comme le
-  // user-agent, se change a volonte et rendrait la limite inutile.
-  const identite = transmise || reelle || "local";
-  return createHash("sha256").update(`contact:${identite}`).digest("hex");
-}
-
-function tropDEnvois(cle: string) {
-  const maintenant = Date.now();
-
-  if (envois.size >= 2000) {
-    for (const [k, etat] of envois) {
-      if (etat.finFenetre < maintenant) envois.delete(k);
-    }
-  }
-
-  const etat = envois.get(cle);
-
-  if (!etat || etat.finFenetre < maintenant) {
-    envois.set(cle, { compte: 1, finFenetre: maintenant + FENETRE_MS });
-    return false;
-  }
-
-  etat.compte += 1;
-  return etat.compte > MAX_ENVOIS;
-}
 
 function readString(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
@@ -79,6 +43,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Requête invalide." }, { status: 400 });
   }
 
+  // « null » ou un tableau sont du JSON valide : sans ce test, lire un
+  // champ plantait la route en 500.
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return NextResponse.json({ message: "Requête invalide." }, { status: 400 });
+  }
+
   // Champ piege : invisible et laisse vide par un humain, rempli par la
   // plupart des robots qui remplissent tout ce qu'ils trouvent.
   if (readString(payload.website, 200)) {
@@ -86,13 +56,21 @@ export async function POST(request: Request) {
   }
 
   const email = readString(payload.email, 160);
-  const message = readString(payload.message, 5000);
+  const brut = typeof payload.message === "string" ? payload.message.trim() : "";
+
+  // Le formulaire borne deja la saisie : un message plus long ne vient que
+  // d'un envoi direct. On le refuse plutot que de le tronquer en silence.
+  if (brut.length > 5000) {
+    return NextResponse.json({ message: "Message trop long : 5 000 caractères au maximum." }, { status: 400 });
+  }
+
+  const message = brut;
 
   if (!isEmail(email) || message.length < 2) {
     return NextResponse.json({ message: "Merci de remplir les deux champs." }, { status: 400 });
   }
 
-  if (tropDEnvois(cleAppelant(request))) {
+  if (!(await essaiAutorise("contact", adresseAppelant(request.headers), FENETRE_SECONDES, MAX_ENVOIS))) {
     return NextResponse.json(
       { message: "Trop de messages d’affilée. Attends quelques minutes, ou écris à contact@nulll.club." },
       { status: 429 }

@@ -3,6 +3,7 @@
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 import { destinationApresFournisseur } from "../../app/membre/actions";
+import { destinationMembre } from "../../lib/races/sortie-choisie";
 import { createSupabaseBrowserClient } from "../../lib/supabase/client";
 
 type Fournisseur = "google" | "apple";
@@ -69,7 +70,7 @@ const BOUTON =
  * se fait dans sa fenetre, sans redirection par l'adresse technique de
  * Supabase : Google annonce donc nulll.club, et non « skyq….supabase.co ».
  */
-function BoutonGoogleOfficiel({ onErreur, onIndisponible }: { onErreur: (message: string) => void; onIndisponible: () => void }) {
+function BoutonGoogleOfficiel({ onErreur, onIndisponible, sortie }: { onErreur: (message: string) => void; onIndisponible: () => void; sortie?: string }) {
   const conteneur = useRef<HTMLDivElement>(null);
   const [scriptPret, setScriptPret] = useState(false);
   const [connexion, setConnexion] = useState(false);
@@ -81,6 +82,7 @@ function BoutonGoogleOfficiel({ onErreur, onIndisponible }: { onErreur: (message
     if (!scriptPret || !google || !element) return;
 
     let annule = false;
+    let observateur: ResizeObserver | undefined;
 
     creerNonce().then(({ brut, hache }) => {
       if (annule) return;
@@ -105,11 +107,20 @@ function BoutonGoogleOfficiel({ onErreur, onIndisponible }: { onErreur: (message
             return;
           }
 
-          window.location.assign(await destinationApresFournisseur());
+          window.location.assign(await destinationApresFournisseur(sortie));
         }
       });
 
-      google.accounts.id.renderButton(element, {
+      // Le bouton de Google a une largeur fixe, en pixels : on le redessine
+      // quand son conteneur change de taille (rotation, fenetre retrecie),
+      // sinon il debordait de l ecran.
+      let largeur = 0;
+      const dessiner = () => {
+        const voulue = Math.max(200, Math.min(400, element.offsetWidth));
+        if (Math.abs(voulue - largeur) < 8) return;
+        largeur = voulue;
+        element.replaceChildren();
+        google.accounts.id.renderButton(element, {
         type: "standard",
         theme: "outline",
         size: "large",
@@ -117,14 +128,20 @@ function BoutonGoogleOfficiel({ onErreur, onIndisponible }: { onErreur: (message
         shape: "rectangular",
         logo_alignment: "center",
         locale: "fr",
-        width: Math.max(200, Math.min(400, element.offsetWidth))
-      });
+        width: voulue
+        });
+      };
+
+      dessiner();
+      observateur = new ResizeObserver(dessiner);
+      observateur.observe(element);
     });
 
     return () => {
       annule = true;
+      observateur?.disconnect();
     };
-  }, [scriptPret, onErreur]);
+  }, [scriptPret, onErreur, sortie]);
 
   return (
     <>
@@ -147,7 +164,7 @@ function BoutonGoogleOfficiel({ onErreur, onIndisponible }: { onErreur: (message
  * /auth/callback. Dans tous les cas, le profil se cree au premier passage
  * et la decharge se signe sur /membre/bienvenue.
  */
-export function BoutonsSociaux({ google, apple, separateur }: { google: boolean; apple: boolean; separateur: string }) {
+export function BoutonsSociaux({ google, apple, separateur, sortie }: { google: boolean; apple: boolean; separateur: string; sortie?: string }) {
   const [enCours, setEnCours] = useState<Fournisseur | null>(null);
   const [erreur, setErreur] = useState("");
   // Script Google bloque (bloqueur de publicite, reseau filtre) : on revient
@@ -164,7 +181,7 @@ export function BoutonsSociaux({ google, apple, separateur }: { google: boolean;
 
     const { error } = await createSupabaseBrowserClient().auth.signInWithOAuth({
       provider: fournisseur,
-      options: { redirectTo: `${window.location.origin}/auth/callback?next=/membre` }
+      options: { redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(destinationMembre(sortie))}` }
     });
 
     // En cas de succes, le navigateur part deja vers le fournisseur.
@@ -177,7 +194,7 @@ export function BoutonsSociaux({ google, apple, separateur }: { google: boolean;
   return (
     <div className="grid gap-3">
       {google && !googleParRedirection ? (
-        <BoutonGoogleOfficiel onErreur={setErreur} onIndisponible={() => setGoogleParRedirection(true)} />
+        <BoutonGoogleOfficiel onErreur={setErreur} onIndisponible={() => setGoogleParRedirection(true)} sortie={sortie} />
       ) : null}
       {google && googleParRedirection ? (
         <button className={`${BOUTON} bg-white text-[#1f1f1f] hover:bg-[#F1EDE9]`} disabled={enCours !== null} onClick={() => continuer("google")} type="button">

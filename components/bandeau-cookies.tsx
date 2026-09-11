@@ -24,7 +24,7 @@ function suivreStockage(changement: () => void) {
  * Bandeau d'information, pas de consentement.
  *
  * Le site ne pose que trois cookies, tous necessaires a la connexion :
- * la session Supabase, nulll_pro_session et nulll_admin_session. Aucune
+ * la session Supabase, son marqueur de session courte et nulll_pro_session. Aucune
  * mesure d'audience, aucun traceur, aucun script tiers. Ces cookies sont
  * exemptes de consentement (directive ePrivacy, doctrine CNIL), donc on
  * informe au lieu de demander une permission dont on n'a pas besoin.

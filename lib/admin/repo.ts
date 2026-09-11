@@ -167,27 +167,13 @@ export async function issueAdminPartnerCode(partnerId: string) {
   const code = `PRO-${randomBytes(9).toString("base64url").toUpperCase()}`;
   const codeHash = await bcrypt.hash(code, 12);
 
-  const { data, error } = await supabase
-    .from("partner_access_codes")
-    .insert({ partner_id: partnerId, code_hash: codeHash, active: true })
-    .select("id")
-    .single<{ id: string }>();
+  // Revocation des anciens et creation du nouveau dans une seule
+  // transaction, sous verrou du partenaire (migration 0008) : deux
+  // generations simultanees ne laissent plus deux codes actifs, ni aucun.
+  const { error } = await supabase.rpc("emettre_code_partenaire", { p_partner_id: partnerId, p_code_hash: codeHash });
 
-  if (error || !data) {
+  if (error) {
     throw new Error("Code create failed");
-  }
-
-  // Le nouveau code existe avant que les anciens tombent : le partenaire
-  // n'est jamais laisse sans acces si l'une des deux ecritures echoue.
-  const { error: revokeError } = await supabase
-    .from("partner_access_codes")
-    .update({ active: false })
-    .eq("partner_id", partnerId)
-    .eq("active", true)
-    .neq("id", data.id);
-
-  if (revokeError) {
-    throw new Error("Code revoke failed");
   }
 
   return code;

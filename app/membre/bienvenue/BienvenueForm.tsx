@@ -6,12 +6,13 @@ import { accepterDecharge, type CodeState } from "../actions";
 
 const initialState: CodeState = {};
 
-export function BienvenueForm({ prenom, nom }: { prenom: string; nom: string }) {
+export function BienvenueForm({ prenom, nom, sortie }: { prenom: string; nom: string; sortie?: string }) {
   const [state, formAction, pending] = useActionState(accepterDecharge, initialState);
   const [accepted, setAccepted] = useState(false);
 
   return (
     <form action={formAction} aria-label="Finaliser mon compte" className="panel panel-grid account-stagger grid gap-3.5 p-5 sm:p-6 lg:p-5">
+      <input name="sortie" type="hidden" value={sortie ?? ""} />
       <div className="grid gap-3.5 sm:grid-cols-2" style={{ "--pas": 0 } as React.CSSProperties}>
         <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
           <span>Prénom</span>

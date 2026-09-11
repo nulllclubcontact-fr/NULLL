@@ -154,8 +154,12 @@ export async function createRace(_previousState: CourseState, formData: FormData
     return { error: "Date de départ illisible." };
   }
 
-  const distance = lire(formData, "distance_km", 12).replace(",", ".");
-  const max = lire(formData, "max_participants", 8);
+  const nombres = lireNombres(formData);
+
+  if ("error" in nombres) {
+    return { error: nombres.error };
+  }
+
   const statut = lire(formData, "status", 20) as RaceStatus;
 
   // Le slug doit rester unique : on suffixe avec la date plutot que de
@@ -170,8 +174,8 @@ export async function createRace(_previousState: CourseState, formData: FormData
     location: lire(formData, "location", 160) || null,
     address: lire(formData, "address", 240) || null,
     start_datetime: depart.toISOString(),
-    distance_km: distance ? Number(distance) : null,
-    max_participants: max ? Number(max) : null,
+    distance_km: nombres.distance,
+    max_participants: nombres.max,
     registration_open: formData.get("registration_open") === "on",
     status: STATUTS.includes(statut) ? statut : "draft",
     cover_image_url: lirePhoto(formData)
@@ -187,41 +191,81 @@ export async function createRace(_previousState: CourseState, formData: FormData
   return { message: "Sortie créée.", cle: Date.now() };
 }
 
-export async function updateRace(formData: FormData) {
+/**
+ * Distance et places, lues et bornees. Number("abc") ou « -3 places »
+ * partaient en base ou faisaient echouer l'insertion sans explication.
+ */
+function lireNombres(formData: FormData): { distance: number | null; max: number | null } | { error: string } {
+  const distanceBrute = lire(formData, "distance_km", 12).replace(",", ".");
+  const maxBrut = lire(formData, "max_participants", 8);
+  const distance = distanceBrute ? Number(distanceBrute) : null;
+  const max = maxBrut ? Number(maxBrut) : null;
+
+  if (distance !== null && (!Number.isFinite(distance) || distance <= 0 || distance > 100)) {
+    return { error: "Distance invalide : entre 0 et 100 km." };
+  }
+
+  if (max !== null && (!Number.isInteger(max) || max < 1 || max > 10000)) {
+    return { error: "Places max : un nombre entier positif." };
+  }
+
+  return { distance, max };
+}
+
+/** Modifier une sortie existante : titre, date, lieu, distance, places, statut. */
+export async function modifierCourse(_previousState: CourseState, formData: FormData): Promise<CourseState> {
   const admin = await isAdminUser();
 
   if (!admin) {
-    redirect("/membre");
+    return { error: "Accès refusé." };
   }
 
   const id = lire(formData, "race_id", 40);
+  const title = lire(formData, "title", 120);
+  const start = lire(formData, "start_datetime", 40);
 
-  if (!id) {
-    redirect("/admin/courses");
+  if (!id || !title || !start) {
+    return { error: "Un titre et une date de départ, au minimum." };
+  }
+
+  const depart = heureDeParis(start);
+
+  if (!depart) {
+    return { error: "Date de départ illisible." };
+  }
+
+  const nombres = lireNombres(formData);
+
+  if ("error" in nombres) {
+    return { error: nombres.error };
   }
 
   const statut = lire(formData, "status", 20) as RaceStatus;
-  const distance = lire(formData, "distance_km", 12).replace(",", ".");
-  const max = lire(formData, "max_participants", 8);
 
-  await admin.supabase
+  const { error } = await admin.supabase
     .from("races")
     .update({
-      title: lire(formData, "title", 120),
+      title,
       description: lire(formData, "description", 2000) || null,
       location: lire(formData, "location", 160) || null,
       address: lire(formData, "address", 240) || null,
-      distance_km: distance ? Number(distance) : null,
-      max_participants: max ? Number(max) : null,
+      start_datetime: depart.toISOString(),
+      distance_km: nombres.distance,
+      max_participants: nombres.max,
       registration_open: formData.get("registration_open") === "on",
       status: STATUTS.includes(statut) ? statut : "draft"
     })
     .eq("id", id);
 
+  if (error) {
+    return { error: "Enregistrement refusé. Réessaie." };
+  }
+
   revalidatePath(`/admin/courses/${id}`);
   revalidatePath("/admin/courses");
+  revalidatePath("/admin/dashboard");
   rafraichirPagesPubliques();
-  redirect(`/admin/courses/${id}`);
+  return { message: "Sortie modifiée." };
 }
 
 /** Raccourci depuis la liste : publier, fermer, terminer, sans ouvrir la fiche. */

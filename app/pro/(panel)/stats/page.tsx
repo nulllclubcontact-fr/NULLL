@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { getProSession } from "../../../../lib/pro/guard";
+import { getActiveProSession } from "../../../../lib/pro/guard";
 import { getAdminPartner, listAdminPartnerSales, type AdminPartnerSale } from "../../../../lib/admin/repo";
 import { formatEuro } from "../../../../components/races/format";
 import {
@@ -41,6 +41,11 @@ const VUES: Array<{ vue: Granularite; label: string }> = [
 ];
 
 const DATE_ISO = /^\d{4}-\d{2}-\d{2}$/;
+
+// Une date du calendrier, pas seulement sa forme : « 2026-02-31 » passait.
+function dateReelle(valeur: string) {
+  return DATE_ISO.test(valeur) && new Date(`${valeur}T12:00:00Z`).toISOString().slice(0, 10) === valeur;
+}
 
 const JOUR_SEMAINE = new Intl.DateTimeFormat("en-US", { timeZone: "Europe/Paris", weekday: "short" });
 const SEMAINE = [
@@ -92,7 +97,7 @@ function euroCompact(value: number) {
 }
 
 export default async function ProStatsPage({ searchParams }: StatsPageProps) {
-  const session = await getProSession();
+  const session = await getActiveProSession();
 
   if (!session) {
     redirect("/pro/login");
@@ -100,8 +105,8 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
 
   const params = await searchParams;
   const vue: Granularite = params?.vue === "semaine" || params?.vue === "mois" ? params.vue : "jour";
-  const fin = params?.to && DATE_ISO.test(params.to) ? params.to : aujourdhuiParis();
-  const debut = params?.from && DATE_ISO.test(params.from) && params.from <= fin ? params.from : debutParDefaut(vue, fin);
+  const fin = params?.to && dateReelle(params.to) ? params.to : aujourdhuiParis();
+  const debut = params?.from && dateReelle(params.from) && params.from <= fin ? params.from : debutParDefaut(vue, fin);
   const surMesure = Boolean(params?.from || params?.to);
 
   // Toutes les ventes du partenaire (lecture paginee, au-dela de 1000),

@@ -80,7 +80,7 @@ export function RunCarouselNav({ runs }: RunCarouselNavProps) {
       {runs.map((run, index) => (
         <button
           aria-current={activeIndex === index ? "true" : undefined}
-          aria-label={`Afficher la sortie ${index + 1} : ${run.date}`}
+          aria-label={`0${index + 1} : afficher la sortie du ${run.date}`}
           className={`grid h-11 w-11 cursor-pointer place-items-center border-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFB200] ${
             activeIndex === index
               ? "border-[#FFB200] bg-[#FFB200] text-[#773331]"

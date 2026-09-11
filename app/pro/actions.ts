@@ -1,10 +1,10 @@
 "use server";
 
 import bcrypt from "bcryptjs";
-import { createHash } from "node:crypto";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { clearProSession, getActiveProSession, setProSession } from "../../lib/pro/guard";
+import { adresseAppelant, essaiAutorise, oublierEssais } from "../../lib/limite";
 import { getTierForPoints, type LoyaltyTier } from "../../lib/loyalty/tiers";
 import { createSupabaseServiceClient } from "../../lib/supabase/service";
 
@@ -42,10 +42,11 @@ type PartnerAccessCode = {
   partners: { active: boolean | null } | null;
 };
 
-const PRO_ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
-const PRO_LOCK_MS = 10 * 60 * 1000;
-const PRO_MAX_ATTEMPTS = 8;
-const attempts = new Map<string, { count: number; resetAt: number; lockedUntil: number }>();
+// 8 essais de code par adresse et par tranche de 10 minutes, comptes en
+// base : la limite vaut pour toutes les instances, pas seulement celle qui
+// recoit la requete.
+const PRO_FENETRE_SECONDES = 10 * 60;
+const PRO_MAX_ESSAIS = 8;
 
 function readCode(formData: FormData) {
   const value = formData.get("code");
@@ -61,59 +62,12 @@ function formatRpcError() {
   return "Achat refusé. Vérifie le QR et le montant.";
 }
 
-// La cle ne retient que l'adresse. Le user-agent y figurait : c'est un
-// en-tete choisi par l'appelant, donc il suffisait de le faire varier a
-// chaque essai pour repartir avec un compteur neuf. Le verrou ne freinait
-// que les navigateurs honnetes.
-async function getAttemptKey() {
-  const headerStore = await headers();
-  const forwardedFor = headerStore.get("x-forwarded-for")?.split(",")[0]?.trim();
-  const realIp = headerStore.get("x-real-ip")?.trim();
-  const identity = forwardedFor || realIp || "local";
-  return createHash("sha256").update(`pro:${identity}`).digest("hex");
-}
-
-// Une entree par adresse vue, jamais retiree : la table grossit sans fin.
-// On elague les entrees eteintes quand elle devient grosse.
-function elagueTentatives(now: number) {
-  if (attempts.size < 2000) {
-    return;
-  }
-
-  for (const [cle, etat] of attempts) {
-    if (etat.resetAt < now && etat.lockedUntil < now) {
-      attempts.delete(cle);
-    }
-  }
-}
-
 async function isRateLimited() {
-  const key = await getAttemptKey();
-  const now = Date.now();
-  elagueTentatives(now);
-  const current = attempts.get(key);
-
-  if (!current || current.resetAt < now) {
-    attempts.set(key, { count: 1, resetAt: now + PRO_ATTEMPT_WINDOW_MS, lockedUntil: 0 });
-    return false;
-  }
-
-  if (current.lockedUntil > now) {
-    return true;
-  }
-
-  current.count += 1;
-
-  if (current.count > PRO_MAX_ATTEMPTS) {
-    current.lockedUntil = now + PRO_LOCK_MS;
-    return true;
-  }
-
-  return false;
+  return !(await essaiAutorise("pro", adresseAppelant(await headers()), PRO_FENETRE_SECONDES, PRO_MAX_ESSAIS));
 }
 
 async function clearRateLimit() {
-  attempts.delete(await getAttemptKey());
+  await oublierEssais("pro", adresseAppelant(await headers()));
 }
 
 export async function loginPro(_previousState: ProLoginState, formData: FormData): Promise<ProLoginState> {

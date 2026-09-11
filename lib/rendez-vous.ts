@@ -6,5 +6,8 @@
 export const DEPART = {
   nom: "Parking du chemin de la Cible",
   repere: "près du lycée Émile Zola",
-  adresse: "Parking du chemin de la Cible, près du lycée Émile Zola, Aix-en-Provence"
+  adresse: "Parking du chemin de la Cible, près du lycée Émile Zola, Aix-en-Provence",
+  /** Parking public releve sur OpenStreetMap (way 248421512). */
+  latitude: 43.5096,
+  longitude: 5.4611
 } as const;

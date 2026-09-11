@@ -10,7 +10,6 @@ export const dynamic = "force-dynamic";
 const ONGLETS = [
   { href: "/admin/dashboard", label: "Vue d’ensemble" },
   { href: "/admin/courses", label: "Sorties" },
-  // /admin/partenaires reste l'ancien panneau a code (creation, codes pro).
   { href: "/admin/reseau", label: "Partenaires" }
 ];
 

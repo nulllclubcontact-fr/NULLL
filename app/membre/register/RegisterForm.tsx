@@ -9,7 +9,7 @@ import type { FournisseursAuth } from "../../../lib/auth/reglages";
 
 const initialState: RegisterState = {};
 
-export function RegisterForm({ fournisseurs }: { fournisseurs: FournisseursAuth }) {
+export function RegisterForm({ fournisseurs, sortie }: { fournisseurs: FournisseursAuth; sortie?: string }) {
   const telephoneActif = fournisseurs.telephone;
   const [state, formAction, pending] = useActionState(registerMember, initialState);
   const [accepted, setAccepted] = useState(false);
@@ -37,7 +37,8 @@ export function RegisterForm({ fournisseurs }: { fournisseurs: FournisseursAuth 
       className="panel panel-grid account-stagger grid gap-3.5 p-5 sm:p-6 lg:p-5"
     >
       {/* La decharge se signe juste apres, sur /membre/bienvenue. */}
-      <BoutonsSociaux apple={fournisseurs.apple} google={fournisseurs.google} separateur="ou avec ton e-mail" />
+      <BoutonsSociaux apple={fournisseurs.apple} google={fournisseurs.google} separateur="ou avec ton e-mail" sortie={sortie} />
+      <input name="sortie" type="hidden" value={sortie ?? ""} />
 
       <div className="grid gap-3.5 sm:grid-cols-2" style={{ "--pas": 0 } as React.CSSProperties}>
         <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">

@@ -10,6 +10,7 @@ export type ScanResult =
   | "already_checked_in"
   | "invalid_qr"
   | "wrong_race"
+  | "race_unavailable"
   | "cancelled_registration";
 
 export type Race = {
@@ -90,6 +91,7 @@ export const MESSAGES_SCAN: Record<CheckinOutcome["result"], string> = {
   already_checked_in: "Déjà scanné",
   invalid_qr: "QR inconnu",
   wrong_race: "QR d’une autre sortie",
+  race_unavailable: "Sortie en brouillon ou annulée",
   cancelled_registration: "Inscription annulée",
   forbidden: "Accès refusé"
 };

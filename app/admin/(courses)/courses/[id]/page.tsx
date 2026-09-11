@@ -6,6 +6,7 @@ import type { Race } from "../../../../../lib/races/types";
 import { Intitule } from "../../../../../components/admin/graphiques";
 import { FormulairePhotoCourse } from "../../../../../components/admin/champ-photo";
 import { SuppressionCourse } from "../SuppressionCourse";
+import { EditRaceForm } from "./EditRaceForm";
 
 export const metadata = { robots: { index: false, follow: false } };
 
@@ -28,6 +29,22 @@ const ETIQUETTES: Record<string, { texte: string; classe: string }> = {
 // Meme convention que le tableau de bord : l'heure lue au rendu vit hors du composant.
 function instantPresent() {
   return Date.now();
+}
+
+const PARIS_LOCAL = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Europe/Paris",
+  hourCycle: "h23",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit"
+});
+
+/** Instant UTC en valeur de champ datetime-local, lue a l'heure de Paris. */
+function versChampParis(iso: string) {
+  const p = Object.fromEntries(PARIS_LOCAL.formatToParts(new Date(iso)).map((x) => [x.type, x.value]));
+  return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`;
 }
 
 export default async function AdminCourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -100,6 +117,8 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
           </div>
         ))}
       </dl>
+
+      <EditRaceForm course={course} departLocal={versChampParis(course.start_datetime)} />
 
       <div>
         <Intitule>Photo de la sortie</Intitule>
