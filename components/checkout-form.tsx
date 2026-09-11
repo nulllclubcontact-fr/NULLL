@@ -124,7 +124,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
         <h2 className="mt-4 font-display text-[clamp(2.6rem,5vw,4rem)] uppercase leading-[0.92]">
           Demande confirmée.
         </h2>
-        <p className="mt-4 max-w-2xl text-[#773331]/76">
+        <p className="mt-4 max-w-2xl text-[#773331]">
           Nous avons enregistré ta demande. Conserve cette référence et surveille ta boîte mail pour la confirmation.
         </p>
         <div className="mt-6 inline-flex border-2 border-[#773331] bg-[#FFB200] px-4 py-3 text-[#773331]">
@@ -178,7 +178,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
         </div>
 
         <label className="mt-5 block">
-          <span className="mb-2 block font-mono text-xs font-black uppercase text-[#773331]/58">
+          <span className="mb-2 block font-mono text-xs font-black uppercase text-[#773331]">
             Méthode de remise
           </span>
           <select
@@ -193,7 +193,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
         </label>
 
         <label className="mt-5 block">
-          <span className="mb-2 block font-mono text-xs font-black uppercase text-[#773331]/58">
+          <span className="mb-2 block font-mono text-xs font-black uppercase text-[#773331]">
             Notes
           </span>
           <textarea
@@ -220,7 +220,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="font-semibold">{item!.name}</p>
-                    <p className="text-sm text-[#F1EDE9]/55">
+                    <p className="text-sm text-[#F1EDE9]/80">
                       {item!.quantity} x {item!.price}€
                     </p>
                   </div>
@@ -229,18 +229,18 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
               </div>
             ))
           ) : (
-            <p className="text-[#F1EDE9]/64">
+            <p className="text-[#F1EDE9]/80">
               Aucun article dans le panier.
             </p>
           )}
         </div>
         <div className="mt-6 border-t-2 border-[#F1EDE9] pt-5">
           <div className="flex items-center justify-between gap-4">
-            <span className="text-[#F1EDE9]/64">Total</span>
+            <span className="text-[#F1EDE9]/80">Total</span>
             <strong className="text-2xl">{total}€</strong>
           </div>
         </div>
-        <p className="mt-5 text-sm text-[#F1EDE9]/58">
+        <p className="mt-5 text-sm text-[#F1EDE9]/80">
           La demande confirme ton panier, ton mode de remise et tes coordonnées avant validation finale par email.
         </p>
       </aside>
@@ -265,7 +265,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block font-mono text-xs font-black uppercase text-[#773331]/58">{label}</span>
+      <span className="mb-2 block font-mono text-xs font-black uppercase text-[#773331]">{label}</span>
       <input autoComplete={autoComplete} className="w-full border-2 border-[#773331] bg-[#F1EDE9] p-3 font-mono text-sm outline-none transition focus:bg-[#FFB200]/20" onChange={(event) => onChange(event.target.value)} required={required} type={type} value={value} />
     </label>
   );

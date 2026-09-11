@@ -43,13 +43,13 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
                 </span>
               ))}
             </p>
-            <p className="hero-rise mt-7 max-w-xl text-lg leading-relaxed text-[#F1EDE9]/82" style={{ animationDelay: "260ms" }}>
+            <p className="hero-rise mt-7 max-w-xl text-lg leading-relaxed text-[#F1EDE9]" style={{ animationDelay: "260ms" }}>
               {page.intro}
             </p>
 
             {/* Amorce de la ligne de vie : elle demarre dans l'ouverture et se
                 poursuit dans la section suivante. */}
-            <p className="hero-rise mt-10 inline-flex items-center gap-4 font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#F1EDE9]/50" style={{ animationDelay: "360ms" }}>
+            <p className="hero-rise mt-10 inline-flex items-center gap-4 font-mono text-xs font-black uppercase tracking-[.2em] text-[#F1EDE9]/80" style={{ animationDelay: "360ms" }}>
               <span aria-hidden="true" className="block h-4 w-4 bg-[#F1EDE9]" />
               Ça commence en 2025
             </p>
@@ -71,9 +71,9 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
                 src="/assets/photos/fondateurs.webp"
               />
             </div>
-            <figcaption className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1 font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#F1EDE9]/55">
+            <figcaption className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1 font-mono text-xs font-black uppercase tracking-[.16em] text-[#F1EDE9]/80">
               <span className="text-[#FFB200]">Tom Brenier &amp; Tobias Ringot</span>
-              <span>Fondateurs — Aix-en-Provence</span>
+              <span>Fondateurs · Aix-en-Provence</span>
             </figcaption>
           </figure>
         </div>
@@ -123,7 +123,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
                 <h3 className="mt-6 font-display text-[clamp(1.9rem,2.8vw,2.6rem)] uppercase leading-[1.12]">
                   {item.word}
                 </h3>
-                <p className="mt-4 text-base leading-relaxed text-[#773331]/78">{item.text}</p>
+                <p className="mt-4 text-base leading-relaxed text-[#773331]">{item.text}</p>
               </Reveal>
             ))}
           </ol>
@@ -136,7 +136,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
                 {page.founders.map((f) => (
                   <li key={f.name}>
                     <span className="block font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-none">{f.name}</span>
-                    <span className="mt-1 block font-mono text-[.62rem] font-black uppercase tracking-[.18em] opacity-55">{f.role}</span>
+                    <span className="mt-1 block font-mono text-xs font-black uppercase tracking-[.18em] opacity-55">{f.role}</span>
                   </li>
                 ))}
               </ul>
@@ -159,12 +159,12 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             {page.editorial.map((bloc) => (
               <Reveal className="border-t-2 border-[#F1EDE9]/25 pt-6" key={bloc.heading}>
                 <h3 className="font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-[1.12] text-[#FFB200]">{bloc.heading}</h3>
-                <p className="mt-4 max-w-[68ch] text-lg leading-relaxed text-[#F1EDE9]/82">{bloc.body}</p>
+                <p className="mt-4 max-w-[68ch] text-lg leading-relaxed text-[#F1EDE9]">{bloc.body}</p>
               </Reveal>
             ))}
           </div>
 
-          <p className="mt-10 max-w-[72ch] text-lg leading-relaxed text-[#F1EDE9]/82">
+          <p className="mt-10 max-w-[72ch] text-lg leading-relaxed text-[#F1EDE9]">
             Pour aller plus loin :{" "}
             <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]" href={localClubHref}>
               le run club à Aix-en-Provence
@@ -194,7 +194,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
               <Reveal className="grid gap-3 border-b-2 border-[#773331] py-7 lg:grid-cols-[auto_1fr_1.2fr] lg:items-baseline lg:gap-10" delay={index * 80} key={entry.q}>
                 <span className="font-mono text-xs font-black uppercase tracking-[.14em] opacity-55">0{index + 1}</span>
                 <dt className="font-display text-[clamp(1.4rem,2.2vw,2rem)] uppercase leading-[1.12]">{entry.q}</dt>
-                <dd className="text-lg leading-relaxed text-[#773331]/85">{entry.a}</dd>
+                <dd className="text-lg leading-relaxed text-[#773331]">{entry.a}</dd>
               </Reveal>
             ))}
           </dl>
@@ -209,7 +209,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             <h2 className="mt-5 max-w-[15ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] uppercase leading-[1.12] tracking-[-.03em]" id="club-cta">
               {page.firstRunTitle}
             </h2>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-[#F1EDE9]/82">{page.firstRunText}</p>
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-[#F1EDE9]">{page.firstRunText}</p>
             <Link
               className="mt-8 inline-flex min-h-16 items-center justify-center border-2 border-[#FFB200] bg-[#FFB200] px-7 font-mono text-xs font-black uppercase tracking-[.1em] text-[#773331] transition-colors hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
               href={runsHref}

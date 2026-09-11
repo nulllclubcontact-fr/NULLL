@@ -61,7 +61,7 @@ export function ContactMailForm() {
         value={piege}
       />
 
-      <label className="field-rule flex flex-col gap-3 pb-[3px] font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#F1EDE9]/70 [word-spacing:.18em]">
+      <label className="field-rule flex flex-col gap-3 pb-[3px] font-mono text-xs font-black uppercase tracking-[.16em] text-[#F1EDE9]/70 [word-spacing:.18em]">
         Ton email
         <input
           className="min-h-16 border-2 border-[#F1EDE9]/35 bg-transparent px-5 text-lg font-bold normal-case tracking-normal text-[#F1EDE9] outline-none transition-colors [word-spacing:normal] placeholder:text-[#F1EDE9]/35 focus:border-[#FFB200] focus:bg-[#F1EDE9]/5"
@@ -75,7 +75,7 @@ export function ContactMailForm() {
         />
       </label>
 
-      <label className="field-rule flex flex-1 flex-col gap-3 pb-[3px] font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#F1EDE9]/70 [word-spacing:.18em]">
+      <label className="field-rule flex flex-1 flex-col gap-3 pb-[3px] font-mono text-xs font-black uppercase tracking-[.16em] text-[#F1EDE9]/70 [word-spacing:.18em]">
         Ton message
         <textarea
           className="min-h-48 flex-1 resize-y border-2 border-[#F1EDE9]/35 bg-transparent px-5 py-4 text-lg font-bold normal-case leading-snug tracking-normal text-[#F1EDE9] outline-none transition-colors [word-spacing:normal] placeholder:text-[#F1EDE9]/35 focus:border-[#FFB200] focus:bg-[#F1EDE9]/5"

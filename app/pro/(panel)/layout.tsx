@@ -2,7 +2,8 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { getProSession } from "../../../lib/pro/guard";
+import { getActiveProSession } from "../../../lib/pro/guard";
+import { logoutPro } from "../actions";
 
 
 // Espace protege : les donnees dependent de la session et de Supabase.
@@ -11,7 +12,7 @@ import { getProSession } from "../../../lib/pro/guard";
 export const dynamic = "force-dynamic";
 
 export default async function ProPanelLayout({ children }: { children: ReactNode }) {
-  const session = await getProSession();
+  const session = await getActiveProSession();
 
   if (!session) {
     redirect("/pro/login");
@@ -32,6 +33,11 @@ export default async function ProPanelLayout({ children }: { children: ReactNode
             <Link className="nav-link" href="/pro/stats">
               Stats
             </Link>
+            <form action={logoutPro}>
+              <button className="nav-link" type="submit">
+                Se déconnecter
+              </button>
+            </form>
           </nav>
         </div>
       </header>

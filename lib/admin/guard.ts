@@ -78,7 +78,9 @@ export async function setAdminSession() {
 
 export async function clearAdminSession() {
   const cookieStore = await cookies();
-  cookieStore.delete(ADMIN_SESSION_COOKIE);
+  // Meme path que a la pose : delete(nom) seul vise « / » et laisse le
+  // cookie de /admin en place.
+  cookieStore.delete({ name: ADMIN_SESSION_COOKIE, path: "/admin" });
 }
 
 export { ADMIN_SESSION_COOKIE };

@@ -69,7 +69,7 @@ export function LoginForm({ fournisseurs }: { fournisseurs: FournisseursAuth }) 
           <form action={resetAction} className="grid gap-3">
             <div>
               <p className="font-mono text-xs font-black uppercase tracking-[.1em]">Mot de passe oublié ?</p>
-              <p className="mt-1.5 text-sm font-bold leading-snug text-[#773331]/70">
+              <p className="mt-1.5 text-sm font-bold leading-snug text-[#773331]">
                 {telephoneActif
                   ? "Donne ton e-mail ou ton numéro : on t’envoie un lien par mail ou un code par SMS pour en choisir un nouveau."
                   : "Donne ton e-mail, on t’envoie un lien pour en choisir un nouveau."}
@@ -87,7 +87,7 @@ export function LoginForm({ fournisseurs }: { fournisseurs: FournisseursAuth }) 
               />
             </label>
             {resetState.error ? <p className="text-sm font-bold text-[#773331]">{resetState.error}</p> : null}
-            {resetState.message ? <p className="text-sm font-bold text-[#773331]/72">{resetState.message}</p> : null}
+            {resetState.message ? <p className="text-sm font-bold text-[#773331]">{resetState.message}</p> : null}
             <button className="secondary-link justify-center" disabled={resetPending} type="submit">
               {telephoneActif ? "Recevoir le lien ou le code" : "Recevoir le lien"}
             </button>

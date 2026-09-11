@@ -4,6 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 import { hasSupabasePublicEnv, supabaseAnonKey, supabaseUrl } from "../supabase/config";
 import { createSupabaseServerClient } from "../supabase/server";
 import { formatDistance } from "../../components/races/format";
+import { DEPART } from "../rendez-vous";
 import type { RunEvent } from "../site-content";
 import type { Race, RegistrationWithRace } from "./types";
 
@@ -39,19 +40,16 @@ const JOUR_PUBLIC = new Intl.DateTimeFormat("fr-FR", {
 });
 const HEURE_PUBLIQUE = new Intl.DateTimeFormat("fr-FR", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Paris" });
 
-// Depart habituel du club, deja annonce sur le site : repris quand l'admin
-// n'a pas renseigne le lieu.
-const DEPART_HABITUEL = { location: "Parking Émile Zola", address: "Parking Émile Zola, Aix-en-Provence" };
-
 /**
  * Les sorties publiees a venir, la plus proche en premier, au format des
  * pages publiques (accueil, « Sorties »). Client anonyme sans cookie : les
  * pages restent en cache et se regenerent, au lieu d'etre recalculees a
- * chaque visite. En cas de panne, liste vide plutot qu'une page en erreur.
+ * chaque visite. En cas de panne, null : la page dit qu'elle n'a pas pu
+ * charger, au lieu d'annoncer qu'aucune sortie n'est prevue.
  */
-export async function listPublicRuns(): Promise<RunEvent[]> {
+export async function listPublicRuns(): Promise<RunEvent[] | null> {
   if (!hasSupabasePublicEnv()) {
-    return [];
+    return null;
   }
 
   const supabase = createClient(supabaseUrl, supabaseAnonKey, {
@@ -67,7 +65,7 @@ export async function listPublicRuns(): Promise<RunEvent[]> {
     .returns<Race[]>();
 
   if (error || !data) {
-    return [];
+    return null;
   }
 
   return data.map((course) => {
@@ -82,8 +80,8 @@ export async function listPublicRuns(): Promise<RunEvent[]> {
       title: course.title,
       distance: formatDistance(course.distance_km) ?? "Distance à venir",
       pace: "Allure conversation",
-      location: course.location || DEPART_HABITUEL.location,
-      address: course.address || (course.location ? `${course.location}, Aix-en-Provence` : DEPART_HABITUEL.address),
+      location: course.location || DEPART.nom,
+      address: course.address || (course.location ? `${course.location}, Aix-en-Provence` : DEPART.adresse),
       summary: course.description || "Sortie ouverte à tous, à allure conversation. Personne ne reste derrière.",
       afterRun: "On reste un moment ensemble après la sortie",
       image: course.cover_image_url
@@ -109,15 +107,22 @@ export async function listMyRegistrations(userId: string): Promise<RegistrationW
   return data ?? [];
 }
 
-/** Sépare ce qui arrive de ce qui est passé, pour que l'affichage n'ait pas à le refaire. */
+const JOUR_PARIS = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Paris" });
+
+/**
+ * Sépare ce qui arrive de ce qui est passé, pour que l'affichage n'ait pas à le refaire.
+ * Une sortie reste « à venir » jusqu'à la fin de son jour, heure de Paris :
+ * a 8h31 le retardataire doit encore pouvoir montrer son QR.
+ */
 export function splitRegistrations(inscriptions: RegistrationWithRace[]) {
-  const maintenant = Date.now();
+  const aujourdhui = JOUR_PARIS.format(new Date());
   const aVenir: RegistrationWithRace[] = [];
   const passees: RegistrationWithRace[] = [];
 
   for (const inscription of inscriptions) {
     const depart = inscription.races?.start_datetime;
-    const estPassee = depart ? new Date(depart).getTime() < maintenant : false;
+    // Course introuvable : on ne la presente pas comme a venir.
+    const estPassee = depart ? JOUR_PARIS.format(new Date(depart)) < aujourdhui : true;
     (estPassee ? passees : aVenir).push(inscription);
   }
 

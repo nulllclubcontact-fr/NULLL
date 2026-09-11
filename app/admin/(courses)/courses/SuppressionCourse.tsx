@@ -13,7 +13,7 @@ export function SuppressionCourse({ id, titre, inscrits }: { id: string; titre: 
         <p className="text-sm font-bold">
           Supprimer « {titre} » ?{" "}
           {inscrits > 0
-            ? `Ses ${inscrits} inscription${inscrits > 1 ? "s" : ""} et leurs QR partent avec, pour de bon.`
+            ? `Elle a ${inscrits} inscription${inscrits > 1 ? "s" : ""} : elle sera annulée, pas effacée, pour garder leur historique.`
             : "Personne n’y est inscrit."}
         </p>
         <button

@@ -1,9 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 const CLE = "nulll_cookies_vu";
+
+function dejaVu() {
+  try {
+    return window.localStorage.getItem(CLE) !== null;
+  } catch {
+    // Navigation privee ou stockage bloque : on montre le bandeau, il
+    // reviendra a la prochaine visite. Mieux que de planter.
+    return false;
+  }
+}
+
+function suivreStockage(changement: () => void) {
+  window.addEventListener("storage", changement);
+  return () => window.removeEventListener("storage", changement);
+}
 
 /**
  * Bandeau d'information, pas de consentement.
@@ -22,22 +37,13 @@ const CLE = "nulll_cookies_vu";
  * jamais au serveur, et n'a donc pas besoin d'etre un cookie lui-meme.
  */
 export function BandeauCookies() {
-  // On part cache : le serveur ne sait pas ce que la personne a deja vu,
-  // et faire apparaitre puis disparaitre le bandeau serait pire que de
-  // le faire apparaitre juste apres l'hydratation.
-  const [visible, setVisible] = useState(false);
+  // Cote serveur on le dit deja vu : le serveur ne sait pas ce que la
+  // personne a vu, et faire apparaitre puis disparaitre le bandeau serait
+  // pire que de le faire apparaitre juste apres l'hydratation.
+  const vu = useSyncExternalStore(suivreStockage, dejaVu, () => true);
+  const [ferme, setFerme] = useState(false);
 
-  useEffect(() => {
-    try {
-      if (!window.localStorage.getItem(CLE)) setVisible(true);
-    } catch {
-      // Navigation privee ou stockage bloque : on montre le bandeau, il
-      // reviendra a la prochaine visite. Mieux que de planter.
-      setVisible(true);
-    }
-  }, []);
-
-  if (!visible) return null;
+  if (vu || ferme) return null;
 
   const fermer = () => {
     try {
@@ -45,7 +51,7 @@ export function BandeauCookies() {
     } catch {
       // Rien a faire : le bandeau se fermera pour cette visite seulement.
     }
-    setVisible(false);
+    setFerme(true);
   };
 
   return (
@@ -66,8 +72,8 @@ export function BandeauCookies() {
           <div className="min-w-0">
             <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#773331]">Cookies</p>
             <p className="mt-2 max-w-2xl text-[.95rem] leading-relaxed">
-              NULLL.CLUB n’utilise que les cookies nécessaires pour te garder connecté à ton compte.
-              Aucune mesure d’audience, aucune publicité, aucun partage avec des tiers.
+              Seulement les cookies nécessaires pour te garder connecté. Pas de mesure d’audience,
+              pas de publicité.
             </p>
           </div>
         </div>

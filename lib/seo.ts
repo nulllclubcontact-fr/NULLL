@@ -123,17 +123,14 @@ export function buildSportsLocationSchema(locale: Locale) {
     sport: "Course a pied",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Parking Emile Zola",
+      streetAddress: "Parking du chemin de la Cible, près du lycée Émile Zola",
       postalCode: "13090",
       addressLocality: "Aix-en-Provence",
       addressRegion: "Provence-Alpes-Cote d'Azur",
       addressCountry: "FR"
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 43.5298,
-      longitude: 5.4474
-    },
+    // Pas de coordonnees GPS tant que le point exact du parking n'est pas
+    // releve : les anciennes pointaient l'ancien depart.
     // Le creneau hebdomadaire est le signal local le plus utile : c'est ce qui
     // permet a Google de repondre a « run club aix samedi ».
     openingHoursSpecification: [
@@ -169,18 +166,20 @@ export function buildEventSchema(event: {
   startDate: string;
   locationName: string;
   address: string;
+  image?: string | null;
   route: string;
 }) {
+  // Pas de endDate : l'heure de fin n'est pas connue, et une fin egale au
+  // depart annoncait une sortie de zero minute.
   return {
     "@context": "https://schema.org",
     "@type": "Event",
     name: event.name,
     description: event.description,
     startDate: event.startDate,
-    endDate: event.startDate,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
-    image: [`${SITE_URL}/assets/photos/motion-run.webp`],
+    image: [event.image || `${SITE_URL}/assets/photos/motion-run.webp`],
     location: {
       "@type": "Place",
       name: event.locationName,

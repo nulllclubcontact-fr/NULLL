@@ -54,7 +54,13 @@ export default async function AdminDashboardPage() {
   // Inscriptions actives par jour, sur les deux dernieres semaines.
   const fenetre = fenetreJours(JOURS_HISTORIQUE);
 
+  // Absents et taux de presence ne se mesurent que sur les sorties deja
+  // parties : un inscrit du samedi suivant n'est pas absent.
+  let inscritsPasses = 0;
+  let presentsPasses = 0;
+
   for (const course of liste) {
+    const partie = new Date(course.start_datetime).getTime() <= maintenant;
     for (const i of course.race_registrations) {
       if (i.status === "cancelled") {
         annulations += 1;
@@ -62,12 +68,16 @@ export default async function AdminDashboardPage() {
       }
       inscriptions += 1;
       if (i.checked_in) presences += 1;
+      if (partie) {
+        inscritsPasses += 1;
+        if (i.checked_in) presentsPasses += 1;
+      }
       fenetre.ajouter(i.created_at);
     }
   }
 
-  const absents = Math.max(inscriptions - presences, 0);
-  const tauxPresence = pourcentage(presences, inscriptions);
+  const absents = Math.max(inscritsPasses - presentsPasses, 0);
+  const tauxPresence = pourcentage(presentsPasses, inscritsPasses);
   const publiees = liste.filter((c) => c.status === "published").length;
   const terminees = liste.filter((c) => c.status === "completed").length;
   const prochaines = liste
@@ -113,8 +123,8 @@ export default async function AdminDashboardPage() {
             detail: annulations > 0 ? `${annulations} annulées` : "aucune annulation",
             teinte: "rose"
           },
-          { label: "Présences", valeur: presences, detail: `${tauxPresence} % des inscrits`, teinte: "jaune", jauge: tauxPresence },
-          { label: "Absents", valeur: absents, detail: "inscrits non scannés", teinte: "creme" }
+          { label: "Présences", valeur: presences, detail: `${tauxPresence} % des inscrits aux sorties passées`, teinte: "jaune", jauge: tauxPresence },
+          { label: "Absents", valeur: absents, detail: "sur les sorties passées", teinte: "creme" }
         ]}
       />
 
@@ -142,7 +152,7 @@ export default async function AdminDashboardPage() {
                           {presents > 0 ? ` · ${presents} présent${presents > 1 ? "s" : ""}` : ""}
                         </span>
                       </div>
-                      <p className="mt-1 font-mono text-[.68rem] font-bold uppercase tracking-[.1em]">
+                      <p className="mt-1 font-mono text-xs font-bold uppercase tracking-[.1em]">
                         {formatJourCourt(course.start_datetime)}
                         {course.max_participants ? "" : " · sans limite de places"}
                       </p>
@@ -158,7 +168,7 @@ export default async function AdminDashboardPage() {
                   );
                 })}
               </ul>
-              <p className="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[.68rem] font-black uppercase tracking-[.12em]">
+              <p className="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs font-black uppercase tracking-[.12em]">
                 <span className="inline-flex items-center gap-2"><Pastille couleur="bg-[#EBA0CD]" />Inscrits</span>
                 <span className="inline-flex items-center gap-2"><Pastille couleur="bg-[#773331]" />Présents</span>
                 <span className="inline-flex items-center gap-2"><Pastille couleur="bg-[#F1EDE9]" />Places libres</span>
@@ -184,7 +194,7 @@ export default async function AdminDashboardPage() {
                 : null}
             </div>
             {totalRepartition === 0 ? (
-              <p className="mt-3 font-mono text-[.68rem] font-black uppercase tracking-[.12em]">Pas encore d’inscrit : la barre se remplira au premier.</p>
+              <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em]">Pas encore d’inscrit : la barre se remplira au premier.</p>
             ) : null}
             <ul className="mt-4 grid gap-2">
               {repartition.map((r) => (
@@ -204,7 +214,7 @@ export default async function AdminDashboardPage() {
           <div>
             <Intitule>Inscriptions · {JOURS_HISTORIQUE} derniers jours</Intitule>
             <ColonnesParJour description={`${totalJours} inscriptions sur les ${JOURS_HISTORIQUE} derniers jours`} jours={fenetre.jours} />
-            <p className="mt-3 font-mono text-[.68rem] font-black uppercase tracking-[.12em]">
+            <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em]">
               {totalJours === 0 ? "Aucune inscription sur la période" : `${totalJours} inscription${totalJours > 1 ? "s" : ""} · aujourd’hui en jaune`}
             </p>
           </div>
@@ -228,7 +238,7 @@ export default async function AdminDashboardPage() {
                 >
                   <div>
                     {index === 0 ? (
-                      <p className="mb-2 inline-block bg-[#FFB200] px-2 py-1 font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#773331]">La prochaine</p>
+                      <p className="mb-2 inline-block bg-[#FFB200] px-2 py-1 font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]">La prochaine</p>
                     ) : null}
                     <Link
                       className={`block ${TITRE_LIGNE} ${index === 0 ? "hover:text-[#FFB200]" : "hover:underline hover:decoration-[#EBA0CD] hover:decoration-4"}`}
@@ -236,7 +246,7 @@ export default async function AdminDashboardPage() {
                     >
                       {c.title}
                     </Link>
-                    <p className="mt-2 font-mono text-[.68rem] font-black uppercase tracking-[.12em]">
+                    <p className="mt-2 font-mono text-xs font-black uppercase tracking-[.12em]">
                       {formatJour(c.start_datetime)} · {formatHeure(c.start_datetime)}
                     </p>
                   </div>
@@ -256,7 +266,7 @@ export default async function AdminDashboardPage() {
         <div className="mt-5 overflow-x-auto">
           <table className="w-full min-w-[38rem] border-collapse text-left">
             <thead>
-              <tr className="font-mono text-[.68rem] font-black uppercase tracking-[.14em]">
+              <tr className="font-mono text-xs font-black uppercase tracking-[.14em]">
                 <th className="border-b-2 border-[#773331] pb-2 pr-4">Sortie</th>
                 <th className="border-b-2 border-[#773331] pb-2 pr-4">Date</th>
                 <th className="border-b-2 border-[#773331] pb-2 pr-4">Statut</th>
@@ -278,7 +288,7 @@ export default async function AdminDashboardPage() {
                     </td>
                     <td className="py-3 pr-4 font-mono text-xs font-bold">{formatJourCourt(c.start_datetime)}</td>
                     <td className="py-3 pr-4">
-                      <span className={`inline-block border-2 border-[#773331] px-2 py-1 font-mono text-[.62rem] font-black uppercase tracking-[.12em] ${statut.classe}`}>
+                      <span className={`inline-block border-2 border-[#773331] px-2 py-1 font-mono text-xs font-black uppercase tracking-[.12em] ${statut.classe}`}>
                         {statut.label}
                       </span>
                     </td>

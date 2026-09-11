@@ -227,7 +227,7 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
           formater={euroCompact}
           jours={caParPeriode.periodes}
         />
-        <p className="mt-3 font-mono text-[.68rem] font-black uppercase tracking-[.12em]">
+        <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em]">
           {totalRevenue === 0 ? "Aucune vente sur la période" : `${formatEuro(totalRevenue)} · dernier ${nomPeriode} en jaune · survole une colonne pour le détail`}
         </p>
       </div>
@@ -236,7 +236,7 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
         <div>
           <Intitule>Scans par {nomPeriode}</Intitule>
           <ColonnesParJour description={`${totalScans} scans, par ${nomPeriode}`} jours={scansParPeriode.periodes} />
-          <p className="mt-3 font-mono text-[.68rem] font-black uppercase tracking-[.12em]">
+          <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em]">
             {totalScans === 0 ? "Aucun scan sur la période" : `${totalScans} scan${totalScans > 1 ? "s" : ""} au total`}
           </p>
         </div>

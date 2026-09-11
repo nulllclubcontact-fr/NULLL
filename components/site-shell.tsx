@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowIcon } from "./ArrowIcon";
 import { LienCompte } from "./lien-compte";
 import { PosterPhoto } from "./PosterPhoto";
+import { DEPART } from "../lib/rendez-vous";
 import { getRoute, getSiteCopy, type Locale, type RouteKey, type RunEvent } from "../lib/site-content";
 
 type ShellCopy = ReturnType<typeof getSiteCopy>;
@@ -25,7 +26,9 @@ export function SiteShell({
   return (
     <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
       <SiteHeader copy={copy} current={current} locale={locale} pathname={pathname} />
-      {children}
+      <div id="contenu" tabIndex={-1} className="outline-none">
+        {children}
+      </div>
       <SiteFooter copy={copy} locale={locale} />
     </div>
   );
@@ -57,6 +60,12 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-[#773331] bg-[#F1EDE9]">
+      <a
+        className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-[60] focus:border-2 focus:border-[#773331] focus:bg-[#FFB200] focus:px-4 focus:py-3 focus:font-mono focus:text-xs focus:font-black focus:uppercase focus:text-[#773331]"
+        href="#contenu"
+      >
+        Aller au contenu
+      </a>
       <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto_auto] items-stretch lg:grid-cols-[200px_minmax(0,1fr)_132px_172px] xl:grid-cols-[240px_minmax(0,1fr)_150px_190px] 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
         <Link className="flex min-w-0 items-center border-r-2 border-[#773331] px-3 transition hover:bg-[#FFB200] focus-visible:bg-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] sm:px-5" href={getRoute(locale, "home")}>
           <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 lg:w-32 xl:w-40 2xl:w-44" height={313} priority src="/assets/nulll-new/logo-burgundy.png" width={2449} />
@@ -151,13 +160,13 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
             <ul className="mt-5 space-y-3 text-[1.02rem] text-[#F1EDE9]/80">
               <li>Tous les samedis</li>
               <li>08:30</li>
-              <li>Parking Émile Zola</li>
-              <li>Gratuit, sans inscription</li>
+              <li>{DEPART.nom}</li>
+              <li>Gratuit, sur inscription</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-[#F1EDE9]/20 pt-5 font-mono text-xs uppercase tracking-[.12em] text-[#F1EDE9]/60 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-[#F1EDE9]/20 pt-5 font-mono text-xs uppercase tracking-[.12em] text-[#F1EDE9]/80 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 NULLL.CLUB</span>
           <Link
             className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
@@ -166,7 +175,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
             Confidentialité
           </Link>
           <span>Aix-en-Provence, France</span>
-          <span className="text-[#FFB200]/70">Ouvert à tous</span>
+          <span className="text-[#FFB200]">Ouvert à tous</span>
         </div>
       </div>
     </footer>
@@ -217,12 +226,12 @@ export function HeroPanel({
       <div className="min-w-0 border-2 border-[#773331] bg-[#F1EDE9] p-5 shadow-[6px_6px_0_#EBA0CD] sm:p-6 sm:shadow-[8px_8px_0_#EBA0CD] xl:p-10">
         <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">{stamp} / {label}</p>
         <h1 className="mt-6 max-w-4xl font-display text-[clamp(2.8rem,7.5vw,7.4rem)] uppercase leading-[0.94] sm:mt-8">{title}</h1>
-        <p className="mt-6 max-w-2xl text-lg font-bold leading-tight text-[#773331]/80 xl:text-xl">{intro}</p>
+        <p className="mt-6 max-w-2xl text-lg font-bold leading-tight text-[#773331] xl:text-xl">{intro}</p>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">{actions}</div>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {facts.map((fact) => (
             <div className="border-t-2 border-[#773331] pt-4" key={fact.label}>
-              <p className="font-mono text-xs font-black uppercase text-[#773331]/60">{fact.label}</p>
+              <p className="font-mono text-xs font-black uppercase text-[#773331]">{fact.label}</p>
               <p className="mt-2 text-lg">{fact.value}</p>
             </div>
           ))}
@@ -251,7 +260,7 @@ export function SectionTitle({
     <div className="space-y-4">
       <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">{index} / NULLL.CLUB</p>
       <HeadingTag className="max-w-4xl font-display text-[clamp(2.8rem,6.4vw,6rem)] uppercase leading-[0.94]">{title}</HeadingTag>
-      {text ? <p className="max-w-2xl text-xl font-bold leading-tight text-[#773331]/76">{text}</p> : null}
+      {text ? <p className="max-w-2xl text-xl font-bold leading-tight text-[#773331]">{text}</p> : null}
     </div>
   );
 }
@@ -275,12 +284,12 @@ export function RunCard({ run }: { run: RunEvent }) {
     <article className="flex h-full flex-col border-2 border-[#773331] bg-[#F1EDE9] p-5 transition hover:-translate-y-1 hover:shadow-[8px_8px_0_#FFB200]">
       <div className="flex items-start justify-between gap-4 border-b-2 border-[#773331] pb-4">
         <div>
-          <p className="font-mono text-xs font-black uppercase text-[#EBA0CD]">{run.date}</p>
+          <p className="font-mono text-xs font-black uppercase text-[#773331]">{run.date}</p>
           <h3 className="mt-2 font-display text-[clamp(2rem,4vw,3.6rem)] uppercase leading-[0.92]">{run.title}</h3>
         </div>
         <p className="border-2 border-[#773331] bg-[#FFB200] px-2 py-1 text-right font-mono text-xs font-black uppercase">{run.time}</p>
       </div>
-      <div className="mt-5 grid gap-2 text-[#773331]/78">
+      <div className="mt-5 grid gap-2 text-[#773331]">
         <p>
           <strong>Distance :</strong> {run.distance}
         </p>
@@ -294,7 +303,7 @@ export function RunCard({ run }: { run: RunEvent }) {
           <strong>Après la course :</strong> {run.afterRun}
         </p>
       </div>
-      <p className="mt-5 text-[#773331]/72">{run.summary}</p>
+      <p className="mt-5 text-[#773331]">{run.summary}</p>
     </article>
   );
 }

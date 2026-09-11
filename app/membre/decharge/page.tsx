@@ -28,7 +28,7 @@ const waiverSections = [
   {
     title: "6. Données personnelles.",
     text:
-      "J'accepte que mes nom, prénom et e-mail soient utilisés pour la gestion de mon compte membre et du programme de fidélité, conformément au RGPD. Je dispose d'un droit d'accès, de rectification et de suppression."
+      "J'accepte que mes nom, prénom et e-mail soient utilisés pour la gestion de mon compte membre et de mes inscriptions aux sorties, conformément au RGPD. Je dispose d'un droit d'accès, de rectification et de suppression."
   }
 ];
 
@@ -42,7 +42,7 @@ export default function MemberWaiverPage() {
           <h1 className="mt-6 font-display text-[clamp(3.4rem,9vw,7.6rem)] uppercase leading-[0.94]">
             Décharge de responsabilité.
           </h1>
-          <p className="mt-5 max-w-xl text-lg font-bold leading-tight text-[#773331]/72">
+          <p className="mt-5 max-w-xl text-lg font-bold leading-tight text-[#773331]">
             NULLL.CLUB. Lis. Comprends. Accepte si tu es ok.
           </p>
         </div>
@@ -51,14 +51,14 @@ export default function MemberWaiverPage() {
           <h2 className="font-display text-[clamp(2.6rem,7vw,5rem)] uppercase leading-none">
             Décharge de responsabilité - NULLL.CLUB
           </h2>
-          <p className="mt-6 text-lg font-bold leading-tight text-[#773331]/78">
+          <p className="mt-6 text-lg font-bold leading-tight text-[#773331]">
             En cochant la case d’acceptation et en validant mon inscription, je reconnais et j’accepte ce qui suit :
           </p>
           <div className="mt-8 grid gap-6">
             {waiverSections.map((section) => (
               <section className="border-t-2 border-[#773331] pt-5" key={section.title}>
-                <h3 className="font-mono text-sm font-black uppercase text-[#EBA0CD]">{section.title}</h3>
-                <p className="mt-3 leading-relaxed text-[#773331]/78">{section.text}</p>
+                <h3 className="font-mono text-sm font-black uppercase text-[#773331]">{section.title}</h3>
+                <p className="mt-3 leading-relaxed text-[#773331]">{section.text}</p>
               </section>
             ))}
           </div>

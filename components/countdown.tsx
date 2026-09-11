@@ -65,7 +65,7 @@ export function Countdown({ isoDate, centered = false }: { isoDate: string; cent
           <div className="flex items-end gap-4 sm:gap-6" key={label}>
             <div>
               <span className="countdown-value font-display">{String(value).padStart(2, "0")}</span>
-              <span className="mt-1 block font-mono text-[.6rem] font-black uppercase tracking-[.14em] opacity-50">
+              <span className="mt-1 block font-mono text-xs font-black uppercase tracking-[.14em] opacity-50">
                 {label}
               </span>
             </div>

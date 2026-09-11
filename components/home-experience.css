@@ -101,7 +101,7 @@
 .home-journey .home-explore-body{grid-template-columns:minmax(0,1fr);gap:28px}}
 
 @media(max-width:760px){.home-journey .home-section{padding:30px 24px 56px}
-.home-journey .home-section-top{margin-bottom:38px;font-size:10px}
+.home-journey .home-section-top{margin-bottom:38px;font-size:12px}
 .home-journey .home-section-top>span:last-child{max-width:125px;text-align:right}
 .home-journey h1{font-size:clamp(60px,14.3vw,107px);line-height:1.04;letter-spacing:-.018em}
 .home-journey .home-manifesto-strip{padding:16px 20px;gap:10px;font-size:clamp(14px,3.2vw,24px)}
@@ -110,18 +110,18 @@
 .home-journey h2{font-size:clamp(45px,10vw,68px)}
 .home-journey .home-dates-intro>p{font-size:16px}
 .home-journey .home-dates-photo{margin:30px 9px 50px;aspect-ratio:1.65}
-.home-journey .home-dates-photo figcaption{font-size:9px}
+.home-journey .home-dates-photo figcaption{font-size:12px}
 .home-journey .home-run-date>strong{font-size:80px}
 .home-journey .home-run-date>p{font-size:19px}
 .home-journey .home-run-row{padding:22px 20px 0}
-.home-journey .home-run-details{font-size:10px}
+.home-journey .home-run-details{font-size:12px}
 .home-journey .home-run-date{gap:22px}
 .home-journey .home-run-list{margin-top:10px}
 .home-journey .home-together{min-height:420px}
 .home-journey .home-together-copy{padding:45px 24px}
 .home-journey .home-together-copy>p{font-size:24px}
 .home-journey .home-together-copy>p>span{font-size:clamp(48px,11vw,72px)}
-.home-journey .home-together-note{writing-mode:horizontal-tb;left:24px;bottom:30px;font-size:9px}
+.home-journey .home-together-note{writing-mode:horizontal-tb;left:24px;bottom:30px;font-size:12px}
 .home-journey .home-club-heading{display:block;margin-bottom:36px}
 .home-journey .home-club-heading h2{font-size:clamp(40px,9vw,64px)}
 .home-journey .home-club-layout{display:block}
@@ -134,7 +134,7 @@
 .home-journey .home-facts>div:nth-child(2){border-right:0}
 .home-journey .home-facts>div:nth-child(n+3){border-top:1px solid #77333155}
 .home-journey .home-facts dd{font-size:15px}
-.home-journey .home-facts dt{gap:10px;font-size:10px}
+.home-journey .home-facts dt{gap:10px;font-size:12px}
 .home-journey .home-explore h2{font-size:78px}
 .home-journey .home-explore-links{margin:0 0 40px}
 .home-journey .home-explore-link{grid-template-columns:20px 1fr 24px;gap:12px;padding:22px 0}
@@ -143,7 +143,7 @@
 .home-journey .home-explore-link>svg{grid-column:3;grid-row:1/3}
 .home-journey .home-final-cta{padding:24px 18px;font-size:clamp(28px,6.8vw,46px);gap:12px}
 .home-journey .home-final-cta>svg{width:32px;height:32px}
-.home-journey .home-final-meta{font-size:9px;line-height:1.8}
+.home-journey .home-final-meta{font-size:12px;line-height:1.8}
 .home-journey .home-dates-point{left:98%}
 .home-journey .home-club-point{left:2%}
 .home-journey .home-together-point{left:94%}
@@ -262,11 +262,11 @@
   .home-journey .home-hero-image{object-position:52% center}
   .home-journey .home-hero-overlay{display:block;background:linear-gradient(0deg,rgba(18,9,8,.94) 0%,rgba(18,9,8,.45) 60%,rgba(18,9,8,.08) 100%)}
   .home-journey .home-hero-copy{width:100%}
-  .home-journey .home-hero-copy>p{margin-bottom:18px;font-size:9px}
+  .home-journey .home-hero-copy>p{margin-bottom:18px;font-size:12px}
   .home-journey .home-hero h1{font-size:clamp(36px,10.5vw,78px);line-height:1.14}
   .home-journey .home-hero-invitation{margin-top:28px;gap:14px}
   .home-journey .home-hero-link{min-height:58px;font-size:23px}
-  .home-journey .home-hero-reassurance{width:100%;font-size:10px}
+  .home-journey .home-hero-reassurance{width:100%;font-size:12px}
   .home-journey .home-hero-facts>dl{grid-template-columns:1fr}
   .home-journey .home-hero-facts>dl>div{padding:18px 16px}
   .home-journey .home-hero-facts>dl>div:nth-child(2){border-right:0}

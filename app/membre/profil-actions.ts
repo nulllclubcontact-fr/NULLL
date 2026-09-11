@@ -52,8 +52,7 @@ export async function updateProfil(_previousState: ProfilState, formData: FormDa
       birth_date: birthDate || null,
       instagram_handle: lire(formData, "instagram_handle", 60) || null,
       emergency_contact_name: lire(formData, "emergency_contact_name", 120) || null,
-      emergency_contact_phone: lire(formData, "emergency_contact_phone", 30) || null,
-      medical_notes: lire(formData, "medical_notes", 1000) || null
+      emergency_contact_phone: lire(formData, "emergency_contact_phone", 30) || null
     })
     .eq("id", user.id);
 

@@ -95,7 +95,7 @@ export function ResetReminder({ currentMonthPoints }: ResetReminderProps) {
     >
       <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
         <div>
-          <p className={`font-mono text-sm font-black uppercase ${isUrgent ? "text-[#773331]/70" : "text-[#FFB200]"}`}>
+          <p className={`font-mono text-sm font-black uppercase ${isUrgent ? "text-[#773331]" : "text-[#FFB200]"}`}>
             Reset mensuel
           </p>
           <p className="mt-3 font-display text-[clamp(2.8rem,8vw,6.6rem)] uppercase leading-none">{message}</p>

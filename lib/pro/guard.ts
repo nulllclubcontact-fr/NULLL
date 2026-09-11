@@ -3,6 +3,7 @@ import "server-only";
 import { cookies } from "next/headers";
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { getSessionSecret } from "../session-secret";
+import { createSupabaseServiceClient } from "../supabase/service";
 
 const PRO_SESSION_COOKIE = "nulll_pro_session";
 
@@ -63,6 +64,31 @@ export async function getProSession() {
   return decodeSession(cookie.value);
 }
 
+/**
+ * Session valide ET partenaire toujours actif. La signature seule ne
+ * suffit pas : un partenaire desactive gardait l'acces jusqu'a
+ * l'expiration de son cookie, douze heures plus tard.
+ */
+export async function getActiveProSession() {
+  const session = await getProSession();
+
+  if (!session) {
+    return null;
+  }
+
+  try {
+    const { data } = await createSupabaseServiceClient()
+      .from("partners")
+      .select("active")
+      .eq("id", session.partnerId)
+      .maybeSingle<{ active: boolean | null }>();
+
+    return data?.active ? session : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function setProSession(partnerId: string) {
   const cookieStore = await cookies();
   const expires = Date.now() + 1000 * 60 * 60 * 12;
@@ -78,7 +104,8 @@ export async function setProSession(partnerId: string) {
 
 export async function clearProSession() {
   const cookieStore = await cookies();
-  cookieStore.delete(PRO_SESSION_COOKIE);
+  // Meme path que a la pose, sinon le cookie de /pro survit.
+  cookieStore.delete({ name: PRO_SESSION_COOKIE, path: "/pro" });
 }
 
 export { PRO_SESSION_COOKIE };

@@ -13,7 +13,7 @@ export function PasswordForm() {
       <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 0 } as React.CSSProperties}>
         <span>Nouveau mot de passe</span>
         <input autoComplete="new-password" className="field" minLength={6} name="password" required type="password" />
-        <span className="font-mono text-[.62rem] font-bold normal-case tracking-normal text-[#773331]/55">Six caractères au minimum.</span>
+        <span className="font-mono text-xs font-bold normal-case tracking-normal text-[#773331]">Six caractères au minimum.</span>
       </label>
 
       <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 1 } as React.CSSProperties}>

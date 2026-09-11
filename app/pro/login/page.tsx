@@ -5,18 +5,18 @@ export default function ProLoginPage() {
   return (
     <AccountShell
       benefits={[
-        { label: "Scanner", text: "Le QR du membre, depuis ton téléphone. Aucune application à installer." },
-        { label: "Appliquer", text: "L’avantage convenu avec le club, en une fois." },
-        { label: "Suivre", text: "Le nombre de passages et ce qu’ils rapportent, visibles à tout moment." }
+        { label: "Ton code", text: "Fourni par le club. Aucune application à installer." },
+        { label: "Tes chiffres", text: "Les passages des membres et ce qu’ils rapportent, visibles à tout moment." },
+        { label: "Le club", text: "Un contact direct avec NULLL.CLUB pour faire vivre le partenariat." }
       ]}
       eyebrow="Espace pro"
       image="/assets/photos/runs-golden.webp"
       imageAlt="Deux membres de NULLL.CLUB courent au lever du soleil sur un chemin près d’Aix-en-Provence"
-      intro="Code fourni par NULLL. Pas d'inscription. Pas de blabla. Juste scanner, appliquer, crediter."
-      steps={["Ton code", "Le scan", "L’avantage"]}
-      ticker="Partenaire NULLL.CLUB — Scanner — Appliquer — Créditer"
-      title="Scan. Caisse."
-      titleAccent="Points."
+      intro="Code fourni par NULLL. Pas d’inscription, pas de blabla : juste ton espace partenaire."
+      steps={["Ton code", "Ton espace"]}
+      ticker="Partenaire NULLL.CLUB · Ton espace · Tes chiffres"
+      title="Espace"
+      titleAccent="partenaire."
     >
       <ProLoginForm />
     </AccountShell>

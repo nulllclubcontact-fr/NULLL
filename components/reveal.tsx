@@ -1,7 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
+
+const MOINS_DE_MOUVEMENT = "(prefers-reduced-motion: reduce)";
+
+function suivreMouvement(changement: () => void) {
+  const requete = window.matchMedia(MOINS_DE_MOUVEMENT);
+  requete.addEventListener("change", changement);
+  return () => requete.removeEventListener("change", changement);
+}
 
 type RevealProps = {
   children: ReactNode;
@@ -23,15 +31,15 @@ type RevealProps = {
 export function Reveal({ children, className = "", delay = 0, as = "div", repeat = false }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [shown, setShown] = useState(false);
+  const moinsDeMouvement = useSyncExternalStore(
+    suivreMouvement,
+    () => window.matchMedia(MOINS_DE_MOUVEMENT).matches,
+    () => false
+  );
 
   useEffect(() => {
     const node = ref.current;
-    if (!node) return;
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setShown(true);
-      return;
-    }
+    if (!node || moinsDeMouvement) return;
 
     // Filet de securite : le contenu part invisible, il ne doit jamais le
     // rester. Un onglet ouvert en arriere-plan ne fait pas tourner
@@ -67,13 +75,13 @@ export function Reveal({ children, className = "", delay = 0, as = "div", repeat
       window.clearTimeout(filet);
       observer.disconnect();
     };
-  }, [repeat]);
+  }, [repeat, moinsDeMouvement]);
 
   const Tag = as as "div";
 
   return (
     <Tag
-      className={`io-reveal ${shown ? "is-in" : ""} ${className}`}
+      className={`io-reveal ${shown || moinsDeMouvement ? "is-in" : ""} ${className}`}
       ref={ref as never}
       style={{ transitionDelay: `${delay}ms` }}
     >

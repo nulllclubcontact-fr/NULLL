@@ -19,7 +19,7 @@ import "server-only";
 
 const CREME = "#F1EDE9";
 const BRUN = "#773331";
-const SOMBRE = "#23100F";
+const SOMBRE = "#3A1A18";
 const JAUNE = "#FFB200";
 const ROSE = "#EBA0CD";
 
@@ -85,7 +85,7 @@ export function rendreEmail({
 <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="background:${SOMBRE}">
 <tr><td align="center" style="padding:32px 16px">
 
-  <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="600" style="width:600px;max-width:100%;background:${CREME};border:2px solid ${BRUN}">
+  <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:600px;background:${CREME};border:2px solid ${BRUN}">
 
     <tr><td style="background:${BRUN};padding:20px 32px">
       <span style="font-family:${TITRE};font-size:20px;letter-spacing:1px;color:${CREME}">NULLL.CLUB</span>
@@ -102,7 +102,7 @@ export function rendreEmail({
     ${blocPied}
 
     <tr><td style="background:${BRUN};padding:18px 32px;font-family:${TEXTE};font-size:12px;line-height:1.7;color:${CREME}">
-      Tous les samedis, 8h30, parking Émile Zola.<br>
+      Tous les samedis, 8h30, parking du chemin de la Cible, près du lycée Émile Zola.<br>
       <a href="https://nulll.club" style="color:${JAUNE};text-decoration:none">nulll.club</a>
     </td></tr>
 

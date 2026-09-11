@@ -43,7 +43,7 @@ export default async function BienvenuePage() {
       imageAlt="Un membre de NULLL.CLUB assis au sol après une sortie, médaille de finisher et clés posées à côté de ses chaussures"
       imagePosition="50% 66%"
       intro="Ton compte est prêt. Vérifie ton nom pour ta carte de membre, accepte la décharge, et tu es des nôtres."
-      ticker="Rejoins le club — Samedi 8h30 — Aix-en-Provence — Gratuit — Tous les niveaux"
+      ticker="Rejoins le club · Samedi 8h30 · Aix-en-Provence · Gratuit · Tous les niveaux"
       title="Bienvenue au"
       titleAccent="club."
     >

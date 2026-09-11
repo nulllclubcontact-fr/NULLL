@@ -70,7 +70,7 @@ export default async function MemberDashboardPage() {
             Salut {profile?.first_name ?? "toi"}
             <span className="text-[#EBA0CD]">.</span>
           </h1>
-          <p className="mt-4 max-w-xl text-lg font-bold leading-snug text-[#F1EDE9]/78">
+          <p className="mt-4 max-w-xl text-lg font-bold leading-snug text-[#F1EDE9]">
             {aVenir.length > 0
               ? "Ton QR est juste en dessous. Montre-le en arrivant, c’est tout."
               : "Choisis une sortie, et ton QR apparaîtra ici."}
@@ -86,8 +86,10 @@ export default async function MemberDashboardPage() {
           </h2>
 
           {aVenir.length === 0 ? (
-            <p className="mt-6 border-2 border-dashed border-[#773331]/35 bg-[#F1EDE9] p-6 font-bold text-[#773331]/60">
-              Aucune sortie prévue. Choisis-en une juste en dessous — il en reste {disponibles.length}.
+            <p className="mt-6 border-2 border-dashed border-[#773331]/35 bg-[#F1EDE9] p-6 font-bold text-[#773331]">
+              {disponibles.length > 0
+                ? `Aucune sortie prévue. Choisis-en une juste en dessous : ${disponibles.length > 1 ? `il en reste ${disponibles.length}` : "il en reste une"}.`
+                : "Aucune sortie prévue pour toi. Les prochaines dates arrivent bientôt."}
             </p>
           ) : (
             <ul className="mt-6 grid gap-6 lg:grid-cols-2">
@@ -115,7 +117,7 @@ export default async function MemberDashboardPage() {
             <p className="mt-6 border-2 border-[#773331] bg-[#F1EDE9] p-6 font-bold">
               {coursesAVenir.length === 0
                 ? "Rien d’annoncé pour le moment. On prépare la suite."
-                : "Tu es inscrit à tout ce qui est ouvert. Beau travail."}
+                : "Tu es inscrit à toutes les sorties annoncées."}
             </p>
           ) : (
             <ul className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -130,7 +132,7 @@ export default async function MemberDashboardPage() {
                     key={course.id}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <p className="font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#773331]/60">
+                      <p className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]">
                         {formatJour(course.start_datetime)}
                         <span className="mt-1 block text-[#773331]">{formatHeure(course.start_datetime)}</span>
                       </p>
@@ -141,10 +143,10 @@ export default async function MemberDashboardPage() {
 
                     <h3 className="font-display text-2xl uppercase leading-[1.05]">{course.title}</h3>
                     {course.description ? (
-                      <p className="text-sm leading-snug text-[#773331]/72">{course.description}</p>
+                      <p className="text-sm leading-snug text-[#773331]">{course.description}</p>
                     ) : null}
 
-                    <dl className="grid gap-1 border-t-2 border-[#773331]/15 pt-3 font-mono text-[.62rem] font-black uppercase tracking-[.1em] text-[#773331]/65">
+                    <dl className="grid gap-1 border-t-2 border-[#773331]/15 pt-3 font-mono text-xs font-black uppercase tracking-[.1em] text-[#773331]">
                       {course.distance_km !== null ? (
                         <div className="flex justify-between gap-3">
                           <dt>Distance</dt>
@@ -183,7 +185,7 @@ export default async function MemberDashboardPage() {
           <Link className="secondary-link" href="/membre/sorties">
             Historique de mes sorties
           </Link>
-          <p className="sm:col-span-2 font-mono text-[.62rem] font-black uppercase leading-relaxed tracking-[.14em] text-[#773331]/40">
+          <p className="sm:col-span-2 font-mono text-xs font-black uppercase leading-relaxed tracking-[.14em] text-[#773331]/40">
             Un système de points arrive plus tard. Pour l’instant, viens courir.
           </p>
         </div>
@@ -202,11 +204,11 @@ function CarteInscription({ inscription, qrSvg }: { inscription: RegistrationWit
   return (
     <li className="flex flex-col gap-5 border-2 border-[#773331] bg-[#773331] p-5 text-[#F1EDE9] shadow-[10px_10px_0_#EBA0CD] sm:p-6">
       <div>
-        <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#FFB200]">
+        <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">
           {formatJour(course.start_datetime)} · {formatHeure(course.start_datetime)}
         </p>
         <h3 className="mt-3 font-display text-[clamp(1.7rem,3.6vw,2.4rem)] uppercase leading-[1.02]">{course.title}</h3>
-        <p className="mt-2 font-mono text-[.62rem] font-black uppercase tracking-[.12em] text-[#F1EDE9]/60">
+        <p className="mt-2 font-mono text-xs font-black uppercase tracking-[.12em] text-[#F1EDE9]/80">
           {[course.location, formatDistance(course.distance_km)].filter(Boolean).join(" · ")}
         </p>
       </div>
@@ -223,7 +225,7 @@ function CarteInscription({ inscription, qrSvg }: { inscription: RegistrationWit
 
         <div className="min-w-[10rem] flex-1">
           {inscription.checked_in ? (
-            <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#773331]">
+            <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]">
               Présence validée
             </p>
           ) : (

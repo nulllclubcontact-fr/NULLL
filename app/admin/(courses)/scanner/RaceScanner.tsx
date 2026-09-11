@@ -24,10 +24,11 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
   // Le rendu ne suit pas assez vite pour la boucle de decodage : la course
   // choisie est aussi gardee dans une ref, sinon un changement de course
   // n'atteindrait pas le callback deja en cours.
-  const courseRef = useRef<string>(courseInitiale ?? courses[0]?.id ?? "");
+  const premiere = courseInitiale ?? courses[0]?.id ?? "";
+  const courseRef = useRef<string>(premiere);
   const dernierRef = useRef<string>("");
 
-  const [courseId, setCourseId] = useState(courseRef.current);
+  const [courseId, setCourseId] = useState(premiere);
   const [statut, setStatut] = useState("Caméra en attente.");
   const [resultat, setResultat] = useState<CheckinOutcome | null>(null);
   const [enCours, startTransition] = useTransition();
@@ -142,17 +143,17 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
           aria-live="polite"
           className={`border-2 border-[#773331] p-5 ${resultat ? ALLURE[resultat.result] ?? "bg-[#F1EDE9]" : "bg-[#F1EDE9]"}`}
         >
-          <p className="font-mono text-[.62rem] font-black uppercase tracking-[.16em] opacity-70">
+          <p className="font-mono text-xs font-black uppercase tracking-[.16em] opacity-70">
             {enCours ? "Lecture…" : "Dernier scan"}
           </p>
           <p className="mt-3 font-display text-[clamp(1.8rem,4.5vw,2.8rem)] uppercase leading-none">
             {resultat ? MESSAGES_SCAN[resultat.result] : "En attente"}
           </p>
           {nom ? <p className="mt-3 text-lg font-bold">{nom}</p> : null}
-          <p className="mt-3 font-mono text-[.62rem] font-black uppercase tracking-[.12em] opacity-70">{statut}</p>
+          <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em] opacity-70">{statut}</p>
         </div>
 
-        <p className="font-mono text-[.6rem] font-black uppercase leading-relaxed tracking-[.12em] text-[#773331]/45">
+        <p className="font-mono text-xs font-black uppercase leading-relaxed tracking-[.12em] text-[#773331]/45">
           Un QR d’une autre sortie est refusé, et le refus est tracé. Chaque scan est enregistré, même raté.
         </p>
       </aside>

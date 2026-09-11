@@ -137,6 +137,6 @@ export const PARCOURS_SAMEDI: CarteParcours = {
 export const PARCOURS_INFOS = {
   distanceKm: 5.07,
   denivelePositifM: 45,
-  depart: "Parking Émile Zola",
+  depart: "Parking du chemin de la Cible",
   heure: "08h30"
 };

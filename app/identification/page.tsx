@@ -46,7 +46,7 @@ export default function IdentificationPage() {
           </div>
 
           <div>
-            <p className="hero-rise font-mono text-[.62rem] font-black uppercase tracking-[.2em] text-[#FFB200] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
+            <p className="hero-rise font-mono text-xs font-black uppercase tracking-[.2em] text-[#FFB200] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
               Espace membre
             </p>
             <h1 className="hero-rise mt-6 font-display text-[clamp(2.8rem,6.4vw,5.4rem)] uppercase leading-[1.12] tracking-[-.035em]" style={{ animationDelay: "140ms" }}>
@@ -57,7 +57,7 @@ export default function IdentificationPage() {
             </h1>
             {/* Une phrase, pas trois blocs : le visiteur doit savoir a quoi
                 sert un compte sans avoir a lire la page. */}
-            <p className="hero-rise mt-7 max-w-lg text-lg leading-relaxed text-[#F1EDE9]/78 sm:text-xl" style={{ animationDelay: "220ms" }}>
+            <p className="hero-rise mt-7 max-w-lg text-lg leading-relaxed text-[#F1EDE9] sm:text-xl" style={{ animationDelay: "220ms" }}>
               Ton compte, ta carte de membre, et la décharge signée une seule fois.
             </p>
 
@@ -80,7 +80,7 @@ export default function IdentificationPage() {
 
             {/* Troisieme chemin, rare : un lien suffit, il ne doit pas peser
                 autant que les deux boutons. */}
-            <p className="hero-rise mt-8 text-sm leading-relaxed text-[#F1EDE9]/55" style={{ animationDelay: "380ms" }}>
+            <p className="hero-rise mt-8 text-sm leading-relaxed text-[#F1EDE9]/80" style={{ animationDelay: "380ms" }}>
               Commerçant partenaire ?{" "}
               <Link
                 className="font-bold text-[#F1EDE9]/80 underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"

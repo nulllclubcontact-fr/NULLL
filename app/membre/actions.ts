@@ -32,6 +32,12 @@ function readRequiredString(formData: FormData, key: string) {
   return value.trim();
 }
 
+/** Un mot de passe se lit tel quel : un espace au bord en fait partie. */
+function readPassword(formData: FormData, key: string) {
+  const value = formData.get(key);
+  return typeof value === "string" ? value : "";
+}
+
 function getSignupMessage(message: string, parTelephone: boolean) {
   const normalized = message.toLowerCase();
 
@@ -77,7 +83,7 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
   const email = parTelephone ? "" : readRequiredString(formData, "email").toLowerCase();
   const saisieTelephone = parTelephone ? readRequiredString(formData, "phone") : "";
   const telephone = parTelephone ? normaliserTelephone(saisieTelephone) : null;
-  const password = readRequiredString(formData, "password");
+  const password = readPassword(formData, "password");
   const acceptsWaiver = formData.get("waiver") === "on";
 
   if (parTelephone && saisieTelephone && !telephone) {
@@ -212,7 +218,7 @@ export async function renvoyerCodeInscription(_previousState: CodeState, formDat
 export async function loginMember(_previousState: LoginState, formData: FormData): Promise<LoginState> {
   // « email » reste lu pour un formulaire encore en cache d'une ancienne version.
   const identifiant = readRequiredString(formData, "identifiant") || readRequiredString(formData, "email");
-  const password = readRequiredString(formData, "password");
+  const password = readPassword(formData, "password");
   const souvenir = formData.get("souvenir") === "on";
 
   if (!identifiant || !password) {
@@ -334,8 +340,8 @@ export async function verifierCodeReinitialisation(_previousState: CodeState, fo
 }
 
 export async function updateMemberPassword(_previousState: LoginState, formData: FormData): Promise<LoginState> {
-  const password = readRequiredString(formData, "password");
-  const confirmation = readRequiredString(formData, "password_confirmation");
+  const password = readPassword(formData, "password");
+  const confirmation = readPassword(formData, "password_confirmation");
 
   if (password.length < 6) {
     return { error: "Six caractères au minimum." };

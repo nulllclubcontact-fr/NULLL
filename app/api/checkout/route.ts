@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "node:crypto";
+import { BOUTIQUE_OUVERTE } from "../../../lib/shop";
 import { productsByLocale, type Locale } from "../../../lib/site-content";
 import { createSupabaseServiceClient } from "../../../lib/supabase/service";
 
@@ -27,6 +28,15 @@ function makeReference() {
 }
 
 export async function POST(request: Request) {
+  // Refus avant toute lecture ou ecriture : fermer la page ne suffisait
+  // pas, l'API acceptait encore les commandes envoyees en direct.
+  if (!BOUTIQUE_OUVERTE) {
+    return NextResponse.json(
+      { message: "La boutique n’est pas ouverte : aucune commande n’est possible pour le moment." },
+      { status: 403 }
+    );
+  }
+
   let payload: Record<string, unknown>;
 
   try {

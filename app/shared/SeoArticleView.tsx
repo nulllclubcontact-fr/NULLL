@@ -26,7 +26,7 @@ export function SeoArticleView({
           {article.sections.map((section) => (
             <article className="panel p-6 lg:p-8" key={section.title}>
               <h2 className="font-display text-[clamp(2.2rem,4vw,3.6rem)] uppercase leading-[0.94]">{section.title}</h2>
-              <div className="mt-5 space-y-4 text-paper/74">
+              <div className="mt-5 space-y-4 text-paper/75">
                 {section.body.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}

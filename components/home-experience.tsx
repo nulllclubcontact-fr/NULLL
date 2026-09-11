@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { DEPART } from "../lib/rendez-vous";
 import type { RunEvent } from "../lib/site-content";
-import { PARCOURS_SAMEDI } from "../lib/parcours";
 import { ArrowIcon } from "./ArrowIcon";
 import { HomeJourney } from "./home-journey";
 import "./home-experience.css";
@@ -16,8 +16,18 @@ type HomeExperienceProps = {
   localRunningHref: string;
 };
 
+// Premiere sortie du club. Passe cette date, le recit du lancement se
+// conjugue au passe : la page se regenere toutes les minutes.
+const PREMIERE_SORTIE = Date.parse("2026-09-26T08:30:00+02:00");
+
+// Meme convention que l'admin : l'heure lue au rendu vit hors du composant.
+function instantPresent() {
+  return Date.now();
+}
+
 export function HomeExperience({ runs, runsHref, communityHref, merchHref, aboutHref, localClubHref, localRunningHref }: HomeExperienceProps) {
   const nextRun = runs[0];
+  const avantLancement = instantPresent() < PREMIERE_SORTIE;
 
   return (
     <HomeJourney>
@@ -39,7 +49,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
       <section className="home-hero-facts" aria-label="Informations pratiques">
         <dl>
           <div><dt className="home-label">Quand</dt><dd>Samedi <span>8h30</span></dd></div>
-          <div><dt className="home-label">Où</dt><dd>Parking <span>Émile Zola</span></dd></div>
+          <div><dt className="home-label">Où</dt><dd>Chemin <span>de la Cible</span></dd></div>
           <div><dt className="home-label">Distance</dt><dd>5 à 6 <span>km</span></dd></div>
           <div><dt className="home-label">Combien</dt><dd>0 <span>€</span></dd></div>
         </dl>
@@ -95,18 +105,26 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         <div className="home-club-layout">
           <div className="home-club-visual" data-home-reveal>
             <figure className="home-crew-photo"><Image src="/assets/photos/runs-crew.webp" alt="Un groupe de coureurs réunis en plein air" fill sizes="(max-width: 760px) 90vw, 45vw" /></figure>
-            <div className="home-first-time"><span className="home-label">26 septembre 2026</span><p>La première fois.<br />Pour tout le monde.</p><span className="home-label">Nous les premiers.</span></div>
+            {avantLancement ? (
+              <div className="home-first-time"><span className="home-label">26 septembre 2026</span><p>La première fois.<br />Pour tout le monde.</p><span className="home-label">Nous les premiers.</span></div>
+            ) : (
+              <div className="home-first-time"><span className="home-label">Depuis le 26 septembre 2026</span><p>Chaque samedi.<br />De nouvelles têtes.</p><span className="home-label">La prochaine, c’est toi.</span></div>
+            )}
           </div>
           <div className="home-club-copy" data-home-reveal>
               <p>
                 NULLL.CLUB est un run club associatif basé à Aix-en-Provence. On se retrouvera
-                <strong> tous les samedis à 8h30 au parking Émile Zola</strong> pour une sortie de 5 à 6 km,
-                à allure conversation, celle où tu peux encore parler en courant.
+                <strong> tous les samedis à 8h30 au parking du chemin de la Cible</strong>, près du lycée Émile Zola,
+                pour une sortie de 5 à 6 km à allure conversation, celle où tu peux encore parler en courant.
               </p>
               <p>
-                C’est <strong>gratuit, sans inscription et sans niveau minimum</strong>. Personne ne sera
-                laissé derrière, et personne n’aura d’avance : le
-                <strong> 26 septembre, ce sera la première fois pour tout le monde</strong>, nous les premiers.
+                C’est <strong>gratuit et sans niveau minimum</strong>. Tu crées ton compte, tu t’inscris à la
+                sortie, et ton QR est scanné au départ. Personne ne sera laissé derrière
+                {avantLancement ? (
+                  <>, et personne n’aura d’avance : le<strong> 26 septembre, ce sera la première fois pour tout le monde</strong>, nous les premiers.</>
+                ) : (
+                  <>, et chaque samedi quelqu’un vient pour la première fois.</>
+                )}
               </p>
               <p>
                 C’est aussi ce qui nous sépare d’un club de sport classique à Aix-en-Provence : pas
@@ -117,9 +135,9 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         <dl className="home-facts" data-home-reveal>
           {[
             { t: "Quand", d: "Tous les samedis, 8h30" },
-            { t: "Où", d: "Parking Émile Zola, Aix-en-Provence" },
+            { t: "Où", d: DEPART.adresse },
             { t: "Distance", d: "5 à 6 km, allure conversation" },
-            { t: "Combien", d: "Gratuit, sans inscription" }
+            { t: "Combien", d: "Gratuit, sur inscription" }
           ].map((fact, i) => <div key={fact.t}><dt className="home-label"><span>0{i + 1}</span>{fact.t}</dt><dd>{fact.d}</dd></div>)}
         </dl>
           <p className="home-local-links">
@@ -149,7 +167,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         <p className="home-signoff" data-home-reveal>Soyons nous.<br /><span>Soyons NULLL.</span></p>
         <Link className="home-final-cta" href={runsHref}><span>Je viens samedi</span><ArrowIcon /></Link>
         {nextRun && <p className="home-label home-final-meta">{nextRun.date} · {nextRun.time} · {nextRun.location} · {nextRun.distance} · {nextRun.pace}</p>}
-        <p className="home-label home-final-meta">Ouvert à tous · Gratuit · Sans inscription</p>
+        <p className="home-label home-final-meta">Ouvert à tous · Gratuit · Inscription en ligne</p>
       </section>
     </HomeJourney>
   );

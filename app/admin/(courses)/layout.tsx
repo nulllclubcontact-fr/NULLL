@@ -36,7 +36,7 @@ export default async function AdminCoursesLayout({ children }: { children: React
           confondue avec l'espace membre, qui porte le jaune. */}
       <div className="sticky top-20 z-40 border-b-2 border-[#773331] bg-[#EBA0CD]">
         <div className="shell flex flex-wrap items-center gap-x-1 gap-y-2 py-2">
-          <span className="mr-2 hidden font-mono text-[.62rem] font-black uppercase tracking-[.16em] text-[#773331]/70 sm:inline">
+          <span className="mr-2 hidden font-mono text-xs font-black uppercase tracking-[.16em] text-[#773331] sm:inline">
             Admin
           </span>
 

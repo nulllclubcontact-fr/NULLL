@@ -196,7 +196,7 @@ export function BoutonsSociaux({ google, apple, separateur }: { google: boolean;
           {erreur}
         </p>
       ) : null}
-      <p className="flex items-center gap-3 font-mono text-[.62rem] font-black uppercase tracking-[.14em]">
+      <p className="flex items-center gap-3 font-mono text-xs font-black uppercase tracking-[.14em]">
         <span aria-hidden="true" className="h-0.5 flex-1 bg-[#773331]" />
         {separateur}
         <span aria-hidden="true" className="h-0.5 flex-1 bg-[#773331]" />

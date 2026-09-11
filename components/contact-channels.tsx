@@ -62,12 +62,12 @@ export function ContactChannels({ channels }: { channels: Channel[] }) {
               rel={externe ? "noreferrer noopener" : undefined}
               target={externe ? "_blank" : undefined}
             >
-              <span className="w-6 shrink-0 font-mono text-[.62rem] font-black uppercase tracking-[.16em] opacity-55 sm:w-12">
+              <span className="w-6 shrink-0 font-mono text-xs font-black uppercase tracking-[.16em] opacity-55 sm:w-12">
                 0{index + 1}
               </span>
 
               <span className="min-w-0 flex-1">
-                <span className="block font-mono text-[.62rem] font-black uppercase tracking-[.16em] opacity-55 [word-spacing:.18em]">
+                <span className="block font-mono text-xs font-black uppercase tracking-[.16em] opacity-55 [word-spacing:.18em]">
                   {channel.title}
                 </span>
                 <span className="contact-row-value copy-safe mt-2 block font-display text-[clamp(1.15rem,4vw,3rem)] uppercase leading-[1.12] tracking-[-.03em]">
@@ -83,7 +83,7 @@ export function ContactChannels({ channels }: { channels: Channel[] }) {
 
             <button
                 aria-label={`Copier ${channel.title.toLowerCase()} : ${copiable}`}
-                className={`${actif ? `copy-done bg-[#773331] ${actif.ok ? "text-[#FFB200]" : "text-[#EBA0CD]"}` : "bg-transparent"} w-[4.5rem] shrink-0 border-l-2 border-[#773331] font-mono text-[.58rem] font-black uppercase tracking-[.1em] sm:text-[.62rem] sm:tracking-[.14em] transition-colors hover:bg-[#773331] hover:text-[#FFB200] focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-[#773331] sm:w-32`}
+                className={`${actif ? `copy-done bg-[#773331] ${actif.ok ? "text-[#FFB200]" : "text-[#EBA0CD]"}` : "bg-transparent"} w-[4.5rem] shrink-0 border-l-2 border-[#773331] font-mono text-xs font-black uppercase tracking-[.1em] sm:text-xs sm:tracking-[.14em] transition-colors hover:bg-[#773331] hover:text-[#FFB200] focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-[#773331] sm:w-32`}
               onClick={() => copier(channel.title, copiable)}
               type="button"
             >

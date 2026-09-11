@@ -12,9 +12,9 @@ export default async function MemberRegisterPage() {
       imageAlt="Un membre de NULLL.CLUB assis au sol après une sortie, médaille de finisher et clés posées à côté de ses chaussures"
       imagePosition="50% 66%"
       footerLink={{ label: "Déjà un compte ?", href: "/membre/login", cta: "Se connecter" }}
-      intro="Un compte, un QR, des points. Trois minutes pour t’inscrire, et tu es des nôtres."
-      steps={["Tes infos", "La décharge", "Ton QR"]}
-      ticker="Rejoins le club — Samedi 8h30 — Aix-en-Provence — Gratuit — Tous les niveaux"
+      intro="Crée ton compte, choisis une sortie et retrouve son QR. Trois minutes, et tu es des nôtres."
+      steps={["Tes infos", "La décharge", "Ta sortie"]}
+      ticker="Rejoins le club · Samedi 8h30 · Aix-en-Provence · Gratuit · Tous les niveaux"
       title="Entre dans le"
       titleAccent="club."
     >

@@ -35,8 +35,10 @@ export default async function RunsPage({ params }: PageProps) {
   const copy = getSiteCopy(locale);
   const contactHref = getRoute(locale, "contact");
   const identificationHref = "/identification";
-  const tickerCopy = "Allure conversation — Personne derrière — Ouvert à tous — After run — Aix-en-Provence";
-  const runs = await listPublicRuns();
+  const tickerCopy = "Allure conversation · Personne derrière · Ouvert à tous · After run · Aix-en-Provence";
+  const lecture = await listPublicRuns();
+  const panne = lecture === null;
+  const runs = lecture ?? [];
   const prochaine = runs[0];
 
   return (
@@ -50,6 +52,7 @@ export default async function RunsPage({ params }: PageProps) {
             startDate: run.isoDate,
             locationName: run.location,
             address: run.address,
+            image: run.image,
             route: getRoute(locale, "runs")
           })}
           key={run.id}
@@ -77,7 +80,7 @@ export default async function RunsPage({ params }: PageProps) {
 
         {/* Barre identique a celle de l'accueil */}
         <div className="relative mx-auto w-full max-w-[1600px] shrink-0 px-5 pt-6 sm:px-8 sm:pt-8 xl:px-12">
-          <div className="flex flex-col items-start gap-1 border-b border-[#F1EDE9]/45 pb-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
+          <div className="flex flex-col items-start gap-1 border-b border-[#F1EDE9]/45 pb-4 font-mono text-xs font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
             <span>Social sport club · Aix-en-Provence</span>
             <span className="text-[#FFB200]">Ouvert à tous · Gratuit</span>
           </div>
@@ -122,8 +125,8 @@ export default async function RunsPage({ params }: PageProps) {
           tabIndex={0}
         >
           <div aria-hidden="true" className="marquee-track font-mono text-xs font-black uppercase tracking-[.16em] sm:text-sm">
-            <p className="shrink-0 whitespace-nowrap px-6">{tickerCopy}&nbsp;&nbsp;—&nbsp;&nbsp;</p>
-            <p className="shrink-0 whitespace-nowrap px-6">{tickerCopy}&nbsp;&nbsp;—&nbsp;&nbsp;</p>
+            <p className="shrink-0 whitespace-nowrap px-6">{tickerCopy}&nbsp;&nbsp;·&nbsp;&nbsp;</p>
+            <p className="shrink-0 whitespace-nowrap px-6">{tickerCopy}&nbsp;&nbsp;·&nbsp;&nbsp;</p>
           </div>
         </div>
       </section>
@@ -133,7 +136,7 @@ export default async function RunsPage({ params }: PageProps) {
         <div className="mx-auto max-w-[1600px] px-5 pb-10 pt-16 sm:px-8 sm:pb-12 sm:pt-24 xl:px-12">
           <div className="flex flex-col gap-5 border-b border-[#F1EDE9]/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">01 — Le calendrier</p>
+              <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">01 · Le calendrier</p>
               <h2 className="mt-4 font-display text-[clamp(3.2rem,6vw,6rem)] uppercase leading-[1.12] tracking-[-.035em]" id="runs-list-title">
                 Prochaine <span className="text-[#EBA0CD]">sortie.</span>
               </h2>
@@ -142,7 +145,7 @@ export default async function RunsPage({ params }: PageProps) {
           </div>
 
           <div className="mt-6 flex items-center justify-between gap-4 font-mono text-xs font-black uppercase tracking-[.16em]">
-            <span className="text-[#F1EDE9]/65">
+            <span className="text-[#F1EDE9]/80">
               {runs.length} sortie{runs.length > 1 ? "s" : ""}
             </span>
             {runs.length > 1 ? <RunCarouselNav runs={runs.map(({ date, id }) => ({ date, id }))} /> : null}
@@ -150,7 +153,9 @@ export default async function RunsPage({ params }: PageProps) {
 
           {runs.length === 0 ? (
             <p className="mt-6 border-2 border-dashed border-[#F1EDE9] p-8 font-display text-[clamp(1.6rem,3vw,2.6rem)] uppercase leading-[1.12]">
-              Pas de sortie programmée pour l’instant. Les prochaines dates arrivent ici dès qu’elles sont publiées.
+              {panne
+                ? "Impossible de charger les sorties pour le moment. Réessaie dans un instant."
+                : "Pas de sortie programmée pour l’instant. Les prochaines dates arrivent ici dès qu’elles sont publiées."}
             </p>
           ) : (
           <div
@@ -172,7 +177,7 @@ export default async function RunsPage({ params }: PageProps) {
       {/* ---------------- FAQ ---------------- */}
       <section className="bg-[#FFB200] text-[#773331]" aria-labelledby="runs-faq">
         <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-28 xl:px-12">
-          <p className="font-mono text-xs font-black uppercase tracking-[.16em]">02 — Les questions</p>
+          <p className="font-mono text-xs font-black uppercase tracking-[.16em]">02 · Les questions</p>
           <h2
             className="mt-5 max-w-[12ch] font-display text-[clamp(3rem,6.4vw,6.4rem)] uppercase leading-[1.12] tracking-[-.04em]"
             id="runs-faq"
@@ -266,7 +271,7 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
               target="_blank"
             >
               <span aria-hidden="true" className="text-lg">⌖</span>
-              <span>Lieu de départ</span>
+              <span>{run.location}</span>
               <span aria-hidden="true">↗</span>
             </a>
           </div>

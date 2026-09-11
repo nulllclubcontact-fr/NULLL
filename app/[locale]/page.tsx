@@ -3,7 +3,7 @@ import { HomeExperience } from "../../components/home-experience";
 import { StructuredData } from "../../components/StructuredData";
 import { SiteShell } from "../../components/site-shell";
 import { resolveLocale } from "../../lib/locale";
-import { buildFaqSchema, buildOrganizationSchema, buildPageMetadata, buildSportsLocationSchema, buildWebSiteSchema } from "../../lib/seo";
+import { buildOrganizationSchema, buildPageMetadata, buildSportsLocationSchema, buildWebSiteSchema } from "../../lib/seo";
 import { getRoute, getSiteCopy } from "../../lib/site-content";
 import { listPublicRuns } from "../../lib/races/repo";
 
@@ -20,18 +20,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function LocaleHomePage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale);
-  const copy = getSiteCopy(locale);
 
   return (
     <SiteShell current="home" locale={locale} pathname={`/${locale}`}>
-      <StructuredData data={[buildOrganizationSchema(locale), buildSportsLocationSchema(locale), buildWebSiteSchema(locale), buildFaqSchema(copy.home.faq)]} />
+      <StructuredData data={[buildOrganizationSchema(locale), buildSportsLocationSchema(locale), buildWebSiteSchema(locale)]} />
       <HomeExperience
         aboutHref={getRoute(locale, "contact")}
         communityHref={getRoute(locale, "community")}
         merchHref={getRoute(locale, "merch")}
         localClubHref={getRoute(locale, "localClub")}
         localRunningHref={getRoute(locale, "localRunning")}
-        runs={await listPublicRuns()}
+        runs={(await listPublicRuns()) ?? []}
         runsHref={getRoute(locale, "runs")}
       />
     </SiteShell>

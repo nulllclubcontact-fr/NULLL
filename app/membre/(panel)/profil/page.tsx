@@ -23,14 +23,14 @@ export default async function MemberProfilPage() {
 
   const { data: profil } = await supabase
     .from("profiles")
-    .select("first_name,last_name,phone,birth_date,instagram_handle,emergency_contact_name,emergency_contact_phone,medical_notes")
+    .select("first_name,last_name,phone,birth_date,instagram_handle,emergency_contact_name,emergency_contact_phone")
     .eq("id", user.id)
     .maybeSingle();
 
   return (
     <section className="shell grid max-w-3xl gap-8 py-8 lg:py-12">
       <header>
-        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#773331]/55">Espace membre</p>
+        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#773331]">Espace membre</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4rem)] uppercase leading-[.95]">
           Tes infos<span className="text-[#EBA0CD]">.</span>
         </h1>
@@ -45,8 +45,7 @@ export default async function MemberProfilPage() {
           birth_date: profil?.birth_date ?? null,
           instagram_handle: profil?.instagram_handle ?? null,
           emergency_contact_name: profil?.emergency_contact_name ?? null,
-          emergency_contact_phone: profil?.emergency_contact_phone ?? null,
-          medical_notes: profil?.medical_notes ?? null
+          emergency_contact_phone: profil?.emergency_contact_phone ?? null
         }}
       />
     </section>

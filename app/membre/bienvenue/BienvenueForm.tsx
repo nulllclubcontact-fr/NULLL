@@ -24,7 +24,7 @@ export function BienvenueForm({ prenom, nom }: { prenom: string; nom: string }) 
       </div>
 
       <label
-        className="flex cursor-pointer gap-3 border-2 border-[#773331] bg-[#F1EDE9] p-4 text-sm font-bold leading-tight text-[#773331]/78 transition-colors duration-300 has-[:checked]:bg-[#EBA0CD]/12"
+        className="flex cursor-pointer gap-3 border-2 border-[#773331] bg-[#F1EDE9] p-4 text-sm font-bold leading-tight text-[#773331] transition-colors duration-300 has-[:checked]:bg-[#EBA0CD]/12"
         style={{ "--pas": 1 } as React.CSSProperties}
       >
         <input checked={accepted} className="mt-0.5 h-6 w-6 shrink-0 accent-[#EBA0CD]" name="waiver" onChange={(event) => setAccepted(event.target.checked)} type="checkbox" />

@@ -41,7 +41,7 @@ export function CreateRaceForm() {
         <div className="grid gap-3.5 sm:grid-cols-2">
           <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
             <span>Lieu de départ</span>
-            <input className="field" name="location" placeholder="Parking Emile Zola" />
+            <input className="field" name="location" placeholder="Parking du chemin de la Cible" />
           </label>
           <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
             <span>Adresse</span>

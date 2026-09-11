@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import { createHash } from "node:crypto";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { getProSession, setProSession } from "../../lib/pro/guard";
+import { clearProSession, getActiveProSession, setProSession } from "../../lib/pro/guard";
 import { getTierForPoints, type LoyaltyTier } from "../../lib/loyalty/tiers";
 import { createSupabaseServiceClient } from "../../lib/supabase/service";
 
@@ -163,11 +163,28 @@ export async function loginPro(_previousState: ProLoginState, formData: FormData
   return { error: "Code invalide" };
 }
 
+/**
+ * Le programme de fidelite est en pause (decision du 11/09/2026) : aucun
+ * scan ni credit de points tant qu'il n'est pas relance. Le code reste en
+ * place pour la reprise.
+ */
+const FIDELITE_ACTIVE = false;
+const FIDELITE_EN_PAUSE = "Le programme de fidélité est en pause pour le moment.";
+
+export async function logoutPro() {
+  await clearProSession();
+  redirect("/pro/login");
+}
+
 export async function lookupMember(token: string): Promise<LookupMemberResult> {
-  const session = await getProSession();
+  const session = await getActiveProSession();
 
   if (!session) {
     return { ok: false, error: "Session pro expirée" };
+  }
+
+  if (!FIDELITE_ACTIVE) {
+    return { ok: false, error: FIDELITE_EN_PAUSE };
   }
 
   const cleanToken = token.trim();
@@ -214,10 +231,14 @@ export async function lookupMember(token: string): Promise<LookupMemberResult> {
 }
 
 export async function creditPurchase(_previousState: CreditPurchaseState, formData: FormData): Promise<CreditPurchaseState> {
-  const session = await getProSession();
+  const session = await getActiveProSession();
 
   if (!session) {
     return { error: "Session pro expirée" };
+  }
+
+  if (!FIDELITE_ACTIVE) {
+    return { error: FIDELITE_EN_PAUSE };
   }
 
   const token = readText(formData, "qr_token");

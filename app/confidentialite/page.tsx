@@ -9,16 +9,12 @@ export const metadata = {
   robots: { index: true, follow: true }
 };
 
-const MAJ = "10 septembre 2026";
+const MAJ = "11 septembre 2026";
 
 /**
  * Page redigee a partir de ce que le schema stocke reellement : la table
  * profiles, les commandes, les inscriptions aux sorties et le formulaire
  * de contact. Rien n'y est decrit qui n'existe pas dans la base.
- *
- * Les zones entre crochets doivent etre completees par Tom : elles
- * dependent du statut juridique de l'association, que le code ne connait
- * pas. Mieux vaut un trou visible qu'une mention inventee.
  */
 export default function ConfidentialitePage() {
   const copy = getSiteCopy("fr");
@@ -81,7 +77,12 @@ export default function ConfidentialitePage() {
                 base: "Exécution du service que tu demandes"
               },
               {
-                quoi: "Un identifiant QR unique",
+                quoi: "Téléphone, date de naissance, Instagram, personne à prévenir et son numéro",
+                pourquoi: "Facultatifs : te joindre, et prévenir quelqu’un si tu as un pépin pendant une sortie",
+                base: "Consentement, en remplissant ces champs"
+              },
+              {
+                quoi: "Un identifiant QR unique par inscription",
                 pourquoi: "Valider ta présence à une sortie sans avoir à te demander ton nom",
                 base: "Exécution du service que tu demandes"
               },
@@ -115,13 +116,17 @@ export default function ConfidentialitePage() {
 
         <Bloc titre="Cookies">
           <p>
-            Le site pose trois cookies, tous nécessaires à son fonctionnement :
+            Le site ne pose que des cookies nécessaires à son fonctionnement :
           </p>
           <ul className="ml-5 list-disc space-y-2">
             <li>
-              Un <strong>cookie de session</strong> qui te garde connecté à ton compte membre. Il est
-              posé pour 400 jours au maximum, la limite que les navigateurs appliquent désormais,
-              et il est supprimé dès que tu te déconnectes.
+              Les <strong>cookies de session</strong> qui te gardent connecté à ton compte membre. Ils
+              sont posés pour 400 jours au maximum, la limite que les navigateurs appliquent
+              désormais, et supprimés dès que tu te déconnectes.
+            </li>
+            <li>
+              <code className="font-mono text-[.9em]">nulll_session_courte</code>, posé seulement si tu
+              décoches « Se souvenir de moi » : il demande de fermer ta session avec le navigateur.
             </li>
             <li>
               <code className="font-mono text-[.9em]">nulll_pro_session</code>, réservé aux
@@ -138,20 +143,24 @@ export default function ConfidentialitePage() {
             publicitaire, ni bouton de réseau social qui te suivrait ailleurs.
           </p>
           <p>
-            Le bandeau d’information affiché à ta première visite retient ton passage dans le
-            stockage local de ton navigateur. Cette information ne quitte jamais ton appareil.
+            Le stockage local de ton navigateur retient aussi que tu as vu le bandeau
+            d’information. Cette information ne quitte jamais ton appareil.
           </p>
         </Bloc>
 
         <Bloc titre="Qui d’autre y a accès">
           <p>
-            Personne ne reçoit tes données à des fins commerciales. Trois prestataires les hébergent
+            Personne ne reçoit tes données à des fins commerciales. Ces prestataires les hébergent
             ou les transportent pour notre compte :
           </p>
           <ul className="ml-5 list-disc space-y-2">
             <li>
-              <strong>Supabase</strong>, pour la base de données et les comptes. Région
-              d’hébergement : <Marque>région à confirmer</Marque>.
+              <strong>Supabase</strong>, pour la base de données et les comptes, hébergés dans
+              l’Union européenne (Paris).
+            </li>
+            <li>
+              <strong>Google</strong>, seulement si tu choisis « Continuer avec Google » : il nous
+              transmet ton nom et ton adresse e-mail pour créer ton compte.
             </li>
             <li>
               <strong>Vercel Inc.</strong>, pour l’hébergement du site.
@@ -162,7 +171,7 @@ export default function ConfidentialitePage() {
             </li>
           </ul>
           <p>
-            Vercel et Resend sont des sociétés établies aux États-Unis. Les transferts de données
+            Vercel, Resend et Google sont des sociétés établies aux États-Unis. Les transferts de données
             vers ces prestataires sont encadrés par les clauses contractuelles types de la
             Commission européenne et par le cadre de protection des données UE–États-Unis.
           </p>
@@ -260,15 +269,6 @@ function Bloc({ titre, children }: { titre: string; children: React.ReactNode })
   );
 }
 
-/** Signale au lecteur, et surtout a Tom, ce qui reste a completer. */
-function Marque({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="bg-[#EBA0CD] px-1 font-mono text-[.85em] font-black uppercase">
-      [{children}]
-    </span>
-  );
-}
-
 function Lien({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a
@@ -296,7 +296,7 @@ function Tableau({ lignes }: { lignes: Array<{ quoi: string; pourquoi: string; b
             <tr className="border-b border-[#773331]/30 align-top" key={l.quoi}>
               <td className="py-4 pr-4 font-bold">{l.quoi}</td>
               <td className="py-4 pr-4">{l.pourquoi}</td>
-              <td className="py-4 text-[#773331]/75">{l.base}</td>
+              <td className="py-4 text-[#773331]">{l.base}</td>
             </tr>
           ))}
         </tbody>

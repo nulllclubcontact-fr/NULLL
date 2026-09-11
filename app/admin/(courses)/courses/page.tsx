@@ -99,7 +99,7 @@ function CarteCourse({ course, prochaine = false }: { course: LigneCourse; proch
         {course.cover_image_url ? (
           <Image alt="" className="object-cover" fill sizes="160px" src={course.cover_image_url} unoptimized />
         ) : (
-          <span className="grid h-full place-items-center font-mono text-[.6rem] font-black uppercase tracking-[.12em]">Pas de photo</span>
+          <span className="grid h-full place-items-center font-mono text-xs font-black uppercase tracking-[.12em]">Pas de photo</span>
         )}
       </div>
 
@@ -113,10 +113,10 @@ function CarteCourse({ course, prochaine = false }: { course: LigneCourse; proch
           </Etiquette>
           {prochaine ? <Etiquette teinte="jaune">La prochaine</Etiquette> : null}
           {!course.registration_open ? (
-            <span className="font-mono text-[.62rem] font-black uppercase tracking-[.12em]">inscriptions fermées</span>
+            <span className="font-mono text-xs font-black uppercase tracking-[.12em]">inscriptions fermées</span>
           ) : null}
         </div>
-        <p className="mt-2 font-mono text-[.68rem] font-black uppercase tracking-[.12em]">
+        <p className="mt-2 font-mono text-xs font-black uppercase tracking-[.12em]">
           {formatJour(course.start_datetime)} · {formatHeure(course.start_datetime)}
           {course.distance_km !== null ? ` · ${formatDistance(course.distance_km)}` : ""}
           {` · ${actives.length} inscrit${actives.length > 1 ? "s" : ""}`}

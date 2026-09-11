@@ -84,7 +84,7 @@ export function RegisterForm({ fournisseurs }: { fournisseurs: FournisseursAuth 
         <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 1 } as React.CSSProperties}>
           <span>Téléphone</span>
           <input autoComplete="tel" className="field" inputMode="tel" name="phone" placeholder="06 12 34 56 78" required type="tel" />
-          <span className="font-mono text-[.62rem] font-bold normal-case tracking-normal">
+          <span className="font-mono text-xs font-bold normal-case tracking-normal">
             On t’envoie un code par SMS pour vérifier ton numéro.
           </span>
         </label>
@@ -93,13 +93,13 @@ export function RegisterForm({ fournisseurs }: { fournisseurs: FournisseursAuth 
       <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 2 } as React.CSSProperties}>
         <span>Mot de passe</span>
         <input autoComplete="new-password" className="field" minLength={6} name="password" required type="password" />
-        <span className="font-mono text-[.62rem] font-bold normal-case tracking-normal text-[#773331]/55">
+        <span className="font-mono text-xs font-bold normal-case tracking-normal text-[#773331]">
           Six caractères au minimum.
         </span>
       </label>
 
       <label
-        className="flex cursor-pointer gap-3 border-2 border-[#773331] bg-[#F1EDE9] p-4 text-sm font-bold leading-tight text-[#773331]/78 transition-colors duration-300 has-[:checked]:bg-[#EBA0CD]/12"
+        className="flex cursor-pointer gap-3 border-2 border-[#773331] bg-[#F1EDE9] p-4 text-sm font-bold leading-tight text-[#773331] transition-colors duration-300 has-[:checked]:bg-[#EBA0CD]/12"
         style={{ "--pas": 3 } as React.CSSProperties}
       >
         <input checked={accepted} className="mt-0.5 h-6 w-6 shrink-0 accent-[#EBA0CD]" name="waiver" onChange={(event) => setAccepted(event.target.checked)} type="checkbox" />
@@ -131,7 +131,7 @@ export function RegisterForm({ fournisseurs }: { fournisseurs: FournisseursAuth 
           {pending ? "Création…" : mode === "telephone" ? "Recevoir mon code" : "Créer mon compte"}
         </button>
         {!accepted && !pending ? (
-          <span aria-live="polite" className="font-mono text-[.62rem] font-black uppercase tracking-[.14em] text-[#773331]/50">
+          <span aria-live="polite" className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]">
             Coche la décharge pour continuer.
           </span>
         ) : null}

@@ -27,12 +27,12 @@ type AccountShellProps = {
 };
 
 const BENEFITS_PAR_DEFAUT = [
-  { label: "Ton QR", text: "Il te suit d’une sortie à l’autre. Un scan, et ta présence est comptée." },
-  { label: "Tes points", text: "Chaque run en rapporte. Ils ne dorment pas et ne se perdent pas." },
-  { label: "Les partenaires", text: "Des avantages chez les commerçants d’Aix qui jouent le jeu avec nous." }
+  { label: "Ta sortie", text: "Tu choisis ton samedi en deux clics, et tu annules si tu ne peux plus venir." },
+  { label: "Ton QR", text: "Un QR par sortie, à montrer au départ. Un scan, et ta présence est comptée." },
+  { label: "Ton suivi", text: "Tes prochaines sorties et celles déjà courues, au même endroit." }
 ];
 
-const TICKER_PAR_DEFAUT = "Samedi 8h30 — Aix-en-Provence — Gratuit — Tous les niveaux";
+const TICKER_PAR_DEFAUT = "Samedi 8h30 · Aix-en-Provence · Gratuit · Tous les niveaux";
 
 export function AccountShell({
   eyebrow,
@@ -103,7 +103,7 @@ export function AccountShell({
                     0{i + 1}
                   </span>
                   <span className="mt-3 block font-display text-lg uppercase leading-none">{b.label}</span>
-                  <span className="mt-2 block text-sm leading-snug text-[#F1EDE9]/72">{b.text}</span>
+                  <span className="mt-2 block text-sm leading-snug text-[#F1EDE9]">{b.text}</span>
                 </li>
               ))}
             </ul>
@@ -116,12 +116,12 @@ export function AccountShell({
                 vide, et dit ce qui attend le visiteur apres le formulaire. */}
             {steps ? (
               <ol
-                className="hero-rise flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-[#F1EDE9]/25 pb-5 font-mono text-[.62rem] font-black uppercase tracking-[.18em]"
+                className="hero-rise flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-[#F1EDE9]/25 pb-5 font-mono text-xs font-black uppercase tracking-[.18em]"
                 style={{ animationDelay: "120ms" }}
               >
                 {steps.map((step, i) => (
                   <li
-                    className={`account-step flex items-center gap-2.5 ${i === 0 ? "is-active text-[#F1EDE9]" : "text-[#F1EDE9]/45"}`}
+                    className={`account-step flex items-center gap-2.5 ${i === 0 ? "is-active text-[#F1EDE9]" : "text-[#F1EDE9]/80"}`}
                     key={step}
                   >
                     <span aria-hidden="true" className="account-step__dot" />
@@ -137,7 +137,7 @@ export function AccountShell({
 
             {footerLink ? (
               <p
-                className="hero-rise mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs font-black uppercase tracking-[.14em] text-[#F1EDE9]/60"
+                className="hero-rise mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs font-black uppercase tracking-[.14em] text-[#F1EDE9]/80"
                 style={{ animationDelay: "620ms" }}
               >
                 {footerLink.label}
@@ -165,8 +165,8 @@ export function AccountShell({
         tabIndex={0}
       >
         <div aria-hidden="true" className="marquee-track font-mono text-xs font-black uppercase tracking-[.16em] sm:text-sm">
-          <p className="shrink-0 whitespace-nowrap px-6">{ticker}&nbsp;&nbsp;—&nbsp;&nbsp;</p>
-          <p className="shrink-0 whitespace-nowrap px-6">{ticker}&nbsp;&nbsp;—&nbsp;&nbsp;</p>
+          <p className="shrink-0 whitespace-nowrap px-6">{ticker}&nbsp;&nbsp;·&nbsp;&nbsp;</p>
+          <p className="shrink-0 whitespace-nowrap px-6">{ticker}&nbsp;&nbsp;·&nbsp;&nbsp;</p>
         </div>
       </div>
     </main>

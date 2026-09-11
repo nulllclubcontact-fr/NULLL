@@ -148,7 +148,7 @@ export default async function AdminPartenairePage({ params }: { params: Promise<
         <div>
           <Intitule>CA · 30 derniers jours</Intitule>
           <ColonnesParJour description={`${formatEuro(chiffre30)} sur les 30 derniers jours`} formater={formatEuro} jours={fenetre.jours} />
-          <p className="mt-3 font-mono text-[.68rem] font-black uppercase tracking-[.12em]">
+          <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em]">
             {chiffre30 === 0 ? "Aucune vente sur la période" : `${formatEuro(chiffre30)} · aujourd’hui en jaune · survole une colonne`}
           </p>
         </div>
@@ -221,7 +221,7 @@ export default async function AdminPartenairePage({ params }: { params: Promise<
             <div className="mt-5 overflow-x-auto">
               <table className="w-full min-w-[34rem] border-collapse text-left">
                 <thead>
-                  <tr className="font-mono text-[.68rem] font-black uppercase tracking-[.14em]">
+                  <tr className="font-mono text-xs font-black uppercase tracking-[.14em]">
                     <th className="border-b-2 border-[#773331] pb-2 pr-4">Quand</th>
                     <th className="border-b-2 border-[#773331] pb-2 pr-4">Membre</th>
                     <th className="border-b-2 border-[#773331] pb-2 pr-4">Libellé</th>
@@ -244,7 +244,7 @@ export default async function AdminPartenairePage({ params }: { params: Promise<
                 </tbody>
               </table>
               {ventes.length > 20 ? (
-                <p className="mt-3 font-mono text-[.68rem] font-black uppercase tracking-[.12em]">20 dernières sur {ventes.length}</p>
+                <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em]">20 dernières sur {ventes.length}</p>
               ) : null}
             </div>
           )}

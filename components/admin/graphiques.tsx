@@ -44,7 +44,7 @@ export function Tuiles({ tuiles }: { tuiles: Tuile[] }) {
               <div className="h-full bg-[#773331]" style={{ width: `${Math.min(100, t.jauge)}%` }} />
             </div>
           ) : null}
-          <p className="mt-auto pt-3 font-mono text-[.68rem] font-black uppercase tracking-[.12em]">{t.detail}</p>
+          <p className="mt-auto pt-3 font-mono text-xs font-black uppercase tracking-[.12em]">{t.detail}</p>
         </div>
       ))}
     </dl>
@@ -67,7 +67,7 @@ export function Pastille({ couleur }: { couleur: string }) {
 export function Etiquette({ teinte, pointillee, children }: { teinte: Teinte; pointillee?: boolean; children: ReactNode }) {
   return (
     <span
-      className={`inline-block border-2 border-[#773331] px-2 py-1 font-mono text-[.62rem] font-black uppercase tracking-[.12em] ${TEINTES[teinte]} ${pointillee ? "border-dashed" : ""}`}
+      className={`inline-block border-2 border-[#773331] px-2 py-1 font-mono text-xs font-black uppercase tracking-[.12em] ${TEINTES[teinte]} ${pointillee ? "border-dashed" : ""}`}
     >
       {children}
     </span>
@@ -196,7 +196,7 @@ export function ColonnesParJour({
       <div aria-label={description} className="mt-6 flex h-40 items-end gap-1 border-b-2 border-[#773331]" role="img">
         {jours.map((j, index) => (
           <div className="flex h-full flex-1 flex-col items-center justify-end gap-1" key={j.cle} title={`${j.etiquette} : ${formater(j.total)}`}>
-            {avecValeurs && j.total > 0 ? <span className="font-mono text-[.62rem] font-black">{formater(j.total)}</span> : null}
+            {avecValeurs && j.total > 0 ? <span className="font-mono text-xs font-black">{formater(j.total)}</span> : null}
             <div
               className={`w-full border-2 border-b-0 border-[#773331] ${index === jours.length - 1 ? "bg-[#FFB200]" : "bg-[#EBA0CD]"}`}
               style={{ height: j.total > 0 ? `${(j.total / max) * 80}%` : "0" }}
@@ -206,7 +206,7 @@ export function ColonnesParJour({
       </div>
       <div aria-hidden className="mt-2 flex gap-1">
         {jours.map((j, index) => (
-          <span className="flex-1 whitespace-nowrap text-center font-mono text-[.58rem] font-black uppercase leading-tight" key={j.cle}>
+          <span className="flex-1 whitespace-nowrap text-center font-mono text-xs font-black uppercase leading-tight" key={j.cle}>
             {index % pas === 0 || index === jours.length - 1 ? j.etiquette : ""}
           </span>
         ))}
@@ -246,7 +246,7 @@ export function BarresClassement({ lignes, vide }: { lignes: LigneClassement[]; 
             )}
             <span className="font-mono text-xs font-black uppercase tracking-[.08em]">{l.texte}</span>
           </div>
-          {l.detail ? <p className="mt-1 font-mono text-[.68rem] font-bold uppercase tracking-[.1em]">{l.detail}</p> : null}
+          {l.detail ? <p className="mt-1 font-mono text-xs font-bold uppercase tracking-[.1em]">{l.detail}</p> : null}
           <div aria-hidden className="mt-2 h-5 border-2 border-[#773331] bg-[#F1EDE9]">
             <div className="h-full bg-[#EBA0CD]" style={{ width: `${(l.valeur / max) * 100}%` }} />
           </div>

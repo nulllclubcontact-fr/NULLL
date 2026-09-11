@@ -49,7 +49,7 @@ export function ChampPhoto({ initiale = null, onEnvoi }: { initiale?: string | n
         {url ? (
           <Image alt="Aperçu de la photo" className="h-20 w-32 border-2 border-[#773331] object-cover" height={80} src={url} unoptimized width={128} />
         ) : (
-          <span className="grid h-20 w-32 place-items-center border-2 border-dashed border-[#773331] text-[.6rem] tracking-[.12em]">Pas de photo</span>
+          <span className="grid h-20 w-32 place-items-center border-2 border-dashed border-[#773331] text-xs tracking-[.12em]">Pas de photo</span>
         )}
 
         <label className={`${BOUTON} cursor-pointer bg-[#EBA0CD] hover:bg-[#FFB200] ${enCours ? "pointer-events-none opacity-70" : ""}`}>
@@ -74,7 +74,7 @@ export function ChampPhoto({ initiale = null, onEnvoi }: { initiale?: string | n
         ) : null}
       </div>
 
-      <span className="text-[.62rem] font-bold tracking-[.1em]">JPG, PNG, WebP ou AVIF · 10 Mo max · format paysage conseillé</span>
+      <span className="text-xs font-bold tracking-[.1em]">JPG, PNG, WebP ou AVIF · 10 Mo max · format paysage conseillé</span>
       {erreur ? (
         <p className="border-2 border-[#773331] bg-[#FFB200] px-3 py-2" role="alert">
           {erreur}

@@ -19,7 +19,7 @@ export default async function AdminLoyaltyPage() {
       <div>
         <p className="font-mono text-sm uppercase  text-[#EBA0CD]">Admin fidelite</p>
         <h1 className="mt-4 font-display text-[clamp(4rem,14vw,10rem)] uppercase">Points. Paliers. Cash.</h1>
-        <p className="mt-5 max-w-xl text-[#773331]/72">Le ratio nourrit les achats. Les paliers pilotent les reductions.</p>
+        <p className="mt-5 max-w-xl text-[#773331]">Le ratio nourrit les achats. Les paliers pilotent les reductions.</p>
       </div>
 
       <form action={updatePointsPerEuro} className="panel panel-grid grid gap-4 p-5 md:grid-cols-[1fr_auto]">

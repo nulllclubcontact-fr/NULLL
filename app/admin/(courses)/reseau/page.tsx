@@ -83,7 +83,7 @@ export default async function AdminReseauPage() {
             formater={formatEuro}
             jours={fenetre.jours}
           />
-          <p className="mt-3 font-mono text-[.68rem] font-black uppercase tracking-[.12em]">
+          <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em]">
             {chiffre30 === 0 ? "Aucune vente sur la période" : `${formatEuro(chiffre30)} · aujourd’hui en jaune · survole une colonne`}
           </p>
         </div>
@@ -117,28 +117,28 @@ export default async function AdminReseauPage() {
 
                     <dl className="mt-5 grid grid-cols-3 gap-3 border-y-2 border-[#773331] py-4">
                       <div>
-                        <dt className="font-mono text-[.62rem] font-black uppercase tracking-[.12em]">CA</dt>
+                        <dt className="font-mono text-xs font-black uppercase tracking-[.12em]">CA</dt>
                         <dd className="mt-1 font-mono text-sm font-black">{formatEuro(resume.revenue)}</dd>
                       </div>
                       <div>
-                        <dt className="font-mono text-[.62rem] font-black uppercase tracking-[.12em]">Ventes</dt>
+                        <dt className="font-mono text-xs font-black uppercase tracking-[.12em]">Ventes</dt>
                         <dd className="mt-1 font-mono text-sm font-black">{resume.count}</dd>
                       </div>
                       <div>
-                        <dt className="font-mono text-[.62rem] font-black uppercase tracking-[.12em]">Clients</dt>
+                        <dt className="font-mono text-xs font-black uppercase tracking-[.12em]">Clients</dt>
                         <dd className="mt-1 font-mono text-sm font-black">{resume.clients}</dd>
                       </div>
                     </dl>
 
-                    <p className="mt-4 font-mono text-[.68rem] font-black uppercase tracking-[.1em]">
+                    <p className="mt-4 font-mono text-xs font-black uppercase tracking-[.1em]">
                       {resume.lastSaleAt ? `Dernière vente le ${formatJourCourt(resume.lastSaleAt)}` : "Aucune vente pour l’instant"}
                     </p>
                     {derniereConnexion ? (
-                      <p className="mt-1 font-mono text-[.68rem] font-bold uppercase tracking-[.1em]">
+                      <p className="mt-1 font-mono text-xs font-bold uppercase tracking-[.1em]">
                         Espace pro ouvert le {formatJourCourt(derniereConnexion)}
                       </p>
                     ) : (
-                      <p className="mt-2 self-start bg-[#FFB200] px-2 py-1 font-mono text-[.62rem] font-black uppercase tracking-[.12em]">
+                      <p className="mt-2 self-start bg-[#FFB200] px-2 py-1 font-mono text-xs font-black uppercase tracking-[.12em]">
                         N’a jamais ouvert son espace pro
                       </p>
                     )}

@@ -89,13 +89,13 @@ export function ProQrScanner() {
           <button className="primary-button" onClick={() => void startScanner()} type="button">
             Nouveau scan
           </button>
-          <p className="self-center font-mono text-xs font-black uppercase text-[#773331]/60">{status}</p>
+          <p className="self-center font-mono text-xs font-black uppercase text-[#773331]">{status}</p>
         </div>
       </div>
 
       <aside className="panel p-5">
         <p className="font-mono text-sm font-black uppercase text-[#EBA0CD]">Resultat scan</p>
-        {isPending ? <p className="mt-5 font-bold text-[#773331]/72">Verification...</p> : null}
+        {isPending ? <p className="mt-5 font-bold text-[#773331]">Verification...</p> : null}
         {member?.ok ? (
           <div className="mt-5 grid gap-5">
             <div>
@@ -103,7 +103,7 @@ export function ProQrScanner() {
               <p className="mt-3 font-mono text-sm font-black uppercase text-[#EBA0CD]">
                 {member.tierName} - {formatDiscount(member.discountPercent)}% de reduction a appliquer
               </p>
-              <p className="mt-3 font-bold text-[#773331]/60">{member.currentMonthPoints} points ce mois-ci.</p>
+              <p className="mt-3 font-bold text-[#773331]">{member.currentMonthPoints} points ce mois-ci.</p>
             </div>
             <PurchaseForm key={rawToken} qrToken={rawToken} />
           </div>
@@ -113,7 +113,7 @@ export function ProQrScanner() {
             {member.error}
           </p>
         ) : null}
-        {!member && !isPending ? <p className="mt-5 font-bold text-[#773331]/72">Scanne un QR membre NULLL. Rien d’autre.</p> : null}
+        {!member && !isPending ? <p className="mt-5 font-bold text-[#773331]">Scanne un QR membre NULLL. Rien d’autre.</p> : null}
       </aside>
     </div>
   );

@@ -49,3 +49,10 @@ export function upsertCartItem(items: CartItem[], productId: string, quantity: n
   }
   return next;
 }
+
+/**
+ * La boutique n'est pas ouverte : ni panier, ni formulaire, ni commande
+ * acceptee par l'API. A passer a true seulement quand prix, tailles,
+ * photos et conditions de vente sont valides.
+ */
+export const BOUTIQUE_OUVERTE = false;
