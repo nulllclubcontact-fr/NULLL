@@ -117,19 +117,20 @@ a {
   .font-display {
     max-width: 100%;
     overflow-wrap: anywhere;
-    /* Anton n'avait qu'une graisse, tres noire, et « font-display »
-       suffisait donc a obtenir un titre. Roboto Condensed en a huit :
-       sans cette ligne, tous les titres du site sortiraient en romain
-       maigre. Pose dans @layer base pour qu'un font-bold ou un
-       font-normal explicite puisse encore l'emporter.
+    /* Anton n'existe qu'en une graisse, 400, deja tres noire : c'est une
+       police d'affiche. La regle demandait 900, vestige de l'essai avec
+       Roboto Condensed ; le navigateur fabriquait alors un faux gras en
+       epaississant chaque lettre, et avec un tracking de -0.045em les
+       lettres se touchaient (audit V03). On demande la vraie graisse et
+       on laisse les lettres respirer. */
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
 
-       900 est le maximum de la famille — il n'existe rien de plus gras.
-       Anton paraissait plus dense parce que c'est une police d'affiche,
-       beaucoup plus etroite. On rattrape une partie de cette densite en
-       resserrant les lettres : a graisse egale, un titre serre pese
-       visuellement plus lourd qu'un titre aere. */
-    font-weight: 900;
-    letter-spacing: -0.045em;
+  /* Meme si une classe font-black s'applique a un titre, pas de faux gras :
+     Anton n'a pas de version plus grasse a proposer. */
+  .font-display {
+    font-synthesis-weight: none;
   }
 
   /* La police d'affichage est tres condensee et les titres portent un
