@@ -1,7 +1,7 @@
 /* Scoped to the homepage: shared styles and all other pages are unchanged. */
 .home-journey{--home-cream:#F1EDE9;--home-ink:#773331;--home-dark:#3A1A18;--home-yellow:#FFB200;--home-pink:#EBA0CD;position:relative;isolation:isolate;overflow:clip;background:var(--home-cream);color:var(--home-ink)}
 .home-journey h1, .home-journey h2, .home-journey h3, .home-journey .home-run-date>strong, .home-journey .home-first-time p, .home-journey .home-together-copy>p, .home-journey .home-final-cta{font-family:var(--font-display),Impact,sans-serif;font-weight:400;text-transform:uppercase}
-.home-journey .home-label{font-family:var(--font-mono),"Arial Narrow",sans-serif;font-size:11px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.home-journey .home-label{font-family:var(--font-mono),"Arial Narrow",sans-serif;font-size:12px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
 .home-journey a{touch-action:manipulation}
 .home-journey a:focus-visible{outline:3px solid var(--home-ink);outline-offset:5px}
 .home-journey .home-hero a:focus-visible,
