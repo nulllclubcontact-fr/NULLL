@@ -16,18 +16,8 @@ type HomeExperienceProps = {
   localRunningHref: string;
 };
 
-// Premiere sortie du club. Passe cette date, le recit du lancement se
-// conjugue au passe : la page se regenere toutes les minutes.
-const PREMIERE_SORTIE = Date.parse("2026-09-26T08:30:00+02:00");
-
-// Meme convention que l'admin : l'heure lue au rendu vit hors du composant.
-function instantPresent() {
-  return Date.now();
-}
-
 export function HomeExperience({ runs, runsHref, communityHref, merchHref, aboutHref, localClubHref, localRunningHref }: HomeExperienceProps) {
   const nextRun = runs[0];
-  const avantLancement = instantPresent() < PREMIERE_SORTIE;
 
   return (
     <HomeJourney>
@@ -37,8 +27,9 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         </div>
         <div className="home-hero-overlay" aria-hidden="true" />
         <div className="home-hero-copy">
-          <p className="home-label">NULLL.CLUB · Social sport club · Aix</p>
-          <h1 id="home-title">Courir.<br /><span>Rencontrer.</span><br />Recommencer.</h1>
+          <p className="home-label">Social sport club · Aix-en-Provence</p>
+          <h1 id="home-title">NULLL<span>.CLUB</span></h1>
+          <p className="home-hero-support">On court à Aix. On se rencontre. On recommence samedi.</p>
           <div className="home-hero-invitation">
             <Link className="home-hero-link" href={runsHref}><span>Choisir ma sortie</span><ArrowIcon /></Link>
             <span className="home-label home-hero-reassurance">Gratuit · Tous niveaux</span>
@@ -105,30 +96,16 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         <div className="home-club-layout">
           <div className="home-club-visual" data-home-reveal>
             <figure className="home-crew-photo"><Image src="/assets/photos/runs-crew.webp" alt="Un groupe de coureurs réunis en plein air" fill sizes="(max-width: 760px) 90vw, 45vw" /></figure>
-            {avantLancement ? (
-              <div className="home-first-time"><span className="home-label">26 septembre 2026</span><p>La première fois.<br />Pour tout le monde.</p><span className="home-label">Nous les premiers.</span></div>
-            ) : (
-              <div className="home-first-time"><span className="home-label">Depuis le 26 septembre 2026</span><p>Chaque samedi.<br />De nouvelles têtes.</p><span className="home-label">La prochaine, c’est toi.</span></div>
-            )}
+            <div className="home-first-time"><span className="home-label">Samedi · 8h30</span><p>Pour ta première<br />sortie.</p><span className="home-label">Tu peux venir seul.</span></div>
           </div>
           <div className="home-club-copy" data-home-reveal>
               <p>
-                NULLL.CLUB est un run club associatif basé à Aix-en-Provence. On se retrouvera
-                <strong> tous les samedis à 8h30 au parking du chemin de la Cible</strong>, près du lycée Émile Zola,
-                pour une sortie de 5 à 6 km à allure conversation, celle où tu peux encore parler en courant.
+                NULLL.CLUB est un run club associatif à Aix-en-Provence. On se retrouve
+                <strong> le samedi à 8h30</strong> pour courir ensemble, à une allure qui permet de discuter. Les
+                prochaines dates et leurs informations pratiques sont sur la page Sorties.
               </p>
               <p>
-                C’est <strong>gratuit et sans niveau minimum</strong>. Tu crées ton compte, tu t’inscris à la
-                sortie, et ton QR est scanné au départ. Personne ne sera laissé derrière
-                {avantLancement ? (
-                  <>, et personne n’aura d’avance : le<strong> 26 septembre, ce sera la première fois pour tout le monde</strong>, nous les premiers.</>
-                ) : (
-                  <>, et chaque samedi quelqu’un vient pour la première fois.</>
-                )}
-              </p>
-              <p>
-                C’est aussi ce qui nous sépare d’un club de sport classique à Aix-en-Provence : pas
-                d’abonnement, pas d’engagement, et tu peux venir une fois pour voir.
+                C’est <strong>gratuit</strong>. Tu peux venir une fois pour voir, puis revenir pour les gens.
               </p>
           </div>
         </div>

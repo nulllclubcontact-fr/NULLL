@@ -50,7 +50,7 @@ export function DownloadQRButton({ token, nom }: { token: string; nom: string })
       </button>
       {etat === "erreur" ? (
         <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#FFB200]" role="alert">
-          Le QR n’a pas pu être téléchargé. Réessaie, ou montre-le à l’écran.
+          Le QR n’a pas pu être téléchargé. Réessaie.
         </p>
       ) : null}
     </div>

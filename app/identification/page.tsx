@@ -69,7 +69,7 @@ export default async function IdentificationPage({ searchParams }: { searchParam
             <p className="hero-rise mt-7 max-w-lg text-lg leading-relaxed text-[#F1EDE9] sm:text-xl" style={{ animationDelay: "220ms" }}>
               {suite
                 ? "Ta sortie est notée. Crée ton compte ou connecte-toi pour confirmer ta place et retrouver ton QR."
-                : "Crée ton compte gratuit pour choisir une sortie et retrouver son QR. La décharge se signe une seule fois."}
+                : "Crée ton compte pour choisir une sortie et retrouver son QR."}
             </p>
 
             <div className="hero-rise mt-10 flex max-w-xl flex-col gap-4" style={{ animationDelay: "300ms" }}>

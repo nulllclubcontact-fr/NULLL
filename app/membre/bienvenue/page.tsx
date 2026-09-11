@@ -42,6 +42,7 @@ export default async function BienvenuePage({ searchParams }: { searchParams: Pr
 
   return (
     <AccountShell
+      benefits={[]}
       eyebrow="Dernière étape"
       image="/assets/photos/apres-course-sol.webp"
       imageAlt="Un membre de NULLL.CLUB assis au sol après une sortie, médaille de finisher et clés posées à côté de ses chaussures"

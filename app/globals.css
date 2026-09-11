@@ -556,7 +556,7 @@ textarea {
 }
 
 .run-card-shade {
-  background: linear-gradient(180deg, rgba(32, 13, 11, 0.18) 0%, rgba(32, 13, 11, 0.04) 35%, rgba(32, 13, 11, 0.88) 100%);
+  background: rgba(32, 13, 11, 0.62);
 }
 
 .run-card-date,

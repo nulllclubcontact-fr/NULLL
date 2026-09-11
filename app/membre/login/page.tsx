@@ -33,7 +33,7 @@ export default async function MemberLoginPage({
       image="/assets/photos/medaille-bouche.webp"
       imageAlt="Un membre de NULLL.CLUB mord sa médaille de finisher, la mer en arrière-plan"
       footerLink={{ label: "Pas encore de compte ?", href: `/membre/register${suiteSortie(sortie)}`, cta: "S’inscrire" }}
-      intro="Tes sorties et le QR à montrer en arrivant. Rien de magique : juste ton compte."
+      intro="Retrouve tes sorties et le QR à montrer en arrivant."
       ticker="Samedi 8h30 · Aix-en-Provence · Gratuit · Tous les niveaux"
       title="Reviens dans le"
       titleAccent="club."

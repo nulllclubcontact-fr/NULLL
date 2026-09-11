@@ -72,8 +72,8 @@ export function BandeauCookies() {
           <div className="min-w-0">
             <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#773331]">Cookies</p>
             <p className="mt-2 max-w-2xl text-[.95rem] leading-relaxed">
-              Seulement les cookies nécessaires pour te garder connecté. Pas de mesure d’audience,
-              pas de publicité.
+              Des cookies servent à la connexion. Retrouve le détail des données et des prestataires
+              dans notre politique de confidentialité.
             </p>
           </div>
         </div>

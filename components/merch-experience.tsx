@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
 import { ArrowIcon } from "./ArrowIcon";
 import { getRoute, productsByLocale, type Locale, type Product } from "../lib/site-content";
 
@@ -11,8 +8,9 @@ const productMood = ["/assets/photos/editorial-bed.webp", "/assets/photos/editor
 /**
  * La boutique n'est pas ouverte : les pieces se montrent, rien ne
  * s'achete. Le panier menait jusqu'a un vrai formulaire de commande alors
- * que rien n'est a vendre. Il reviendra avec BOUTIQUE_OUVERTE (lib/shop.ts),
- * une fois prix, tailles et photos des pieces valides.
+ * que rien n'est a vendre, et deux fenetres repetaient la meme blague a
+ * chaque visite. Une seule annonce, dans la page. Le panier reviendra avec
+ * BOUTIQUE_OUVERTE (lib/shop.ts), une fois prix, tailles et photos valides.
  */
 export function MerchExperience({ locale }: { locale: Locale }) {
   const products = productsByLocale[locale];
@@ -44,116 +42,6 @@ export function MerchExperience({ locale }: { locale: Locale }) {
         </Link>
       </aside>
     </div>
-  );
-}
-
-/**
- * Ouvre une fenetre modale sans le saut de defilement par defaut :
- * showModal() donne le focus au premier element focusable, souvent un
- * bouton en bas, et le navigateur l'amene a l'ecran, ce qui ouvre la
- * fenetre deja defilee, titre coupe.
- */
-function ouvrirCadre(cadre: HTMLDialogElement | null) {
-  if (!cadre) return;
-  cadre.showModal();
-  cadre.focus({ preventScroll: true });
-  cadre.scrollTop = 0;
-}
-
-function CadreModal({
-  cadreRef,
-  children,
-  titreId
-}: {
-  cadreRef: React.RefObject<HTMLDialogElement | null>;
-  children: React.ReactNode;
-  titreId: string;
-}) {
-  return (
-    <dialog
-      aria-labelledby={titreId}
-      // Le texte peut etre long : la fenetre se borne a la hauteur d'ecran
-      // et defile a l'interieur plutot que de deborder.
-      className="max-h-[calc(100dvh-3rem)] w-[min(32rem,calc(100vw-2.5rem))] overflow-y-auto border-2 border-[#F1EDE9] bg-[#3A1A18] p-0 text-[#F1EDE9] shadow-[14px_14px_0_#EBA0CD] backdrop:bg-[#3A1A18]/85 focus:outline-none"
-      ref={cadreRef}
-      tabIndex={-1}
-    >
-      <div className="p-7 sm:p-9">{children}</div>
-    </dialog>
-  );
-}
-
-/**
- * Dit d'entree de jeu que la boutique est un brouillon. Les etiquettes sur
- * les photos le rappellent, mais elles se lisent apres coup : quelqu'un qui
- * arrive ici croit tomber sur une vraie boutique.
- *
- * Elle s'ouvre a chaque arrivee sur la page, sans memoire : la boutique
- * n'est pas reelle, le visiteur doit le lire a chaque fois, pas seulement
- * a sa premiere visite.
- */
-export function MerchNotice({ runsHref }: { runsHref: string }) {
-  const ref = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    // Un dialog ferme est display:none et hors de l'arbre d'accessibilite :
-    // pas besoin d'un etat pour ne pas le monter.
-    ouvrirCadre(ref.current);
-  }, []);
-
-  return (
-    <CadreModal cadreRef={ref} titreId="merch-notice-title">
-      <>
-        <p className="font-mono text-xs font-black uppercase tracking-[.2em] text-[#FFB200] [word-spacing:.22em]">Petit problème</p>
-        <h2 className="mt-5 font-display text-[clamp(2rem,6vw,2.9rem)] uppercase leading-[1.12] tracking-[-.03em]" id="merch-notice-title">
-          La boutique est vide.
-        </h2>
-
-        <p className="mt-6 text-base leading-relaxed text-[#F1EDE9]">
-          Enfin&hellip; techniquement, elle est pleine. Pleine de t-shirts qu&rsquo;on n&rsquo;a jamais produits.
-        </p>
-
-        {/* Le releve reste en mono : c'est la seule enumeration gardee, et
-            c'est celle qui porte la blague le plus vite. */}
-        <ul className="mt-5 space-y-2 border-l-2 border-[#FFB200] pl-4 font-mono text-xs font-black uppercase leading-snug tracking-[.06em] text-[#F1EDE9] [word-spacing:.14em]">
-          <li>Stock : 0.</li>
-          <li>Impressions : 0.</li>
-          <li>Budget : on préfère ne pas en parler.</li>
-        </ul>
-
-        <p className="mt-6 text-base leading-relaxed text-[#F1EDE9]">
-          Et les photos ? Aucun rapport. Une fille dans un lit, un mec sous la douche, des baskets par terre. Nous, on
-          appelle ça une direction artistique.
-        </p>
-
-        <p className="mt-4 text-base leading-relaxed text-[#F1EDE9]">
-          Un jour ça sortira vraiment, sûrement autour d&rsquo;un événement du club. En retard, probablement.
-        </p>
-
-        {/* La chute : en display, elle se detache du reste du texte. */}
-        <p className="mt-6 font-display text-[clamp(1.35rem,3.4vw,1.8rem)] uppercase leading-[1.12] tracking-[-.02em] text-[#FFB200]">
-          De toute façon, on ne peut littéralement rien te vendre.
-        </p>
-
-        {/* Empiles : cote a cote dans 32rem, les deux libelles passaient a
-            la ligne au milieu d'un mot. */}
-        <div className="mt-8 flex flex-col gap-3">
-          <button
-            className="inline-flex min-h-14 flex-1 items-center justify-center border-2 border-[#FFB200] bg-[#FFB200] px-6 font-mono text-xs font-black uppercase tracking-[.1em] text-[#773331] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
-            onClick={() => ref.current?.close()}
-            type="button"
-          >
-            Ok, je regarde quand même
-          </button>
-          <Link
-            className="inline-flex min-h-14 flex-1 items-center justify-center border-2 border-[#F1EDE9]/40 px-6 text-center font-mono text-xs font-black uppercase tracking-[.1em] transition-colors [word-spacing:.12em] hover:border-[#F1EDE9] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]"
-            href={runsHref}
-          >
-            Venir courir, ça oui
-          </Link>
-        </div>
-      </>
-    </CadreModal>
   );
 }
 

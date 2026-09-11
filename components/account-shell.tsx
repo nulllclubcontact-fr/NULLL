@@ -27,9 +27,9 @@ type AccountShellProps = {
 };
 
 const BENEFITS_PAR_DEFAUT = [
-  { label: "Ta sortie", text: "Tu choisis ton samedi en deux clics, et tu annules si tu ne peux plus venir." },
-  { label: "Ton QR", text: "Un QR par sortie, à montrer au départ. Un scan, et ta présence est comptée." },
-  { label: "Ton suivi", text: "Tes prochaines sorties et celles déjà courues, au même endroit." }
+  { label: "Tes sorties", text: "Retrouve les dates auxquelles tu es inscrit." },
+  { label: "Ton QR", text: "Il correspond à une sortie. Montre-le en arrivant." },
+  { label: "Tes infos", text: "Mets ton profil à jour quand tu en as besoin." }
 ];
 
 const TICKER_PAR_DEFAUT = "Samedi 8h30 · Aix-en-Provence · Gratuit · Tous les niveaux";
@@ -66,7 +66,7 @@ export function AccountShell({
             src={image}
             style={{ objectPosition: imagePosition }}
           />
-          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,9,8,.94)_0%,rgba(18,9,8,.66)_42%,rgba(18,9,8,.24)_78%,rgba(18,9,8,.5)_100%)]" />
+          <div className="absolute inset-0 bg-[rgba(18,9,8,.62)]" />
 
           <div className="relative px-5 pb-10 pt-16 sm:px-8 sm:pb-14 lg:pb-10 lg:pt-10 xl:px-12">
             <p
@@ -92,6 +92,9 @@ export function AccountShell({
             {/* Trois raisons concretes remplacent l'ancienne bande rose, qui
                 alignait trois libelles sans rien expliquer. Chacune arrive a
                 son tour et repond au survol. */}
+            {/* Sans liste sur la recuperation et la bienvenue : l'ecran se
+                concentre sur l'action en cours. */}
+            {benefits.length > 0 ? (
             <ul className="mt-9 grid gap-px border-2 border-[#F1EDE9]/30 bg-[#F1EDE9]/30 sm:grid-cols-3 lg:mt-7">
               {benefits.map((b, i) => (
                 <li
@@ -107,6 +110,7 @@ export function AccountShell({
                 </li>
               ))}
             </ul>
+            ) : null}
           </div>
         </div>
 

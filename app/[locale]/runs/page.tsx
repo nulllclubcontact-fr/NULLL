@@ -95,11 +95,11 @@ export default async function RunsPage({ params }: PageProps) {
 
         <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col items-center justify-center gap-9 px-5 py-8 text-center sm:gap-14 sm:px-8 sm:py-12 xl:px-12">
           <h1
-            className="hero-rise whitespace-nowrap font-display text-[clamp(1.9rem,12.4vw,13rem)] uppercase leading-[1.12] tracking-[-.045em]"
+            className="hero-rise font-display text-[clamp(2.6rem,9vw,9rem)] uppercase leading-[1.12] tracking-[-.02em]"
             id="runs-title"
             style={{ animationDelay: "120ms" }}
           >
-            Samedi on <span className="text-[#EBA0CD]">sort.</span>
+            Les prochaines <span className="text-[#EBA0CD]">sorties.</span>
           </h1>
 
           <div className="hero-rise flex w-full flex-col items-center" style={{ animationDelay: "280ms" }}>
@@ -161,8 +161,13 @@ export default async function RunsPage({ params }: PageProps) {
           {runs.length === 0 ? (
             <p className="mt-6 border-2 border-dashed border-[#F1EDE9] p-8 font-display text-[clamp(1.6rem,3vw,2.6rem)] uppercase leading-[1.12]">
               {panne
-                ? "Impossible de charger les sorties pour le moment. Réessaie dans un instant."
+                ? "Impossible de charger les sorties. Réessaie."
                 : "Pas de sortie programmée pour l’instant. Les prochaines dates arrivent ici dès qu’elles sont publiées."}
+              {panne ? (
+                <Link className="mt-5 block w-fit border-2 border-[#F1EDE9] px-4 py-3 font-mono text-xs font-black uppercase tracking-[.12em]" href={getRoute(locale, "runs")}>
+                  Réessayer
+                </Link>
+              ) : null}
             </p>
           ) : (
           <div

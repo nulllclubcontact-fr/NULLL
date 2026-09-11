@@ -118,8 +118,8 @@ export default async function MemberDashboardPage({ searchParams }: { searchPara
           {aVenir.length === 0 ? (
             <p className="mt-6 border-2 border-dashed border-[#773331]/35 bg-[#F1EDE9] p-6 font-bold text-[#773331]">
               {disponibles.length > 0
-                ? `Aucune sortie prévue. Choisis-en une juste en dessous : ${disponibles.length > 1 ? `il en reste ${disponibles.length}` : "il en reste une"}.`
-                : "Aucune sortie prévue pour toi. Les prochaines dates arrivent bientôt."}
+                ? "Tu n’es inscrit à aucune sortie. Choisis une date ci-dessous."
+                : "Tu n’es inscrit à aucune sortie. Aucune n’est ouverte pour le moment."}
             </p>
           ) : (
             <ul className="mt-6 grid gap-6 lg:grid-cols-2">
@@ -146,8 +146,8 @@ export default async function MemberDashboardPage({ searchParams }: { searchPara
           {disponibles.length === 0 ? (
             <p className="mt-6 border-2 border-[#773331] bg-[#F1EDE9] p-6 font-bold">
               {coursesAVenir.length === 0
-                ? "Rien d’annoncé pour le moment. On prépare la suite."
-                : "Tu es inscrit à toutes les sorties annoncées."}
+                ? "Aucune sortie n’est ouverte pour le moment."
+                : "Tu es déjà inscrit aux sorties ouvertes."}
             </p>
           ) : (
             <ul className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">

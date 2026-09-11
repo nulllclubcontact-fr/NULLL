@@ -39,7 +39,7 @@ export default async function MemberWaiverPage({
           <p className="mt-5 max-w-xl text-lg font-bold leading-snug">
             Lis les conditions de participation avant de les accepter. Une question ?{" "}
             <Link className="underline decoration-2 underline-offset-4" href="/fr/contact">
-              Écris au club
+              Contacte le club
             </Link>
             .
           </p>

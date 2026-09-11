@@ -15,7 +15,7 @@ export default async function MemberRegisterPage({ searchParams }: { searchParam
       imageAlt="Un membre de NULLL.CLUB assis au sol après une sortie, médaille de finisher et clés posées à côté de ses chaussures"
       imagePosition="50% 66%"
       footerLink={{ label: "Déjà un compte ?", href: `/membre/login${suiteSortie(sortie)}`, cta: "Se connecter" }}
-      intro="Crée ton compte, choisis une sortie et retrouve son QR. Trois minutes, et tu es des nôtres."
+      intro="Crée ton compte, choisis une sortie et retrouve son QR."
       steps={["Tes infos", "La décharge", "Ta sortie"]}
       ticker="Rejoins le club · Samedi 8h30 · Aix-en-Provence"
       title="Entre dans le"

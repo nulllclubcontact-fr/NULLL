@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { StructuredData } from "../../../components/StructuredData";
-import { MerchExperience, MerchNotice } from "../../../components/merch-experience";
+import { MerchExperience } from "../../../components/merch-experience";
 import { SiteShell } from "../../../components/site-shell";
 import { resolveLocale } from "../../../lib/locale";
 import { buildBreadcrumbSchema, buildPageMetadata } from "../../../lib/seo";
@@ -35,8 +35,6 @@ export default async function MerchPage({ params }: PageProps) {
           { name: "Merch", url: getRoute(locale, "merch") }
         ])}
       />
-
-      <MerchNotice runsHref={getRoute(locale, "runs")} />
 
       {/* ---------------- LES PIECES ----------------
           Pas d'affiche d'ouverture ici : c'est une page qui vend des

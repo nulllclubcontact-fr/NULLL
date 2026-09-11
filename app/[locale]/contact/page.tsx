@@ -75,7 +75,7 @@ export default async function ContactPage({ params }: PageProps) {
             {/* Orienter avant de faire ecrire : la plupart des questions
                 sont deja traitees ailleurs sur le site. */}
             <p className="mt-6 border-t-2 border-[#F1EDE9]/25 pt-6 text-base leading-relaxed text-[#F1EDE9]/70">
-              Pour venir courir, pas besoin de nous écrire : tout est sur{" "}
+              Pour les dates et les informations pratiques, consulte{" "}
               <Link
                 className="font-bold text-[#FFB200] underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
                 href={runsHref}
@@ -133,16 +133,12 @@ export default async function ContactPage({ params }: PageProps) {
           <dl className="h-fit border-t-2 border-[#F1EDE9]/25">
             {[
               {
-                titre: "On en parle d’abord",
-                texte: "Écris-nous : on regarde ensemble ce qui a du sens pour ton commerce et pour les membres."
+                titre: "Parlons de ton commerce",
+                texte: "Écris-nous pour discuter d’un partenariat avec le club."
               },
               {
-                titre: "Rien à installer",
-                texte: "Tout passe par un téléphone et ton espace pro. Pas d’application, pas de matériel."
-              },
-              {
-                titre: "Des gens du coin",
-                texte: "Des coureurs d’Aix qui se retrouvent chaque samedi, et qui aiment prolonger le moment."
+                titre: "Tes passages en un endroit",
+                texte: "Ton espace partenaire regroupe les opérations enregistrées auprès du club."
               }
             ].map((point) => (
               <div className="border-b-2 border-[#F1EDE9]/25 py-6" key={point.titre}>
