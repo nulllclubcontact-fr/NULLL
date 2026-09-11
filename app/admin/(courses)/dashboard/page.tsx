@@ -38,11 +38,23 @@ export default async function AdminDashboardPage() {
   // Une seule requete ramene les courses et leurs inscriptions : compter
   // cote serveur evite N requetes et garde les chiffres coherents entre
   // eux, tous pris au meme instant.
-  const { data: courses } = await supabase
+  const { data: courses, error: erreurCourses } = await supabase
     .from("races")
     .select("id,title,slug,start_datetime,status,max_participants,location,race_registrations(status,checked_in,created_at)")
     .order("start_datetime", { ascending: false })
     .returns<LigneCourse[]>();
+
+  // Une lecture en echec donnait un tableau de bord a zero, faux et rassurant.
+  if (erreurCourses) {
+    return (
+      <section className="shell grid gap-6 py-8 lg:py-12">
+        <h1 className="font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[1.04]">Vue d’ensemble.</h1>
+        <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-bold" role="alert">
+          Impossible de charger les sorties pour le moment. Recharge la page dans un instant.
+        </p>
+      </section>
+    );
+  }
 
   const liste = courses ?? [];
   const maintenant = instantPresent();
