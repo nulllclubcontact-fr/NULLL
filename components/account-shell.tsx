@@ -56,7 +56,7 @@ export function AccountShell({
           recadrait les portraits verticaux sur un sourcil. Elle prend
           desormais toute la hauteur de sa colonne, et porte le titre. */}
       <main className="grid flex-1 border-b-2 border-[#773331] lg:grid-cols-[minmax(0,1fr)_minmax(440px,0.92fr)]" id="contenu" tabIndex={-1}>
-        <div className="relative isolate flex min-h-[62svh] flex-col justify-end overflow-hidden bg-[#3A1A18] text-[#F1EDE9] lg:min-h-[calc(100dvh-8.6rem)]">
+        <div className="relative isolate flex min-h-[38svh] flex-col justify-end overflow-hidden bg-[#3A1A18] text-[#F1EDE9] sm:min-h-[52svh] lg:min-h-[calc(100dvh-8.6rem)]">
           <Image
             alt={imageAlt}
             className="hero-photo object-cover"
@@ -68,7 +68,7 @@ export function AccountShell({
           />
           <div className="absolute inset-0 bg-[rgba(18,9,8,.62)]" />
 
-          <div className="relative px-5 pb-10 pt-16 sm:px-8 sm:pb-14 lg:pb-10 lg:pt-10 xl:px-12">
+          <div className="relative px-4 pb-8 pt-12 sm:px-8 sm:pb-14 sm:pt-16 lg:pb-10 lg:pt-10 xl:px-12">
             <p
               className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFB200]"
               style={{ animationDelay: "60ms" }}
@@ -76,14 +76,14 @@ export function AccountShell({
               {eyebrow}
             </p>
             <h1
-              className="hero-rise mt-5 max-w-[14ch] font-display text-[clamp(2.6rem,6vw,5.4rem)] uppercase leading-[.9]"
+              className="hero-rise mt-4 max-w-[14ch] font-display text-[clamp(2.3rem,7vw,5.4rem)] uppercase leading-[.95] sm:mt-5"
               style={{ animationDelay: "150ms" }}
             >
               <span className="block">{title}</span>
               {titleAccent ? <span className="block text-[#EBA0CD]">{titleAccent}</span> : null}
             </h1>
             <p
-              className="hero-rise mt-5 max-w-lg text-lg font-bold leading-snug"
+              className="hero-rise mt-4 max-w-lg text-base font-bold leading-snug sm:mt-5 sm:text-lg"
               style={{ animationDelay: "250ms" }}
             >
               {intro}
@@ -95,7 +95,7 @@ export function AccountShell({
             {/* Sans liste sur la recuperation et la bienvenue : l'ecran se
                 concentre sur l'action en cours. */}
             {benefits.length > 0 ? (
-            <ul className="mt-9 grid gap-px border-2 border-[#F1EDE9]/30 bg-[#F1EDE9]/30 sm:grid-cols-3 lg:mt-7">
+            <ul className="mt-9 hidden gap-px border-2 border-[#F1EDE9]/30 bg-[#F1EDE9]/30 sm:grid sm:grid-cols-3 lg:mt-7">
               {benefits.map((b, i) => (
                 <li
                   className="account-benefit hero-rise bg-[#3A1A18]/85 px-4 py-5 lg:py-4"
@@ -114,7 +114,7 @@ export function AccountShell({
           </div>
         </div>
 
-        <div className="flex flex-col justify-center bg-[#773331] px-5 py-10 text-[#F1EDE9] sm:px-8 sm:py-14 lg:py-8 xl:px-12">
+        <div className="flex flex-col justify-center bg-[#773331] px-4 py-8 text-[#F1EDE9] sm:px-8 sm:py-14 lg:py-8 xl:px-12">
           <div className="mx-auto w-full max-w-xl">
             {/* Le fil des etapes remplit le haut de la colonne, qui etait
                 vide, et dit ce qui attend le visiteur apres le formulaire. */}
