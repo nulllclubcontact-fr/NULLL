@@ -61,7 +61,15 @@
 .home-journey .home-first-time p{font-size:32px;line-height:1.1;margin:12px 0}
 .home-journey .home-club-copy{font-size:clamp(19px,1.5vw,24px);line-height:1.6;align-self:start;padding-top:6px}
 .home-journey .home-club-copy>p+p{margin-top:22px}
+/* Dans la colonne du texte, les infos pratiques forment une vraie grille
+   2 x 2 : memes marges, un filet vertical au milieu, un filet entre les
+   deux rangees. Les regles generales (4 colonnes, 1re case sans marge)
+   faisaient decaler la 3e case. */
 .home-journey .home-club-copy .home-facts{grid-template-columns:1fr 1fr;margin-top:36px}
+.home-journey .home-club-copy .home-facts>div{padding:22px 0 22px 22px!important;border-right:0;border-top:0}
+.home-journey .home-club-copy .home-facts>div:nth-child(odd){padding:22px 22px 22px 0!important;border-right:1px solid #77333155}
+.home-journey .home-club-copy .home-facts>div:nth-child(n+3){border-top:1px solid #77333155}
+.home-journey .home-club-copy .home-facts dd{max-width:none}
 .home-journey .home-club-copy .home-local-links{margin-top:24px;font-size:16px;line-height:1.6}
 .home-journey .home-facts{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);margin-top:65px;border-top:2px solid var(--home-ink);border-bottom:2px solid var(--home-ink);background:var(--home-cream)}
 .home-journey .home-facts>div{padding:26px 20px;border-right:1px solid #77333155}

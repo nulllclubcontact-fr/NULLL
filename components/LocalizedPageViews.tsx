@@ -49,12 +49,6 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
               {page.intro}
             </p>
 
-            {/* Amorce de la ligne de vie : elle demarre dans l'ouverture et se
-                poursuit dans la section suivante. */}
-            <p className="hero-rise mt-10 inline-flex items-center gap-4 font-mono text-xs font-black uppercase tracking-[.2em] text-[#F1EDE9]/80" style={{ animationDelay: "360ms" }}>
-              <span aria-hidden="true" className="block h-4 w-4 bg-[#F1EDE9]" />
-              Ça commence en 2025
-            </p>
           </div>
 
           {/* La photo, cadree et legendee comme une photo de presse. */}

@@ -143,7 +143,6 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
             <ExploreLink href={aboutHref} index="03" label="Contact" text="Une question avant de venir samedi." />
           </div>
         </div>
-        <p className="home-signoff" data-home-reveal>Soyons nous.<br /><span>Soyons NULLL.</span></p>
         <Link className="home-final-cta" href={runsHref}><span>Voir les sorties</span><ArrowIcon /></Link>
         {nextRun && <p className="home-label home-final-meta">{nextRun.date} · {nextRun.time} · {nextRun.location} · {nextRun.distance} · {nextRun.pace}</p>}
         <p className="home-label home-final-meta">Ouvert à tous · Gratuit · Inscription en ligne</p>
