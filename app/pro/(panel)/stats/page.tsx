@@ -203,7 +203,7 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
           })}
         </nav>
 
-        <form action="/pro/stats" className="grid gap-3 border-2 border-[#773331] bg-[#EBA0CD]/35 p-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+        <form action="/pro/stats" className="grid gap-3 border-2 border-[#773331] bg-[#EBA0CD]/35 p-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] sm:items-end">
           <input name="vue" type="hidden" value={vue} />
           <label className="grid gap-2 font-mono text-xs font-black uppercase">
             Du
