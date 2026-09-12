@@ -33,7 +33,7 @@ export default async function AdminCoursesLayout({ children }: { children: React
 
       {/* Sous-navigation rose : l'administration ne doit pas pouvoir etre
           confondue avec l'espace membre, qui porte le jaune. */}
-      <div className="sticky top-20 z-40 border-b-2 border-[#773331] bg-[#EBA0CD]">
+      <div className="panel-navigation sticky top-20 z-40 border-b-2 border-[#773331] bg-[#EBA0CD]">
         <div className="shell flex flex-wrap items-center gap-x-1 gap-y-2 py-2">
           <span className="mr-2 hidden font-mono text-xs font-black uppercase tracking-[.16em] text-[#773331] sm:inline">
             Admin
@@ -61,7 +61,8 @@ export default async function AdminCoursesLayout({ children }: { children: React
             className="inline-flex min-h-11 items-center border-2 border-transparent px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition hover:border-[#773331] hover:bg-[#F1EDE9] focus-visible:border-[#773331] focus-visible:bg-[#F1EDE9] focus-visible:outline-none"
             href="/membre"
           >
-            {prenom ? `Espace de ${prenom}` : "Mon espace"}
+            <span className="sm:hidden">Mon espace</span>
+            <span className="hidden sm:inline">{prenom ? `Espace de ${prenom}` : "Mon espace"}</span>
           </Link>
 
           <form action={logoutMember} className="ml-auto">

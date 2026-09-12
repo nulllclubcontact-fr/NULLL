@@ -125,7 +125,7 @@ function CarteCourse({ course, prochaine = false }: { course: LigneCourse; proch
         </p>
       </div>
 
-      <div className="flex shrink-0 flex-wrap items-start gap-2">
+      <div className="course-actions grid grid-cols-2 gap-2 lg:flex lg:shrink-0 lg:flex-wrap lg:items-start">
         {course.status === "draft" ? <FormeStatut id={course.id} label="Publier" statut="published" /> : null}
         {course.status === "published" ? (
           <>

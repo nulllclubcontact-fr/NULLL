@@ -119,8 +119,8 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
   const nom = [resultat?.first_name, resultat?.last_name].filter(Boolean).join(" ");
 
   return (
-    <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(300px,.7fr)]">
-      <div className="grid gap-4">
+    <div className="race-scanner grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(300px,.7fr)]">
+      <div className="scanner-camera grid gap-4">
         <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
           <span>Sortie à pointer</span>
           <select
@@ -141,11 +141,11 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
           </select>
         </label>
 
-        <div className="border-2 border-[#773331] bg-[#773331] p-2">
+        <div className="scanner-video border-2 border-[#773331] bg-[#773331] p-2">
           <video className="aspect-square w-full bg-black object-cover" muted playsInline ref={videoRef} />
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="scanner-controls flex flex-wrap gap-2">
           <button className="nav-link" onClick={() => void demarrer()} type="button">
             Relancer la caméra
           </button>
@@ -155,8 +155,8 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
         </div>
       </div>
 
-      <aside className="grid content-start gap-4">
-        <div aria-live="polite" className="grid grid-cols-2 border-2 border-[#773331]">
+      <aside className="scanner-feedback grid content-start gap-4">
+        <div aria-live="polite" className="scanner-counts grid grid-cols-2 border-2 border-[#773331]">
           <p className="border-r-2 border-[#773331] bg-[#FFB200] p-4">
             <span className="block font-display text-[clamp(2.6rem,7vw,3.6rem)] leading-none tabular-nums">{compteurs ? compteurs.scannes : "…"}</span>
             <span className="mt-2 block font-mono text-xs font-black uppercase tracking-[.14em]">Scannés</span>
@@ -169,7 +169,7 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
 
         <div
           aria-live="polite"
-          className={`border-2 border-[#773331] p-5 ${resultat ? ALLURE[resultat.result] ?? "bg-[#F1EDE9]" : "bg-[#F1EDE9]"}`}
+          className={`scanner-result border-2 border-[#773331] p-5 ${resultat ? ALLURE[resultat.result] ?? "bg-[#F1EDE9]" : "bg-[#F1EDE9]"}`}
         >
           <p className="font-mono text-xs font-black uppercase tracking-[.16em] opacity-70">
             {enCours ? "Lecture…" : "Dernier scan"}
@@ -178,8 +178,9 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
             {resultat ? MESSAGES_SCAN[resultat.result] : "En attente"}
           </p>
           {nom ? <p className="mt-3 text-lg font-bold">{nom}</p> : null}
-          <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em] opacity-70">{statut}</p>
         </div>
+
+        <p aria-live="polite" className="scanner-status font-mono text-xs font-black uppercase tracking-[.12em] opacity-70">{statut}</p>
 
         <p className="font-mono text-xs font-black uppercase leading-relaxed tracking-[.12em] text-[#773331]">
           Un QR d’une autre sortie est refusé, et le refus est tracé. Chaque scan est enregistré, même raté.

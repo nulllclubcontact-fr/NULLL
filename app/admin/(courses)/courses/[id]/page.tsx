@@ -87,7 +87,7 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
     <section className="shell grid gap-8 py-8 lg:py-12">
       <header className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <Link className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331] hover:text-[#EBA0CD]" href="/admin/courses">
+          <Link className="inline-flex min-h-11 items-center font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331] hover:text-[#EBA0CD]" href="/admin/courses">
             ← Toutes les sorties
           </Link>
           <h1 className="mt-4 font-display text-[clamp(2.2rem,5.5vw,3.8rem)] uppercase leading-[.98]">{course.title}</h1>
@@ -137,7 +137,7 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
             Personne pour l’instant.
           </p>
         ) : (
-          <div className="mt-5 overflow-x-auto">
+          <div aria-label="Tableau des inscrits" className="mt-5 overflow-x-auto" tabIndex={0}>
             <table className="w-full min-w-[42rem] border-collapse text-left">
               <thead>
                 <tr className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]">

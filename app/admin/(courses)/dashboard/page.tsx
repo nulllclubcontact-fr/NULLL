@@ -285,7 +285,7 @@ export default async function AdminDashboardPage() {
 
       <div>
         <Intitule>Toutes les sorties</Intitule>
-        <div className="mt-5 overflow-x-auto">
+        <div aria-label="Inscriptions" className="mt-5 overflow-x-auto" tabIndex={0}>
           <table className="w-full min-w-[38rem] border-collapse text-left">
             <thead>
               <tr className="font-mono text-xs font-black uppercase tracking-[.14em]">

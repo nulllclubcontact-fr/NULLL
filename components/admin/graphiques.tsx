@@ -10,7 +10,7 @@ import Link from "next/link";
 // Le style global met la police d'affiche en 900 avec un tracking negatif.
 // Elle n'existe qu'en une graisse : en petit, le gras synthetique colle les
 // lettres. Les titres de ligne reviennent donc a la graisse native.
-export const TITRE_LIGNE = "font-display text-2xl font-normal uppercase leading-none tracking-[.03em]";
+export const TITRE_LIGNE = "inline-flex min-h-11 items-center font-display text-2xl font-normal uppercase leading-none tracking-[.03em]";
 
 const TEINTES = {
   bordeaux: "bg-[#773331] text-[#F1EDE9]",
@@ -54,7 +54,7 @@ export function Tuiles({ tuiles }: { tuiles: Tuile[] }) {
 export function Intitule({ children }: { children: ReactNode }) {
   return (
     <h2 className="flex items-center gap-3 border-b-2 border-[#773331] pb-3 font-mono text-xs font-black uppercase tracking-[.18em]">
-      <span aria-hidden className="size-3 bg-[#EBA0CD] ring-2 ring-[#773331]" />
+      <span aria-hidden className="size-3 shrink-0 bg-[#EBA0CD] ring-2 ring-[#773331]" />
       {children}
     </h2>
   );
@@ -192,10 +192,11 @@ export function ColonnesParJour({
   const pas = Math.ceil(jours.length / 14);
 
   return (
-    <>
+    <div aria-label={description} className="chart-scroll min-w-0 max-w-full overflow-x-auto" tabIndex={0}>
+      <div style={{ minWidth: `${jours.length * (avecValeurs ? 52 : 24)}px` }}>
       <div aria-label={description} className="mt-6 flex h-40 items-end gap-1 border-b-2 border-[#773331]" role="img">
         {jours.map((j, index) => (
-          <div className="flex h-full flex-1 flex-col items-center justify-end gap-1" key={j.cle} title={`${j.etiquette} : ${formater(j.total)}`}>
+          <div className="flex h-full min-w-0 flex-1 flex-col items-center justify-end gap-1" key={j.cle} title={`${j.etiquette} : ${formater(j.total)}`}>
             {avecValeurs && j.total > 0 ? <span className="font-mono text-xs font-black">{formater(j.total)}</span> : null}
             <div
               className={`w-full border-2 border-b-0 border-[#773331] ${index === jours.length - 1 ? "bg-[#FFB200]" : "bg-[#EBA0CD]"}`}
@@ -206,12 +207,13 @@ export function ColonnesParJour({
       </div>
       <div aria-hidden className="mt-2 flex gap-1">
         {jours.map((j, index) => (
-          <span className="flex-1 whitespace-nowrap text-center font-mono text-xs font-black uppercase leading-tight" key={j.cle}>
+          <span className="min-w-0 flex-1 whitespace-nowrap text-center font-mono text-xs font-black uppercase leading-tight" key={j.cle}>
             {index % pas === 0 || index === jours.length - 1 ? j.etiquette : ""}
           </span>
         ))}
       </div>
-    </>
+      </div>
+    </div>
   );
 }
 

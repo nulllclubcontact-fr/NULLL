@@ -221,7 +221,7 @@ export default async function AdminPartenairePage({ params }: { params: Promise<
               Rien de scanné pour l’instant. Les ventes arrivent ici dès que le partenaire scanne un QR membre depuis son espace pro.
             </p>
           ) : (
-            <div className="mt-5 overflow-x-auto">
+            <div aria-label="Dernières ventes" className="mt-5 overflow-x-auto" tabIndex={0}>
               <table className="w-full min-w-[34rem] border-collapse text-left">
                 <thead>
                   <tr className="font-mono text-xs font-black uppercase tracking-[.14em]">

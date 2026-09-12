@@ -23,7 +23,7 @@ export default async function AdminScannerPage({
   const courses = data ?? [];
 
   return (
-    <section className="shell grid gap-6 py-6 lg:py-10">
+    <section className="scanner-page shell grid gap-6 py-6 lg:py-10">
       <header>
         <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#773331]">Administration</p>
         <h1 className="mt-3 font-display text-[clamp(2.2rem,6vw,3.6rem)] uppercase leading-[.95]">
