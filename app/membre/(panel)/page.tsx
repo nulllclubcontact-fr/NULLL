@@ -12,6 +12,10 @@ import type { RegistrationWithRace } from "../../../lib/races/types";
 
 export const metadata = { title: "Mon espace | NULLL.CLUB", robots: { index: false, follow: false } };
 
+const JOUR_NUMERO = new Intl.DateTimeFormat("fr-FR", { day: "2-digit", timeZone: "Europe/Paris" });
+const JOUR_NOM = new Intl.DateTimeFormat("fr-FR", { weekday: "long", timeZone: "Europe/Paris" });
+const MOIS = new Intl.DateTimeFormat("fr-FR", { month: "long", timeZone: "Europe/Paris" });
+
 /**
  * Espace compte.
  *
@@ -161,17 +165,22 @@ export default async function MemberDashboardPage({ searchParams }: { searchPara
                     className="flex flex-col gap-4 border-2 border-[#773331] bg-[#F1EDE9] p-5 shadow-[8px_8px_0_#773331] transition duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0_#773331]"
                     key={course.id}
                   >
-                    <div className="flex items-start justify-between gap-3">
-                      <p className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]">
-                        {formatJour(course.start_datetime)}
-                        <span className="mt-1 block text-[#773331]">{formatHeure(course.start_datetime)}</span>
+                    {/* La date d'abord : c'est ce qu'on cherche en premier. */}
+                    <div className="flex items-end justify-between gap-3 border-b-2 border-[#773331] pb-4">
+                      <p className="flex items-end gap-4">
+                        <span className="font-display text-[4.75rem] leading-[.82] tabular-nums">{JOUR_NUMERO.format(new Date(course.start_datetime))}</span>
+                        <span className="grid gap-1 pb-1">
+                          <span className="font-mono text-xs font-black uppercase tracking-[.14em]">{JOUR_NOM.format(new Date(course.start_datetime))}</span>
+                          <span className="font-display text-2xl uppercase leading-none">{MOIS.format(new Date(course.start_datetime))}</span>
+                          <span className="font-mono text-xs font-black uppercase tracking-[.14em]">{formatHeure(course.start_datetime)}</span>
+                        </span>
                       </p>
                       <span className="shrink-0 border-2 border-[#773331] bg-[#EBA0CD] px-2 py-1 font-display text-lg leading-none">
                         0{index + 1}
                       </span>
                     </div>
 
-                    <h3 className="font-display text-2xl uppercase leading-[1.05]">{course.title}</h3>
+                    <h3 className="font-mono text-sm font-black uppercase tracking-[.1em]">{course.title}</h3>
                     {course.description ? (
                       <p className="text-sm leading-snug text-[#773331]">{course.description}</p>
                     ) : null}

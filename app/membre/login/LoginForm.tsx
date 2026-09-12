@@ -16,9 +16,6 @@ export function LoginForm({ fournisseurs, sortie }: { fournisseurs: Fournisseurs
 
   return (
     <div className="panel panel-grid account-stagger p-5 sm:p-6">
-      <div className="mb-4">
-        <BoutonsSociaux apple={fournisseurs.apple} google={fournisseurs.google} separateur="ou avec ton compte" sortie={sortie} />
-      </div>
       <form action={loginAction} aria-label="Connexion membre" className="grid gap-4" style={{ "--pas": 0 } as React.CSSProperties}>
         <input name="sortie" type="hidden" value={sortie ?? ""} />
         <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
@@ -39,6 +36,9 @@ export function LoginForm({ fournisseurs, sortie }: { fournisseurs: Fournisseurs
             <span className="block text-xs font-normal">À éviter sur un appareil partagé.</span>
           </span>
         </label>
+
+        {/* Google juste au-dessus du bouton principal. */}
+        <BoutonsSociaux apple={fournisseurs.apple} google={fournisseurs.google} separateur="ou" sortie={sortie} />
 
         {loginState.error ? (
           <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">

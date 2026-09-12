@@ -3,7 +3,9 @@ import { LoginForm } from "./LoginForm";
 export const metadata = { title: "Connexion membre | NULLL.CLUB", robots: { index: false, follow: false } };
 import { AccountShell } from "../../../components/account-shell";
 import { fournisseursAuth } from "../../../lib/auth/reglages";
-import { sortieValide, suiteSortie } from "../../../lib/races/sortie-choisie";
+import { redirect } from "next/navigation";
+import { destinationMembre, sortieValide, suiteSortie } from "../../../lib/races/sortie-choisie";
+import { createSupabaseServerClient } from "../../../lib/supabase/server";
 
 // /auth/callback renvoie ici quand le lien recu par mail ne vaut plus rien.
 const MESSAGES_ERREUR: Record<string, string> = {
@@ -26,6 +28,27 @@ export default async function MemberLoginPage({
   const [{ erreur, message, sortie }, fournisseurs] = await Promise.all([searchParams, fournisseursAuth()]);
   const alerte = erreur ? MESSAGES_ERREUR[erreur] : undefined;
   const info = message ? MESSAGES_INFO[message] : undefined;
+
+  // Deja connecte (depuis « Choisir cette sortie ») : direction son compte,
+  // avec la sortie choisie. Le redirect reste hors du try : Next le lance
+  // comme une exception, qu'un catch avalerait.
+  let connecte = false;
+
+  if (!erreur) {
+    try {
+      const supabase = await createSupabaseServerClient();
+      const {
+        data: { user }
+      } = await supabase.auth.getUser();
+      connecte = Boolean(user);
+    } catch {
+      connecte = false;
+    }
+  }
+
+  if (connecte) {
+    redirect(destinationMembre(sortie));
+  }
 
   return (
     <AccountShell

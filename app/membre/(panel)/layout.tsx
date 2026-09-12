@@ -5,6 +5,7 @@ import { SiteHeader, SiteFooter } from "../../../components/site-shell";
 import { getSiteCopy } from "../../../lib/site-content";
 import { createSupabaseServerClient } from "../../../lib/supabase/server";
 import { logoutMember } from "../actions";
+import { InvitationProfil } from "../../../components/membre/invitation-profil";
 
 // Espace protege : les donnees dependent de la session et de Supabase.
 // Sans cette directive Next tente un prerendu au build, et une
@@ -36,9 +37,9 @@ export default async function MemberPanelLayout({ children }: { children: ReactN
 
   const { data: profil } = await supabase
     .from("profiles")
-    .select("role,consent_waiver")
+    .select("role,consent_waiver,first_name,invitation_profil_vue")
     .eq("id", user.id)
-    .maybeSingle<{ role: string | null; consent_waiver: boolean | null }>();
+    .maybeSingle<{ role: string | null; consent_waiver: boolean | null; first_name: string | null; invitation_profil_vue: boolean | null }>();
 
   // Un compte ouvert par Google ou Apple n'a pas signe la decharge : il la
   // signe avant d'acceder a quoi que ce soit, QR compris.
@@ -94,7 +95,11 @@ export default async function MemberPanelLayout({ children }: { children: ReactN
         </div>
       </div>
 
-      <main id="contenu">{children}</main>
+      <main id="contenu">
+        {/* Premiere connexion : une seule fois, facultative (decision du 12/09/2026). */}
+        {profil?.invitation_profil_vue === false ? <InvitationProfil prenom={profil.first_name} /> : null}
+        {children}
+      </main>
       <SiteFooter copy={getSiteCopy("fr")} locale="fr" />
     </div>
   );

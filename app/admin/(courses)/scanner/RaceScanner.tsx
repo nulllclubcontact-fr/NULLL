@@ -3,7 +3,7 @@
 import { BrowserQRCodeReader, type IScannerControls } from "@zxing/browser";
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import { decodeMemberQrToken } from "../../../../lib/qr/token";
-import { scanRegistration } from "../../courses-actions";
+import { compterSortie, scanRegistration } from "../../courses-actions";
 import { MESSAGES_SCAN, type CheckinOutcome } from "../../../../lib/races/types";
 
 type Course = { id: string; title: string; start_datetime: string };
@@ -33,6 +33,20 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
   const [statut, setStatut] = useState("Caméra en attente.");
   const [resultat, setResultat] = useState<CheckinOutcome | null>(null);
   const [enCours, startTransition] = useTransition();
+  const [compteurs, setCompteurs] = useState<{ inscrits: number; scannes: number } | null>(null);
+  const [relecture, setRelecture] = useState(0);
+
+  // Inscrits et scannes de la sortie choisie, relus a chaque changement de
+  // sortie et apres chaque scan : un autre admin peut scanner en meme temps.
+  useEffect(() => {
+    let actif = true;
+    compterSortie(courseId).then((c) => {
+      if (actif) setCompteurs(c);
+    });
+    return () => {
+      actif = false;
+    };
+  }, [courseId, relecture]);
 
   const arreter = useCallback(() => {
     controlsRef.current?.stop();
@@ -65,6 +79,8 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
         setResultat(reponse.resultat);
         setStatut(MESSAGES_SCAN[reponse.resultat.result] ?? "Résultat inconnu");
       }
+
+      setRelecture((n) => n + 1);
 
       // On rouvre le meme QR au bout de trois secondes : le temps de lire
       // l'ecran, pas plus.
@@ -140,6 +156,17 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
       </div>
 
       <aside className="grid content-start gap-4">
+        <div aria-live="polite" className="grid grid-cols-2 border-2 border-[#773331]">
+          <p className="border-r-2 border-[#773331] bg-[#FFB200] p-4">
+            <span className="block font-display text-[clamp(2.6rem,7vw,3.6rem)] leading-none tabular-nums">{compteurs ? compteurs.scannes : "…"}</span>
+            <span className="mt-2 block font-mono text-xs font-black uppercase tracking-[.14em]">Scannés</span>
+          </p>
+          <p className="bg-[#F1EDE9] p-4">
+            <span className="block font-display text-[clamp(2.6rem,7vw,3.6rem)] leading-none tabular-nums">{compteurs ? compteurs.inscrits : "…"}</span>
+            <span className="mt-2 block font-mono text-xs font-black uppercase tracking-[.14em]">Inscrits à la sortie</span>
+          </p>
+        </div>
+
         <div
           aria-live="polite"
           className={`border-2 border-[#773331] p-5 ${resultat ? ALLURE[resultat.result] ?? "bg-[#F1EDE9]" : "bg-[#F1EDE9]"}`}
@@ -154,7 +181,7 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
           <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em] opacity-70">{statut}</p>
         </div>
 
-        <p className="font-mono text-xs font-black uppercase leading-relaxed tracking-[.12em] text-[#773331]/45">
+        <p className="font-mono text-xs font-black uppercase leading-relaxed tracking-[.12em] text-[#773331]">
           Un QR d’une autre sortie est refusé, et le refus est tracé. Chaque scan est enregistré, même raté.
         </p>
       </aside>

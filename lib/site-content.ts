@@ -225,7 +225,7 @@ export function getSiteCopy(locale: Locale) {
         about: {
           title: "À propos du club de running | NULLL.CLUB",
           description:
-            "Comprends la vision de NULLL.CLUB, run club social à Aix-en-Provence centré sur la communauté, la régularité et le plaisir de courir ensemble."
+            "Comprends la vision de NULLL.CLUB, social sport club à Aix-en-Provence centré sur la communauté, la régularité et le plaisir de courir ensemble."
         },
         contact: {
           title: "Contacter NULLL.CLUB",

@@ -157,13 +157,27 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
 
           {/* Le cadre suit les autres sections a 1600px, mais la prose est bridee :
               une ligne de 150 caracteres ne se lit pas. */}
-            <div className="mt-10 max-w-[72ch] space-y-10">
+          <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,72ch)_minmax(0,1fr)] lg:gap-16">
+            <div className="space-y-10">
             {page.editorial.map((bloc) => (
               <Reveal className="border-t-2 border-[#F1EDE9]/25 pt-6" key={bloc.heading}>
                 <h3 className="font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-[1.12] text-[#FFB200]">{bloc.heading}</h3>
                 <p className="mt-4 max-w-[68ch] text-lg leading-relaxed text-[#F1EDE9]">{bloc.body}</p>
               </Reveal>
             ))}
+            </div>
+
+            <figure className="mx-auto w-full max-w-md lg:sticky lg:top-28 lg:mx-0 lg:max-w-none lg:self-start">
+              <div className="relative aspect-[4/5] overflow-hidden border-2 border-[#F1EDE9] shadow-[14px_14px_0_#FFB200]">
+                <Image
+                  alt="Un petit groupe du club reflété dans des lunettes de soleil"
+                  className="object-cover"
+                  fill
+                  sizes="(min-width: 1024px) 38vw, 100vw"
+                  src="/assets/photos/editorial-glasses.webp"
+                />
+              </div>
+            </figure>
           </div>
 
           <p className="mt-10 max-w-[72ch] text-lg leading-relaxed text-[#F1EDE9]">

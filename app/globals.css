@@ -520,15 +520,16 @@ textarea {
    1.03 est un maximum : le conteneur calcule overflow-y: auto, donc tout
    depassement vertical serait rogne. Le padding pt-4 / -ml-4 pl-4 pose sur
    .run-carousel lui reserve exactement la place necessaire. */
+/* Plus de grossissement : toutes les cartes gardent la meme taille. */
 .run-carousel-slide.is-active {
-  transform: scale(1.03);
+  transform: none;
 }
 
 /* Avant l'hydratation, c'est la premiere carte qui est calee au centre.
    Des que le composant est monte il pose data-enhanced et ce repli s'eteint,
    laissant .is-active seul maitre. */
 .run-carousel:not([data-enhanced]) .run-carousel-slide:first-child {
-  transform: scale(1.03);
+  transform: none;
 }
 
 .run-carousel {
@@ -745,6 +746,17 @@ textarea {
     top: 0.45rem;
     width: 1.5rem;
     height: 1.5rem;
+  }
+}
+
+/* Grand ecran : la ligne passe au milieu, les moments alternent de part et d'autre. */
+@media (min-width: 1024px) {
+  .timeline-line {
+    left: calc(50% - 1px);
+  }
+
+  .timeline-dot {
+    left: calc(50% - 0.75rem);
   }
 }
 

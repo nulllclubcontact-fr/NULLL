@@ -36,8 +36,6 @@ export function RegisterForm({ fournisseurs, sortie }: { fournisseurs: Fournisse
       aria-label="Inscription membre"
       className="panel panel-grid account-stagger grid gap-3.5 p-5 sm:p-6 lg:p-5"
     >
-      {/* La decharge se signe juste apres, sur /membre/bienvenue. */}
-      <BoutonsSociaux apple={fournisseurs.apple} google={fournisseurs.google} separateur="ou avec ton e-mail" sortie={sortie} />
       <input name="sortie" type="hidden" value={sortie ?? ""} />
 
       <div className="grid gap-3.5 sm:grid-cols-2" style={{ "--pas": 0 } as React.CSSProperties}>
@@ -119,6 +117,10 @@ export function RegisterForm({ fournisseurs, sortie }: { fournisseurs: Fournisse
           {state.error}
         </p>
       ) : null}
+
+      {/* Google juste au-dessus du bouton principal. Avec Google, la decharge
+          se signe juste apres, sur /membre/bienvenue. */}
+      <BoutonsSociaux apple={fournisseurs.apple} google={fournisseurs.google} separateur="ou" sortie={sortie} />
 
       {/* Le bouton restait gris sans rien dire. Il annonce maintenant ce
           qui le debloque, et reprend le mouvement des autres boutons du

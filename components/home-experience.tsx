@@ -76,7 +76,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
                 <div className="home-run-date"><strong>{day?.padStart(2, "0")}</strong><p><span className="home-label">{weekday}</span><span>{month.join(" ")}</span></p></div>
                 <p className="home-label home-run-details">{run.time} · {run.distance} · {run.pace}</p>
                 <p className="home-run-location">{run.location}</p>
-                <Link className="home-run-link home-label" href={runsHref}><span>{index === 0 ? "Choisir cette sortie" : "Voir la sortie"}</span><ArrowIcon /></Link>
+                <Link className="home-run-link home-label" href={`/membre/login?sortie=${run.id}`}><span>Choisir cette sortie</span><ArrowIcon /></Link>
               </li>;
             })}
           </ol>
@@ -92,7 +92,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
 
       <section className="home-club home-section" aria-labelledby="home-le-club">
         <div className="home-section-top home-label"><span>02 · Bienvenue au club</span><span className="home-hand">Aucune avance. Aucune pression.</span></div>
-        <div className="home-club-heading" data-home-reveal><h2 id="home-le-club">Un run club<br /><span>à Aix-en-Provence.</span></h2></div>
+        <div className="home-club-heading" data-home-reveal><h2 id="home-le-club">Un social sport club<br /><span>à Aix-en-Provence.</span></h2></div>
         <div className="home-club-layout">
           <div className="home-club-visual" data-home-reveal>
             <figure className="home-crew-photo"><Image src="/assets/photos/runs-crew.webp" alt="Un groupe de coureurs réunis en plein air" fill sizes="(max-width: 760px) 90vw, 45vw" /></figure>
@@ -100,7 +100,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
           </div>
           <div className="home-club-copy" data-home-reveal>
               <p>
-                NULLL.CLUB est un run club associatif à Aix-en-Provence. On se retrouve
+                NULLL.CLUB est un social sport club associatif à Aix-en-Provence. On se retrouve
                 <strong> le samedi à 8h30</strong> pour courir ensemble, à une allure qui permet de discuter. Les
                 prochaines dates et leurs informations pratiques sont sur la page Sorties.
               </p>

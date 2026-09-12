@@ -40,7 +40,6 @@ export default async function RunsPage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale);
   const copy = getSiteCopy(locale);
   const contactHref = getRoute(locale, "contact");
-  const identificationHref = "/identification";
   const tickerCopy = "On court ensemble · On prend le temps de se parler";
   const lecture = await listPublicRuns();
   const panne = lecture === null;
@@ -177,8 +176,8 @@ export default async function RunsPage({ params }: PageProps) {
             tabIndex={0}
           >
             {runs.map((run, index) => (
-              <div className="run-carousel-slide w-[90%] shrink-0 snap-center sm:w-[78%] xl:w-[72%]" id={`run-card-${run.id}`} key={run.id}>
-                <RunCardCol index={index} joinHref={`${identificationHref}?sortie=${run.id}`} run={run} />
+              <div className="run-carousel-slide flex w-[90%] shrink-0 snap-center sm:w-[78%] xl:w-[72%]" id={`run-card-${run.id}`} key={run.id}>
+                <RunCardCol index={index} joinHref={`/membre/login?sortie=${run.id}`} run={run} />
               </div>
             ))}
           </div>
@@ -246,7 +245,7 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
   return (
     <Reveal
       as="article"
-      className={`run-poster group relative overflow-hidden text-[#F1EDE9] ${index === 0 ? "run-poster--featured border-[6px] border-[#FFB200]" : "border-2 border-[#F1EDE9]"}`}
+      className={`run-poster group relative h-full w-full overflow-hidden border-4 text-[#F1EDE9] ${index === 0 ? "run-poster--featured border-[#FFB200]" : "border-[#F1EDE9]"}`}
       delay={index * 100}
     >
       {/* La photo de la sortie si l'admin en a mis une, sinon une photo du
@@ -262,7 +261,7 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
       <div className="run-card-shade absolute inset-0" />
       <div aria-hidden="true" className={`absolute left-0 top-0 h-3 w-full ${visual.accent.split(" ")[0]}`} />
 
-      <div className="relative z-10 flex min-h-[31rem] flex-col justify-between p-5 sm:min-h-[34rem] sm:p-8 lg:min-h-[38rem] lg:p-10">
+      <div className="relative z-10 flex h-full min-h-[31rem] flex-col justify-between p-5 sm:min-h-[34rem] sm:p-8 lg:min-h-[38rem] lg:p-10">
         <div className="flex items-start justify-between gap-4">
           <span className={`inline-flex min-h-11 items-center px-4 font-mono text-xs font-black uppercase tracking-[.14em] ${visual.accent}`}>
             {index === 0 ? "À ne pas rater" : `Sortie 0${index + 1}`}

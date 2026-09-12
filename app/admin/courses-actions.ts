@@ -333,6 +333,24 @@ export async function supprimerCourse(formData: FormData) {
   redirect("/admin/courses");
 }
 
+/** Inscrits (hors annulations) et scannes d'une sortie, pour l'ecran du scanner. */
+export async function compterSortie(raceId: string): Promise<{ inscrits: number; scannes: number } | null> {
+  const admin = await isAdminUser();
+
+  if (!admin || !raceId) {
+    return null;
+  }
+
+  const compter = () => admin.supabase.from("race_registrations").select("id", { count: "exact", head: true }).eq("race_id", raceId);
+  const [inscrits, scannes] = await Promise.all([compter().neq("status", "cancelled"), compter().eq("checked_in", true)]);
+
+  if (inscrits.error || scannes.error) {
+    return null;
+  }
+
+  return { inscrits: inscrits.count ?? 0, scannes: scannes.count ?? 0 };
+}
+
 /**
  * Pointer un participant.
  *
