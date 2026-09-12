@@ -57,7 +57,7 @@ export default async function MemberPanelLayout({ children }: { children: ReactN
 
       {/* Sous-navigation de l'espace, en jaune : on voit d'un coup d'oeil
           qu'on a change de territoire. */}
-      <div className="sticky top-20 z-40 border-b-2 border-[#773331] bg-[#FFB200]">
+      <div className="panel-navigation sticky top-20 z-40 border-b-2 border-[#773331] bg-[#FFB200]">
         <div className="shell flex flex-wrap items-center gap-x-1 gap-y-2 py-2">
           {ONGLETS.map((onglet) => (
             <Link

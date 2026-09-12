@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { completerProfil, passerInvitation, type InvitationState } from "../../app/membre/invitation-actions";
 
 const initial: InvitationState = {};
@@ -12,28 +12,64 @@ const initial: InvitationState = {};
 export function InvitationProfil({ prenom }: { prenom: string | null }) {
   const [etat, enregistrer, enCours] = useActionState(completerProfil, initial);
   const [etatPasse, passer, passeEnCours] = useActionState(passerInvitation, initial);
+  const dialogue = useRef<HTMLDivElement>(null);
+  const plusTard = useRef<HTMLButtonElement>(null);
+  const fini = Boolean(etat.fini || etatPasse.fini);
+
+  useEffect(() => {
+    if (fini) return;
+    const precedent = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialogue.current?.focus();
+    return () => {
+      document.body.style.overflow = overflow;
+      precedent?.focus();
+    };
+  }, [fini]);
 
   if (etat.fini || etatPasse.fini) {
     return null;
   }
 
   return (
-    <div className="fixed inset-0 z-[90] grid place-items-center overflow-y-auto bg-[#3A1A18]/80 p-4" role="presentation">
+    <div className="fixed inset-0 z-[90] grid place-items-center bg-[#3A1A18]/80 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]" role="presentation">
       <div
         aria-describedby="invitation-profil-texte"
         aria-labelledby="invitation-profil-titre"
         aria-modal="true"
-        className="w-full max-w-xl border-2 border-[#773331] bg-[#F1EDE9] text-[#773331] shadow-[10px_10px_0_#FFB200]"
+        className="invitation-profil flex max-h-[calc(100dvh-2rem-env(safe-area-inset-bottom))] w-full max-w-xl flex-col overflow-hidden border-2 border-[#773331] bg-[#F1EDE9] text-[#773331] shadow-[10px_10px_0_#FFB200]"
+        onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            plusTard.current?.click();
+          }
+          if (event.key !== "Tab") return;
+          const controles = dialogue.current?.querySelectorAll<HTMLElement>('input:not([type="hidden"]):not([disabled]), button:not([disabled])');
+          if (!controles?.length) return;
+          const premier = controles[0];
+          const dernier = controles[controles.length - 1];
+          if (event.shiftKey && (document.activeElement === premier || document.activeElement === dialogue.current)) {
+            event.preventDefault();
+            dernier.focus();
+          } else if (!event.shiftKey && document.activeElement === dernier) {
+            event.preventDefault();
+            premier.focus();
+          }
+        }}
+        ref={dialogue}
         role="dialog"
+        tabIndex={-1}
       >
-        <div className="border-b-2 border-[#773331] bg-[#FFB200] px-5 py-4 sm:px-7">
+        <div className="shrink-0 border-b-2 border-[#773331] bg-[#FFB200] px-5 py-4 sm:px-7">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Bienvenue{prenom ? `, ${prenom}` : ""}</p>
           <h2 className="mt-2 font-display text-[clamp(1.9rem,6vw,2.6rem)] uppercase leading-[1.05]" id="invitation-profil-titre">
             Deux minutes pour ton profil.
           </h2>
         </div>
 
-        <form action={enregistrer} className="grid gap-4 px-5 py-5 sm:px-7 sm:py-6">
+        <form action={enregistrer} className="flex min-h-0 flex-col">
+          <div className="grid gap-4 overflow-y-auto overscroll-contain px-5 py-5 sm:px-7 sm:py-6">
           <p className="text-base leading-relaxed" id="invitation-profil-texte">
             Ton numéro nous permet de te joindre si une sortie change au dernier moment. La personne à prévenir, c’est au
             cas où tu aurais un pépin pendant une sortie. Tout est facultatif, et tu pourras le modifier dans Mon profil.
@@ -75,7 +111,8 @@ export function InvitationProfil({ prenom }: { prenom: string | null }) {
             </p>
           ) : null}
 
-          <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
+          </div>
+          <div className="grid shrink-0 grid-cols-2 gap-2 border-t-2 border-[#773331] px-3 py-3 sm:grid-cols-[1fr_auto] sm:px-7">
             <button className="primary-button justify-center" disabled={enCours || passeEnCours} type="submit">
               {enCours ? "Enregistrement…" : "Enregistrer"}
             </button>
@@ -84,6 +121,7 @@ export function InvitationProfil({ prenom }: { prenom: string | null }) {
               disabled={enCours || passeEnCours}
               formAction={passer}
               formNoValidate
+              ref={plusTard}
               type="submit"
             >
               {passeEnCours ? "…" : "Plus tard"}
