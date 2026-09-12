@@ -125,9 +125,11 @@ export function SiteHeader({
 export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }) {
   return (
     <footer className="border-t-2 border-[#773331] bg-[#773331] text-[#F1EDE9]">
-      <div className="mx-auto max-w-[1600px] px-5 py-10 sm:px-8 sm:py-14 xl:px-12">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-12">
-          <div>
+      {/* Sur telephone, les deux colonnes de liens restent cote a cote et le
+          rendez-vous tient en une ligne : empile, le pied faisait deux ecrans. */}
+      <div className="mx-auto max-w-[1600px] px-5 py-8 sm:px-8 sm:py-14 xl:px-12">
+        <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-12">
+          <div className="col-span-2 sm:col-span-1">
             <p className="max-w-[13ch] font-display text-[clamp(2rem,3.4vw,2.9rem)] uppercase leading-[1.12] [overflow-wrap:normal]">
               Social sport club à Aix-en-Provence.
             </p>
@@ -157,9 +159,9 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
             title="Nous suivre"
           />
 
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">Le rendez-vous</p>
-            <ul className="mt-5 space-y-3 text-[1.02rem] text-[#F1EDE9]/80">
+            <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[.95rem] text-[#F1EDE9]/80 sm:mt-5 sm:block sm:space-y-3 sm:text-[1.02rem]">
               <li>Tous les samedis</li>
               <li>08:30</li>
               <li>{DEPART.nom}</li>
@@ -168,10 +170,10 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-[#F1EDE9]/20 pt-5 font-mono text-xs uppercase tracking-[.12em] text-[#F1EDE9]/80 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-[#F1EDE9]/20 pt-3 font-mono text-xs uppercase tracking-[.12em] text-[#F1EDE9]/80 sm:mt-10 sm:justify-between sm:pt-5">
           <span>© 2026 NULLL.CLUB</span>
           <Link
-            className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
+            className="inline-flex min-h-11 items-center underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
             href="/confidentialite"
           >
             Confidentialité
@@ -194,14 +196,26 @@ function FooterColumn({ title, links }: { title: string; links: Array<{ href: st
   return (
     <div>
       <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">{title}</p>
-      <ul className="mt-5 space-y-3">
+      {/* Sur telephone, les liens se touchent : chacun garde 44 px de haut
+          pour le doigt, sans l'espace en plus qui allongeait le pied. */}
+      <ul className="mt-2 sm:mt-5 sm:space-y-3">
         {links.map((link) => (
           <li key={link.href}>
             <Link
-              className="inline-flex min-h-11 items-center py-2 text-[1.02rem] text-[#F1EDE9]/80 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
+              className="inline-flex min-h-11 items-center text-[.95rem] text-[#F1EDE9]/80 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200] sm:py-2 sm:text-[1.02rem]"
               href={link.href}
             >
-              {link.label}
+              {/* L'adresse e-mail peut passer a la ligne apres l'arobase dans
+                  une demi-colonne de 320 px. */}
+              {link.label.includes("@") && !link.label.startsWith("@") ? (
+                <span>
+                  {link.label.slice(0, link.label.indexOf("@") + 1)}
+                  <wbr />
+                  {link.label.slice(link.label.indexOf("@") + 1)}
+                </span>
+              ) : (
+                link.label
+              )}
             </Link>
           </li>
         ))}
