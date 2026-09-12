@@ -107,9 +107,9 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
               <p>
                 C’est <strong>gratuit</strong>. Tu peux venir une fois pour voir, puis revenir pour les gens.
               </p>
-          </div>
-        </div>
-        <dl className="home-facts" data-home-reveal>
+            {/* Les infos pratiques remontent a cote de la photo : la colonne
+                restait vide sous deux paragraphes. */}
+            <dl className="home-facts" data-home-reveal>
           {[
             { t: "Quand", d: "Tous les samedis, 8h30" },
             { t: "Où", d: DEPART.adresse },
@@ -127,6 +127,8 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
               où courir à Aix-en-Provence
             </Link>.
           </p>
+          </div>
+        </div>
       </section>
 
       <section className="home-explore home-section" aria-labelledby="home-explore-title">

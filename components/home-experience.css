@@ -61,6 +61,8 @@
 .home-journey .home-first-time p{font-size:32px;line-height:1.1;margin:12px 0}
 .home-journey .home-club-copy{font-size:clamp(19px,1.5vw,24px);line-height:1.6;align-self:start;padding-top:6px}
 .home-journey .home-club-copy>p+p{margin-top:22px}
+.home-journey .home-club-copy .home-facts{grid-template-columns:1fr 1fr;margin-top:36px}
+.home-journey .home-club-copy .home-local-links{margin-top:24px;font-size:16px;line-height:1.6}
 .home-journey .home-facts{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);margin-top:65px;border-top:2px solid var(--home-ink);border-bottom:2px solid var(--home-ink);background:var(--home-cream)}
 .home-journey .home-facts>div{padding:26px 20px;border-right:1px solid #77333155}
 .home-journey .home-facts>div:first-child{padding-left:0}

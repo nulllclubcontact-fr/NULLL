@@ -168,10 +168,11 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             </div>
 
             <figure className="mx-auto w-full max-w-md lg:sticky lg:top-28 lg:mx-0 lg:max-w-none lg:self-start">
-              <div className="relative aspect-[4/5] overflow-hidden border-2 border-[#F1EDE9] shadow-[14px_14px_0_#FFB200]">
+              {/* Carre cale sur les verres : c'est le reflet du groupe qui compte, pas le front. */}
+              <div className="relative aspect-square overflow-hidden border-2 border-[#F1EDE9] shadow-[14px_14px_0_#FFB200]">
                 <Image
                   alt="Un petit groupe du club reflété dans des lunettes de soleil"
-                  className="object-cover"
+                  className="object-cover object-[50%_72%]"
                   fill
                   sizes="(min-width: 1024px) 38vw, 100vw"
                   src="/assets/photos/editorial-glasses.webp"
