@@ -3,7 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { SiteHeader, SiteFooter } from "../../../components/site-shell";
 import { getSiteCopy } from "../../../lib/site-content";
-import { createSupabaseServerClient } from "../../../lib/supabase/server";
+import { sessionServeur } from "../../../lib/supabase/server";
 import { logoutMember } from "../actions";
 import { InvitationProfil } from "../../../components/membre/invitation-profil";
 
@@ -19,21 +19,15 @@ const ONGLETS = [
 ];
 
 export default async function MemberPanelLayout({ children }: { children: ReactNode }) {
-  let supabase;
+  // Une seule verification de session par requete : layout et page
+  // partagent la meme (cache React) au lieu d'un aller-retour chacun.
+  const session = await sessionServeur();
 
-  try {
-    supabase = await createSupabaseServerClient();
-  } catch {
+  if (!session?.user) {
     redirect("/membre/login");
   }
 
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/membre/login");
-  }
+  const { supabase, user } = session;
 
   const { data: profil } = await supabase
     .from("profiles")

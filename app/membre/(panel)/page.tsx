@@ -7,7 +7,7 @@ import { formatDistance, formatHeure, formatJour } from "../../../components/rac
 import { listMyRegistrations, listUpcomingRaces, splitRegistrations } from "../../../lib/races/repo";
 import { encodeMemberQrToken } from "../../../lib/qr/token";
 import { sortieValide } from "../../../lib/races/sortie-choisie";
-import { createSupabaseServerClient } from "../../../lib/supabase/server";
+import { sessionServeur } from "../../../lib/supabase/server";
 import type { RegistrationWithRace } from "../../../lib/races/types";
 
 export const metadata = { title: "Mon espace | NULLL.CLUB", robots: { index: false, follow: false } };
@@ -26,21 +26,15 @@ const MOIS = new Intl.DateTimeFormat("fr-FR", { month: "long", timeZone: "Europe
  * qui accroche l'oeil.
  */
 export default async function MemberDashboardPage({ searchParams }: { searchParams: Promise<{ sortie?: string }> }) {
-  let supabase;
+  // Une seule verification de session par requete : layout et page
+  // partagent la meme (cache React) au lieu d'un aller-retour chacun.
+  const session = await sessionServeur();
 
-  try {
-    supabase = await createSupabaseServerClient();
-  } catch {
+  if (!session?.user) {
     redirect("/membre/login");
   }
 
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/membre/login");
-  }
+  const { supabase, user } = session;
 
   const [{ data: profile }, inscriptions, coursesAVenir] = await Promise.all([
     supabase.from("profiles").select("first_name").eq("id", user.id).maybeSingle<{ first_name: string | null }>(),

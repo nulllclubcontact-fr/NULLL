@@ -1,25 +1,19 @@
 import { redirect } from "next/navigation";
 import { ProfilForm } from "./ProfilForm";
-import { createSupabaseServerClient } from "../../../../lib/supabase/server";
+import { sessionServeur } from "../../../../lib/supabase/server";
 
 export const metadata = { title: "Mes infos | NULLL.CLUB", robots: { index: false, follow: false } };
 
 export default async function MemberProfilPage() {
-  let supabase;
+  // Une seule verification de session par requete : layout et page
+  // partagent la meme (cache React) au lieu d'un aller-retour chacun.
+  const session = await sessionServeur();
 
-  try {
-    supabase = await createSupabaseServerClient();
-  } catch {
+  if (!session?.user) {
     redirect("/membre/login");
   }
 
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/membre/login");
-  }
+  const { supabase, user } = session;
 
   const { data: profil, error: erreurProfil } = await supabase
     .from("profiles")

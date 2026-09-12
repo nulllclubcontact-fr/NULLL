@@ -5,7 +5,7 @@ import { AccountShell } from "../../../components/account-shell";
 import { fournisseursAuth } from "../../../lib/auth/reglages";
 import { redirect } from "next/navigation";
 import { destinationMembre, sortieValide, suiteSortie } from "../../../lib/races/sortie-choisie";
-import { createSupabaseServerClient } from "../../../lib/supabase/server";
+import { sessionServeur } from "../../../lib/supabase/server";
 
 // /auth/callback renvoie ici quand le lien recu par mail ne vaut plus rien.
 const MESSAGES_ERREUR: Record<string, string> = {
@@ -35,15 +35,7 @@ export default async function MemberLoginPage({
   let connecte = false;
 
   if (!erreur) {
-    try {
-      const supabase = await createSupabaseServerClient();
-      const {
-        data: { user }
-      } = await supabase.auth.getUser();
-      connecte = Boolean(user);
-    } catch {
-      connecte = false;
-    }
+    connecte = Boolean((await sessionServeur())?.user);
   }
 
   if (connecte) {

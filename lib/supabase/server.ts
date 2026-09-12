@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import { assertSupabasePublicEnv, supabaseAnonKey, supabaseUrl } from "./config";
@@ -30,3 +31,21 @@ export async function createSupabaseServerClient({ sessionCourte }: { sessionCou
     }
   });
 }
+
+/**
+ * La session du visiteur, verifiee une seule fois par requete. Le layout
+ * de l'espace membre et sa page faisaient chacun leur getUser, soit deux
+ * allers-retours vers Supabase avant d'afficher quoi que ce soit : cache()
+ * les fait partager le meme. null si Supabase est injoignable.
+ */
+export const sessionServeur = cache(async () => {
+  try {
+    const supabase = await createSupabaseServerClient();
+    const {
+      data: { user }
+    } = await supabase.auth.getUser();
+    return { supabase, user };
+  } catch {
+    return null;
+  }
+});
