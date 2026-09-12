@@ -152,7 +152,9 @@ function BoutonGoogleOfficiel({ onErreur, onIndisponible, sortie }: { onErreur: 
         </p>
       ) : (
         // Hauteur reservee : la page ne saute pas quand Google dessine son bouton.
-        <div className="flex min-h-11 w-full justify-center" ref={conteneur} />
+        // min-w-0 et overflow-hidden : le bouton de Google a une largeur fixe ;
+        // sans eux il poussait toute la page au lieu d'etre redessine plus etroit.
+        <div className="flex min-h-11 w-full min-w-0 justify-center overflow-hidden" ref={conteneur} />
       )}
     </>
   );

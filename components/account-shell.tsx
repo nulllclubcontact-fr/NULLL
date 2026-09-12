@@ -55,7 +55,7 @@ export function AccountShell({
       {/* La photo occupait un bandeau court au-dessus du formulaire, ce qui
           recadrait les portraits verticaux sur un sourcil. Elle prend
           desormais toute la hauteur de sa colonne, et porte le titre. */}
-      <main className="grid flex-1 border-b-2 border-[#773331] lg:grid-cols-[minmax(0,1fr)_minmax(440px,0.92fr)]" id="contenu" tabIndex={-1}>
+      <main className="grid flex-1 grid-cols-[minmax(0,1fr)] border-b-2 border-[#773331] lg:grid-cols-[minmax(0,1fr)_minmax(440px,0.92fr)]" id="contenu" tabIndex={-1}>
         <div className="relative isolate flex min-h-[38svh] flex-col justify-end overflow-hidden bg-[#3A1A18] text-[#F1EDE9] sm:min-h-[52svh] lg:min-h-[calc(100dvh-8.6rem)]">
           <Image
             alt={imageAlt}
