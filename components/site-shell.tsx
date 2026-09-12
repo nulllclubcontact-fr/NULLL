@@ -60,7 +60,7 @@ export function SiteHeader({
   const isIdentification = current === "identification" || pathname === "/identification";
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-[#773331] bg-[#F1EDE9]">
+    <header className="site-header sticky top-0 z-50 border-b-2 border-[#773331] bg-[#F1EDE9]">
       <a
         className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-[60] focus:border-2 focus:border-[#773331] focus:bg-[#FFB200] focus:px-4 focus:py-3 focus:font-mono focus:text-xs focus:font-black focus:uppercase focus:text-[#773331]"
         href="#contenu"

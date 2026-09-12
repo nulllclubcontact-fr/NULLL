@@ -71,7 +71,17 @@ export function ContactChannels({ channels }: { channels: Channel[] }) {
                   {channel.title}
                 </span>
                 <span className="contact-row-value copy-safe mt-2 block font-display text-[clamp(1.15rem,4vw,3rem)] uppercase leading-[1.12] tracking-[-.03em]">
-                  {channel.value}
+                  {/* A 320 px, l'adresse e-mail ne tient pas sur une ligne : on
+                      autorise la coupure apres l'arobase, jamais au milieu d'un mot. */}
+                  {channel.value.includes("@") ? (
+                    <>
+                      {channel.value.slice(0, channel.value.indexOf("@") + 1)}
+                      <wbr />
+                      {channel.value.slice(channel.value.indexOf("@") + 1)}
+                    </>
+                  ) : (
+                    channel.value
+                  )}
                 </span>
                 <span className="contact-row-text block max-w-[56ch] text-base leading-relaxed opacity-80">{channel.text}</span>
               </span>

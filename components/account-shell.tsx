@@ -146,7 +146,7 @@ export function AccountShell({
               >
                 {footerLink.label}
                 <Link
-                  className="group inline-flex items-center gap-2 text-[#FFB200] underline decoration-[#FFB200]/40 decoration-2 underline-offset-4 transition hover:decoration-[#FFB200]"
+                  className="group inline-flex min-h-11 min-w-11 items-center gap-2 text-[#FFB200] underline decoration-[#FFB200]/40 decoration-2 underline-offset-4 transition hover:decoration-[#FFB200]"
                   href={footerLink.href}
                 >
                   {footerLink.cta}
