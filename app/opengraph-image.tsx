@@ -1,6 +1,8 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+// Runtime Node par defaut : l'Edge Runtime est deprecie depuis Next 16.
 export const alt = "NULLL.CLUB, social sport club à Aix-en-Provence";
 export const size = {
   width: 1200,
@@ -14,7 +16,7 @@ export const contentType = "image/png";
  * vrai mot-logo, sur les aplats de la palette du club.
  */
 export default async function OpenGraphImage() {
-  const logo = await fetch(new URL("../public/assets/nulll-new/logo-cream.png", import.meta.url)).then((reponse) => reponse.arrayBuffer());
+  const logo = `data:image/png;base64,${(await readFile(join(process.cwd(), "public/assets/nulll-new/logo-cream.png"))).toString("base64")}`;
 
   return new ImageResponse(
     (

@@ -37,7 +37,7 @@ export default function IdentificationPage() {
           aria-hidden="true"
           className="pointer-events-none absolute -left-8 bottom-4 h-auto w-[150%] max-w-none opacity-[.055] sm:w-[125%]"
           height={313}
-          priority
+          loading="eager"
           src="/assets/nulll-new/logo-cream.png"
           width={2449}
         />

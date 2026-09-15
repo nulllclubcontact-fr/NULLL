@@ -9,6 +9,8 @@ const PRO_SESSION_COOKIE = "nulll_pro_session";
 
 type ProSessionPayload = {
   partnerId: string;
+  /** Code d'acces utilise : sa revocation ferme aussi la session. */
+  codeId: string;
   exp: number;
 };
 
@@ -43,7 +45,9 @@ function decodeSession(value: string): ProSessionPayload | null {
   try {
     const payload = JSON.parse(Buffer.from(body, "base64url").toString("utf8")) as ProSessionPayload;
 
-    if (!payload.partnerId || payload.exp < Date.now()) {
+    // Un cookie emis avant l'ajout de codeId n'est plus accepte : le
+    // partenaire se reconnecte une fois avec son code.
+    if (!payload.partnerId || !payload.codeId || payload.exp < Date.now()) {
       return null;
     }
 
@@ -65,9 +69,10 @@ export async function getProSession() {
 }
 
 /**
- * Session valide ET partenaire toujours actif. La signature seule ne
- * suffit pas : un partenaire desactive gardait l'acces jusqu'a
- * l'expiration de son cookie, douze heures plus tard.
+ * Session valide, partenaire toujours actif ET code d'acces toujours
+ * valable. La signature seule ne suffit pas : un partenaire desactive, ou
+ * un code fuite puis remplace, gardait l'acces jusqu'a l'expiration du
+ * cookie, douze heures plus tard.
  */
 export async function getActiveProSession() {
   const session = await getProSession();
@@ -78,22 +83,23 @@ export async function getActiveProSession() {
 
   try {
     const { data } = await createSupabaseServiceClient()
-      .from("partners")
-      .select("active")
-      .eq("id", session.partnerId)
-      .maybeSingle<{ active: boolean | null }>();
+      .from("partner_access_codes")
+      .select("active,partners(active)")
+      .eq("id", session.codeId)
+      .eq("partner_id", session.partnerId)
+      .maybeSingle<{ active: boolean | null; partners: { active: boolean | null } | null }>();
 
-    return data?.active ? session : null;
+    return data?.active && data.partners?.active ? session : null;
   } catch {
     return null;
   }
 }
 
-export async function setProSession(partnerId: string) {
+export async function setProSession(partnerId: string, codeId: string) {
   const cookieStore = await cookies();
   const expires = Date.now() + 1000 * 60 * 60 * 12;
 
-  cookieStore.set(PRO_SESSION_COOKIE, encodeSession({ partnerId, exp: expires }), {
+  cookieStore.set(PRO_SESSION_COOKIE, encodeSession({ partnerId, codeId, exp: expires }), {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",

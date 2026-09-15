@@ -4,6 +4,10 @@ import { generateMetadata } from "../community/page";
 
 export { generateMetadata };
 
+// Le recit bascule seul apres la premiere sortie (lib/site-content.ts) :
+// la page statique se regenere au plus tard toutes les heures.
+export const revalidate = 3600;
+
 type PageProps = {
   params: Promise<{ locale: string }>;
 };

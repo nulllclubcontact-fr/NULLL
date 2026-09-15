@@ -9,7 +9,9 @@ import { sessionServeur } from "../../../lib/supabase/server";
 
 // /auth/callback renvoie ici quand le lien recu par mail ne vaut plus rien.
 const MESSAGES_ERREUR: Record<string, string> = {
-  lien: "Ce lien a expiré ou a déjà servi. Redemande-en un plus bas.",
+  // Un ancien lien de confirmation ouvert dans un autre navigateur arrive
+  // aussi ici, alors que l'adresse est souvent deja confirmee.
+  lien: "Ce lien a expiré, a déjà servi ou a été ouvert dans un autre navigateur. Si tu confirmais ton adresse, essaie de te connecter.",
   config: "Connexion indisponible pour le moment. Réessaie dans un instant.",
   fournisseur: "Connexion avec Google ou Apple interrompue. Réessaie, ou passe par ton e-mail."
 };

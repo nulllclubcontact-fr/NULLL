@@ -126,7 +126,7 @@ export async function loginPro(_previousState: ProLoginState, formData: FormData
 
     if (matches) {
       await supabase.from("partner_access_codes").update({ last_used_at: new Date().toISOString() }).eq("id", accessCode.id);
-      await setProSession(accessCode.partner_id);
+      await setProSession(accessCode.partner_id, accessCode.id);
       await clearRateLimit();
       redirect("/pro/stats");
     }

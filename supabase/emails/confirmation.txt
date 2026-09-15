@@ -1,0 +1,16 @@
+NULLL.CLUB · Social run club · Aix-en-Provence
+
+CONFIRME TON ADRESSE
+
+Ton compte NULLL.CLUB est presque prêt. Confirme que cette adresse est bien la tienne : tu pourras ensuite choisir ta sortie et retrouver ton QR.
+
+Confirmer mon adresse email :
+{{ .SiteURL }}/auth/confirmer#token_hash={{ .TokenHash }}&type=email&next={{ .RedirectTo }}
+
+Le lien reste valable 1 heure et ne sert qu'une fois. Il marche aussi sur un autre appareil que celui de l'inscription.
+
+Tu n'as pas créé de compte ? Ignore ce mail. Sans clic, rien n'est activé et tu ne recevras rien d'autre de notre part.
+
+--
+Tu reçois ce mail parce que cette adresse a servi à s'inscrire sur nulll.club.
+Une question : contact@nulll.club

@@ -14,13 +14,23 @@ const securite = [
   { key: "Permissions-Policy", value: "camera=(self), microphone=(), geolocation=()" }
 ];
 
+// Nom d'hote du projet Supabase, lu au build. « *.supabase.co » ouvrait
+// l'optimiseur d'images a n'importe quel projet Supabase.
+const hoteSupabase = (() => {
+  try {
+    return new URL(process.env.NEXT_PUBLIC_SUPABASE_URL ?? "").hostname;
+  } catch {
+    return "";
+  }
+})();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Les photos de sortie deposees dans Supabase passent par l'optimiseur
   // (tailles adaptees, WebP/AVIF) au lieu d'etre servies brutes, jusqu'a
   // 10 Mo. Seul le stockage public du projet est autorise.
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**" }]
+    remotePatterns: hoteSupabase ? [{ protocol: "https", hostname: hoteSupabase, pathname: "/storage/v1/object/public/**" }] : []
   },
   async headers() {
     return [{ source: "/:path*", headers: securite }];

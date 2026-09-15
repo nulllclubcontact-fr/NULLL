@@ -37,9 +37,16 @@ export async function oublierEssais(espace: string, identite: string) {
 /**
  * L'adresse de l'appelant, seule : un en-tete choisi par l'appelant, comme
  * le user-agent, se change a volonte et rendrait la limite inutile.
+ * Sur Vercel, x-vercel-forwarded-for est pose par la plateforme et ne
+ * reprend pas une valeur fournie par le visiteur.
  */
 export function adresseAppelant(entetes: Headers) {
-  return entetes.get("x-forwarded-for")?.split(",")[0]?.trim() || entetes.get("x-real-ip")?.trim() || "local";
+  return (
+    entetes.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() ||
+    entetes.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    entetes.get("x-real-ip")?.trim() ||
+    "local"
+  );
 }
 
 function cle(espace: string, identite: string) {

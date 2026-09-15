@@ -5,6 +5,8 @@ import { useActionState, useState } from "react";
 import { registerMember, renvoyerCodeInscription, verifierCodeInscription, type RegisterState } from "../actions";
 import { BoutonsSociaux } from "../../../components/auth/boutons-sociaux";
 import { CodeSms } from "../../../components/auth/code-sms";
+import { RenvoiConfirmation } from "../../../components/auth/renvoi-confirmation";
+import { DUREE_LIEN_EMAIL } from "../../../lib/auth/confirmation";
 import type { FournisseursAuth } from "../../../lib/auth/reglages";
 
 const initialState: RegisterState = {};
@@ -26,6 +28,33 @@ export function RegisterForm({ fournisseurs, sortie }: { fournisseurs: Fournisse
           texteBouton="Valider mon numéro"
           verifier={verifierCodeInscription}
         />
+      </div>
+    );
+  }
+
+  // Compte cree par e-mail : il reste a cliquer sur le lien du mail.
+  if (state.etape === "email" && state.email) {
+    return (
+      <div className="panel panel-grid grid gap-4 p-5 sm:p-6">
+        <div role="status">
+          <p className="font-display text-3xl uppercase leading-none">Regarde tes mails.</p>
+          <p className="mt-3 font-bold leading-snug">
+            On vient d’envoyer un lien à <span className="break-all">{state.email}</span>. Clique sur « Confirmer mon adresse email » : ton compte s’active et
+            tu choisis ta sortie.
+          </p>
+        </div>
+        <p className="text-sm font-bold leading-snug">
+          Le lien reste valable {DUREE_LIEN_EMAIL} et marche aussi sur ton téléphone. Rien reçu d’ici quelques minutes ? Regarde dans les spams ou
+          l’onglet Promotions, puis renvoie-le.
+        </p>
+        <RenvoiConfirmation email={state.email} sortie={sortie} />
+        {/* Un vrai rechargement : le formulaire repart de zero. */}
+        <a
+          className="inline-flex min-h-11 items-center font-mono text-xs font-black uppercase underline decoration-[#EBA0CD] decoration-2 underline-offset-4"
+          href={`/membre/register${sortie ? `?sortie=${sortie}` : ""}`}
+        >
+          Pas la bonne adresse ? Recommencer
+        </a>
       </div>
     );
   }

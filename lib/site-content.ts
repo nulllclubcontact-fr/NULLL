@@ -43,6 +43,9 @@ export type Product = {
   fit: string;
 };
 
+/** Premiere sortie collective : samedi 26 septembre 2026, 8h30 a Paris. */
+const PREMIERE_SORTIE = Date.parse("2026-09-26T06:30:00Z");
+
 export type Article = {
   key: Exclude<RouteKey, "home" | "runs" | "community" | "merch" | "about" | "contact" | "checkout">;
   slug: string;
@@ -106,63 +109,6 @@ export const productsByLocale: Record<Locale, Product[]> = {
   ]
 };
 
-const sharedEvents: Array<Omit<RunEvent, "title" | "summary" | "afterRun" | "pace">> = [
-  {
-    id: "sept-26",
-    date: "Samedi 26 septembre 2026",
-    isoDate: "2026-09-26T08:30:00+02:00",
-    time: "08:30",
-    distance: "5 km",
-    location: "Parking Émile Zola",
-    address: "Parking Émile Zola, Aix-en-Provence"
-  },
-  {
-    id: "oct-03",
-    date: "Samedi 3 octobre 2026",
-    isoDate: "2026-10-03T08:30:00+02:00",
-    time: "08:30",
-    distance: "6 km",
-    location: "Parking Émile Zola",
-    address: "Parking Émile Zola, Aix-en-Provence"
-  },
-  {
-    id: "oct-10",
-    date: "Samedi 10 octobre 2026",
-    isoDate: "2026-10-10T08:30:00+02:00",
-    time: "08:30",
-    distance: "5,5 km",
-    location: "Parking Émile Zola",
-    address: "Parking Émile Zola, Aix-en-Provence"
-  }
-];
-
-
-function buildRuns(): RunEvent[] {
-  return [
-    {
-      ...sharedEvents[0],
-      title: "Run social découverte",
-      pace: "Allure conversation",
-      summary: "Premier format idéal pour découvrir le run club à Aix-en-Provence sans pression.",
-      afterRun: "Boissons et musique après le run"
-    },
-    {
-      ...sharedEvents[1],
-      title: "Run du samedi matin",
-      pace: "Allure douce",
-      summary: "Boucle urbaine simple pour courir à Aix-en-Provence et rencontrer du monde.",
-      afterRun: "Photo de groupe et verre partenaire"
-    },
-    {
-      ...sharedEvents[2],
-      title: "Run communauté",
-      pace: "Allure sociale",
-      summary: "Sortie collective pensée pour les membres réguliers et les nouveaux venus.",
-      afterRun: "Rencontre informelle après la sortie"
-    }
-  ];
-}
-
 export function isLocale(value: string): value is Locale {
   return value === "fr";
 }
@@ -177,7 +123,9 @@ export function getArticleBySlug(locale: Locale, slug: string) {
 }
 
 export function getSiteCopy(locale: Locale) {
-  const runs = buildRuns();
+  // Le recit de la page Club change de temps une fois la premiere sortie
+  // passee : « a lieu » serait devenu faux, FAQ structuree comprise.
+  const premiereSortieFaite = Date.now() >= PREMIERE_SORTIE;
 
   return {
       locale,
@@ -192,7 +140,7 @@ export function getSiteCopy(locale: Locale) {
         // recouper d'une source a l'autre.
         phone: "+33626755273",
         phoneLabel: "06 26 75 52 73",
-        linkedin: "https://www.linkedin.com/company/nulll-club/?viewAsMember=true"
+        linkedin: "https://www.linkedin.com/company/nulll-club/"
       },
       nav: [
         { key: "home" as const, label: "Accueil" },
@@ -237,65 +185,6 @@ export function getSiteCopy(locale: Locale) {
           description:
             "Valide ta commande de merchandising NULLL.CLUB et envoie ta demande de confirmation."
         }
-      },
-      home: {
-        hero: {
-          title: "Le run club social qui fait vraiment bouger Aix-en-Provence.",
-          intro:
-            "NULLL.CLUB organise des runs accessibles à Aix-en-Provence pour courir, rencontrer du monde et revenir chaque semaine avec une vraie raison de sortir.",
-          primaryCta: "Voir les prochains runs",
-          secondaryCta: "Découvrir la communauté",
-          stats: [
-            { label: "Ville", value: "Aix-en-Provence" },
-            { label: "Format", value: "Run social hebdomadaire" },
-            { label: "Allure", value: "Conversation et débutants bienvenus" }
-          ]
-        },
-        promise: [
-          "Tu comprends immédiatement où tu es : un run club à Aix-en-Provence, pas une marque abstraite.",
-          "Tu sais quoi faire ensuite : choisir un prochain run, suivre Instagram, ou venir rencontrer le groupe.",
-          "Tu vois la preuve sociale : dates, parcours, ambiance et communauté locale."
-        ],
-        sections: {
-          nextRunsTitle: "Les prochains runs à Aix-en-Provence",
-          nextRunsText:
-            "Chaque sortie affiche une date claire, un lieu précis, une distance et l’ambiance prévue après le run.",
-          howTitle: "Comment ça se passe",
-          howSteps: [
-            {
-              title: "Tu arrives sans pression",
-              text: "Pas besoin d’être rapide, équipé ou déjà intégré. Tu viens comme tu es."
-            },
-            {
-              title: "Tu cours à allure sociale",
-              text: "Les parcours sont pensés pour parler, respirer et garder le groupe ensemble."
-            },
-            {
-              title: "Tu restes après",
-              text: "Le vrai lien se crée après la course : musique, boisson, discussions, prochains plans."
-            }
-          ],
-          merchTitle: "Les pièces du club",
-          merchText:
-            "Une sélection courte qui prolonge l'énergie du club sans prendre la place du run.",
-          seoTitle: "Pourquoi rejoindre un groupe de course à Aix ?",
-          seoBody:
-            "Si tu cherches un run club à Aix-en-Provence, un club de running local ou un groupe de course convivial, NULLL.CLUB t’offre un format simple : des événements running récurrents, une communication claire et une communauté ouverte."
-        },
-        faq: [
-          {
-            q: "Est-ce que je peux venir seul ?",
-            a: "Oui. C’est même le meilleur moyen de découvrir la communauté."
-          },
-          {
-            q: "Faut-il être rapide ?",
-            a: "Non. L’allure est pensée pour échanger et rester ensemble."
-          },
-          {
-            q: "Comment connaître le lieu exact ?",
-            a: "Le point de départ précis est rappelé sur la page runs et sur Instagram."
-          }
-        ]
       },
       runsPage: {
         title: "Des sorties lisibles, régulières et faciles à rejoindre.",
@@ -383,8 +272,10 @@ export function getSiteCopy(locale: Locale) {
           {
             date: "26 septembre 2026",
             label: "La première sortie",
-            text: "Notre première sortie collective, 8h30 au parking du chemin de la Cible, près du lycée Émile Zola. 5 à 6 kilomètres à allure conversation. Tout le monde y sera pour la première fois, nous les premiers.",
-            status: "aVenir" as const
+            text: premiereSortieFaite
+              ? "Notre première sortie collective, 8h30 au parking du chemin de la Cible, près du lycée Émile Zola. 5 à 6 kilomètres à allure conversation. Tout le monde y venait pour la première fois, nous les premiers."
+              : "Notre première sortie collective, 8h30 au parking du chemin de la Cible, près du lycée Émile Zola. 5 à 6 kilomètres à allure conversation. Tout le monde y sera pour la première fois, nous les premiers.",
+            status: premiereSortieFaite ? ("passe" as const) : ("aVenir" as const)
           },
           {
             date: "Ensuite",
@@ -424,7 +315,9 @@ export function getSiteCopy(locale: Locale) {
         faq: [
           {
             q: "Le club a-t-il déjà commencé ?",
-            a: "Notre première sortie collective a lieu le samedi 26 septembre 2026 à 8h30, au parking du chemin de la Cible, près du lycée Émile Zola. Le club, lui, se prépare depuis le printemps 2026."
+            a: premiereSortieFaite
+              ? "Oui. Notre première sortie collective a eu lieu le samedi 26 septembre 2026 à 8h30, au parking du chemin de la Cible, près du lycée Émile Zola. On court depuis tous les samedis, même heure, même endroit."
+              : "Pas encore. Notre première sortie collective a lieu le samedi 26 septembre 2026 à 8h30, au parking du chemin de la Cible, près du lycée Émile Zola. Le club, lui, se prépare depuis le printemps 2026."
           },
           {
             q: "Faut-il être membre pour venir courir ?",
@@ -451,32 +344,9 @@ export function getSiteCopy(locale: Locale) {
         social: {
           kicker: "La suite se passe là-bas",
           title: "On vit sur Instagram.",
-          text: "Les photos, les changements de dernière minute, les gens qui viennent : on met tout là-bas. C’est le meilleur endroit pour nous suivre avant la première sortie.",
+          text: `Les photos, les changements de dernière minute, les gens qui viennent : on met tout là-bas. C’est le meilleur endroit pour nous suivre ${premiereSortieFaite ? "entre deux sorties" : "avant la première sortie"}.`,
           cta: "Voir le compte"
         }
-      },
-      aboutPage: {
-        title: "Un club de running social, pas une posture.",
-        intro:
-          "NULLL.CLUB existe pour rendre les sorties running à Aix-en-Provence plus simples à rejoindre, plus lisibles et plus humaines.",
-        values: [
-          {
-            title: "Clarté",
-            text: "Des pages lisibles, des dates visibles, un prochain pas évident."
-          },
-          {
-            title: "Régularité",
-            text: "Un club existe quand ses rendez-vous reviennent et restent fiables."
-          },
-          {
-            title: "Accessibilité",
-            text: "On retire l’intimidation, pas l’identité."
-          },
-          {
-            title: "Style",
-            text: "Une direction brutaliste et avant-gardiste qui reste compréhensible."
-          }
-        ]
       },
       contactPage: {
         title: "Rejoins le club, pose une question ou propose un projet.",
@@ -505,7 +375,7 @@ export function getSiteCopy(locale: Locale) {
             title: "LinkedIn",
             value: "NULLL.CLUB",
             text: "Pour les partenaires, collaborations locales et projets de marque.",
-            href: "https://www.linkedin.com/company/nulll-club/?viewAsMember=true"
+            href: "https://www.linkedin.com/company/nulll-club/"
           }
         ]
       },
@@ -618,7 +488,8 @@ export function getSiteCopy(locale: Locale) {
         {
           key: "localEvents",
           slug: "evenements-running-aix",
-          title: "Les rendez-vous du club à Aix | NULLL.CLUB",
+          // Aligne sur le H1 : le title annoncait autre chose que la page.
+          title: "Événements running à Aix-en-Provence | NULLL.CLUB",
           description:
             "L’agenda des sorties running à Aix-en-Provence : rendez-vous hebdomadaire du samedi 8h30, événements du club et rencontres après la course.",
           h1: "Événements running à Aix-en-Provence",
@@ -655,7 +526,6 @@ export function getSiteCopy(locale: Locale) {
             }
           ]
         }
-      ] satisfies Article[],
-      runs
+      ] satisfies Article[]
     };
 }

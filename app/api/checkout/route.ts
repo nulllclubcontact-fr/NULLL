@@ -1,8 +1,30 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "node:crypto";
+import { normaliserTelephone } from "../../../lib/auth/telephone";
+import { adresseAppelant, essaiAutorise } from "../../../lib/limite";
 import { BOUTIQUE_OUVERTE } from "../../../lib/shop";
 import { productsByLocale, type Locale } from "../../../lib/site-content";
 import { createSupabaseServiceClient } from "../../../lib/supabase/service";
+
+// 5 commandes par adresse et par heure : une route ouverte sans limite
+// permettait de remplir la table de commandes en rafale.
+const FENETRE_SECONDES = 60 * 60;
+const MAX_COMMANDES = 5;
+
+/** Une route POST n'a pas le controle d'origine des actions serveur : on le fait ici. */
+function origineAutorisee(request: Request) {
+  const origine = request.headers.get("origin");
+
+  if (!origine) {
+    return false;
+  }
+
+  try {
+    return new URL(origine).host === request.headers.get("host");
+  } catch {
+    return false;
+  }
+}
 
 const allowedDeliveryMethods = new Set(["pickup", "shipping"]);
 
@@ -37,6 +59,14 @@ export async function POST(request: Request) {
     );
   }
 
+  if (!origineAutorisee(request)) {
+    return NextResponse.json({ message: "Requête refusée." }, { status: 403 });
+  }
+
+  if (!(await essaiAutorise("commande", adresseAppelant(request.headers), FENETRE_SECONDES, MAX_COMMANDES))) {
+    return NextResponse.json({ message: "Trop de commandes d’affilée. Réessaie dans une heure." }, { status: 429 });
+  }
+
   let payload: Record<string, unknown>;
 
   try {
@@ -58,7 +88,8 @@ export async function POST(request: Request) {
   const firstName = readString(payload.firstName, 80);
   const lastName = readString(payload.lastName, 80);
   const email = readString(payload.email, 160).toLowerCase();
-  const phone = readString(payload.phone, 40);
+  // Numero garde au format E.164 : illisible, il est refuse plutot que stocke tel quel.
+  const phone = normaliserTelephone(readString(payload.phone, 40)) ?? "";
   const deliveryMethod = readString(payload.deliveryMethod, 24);
   const notes = readString(payload.notes, 1000);
 

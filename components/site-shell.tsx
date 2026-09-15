@@ -69,7 +69,7 @@ export function SiteHeader({
       </a>
       <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto_auto] items-stretch lg:grid-cols-[200px_minmax(0,1fr)_132px_172px] xl:grid-cols-[240px_minmax(0,1fr)_150px_190px] 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
         <Link className="flex min-w-0 items-center border-r-2 border-[#773331] px-3 transition hover:bg-[#FFB200] focus-visible:bg-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] sm:px-5" href={getRoute(locale, "home")}>
-          <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 lg:w-32 xl:w-40 2xl:w-44" height={313} priority sizes="(min-width: 1536px) 176px, (min-width: 1280px) 160px, (min-width: 1024px) 128px, (min-width: 640px) 160px, 112px" src="/assets/nulll-new/logo-burgundy.png" width={2449} />
+          <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 lg:w-32 xl:w-40 2xl:w-44" height={313} loading="eager" sizes="(min-width: 1536px) 176px, (min-width: 1280px) 160px, (min-width: 1024px) 128px, (min-width: 640px) 160px, 112px" src="/assets/nulll-new/logo-burgundy.png" width={2449} />
         </Link>
         <nav
           aria-label="Navigation principale"
@@ -143,7 +143,12 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
               { href: getRoute(locale, "runs"), label: "Sorties" },
               { href: getRoute(locale, "community"), label: "Le club" },
               { href: getRoute(locale, "merch"), label: "Merch" },
-              { href: getRoute(locale, "contact"), label: "Contact" }
+              { href: getRoute(locale, "contact"), label: "Contact" },
+              // Les trois guides : « Guide local » n'en liait qu'un, et celui
+              // des evenements ne recevait aucun lien du site.
+              { href: getRoute(locale, "localClub"), label: "Run club à Aix" },
+              { href: getRoute(locale, "localRunning"), label: "Courir à Aix" },
+              { href: getRoute(locale, "localEvents"), label: "Événements running" }
             ]}
             title="Navigation"
           />
@@ -153,8 +158,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
               { href: copy.contact.instagram, label: copy.contact.instagramLabel },
               { href: copy.contact.linkedin, label: "LinkedIn" },
               { href: `mailto:${copy.contact.email}`, label: copy.contact.email },
-              { href: `tel:${copy.contact.phone}`, label: copy.contact.phoneLabel },
-              { href: getRoute(locale, "localClub"), label: "Guide local" }
+              { href: `tel:${copy.contact.phone}`, label: copy.contact.phoneLabel }
             ]}
             title="Nous suivre"
           />

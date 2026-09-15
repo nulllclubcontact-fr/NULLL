@@ -6,7 +6,15 @@ export const metadata = {
   title: "Politique de confidentialité | NULLL.CLUB",
   description:
     "Ce que NULLL.CLUB collecte, pourquoi, combien de temps, et comment exercer tes droits sur tes données.",
-  robots: { index: true, follow: true }
+  robots: { index: true, follow: true },
+  alternates: { canonical: "https://nulll.club/confidentialite" },
+  openGraph: {
+    title: "Politique de confidentialité | NULLL.CLUB",
+    description: "Ce que NULLL.CLUB collecte, pourquoi, combien de temps, et comment exercer tes droits sur tes données.",
+    url: "https://nulll.club/confidentialite",
+    // Un openGraph declare ici remplace l'image de app/opengraph-image.tsx.
+    images: [{ url: "https://nulll.club/opengraph-image", width: 1200, height: 630, alt: "NULLL.CLUB, social sport club à Aix-en-Provence" }]
+  }
 };
 
 const MAJ = "11 septembre 2026";

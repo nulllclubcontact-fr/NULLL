@@ -23,7 +23,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
     <HomeJourney>
       <section className="home-hero" aria-labelledby="home-title">
         <div className="home-hero-media">
-          <Image alt="Un groupe court ensemble en ville" className="home-hero-image" fill priority sizes="(max-width: 760px) 100vw, 45vw" src="/assets/photos/hero-city.jpg" />
+          <Image alt="Un groupe court ensemble en ville" className="home-hero-image" fetchPriority="high" fill preload sizes="(max-width: 760px) 100vw, 45vw" src="/assets/photos/hero-city.jpg" />
         </div>
         <div className="home-hero-overlay" aria-hidden="true" />
         <div className="home-hero-copy">

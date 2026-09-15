@@ -92,6 +92,12 @@ export async function POST(request: Request) {
     return erreur("Trop de codes demandés pour ce numéro. Réessaie dans quelques minutes.", 429);
   }
 
+  // Plafond commun a tous les numeros : des demandes reparties sur des
+  // milliers de numeros differents passaient la limite par numero.
+  if (!(await essaiAutorise("sms-global", "tous", 60 * 60, 40))) {
+    return erreur("Trop de codes demandés en ce moment. Réessaie plus tard.", 429);
+  }
+
   // Supabase coupe le hook au bout de quelques secondes : on n'attend pas plus.
   const reponse = await fetch(process.env.SMSGATE_URL || SMSGATE_URL_PAR_DEFAUT, {
     method: "POST",

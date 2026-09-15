@@ -1,21 +1,29 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { preparerProfilFournisseur } from "../../lib/auth/profil-fournisseur";
 import { normaliserTelephone } from "../../lib/auth/telephone";
 import { VERSION_DECHARGE } from "../../lib/decharge";
+import { adresseAppelant, essaiAutorise, oublierEssais } from "../../lib/limite";
 import { destinationMembre, suiteSortie } from "../../lib/races/sortie-choisie";
 import { createSupabaseServerClient } from "../../lib/supabase/server";
 import { createSupabaseServiceClient } from "../../lib/supabase/service";
 import { MARQUEUR_SESSION_COURTE } from "../../lib/supabase/session";
+import { adresseRetourInscription } from "./confirmation-actions";
 
-/** Etat commun des formulaires d'acces ; etape « code » = attente du SMS. */
+/**
+ * Etat commun des formulaires d'acces. Etape « code » = attente du SMS,
+ * « email » = attente du clic dans le mail de confirmation.
+ */
 export type CodeState = {
   error?: string;
   message?: string;
-  etape?: "code";
+  etape?: "code" | "email";
   telephone?: string;
+  email?: string;
+  /** Connexion refusee faute de confirmation : l'adresse, pour renvoyer le mail. */
+  nonConfirme?: string;
 };
 
 export type RegisterState = CodeState;
@@ -100,6 +108,12 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
     return { error: "Lis et accepte la décharge. Obligatoire." };
   }
 
+  // Les appels partent du serveur : Supabase voit l'adresse de Vercel, pas
+  // celle du visiteur. La limite par connexion se tient donc ici.
+  if (!(await essaiAutorise("inscription-ip", adresseAppelant(await headers()), 3600, 10))) {
+    return { error: "Trop d’inscriptions depuis cette connexion. Réessaie dans une heure." };
+  }
+
   let serviceSupabase;
 
   try {
@@ -126,10 +140,27 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
   // n'ouvre la session qu'une fois ce code saisi.
   const { data, error } = telephone
     ? await supabase.auth.signUp({ phone: telephone, password })
-    : await supabase.auth.signUp({ email, password });
+    : await supabase.auth.signUp({ email, password, options: { emailRedirectTo: await adresseRetourInscription(formData.get("sortie")) } });
 
   if (error || !data.user) {
     return { error: getSignupMessage(error?.message ?? "", parTelephone) };
+  }
+
+  // Adresse deja inscrite et confirmee : Supabase ne renvoie pas d'erreur
+  // mais un compte factice, sans identite, pour ne pas reveler qui est
+  // inscrit. Ecrire son profil echouait (« profil bloque ») et revelait
+  // justement l'inscription. Meme ecran qu'une vraie creation.
+  if (!telephone && data.user.identities?.length === 0) {
+    return { etape: "email", email };
+  }
+
+  // Adresse deja inscrite mais pas encore confirmee : Supabase renvoie le
+  // vrai compte et renvoie le mail. On ne reecrit pas son profil, sinon
+  // quiconque connait l'adresse remplacerait le nom et la decharge.
+  const compteRecent = Date.now() - Date.parse(data.user.created_at) < 2 * 60 * 1000;
+
+  if (!compteRecent) {
+    return telephone ? { etape: "code", telephone } : { etape: "email", email };
   }
 
   const { error: profileError } = await serviceSupabase.from("profiles").upsert(
@@ -156,12 +187,11 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
 
   // Quand la confirmation d'e-mail est activee cote Supabase — le reglage
   // par defaut d'un projet — signUp cree le compte mais n'ouvre aucune
-  // session. Rediriger vers /membre renvoyait alors le nouvel inscrit sur
-  // le formulaire de connexion, sans un mot d'explication, juste apres
-  // avoir rempli le sien. On teste la session plutot que de supposer le
-  // reglage : les deux cas sont traites.
+  // session. Le formulaire affiche alors « regarde tes mails », avec le
+  // renvoi du lien, au lieu d'une page de connexion inutile a ce stade.
+  // On teste la session plutot que de supposer le reglage.
   if (!data.session) {
-    redirect("/membre/login?message=confirme");
+    return { etape: "email", email };
   }
 
   redirect(destinationMembre(formData.get("sortie")));
@@ -241,6 +271,16 @@ export async function loginMember(_previousState: LoginState, formData: FormData
     identifiants = { phone: telephone, password };
   }
 
+  // Supabase voit l'adresse du serveur, commune a tous : sa limite ne
+  // distingue pas un visiteur d'un autre. Celle-ci freine les essais en
+  // serie sur un compte ou depuis une connexion.
+  const cleIdentifiant = identifiant.toLowerCase();
+  const ip = adresseAppelant(await headers());
+
+  if (!(await essaiAutorise("connexion-ip", ip, 900, 30)) || !(await essaiAutorise("connexion", cleIdentifiant, 900, 10))) {
+    return { error: "Trop d’essais. Attends quelques minutes avant de réessayer." };
+  }
+
   let supabase;
 
   try {
@@ -252,9 +292,16 @@ export async function loginMember(_previousState: LoginState, formData: FormData
   const { data, error } = await supabase.auth.signInWithPassword(identifiants);
 
   if (error || !data.user) {
+    // Supabase ne le dit qu'avec le bon mot de passe : rien n'est revele a
+    // qui ne connait pas deja le compte.
+    if (error?.code === "email_not_confirmed" && "email" in identifiants) {
+      return { error: "Adresse pas encore confirmée. Ouvre le mail reçu à l’inscription, ou renvoie-le.", nonConfirme: identifiants.email };
+    }
+
     return { error: "Accès refusé. Vérifie tes infos." };
   }
 
+  await oublierEssais("connexion", cleIdentifiant);
   await noterChoixSouvenir(souvenir);
 
   // Un compte administrateur atterrit directement sur sa vue d'ensemble :
@@ -276,6 +323,16 @@ export async function resetMemberPassword(_previousState: LoginState, formData: 
 
   if (!identifiant) {
     return { error: "Mets ton e-mail ou ton numéro." };
+  }
+
+  // Meme reponse que le compte existe ou non : la limite ne revele rien.
+  const ipReinitialisation = adresseAppelant(await headers());
+
+  if (
+    !(await essaiAutorise("reinitialisation-ip", ipReinitialisation, 3600, 20)) ||
+    !(await essaiAutorise("reinitialisation", identifiant.toLowerCase(), 3600, 5))
+  ) {
+    return { error: "Trop de demandes. Réessaie dans une heure." };
   }
 
   let supabase;
@@ -312,7 +369,7 @@ export async function resetMemberPassword(_previousState: LoginState, formData: 
     return { error: "Lien impossible à envoyer." };
   }
 
-  return { message: "Lien envoye si le compte existe." };
+  return { message: "Lien envoyé si le compte existe. Regarde aussi dans les spams." };
 }
 
 /** Code SMS du mot de passe oublie : ouvre la session, puis le choix du nouveau mot de passe. */

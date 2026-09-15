@@ -1,40 +1,56 @@
 <!doctype html>
-<html lang="fr"><head>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
 <meta name="color-scheme" content="light only">
-<title>NULLL.CLUB</title>
+<meta name="supported-color-schemes" content="light only">
+<title>Choisis un nouveau mot de passe · NULLL.CLUB</title>
 </head>
-<body style="margin:0;padding:0;background:#3A1A18">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0">Choisis un nouveau mot de passe NULLL.CLUB</div>
+<body style="margin:0;padding:0;background:#3A1A18;-webkit-text-size-adjust:100%">
+<!-- Gabarit « Reset Password » de Supabase. Objet : Ton nouveau mot de passe · NULLL.CLUB -->
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all">Un lien pour choisir un nouveau mot de passe. Rien demandé ? Ignore ce mail.&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;</div>
 <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="background:#3A1A18">
-<tr><td align="center" style="padding:32px 16px">
+<tr><td align="center" style="padding:32px 12px">
 
   <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:600px;background:#F1EDE9;border:2px solid #773331">
 
-    <tr><td style="background:#773331;padding:20px 32px">
-      <span style="font-family:Arial Black, Arial Bold, Gadget, sans-serif;font-size:20px;letter-spacing:1px;color:#F1EDE9">NULLL.CLUB</span>
-      <span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#EBA0CD;padding-left:12px">Aix-en-Provence</span>
+    <tr><td style="background:#773331;padding:22px 28px">
+      <img src="https://nulll.club/assets/nulll-new/logo-cream.png" width="200" height="26" alt="NULLL.CLUB" style="display:block;border:0;outline:none;width:200px;max-width:100%;height:auto;font-family:Arial Black, Arial, Helvetica, sans-serif;font-size:20px;font-weight:900;color:#F1EDE9">
+      <p style="margin:10px 0 0;font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#EBA0CD">Social run club · Aix-en-Provence</p>
     </td></tr>
 
-    <tr><td style="padding:32px 32px 16px">
-      <h1 style="margin:0;font-family:Arial Black, Arial Bold, Gadget, sans-serif;font-size:30px;line-height:1.15;text-transform:uppercase;color:#773331">Nouveau mot de passe</h1>
+    <tr><td style="padding:32px 28px 12px">
+      <h1 style="margin:0;font-family:Arial Black, Arial, Helvetica, sans-serif;font-size:30px;line-height:1.1;font-weight:900;text-transform:uppercase;color:#773331">Nouveau mot de passe</h1>
     </td></tr>
 
-    <tr><td style="padding:0 32px 20px;font-family:Arial, Helvetica, sans-serif;font-size:16px;line-height:1.6;color:#773331">Tu as demandé à changer ton mot de passe. Clique ci-dessous pour en choisir un nouveau.</td></tr>
-    
-    <tr><td style="padding:8px 32px 32px">
-         <table border="0" cellpadding="0" cellspacing="0" role="presentation"><tr>
-           <td style="background:#FFB200;border:2px solid #773331">
-             <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:16px 32px;font-family:Arial Black, Arial Bold, Gadget, sans-serif;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:#773331;text-decoration:none">Choisir un mot de passe</a>
-           </td>
-         </tr></table>
-       </td></tr>
-    <tr><td style="padding:0 32px 28px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:1.6;color:#773331;opacity:.75">Ce lien est temporaire. Si tu n'as rien demandé, ignore cet e-mail : ton mot de passe actuel reste valable.</td></tr>
+    <tr><td style="padding:0 28px 24px;font-family:Arial, Helvetica, sans-serif;font-size:16px;line-height:1.6;color:#773331">
+      Tu as demandé à changer ton mot de passe NULLL.CLUB. Clique ci-dessous pour en choisir un nouveau.
+    </td></tr>
 
-    <tr><td style="background:#773331;padding:18px 32px;font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:1.7;color:#F1EDE9">
-      Tous les samedis, 8h30, parking du chemin de la Cible, près du lycée Émile Zola.<br>
-      <a href="https://nulll.club" style="color:#FFB200;text-decoration:none">nulll.club</a>
+    <tr><td style="padding:0 28px 28px">
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"><tr>
+        <td align="center" bgcolor="#FFB200" style="background:#FFB200;border:2px solid #773331;mso-padding-alt:16px 12px">
+          <a href="{{ .SiteURL }}/auth/confirmer#token_hash={{ .TokenHash }}&amp;type=recovery" style="display:block;padding:16px 12px;font-family:Arial Black, Arial, Helvetica, sans-serif;font-size:15px;line-height:1.3;font-weight:900;letter-spacing:.5px;text-transform:uppercase;text-align:center;color:#773331;text-decoration:none">Choisir un mot de passe</a>
+        </td>
+      </tr></table>
+    </td></tr>
+
+    <tr><td style="padding:0 28px 24px;font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:1.6;color:#773331">
+      <strong>Le lien reste valable 1 heure</strong> et ne sert qu’une fois.
+    </td></tr>
+
+    <tr><td style="padding:0 28px 24px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:1.6;color:#773331;word-break:break-all;overflow-wrap:anywhere">
+      Le bouton ne marche pas ? Copie ce lien dans ton navigateur :<br>
+      <a href="{{ .SiteURL }}/auth/confirmer#token_hash={{ .TokenHash }}&amp;type=recovery" style="color:#773331;text-decoration:underline;word-break:break-all">{{ .SiteURL }}/auth/confirmer#token_hash={{ .TokenHash }}&amp;type=recovery</a>
+    </td></tr>
+
+    <tr><td style="padding:0 28px 28px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:1.6;color:#773331">
+      <strong>Tu n’as rien demandé ?</strong> Ignore ce mail : ton mot de passe actuel reste valable.
+    </td></tr>
+
+    <tr><td style="background:#773331;padding:18px 28px;font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:1.7;color:#F1EDE9">
+      Une question : <a href="mailto:contact@nulll.club" style="color:#FFB200;text-decoration:none">contact@nulll.club</a> · <a href="https://nulll.club" style="color:#FFB200;text-decoration:none">nulll.club</a>
     </td></tr>
 
   </table>

@@ -1,0 +1,13 @@
+NULLL.CLUB · Social run club · Aix-en-Provence
+
+NOUVEAU MOT DE PASSE
+
+Tu as demandé à changer ton mot de passe NULLL.CLUB. Ouvre ce lien pour en choisir un nouveau :
+{{ .SiteURL }}/auth/confirmer#token_hash={{ .TokenHash }}&type=recovery
+
+Le lien reste valable 1 heure et ne sert qu'une fois.
+
+Tu n'as rien demandé ? Ignore ce mail : ton mot de passe actuel reste valable.
+
+--
+Une question : contact@nulll.club

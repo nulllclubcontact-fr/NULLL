@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { loginMember, resetMemberPassword, verifierCodeReinitialisation, type LoginState } from "../actions";
 import { BoutonsSociaux } from "../../../components/auth/boutons-sociaux";
 import { CodeSms } from "../../../components/auth/code-sms";
+import { RenvoiConfirmation } from "../../../components/auth/renvoi-confirmation";
 import type { FournisseursAuth } from "../../../lib/auth/reglages";
 
 const initialState: LoginState = {};
@@ -53,6 +54,13 @@ export function LoginForm({ fournisseurs, sortie }: { fournisseurs: Fournisseurs
           {loginPending ? "Connexion…" : "Entrer"}
         </button>
       </form>
+
+      {/* Hors du formulaire de connexion : deux formulaires ne s'imbriquent pas. */}
+      {loginState.nonConfirme ? (
+        <div className="mt-4">
+          <RenvoiConfirmation email={loginState.nonConfirme} sortie={sortie} />
+        </div>
+      ) : null}
 
       {/* « Mot de passe oublie » nommait la section, pas le champ : rien ne
           disait qu'il fallait y remettre son e-mail. Le bloc annonce

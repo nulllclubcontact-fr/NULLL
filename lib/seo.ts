@@ -3,6 +3,12 @@ import { getRoute, type Locale, type RouteKey } from "./site-content";
 
 const SITE_URL = "https://nulll.club";
 
+/** Identifiant commun du club dans les donnees structurees : une seule entite, citee partout. */
+const CLUB_ID = `${SITE_URL}/#club`;
+
+/** Meme texte que app/opengraph-image.tsx. */
+const IMAGE_PARTAGE_ALT = "NULLL.CLUB, social sport club à Aix-en-Provence";
+
 export function getSiteUrl() {
   return SITE_URL;
 }
@@ -15,12 +21,7 @@ export function buildWebSiteSchema(locale: Locale) {
     alternateName: ["NULLL", "NULLL Club", "Nulll Club Aix-en-Provence"],
     url: `${SITE_URL}${getRoute(locale, "home")}`,
     inLanguage: "fr-FR",
-    publisher: {
-      "@type": "Organization",
-      name: "NULLL.CLUB",
-      url: SITE_URL,
-      logo: `${SITE_URL}/assets/brand/icone-n-rose.png`
-    }
+    publisher: { "@id": CLUB_ID }
   };
 }
 
@@ -66,11 +67,15 @@ export function buildPageMetadata({
     description,
     alternates: {
       canonical,
+      // x-default designe l'equivalent de la meme page, pas l'accueil.
       languages: {
         fr: canonical,
-        "x-default": `${SITE_URL}/fr`
+        "x-default": canonical
       }
     },
+    // Un openGraph declare par la page remplace celui des fichiers
+    // app/opengraph-image.tsx et twitter-image.tsx : l'image doit donc etre
+    // redonnee ici, avec ses dimensions et son texte alternatif.
     openGraph: {
       title,
       description,
@@ -78,17 +83,13 @@ export function buildPageMetadata({
       siteName: "NULLL.CLUB",
       locale: "fr_FR",
       type: "website",
-      images: [
-        {
-          url: `${SITE_URL}/opengraph-image`
-        }
-      ]
+      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: IMAGE_PARTAGE_ALT, type: "image/png" }]
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [`${SITE_URL}/twitter-image`]
+      images: [{ url: `${SITE_URL}/twitter-image`, width: 1200, height: 630, alt: IMAGE_PARTAGE_ALT }]
     }
   };
 }
@@ -97,6 +98,7 @@ export function buildOrganizationSchema(locale: Locale) {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": CLUB_ID,
     name: "NULLL.CLUB",
     url: `${SITE_URL}${getRoute(locale, "home")}`,
     logo: `${SITE_URL}/assets/brand/icone-n-rose.png`,
@@ -116,17 +118,18 @@ export function buildSportsLocationSchema(locale: Locale) {
     // SportsClub est plus precis que SportsActivityLocation et correspond a ce
     // qu'est NULLL.CLUB : une association, pas un simple lieu de pratique.
     "@type": ["SportsClub", "SportsActivityLocation"],
+    "@id": CLUB_ID,
     name: "NULLL.CLUB",
     alternateName: "NULLL Run Club Aix-en-Provence",
     description:
-      "Club de course a pied et club de sport associatif a Aix-en-Provence. Sorties running collectives tous les samedis matin, ouvertes a tous les niveaux et gratuites.",
-    sport: "Course a pied",
+      "Club de course à pied et club de sport associatif à Aix-en-Provence. Sorties running collectives tous les samedis à 8h30, ouvertes à tous les niveaux et gratuites.",
+    sport: "Course à pied",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Parking du chemin de la Cible, près du lycée Émile Zola",
       postalCode: "13090",
       addressLocality: "Aix-en-Provence",
-      addressRegion: "Provence-Alpes-Cote d'Azur",
+      addressRegion: "Provence-Alpes-Côte d’Azur",
       addressCountry: "FR"
     },
     // Parking public du chemin de la Cible, a cote du lycee Emile Zola,
@@ -137,16 +140,9 @@ export function buildSportsLocationSchema(locale: Locale) {
       latitude: 43.5096,
       longitude: 5.4611
     },
-    // Le creneau hebdomadaire est le signal local le plus utile : c'est ce qui
-    // permet a Google de repondre a « run club aix samedi ».
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: "https://schema.org/Saturday",
-        opens: "08:00",
-        closes: "12:00"
-      }
-    ],
+    // Pas d'openingHoursSpecification : elle annoncait 08:00-12:00 alors que
+    // le site dit 8h30, et aucune heure de fin n'est publiee. Le creneau du
+    // samedi 8h30 est porte par la description et par chaque Event.
     isAccessibleForFree: true,
     publicAccess: true,
     areaServed: {
@@ -161,7 +157,7 @@ export function buildSportsLocationSchema(locale: Locale) {
       "https://www.instagram.com/nulll.club",
       "https://www.linkedin.com/company/nulll-club/"
     ],
-    url: `${SITE_URL}/${locale}/runs`
+    url: `${SITE_URL}${getRoute(locale, "home")}`
   };
 }
 
@@ -200,6 +196,7 @@ export function buildEventSchema(event: {
     },
     organizer: {
       "@type": "Organization",
+      "@id": CLUB_ID,
       name: "NULLL.CLUB",
       url: `${SITE_URL}${getRoute(event.locale, "home")}`
     },

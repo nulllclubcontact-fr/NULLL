@@ -5,7 +5,15 @@ import { getSiteCopy } from "../../lib/site-content";
 export const metadata = {
   title: "Mentions légales | NULLL.CLUB",
   description: "Éditeur, hébergeur et contact du site NULLL.CLUB.",
-  robots: { index: true, follow: true }
+  robots: { index: true, follow: true },
+  alternates: { canonical: "https://nulll.club/mentions-legales" },
+  openGraph: {
+    title: "Mentions légales | NULLL.CLUB",
+    description: "Éditeur, hébergeur et contact du site NULLL.CLUB.",
+    url: "https://nulll.club/mentions-legales",
+    // Un openGraph declare ici remplace l'image de app/opengraph-image.tsx.
+    images: [{ url: "https://nulll.club/opengraph-image", width: 1200, height: 630, alt: "NULLL.CLUB, social sport club à Aix-en-Provence" }]
+  }
 };
 
 /**

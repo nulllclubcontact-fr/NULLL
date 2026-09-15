@@ -14,6 +14,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
   const runsHref = getRoute(locale, "runs");
   const localClubHref = getRoute(locale, "localClub");
   const localRunningHref = getRoute(locale, "localRunning");
+  const localEventsHref = getRoute(locale, "localEvents");
 
   return (
     <SiteShell current="community" locale={locale} pathname={getRoute(locale, "community")}>
@@ -183,6 +184,10 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             ,{" "}
             <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]" href={localRunningHref}>
               où courir à Aix-en-Provence
+            </Link>
+            ,{" "}
+            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]" href={localEventsHref}>
+              les événements running à Aix
             </Link>{" "}
             et{" "}
             <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFB200] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]" href={runsHref}>

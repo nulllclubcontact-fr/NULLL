@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { ArrowIcon } from "../../components/ArrowIcon";
 import { StructuredData } from "../../components/StructuredData";
 import { PrimaryLink, SiteShell } from "../../components/site-shell";
 import { buildBreadcrumbSchema } from "../../lib/seo";
-import { getRoute, type Article, type Locale, type RunEvent } from "../../lib/site-content";
+import { getRoute, getSiteCopy, type Article, type Locale, type RunEvent } from "../../lib/site-content";
 
 /**
  * Les guides se lisent comme un article : un sommaire qui reste a cote sur
@@ -82,6 +83,29 @@ export function SeoArticleView({
                 </section>
               ))}
             </div>
+
+            {/* Les guides ne se citaient pas entre eux : celui des evenements
+                ne recevait aucun lien du site. */}
+            <nav aria-labelledby="autres-guides" className="mt-16 border-t-2 border-[#773331] pt-8">
+              <h2 className="font-mono text-xs font-black uppercase tracking-[.16em]" id="autres-guides">
+                À lire aussi
+              </h2>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {getSiteCopy(locale)
+                  .articles.filter((autre) => autre.key !== article.key)
+                  .map((autre) => (
+                    <li key={autre.key}>
+                      <Link
+                        className="flex min-h-14 items-center justify-between gap-4 border-2 border-[#773331] px-4 py-3 font-bold leading-snug transition-colors hover:bg-[#FFB200] focus-visible:bg-[#FFB200] focus-visible:outline-none"
+                        href={getRoute(locale, autre.key)}
+                      >
+                        <span>{autre.h1}</span>
+                        <ArrowIcon />
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </nav>
 
             <div className="mt-16 grid gap-5 border-2 border-[#773331] bg-[#FFB200] p-6 sm:p-8">
               <p className="font-display text-[clamp(1.7rem,3.4vw,2.4rem)] uppercase leading-[1.1]">Envie d’essayer ?</p>

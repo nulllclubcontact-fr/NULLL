@@ -1,12 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { createSupabaseBrowserClient } from "../lib/supabase/client";
-import { hasSupabasePublicEnv } from "../lib/supabase/config";
+import { useSyncExternalStore } from "react";
 
 const DECONNECTE = { label: "Se connecter", href: "/identification" };
 const CONNECTE = { label: "Mon compte", href: "/membre" };
+
+// Cookie de session pose par @supabase/ssr : « sb-<projet>-auth-token »,
+// decoupe en « .0 », « .1 »… quand il est long.
+const COOKIE_SESSION = /(?:^|;\s*)sb-[^=;]+-auth-token(?:\.0)?=/;
+
+function sessionPresente() {
+  return COOKIE_SESSION.test(document.cookie);
+}
+
+function sansAbonnement() {
+  return () => {};
+}
 
 /**
  * Le seul morceau de la barre qui depend de la session.
@@ -16,16 +26,15 @@ const CONNECTE = { label: "Mon compte", href: "/membre" };
  * trente-deux pages dynamiques, et on perdrait la generation statique
  * pour un libelle.
  *
- * Le rendu de depart est « Se connecter », qui est l'etat juste pour un
- * visiteur qui arrive pour la premiere fois. Si une session existe, le
- * libelle bascule sur « Mon compte » apres l'hydratation. Une personne
- * connectee voit donc brievement l'ancien libelle ; l'inverse (afficher
- * « Mon compte » par defaut) tromperait tous les nouveaux venus, ce qui
- * est le cas le plus frequent.
+ * Le rendu de depart est « Se connecter », l'etat juste pour un visiteur
+ * qui arrive pour la premiere fois ; il bascule sur « Mon compte » apres
+ * l'hydratation si un cookie de session existe.
  *
- * getSession lit le cookie pose par @supabase/ssr, sans appel reseau.
- * onAuthStateChange couvre la deconnexion : le libelle repasse tout seul
- * a « Se connecter » sans recharger la page.
+ * On lit la presence du cookie au lieu d'ouvrir le client Supabase : ce
+ * client pesait 68 Ko compresses (260 Ko bruts) sur chaque page publique,
+ * pour un simple libelle. Le lien n'ouvre aucun droit : /membre reverifie
+ * la session sur le serveur et renvoie a la connexion si elle a expire.
+ * Chaque page remonte l'en-tete, donc le libelle suit une deconnexion.
  */
 export function LienCompte({
   actif,
@@ -37,31 +46,7 @@ export function LienCompte({
   className: string;
   fige?: { label: string; href: string };
 }) {
-  const [connecte, setConnecte] = useState(false);
-  const estFige = Boolean(fige);
-
-  useEffect(() => {
-    // Sans variables d'environnement publiques, createBrowserClient jette.
-    // La barre doit survivre a ca : on reste sur « Se connecter ».
-    if (estFige || !hasSupabasePublicEnv()) return;
-
-    const supabase = createSupabaseBrowserClient();
-    let vivant = true;
-
-    supabase.auth.getSession().then(({ data }) => {
-      if (vivant) setConnecte(Boolean(data.session));
-    });
-
-    const { data } = supabase.auth.onAuthStateChange((_evenement, session) => {
-      if (vivant) setConnecte(Boolean(session));
-    });
-
-    return () => {
-      vivant = false;
-      data.subscription.unsubscribe();
-    };
-  }, [estFige]);
-
+  const connecte = useSyncExternalStore(sansAbonnement, sessionPresente, () => false);
   const porte = fige ?? (connecte ? CONNECTE : DECONNECTE);
 
   return (

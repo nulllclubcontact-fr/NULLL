@@ -52,7 +52,9 @@ export default async function RunsPage({ params }: PageProps) {
         <StructuredData
           data={buildEventSchema({
             locale,
-            name: run.title,
+            // Le nom affiche sur la carte est la date : « Premiere sortie »
+            // n'apparaissait nulle part sur la page.
+            name: `Sortie NULLL.CLUB · ${run.date}`,
             description: run.summary,
             startDate: run.isoDate,
             locationName: run.location,
@@ -77,8 +79,9 @@ export default async function RunsPage({ params }: PageProps) {
         <Image
           alt="Un membre de NULLL.CLUB en pleine foulée sur un chemin, saisi en flou de mouvement"
           className="object-cover object-[50%_54%]"
+          fetchPriority="high"
           fill
-          priority
+          preload
           sizes="100vw"
           src="/assets/photos/runs-blur.webp"
         />

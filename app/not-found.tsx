@@ -4,9 +4,10 @@ import { ArrowIcon } from "../components/ArrowIcon";
 import { SiteFooter, SiteHeader } from "../components/site-shell";
 import { getRoute, getSiteCopy } from "../lib/site-content";
 
+// Pas de robots ici : Next pose deja noindex sur une 404, et une seconde
+// balise « noindex, follow » doublait l'instruction.
 export const metadata: Metadata = {
-  title: "Page introuvable | NULLL.CLUB",
-  robots: { index: false, follow: true }
+  title: "Page introuvable | NULLL.CLUB"
 };
 
 /** La 404 de Next affichait « This page could not be found. », en anglais et sans issue. */
