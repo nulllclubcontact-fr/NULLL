@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { ProfilForm } from "./ProfilForm";
+import { SuppressionCompte } from "./SuppressionCompte";
 import { sessionServeur } from "../../../../lib/supabase/server";
 
 export const metadata = { title: "Mes infos | NULLL.CLUB", robots: { index: false, follow: false } };
@@ -56,6 +57,8 @@ export default async function MemberProfilPage() {
           consent_image: profil?.consent_image ?? null
         }}
       />
+
+      <SuppressionCompte />
     </section>
   );
 }

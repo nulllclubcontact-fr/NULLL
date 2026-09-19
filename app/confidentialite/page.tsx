@@ -195,15 +195,18 @@ export default function ConfidentialitePage() {
         <Bloc titre="Combien de temps on les garde">
           <ul className="ml-5 list-disc space-y-2">
             <li>
-              <strong>Ton compte et ton profil</strong> : tant que le compte existe, et effacés dès
-              que tu le demandes. Un compte resté 3 ans sans aucune connexion est supprimé.
+              <strong>Ton compte et ton profil</strong> : tant que le compte existe. Tu peux le
+              supprimer toi-même depuis ton profil : tout ce qui te concerne est alors effacé
+              immédiatement et définitivement, sans copie gardée de notre côté. Un compte resté 3 ans
+              sans aucune connexion est supprimé.
             </li>
             <li>
-              <strong>Tes inscriptions aux sorties</strong> : 3 ans après la sortie concernée.
+              <strong>Tes inscriptions aux sorties</strong> : 3 ans après la sortie concernée, ou
+              jusqu’à la suppression de ton compte si elle arrive avant.
             </li>
             <li>
-              <strong>Ton acceptation de la décharge</strong> : 10 ans, durée alignée sur le délai
-              de prescription applicable en cas de dommage corporel.
+              <strong>Ton acceptation de la décharge</strong> : tant que ton compte existe, et
+              effacée avec lui.
             </li>
             <li>
               <strong>Ton accord pour les photos</strong> : tant que ton compte existe. Les images
@@ -249,7 +252,8 @@ export default function ConfidentialitePage() {
           <p>
             Tu peux à tout moment demander l’accès à tes données, leur rectification, leur
             effacement, leur portabilité, la limitation de leur traitement, ou t’opposer à un
-            traitement. Écris à{" "}
+            traitement. Pour tout effacer, le plus simple est le bouton « Supprimer mon compte » en
+            bas de ton profil. Pour le reste, écris à{" "}
             <Lien href={`mailto:${copy.contact.email}`}>{copy.contact.email}</Lien>, on répond sous
             un mois.
           </p>
