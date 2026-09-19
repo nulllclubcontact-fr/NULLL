@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useActionState, useState } from "react";
+import { CaseImage } from "../CaseImage";
 import { accepterDecharge, type CodeState } from "../actions";
 
 const initialState: CodeState = {};
@@ -38,6 +39,8 @@ export function BienvenueForm({ prenom, nom, sortie }: { prenom: string; nom: st
           </Link>
         </span>
       </label>
+
+      <CaseImage pas={1} />
 
       {state.error ? (
         <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">

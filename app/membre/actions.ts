@@ -141,7 +141,8 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
       last_name: lastName,
       consent_waiver: true,
       consent_waiver_version: WAIVER_VERSION,
-      consent_at: new Date().toISOString()
+      consent_at: new Date().toISOString(),
+      consent_image: formData.get("image") === "on"
     },
     { onConflict: "id" }
   );
@@ -423,7 +424,8 @@ export async function accepterDecharge(_previousState: CodeState, formData: Form
       last_name: lastName,
       consent_waiver: true,
       consent_waiver_version: WAIVER_VERSION,
-      consent_at: new Date().toISOString()
+      consent_at: new Date().toISOString(),
+      consent_image: formData.get("image") === "on"
     },
     { onConflict: "id" }
   );

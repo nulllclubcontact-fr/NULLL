@@ -9,7 +9,7 @@ export const metadata = {
   robots: { index: true, follow: true }
 };
 
-const MAJ = "11 septembre 2026";
+const MAJ = "19 septembre 2026";
 
 /**
  * Page redigee a partir de ce que le schema stocke reellement : la table
@@ -97,6 +97,11 @@ export default function ConfidentialitePage() {
                 base: "Obligation légale et intérêt légitime"
               },
               {
+                quoi: "Ton accord pour les photos et vidéos, et sa date",
+                pourquoi: "Savoir si on peut publier les images des sorties où tu apparais",
+                base: "Consentement, facultatif et révocable à tout moment"
+              },
+              {
                 quoi: "Nom, e-mail, téléphone, adresse de livraison",
                 pourquoi: "Traiter une commande de merch, uniquement si tu en passes une",
                 base: "Exécution du contrat de vente"
@@ -111,6 +116,20 @@ export default function ConfidentialitePage() {
           <p>
             On ne collecte <strong>aucune donnée de santé</strong>, aucune performance sportive,
             aucun temps de course, et aucune position GPS.
+          </p>
+        </Bloc>
+
+        <Bloc titre="Photos et vidéos des sorties">
+          <p>
+            On prend parfois des photos et des vidéos pendant les sorties, pour le site et les réseaux
+            du club. On ne publie une image où tu es reconnaissable que si tu as donné ton accord. Cet
+            accord est <strong>facultatif</strong> : tu peux courir avec nous sans le donner.
+          </p>
+          <p>
+            Tu le donnes ou le retires quand tu veux depuis ton profil, rubrique « Photos et vidéos ».
+            Si tu le retires, on ne publie plus de nouvelle image de toi. Pour faire retirer une image
+            déjà publiée, écris à <Lien href={`mailto:${copy.contact.email}`}>{copy.contact.email}</Lien> :
+            on la retire sous 7 jours.
           </p>
         </Bloc>
 
@@ -185,6 +204,10 @@ export default function ConfidentialitePage() {
             <li>
               <strong>Ton acceptation de la décharge</strong> : 10 ans, durée alignée sur le délai
               de prescription applicable en cas de dommage corporel.
+            </li>
+            <li>
+              <strong>Ton accord pour les photos</strong> : tant que ton compte existe. Les images
+              publiées restent en ligne jusqu’à ce que tu demandes leur retrait.
             </li>
             <li>
               <strong>Les commandes</strong> : 10 ans, obligation comptable.

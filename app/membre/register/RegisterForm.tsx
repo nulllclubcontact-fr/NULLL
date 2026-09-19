@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useActionState, useState } from "react";
 import { registerMember, renvoyerCodeInscription, verifierCodeInscription, type RegisterState } from "../actions";
+import { CaseImage } from "../CaseImage";
 import { BoutonsSociaux } from "../../../components/auth/boutons-sociaux";
 import { CodeSms } from "../../../components/auth/code-sms";
 import type { FournisseursAuth } from "../../../lib/auth/reglages";
@@ -111,6 +112,8 @@ export function RegisterForm({ fournisseurs, sortie }: { fournisseurs: Fournisse
           </Link>
         </span>
       </label>
+
+      <CaseImage pas={3} />
 
       {state.error ? (
         <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">

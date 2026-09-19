@@ -67,9 +67,14 @@ export async function updateProfil(_previousState: ProfilState, formData: FormDa
     return { error: "Numéro illisible. Exemple : 06 12 34 56 78." };
   }
 
+  // Photos : ecrit seulement si le membre a choisi, jamais par defaut.
+  const reponseImage = formData.get("image");
+  const consentImage = reponseImage === "oui" ? { consent_image: true } : reponseImage === "non" ? { consent_image: false } : {};
+
   const { error } = await supabase
     .from("profiles")
     .update({
+      ...consentImage,
       first_name: firstName,
       last_name: lastName,
       phone: telephone,

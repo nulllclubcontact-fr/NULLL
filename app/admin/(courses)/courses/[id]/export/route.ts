@@ -6,7 +6,7 @@ type Ligne = {
   checked_in: boolean;
   checked_in_at: string | null;
   created_at: string;
-  profiles: { first_name: string | null; last_name: string | null; email: string | null; phone: string | null } | null;
+  profiles: { first_name: string | null; last_name: string | null; email: string | null; phone: string | null; consent_image: boolean | null } | null;
 };
 
 
@@ -31,14 +31,14 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
 
   const { data } = await admin.supabase
     .from("race_registrations")
-    .select("status,checked_in,checked_in_at,created_at,profiles(first_name,last_name,email,phone)")
+    .select("status,checked_in,checked_in_at,created_at,profiles(first_name,last_name,email,phone,consent_image)")
     .eq("race_id", id)
     .order("created_at", { ascending: true })
     .returns<Ligne[]>();
 
   // Point-virgule : Excel en francais ouvre les fichiers a la virgule dans
   // une seule colonne.
-  const lignes = [["Prenom", "Nom", "Email", "Telephone", "Statut", "Present", "Scanne a", "Inscrit le"].join(";")];
+  const lignes = [["Prenom", "Nom", "Email", "Telephone", "Photos", "Statut", "Present", "Scanne a", "Inscrit le"].join(";")];
 
   for (const l of data ?? []) {
     lignes.push(
@@ -47,6 +47,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
         champ(l.profiles?.last_name),
         champ(l.profiles?.email),
         champ(l.profiles?.phone),
+        l.profiles?.consent_image ? "oui" : l.profiles?.consent_image === false ? "non" : "sans reponse",
         champ(l.status),
         l.checked_in ? "oui" : "non",
         champ(l.checked_in_at),

@@ -17,7 +17,7 @@ export default async function MemberProfilPage() {
 
   const { data: profil, error: erreurProfil } = await supabase
     .from("profiles")
-    .select("first_name,last_name,phone,birth_date,instagram_handle,emergency_contact_name,emergency_contact_phone")
+    .select("first_name,last_name,phone,birth_date,instagram_handle,emergency_contact_name,emergency_contact_phone,consent_image")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -52,7 +52,8 @@ export default async function MemberProfilPage() {
           birth_date: profil?.birth_date ?? null,
           instagram_handle: profil?.instagram_handle ?? null,
           emergency_contact_name: profil?.emergency_contact_name ?? null,
-          emergency_contact_phone: profil?.emergency_contact_phone ?? null
+          emergency_contact_phone: profil?.emergency_contact_phone ?? null,
+          consent_image: profil?.consent_image ?? null
         }}
       />
     </section>

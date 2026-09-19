@@ -16,7 +16,7 @@ type Inscrit = {
   checked_in: boolean;
   checked_in_at: string | null;
   created_at: string;
-  profiles: { first_name: string | null; last_name: string | null; email: string | null; phone: string | null } | null;
+  profiles: { first_name: string | null; last_name: string | null; email: string | null; phone: string | null; consent_image: boolean | null } | null;
 };
 
 const ETIQUETTES: Record<string, { texte: string; classe: string }> = {
@@ -63,7 +63,7 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
 
   const { data: inscrits } = await supabase
     .from("race_registrations")
-    .select("id,status,checked_in,checked_in_at,created_at,profiles(first_name,last_name,email,phone)")
+    .select("id,status,checked_in,checked_in_at,created_at,profiles(first_name,last_name,email,phone,consent_image)")
     .eq("race_id", id)
     .order("created_at", { ascending: true })
     .returns<Inscrit[]>();
@@ -155,7 +155,15 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
 
                   return (
                     <tr className="border-b border-[#773331]/20" key={ligne.id}>
-                      <td className="py-3 pr-4 font-bold">{nom}</td>
+                      <td className="py-3 pr-4 font-bold">
+                        {nom}
+                        {/* Sans accord (refus ou pas de reponse) : on ne le prend pas en photo. */}
+                        {p?.consent_image ? null : (
+                          <span className="mt-1 block w-fit border-2 border-[#773331] bg-[#EBA0CD] px-2 py-0.5 font-mono text-[.7rem] font-black uppercase tracking-[.1em]">
+                            {p?.consent_image === false ? "Pas de photo" : "Photo : sans réponse"}
+                          </span>
+                        )}
+                      </td>
                       <td className="py-3 pr-4 font-mono text-xs text-[#773331]">
                         {p?.email ?? "Non renseigné"}
                         {p?.phone ? <span className="block">{p.phone}</span> : null}
