@@ -154,8 +154,16 @@ export default function ConfidentialitePage() {
           </ul>
           <p>
             Ces cookies sont indispensables au service que tu demandes, ils sont donc{" "}
-            <strong>exemptés de consentement</strong>. Il n’y a ni mesure d’audience, ni cookie
-            publicitaire, ni bouton de réseau social qui te suivrait ailleurs.
+            <strong>exemptés de consentement</strong>. Il n’y a ni cookie publicitaire, ni bouton de
+            réseau social qui te suivrait ailleurs.
+          </p>
+          <p>
+            Pour savoir combien de personnes passent sur le site, on compte les pages publiques
+            vues, <strong>sans cookie</strong>. Ton passage est reconnu le temps d’une journée par
+            une empreinte chiffrée (adresse et navigateur mélangés à un secret), qui change chaque
+            jour et ne permet pas de retrouver ton adresse. On note aussi la page vue et le site
+            d’où tu arrives. Ces chiffres ne servent qu’à nous, restent chez Supabase à Paris et
+            sont effacés au bout de 13 mois.
           </p>
           <p>
             Le stockage local de ton navigateur retient aussi que tu as vu le bandeau

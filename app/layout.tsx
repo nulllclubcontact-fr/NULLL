@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Anton, Roboto_Condensed, Caveat } from "next/font/google";
 import "./globals.css";
 import { BandeauCookies } from "../components/bandeau-cookies";
+import { CompteurVisites } from "../components/compteur-visites";
 
 // Le site n'embarquait aucune police : il comptait sur Haettenschweiler,
 // livree avec Microsoft Office. Les visiteurs qui ne l'ont pas retombaient
@@ -108,6 +109,7 @@ export default function RootLayout({
       <body>
         {children}
         <BandeauCookies />
+        <CompteurVisites />
       </body>
     </html>
   );

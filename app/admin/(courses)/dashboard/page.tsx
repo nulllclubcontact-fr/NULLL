@@ -1,7 +1,21 @@
 import Link from "next/link";
 import { requireAdminUser } from "../../../../lib/admin/require-admin";
 import { formatHeure, formatJour, formatJourCourt } from "../../../../components/races/format";
-import { ColonnesParJour, Intitule, Pastille, TITRE_LIGNE, Tuiles, fenetreJours } from "../../../../components/admin/graphiques";
+import {
+  ColonnesParJour,
+  Intitule,
+  Pastille,
+  TITRE_LIGNE,
+  Tuiles,
+  cleParisDe,
+  decalerJours,
+  fenetreJours,
+  fenetrePeriodes,
+  lundiDe,
+  premierDuMois,
+  type Granularite
+} from "../../../../components/admin/graphiques";
+import { createSupabaseServiceClient } from "../../../../lib/supabase/service";
 import type { Race, RaceStatus } from "../../../../lib/races/types";
 
 export const metadata = { robots: { index: false, follow: false } };
@@ -28,12 +42,41 @@ function instantPresent() {
   return Date.now();
 }
 
+const VUES_VISITES: Array<{ vue: Granularite; label: string }> = [
+  { vue: "jour", label: "30 jours" },
+  { vue: "semaine", label: "12 semaines" },
+  { vue: "mois", label: "12 mois" }
+];
+
+function debutVisites(vue: Granularite, fin: string) {
+  if (vue === "mois") return premierDuMois(fin, -11);
+  if (vue === "semaine") return decalerJours(lundiDe(fin), -7 * 11);
+  return decalerJours(fin, -29);
+}
+
+type JourVisites = { jour: string; visiteurs: number; pages: number };
+
+/**
+ * Visites du site public (migration 0012), lues avec la cle de service :
+ * la table n'a aucune policy. Une panne rend null, pas un faux zero.
+ */
+async function lireVisites(debut: string, fin: string) {
+  try {
+    const { data, error } = await createSupabaseServiceClient().rpc("stats_visites", { p_debut: debut, p_fin: fin });
+    return error ? null : ((data ?? []) as JourVisites[]);
+  } catch {
+    return null;
+  }
+}
+
 function pourcentage(part: number, total: number) {
   return total === 0 ? 0 : Math.round((part / total) * 100);
 }
 
-export default async function AdminDashboardPage() {
+export default async function AdminDashboardPage({ searchParams }: { searchParams: Promise<{ vue?: string }> }) {
   const { supabase } = await requireAdminUser();
+  const { vue: vueDemandee } = await searchParams;
+  const vueVisites: Granularite = vueDemandee === "semaine" || vueDemandee === "mois" ? vueDemandee : "jour";
 
   // Une seule requete ramene les courses et leurs inscriptions : compter
   // cote serveur evite N requetes et garde les chiffres coherents entre
@@ -124,6 +167,23 @@ export default async function AdminDashboardPage() {
 
   const totalJours = fenetre.jours.reduce((s, j) => s + j.total, 0);
 
+  // Un visiteur est reconnu le temps d'une journee seulement : sur une
+  // semaine ou un mois, quelqu'un venu deux jours compte deux fois.
+  const finVisites = cleParisDe(new Date(maintenant));
+  const debutV = debutVisites(vueVisites, finVisites);
+  const visites = await lireVisites(debutV, finVisites);
+  const periodesVisites = fenetrePeriodes(debutV, finVisites, vueVisites);
+  let totalVisiteurs = 0;
+  let totalPages = 0;
+  let visiteursAujourdhui = 0;
+  for (const v of visites ?? []) {
+    periodesVisites.ajouter(`${v.jour}T12:00:00Z`, Number(v.visiteurs));
+    totalVisiteurs += Number(v.visiteurs);
+    totalPages += Number(v.pages);
+    if (v.jour === finVisites) visiteursAujourdhui = Number(v.visiteurs);
+  }
+  const libellePeriode = VUES_VISITES.find((v) => v.vue === vueVisites)?.label ?? "30 jours";
+
   return (
     <section className="shell grid gap-12 py-8 lg:py-12">
       <header>
@@ -149,6 +209,50 @@ export default async function AdminDashboardPage() {
           { label: "Absents", valeur: absents, detail: "sur les sorties passées", teinte: "creme" }
         ]}
       />
+
+      <div>
+        <Intitule>Visiteurs du site</Intitule>
+        <nav aria-label="Période des visites" className="mt-5 flex border-2 border-[#773331] sm:max-w-md">
+          {VUES_VISITES.map(({ vue, label }) => {
+            const actif = vue === vueVisites;
+            return (
+              <Link
+                aria-current={actif ? "page" : undefined}
+                className={`inline-flex min-h-11 flex-1 items-center justify-center border-r-2 border-[#773331] px-3 font-mono text-xs font-black uppercase tracking-[.12em] transition last:border-r-0 ${
+                  actif ? "bg-[#773331] text-[#F1EDE9]" : "bg-[#F1EDE9] text-[#773331] hover:bg-[#EBA0CD]"
+                }`}
+                href={vue === "jour" ? "/admin/dashboard" : `/admin/dashboard?vue=${vue}`}
+                key={vue}
+                scroll={false}
+              >
+                {label}
+              </Link>
+            );
+          })}
+        </nav>
+        {visites === null ? (
+          <p className="mt-5 border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-bold" role="alert">
+            Impossible de lire les visites pour le moment.
+          </p>
+        ) : (
+          <>
+            <ColonnesParJour
+              description={`${totalVisiteurs} visiteurs sur ${libellePeriode}`}
+              jours={periodesVisites.periodes}
+            />
+            <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em]">
+              {totalVisiteurs === 0
+                ? "Pas encore de visite comptée : le compteur tourne depuis le 22 septembre 2026"
+                : `${totalVisiteurs} visiteur${totalVisiteurs > 1 ? "s" : ""} · ${totalPages} page${totalPages > 1 ? "s" : ""} vue${totalPages > 1 ? "s" : ""} · ${visiteursAujourdhui} aujourd’hui · période en cours en jaune`}
+            </p>
+            {vueVisites !== "jour" ? (
+              <p className="mt-1 font-mono text-xs font-bold uppercase tracking-[.1em]">
+                Un visiteur venu plusieurs jours compte une fois par jour.
+              </p>
+            ) : null}
+          </>
+        )}
+      </div>
 
       <div className="grid gap-12 xl:grid-cols-[1.4fr_1fr]">
         <div>
