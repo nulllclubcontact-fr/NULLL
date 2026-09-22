@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
+import { envoyerQrInscription } from "../../lib/email/qr-inscription";
 import { createSupabaseServerClient } from "../../lib/supabase/server";
 import { MESSAGES_INSCRIPTION, type RegisterOutcome } from "../../lib/races/types";
 
@@ -54,6 +56,12 @@ export async function registerForRace(_previousState: InscriptionState, formData
 
   const resultat = data as RegisterOutcome;
   const texte = MESSAGES_INSCRIPTION[resultat.reason] ?? "Inscription impossible.";
+
+  // Le QR part aussi par mail, apres la reponse : le membre n'attend pas
+  // Resend pour voir son QR a l'ecran.
+  if (resultat.ok && (resultat.reason === "registered" || resultat.reason === "reactivated")) {
+    after(() => envoyerQrInscription(user.id, raceId));
+  }
 
   revalidatePath("/membre");
   revalidatePath("/membre/sorties");
