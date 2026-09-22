@@ -1,5 +1,7 @@
 import { createHash } from "node:crypto";
+import { cookies } from "next/headers";
 import { adresseAppelant } from "../../../lib/limite";
+import { createSupabaseServerClient } from "../../../lib/supabase/server";
 import { createSupabaseServiceClient } from "../../../lib/supabase/service";
 
 /**
@@ -14,6 +16,34 @@ const JOUR_PARIS = new Intl.DateTimeFormat("fr-CA", { timeZone: "Europe/Paris" }
 
 function rien() {
   return new Response(null, { status: 204 });
+}
+
+// L'equipe ne compte pas dans ses propres chiffres : Tom et Tobias, plus
+// tout compte admin. Des identifiants de compte, pas d'adresse e-mail.
+const EQUIPE = new Set(["596b9041-43fd-4ad7-ba6a-313e22be0409", "77169478-2546-426b-a407-e9216544a399"]);
+const COOKIE_EQUIPE = "nulll_pas_compte";
+
+/**
+ * Un membre de l'equipe connecte est reconnu par sa session ; on pose alors
+ * un cookie pour continuer a l'ecarter apres sa deconnexion sur ce navigateur.
+ */
+async function estEquipe() {
+  const jar = await cookies();
+  if (jar.has(COOKIE_EQUIPE)) return { equipe: true, poser: false };
+  if (!jar.getAll().some((c) => c.name.startsWith("sb-") && c.name.includes("auth-token"))) return { equipe: false, poser: false };
+
+  try {
+    const supabase = await createSupabaseServerClient();
+    const {
+      data: { user }
+    } = await supabase.auth.getUser();
+    if (!user) return { equipe: false, poser: false };
+    if (EQUIPE.has(user.id)) return { equipe: true, poser: true };
+    const { data } = await supabase.from("profiles").select("role").eq("id", user.id).maybeSingle<{ role: string | null }>();
+    return { equipe: data?.role === "admin", poser: data?.role === "admin" };
+  } catch {
+    return { equipe: false, poser: false };
+  }
 }
 
 export async function POST(request: Request) {
@@ -35,6 +65,15 @@ export async function POST(request: Request) {
   }
 
   if (!chemin.startsWith("/")) return rien();
+
+  const { equipe, poser } = await estEquipe();
+  if (equipe) {
+    const reponse = rien();
+    if (poser) {
+      reponse.headers.append("Set-Cookie", `${COOKIE_EQUIPE}=1; Path=/; Max-Age=34560000; HttpOnly; Secure; SameSite=Lax`);
+    }
+    return reponse;
+  }
 
   const jour = JOUR_PARIS.format(new Date());
   const visiteur = createHash("sha256")
