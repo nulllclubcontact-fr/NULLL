@@ -203,7 +203,7 @@ export function getSiteCopy(locale: Locale) {
       ],
       meta: {
         home: {
-          title: "NULLL.CLUB | Courir ensemble à Aix",
+          title: "NULLL.CLUB | Run club gratuit à Aix-en-Provence",
           description:
             "Le social sport club d’Aix-en-Provence : une sortie gratuite chaque samedi à 8h30, à une allure qui permet de discuter."
         },
