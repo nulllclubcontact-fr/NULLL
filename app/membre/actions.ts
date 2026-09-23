@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { creerCompteEtEnvoyerConfirmation, envoyerLienMotDePasse } from "../../lib/email/auth-mails";
 import { preparerProfilFournisseur } from "../../lib/auth/profil-fournisseur";
 import { normaliserTelephone } from "../../lib/auth/telephone";
 import { VERSION_DECHARGE } from "../../lib/decharge";
@@ -38,6 +39,12 @@ function readRequiredString(formData: FormData, key: string) {
 function readPassword(formData: FormData, key: string) {
   const value = formData.get(key);
   return typeof value === "string" ? value : "";
+}
+
+/** La sortie choisie avant l'inscription, pour y revenir apres le clic. */
+function lireSortie(formData: FormData) {
+  const valeur = formData.get("sortie");
+  return typeof valeur === "string" && valeur ? valeur : null;
 }
 
 function getSignupMessage(message: string, parTelephone: boolean) {
@@ -124,17 +131,42 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
 
   // Par telephone, Supabase envoie un code SMS (via /api/auth/sms) et
   // n'ouvre la session qu'une fois ce code saisi.
-  const { data, error } = telephone
-    ? await supabase.auth.signUp({ phone: telephone, password })
-    : await supabase.auth.signUp({ email, password });
+  //
+  // Par e-mail, le compte est cree avec la cle de service et c'est nous
+  // qui postons le lien de confirmation, par Resend : le serveur partage
+  // de Supabase etait bloque par Apple, et aucune adresse @icloud.com
+  // n'arrivait a s'inscrire (23/09/2026).
+  let utilisateur: { id: string } | null = null;
 
-  if (error || !data.user) {
-    return { error: getSignupMessage(error?.message ?? "", parTelephone) };
+  if (telephone) {
+    const { data, error } = await supabase.auth.signUp({ phone: telephone, password });
+
+    if (error || !data.user) {
+      return { error: getSignupMessage(error?.message ?? "", parTelephone) };
+    }
+
+    utilisateur = data.user;
+  } else {
+    let resultat;
+
+    try {
+      resultat = await creerCompteEtEnvoyerConfirmation(email, password, lireSortie(formData));
+    } catch {
+      // Le compte peut exister sans que le mail soit parti : on le dit,
+      // plutot que de laisser croire a un echec complet.
+      return { error: "Compte créé, mais le mail de confirmation n’est pas parti. Écris à contact@nulll.club." };
+    }
+
+    if (!resultat.user) {
+      return { error: getSignupMessage(resultat.erreur ?? "", parTelephone) };
+    }
+
+    utilisateur = resultat.user;
   }
 
   const { error: profileError } = await serviceSupabase.from("profiles").upsert(
     {
-      id: data.user.id,
+      id: utilisateur.id,
       email: email || null,
       ...(telephone ? { phone: telephone } : {}),
       first_name: firstName,
@@ -155,17 +187,9 @@ export async function registerMember(_previousState: RegisterState, formData: Fo
     return { etape: "code", telephone };
   }
 
-  // Quand la confirmation d'e-mail est activee cote Supabase — le reglage
-  // par defaut d'un projet — signUp cree le compte mais n'ouvre aucune
-  // session. Rediriger vers /membre renvoyait alors le nouvel inscrit sur
-  // le formulaire de connexion, sans un mot d'explication, juste apres
-  // avoir rempli le sien. On teste la session plutot que de supposer le
-  // reglage : les deux cas sont traites.
-  if (!data.session) {
-    redirect("/membre/login?message=confirme");
-  }
-
-  redirect(destinationMembre(formData.get("sortie")));
+  // Le compte existe, mais l'adresse n'est pas encore confirmee : aucune
+  // session ne s'ouvre avant le clic sur le lien recu par mail.
+  redirect("/membre/login?message=confirme");
 }
 
 /** Le code SMS de l'inscription confirme le numero et ouvre la session. */
@@ -305,12 +329,10 @@ export async function resetMemberPassword(_previousState: LoginState, formData: 
     return { etape: "code", telephone, message: "Code envoyé si ce numéro a un compte." };
   }
 
-  const { error } = await supabase.auth.resetPasswordForEmail(identifiant.toLowerCase(), {
-    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://nulll.club"}/auth/callback?next=/membre/mot-de-passe`
-  });
-
-  if (error) {
-    return { error: "Lien impossible à envoyer." };
+  try {
+    await envoyerLienMotDePasse(identifiant.toLowerCase());
+  } catch {
+    return { error: "Lien impossible à envoyer. Réessaie dans un instant." };
   }
 
   return { message: "Lien envoye si le compte existe." };
