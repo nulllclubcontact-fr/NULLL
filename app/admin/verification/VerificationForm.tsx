@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition, type FormEvent } from "react";
 import { codeTotpValide } from "../../../lib/admin/regles";
 import { createSupabaseBrowserClient } from "../../../lib/supabase/client";
+import { noterVerification } from "../securite-actions";
 
 export function VerificationForm() {
   const router = useRouter();
@@ -34,10 +35,12 @@ export function VerificationForm() {
         const { error } = await supabase.auth.mfa.challengeAndVerify({ factorId: totp.id, code: code.replace(/\s+/g, "") });
 
         if (error) {
+          void noterVerification(false);
           setErreur("Code refusé. Vérifie l’heure de ton téléphone et réessaie.");
           return;
         }
 
+        await noterVerification(true);
         router.replace("/admin/dashboard");
         router.refresh();
       } catch {

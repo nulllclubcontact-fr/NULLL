@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { isAdminUser } from "../../lib/admin/require-admin";
 import { journaliser } from "../../lib/admin/journal";
+import { noterAuth } from "../../lib/admin/journal-auth";
 import { identifiantValide } from "../../lib/admin/regles";
 import { createSupabaseServiceClient } from "../../lib/supabase/service";
 
@@ -144,7 +145,7 @@ export async function retirerDoubleVerification(_previousState: EquipeState, for
     return { error: "Retrait impossible pour le moment." };
   }
 
-  await journaliser(admin.user.id, "admin.mfa.retrait", id);
+  await Promise.all([journaliser(admin.user.id, "admin.mfa.retrait", id), noterAuth("mfa_reset_by_admin", { userId: id, details: { par: admin.user.id } })]);
   revalidatePath("/admin/equipe");
   return { message: "Double vérification retirée. La personne peut se reconnecter avec son mot de passe, puis la réactiver." };
 }

@@ -36,6 +36,9 @@ Chaque constat porte un niveau (critique, problématique, bénin), une référen
 | S8 | Bénin | **Les identifiants de l'équipe sont en dur dans `/api/visite`.** Deux UUID dans le code pour exclure Tom et Tobias des statistiques. Fonctionne, mais un changement de compte demande un déploiement. Le rôle admin est déjà exclu par ailleurs. | **Corrigé sprint 3** : variable `VISITES_EQUIPE`, les deux comptes actuels restent exclus par défaut. |
 | S9 | Bénin | **Les admins sont nommés à la main en base.** Aucune interface pour donner ou retirer le rôle, donc aucune trace (voir S1) de qui a été promu. | **Corrigé sprint 2** : `/admin/equipe`, ajout par e-mail d'un membre existant, retrait (jamais soi-même, jamais le dernier), tout au journal. |
 
+| S10 | Problématique | **Aucune limite d'essais sur la connexion par mot de passe côté site.** Seules les limites globales de Supabase (par adresse) s'appliquaient ; un essai lent depuis plusieurs adresses sur un compte précis passait. Constaté pendant la recette du 25 septembre. | **Corrigé** : dix essais par quart d'heure et par identifiant, trente par adresse (`essaiAutorise`), blocage tracé dans le journal des connexions. |
+| S11 | Problématique | **Aucun journal des connexions.** Le journal Supabase (`auth.audit_log_entries`) est vide sur ce projet ; impossible de voir qu'un compte est visé ou qu'un admin s'est connecté d'un appareil inconnu. | **Corrigé** : table `journal_auth` (migration 0016), en ajout seul, six mois, IP tronquée ; carte « Journal des connexions » avec compteurs 24 h, comptes visés et filtres. |
+
 ### Qualité et maintenabilité
 
 | # | Niveau | Constat | État |

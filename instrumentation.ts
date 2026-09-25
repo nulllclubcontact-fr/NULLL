@@ -1,13 +1,23 @@
+import * as Sentry from "@sentry/nextjs";
 import type { Instrumentation } from "next";
 
 /**
- * Remontee des erreurs serveur (pages, actions, routes) vers les logs
- * Vercel, en une ligne JSON par erreur : la supervision peut y poser une
- * alerte (Vercel Log Drain, ou Sentry en branchant son SDK ici).
- *
- * Aucune donnee de session ni de corps de requete : juste de quoi
- * retrouver l'erreur (digest) et l'endroit ou elle s'est produite.
+ * Remontee des erreurs serveur (pages, actions, routes) : une ligne JSON
+ * par erreur dans les logs Vercel, et l'envoi a Sentry quand un DSN est
+ * configure (sentry.server.config.ts). Aucune donnee de session ni de
+ * corps de requete dans la ligne JSON : juste de quoi retrouver l'erreur
+ * (digest) et l'endroit ou elle s'est produite.
  */
+export async function register() {
+  if (process.env.NEXT_RUNTIME === "nodejs") {
+    await import("./sentry.server.config");
+  }
+
+  if (process.env.NEXT_RUNTIME === "edge") {
+    await import("./sentry.edge.config");
+  }
+}
+
 export const onRequestError: Instrumentation.onRequestError = async (erreur, requete, contexte) => {
   const e = erreur as { message?: string; digest?: string; name?: string };
 
@@ -24,4 +34,6 @@ export const onRequestError: Instrumentation.onRequestError = async (erreur, req
       rendu: contexte.renderSource ?? null
     })
   );
+
+  await Sentry.captureRequestError(erreur, requete, contexte);
 };

@@ -39,6 +39,9 @@ const cspObservation = [
 
 securite.push({ key: "Content-Security-Policy-Report-Only", value: cspObservation });
 
+// Depuis Sentry 11, l'enveloppe de configuration vit dans un point d'entree a part.
+import { withSentryConfig } from "@sentry/nextjs/config";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Les photos de sortie deposees dans Supabase passent par l'optimiseur
@@ -52,4 +55,19 @@ const nextConfig = {
   }
 };
 
-export default nextConfig;
+/**
+ * Sentry : les erreurs du navigateur passent par /api/suivi (meme origine),
+ * et les cartes de code ne sont envoyees que si un jeton est fourni. Sans
+ * variables Sentry, l'enveloppe ne change rien au site.
+ */
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: true,
+  telemetry: false,
+  disableLogger: true,
+  widenClientFileUpload: true,
+  tunnelRoute: "/api/suivi",
+  sourcemaps: { disable: !process.env.SENTRY_AUTH_TOKEN }
+});

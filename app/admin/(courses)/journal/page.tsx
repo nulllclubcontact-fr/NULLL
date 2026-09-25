@@ -21,7 +21,7 @@ type Entree = {
 // Une couleur par famille : ce qui touche aux donnees personnelles ou
 // efface quelque chose ressort au premier coup d'oeil.
 function teinteDe(action: string): { teinte: Teinte; pointillee?: boolean } {
-  if (action === "export.inscrits") return { teinte: "jaune" };
+  if (action.startsWith("export.")) return { teinte: "jaune" };
   if (action.endsWith(".suppression") || action.endsWith(".annulation") || action.endsWith(".desactivation")) return { teinte: "bordeaux" };
   if (action.endsWith(".creation") || action.endsWith(".code")) return { teinte: "rose" };
   return { teinte: "creme", pointillee: true };

@@ -109,6 +109,16 @@
 | R-104 | Panneau Sessions admin | Une ligne par session récente : prénom, navigateur et système, IP tronquée, niveau (Code passé, Sans le code, Mot de passe), dernière activité ; une session « Sans le code » d'un admin protégé passe la tuile en jaune |
 | R-105 | Panneau Journal de sécurité | Seulement les lignes comptes, exports et codes partenaires ; exports, retraits et suppressions avec pastille jaune ; lien vers le journal complet |
 | R-106 | Sans clé de service (la retirer en local) | Les tuiles affichent « … » et « base indisponible », le panneau Base affiche son alerte, la page ne casse pas |
+| R-107 | Cartes Erreurs, Qualité du code, Chaîne GitHub, Disponibilité sans variables | Chacune affiche « À configurer » et le nom exact des variables manquantes ; Chaîne GitHub fonctionne sans variable (dépôt public) et liste les derniers runs avec leur état |
+| R-108 | Les mêmes cartes avec les variables posées sur la preview | Sentry : erreurs 24 h et problèmes ouverts ; SonarCloud : porte qualité et six mesures ; UptimeRobot : en ligne, 24 h, 7 jours, incidents |
+| R-109 | « Télécharger une sauvegarde » | Fichier `nulll-sauvegarde-AAAA-MM-JJ.json` avec les tables métier, sans `visites` ni `rate_limits` ; ligne « Sauvegarde téléchargée » au journal ; la carte affiche la date de la dernière sauvegarde |
+| R-110a | Se tromper trois fois de mot de passe sur un compte, puis réussir | Journal des connexions : trois « Mot de passe erroné » puis une « Connexion » ; le compte apparaît dans « Comptes visés sur 24 h » ; compteur Échecs à 3 |
+| R-110b | Se tromper onze fois de suite | Au onzième, « Trop d'essais » sans appel à Supabase ; ligne « Connexion bloquée » ; compteur Blocages à 1 ; le bon mot de passe est refusé jusqu'à la fin du quart d'heure |
+| R-110c | Déconnexion, demande de réinitialisation, changement de mot de passe, saisie d'un mauvais code puis du bon | Une ligne par événement, avec le bon libellé et le bon ton ; les filtres Connexions, Échecs et blocages, Comptes ne montrent que leur catégorie |
+| R-110d | Carte Services | Authentification, Base de données, Stockage, E-mails en OK avec un temps en ms ; couper la clé Resend en local donne « À configurer » sur E-mails seulement |
+| R-110e | Carte Base de données | Taille de la base et six tables les plus lourdes, cohérentes avec Supabase → Database → Tables |
+| R-110f | Checklists | 22 points sécurité et 12 points RGPD ; les points mesurés (RLS, admins protégés, Sentry, disponibilité, SonarCloud, sauvegarde récente) changent d'état quand la situation change |
+| R-109b | Provoquer une erreur navigateur avec un DSN Sentry posé | L'erreur part vers `/api/suivi` (onglet Réseau), aucune violation CSP, elle apparaît dans Sentry |
 
 ## Sprint 3 : CSP, duplication, hors ligne
 

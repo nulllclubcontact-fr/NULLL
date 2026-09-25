@@ -47,9 +47,19 @@ export type EtatBase = {
   limites_max: number;
   membres: number;
   membres_bannis: number;
+  taille_base_octets: number;
+  tables_lourdes: Array<{ table: string; octets: number; lignes: number }>;
+  activite: Array<{ admin_id: string | null; prenom: string | null; actions: number; derniere: string }>;
   admins: AdminSecurite[];
   sessions: SessionAdmin[];
 };
+
+/** « 12,4 Mo », « 830 ko ». */
+export function tailleLisible(octets: number) {
+  if (octets >= 1024 ** 3) return `${(octets / 1024 ** 3).toFixed(2).replace(".", ",")} Go`;
+  if (octets >= 1024 ** 2) return `${(octets / 1024 ** 2).toFixed(1).replace(".", ",")} Mo`;
+  return `${Math.round(octets / 1024)} ko`;
+}
 
 export async function etatBase(): Promise<{ etat: EtatBase | null; latenceMs: number | null }> {
   const debut = Date.now();

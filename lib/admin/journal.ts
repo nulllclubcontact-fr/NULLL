@@ -11,6 +11,7 @@ export type ActionJournal =
   | "sortie.annulation"
   | "sortie.suppression"
   | "export.inscrits"
+  | "export.sauvegarde"
   | "partenaire.creation"
   | "partenaire.modification"
   | "partenaire.code"
@@ -34,6 +35,7 @@ export const LIBELLES_JOURNAL: Record<ActionJournal, string> = {
   "sortie.annulation": "Sortie annulée",
   "sortie.suppression": "Sortie supprimée",
   "export.inscrits": "Export des inscrits",
+  "export.sauvegarde": "Sauvegarde téléchargée",
   "partenaire.creation": "Partenaire créé",
   "partenaire.modification": "Partenaire modifié",
   "partenaire.code": "Nouveau code partenaire",

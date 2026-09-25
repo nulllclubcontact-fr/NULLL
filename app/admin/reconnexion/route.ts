@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { noterAuth } from "../../../lib/admin/journal-auth";
 import { createSupabaseServerClient } from "../../../lib/supabase/server";
 import { MARQUEUR_SESSION_COURTE } from "../../../lib/supabase/session";
 
@@ -11,7 +12,15 @@ import { MARQUEUR_SESSION_COURTE } from "../../../lib/supabase/session";
 export async function GET(request: Request) {
   try {
     const supabase = await createSupabaseServerClient();
+    const {
+      data: { user }
+    } = await supabase.auth.getUser();
+
     await supabase.auth.signOut();
+
+    if (user) {
+      await noterAuth("session_expired", { userId: user.id, identifiant: user.email ?? null });
+    }
   } catch {
     // Sans Supabase joignable, le cookie de session tombera de lui-meme.
   }

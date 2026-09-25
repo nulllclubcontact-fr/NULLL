@@ -40,3 +40,29 @@ jobs:
 
       - name: Tests
         run: pnpm test
+
+  # Qualité du code sur SonarCloud. Ne tourne que si le secret SONAR_TOKEN
+  # existe dans le dépôt : sans lui, l'étape est sautée, pas en échec.
+  sonar:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: verifier
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Analyse
+        if: env.SONAR_TOKEN != ''
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Sans SonarCloud
+        if: env.SONAR_TOKEN == ''
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: echo "SONAR_TOKEN absent : analyse SonarCloud sautée (voir docs/admin/05-exploitation.md)."

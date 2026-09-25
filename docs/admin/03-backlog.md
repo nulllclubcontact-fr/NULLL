@@ -48,6 +48,26 @@ Kanban de suivi. Une ligne par user story, avec son sprint, son état et sa tail
 
 **Livré dans le code** : `next.config.mjs` (en-tête `Content-Security-Policy-Report-Only`), `app/api/csp/route.ts`, `app/api/visite/route.ts`, `proxy.ts`, action `dupliquerCourse`, `RaceScanner.tsx`.
 
+## Sprint 4 — « Voir ce que les autres voient » (services extérieurs)
+
+| Réf. | En tant que… je veux… afin de… | Taille | État |
+| --- | --- | --- | --- |
+| A-17 | admin, voir les erreurs de production des dernières 24 h et les problèmes ouverts sur la page Sécurité, afin de réagir avant un membre | M | à recetter : SDK Sentry câblé, carte prête, variables à poser (voir `05-exploitation.md`) |
+| A-18 | admin, voir bugs, vulnérabilités, points sensibles et duplication du code, afin de savoir si la base de code se dégrade | M | à recetter : job SonarCloud dans la CI, carte prête, projet à créer sur sonarcloud.io |
+| A-19 | admin, voir l'état des derniers runs de la chaîne GitHub, afin de savoir si `main` est sain | S | à recetter : fonctionne sans configuration (dépôt public) |
+| A-20 | admin, voir la disponibilité sur 24 h et 7 jours et les incidents mesurés de l'extérieur, afin de ne pas découvrir une panne par un membre | S | à recetter : carte prête, moniteur UptimeRobot à créer |
+| A-21 | admin, télécharger une sauvegarde complète des tables métier, tracée au journal, afin de ne dépendre d'aucun plan Supabase | S | à recetter |
+
+## Sprint 5 — « Le journal des connexions » (sans service extérieur)
+
+| Réf. | En tant que… je veux… afin de… | Taille | État |
+| --- | --- | --- | --- |
+| A-22 | admin, voir connexions, mots de passe erronés, blocages, codes acceptés ou refusés, avec compteurs 24 h et filtres, afin de repérer une attaque sur un compte | L | à recetter : table `journal_auth` (migration 0016), écrite depuis connexion, déconnexion, réinitialisation, changement de mot de passe, codes, retrait par un admin, expiration ; limiteur de connexion ajouté au passage (dix essais par quart d'heure et par identifiant) |
+| A-23 | admin, voir chaque service (Auth, base, stockage, mail) testé avec son temps de réponse, afin de localiser une panne | M | à recetter : Authentification, base, stockage, e-mails (Resend), avec temps de réponse |
+| A-24 | admin, voir la taille de la base et les tables les plus lourdes, afin d'anticiper le plan Supabase | S | à recetter : taille de la base et six tables les plus lourdes dans la carte Base de données |
+| A-25 | admin, voir qui a fait combien d'actions cette semaine, afin de suivre l'activité de l'équipe | S | à recetter : actions par admin sur sept jours, sous la carte Services |
+| A-26 | admin, une checklist Sécurité et RGPD (en place, partiel, absent) issue de l'audit, afin de savoir ce qui reste à faire | S | à recetter : deux cartes, 22 points sécurité dont 8 mesurés en direct, 12 points RGPD |
+
 ## Idées non planifiées
 
 - Rappel automatique la veille d'une sortie aux inscrits (e-mail), avec désinscription en un clic.

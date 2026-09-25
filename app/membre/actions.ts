@@ -10,6 +10,16 @@ import { destinationMembre, suiteSortie } from "../../lib/races/sortie-choisie";
 import { createSupabaseServerClient } from "../../lib/supabase/server";
 import { createSupabaseServiceClient } from "../../lib/supabase/service";
 import { MARQUEUR_SESSION_COURTE } from "../../lib/supabase/session";
+import { noterAuth } from "../../lib/admin/journal-auth";
+import { adresseAppelant, essaiAutorise, oublierEssais } from "../../lib/limite";
+import { headers } from "next/headers";
+
+// Connexion par mot de passe : dix essais par quart d'heure et par
+// identifiant, autant par adresse. Au-dela, on refuse sans meme demander a
+// Supabase, et on le note. Supabase a sa propre limite par adresse ; celle-ci
+// protege un compte precis contre un essai lent depuis plusieurs adresses.
+const ESSAIS_CONNEXION = 10;
+const FENETRE_CONNEXION_S = 15 * 60;
 
 /** Etat commun des formulaires d'acces ; etape « code » = attente du SMS. */
 export type CodeState = {
@@ -266,6 +276,18 @@ export async function loginMember(_previousState: LoginState, formData: FormData
     identifiants = { phone: telephone, password };
   }
 
+  const cle = "email" in identifiants ? identifiants.email : identifiants.phone;
+  const adresse = adresseAppelant(await headers());
+  const [parIdentifiant, parAdresse] = await Promise.all([
+    essaiAutorise("connexion", cle, FENETRE_CONNEXION_S, ESSAIS_CONNEXION),
+    essaiAutorise("connexion-adresse", adresse, FENETRE_CONNEXION_S, ESSAIS_CONNEXION * 3)
+  ]);
+
+  if (!parIdentifiant || !parAdresse) {
+    await noterAuth("login_blocked", { identifiant: cle, details: { par: parIdentifiant ? "adresse" : "identifiant" } });
+    return { error: "Trop d’essais. Réessaie dans un quart d’heure, ou demande un nouveau mot de passe." };
+  }
+
   let supabase;
 
   try {
@@ -277,9 +299,11 @@ export async function loginMember(_previousState: LoginState, formData: FormData
   const { data, error } = await supabase.auth.signInWithPassword(identifiants);
 
   if (error || !data.user) {
+    await noterAuth("login_failure", { identifiant: cle });
     return { error: "Accès refusé. Vérifie tes infos." };
   }
 
+  await Promise.all([oublierEssais("connexion", cle), noterAuth("login_success", { userId: data.user.id, identifiant: cle, details: { souvenir } })]);
   await noterChoixSouvenir(souvenir);
 
   // Un compte administrateur atterrit directement sur sa vue d'ensemble :
@@ -326,6 +350,7 @@ export async function resetMemberPassword(_previousState: LoginState, formData: 
 
     // Meme reponse que le numero ait un compte ou non : on ne revele pas
     // qui est inscrit au club.
+    await noterAuth("password_reset_requested", { identifiant: telephone, details: { par: "sms" } });
     return { etape: "code", telephone, message: "Code envoyé si ce numéro a un compte." };
   }
 
@@ -335,6 +360,7 @@ export async function resetMemberPassword(_previousState: LoginState, formData: 
     return { error: "Lien impossible à envoyer. Réessaie dans un instant." };
   }
 
+  await noterAuth("password_reset_requested", { identifiant, details: { par: "email" } });
   return { message: "Lien envoye si le compte existe." };
 }
 
@@ -400,6 +426,11 @@ export async function updateMemberPassword(_previousState: LoginState, formData:
   if (error) {
     return { error: "Mot de passe refusé. Essaie-en un autre." };
   }
+
+  const {
+    data: { user: compte }
+  } = await supabase.auth.getUser();
+  await noterAuth("password_changed", { userId: compte?.id ?? null, identifiant: compte?.email ?? compte?.phone ?? null });
 
   redirect(destinationMembre(formData.get("sortie")));
 }
@@ -505,7 +536,16 @@ export async function logoutMember() {
     redirect("/membre/login");
   }
 
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
   await supabase.auth.signOut();
   (await cookies()).delete(MARQUEUR_SESSION_COURTE);
+
+  if (user) {
+    await noterAuth("logout", { userId: user.id, identifiant: user.email ?? user.phone ?? null });
+  }
+
   redirect("/membre/login");
 }
