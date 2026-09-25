@@ -1,0 +1,42 @@
+# Qualité : lint, types et tests sur chaque PR et sur main.
+# Rien ne part en production sans ces trois feux verts (voir docs/admin/README.md).
+name: Qualité
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: qualite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verifier:
+    name: Lint, types, tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Dépendances
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Types
+        run: pnpm typecheck
+
+      - name: Tests
+        run: pnpm test

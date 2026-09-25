@@ -1,4 +1,6 @@
 import { isAdminUser } from "../../../../../../lib/admin/require-admin";
+import { journaliser } from "../../../../../../lib/admin/journal";
+import { identifiantValide } from "../../../../../../lib/admin/regles";
 import { champ } from "../../../../../../lib/csv";
 
 type Ligne = {
@@ -17,6 +19,10 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
 
   if (!admin) {
     return new Response("Accès refusé", { status: 403 });
+  }
+
+  if (!identifiantValide(id)) {
+    return new Response("Sortie introuvable", { status: 404 });
   }
 
   const { data: course } = await admin.supabase
@@ -55,6 +61,10 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
       ].join(";")
     );
   }
+
+  // Un export emporte des e-mails et des telephones : on note qui, quand,
+  // combien de lignes. C'est ce que la CNIL attend d'un registre d'acces.
+  await journaliser(admin.user.id, "export.inscrits", id, { sortie: course.title, lignes: data?.length ?? 0 });
 
   // BOM UTF-8 : sans lui Excel affiche « Prenom » avec des accents casses.
   const corps = "﻿" + lignes.join("\r\n");

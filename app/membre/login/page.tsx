@@ -11,7 +11,8 @@ import { sessionServeur } from "../../../lib/supabase/server";
 const MESSAGES_ERREUR: Record<string, string> = {
   lien: "Ce lien a expiré ou a déjà servi. Redemande-en un plus bas.",
   config: "Connexion indisponible pour le moment. Réessaie dans un instant.",
-  fournisseur: "Connexion avec Google ou Apple interrompue. Réessaie, ou passe par ton e-mail."
+  fournisseur: "Connexion avec Google ou Apple interrompue. Réessaie, ou passe par ton e-mail.",
+  admin: "Ta session d’administration a expiré : douze heures maximum. Reconnecte-toi."
 };
 
 // L'inscription renvoie ici quand Supabase demande une confirmation par

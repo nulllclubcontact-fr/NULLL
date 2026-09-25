@@ -18,9 +18,15 @@ function rien() {
   return new Response(null, { status: 204 });
 }
 
-// L'equipe ne compte pas dans ses propres chiffres : Tom et Tobias, plus
-// tout compte admin. Des identifiants de compte, pas d'adresse e-mail.
-const EQUIPE = new Set(["596b9041-43fd-4ad7-ba6a-313e22be0409", "77169478-2546-426b-a407-e9216544a399"]);
+// L'equipe ne compte pas dans ses propres chiffres : tout compte admin,
+// plus les identifiants de compte listes dans VISITES_EQUIPE (Tom et
+// Tobias par defaut). Des identifiants, pas d'adresse e-mail.
+const EQUIPE = new Set(
+  (process.env.VISITES_EQUIPE ?? "596b9041-43fd-4ad7-ba6a-313e22be0409,77169478-2546-426b-a407-e9216544a399")
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean)
+);
 const COOKIE_EQUIPE = "nulll_pas_compte";
 
 /**

@@ -10,7 +10,10 @@ export const dynamic = "force-dynamic";
 const ONGLETS = [
   { href: "/admin/dashboard", label: "Vue d’ensemble" },
   { href: "/admin/courses", label: "Sorties" },
-  { href: "/admin/reseau", label: "Partenaires" }
+  { href: "/admin/reseau", label: "Partenaires" },
+  { href: "/admin/journal", label: "Journal" },
+  { href: "/admin/equipe", label: "Équipe" },
+  { href: "/admin/securite", label: "Sécurité" }
 ];
 
 export default async function AdminCoursesLayout({ children }: { children: ReactNode }) {

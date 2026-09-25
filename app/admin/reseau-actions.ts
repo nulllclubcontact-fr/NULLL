@@ -3,6 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { isAdminUser } from "../../lib/admin/require-admin";
+import { journaliser } from "../../lib/admin/journal";
+import { identifiantValide } from "../../lib/admin/regles";
 import { createAdminPartner, deleteAdminPartner, issueAdminPartnerCode, setAdminPartnerActive, updateAdminPartner } from "../../lib/admin/repo";
 
 export type PartenaireState = { error?: string; message?: string; code?: string; partenaireId?: string; nom?: string };
@@ -21,7 +23,9 @@ function rafraichir(partenaireId?: string) {
 
 /** Cree le partenaire et son premier code, rendu en clair une seule fois. */
 export async function creerPartenaire(_previousState: PartenaireState, formData: FormData): Promise<PartenaireState> {
-  if (!(await isAdminUser())) {
+  const admin = await isAdminUser();
+
+  if (!admin) {
     return { error: "Accès refusé." };
   }
 
@@ -32,13 +36,14 @@ export async function creerPartenaire(_previousState: PartenaireState, formData:
     return { error: "Il faut au moins un nom." };
   }
 
-  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (email && !EMAIL.test(email)) {
     return { error: "E-mail invalide." };
   }
 
   try {
     const partenaireId = await createAdminPartner({ name: nom, contactEmail: email || null });
     const code = await issueAdminPartnerCode(partenaireId);
+    await journaliser(admin.user.id, "partenaire.creation", partenaireId, { nom });
     rafraichir(partenaireId);
     return { code, partenaireId, nom };
   } catch {
@@ -48,18 +53,21 @@ export async function creerPartenaire(_previousState: PartenaireState, formData:
 
 /** Nouveau code : l'ancien cesse aussitot de fonctionner. */
 export async function genererNouveauCode(_previousState: PartenaireState, formData: FormData): Promise<PartenaireState> {
-  if (!(await isAdminUser())) {
+  const admin = await isAdminUser();
+
+  if (!admin) {
     return { error: "Accès refusé." };
   }
 
   const partenaireId = lire(formData, "partner_id", 40);
 
-  if (!partenaireId) {
+  if (!identifiantValide(partenaireId)) {
     return { error: "Partenaire manquant." };
   }
 
   try {
     const code = await issueAdminPartnerCode(partenaireId);
+    await journaliser(admin.user.id, "partenaire.code", partenaireId);
     rafraichir(partenaireId);
     return { code, partenaireId };
   } catch {
@@ -69,7 +77,9 @@ export async function genererNouveauCode(_previousState: PartenaireState, formDa
 
 /** Corriger le nom ou l'e-mail d'un partenaire sans toucher a ses codes ni a ses ventes. */
 export async function modifierPartenaire(_previousState: PartenaireState, formData: FormData): Promise<PartenaireState> {
-  if (!(await isAdminUser())) {
+  const admin = await isAdminUser();
+
+  if (!admin) {
     return { error: "Accès refusé." };
   }
 
@@ -77,7 +87,7 @@ export async function modifierPartenaire(_previousState: PartenaireState, formDa
   const nom = lire(formData, "name", 120);
   const email = lire(formData, "contact_email").toLowerCase();
 
-  if (!partenaireId || !nom) {
+  if (!identifiantValide(partenaireId) || !nom) {
     return { error: "Il faut au moins un nom." };
   }
 
@@ -91,31 +101,38 @@ export async function modifierPartenaire(_previousState: PartenaireState, formDa
     return { error: "Enregistrement refusé. Réessaie." };
   }
 
+  await journaliser(admin.user.id, "partenaire.modification", partenaireId, { nom });
   rafraichir(partenaireId);
   return { message: "Enregistré." };
 }
 
 export async function basculerPartenaire(formData: FormData) {
-  if (!(await isAdminUser())) {
+  const admin = await isAdminUser();
+
+  if (!admin) {
     redirect("/membre");
   }
 
   const partenaireId = lire(formData, "partner_id", 40);
 
-  if (partenaireId) {
-    await setAdminPartnerActive(partenaireId, formData.get("active") === "true");
+  if (identifiantValide(partenaireId)) {
+    const actif = formData.get("active") === "true";
+    await setAdminPartnerActive(partenaireId, actif);
+    await journaliser(admin.user.id, actif ? "partenaire.activation" : "partenaire.desactivation", partenaireId);
     rafraichir(partenaireId);
   }
 }
 
 export async function supprimerPartenaire(_previousState: PartenaireState, formData: FormData): Promise<PartenaireState> {
-  if (!(await isAdminUser())) {
+  const admin = await isAdminUser();
+
+  if (!admin) {
     return { error: "Accès refusé." };
   }
 
   const partenaireId = lire(formData, "partner_id", 40);
 
-  if (!partenaireId) {
+  if (!identifiantValide(partenaireId)) {
     return { error: "Partenaire manquant." };
   }
 
@@ -133,6 +150,7 @@ export async function supprimerPartenaire(_previousState: PartenaireState, formD
     };
   }
 
+  await journaliser(admin.user.id, "partenaire.suppression", partenaireId);
   rafraichir();
   redirect("/admin/reseau");
 }

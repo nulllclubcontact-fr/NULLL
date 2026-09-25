@@ -10,9 +10,11 @@ export function CreateRaceForm() {
   const [state, formAction, pending] = useActionState(createRace, initial);
   // Tant que la photo part vers Supabase, on ne cree pas la sortie sans elle.
   const [envoiPhoto, setEnvoiPhoto] = useState(false);
+  // Apres un refus, React vide le formulaire : on lui rend ce qui etait saisi.
+  const v = state.valeurs ?? {};
 
   return (
-    <details className="panel p-5">
+    <details className="panel p-5" open={Boolean(state.error) || undefined}>
       <summary className="cursor-pointer font-mono text-xs font-black uppercase tracking-[.14em]">
         Créer une sortie
       </summary>
@@ -21,17 +23,17 @@ export function CreateRaceForm() {
         <div className="grid gap-3.5 sm:grid-cols-2">
           <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
             <span>Titre</span>
-            <input className="field" name="title" placeholder="Sortie du samedi" required />
+            <input className="field" defaultValue={v.title} name="title" placeholder="Sortie du samedi" required />
           </label>
           <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
             <span>Départ</span>
-            <input className="field" name="start_datetime" required type="datetime-local" />
+            <input className="field" defaultValue={v.start_datetime} name="start_datetime" required type="datetime-local" />
           </label>
         </div>
 
         <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
           <span>Description</span>
-          <textarea className="field min-h-20" name="description" rows={2} />
+          <textarea className="field min-h-20" defaultValue={v.description} name="description" rows={2} />
         </label>
 
         {/* La cle change a chaque creation reussie : le champ repart vide
@@ -41,26 +43,26 @@ export function CreateRaceForm() {
         <div className="grid gap-3.5 sm:grid-cols-2">
           <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
             <span>Lieu de départ</span>
-            <input className="field" name="location" placeholder="Parking du chemin de la Cible" />
+            <input className="field" defaultValue={v.location} name="location" placeholder="Parking du chemin de la Cible" />
           </label>
           <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
             <span>Adresse</span>
-            <input className="field" name="address" />
+            <input className="field" defaultValue={v.address} name="address" />
           </label>
         </div>
 
         <div className="grid gap-3.5 sm:grid-cols-3">
           <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
             <span>Distance (km)</span>
-            <input className="field" inputMode="decimal" name="distance_km" placeholder="5" />
+            <input className="field" defaultValue={v.distance_km} inputMode="decimal" name="distance_km" placeholder="5" />
           </label>
           <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
             <span>Places max</span>
-            <input className="field" inputMode="numeric" name="max_participants" placeholder="illimité" />
+            <input className="field" defaultValue={v.max_participants} inputMode="numeric" name="max_participants" placeholder="illimité" />
           </label>
           <label className="account-field grid gap-2 font-mono text-xs font-black uppercase">
             <span>Statut</span>
-            <select className="field" defaultValue="draft" name="status">
+            <select className="field" defaultValue={v.status === "published" ? "published" : "draft"} name="status">
               <option value="draft">Brouillon</option>
               <option value="published">Publiée (visible sur le site)</option>
             </select>

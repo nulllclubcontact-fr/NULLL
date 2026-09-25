@@ -7,6 +7,7 @@ import { Intitule } from "../../../../../components/admin/graphiques";
 import { FormulairePhotoCourse } from "../../../../../components/admin/champ-photo";
 import { SuppressionCourse } from "../SuppressionCourse";
 import { EditRaceForm } from "./EditRaceForm";
+import { dupliquerCourse, pointerInscription } from "../../../courses-actions";
 
 export const metadata = { robots: { index: false, follow: false } };
 
@@ -47,8 +48,21 @@ function versChampParis(iso: string) {
   return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`;
 }
 
-export default async function AdminCourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+const MESSAGES: Record<string, { texte: string; alerte: boolean }> = {
+  creee: { texte: "Sortie créée en brouillon. Vérifie, ajoute la photo, puis publie depuis « Modifier la sortie ».", alerte: false },
+  publiee: { texte: "Sortie créée et publiée : elle est déjà sur le site. Ajoute une photo si tu en as une.", alerte: false },
+  doublon: { texte: "Une sortie porte déjà ce nom une semaine plus tard : rien n’a été dupliqué.", alerte: true },
+  duplication: { texte: "Duplication refusée. Réessaie.", alerte: true }
+};
+
+export default async function AdminCourseDetailPage({
+  params,
+  searchParams
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ creee?: string; erreur?: string }>;
+}) {
+  const [{ id }, { creee, erreur }] = await Promise.all([params, searchParams]);
   const { supabase } = await requireAdminUser();
 
   const { data: course } = await supabase
@@ -60,6 +74,10 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
   if (!course) {
     notFound();
   }
+
+  // Le bandeau dit ce qui s'est vraiment passe : une sortie creee « publiee »
+  // est deja visible, inutile de demander de la publier.
+  const message = creee ? (course.status === "published" ? MESSAGES.publiee : MESSAGES.creee) : erreur ? MESSAGES[erreur] : undefined;
 
   const { data: inscrits } = await supabase
     .from("race_registrations")
@@ -105,9 +123,24 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
           <a className="secondary-link" href={`/admin/courses/${course.id}/export`}>
             Export CSV
           </a>
+          <form action={dupliquerCourse}>
+            <input name="race_id" type="hidden" value={course.id} />
+            <button className="secondary-link" type="submit">
+              Dupliquer (+7 jours)
+            </button>
+          </form>
           <SuppressionCourse id={course.id} inscrits={actifs.length} titre={course.title} />
         </div>
       </header>
+
+      {message ? (
+        <p
+          className={`border-2 border-[#773331] px-4 py-3 font-bold ${message.alerte ? "bg-[#FFB200]" : "bg-[#EBA0CD]"}`}
+          role={message.alerte ? "alert" : "status"}
+        >
+          {message.texte}
+        </p>
+      ) : null}
 
       <dl className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {chiffres.map((c) => (
@@ -144,7 +177,10 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
                   <th className="border-b-2 border-[#773331] pb-2 pr-4">Participant</th>
                   <th className="border-b-2 border-[#773331] pb-2 pr-4">Contact</th>
                   <th className="border-b-2 border-[#773331] pb-2 pr-4">Statut</th>
-                  <th className="border-b-2 border-[#773331] pb-2">Scanné à</th>
+                  <th className="border-b-2 border-[#773331] pb-2 pr-4">Scanné à</th>
+                  <th className="border-b-2 border-[#773331] pb-2">
+                    <span className="sr-only">Pointer à la main</span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -173,8 +209,22 @@ export default async function AdminCourseDetailPage({ params }: { params: Promis
                           {etiquette.texte}
                         </span>
                       </td>
-                      <td className="py-3 font-mono text-xs">
+                      <td className="py-3 pr-4 font-mono text-xs">
                         {ligne.checked_in_at ? formatHeure(ligne.checked_in_at) : "Non pointé"}
+                      </td>
+                      <td className="py-3">
+                        {/* Telephone decharge, QR illisible : on pointe a la main,
+                            meme trace que le scan. Pas sur un brouillon ni une
+                            sortie annulee, ni sur une inscription annulee. */}
+                        {!ligne.checked_in && ligne.status !== "cancelled" && course.status !== "draft" && course.status !== "cancelled" ? (
+                          <form action={pointerInscription}>
+                            <input name="registration_id" type="hidden" value={ligne.id} />
+                            <input name="race_id" type="hidden" value={course.id} />
+                            <button className="nav-link" type="submit">
+                              Pointer
+                            </button>
+                          </form>
+                        ) : null}
                       </td>
                     </tr>
                   );

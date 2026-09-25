@@ -14,6 +14,31 @@ const securite = [
   { key: "Permissions-Policy", value: "camera=(self), microphone=(), geolocation=()" }
 ];
 
+/**
+ * CSP complete, en mode observation seulement : rien n'est bloque, chaque
+ * violation est envoyee a /api/csp et finit dans les logs. Quand deux
+ * semaines passent sans rapport legitime (Google, Apple, Supabase,
+ * Vercel), elle pourra remplacer la ligne frame-ancestors ci-dessus.
+ * 'unsafe-inline' sur script-src : Next injecte des scripts en ligne sans
+ * nonce dans cette configuration ; a resserrer avec des nonces ensuite.
+ */
+const cspObservation = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://accounts.google.com https://vercel.live https://va.vercel-scripts.com",
+  "style-src 'self' 'unsafe-inline' https://accounts.google.com",
+  "img-src 'self' data: blob: https://*.supabase.co https://lh3.googleusercontent.com",
+  "font-src 'self' data:",
+  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://accounts.google.com https://vitals.vercel-insights.com https://vercel.live",
+  "frame-src https://accounts.google.com https://appleid.apple.com https://vercel.live",
+  "form-action 'self' https://appleid.apple.com https://accounts.google.com",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'none'",
+  "report-uri /api/csp"
+].join("; ");
+
+securite.push({ key: "Content-Security-Policy-Report-Only", value: cspObservation });
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Les photos de sortie deposees dans Supabase passent par l'optimiseur
