@@ -1,0 +1,26 @@
+# Mises à jour de sécurité des dépendances et des actions GitHub, chaque
+# lundi, en PR séparées. La CI « Qualité » les vérifie comme n'importe
+# quelle PR ; rien ne fusionne tout seul.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:00"
+      timezone: Europe/Paris
+    open-pull-requests-limit: 5
+    labels: [dépendances]
+    groups:
+      mineures-et-correctifs:
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:00"
+      timezone: Europe/Paris
+    labels: [dépendances]

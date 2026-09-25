@@ -8,7 +8,9 @@ Ce dossier applique à l'espace admin du site la façon de travailler d'une agen
 | [02-specifications.md](02-specifications.md) | Profils, parcours, règles fonctionnelles de l'admin | Avant d'écrire une user story |
 | [03-backlog.md](03-backlog.md) | User stories, sprints, roadmap | Chaque lundi, au sprint planning |
 | [04-recette.md](04-recette.md) | Checklist de recette de l'admin | Avant chaque mise en production |
-| [05-exploitation.md](05-exploitation.md) | Staging, production, supervision, sauvegardes, alertes | Quand ça casse, ou avant que ça casse |
+| [05-exploitation.md](05-exploitation.md) | Staging, production, supervision, sauvegardes, alertes, services extérieurs | Quand ça casse, ou avant que ça casse |
+| [06-securite-a-apporter.md](06-securite-a-apporter.md) | Plan sécurité écrit par une autre session le 25 septembre, en partie réalisé | Pour les points 2 à 12 |
+| [07-etat-et-suite.md](07-etat-et-suite.md) | **État au 25 septembre, clés et jetons à poser, réglages, suite** | **En premier** |
 
 ## Le cycle
 
