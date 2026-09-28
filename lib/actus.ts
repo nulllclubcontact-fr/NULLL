@@ -14,6 +14,8 @@ export type Actu = {
   /** Une ou deux phrases : carte d'accueil, meta description, JSON-LD. */
   resume: string;
   image: { src: string; alt: string };
+  /** Photos du post d'origine, affichees en galerie sous le texte. */
+  galerie?: Array<{ src: string; alt: string; largeur: number; hauteur: number }>;
   sections: Array<{ titre: string; paragraphes: string[] }>;
   source?: { label: string; url: string };
 };
@@ -21,40 +23,58 @@ export type Actu = {
 export const actus: Actu[] = [
   {
     slug: "bienvenue-social-run-samedi-aix",
-    titre: "Bienvenue chez NULLL CLUB : le social run du samedi à Aix",
+    titre: "Bienvenue chez NULLL : le social run du samedi à Aix",
     date: "2026-09-28",
     resume:
-      "Chaque samedi à 8h30, on court ensemble 5 à 6 km à allure conversation, au départ du chemin de la Cible à Aix-en-Provence.",
+      "Pas de chrono, pas de pression : chaque samedi à 8h30, on court ensemble 5 à 10 km à allure conversation, au départ du chemin de la Cible à Aix-en-Provence.",
     image: {
-      src: "/assets/photos/runs-crew.webp",
-      alt: "Deux membres de NULLL.CLUB en tenue de course dans une rue d’Aix-en-Provence"
+      src: "/assets/actus/bienvenue/01.webp",
+      alt: "Photo de groupe des coureurs de NULLL.CLUB au départ, sous les arbres"
     },
+    galerie: [
+      { src: "/assets/actus/bienvenue/01.webp", alt: "Photo de groupe des coureurs de NULLL.CLUB au départ, sous les arbres", largeur: 1380, hauteur: 920 },
+      { src: "/assets/actus/bienvenue/02.webp", alt: "Des coureuses et coureurs du club le long d’un mur, en pleine sortie", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/03.webp", alt: "Le groupe rassemblé à l’ombre avant de partir", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/04.webp", alt: "Deux coureuses arrivent sur un chemin de terre", largeur: 1067, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/05.webp", alt: "Les mains d’un DJ sur ses platines pendant l’après-run", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/06.webp", alt: "Un membre de l’équipe tend des canettes Bee Zen devant la table des boissons", largeur: 1067, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/07.webp", alt: "Trois membres du club posent après la course", largeur: 1600, hauteur: 1067 },
+      { src: "/assets/actus/bienvenue/08.webp", alt: "Un coureur souriant reçoit une canette après la sortie", largeur: 1200, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/09.webp", alt: "Des coureurs sur le parking au retour du run", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/10.webp", alt: "Une coureuse ouvre sa canette après l’effort", largeur: 1200, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/11.webp", alt: "Une canette tendue à un membre du club en casquette", largeur: 1200, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/12.webp", alt: "Un coureur reçoit une Red Bull à l’arrivée", largeur: 1200, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/13.webp", alt: "Quatre membres du club, canettes en main", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/14.webp", alt: "Un coureur pose au milieu des arbres", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/15.webp", alt: "Le peloton du samedi sur un chemin ombragé", largeur: 1067, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/16.webp", alt: "Une coureuse en lunettes de soleil attrape une Red Bull", largeur: 1200, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/17.webp", alt: "Un coureur reçoit une canette au retour", largeur: 1200, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/18.webp", alt: "Deux coureurs font les pitres avec une Bee Zen", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/19.webp", alt: "Un membre du club en pleine discussion après la sortie", largeur: 1066, hauteur: 1600 }
+    ],
     sections: [
-      {
-        titre: "Le rendez-vous",
-        paragraphes: [
-          `Chaque samedi à 8h30, on se retrouve au ${DEPART.nom.replace(/^Parking/, "parking")}, ${DEPART.repere}, pour courir ensemble dans Aix-en-Provence.`,
-          "5 à 6 km, à une allure qui permet de discuter. C’est gratuit et ouvert à tous."
-        ]
-      },
       {
         titre: "Pas de chrono, pas de pression",
         paragraphes: [
-          "Ici, personne ne compte les secondes. On court à allure conversation, et personne n’est laissé derrière.",
+          "Ici, pas de chrono ni de pression : chaque samedi à 8h30, on court ensemble 5 à 10 km à allure conversation.",
           "Tu peux venir seul : c’est justement pour ça qu’on court en groupe."
         ]
       },
       {
+        titre: "Le départ",
+        paragraphes: [`Rendez-vous au ${DEPART.nom.replace(/^Parking/, "parking")}, ${DEPART.repere}, à Aix-en-Provence.`]
+      },
+      {
         titre: "Comment venir",
         paragraphes: [
-          "Inscris-toi à la sortie de ton choix sur la page Sorties du site : tu reçois ton QR code par email.",
-          "Sur Strava, rejoins le club NULLL CLUB et clique sur « Je participe » dans l’événement « Social Run du samedi · 8h30 » pour recevoir les rappels.",
-          "On vient pour courir. On revient pour les gens."
+          "Sur Strava, clique sur « Je participe » dans l’événement « Social Run du samedi » du club NULLL CLUB pour recevoir les rappels.",
+          "Et surtout, inscris-toi sur le site de NULLL : tu peux gagner des canettes, et même retrouver tes photos du run.",
+          "Soyons nous. Soyons NULLL 🧡"
         ]
       }
     ],
     source: {
-      label: "Publié sur Strava",
+      label: "Voir le post sur Strava",
       url: "https://www.strava.com/clubs/2137443/posts/49521048"
     }
   }

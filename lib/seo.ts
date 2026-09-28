@@ -225,8 +225,10 @@ export function buildNewsArticleSchema(actu: {
   resume: string;
   date: string;
   image: { src: string };
+  galerie?: Array<{ src: string }>;
   url: string;
 }) {
+  const images = [actu.image.src, ...(actu.galerie ?? []).map((photo) => photo.src)].filter((src, i, tout) => tout.indexOf(src) === i);
   return {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
@@ -235,7 +237,7 @@ export function buildNewsArticleSchema(actu: {
     datePublished: actu.date,
     dateModified: actu.date,
     inLanguage: "fr-FR",
-    image: [`${SITE_URL}${actu.image.src}`],
+    image: images.slice(0, 6).map((src) => `${SITE_URL}${src}`),
     mainEntityOfPage: `${SITE_URL}${actu.url}`,
     author: { "@type": "Organization", name: "NULLL.CLUB", url: SITE_URL },
     publisher: {
