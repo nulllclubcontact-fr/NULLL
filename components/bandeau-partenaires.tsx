@@ -37,10 +37,11 @@ export function BandeauPartenaires() {
                   <Image
                     alt=""
                     className="home-partners-logo"
-                    height={48}
+                    height={Math.round(48 * (partenaire.echelle ?? 1))}
                     src={partenaire.logo}
+                    style={{ "--echelle": partenaire.echelle ?? 1 } as React.CSSProperties}
                     unoptimized={partenaire.logo.endsWith(".svg")}
-                    width={Math.round(48 * partenaire.ratio)}
+                    width={Math.round(48 * (partenaire.echelle ?? 1) * partenaire.ratio)}
                   />
                 </span>
               ))}

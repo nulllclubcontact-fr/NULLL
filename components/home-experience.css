@@ -327,7 +327,7 @@
    La liste de liens reste lisible pour les lecteurs d'ecran et au
    clavier ; seule la partie qui defile est decorative.
    ------------------------------------------------------------------ */
-.home-journey .home-partners{position:relative;z-index:2;background:var(--home-cream);border-bottom:2px solid var(--home-ink)}
+.home-journey .home-partners{position:relative;z-index:2;background:var(--home-cream)}
 .home-journey .home-partners-top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:14px max(6vw,24px);border-bottom:1px solid #77333155}
 .home-journey .home-partners-title{font:inherit;letter-spacing:inherit;text-transform:inherit;margin:0}
 .home-journey .home-partners-list{display:flex;gap:18px;list-style:none;margin:0;padding:0}
@@ -335,7 +335,8 @@
 .home-journey .home-partners-list a:hover{color:var(--home-dark)}
 .home-journey .home-partners-marquee{padding:26px 0}
 .home-journey .home-partners-item{gap:3.5rem;padding-inline:3.5rem;color:var(--home-pink)}
-.home-journey .home-partners-logo{display:block;height:48px;width:auto;max-width:none}
+.home-journey .home-partners-item{height:78px}
+.home-journey .home-partners-logo{display:block;height:calc(48px * var(--echelle, 1));width:auto;max-width:none}
 
 /* ------------------------------------------------------------------
    Actu : les dernieres nouvelles du club, en cartes.
@@ -359,10 +360,10 @@
 @media(max-width:760px){
 .home-journey .home-partners-top{flex-direction:column;align-items:flex-start;gap:6px}
 .home-journey .home-partners-marquee{padding:18px 0}
-.home-journey .home-partners-logo{height:36px}
+.home-journey .home-partners-item{height:60px}
+.home-journey .home-partners-logo{height:calc(36px * var(--echelle, 1))}
 .home-journey .home-partners-item{gap:2.25rem;padding-inline:2.25rem}
 .home-journey .home-news-heading{flex-direction:column;align-items:flex-start;gap:18px;margin-bottom:32px}
 .home-journey .home-news-list{grid-template-columns:minmax(0,1fr)}}
 .home-journey .home-news-meta{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.home-journey .home-news-pin{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--home-ink);background:var(--home-pink);padding:2px 8px}
-.home-journey .home-news-pin::before{content:"";width:.5rem;height:.5rem;background:currentColor;transform:rotate(45deg)}
+.home-journey .home-news-pin{display:inline-flex;color:var(--home-ink);transform:rotate(-12deg)}
