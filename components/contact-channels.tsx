@@ -13,7 +13,7 @@ type Channel = {
 /**
  * Ce qu'on colle vraiment dans le presse-papiers, pas le libelle affiche :
  * l'adresse pour un mail, le numero pour un tel, l'URL pour un profil.
- * Les quatre lignes en ont une — sinon la colonne d'action n'existait que
+ * Toutes les lignes en ont une — sinon la colonne d'action n'existait que
  * sur deux lignes et le bord droit partait en dents de scie.
  */
 function valeurCopiable(channel: Channel) {

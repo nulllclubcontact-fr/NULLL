@@ -102,7 +102,8 @@ export function buildOrganizationSchema(locale: Locale) {
     logo: `${SITE_URL}/assets/brand/icone-n-rose.png`,
     sameAs: [
       "https://www.instagram.com/nulll.club",
-      "https://www.linkedin.com/company/nulll-club/"
+      "https://www.linkedin.com/company/nulll-club/",
+      "https://www.strava.com/clubs/nulllclub"
     ],
     email: "contact@nulll.club",
     areaServed: "Aix-en-Provence",
@@ -159,7 +160,8 @@ export function buildSportsLocationSchema(locale: Locale) {
     logo: `${SITE_URL}/assets/brand/icone-n-rose.png`,
     sameAs: [
       "https://www.instagram.com/nulll.club",
-      "https://www.linkedin.com/company/nulll-club/"
+      "https://www.linkedin.com/company/nulll-club/",
+      "https://www.strava.com/clubs/nulllclub"
     ],
     url: `${SITE_URL}/${locale}/runs`
   };

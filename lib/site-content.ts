@@ -192,7 +192,8 @@ export function getSiteCopy(locale: Locale) {
         // recouper d'une source a l'autre.
         phone: "+33626755273",
         phoneLabel: "06 26 75 52 73",
-        linkedin: "https://www.linkedin.com/company/nulll-club/?viewAsMember=true"
+        linkedin: "https://www.linkedin.com/company/nulll-club/?viewAsMember=true",
+        strava: "https://www.strava.com/clubs/nulllclub"
       },
       nav: [
         { key: "home" as const, label: "Accueil" },
@@ -488,6 +489,12 @@ export function getSiteCopy(locale: Locale) {
             value: "@nulll.club",
             text: "Le canal principal pour suivre les prochaines sorties et les annonces rapides.",
             href: "https://www.instagram.com/nulll.club"
+          },
+          {
+            title: "Strava",
+            value: "NULLL CLUB",
+            text: "Rejoins le club sur Strava : l’événement du samedi, les rappels et les sorties de la bande.",
+            href: "https://www.strava.com/clubs/nulllclub"
           },
           {
             title: "Email",
