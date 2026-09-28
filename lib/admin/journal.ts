@@ -8,6 +8,9 @@ export type ActionJournal =
   | "sortie.modification"
   | "sortie.statut"
   | "sortie.photo"
+  | "sortie.photos.ajout"
+  | "sortie.photos.suppression"
+  | "sortie.photos.mail"
   | "sortie.annulation"
   | "sortie.suppression"
   | "export.inscrits"
@@ -21,7 +24,8 @@ export type ActionJournal =
   | "admin.promotion"
   | "admin.retrait"
   | "admin.mfa.activation"
-  | "admin.mfa.retrait";
+  | "admin.mfa.retrait"
+  | "roulette.remise";
 
 export const LIBELLES_JOURNAL: Record<ActionJournal, string> = {
   "admin.promotion": "Admin ajouté",
@@ -32,6 +36,9 @@ export const LIBELLES_JOURNAL: Record<ActionJournal, string> = {
   "sortie.modification": "Sortie modifiée",
   "sortie.statut": "Statut changé",
   "sortie.photo": "Photo changée",
+  "sortie.photos.ajout": "Photos de sortie ajoutées",
+  "sortie.photos.suppression": "Photo de sortie supprimée",
+  "sortie.photos.mail": "Inscrits prévenus des photos",
   "sortie.annulation": "Sortie annulée",
   "sortie.suppression": "Sortie supprimée",
   "export.inscrits": "Export des inscrits",
@@ -41,7 +48,8 @@ export const LIBELLES_JOURNAL: Record<ActionJournal, string> = {
   "partenaire.code": "Nouveau code partenaire",
   "partenaire.activation": "Partenaire réactivé",
   "partenaire.desactivation": "Partenaire désactivé",
-  "partenaire.suppression": "Partenaire supprimé"
+  "partenaire.suppression": "Partenaire supprimé",
+  "roulette.remise": "Lot de la roulette remis"
 };
 
 /**

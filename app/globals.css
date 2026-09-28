@@ -1152,3 +1152,17 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
   .scanner-controls button { flex: 1; justify-content: center; padding-inline: 8px; }
   .scanner-feedback > p { grid-column: 1 / -1; }
 }
+
+/* ------------------------------------------------------------------
+   Roulette de l'accueil : la roue ralentit comme une vraie.
+   ------------------------------------------------------------------ */
+.roulette-roue {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.12, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roulette-roue {
+    transition: none;
+  }
+}

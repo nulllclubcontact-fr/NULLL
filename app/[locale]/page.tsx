@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { HomeExperience } from "../../components/home-experience";
 import { StructuredData } from "../../components/StructuredData";
 import { SiteShell } from "../../components/site-shell";
+import { listActus } from "../../lib/actus";
 import { resolveLocale } from "../../lib/locale";
 import { buildOrganizationSchema, buildPageMetadata, buildSportsLocationSchema, buildWebSiteSchema } from "../../lib/seo";
 import { getRoute, getSiteCopy } from "../../lib/site-content";
@@ -26,6 +27,8 @@ export default async function LocaleHomePage({ params }: PageProps) {
       <StructuredData data={[buildOrganizationSchema(locale), buildSportsLocationSchema(locale), buildWebSiteSchema(locale)]} />
       <HomeExperience
         aboutHref={getRoute(locale, "contact")}
+        actus={listActus().slice(0, 3)}
+        newsHref={getRoute(locale, "news")}
         communityHref={getRoute(locale, "community")}
         merchHref={getRoute(locale, "merch")}
         localClubHref={getRoute(locale, "localClub")}

@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { formatDistance, formatHeure, formatJour } from "../../../../components/races/format";
+import { inscriptionDonneAcces } from "../../../../lib/photos-sorties/regles";
 import { listMyRegistrations, splitRegistrations } from "../../../../lib/races/repo";
 import { createSupabaseServerClient } from "../../../../lib/supabase/server";
 
@@ -48,7 +50,7 @@ export default async function MemberSortiesPage() {
       ) : (
         <>
           {aVenir.length > 0 ? <Tableau titre="À venir" lignes={aVenir} /> : null}
-          {passees.length > 0 ? <Tableau titre="Sorties passées" lignes={passees} /> : null}
+          {passees.length > 0 ? <Tableau avecPhotos titre="Sorties passées" lignes={passees} /> : null}
         </>
       )}
     </section>
@@ -57,7 +59,7 @@ export default async function MemberSortiesPage() {
 
 type Ligne = Awaited<ReturnType<typeof listMyRegistrations>>[number];
 
-function Tableau({ titre, lignes }: { titre: string; lignes: Ligne[] }) {
+function Tableau({ titre, lignes, avecPhotos = false }: { titre: string; lignes: Ligne[]; avecPhotos?: boolean }) {
   return (
     <div>
       <h2 className="border-b-2 border-[#773331] pb-3 font-mono text-xs font-black uppercase tracking-[.18em]">
@@ -84,11 +86,21 @@ function Tableau({ titre, lignes }: { titre: string; lignes: Ligne[] }) {
                 ) : null}
               </div>
 
-              <span
-                className={`inline-flex shrink-0 border-2 border-[#773331] px-3 py-2 font-mono text-xs font-black uppercase tracking-[.14em] ${etiquette.classe}`}
-              >
-                {etiquette.texte}
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                {avecPhotos && inscriptionDonneAcces(ligne.status) ? (
+                  <Link
+                    className="inline-flex min-h-11 items-center border-2 border-[#773331] bg-[#EBA0CD] px-3 font-mono text-xs font-black uppercase tracking-[.14em] transition-colors hover:bg-[#FFB200]"
+                    href={`/membre/sorties/${ligne.race_id}/photos`}
+                  >
+                    Photos
+                  </Link>
+                ) : null}
+                <span
+                  className={`inline-flex shrink-0 border-2 border-[#773331] px-3 py-2 font-mono text-xs font-black uppercase tracking-[.14em] ${etiquette.classe}`}
+                >
+                  {etiquette.texte}
+                </span>
+              </div>
             </li>
           );
         })}

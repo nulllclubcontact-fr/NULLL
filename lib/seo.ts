@@ -218,3 +218,58 @@ export function buildEventSchema(event: {
         })
   };
 }
+
+/** Une actu : NewsArticle, avec la vraie date et l'image de l'article. */
+export function buildNewsArticleSchema(actu: {
+  titre: string;
+  resume: string;
+  date: string;
+  image: { src: string };
+  url: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: actu.titre,
+    description: actu.resume,
+    datePublished: actu.date,
+    dateModified: actu.date,
+    inLanguage: "fr-FR",
+    image: [`${SITE_URL}${actu.image.src}`],
+    mainEntityOfPage: `${SITE_URL}${actu.url}`,
+    author: { "@type": "Organization", name: "NULLL.CLUB", url: SITE_URL },
+    publisher: {
+      "@type": "Organization",
+      name: "NULLL.CLUB",
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/assets/brand/icone-n-rose.png` }
+    }
+  };
+}
+
+/** Metadonnees d'une actu : canonique propre, type article, image de l'actu. */
+export function buildActuMetadata({ titre, resume, date, image, url }: {
+  titre: string;
+  resume: string;
+  date: string;
+  image: { src: string; alt: string };
+  url: string;
+}): Metadata {
+  const canonical = `${SITE_URL}${url}`;
+  const title = `${titre} | NULLL.CLUB`;
+  return {
+    title,
+    description: resume,
+    alternates: { canonical, languages: { fr: canonical, "x-default": canonical } },
+    openGraph: {
+      title,
+      description: resume,
+      url: canonical,
+      siteName: "NULLL.CLUB",
+      locale: "fr_FR",
+      type: "article",
+      publishedTime: date,
+      images: [{ url: `${SITE_URL}${image.src}`, alt: image.alt }]
+    },
+    twitter: { card: "summary_large_image", title, description: resume, images: [`${SITE_URL}${image.src}`] }
+  };
+}

@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { DEPART } from "../lib/rendez-vous";
+import { formaterDateActu, type Actu } from "../lib/actus";
 import type { RunEvent } from "../lib/site-content";
 import { ArrowIcon } from "./ArrowIcon";
+import { BandeauPartenaires } from "./bandeau-partenaires";
 import { HomeJourney } from "./home-journey";
+import { RouletteAccueil } from "./roulette-accueil";
 import "./home-experience.css";
 
 type HomeExperienceProps = {
@@ -14,9 +17,11 @@ type HomeExperienceProps = {
   aboutHref: string;
   localClubHref: string;
   localRunningHref: string;
+  newsHref: string;
+  actus: Actu[];
 };
 
-export function HomeExperience({ runs, runsHref, communityHref, merchHref, aboutHref, localClubHref, localRunningHref }: HomeExperienceProps) {
+export function HomeExperience({ runs, runsHref, communityHref, merchHref, aboutHref, localClubHref, localRunningHref, newsHref, actus }: HomeExperienceProps) {
   const nextRun = runs[0];
 
   return (
@@ -50,6 +55,8 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
           <span className="home-strip-star" aria-hidden="true">＊</span>
         </p>
       </section>
+
+      <BandeauPartenaires />
 
       <section className="home-dates home-section" id="home-dates-section" aria-labelledby="home-next-runs">
         <div className="home-section-top home-label"><span>01 · On se retrouve</span><span className="home-hand">Le samedi, c’est ici.</span></div>
@@ -131,8 +138,33 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         </div>
       </section>
 
+      {actus.length > 0 ? (
+        <section className="home-news home-section" aria-labelledby="home-news-title">
+          <div className="home-section-top home-label"><span>03 · Actu</span><span className="home-hand">Ce qui bouge au club.</span></div>
+          <div className="home-news-heading" data-home-reveal>
+            <h2 id="home-news-title">L’actu<br /><span>du club.</span></h2>
+            <Link className="home-news-all home-label" href={newsHref}><span>Toutes les actus</span><ArrowIcon /></Link>
+          </div>
+          <ol className="home-news-list">
+            {actus.map((actu) => (
+              <li key={actu.slug} data-home-reveal>
+                <Link className="home-news-card" href={`${newsHref}/${actu.slug}`}>
+                  <span className="home-news-photo">
+                    <Image alt={actu.image.alt} fill sizes="(max-width: 760px) 90vw, 30vw" src={actu.image.src} />
+                  </span>
+                  <time className="home-label" dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
+                  <h3>{actu.titre}</h3>
+                  <p>{actu.resume}</p>
+                  <span className="home-news-read home-label"><span>Lire l’actu</span><ArrowIcon /></span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ) : null}
+
       <section className="home-explore home-section" aria-labelledby="home-explore-title">
-        <div className="home-section-top home-label"><span>03 · Au-delà des kilomètres</span><span>NULLL.CLUB</span></div>
+        <div className="home-section-top home-label"><span>04 · Au-delà des kilomètres</span><span>NULLL.CLUB</span></div>
         {/* Titre et liens se repondent en deux colonnes. Empiles, le titre
             prenait toute la largeur et les liens tombaient dessous. */}
         <div className="home-explore-body">
@@ -147,6 +179,8 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         {nextRun && <p className="home-label home-final-meta">{nextRun.date} · {nextRun.time} · {nextRun.location} · {nextRun.distance} · {nextRun.pace}</p>}
         <p className="home-label home-final-meta">Ouvert à tous · Gratuit · Inscription en ligne</p>
       </section>
+
+      <RouletteAccueil runsHref={runsHref} />
     </HomeJourney>
   );
 }

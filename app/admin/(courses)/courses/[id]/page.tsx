@@ -8,6 +8,8 @@ import { FormulairePhotoCourse } from "../../../../../components/admin/champ-pho
 import { SuppressionCourse } from "../SuppressionCourse";
 import { EditRaceForm } from "./EditRaceForm";
 import { dupliquerCourse, pointerInscription } from "../../../courses-actions";
+import { PhotosSortieAdmin } from "../../../../../components/admin/photos-sortie-admin";
+import { listerPhotosSortie } from "../../../../../lib/photos-sorties/lister";
 
 export const metadata = { robots: { index: false, follow: false } };
 
@@ -157,6 +159,16 @@ export default async function AdminCourseDetailPage({
         <Intitule>Photo de la sortie</Intitule>
         <div className="mt-5">
           <FormulairePhotoCourse initiale={course.cover_image_url} raceId={course.id} />
+        </div>
+      </div>
+
+      <div>
+        <Intitule>Photos pour les inscrits</Intitule>
+        <p className="mt-3 max-w-2xl font-bold">
+          Visibles uniquement par les inscrits de cette sortie, dans leur espace membre. Aucune adresse publique.
+        </p>
+        <div className="mt-5">
+          <PhotosSortieAdmin photos={await listerPhotosSortie(course.id, course.start_datetime)} raceId={course.id} />
         </div>
       </div>
 

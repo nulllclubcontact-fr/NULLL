@@ -142,6 +142,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
             links={[
               { href: getRoute(locale, "runs"), label: "Sorties" },
               { href: getRoute(locale, "community"), label: "Le club" },
+              { href: getRoute(locale, "news"), label: "Actu" },
               { href: getRoute(locale, "merch"), label: "Merch" },
               { href: getRoute(locale, "contact"), label: "Contact" }
             ]}
