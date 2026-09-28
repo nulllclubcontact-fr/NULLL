@@ -42,7 +42,11 @@ export function SeoArticleView({
           </div>
         </header>
 
-        <div className="shell grid max-w-[1180px] gap-12 py-12 sm:py-16 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-20">
+        {/* La grille est dans son propre bloc : « .shell.grid » (globals.css)
+            force une seule colonne et l'emporterait sur lg:grid-cols, le
+            sommaire tombait au-dessus du texte au lieu d'etre a cote. */}
+        <div className="shell max-w-[1180px] py-12 sm:py-16">
+          <div className="grid gap-12 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-20">
           <aside className="lg:sticky lg:top-28 lg:self-start">
             <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Dans ce guide</p>
             <ol className="mt-4 grid gap-1 border-l-2 border-[#773331]">
@@ -93,6 +97,7 @@ export function SeoArticleView({
                 </PrimaryLink>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </article>
