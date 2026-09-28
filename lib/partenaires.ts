@@ -16,5 +16,5 @@ export type PartenaireVisible = {
 
 export const partenairesVisibles: PartenaireVisible[] = [
   { nom: "Red Bull", logo: "/assets/partenaires/red-bull.svg", ratio: 607 / 147, url: "https://www.redbull.com/fr-fr/" },
-  { nom: "Bee Zen", logo: "/assets/partenaires/bee-zen.png", ratio: 764 / 320, echelle: 1.6, url: "https://www.beezendrinks.com/" }
+  { nom: "Bee Zen", logo: "/assets/partenaires/bee-zen.png", ratio: 764 / 320, echelle: 1.4, url: "https://www.beezendrinks.com/" }
 ];
