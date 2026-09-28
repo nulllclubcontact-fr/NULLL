@@ -363,3 +363,6 @@
 .home-journey .home-partners-item{gap:2.25rem;padding-inline:2.25rem}
 .home-journey .home-news-heading{flex-direction:column;align-items:flex-start;gap:18px;margin-bottom:32px}
 .home-journey .home-news-list{grid-template-columns:minmax(0,1fr)}}
+.home-journey .home-news-meta{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.home-journey .home-news-pin{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--home-ink);background:var(--home-pink);padding:2px 8px}
+.home-journey .home-news-pin::before{content:"";width:.5rem;height:.5rem;background:currentColor;transform:rotate(45deg)}

@@ -245,6 +245,23 @@ export const actus: Actu[] = [
   }
 ];
 
+/**
+ * Actus epinglees sur l'accueil, dans cet ordre. Les autres suivent,
+ * les plus recentes d'abord.
+ */
+export const EPINGLEES_ACCUEIL = ["bienvenue-social-run-samedi-aix", "rejoins-le-club-strava", "photos-du-run-dans-ton-compte"];
+
+export function listActusAccueil(nombre = 3): Array<Actu & { epinglee: boolean }> {
+  const epinglees = EPINGLEES_ACCUEIL.flatMap((slug) => {
+    const actu = getActu(slug);
+    return actu ? [{ ...actu, epinglee: true }] : [];
+  });
+  const autres = listActus()
+    .filter((actu) => !EPINGLEES_ACCUEIL.includes(actu.slug))
+    .map((actu) => ({ ...actu, epinglee: false }));
+  return [...epinglees, ...autres].slice(0, nombre);
+}
+
 /** Les plus recentes d'abord. */
 export function listActus(): Actu[] {
   return [...actus].sort((a, b) => b.date.localeCompare(a.date));

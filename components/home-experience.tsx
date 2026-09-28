@@ -18,7 +18,7 @@ type HomeExperienceProps = {
   localClubHref: string;
   localRunningHref: string;
   newsHref: string;
-  actus: Actu[];
+  actus: Array<Actu & { epinglee?: boolean }>;
 };
 
 export function HomeExperience({ runs, runsHref, communityHref, merchHref, aboutHref, localClubHref, localRunningHref, newsHref, actus }: HomeExperienceProps) {
@@ -142,7 +142,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         <section className="home-news home-section" aria-labelledby="home-news-title">
           <div className="home-section-top home-label"><span>03 · Actu</span><span className="home-hand">Ce qui bouge au club.</span></div>
           <div className="home-news-heading" data-home-reveal>
-            <h2 id="home-news-title">L’actu<br /><span>du club.</span></h2>
+            <h2 id="home-news-title">L’actu <span>du club.</span></h2>
             <Link className="home-news-all home-label" href={newsHref}><span>Toutes les actus</span><ArrowIcon /></Link>
           </div>
           <ol className="home-news-list">
@@ -152,7 +152,10 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
                   <span className="home-news-photo">
                     <Image alt={actu.image.alt} fill sizes="(max-width: 760px) 90vw, 30vw" src={actu.image.src} />
                   </span>
-                  <time className="home-label" dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
+                  <span className="home-news-meta home-label">
+                    <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
+                    {actu.epinglee ? <span className="home-news-pin">Épinglé</span> : null}
+                  </span>
                   <h3>{actu.titre}</h3>
                   <p>{actu.resume}</p>
                   <span className="home-news-read home-label"><span>Lire l’actu</span><ArrowIcon /></span>
