@@ -3,20 +3,19 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { tournerRoulette, type ResultatRoulette } from "../app/roulette-actions";
-import { CASES, caseCible, LIBELLES_LOT, type Lot } from "../lib/roulette/regles";
+import { CASES, rotationFinale, type Case } from "../lib/roulette/regles";
 
 const CLE_VU = "nulll_roulette_vu";
 const DELAI_MS = 6000;
 const DUREE_ROTATION_MS = 4200;
 const ANGLE = 360 / CASES.length;
 
-const COULEURS: Record<Lot, { fond: string; texte: string }> = {
+const COULEURS: Record<Case, { fond: string; texte: string }> = {
   redbull: { fond: "#FFB200", texte: "#773331" },
   beezen: { fond: "#EBA0CD", texte: "#773331" },
-  rien: { fond: "#773331", texte: "#F1EDE9" }
+  rien: { fond: "#3A1A18", texte: "#F1EDE9" }
 };
-const NOMS_CASE: Record<Lot, string> = { redbull: "RED BULL", beezen: "BEE ZEN", rien: "RIEN" };
+const NOMS_CASE: Record<Case, string> = { redbull: "RED BULL", beezen: "BEE ZEN", rien: "RIEN" };
 
 type Phase = "ferme" | "ouvert" | "tourne" | "resultat";
 
@@ -44,7 +43,6 @@ function marquerVu() {
 export function RouletteAccueil({ runsHref }: { runsHref: string }) {
   const [phase, setPhase] = useState<Phase>("ferme");
   const [rotation, setRotation] = useState(0);
-  const [resultat, setResultat] = useState<ResultatRoulette | null>(null);
   const dialogue = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -74,26 +72,12 @@ export function RouletteAccueil({ runsHref }: { runsHref: string }) {
 
   if (!ouverte) return null;
 
-  async function tourner() {
+  function tourner() {
     setPhase("tourne");
-    const reponse = await tournerRoulette().catch(() => ({ ok: false, message: "La roue s’est coincée. Réessaie dans un instant." }) as const);
-    if (!reponse.ok) {
-      setResultat(reponse);
-      setPhase("resultat");
-      return;
-    }
-    const cible = caseCible(reponse.lot, Math.random());
-    // La case cible s'arrete sous le curseur, en haut, apres six tours.
-    const arret = 360 - (cible * ANGLE + ANGLE / 2);
+    // Toujours « rien »... La vraie reponse arrive juste apres.
+    setRotation((actuelle) => rotationFinale(actuelle, 6, Math.random() * 0.8 - 0.4));
     const reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setRotation((actuelle) => actuelle - (actuelle % 360) + 360 * 6 + arret);
-    window.setTimeout(
-      () => {
-        setResultat(reponse);
-        setPhase("resultat");
-      },
-      reduit || reponse.dejaJoue ? 0 : DUREE_ROTATION_MS
-    );
+    window.setTimeout(() => setPhase("resultat"), reduit ? 0 : DUREE_ROTATION_MS);
   }
 
   // Rendue dans body : l'accueil isole ses calques (isolation: isolate),
@@ -129,7 +113,7 @@ export function RouletteAccueil({ runsHref }: { runsHref: string }) {
       >
         <div className="flex shrink-0 items-start justify-between gap-4 border-b-2 border-[#773331] bg-[#FFB200] px-5 py-4 sm:px-7">
           <div>
-            <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Un essai · Gratuit</p>
+            <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Un essai · Neuf chances sur dix</p>
             <h2 className="mt-2 font-display text-[clamp(1.9rem,6vw,2.6rem)] uppercase leading-[1.05]" id="roulette-titre">
               Tourne la roue.
             </h2>
@@ -147,13 +131,13 @@ export function RouletteAccueil({ runsHref }: { runsHref: string }) {
 
         <div className="grid gap-5 overflow-y-auto overscroll-contain px-5 py-6 sm:px-7">
           <p className="text-base leading-relaxed" id="roulette-texte">
-            Une Red Bull, une Bee Zen… ou rien. Si tu gagnes, montre ton code à l’équipe au départ d’un run du samedi.
+            Une Red Bull, une Bee Zen… ou rien. Tente ta chance.
           </p>
 
           <Roue rotation={rotation} />
 
           <div aria-live="polite">
-            {phase === "resultat" && resultat ? <Resultat resultat={resultat} runsHref={runsHref} /> : null}
+            {phase === "resultat" ? <Resultat runsHref={runsHref} /> : null}
           </div>
 
           {phase !== "resultat" ? (
@@ -162,9 +146,6 @@ export function RouletteAccueil({ runsHref }: { runsHref: string }) {
             </button>
           ) : null}
 
-          <p className="font-mono text-[11px] font-black uppercase leading-relaxed tracking-[.1em] opacity-80">
-            Jeu gratuit, sans obligation d’achat. Un essai par personne. Lot à retirer au départ d’un run, dans la limite des stocks.
-          </p>
         </div>
       </div>
     </div>,
@@ -220,37 +201,13 @@ function Roue({ rotation }: { rotation: number }) {
   );
 }
 
-function Resultat({ resultat, runsHref }: { resultat: ResultatRoulette; runsHref: string }) {
-  if (!resultat.ok) {
-    return (
-      <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
-        {resultat.message}
-      </p>
-    );
-  }
-
-  const gagne = resultat.lot !== "rien" && resultat.code;
-
+function Resultat({ runsHref }: { runsHref: string }) {
   return (
-    <div className={`grid gap-3 border-2 border-[#773331] p-4 ${gagne ? "bg-[#FFB200]" : "bg-[#EBA0CD]"}`}>
-      {resultat.dejaJoue ? <p className="font-mono text-xs font-black uppercase tracking-[.14em]">Tu as déjà tourné la roue</p> : null}
-      <p className="font-display text-[clamp(1.8rem,6vw,2.4rem)] uppercase leading-[1.05]">
-        {gagne ? `Gagné : ${LIBELLES_LOT[resultat.lot].toLowerCase()} !` : "Rien cette fois."}
-      </p>
-      {gagne ? (
-        <>
-          <p className="border-2 border-dashed border-[#773331] bg-[#F1EDE9] px-4 py-3 text-center font-mono text-2xl font-black tracking-[.12em]">
-            {resultat.code}
-          </p>
-          <p className="leading-relaxed">Fais une capture de ce code et montre-le à l’équipe au départ, samedi à 8h30.</p>
-        </>
-      ) : (
-        <p className="leading-relaxed">Mais samedi à 8h30, il y a les gens. C’est déjà pas mal.</p>
-      )}
-      {resultat.demo ? (
-        <p className="font-mono text-[11px] font-black uppercase tracking-[.1em]">Mode démo local : rien n’est enregistré.</p>
-      ) : null}
-      <Link className="secondary-link justify-center" href={runsHref}>
+    <div className="roulette-chute grid gap-3 border-2 border-[#773331] bg-[#FFB200] p-4">
+      <p className="font-mono text-xs font-black uppercase tracking-[.14em]">Résultat : rien…</p>
+      <p className="font-display text-[clamp(1.8rem,6vw,2.4rem)] uppercase leading-[1.05]">Ahah, on rigole. Tout est offert !</p>
+      <p className="text-lg font-bold leading-relaxed">On se voit SAMEDI pour le run !!</p>
+      <Link className="primary-button justify-center" href={runsHref}>
         Choisir ma sortie
       </Link>
     </div>

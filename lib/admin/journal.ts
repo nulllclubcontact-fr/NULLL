@@ -24,8 +24,7 @@ export type ActionJournal =
   | "admin.promotion"
   | "admin.retrait"
   | "admin.mfa.activation"
-  | "admin.mfa.retrait"
-  | "roulette.remise";
+  | "admin.mfa.retrait";
 
 export const LIBELLES_JOURNAL: Record<ActionJournal, string> = {
   "admin.promotion": "Admin ajouté",
@@ -48,8 +47,7 @@ export const LIBELLES_JOURNAL: Record<ActionJournal, string> = {
   "partenaire.code": "Nouveau code partenaire",
   "partenaire.activation": "Partenaire réactivé",
   "partenaire.desactivation": "Partenaire désactivé",
-  "partenaire.suppression": "Partenaire supprimé",
-  "roulette.remise": "Lot de la roulette remis"
+  "partenaire.suppression": "Partenaire supprimé"
 };
 
 /**
