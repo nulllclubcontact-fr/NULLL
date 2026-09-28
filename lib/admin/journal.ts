@@ -8,6 +8,9 @@ export type ActionJournal =
   | "sortie.modification"
   | "sortie.statut"
   | "sortie.photo"
+  | "sortie.photos.ajout"
+  | "sortie.photos.suppression"
+  | "sortie.photos.mail"
   | "sortie.annulation"
   | "sortie.suppression"
   | "export.inscrits"
@@ -32,6 +35,9 @@ export const LIBELLES_JOURNAL: Record<ActionJournal, string> = {
   "sortie.modification": "Sortie modifiée",
   "sortie.statut": "Statut changé",
   "sortie.photo": "Photo changée",
+  "sortie.photos.ajout": "Photos de sortie ajoutées",
+  "sortie.photos.suppression": "Photo de sortie supprimée",
+  "sortie.photos.mail": "Inscrits prévenus des photos",
   "sortie.annulation": "Sortie annulée",
   "sortie.suppression": "Sortie supprimée",
   "export.inscrits": "Export des inscrits",

@@ -12,7 +12,8 @@ export type RouteKey =
   | "checkout"
   | "localClub"
   | "localRunning"
-  | "localEvents";
+  | "localEvents"
+  | "news";
 
 export type RunEvent = {
   id: string;
@@ -44,7 +45,7 @@ export type Product = {
 };
 
 export type Article = {
-  key: Exclude<RouteKey, "home" | "runs" | "community" | "merch" | "about" | "contact" | "checkout">;
+  key: Exclude<RouteKey, "home" | "runs" | "community" | "merch" | "about" | "contact" | "checkout" | "news">;
   slug: string;
   title: string;
   description: string;
@@ -67,7 +68,8 @@ const routeSlugs: Record<Locale, Record<RouteKey, string>> = {
     checkout: "commande",
     localClub: "run-club-aix-en-provence",
     localRunning: "courir-a-aix-en-provence",
-    localEvents: "evenements-running-aix"
+    localEvents: "evenements-running-aix",
+    news: "actu"
   }
 };
 
@@ -192,7 +194,8 @@ export function getSiteCopy(locale: Locale) {
         // recouper d'une source a l'autre.
         phone: "+33626755273",
         phoneLabel: "06 26 75 52 73",
-        linkedin: "https://www.linkedin.com/company/nulll-club/?viewAsMember=true"
+        linkedin: "https://www.linkedin.com/company/nulll-club/?viewAsMember=true",
+        strava: "https://www.strava.com/clubs/nulllclub"
       },
       nav: [
         { key: "home" as const, label: "Accueil" },
@@ -236,6 +239,11 @@ export function getSiteCopy(locale: Locale) {
           title: "Finaliser ma commande | NULLL.CLUB",
           description:
             "Valide ta commande de merchandising NULLL.CLUB et envoie ta demande de confirmation."
+        },
+        news: {
+          title: "Actu du club | NULLL.CLUB",
+          description:
+            "Les nouvelles de NULLL.CLUB, le social run club d’Aix-en-Provence : sorties du samedi, annonces et vie du club."
         }
       },
       home: {
@@ -488,6 +496,12 @@ export function getSiteCopy(locale: Locale) {
             value: "@nulll.club",
             text: "Le canal principal pour suivre les prochaines sorties et les annonces rapides.",
             href: "https://www.instagram.com/nulll.club"
+          },
+          {
+            title: "Strava",
+            value: "NULLL CLUB",
+            text: "Rejoins le club sur Strava : l’événement du samedi, les rappels et les sorties de la bande.",
+            href: "https://www.strava.com/clubs/nulllclub"
           },
           {
             title: "Email",

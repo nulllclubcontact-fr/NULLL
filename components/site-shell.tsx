@@ -142,6 +142,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
             links={[
               { href: getRoute(locale, "runs"), label: "Sorties" },
               { href: getRoute(locale, "community"), label: "Le club" },
+              { href: getRoute(locale, "news"), label: "Actu" },
               { href: getRoute(locale, "merch"), label: "Merch" },
               { href: getRoute(locale, "contact"), label: "Contact" }
             ]}
@@ -151,6 +152,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
           <FooterColumn
             links={[
               { href: copy.contact.instagram, label: copy.contact.instagramLabel },
+              { href: copy.contact.strava, label: "Strava" },
               { href: copy.contact.linkedin, label: "LinkedIn" },
               { href: `mailto:${copy.contact.email}`, label: copy.contact.email },
               { href: `tel:${copy.contact.phone}`, label: copy.contact.phoneLabel },

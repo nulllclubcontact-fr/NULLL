@@ -321,3 +321,47 @@
   .home-journey .home-manifesto-strip{padding-left:20px;padding-right:20px}
   .home-journey .home-signoff{font-size:clamp(28px,8vw,46px);margin-bottom:20px}
 }
+
+/* ------------------------------------------------------------------
+   Bandeau partenaires : logos en boucle sous les infos pratiques.
+   La liste de liens reste lisible pour les lecteurs d'ecran et au
+   clavier ; seule la partie qui defile est decorative.
+   ------------------------------------------------------------------ */
+.home-journey .home-partners{position:relative;z-index:2;background:var(--home-cream)}
+.home-journey .home-partners-top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:14px max(6vw,24px);border-bottom:1px solid #77333155}
+.home-journey .home-partners-title{font:inherit;letter-spacing:inherit;text-transform:inherit;margin:0}
+.home-journey .home-partners-list{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+.home-journey .home-partners-list a{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.home-journey .home-partners-list a:hover{color:var(--home-dark)}
+.home-journey .home-partners-marquee{padding:16px 0}
+.home-journey .home-partners-item{gap:3.5rem;padding-inline:3.5rem;color:var(--home-pink)}
+.home-journey .home-partners-logo{display:block;height:calc(36px * var(--echelle, 1));width:auto;max-width:none}
+
+/* ------------------------------------------------------------------
+   Actu : les dernieres nouvelles du club, en cartes.
+   ------------------------------------------------------------------ */
+.home-journey .home-news{background:var(--home-cream)}
+.home-journey .home-news-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:48px}
+.home-journey .home-news-heading h2{margin:0}
+.home-journey .home-news-all{display:inline-flex;align-items:center;gap:14px;border-bottom:2px solid currentColor;padding-bottom:6px;white-space:nowrap}
+.home-journey .home-news-all svg{transition:transform .2s}
+.home-journey .home-news-all:hover svg{transform:translateX(6px)}
+.home-journey .home-news-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;list-style:none;margin:0;padding:0}
+.home-journey .home-news-card{display:grid;gap:14px;height:100%;border:2px solid var(--home-ink);background:var(--home-cream);padding:0 0 22px;box-shadow:8px 8px 0 var(--home-yellow);transition:background .2s,transform .2s}
+.home-journey .home-news-card:hover{background:var(--home-yellow);transform:translate(-3px,-3px)}
+.home-journey .home-news-card>*:not(.home-news-photo){margin-inline:22px}
+.home-journey .home-news-photo{position:relative;display:block;aspect-ratio:4/3;border-bottom:2px solid var(--home-ink)}
+.home-journey .home-news-photo img{object-fit:cover}
+.home-journey .home-news-card h3{font-size:clamp(26px,2.4vw,34px);line-height:1.1}
+.home-journey .home-news-card p{font-size:16px;line-height:1.55}
+.home-journey .home-news-read{display:inline-flex;align-items:center;justify-content:space-between;border-top:1px solid #77333155;padding-top:14px;margin-top:auto}
+@media(max-width:1100px){.home-journey .home-news-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){
+.home-journey .home-partners-top{flex-direction:column;align-items:flex-start;gap:6px}
+.home-journey .home-partners-marquee{padding:12px 0}
+.home-journey .home-partners-logo{height:calc(28px * var(--echelle, 1))}
+.home-journey .home-partners-item{gap:2.25rem;padding-inline:2.25rem}
+.home-journey .home-news-heading{flex-direction:column;align-items:flex-start;gap:18px;margin-bottom:32px}
+.home-journey .home-news-list{grid-template-columns:minmax(0,1fr)}}
+.home-journey .home-news-meta{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.home-journey .home-news-pin{display:inline-flex;color:var(--home-ink);transform:rotate(-12deg)}

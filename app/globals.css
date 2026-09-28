@@ -1152,3 +1152,33 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
   .scanner-controls button { flex: 1; justify-content: center; padding-inline: 8px; }
   .scanner-feedback > p { grid-column: 1 / -1; }
 }
+
+/* ------------------------------------------------------------------
+   Roulette de l'accueil : la roue ralentit comme une vraie.
+   ------------------------------------------------------------------ */
+.roulette-roue {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.12, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roulette-roue {
+    transition: none;
+  }
+}
+
+/* La chute de la blague arrive avec un petit rebond. */
+.roulette-chute {
+  animation: roulette-chute 520ms cubic-bezier(0.22, 1.4, 0.36, 1) both;
+}
+
+@keyframes roulette-chute {
+  from { opacity: 0; transform: scale(0.92) rotate(-2deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roulette-chute {
+    animation: none;
+  }
+}
