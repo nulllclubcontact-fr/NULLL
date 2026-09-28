@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowIcon } from "../../../../components/ArrowIcon";
 import { StructuredData } from "../../../../components/StructuredData";
 import { PrimaryLink, SiteShell } from "../../../../components/site-shell";
 import { actus, formaterDateActu, getActu } from "../../../../lib/actus";
@@ -114,6 +115,27 @@ export default async function ActuArticlePage({ params }: PageProps) {
                   </section>
                 ))}
               </div>
+              {actu.appels && actu.appels.length > 0 ? (
+                <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+                  {actu.appels.map((appel, index) => {
+                    const externe = appel.href.startsWith("http");
+                    const classe = `group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-[#773331] px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
+                      index === 0 ? "bg-[#773331] text-[#F1EDE9] hover:bg-[#FFB200] hover:text-[#773331]" : "bg-[#F1EDE9] text-[#773331] hover:bg-[#773331] hover:text-[#F1EDE9]"
+                    }`;
+                    return appel.href.startsWith("/") ? (
+                      <Link className={classe} href={appel.href} key={appel.href}>
+                        <span>{appel.label}</span>
+                        <ArrowIcon />
+                      </Link>
+                    ) : (
+                      <a className={classe} href={appel.href} key={appel.href} {...(externe ? { rel: "noopener noreferrer", target: "_blank" } : {})}>
+                        <span>{appel.label}</span>
+                        <span aria-hidden="true">{externe ? "↗" : "→"}</span>
+                      </a>
+                    );
+                  })}
+                </div>
+              ) : null}
               {galerie.length > 0 ? (
                 <section aria-labelledby="galerie-titre" className="mt-16">
                   <h2
