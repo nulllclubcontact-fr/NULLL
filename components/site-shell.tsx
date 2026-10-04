@@ -173,7 +173,17 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
         </div>
 
         <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-[#F1EDE9]/20 pt-3 font-mono text-xs uppercase tracking-[.12em] text-[#F1EDE9]/80 sm:mt-10 sm:justify-between sm:pt-5">
-          <span>© 2026 NULLL.CLUB</span>
+          <span>
+            © 2026 NULLL.CLUB · Fait avec <span aria-label="amour" className="text-[#FF6A4D]" role="img">♥</span> par{" "}
+            <a
+              className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
+              href="https://oculot.studio"
+              rel="noopener"
+              target="_blank"
+            >
+              oculot.studio
+            </a>
+          </span>
           <Link
             className="inline-flex min-h-11 items-center underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
             href="/confidentialite"
