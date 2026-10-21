@@ -3,6 +3,13 @@ import { getRoute, type Locale, type RouteKey } from "./site-content";
 
 const SITE_URL = "https://nulll.club";
 
+// Identifiant stable du club : le site, les evenements et les actus y
+// renvoient par @id au lieu de redeclarer une organisation anonyme.
+const ORG_ID = `${SITE_URL}/#organization`;
+// Fiche des associes sur oculot.studio : meme @id des deux cotes, pour que
+// Google relie les personnes au club et au studio.
+const OCULOT_ID = "https://oculot.studio/#organization";
+
 export function getSiteUrl() {
   return SITE_URL;
 }
@@ -11,16 +18,13 @@ export function buildWebSiteSchema(locale: Locale) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
     name: "NULLL.CLUB",
     alternateName: ["NULLL", "NULLL Club", "Nulll Club Aix-en-Provence"],
     url: `${SITE_URL}${getRoute(locale, "home")}`,
     inLanguage: "fr-FR",
-    publisher: {
-      "@type": "Organization",
-      name: "NULLL.CLUB",
-      url: SITE_URL,
-      logo: `${SITE_URL}/assets/brand/icone-n-rose.png`
-    }
+    publisher: { "@id": ORG_ID },
+    creator: { "@type": "Organization", "@id": OCULOT_ID, name: "Oculot Studio", url: "https://oculot.studio" }
   };
 }
 
@@ -93,41 +97,53 @@ export function buildPageMetadata({
   };
 }
 
+const FOUNDERS = [
+  {
+    "@type": "Person",
+    "@id": "https://oculot.studio/studio#tobias",
+    name: "Tobias Ringot",
+    jobTitle: "Cofondateur",
+    sameAs: ["https://www.linkedin.com/in/tobiasringot/", "https://github.com/tbsrgt"]
+  },
+  {
+    "@type": "Person",
+    "@id": "https://oculot.studio/studio#tom",
+    name: "Tom Brenier",
+    jobTitle: "Cofondateur",
+    sameAs: ["https://www.linkedin.com/in/tom-brenier-517241333/"]
+  },
+  {
+    "@type": "Person",
+    "@id": `${SITE_URL}/#romane`,
+    name: "Romane Fournier",
+    jobTitle: "Cofondatrice"
+  }
+];
+
 export function buildOrganizationSchema(locale: Locale) {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    // SportsClub (sous-type d'Organization et de LocalBusiness) correspond a
+    // ce qu'est NULLL.CLUB : une association, pas un simple lieu de pratique.
+    // Une seule fiche, plutot qu'une Organization et un SportsClub en double.
+    "@type": "SportsClub",
+    "@id": ORG_ID,
     name: "NULLL.CLUB",
+    alternateName: ["NULLL", "NULLL Club", "NULLL Run Club Aix-en-Provence"],
+    description:
+      "Social sport club d’Aix-en-Provence : une sortie running gratuite chaque samedi à 8h30, ouverte à tous les niveaux, à une allure qui permet de discuter.",
     url: `${SITE_URL}${getRoute(locale, "home")}`,
     logo: `${SITE_URL}/assets/brand/icone-n-rose.png`,
-    sameAs: [
-      "https://www.instagram.com/nulll.club",
-      "https://www.linkedin.com/company/nulll-club/",
-      "https://www.strava.com/clubs/nulllclub"
-    ],
+    image: `${SITE_URL}/assets/photos/hero-nulll-aix-v2.webp`,
     email: "contact@nulll.club",
-    areaServed: "Aix-en-Provence",
-    description: "Club de course à Aix-en-Provence avec sorties accessibles, événements locaux et communauté réelle."
-  };
-}
-
-export function buildSportsLocationSchema(locale: Locale) {
-  return {
-    "@context": "https://schema.org",
-    // SportsClub est plus precis que SportsActivityLocation et correspond a ce
-    // qu'est NULLL.CLUB : une association, pas un simple lieu de pratique.
-    "@type": ["SportsClub", "SportsActivityLocation"],
-    name: "NULLL.CLUB",
-    alternateName: "NULLL Run Club Aix-en-Provence",
-    description:
-      "Club de course a pied et club de sport associatif a Aix-en-Provence. Sorties running collectives tous les samedis matin, ouvertes a tous les niveaux et gratuites.",
-    sport: "Course a pied",
+    telephone: "+33626755273",
+    sport: "Course à pied",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Parking du chemin de la Cible, près du lycée Émile Zola",
       postalCode: "13090",
       addressLocality: "Aix-en-Provence",
-      addressRegion: "Provence-Alpes-Cote d'Azur",
+      addressRegion: "Provence-Alpes-Côte d'Azur",
       addressCountry: "FR"
     },
     // Parking public du chemin de la Cible, a cote du lycee Emile Zola,
@@ -139,12 +155,13 @@ export function buildSportsLocationSchema(locale: Locale) {
       longitude: 5.4611
     },
     // Le creneau hebdomadaire est le signal local le plus utile : c'est ce qui
-    // permet a Google de repondre a « run club aix samedi ».
+    // permet a Google de repondre a « run club aix samedi ». Depart a 8h30,
+    // comme partout sur le site.
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: "https://schema.org/Saturday",
-        opens: "08:00",
+        opens: "08:30",
         closes: "12:00"
       }
     ],
@@ -154,16 +171,12 @@ export function buildSportsLocationSchema(locale: Locale) {
       "@type": "City",
       name: "Aix-en-Provence"
     },
-    email: "contact@nulll.club",
-    telephone: "+33626755273",
-    image: `${SITE_URL}/assets/photos/hero-nulll-aix-v2.webp`,
-    logo: `${SITE_URL}/assets/brand/icone-n-rose.png`,
+    founder: FOUNDERS,
     sameAs: [
       "https://www.instagram.com/nulll.club",
       "https://www.linkedin.com/company/nulll-club/",
       "https://www.strava.com/clubs/nulllclub"
-    ],
-    url: `${SITE_URL}/${locale}/runs`
+    ]
   };
 }
 
@@ -202,6 +215,7 @@ export function buildEventSchema(event: {
     },
     organizer: {
       "@type": "Organization",
+      "@id": ORG_ID,
       name: "NULLL.CLUB",
       url: `${SITE_URL}${getRoute(event.locale, "home")}`
     },
@@ -239,7 +253,7 @@ export function buildNewsArticleSchema(actu: {
     inLanguage: "fr-FR",
     image: images.slice(0, 6).map((src) => `${SITE_URL}${src}`),
     mainEntityOfPage: `${SITE_URL}${actu.url}`,
-    author: { "@type": "Organization", name: "NULLL.CLUB", url: SITE_URL },
+    author: { "@type": "Organization", "@id": ORG_ID, name: "NULLL.CLUB", url: SITE_URL },
     publisher: {
       "@type": "Organization",
       name: "NULLL.CLUB",

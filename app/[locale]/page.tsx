@@ -4,7 +4,7 @@ import { StructuredData } from "../../components/StructuredData";
 import { SiteShell } from "../../components/site-shell";
 import { listActusAccueil } from "../../lib/actus";
 import { resolveLocale } from "../../lib/locale";
-import { buildOrganizationSchema, buildPageMetadata, buildSportsLocationSchema, buildWebSiteSchema } from "../../lib/seo";
+import { buildOrganizationSchema, buildPageMetadata, buildWebSiteSchema } from "../../lib/seo";
 import { getRoute, getSiteCopy } from "../../lib/site-content";
 import { listPublicRuns } from "../../lib/races/repo";
 
@@ -24,7 +24,7 @@ export default async function LocaleHomePage({ params }: PageProps) {
 
   return (
     <SiteShell current="home" locale={locale} pathname={`/${locale}`}>
-      <StructuredData data={[buildOrganizationSchema(locale), buildSportsLocationSchema(locale), buildWebSiteSchema(locale)]} />
+      <StructuredData data={[buildOrganizationSchema(locale), buildWebSiteSchema(locale)]} />
       <HomeExperience
         aboutHref={getRoute(locale, "contact")}
         actus={listActusAccueil()}
