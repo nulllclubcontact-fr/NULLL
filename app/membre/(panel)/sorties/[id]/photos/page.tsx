@@ -68,7 +68,7 @@ export default async function PhotosSortiePage({ params }: { params: Promise<{ i
             {photos.map((photo) => (
               <li className="grid gap-2" key={photo.chemin}>
                 <a className="block border-2 border-[#773331] transition-transform hover:-translate-y-1" href={photo.url} rel="noopener" target="_blank">
-                  <Image alt={`Photo ${photo.nom}`} className="aspect-square w-full object-cover" height={400} src={photo.url} unoptimized width={400} />
+                  <Image alt={`Photo ${photo.nom}`} className="aspect-square w-full object-cover" height={400} src={photo.miniature} unoptimized width={400} />
                 </a>
                 <a className="inline-flex min-h-11 items-center justify-center border-2 border-[#773331] bg-[#F1EDE9] font-mono text-xs font-black uppercase tracking-[.1em] hover:bg-[#FFB200]" href={photo.telechargement}>
                   Télécharger

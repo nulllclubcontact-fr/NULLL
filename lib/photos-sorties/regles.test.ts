@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 import { crc32, creerZip } from "../zip.ts";
-import { cheminDeLaSortie, cheminPhoto, inscriptionDonneAcces, nomTelechargement } from "./regles.ts";
+import { cheminDeLaSortie, cheminMiniature, cheminPhoto, inscriptionDonneAcces, nomTelechargement } from "./regles.ts";
 
 const COURSE = "3f1c2a9e-1111-4222-8333-444455556666";
 
@@ -23,6 +23,11 @@ test("un chemin reste dans le dossier de sa sortie", () => {
   assert.ok(!cheminDeLaSortie(`${COURSE}/../autre/x.jpg`, COURSE));
   assert.ok(!cheminDeLaSortie("autre-course/x.jpg", COURSE));
   assert.ok(!cheminDeLaSortie(`${COURSE}/sous/x.jpg`, COURSE));
+});
+
+test("la miniature vit dans le sous-dossier mini, en jpg", () => {
+  assert.equal(cheminMiniature(`${COURSE}/abc.png`), `${COURSE}/mini/abc.jpg`);
+  assert.ok(!cheminDeLaSortie(cheminMiniature(`${COURSE}/abc.jpg`), COURSE));
 });
 
 test("les fichiers telecharges ont un nom lisible", () => {

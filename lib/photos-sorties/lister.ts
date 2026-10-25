@@ -1,8 +1,9 @@
 import "server-only";
 import { createSupabaseServiceClient } from "../supabase/service";
-import { BUCKET_PHOTOS_SORTIES, DUREE_LIEN_SECONDES, nomTelechargement } from "./regles";
+import { BUCKET_PHOTOS_SORTIES, cheminMiniature, DUREE_LIEN_SECONDES, nomTelechargement } from "./regles";
 
-export type PhotoSortie = { chemin: string; url: string; telechargement: string; nom: string };
+/** miniature : version legere pour les grilles (l'original si elle manque). */
+export type PhotoSortie = { chemin: string; url: string; miniature: string; telechargement: string; nom: string };
 
 /**
  * Photos d'une sortie avec des liens signes d'une heure. A n'appeler
@@ -19,14 +20,22 @@ export async function listerPhotosSortie(raceId: string, dateIso: string): Promi
     const chemins = (fichiers ?? []).filter((f) => f.id && !f.name.startsWith(".")).map((f) => `${raceId}/${f.name}`);
     if (chemins.length === 0) return [];
 
-    const { data: signes, error: erreurSignature } = await stockage.createSignedUrls(chemins, DUREE_LIEN_SECONDES);
-    if (erreurSignature || !signes) return null;
+    // Les miniatures existantes seulement : une photo envoyee sans (HEIC
+    // illisible par le navigateur de l'admin) garde l'original en vignette.
+    const { data: minis } = await stockage.list(`${raceId}/mini`, { limit: 1000 });
+    const presentes = new Set((minis ?? []).map((f) => `${raceId}/mini/${f.name}`));
+    const cheminsMinis = chemins.map(cheminMiniature).filter((c) => presentes.has(c));
 
-    return signes.flatMap((signe, index) => {
+    const { data: signes, error: erreurSignature } = await stockage.createSignedUrls([...chemins, ...cheminsMinis], DUREE_LIEN_SECONDES);
+    if (erreurSignature || !signes) return null;
+    const urlMinis = new Map(signes.slice(chemins.length).map((s) => [s.path, s.signedUrl]));
+
+    return signes.slice(0, chemins.length).flatMap((signe, index) => {
       if (!signe.signedUrl || !signe.path) return [];
       const nom = nomTelechargement(dateIso, index, signe.path);
       const separateur = signe.signedUrl.includes("?") ? "&" : "?";
-      return [{ chemin: signe.path, url: signe.signedUrl, telechargement: `${signe.signedUrl}${separateur}download=${encodeURIComponent(nom)}`, nom }];
+      const miniature = urlMinis.get(cheminMiniature(signe.path)) || signe.signedUrl;
+      return [{ chemin: signe.path, url: signe.signedUrl, miniature, telechargement: `${signe.signedUrl}${separateur}download=${encodeURIComponent(nom)}`, nom }];
     });
   } catch {
     return null;

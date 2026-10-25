@@ -11,11 +11,31 @@ import {
   type PhotosSortieState
 } from "../../app/admin/photos-sortie-actions";
 import { createSupabaseBrowserClient } from "../../lib/supabase/client";
-import { BUCKET_PHOTOS_SORTIES, TYPES_PHOTO_SORTIE } from "../../lib/photos-sorties/regles";
+import { BUCKET_PHOTOS_SORTIES, COTE_MINIATURE, TYPES_PHOTO_SORTIE } from "../../lib/photos-sorties/regles";
 import type { PhotoSortie } from "../../lib/photos-sorties/lister";
 
 const BOUTON = "inline-flex min-h-11 items-center border-2 border-[#773331] px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition";
 const initial: PhotosSortieState = {};
+
+/**
+ * Miniature JPEG de la photo pour les grilles (quelques centaines de Ko au
+ * lieu de plusieurs Mo). null si le navigateur ne sait pas lire le format
+ * (HEIC hors Safari) : la photo part quand meme.
+ */
+async function fabriquerMiniature(fichier: File): Promise<Blob | null> {
+  try {
+    const image = await createImageBitmap(fichier, { imageOrientation: "from-image" });
+    const echelle = Math.min(1, COTE_MINIATURE / Math.max(image.width, image.height));
+    const toile = document.createElement("canvas");
+    toile.width = Math.round(image.width * echelle);
+    toile.height = Math.round(image.height * echelle);
+    toile.getContext("2d")?.drawImage(image, 0, 0, toile.width, toile.height);
+    image.close();
+    return await new Promise((resoudre) => toile.toBlob(resoudre, "image/jpeg", 0.8));
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Photos de la sortie, pour les inscrits. Plusieurs fichiers d'un coup :
@@ -43,6 +63,12 @@ export function PhotosSortieAdmin({ raceId, photos }: { raceId: string; photos: 
           .from(BUCKET_PHOTOS_SORTIES)
           .uploadToSignedUrl(preparation.path, preparation.token, fichier, { contentType: fichier.type });
         if (error) throw new Error("envoi interrompu");
+        const miniature = preparation.miniature ? await fabriquerMiniature(fichier) : null;
+        if (preparation.miniature && miniature) {
+          await client.storage
+            .from(BUCKET_PHOTOS_SORTIES)
+            .uploadToSignedUrl(preparation.miniature.path, preparation.miniature.token, miniature, { contentType: "image/jpeg" });
+        }
         reussis++;
       } catch (e) {
         echecs.push(`${fichier.name} : ${e instanceof Error ? e.message : "échec"}`);
@@ -108,7 +134,7 @@ export function PhotosSortieAdmin({ raceId, photos }: { raceId: string; photos: 
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
           {photos.map((photo) => (
             <li className="grid gap-2" key={photo.chemin}>
-              <Image alt="" className="aspect-square w-full border-2 border-[#773331] object-cover" height={160} src={photo.url} unoptimized width={160} />
+              <Image alt="" className="aspect-square w-full border-2 border-[#773331] object-cover" height={160} src={photo.miniature} unoptimized width={160} />
               <form action={supprimer}>
                 <input name="race_id" type="hidden" value={raceId} />
                 <input name="chemin" type="hidden" value={photo.chemin} />

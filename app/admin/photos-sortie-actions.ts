@@ -8,13 +8,16 @@ import { envoyerPhotosDisponibles } from "../../lib/email/photos-sortie";
 import {
   BUCKET_PHOTOS_SORTIES,
   cheminDeLaSortie,
+  cheminMiniature,
   cheminPhoto,
   POIDS_MAX_PHOTO_SORTIE,
   TYPES_PHOTO_SORTIE
 } from "../../lib/photos-sorties/regles";
 import { createSupabaseServiceClient } from "../../lib/supabase/service";
 
-export type EnvoiPhotoSortie = { ok: true; path: string; token: string } | { ok: false; error: string };
+export type EnvoiPhotoSortie =
+  | { ok: true; path: string; token: string; miniature: { path: string; token: string } | null }
+  | { ok: false; error: string };
 export type PhotosSortieState = { message?: string; error?: string };
 
 function rafraichir(raceId: string) {
@@ -47,11 +50,17 @@ export async function preparerEnvoiPhotoSortie(raceId: string, type: string, poi
     if (error && !error.message.toLowerCase().includes("exist")) return { ok: false, error: "Stockage des photos indisponible." };
   }
 
+  const stockage = service.storage.from(BUCKET_PHOTOS_SORTIES);
   const path = cheminPhoto(raceId, crypto.randomUUID(), extension);
-  const { data, error } = await service.storage.from(BUCKET_PHOTOS_SORTIES).createSignedUploadUrl(path);
+  const { data, error } = await stockage.createSignedUploadUrl(path);
   if (error || !data) return { ok: false, error: "Envoi impossible. Réessaie." };
 
-  return { ok: true, path, token: data.token };
+  // Miniature pour les grilles, fabriquee par le navigateur. Facultative :
+  // sans elle, la grille affiche l'original.
+  const cheminMini = cheminMiniature(path);
+  const { data: mini } = await stockage.createSignedUploadUrl(cheminMini);
+
+  return { ok: true, path, token: data.token, miniature: mini ? { path: cheminMini, token: mini.token } : null };
 }
 
 /** Appelee une fois un lot d'envois termine : trace et rafraichissement. */
@@ -70,7 +79,7 @@ export async function supprimerPhotoSortie(_precedent: PhotosSortieState, formDa
   const chemin = String(formData.get("chemin") ?? "");
   if (!identifiantValide(raceId) || !cheminDeLaSortie(chemin, raceId)) return { error: "Photo introuvable." };
 
-  const { error } = await createSupabaseServiceClient().storage.from(BUCKET_PHOTOS_SORTIES).remove([chemin]);
+  const { error } = await createSupabaseServiceClient().storage.from(BUCKET_PHOTOS_SORTIES).remove([chemin, cheminMiniature(chemin)]);
   if (error) return { error: "Suppression refusée." };
 
   await journaliser(admin.user.id, "sortie.photos.suppression", raceId, { chemin });

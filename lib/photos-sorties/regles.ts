@@ -12,6 +12,8 @@ export const TYPES_PHOTO_SORTIE: Record<string, string> = {
   "image/webp": "webp",
   "image/heic": "heic"
 };
+/** Miniature affichee dans les grilles : cote le plus long, en pixels. */
+export const COTE_MINIATURE = 800;
 /** Duree de vie d'un lien de telechargement : le temps de tout recuperer. */
 export const DUREE_LIEN_SECONDES = 60 * 60;
 
@@ -22,6 +24,15 @@ export function inscriptionDonneAcces(statut: string | null | undefined): boolea
 
 export function cheminPhoto(raceId: string, identifiant: string, extension: string): string {
   return `${raceId}/${identifiant}.${extension}`;
+}
+
+/**
+ * Miniature d'une photo, dans le sous-dossier mini/ de la sortie : la liste
+ * du dossier de la sortie ne la voit pas comme une photo de plus.
+ */
+export function cheminMiniature(chemin: string): string {
+  const [raceId, fichier] = chemin.split("/");
+  return `${raceId}/mini/${fichier.replace(/\.[^.]+$/, "")}.jpg`;
 }
 
 /** Le chemin appartient bien au dossier de cette sortie (pas de ../ ni d'autre dossier). */
