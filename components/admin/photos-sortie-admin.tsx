@@ -10,6 +10,7 @@ import {
   supprimerPhotoSortie,
   type PhotosSortieState
 } from "../../app/admin/photos-sortie-actions";
+import { TelechargerToutesPhotos } from "../membre/telecharger-photos";
 import { createSupabaseBrowserClient } from "../../lib/supabase/client";
 import { BUCKET_PHOTOS_SORTIES, COTE_MINIATURE, TYPES_PHOTO_SORTIE } from "../../lib/photos-sorties/regles";
 import type { PhotoSortie } from "../../lib/photos-sorties/lister";
@@ -41,7 +42,7 @@ async function fabriquerMiniature(fichier: File): Promise<Blob | null> {
  * Photos de la sortie, pour les inscrits. Plusieurs fichiers d'un coup :
  * ils partent un par un du navigateur vers le bucket prive.
  */
-export function PhotosSortieAdmin({ raceId, photos }: { raceId: string; photos: PhotoSortie[] | null }) {
+export function PhotosSortieAdmin({ raceId, photos, nomArchive }: { raceId: string; photos: PhotoSortie[] | null; nomArchive: string }) {
   const router = useRouter();
   const [progression, setProgression] = useState<{ fait: number; total: number } | null>(null);
   const [erreurs, setErreurs] = useState<string[]>([]);
@@ -129,6 +130,8 @@ export function PhotosSortieAdmin({ raceId, photos }: { raceId: string; photos: 
           ))}
         </ul>
       ) : null}
+
+      {photos && photos.length > 0 ? <TelechargerToutesPhotos nomArchive={nomArchive} photos={photos.map(({ url, nom }) => ({ url, nom }))} /> : null}
 
       {photos && photos.length > 0 ? (
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">

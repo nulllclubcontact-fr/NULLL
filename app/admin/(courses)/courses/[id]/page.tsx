@@ -168,7 +168,11 @@ export default async function AdminCourseDetailPage({
           Visibles uniquement par les inscrits de cette sortie, dans leur espace membre. Aucune adresse publique.
         </p>
         <div className="mt-5">
-          <PhotosSortieAdmin photos={await listerPhotosSortie(course.id, course.start_datetime)} raceId={course.id} />
+          <PhotosSortieAdmin
+            nomArchive={`nulll-club-${course.start_datetime.slice(0, 10)}.zip`}
+            photos={await listerPhotosSortie(course.id, course.start_datetime)}
+            raceId={course.id}
+          />
         </div>
       </div>
 
