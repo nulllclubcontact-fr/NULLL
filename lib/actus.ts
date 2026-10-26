@@ -17,12 +17,128 @@ export type Actu = {
   /** Photos du post d'origine, affichees en galerie sous le texte. */
   galerie?: Array<{ src: string; alt: string; largeur: number; hauteur: number }>;
   sections: Array<{ titre: string; paragraphes: string[] }>;
+  /** Pas-a-pas illustre, affiche sous les sections : la video du parcours puis une capture par etape. */
+  tuto?: {
+    titre: string;
+    video?: { src: string; poster: string; description: string; duree: string };
+    etapes: Array<{ titre: string; texte: string; image: { src: string; alt: string; largeur: number; hauteur: number } }>;
+  };
   source?: { label: string; url: string };
   /** Boutons d'action en fin d'article (interne ou externe). */
   appels?: Array<{ label: string; href: string }>;
 };
 
 export const actus: Actu[] = [
+  {
+    slug: "romane-fournier-associee-nulll-club",
+    titre: "Romane rejoint NULLL comme associée",
+    date: "2026-10-26",
+    resume:
+      "Romane Fournier devient associée de NULLL.CLUB, le social run club d’Aix-en-Provence. Elle s’occupe du sport : la préparation des sorties et la recherche des tracés.",
+    image: {
+      src: "/assets/actus/bienvenue/15.webp",
+      alt: "Le peloton de NULLL.CLUB sur un chemin ombragé d’Aix-en-Provence pendant le social run du samedi"
+    },
+    sections: [
+      {
+        titre: "On est trois",
+        paragraphes: [
+          "NULLL, c’était Tom et Tobias. C’est désormais Tom, Tobias et Romane.",
+          "Romane devient associée du club, avec un rôle bien à elle."
+        ]
+      },
+      {
+        titre: "Le côté sport, c’est elle",
+        paragraphes: [
+          "Romane prend en main tout ce qui touche à la course : la préparation des sorties et la recherche des tracés.",
+          "Les parcours que tu cours à Aix un samedi sur deux, c’est elle qui va les chercher, les tester et les choisir. Pour que chaque sortie reste faisable par tout le monde, à allure conversation."
+        ]
+      },
+      {
+        titre: "Viens la croiser",
+        paragraphes: [
+          "Le plus simple pour la rencontrer : venir courir. Rendez-vous au départ, un samedi sur deux à 8h30.",
+          "Tu as un coin d’Aix à faire découvrir au club ? Dis-le-nous, elle prend."
+        ]
+      }
+    ],
+    appels: [
+      { label: "Voir les sorties", href: "/fr/runs" },
+      { label: "Le club", href: "/fr/a-propos" }
+    ]
+  },
+  {
+    slug: "telecharger-photos-social-run-aix",
+    titre: "Les photos du run sont téléchargeables après chaque sortie",
+    date: "2026-10-26",
+    resume:
+      "Après chaque social run à Aix-en-Provence, tes photos t’attendent dans ton compte NULLL. Trois clics pour les télécharger, une par une ou toutes d’un coup.",
+    image: {
+      src: "/assets/actus/bienvenue/07.webp",
+      alt: "Trois membres de NULLL.CLUB posent après le social run du samedi à Aix-en-Provence"
+    },
+    sections: [
+      {
+        titre: "C’est en ligne",
+        paragraphes: [
+          "Tu as couru avec nous ? Les photos de la sortie sont dans ton compte, et tu peux les garder.",
+          "Pas besoin de les chercher dans une story ou de les demander en message. Elles sont là, en bonne qualité, prêtes à partir sur ton téléphone."
+        ]
+      },
+      {
+        titre: "Qui y a accès",
+        paragraphes: [
+          "Seuls les inscrits de la sortie voient ses photos. Pas d’album public, pas de lien qui circule.",
+          "Pas encore de compte ? Il est gratuit, et c’est lui qui t’inscrit aux prochains runs."
+        ]
+      }
+    ],
+    tuto: {
+      titre: "Comment les télécharger",
+      video: {
+        src: "/assets/actus/telecharger-photos/parcours.mp4",
+        poster: "/assets/actus/telecharger-photos/parcours.webp",
+        description: "Le parcours en vidéo : de l’espace membre NULLL.CLUB jusqu’au téléchargement des photos d’une sortie.",
+        duree: "PT8S"
+      },
+      etapes: [
+        {
+          titre: "Ouvre Mes sorties",
+          texte: "Connecte-toi, puis touche Mes sorties dans la barre jaune de ton espace membre.",
+          image: {
+            src: "/assets/actus/telecharger-photos/etape-1.webp",
+            alt: "Espace membre NULLL.CLUB sur mobile, l’onglet Mes sorties est mis en évidence",
+            largeur: 720,
+            hauteur: 1558
+          }
+        },
+        {
+          titre: "Choisis ta sortie",
+          texte: "Dans Sorties passées, touche le bouton rose Photos à côté du run qui t’intéresse.",
+          image: {
+            src: "/assets/actus/telecharger-photos/etape-2.webp",
+            alt: "Liste des sorties passées, le bouton Photos de la dernière sortie est mis en évidence",
+            largeur: 720,
+            hauteur: 1558
+          }
+        },
+        {
+          titre: "Télécharge",
+          texte: "Tout télécharger récupère toutes les photos dans un seul fichier. Sous chaque photo, Télécharger la récupère seule.",
+          image: {
+            src: "/assets/actus/telecharger-photos/etape-3.webp",
+            alt: "Page Les photos d’une sortie, le bouton Tout télécharger est mis en évidence",
+            largeur: 720,
+            hauteur: 1558
+          }
+        }
+      ]
+    },
+    appels: [
+      { label: "Mes photos", href: "/membre/sorties" },
+      { label: "Créer mon compte", href: "/membre/register" }
+    ]
+  },
   {
     slug: "photos-du-run-dans-ton-compte",
     titre: "Les photos du run, directement dans ton compte NULLL",
@@ -127,7 +243,7 @@ export const actus: Actu[] = [
       {
         titre: "Pourquoi s’associer au club",
         paragraphes: [
-          "Chaque samedi, des Aixois se retrouvent pour courir, puis restent pour les gens.",
+          "Un samedi sur deux, des Aixois se retrouvent pour courir, puis restent pour les gens.",
           "Un partenaire du club, c’est une marque ou un commerce qui fait partie de ce moment, pas un logo de plus sur une banderole."
         ]
       },
@@ -169,7 +285,7 @@ export const actus: Actu[] = [
       {
         titre: "Ce que tu y trouves",
         paragraphes: [
-          "L’événement « Social Run du samedi · 8h30 », chaque semaine : clique sur « Je participe » pour recevoir les rappels.",
+          "L’événement « Social Run du samedi · 8h30 », un samedi sur deux : clique sur « Je participe » pour recevoir les rappels.",
           "Les publications du club, les sorties des membres et le classement de la semaine."
         ]
       },
@@ -191,7 +307,7 @@ export const actus: Actu[] = [
     titre: "Bienvenue chez NULLL : le social run du samedi à Aix",
     date: "2026-09-28",
     resume:
-      "Pas de chrono, pas de pression : chaque samedi à 8h30, on court ensemble 5 à 10 km à allure conversation, au départ du chemin de la Cible à Aix-en-Provence.",
+      "Pas de chrono, pas de pression : un samedi sur deux à 8h30, on court ensemble 5 à 10 km à allure conversation, au départ du chemin de la Cible à Aix-en-Provence.",
     image: {
       src: "/assets/actus/bienvenue/01.webp",
       alt: "Photo de groupe des coureurs de NULLL.CLUB au départ, sous les arbres"
@@ -221,7 +337,7 @@ export const actus: Actu[] = [
       {
         titre: "Pas de chrono, pas de pression",
         paragraphes: [
-          "Ici, pas de chrono ni de pression : chaque samedi à 8h30, on court ensemble 5 à 10 km à allure conversation.",
+          "Ici, pas de chrono ni de pression : un samedi sur deux à 8h30, on court ensemble 5 à 10 km à allure conversation.",
           "Tu peux venir seul : c’est justement pour ça qu’on court en groupe."
         ]
       },
@@ -249,7 +365,7 @@ export const actus: Actu[] = [
  * Actus epinglees sur l'accueil, dans cet ordre. Les autres suivent,
  * les plus recentes d'abord.
  */
-export const EPINGLEES_ACCUEIL = ["bienvenue-social-run-samedi-aix", "rejoins-le-club-strava", "photos-du-run-dans-ton-compte"];
+export const EPINGLEES_ACCUEIL = ["romane-fournier-associee-nulll-club", "telecharger-photos-social-run-aix"];
 
 export function listActusAccueil(nombre = 3): Array<Actu & { epinglee: boolean }> {
   const epinglees = EPINGLEES_ACCUEIL.flatMap((slug) => {

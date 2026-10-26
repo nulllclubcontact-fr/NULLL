@@ -116,7 +116,7 @@ const FOUNDERS = [
     "@type": "Person",
     "@id": `${SITE_URL}/#romane`,
     name: "Romane Fournier",
-    jobTitle: "Cofondatrice"
+    jobTitle: "Associée, responsable sport et tracés"
   }
 ];
 
@@ -131,7 +131,7 @@ export function buildOrganizationSchema(locale: Locale) {
     name: "NULLL.CLUB",
     alternateName: ["NULLL", "NULLL Club", "NULLL Run Club Aix-en-Provence"],
     description:
-      "Social sport club d’Aix-en-Provence : une sortie running gratuite chaque samedi à 8h30, ouverte à tous les niveaux, à une allure qui permet de discuter.",
+      "Social sport club d’Aix-en-Provence : une sortie running gratuite un samedi sur deux à 8h30, ouverte à tous les niveaux, à une allure qui permet de discuter.",
     url: `${SITE_URL}${getRoute(locale, "home")}`,
     logo: `${SITE_URL}/assets/brand/icone-n-rose.png`,
     image: `${SITE_URL}/assets/photos/hero-nulll-aix-v2.webp`,
@@ -154,17 +154,9 @@ export function buildOrganizationSchema(locale: Locale) {
       latitude: 43.5096,
       longitude: 5.4611
     },
-    // Le creneau hebdomadaire est le signal local le plus utile : c'est ce qui
-    // permet a Google de repondre a « run club aix samedi ». Depart a 8h30,
-    // comme partout sur le site.
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: "https://schema.org/Saturday",
-        opens: "08:30",
-        closes: "12:00"
-      }
-    ],
+    // Pas d'openingHoursSpecification : la sortie a lieu un samedi sur deux,
+    // et des horaires d'ouverture annonceraient tous les samedis. Les dates
+    // reelles sont publiees en Event sur les pages des sorties.
     isAccessibleForFree: true,
     publicAccess: true,
     areaServed: {
@@ -240,9 +232,13 @@ export function buildNewsArticleSchema(actu: {
   date: string;
   image: { src: string };
   galerie?: Array<{ src: string }>;
+  tuto?: { titre: string; video?: { src: string; poster: string; description: string; duree: string }; etapes: Array<{ image: { src: string } }> };
   url: string;
 }) {
-  const images = [actu.image.src, ...(actu.galerie ?? []).map((photo) => photo.src)].filter((src, i, tout) => tout.indexOf(src) === i);
+  const images = [actu.image.src, ...(actu.galerie ?? []).map((photo) => photo.src), ...(actu.tuto?.etapes ?? []).map((etape) => etape.image.src)].filter(
+    (src, i, tout) => tout.indexOf(src) === i
+  );
+  const video = actu.tuto?.video;
   return {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
@@ -253,6 +249,20 @@ export function buildNewsArticleSchema(actu: {
     inLanguage: "fr-FR",
     image: images.slice(0, 6).map((src) => `${SITE_URL}${src}`),
     mainEntityOfPage: `${SITE_URL}${actu.url}`,
+    // Google indexe la video de l'article (resultats Videos) a partir de cette fiche.
+    ...(video
+      ? {
+          video: {
+            "@type": "VideoObject",
+            name: `${actu.tuto!.titre} · ${actu.titre}`,
+            description: video.description,
+            thumbnailUrl: `${SITE_URL}${video.poster}`,
+            contentUrl: `${SITE_URL}${video.src}`,
+            uploadDate: actu.date,
+            duration: video.duree
+          }
+        }
+      : {}),
     author: { "@type": "Organization", "@id": ORG_ID, name: "NULLL.CLUB", url: SITE_URL },
     publisher: {
       "@type": "Organization",

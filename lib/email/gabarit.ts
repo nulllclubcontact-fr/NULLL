@@ -102,7 +102,7 @@ export function rendreEmail({
     ${blocPied}
 
     <tr><td style="background:${BRUN};padding:18px 32px;font-family:${TEXTE};font-size:12px;line-height:1.7;color:${CREME}">
-      Tous les samedis, 8h30, parking du chemin de la Cible, près du lycée Émile Zola.<br>
+      Un samedi sur deux, 8h30, parking du chemin de la Cible, près du lycée Émile Zola.<br>
       <a href="https://nulll.club" style="color:${JAUNE};text-decoration:none">nulll.club</a>
     </td></tr>
 

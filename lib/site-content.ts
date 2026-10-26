@@ -208,7 +208,7 @@ export function getSiteCopy(locale: Locale) {
         home: {
           title: "NULLL.CLUB | Run club gratuit à Aix-en-Provence",
           description:
-            "Le social sport club d’Aix-en-Provence : une sortie gratuite chaque samedi à 8h30, à une allure qui permet de discuter."
+            "Le social sport club d’Aix-en-Provence : une sortie gratuite un samedi sur deux à 8h30, à une allure qui permet de discuter."
         },
         runs: {
           title: "Sorties à Aix-en-Provence | NULLL.CLUB",
@@ -250,12 +250,12 @@ export function getSiteCopy(locale: Locale) {
         hero: {
           title: "Le run club social qui fait vraiment bouger Aix-en-Provence.",
           intro:
-            "NULLL.CLUB organise des runs accessibles à Aix-en-Provence pour courir, rencontrer du monde et revenir chaque semaine avec une vraie raison de sortir.",
+            "NULLL.CLUB organise des runs accessibles à Aix-en-Provence pour courir, rencontrer du monde et revenir un samedi sur deux avec une vraie raison de sortir.",
           primaryCta: "Voir les prochains runs",
           secondaryCta: "Découvrir la communauté",
           stats: [
             { label: "Ville", value: "Aix-en-Provence" },
-            { label: "Format", value: "Run social hebdomadaire" },
+            { label: "Format", value: "Run social, un samedi sur deux" },
             { label: "Allure", value: "Conversation et débutants bienvenus" }
           ]
         },
@@ -402,10 +402,11 @@ export function getSiteCopy(locale: Locale) {
           }
         ],
 
-        foundersTitle: "Nous deux, au départ.",
+        foundersTitle: "Nous trois, aujourd’hui.",
         founders: [
           { name: "Tobias Ringot", role: "Président" },
-          { name: "Tom Brenier", role: "Trésorier" }
+          { name: "Tom Brenier", role: "Trésorier" },
+          { name: "Romane Fournier", role: "Associée · Sport et tracés" }
         ],
 
         firstRunTitle: "Pour ta première sortie.",
@@ -634,16 +635,16 @@ export function getSiteCopy(locale: Locale) {
           slug: "evenements-running-aix",
           title: "Les rendez-vous du club à Aix | NULLL.CLUB",
           description:
-            "L’agenda des sorties running à Aix-en-Provence : rendez-vous hebdomadaire du samedi 8h30, événements du club et rencontres après la course.",
+            "L’agenda des sorties running à Aix-en-Provence : rendez-vous du samedi 8h30, un samedi sur deux, événements du club et rencontres après la course.",
           h1: "Événements running à Aix-en-Provence",
           intro:
             "À Aix-en-Provence, l’essentiel de la vie running ne se joue pas sur les courses officielles mais sur les rendez-vous réguliers, gratuits et ouverts. Voici comment se repérer.",
           sections: [
             {
-              title: "Le rendez-vous hebdomadaire",
+              title: "Le rendez-vous du samedi",
               body: [
                 "Les dates et les informations pratiques sont annoncées sur la page Sorties.",
-                "Chaque sortie est annoncée avec sa date, son horaire, sa distance et son point de départ. C’est volontairement le même créneau chaque semaine : on retient plus facilement un rendez-vous fixe qu’un calendrier qui change."
+                "Chaque sortie est annoncée avec sa date, son horaire, sa distance et son point de départ. C’est volontairement le même créneau, un samedi sur deux : on retient plus facilement un rendez-vous fixe qu’un calendrier qui change."
               ]
             },
             {

@@ -63,7 +63,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         <div className="home-dates-layout">
           <div className="home-dates-intro" data-home-reveal>
             <h2 id="home-next-runs">Les prochaines<br /><span>dates.</span></h2>
-            <p>Rendez-vous au même endroit,<br />chaque samedi matin.</p>
+            <p>Rendez-vous au même endroit,<br />un samedi sur deux.</p>
             <figure className="home-dates-photo">
               <Image src="/assets/photos/runs-blur.webp" alt="Un coureur en mouvement sur un chemin" fill sizes="(max-width: 760px) 85vw, 30vw" />
               <figcaption className="home-label">De quoi courir. De quoi discuter.</figcaption>
@@ -153,7 +153,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
                 restait vide sous deux paragraphes. */}
             <dl className="home-facts" data-home-reveal>
           {[
-            { t: "Quand", d: "Tous les samedis, 8h30" },
+            { t: "Quand", d: "Un samedi sur deux, 8h30" },
             { t: "Où", d: DEPART.adresse },
             { t: "Distance", d: "5 à 6 km, allure conversation" },
             { t: "Combien", d: "Gratuit, sur inscription" }

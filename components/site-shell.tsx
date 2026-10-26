@@ -164,7 +164,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
           <div className="col-span-2 sm:col-span-1">
             <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">Le rendez-vous</p>
             <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[.95rem] text-[#F1EDE9]/80 sm:mt-5 sm:block sm:space-y-3 sm:text-[1.02rem]">
-              <li>Tous les samedis</li>
+              <li>Un samedi sur deux</li>
               <li>08:30</li>
               <li>{DEPART.nom}</li>
               <li>Gratuit, sur inscription</li>

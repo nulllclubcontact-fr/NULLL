@@ -70,7 +70,7 @@ export default async function OpenGraphImage() {
             textTransform: "uppercase"
           }}
         >
-          <span>Tous les samedis · 8h30</span>
+          <span>Un samedi sur deux · 8h30</span>
           <span>Ouvert à tous · Gratuit</span>
         </div>
       </div>

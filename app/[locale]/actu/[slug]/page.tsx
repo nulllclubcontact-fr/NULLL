@@ -115,6 +115,54 @@ export default async function ActuArticlePage({ params }: PageProps) {
                   </section>
                 ))}
               </div>
+              {actu.tuto ? (
+                <section aria-labelledby="tuto-titre" className="mt-14">
+                  <h2
+                    className="max-w-[26ch] font-display text-[clamp(1.7rem,3vw,2.3rem)] uppercase leading-[1.12] [text-wrap:balance]"
+                    id="tuto-titre"
+                  >
+                    {actu.tuto.titre}
+                  </h2>
+                  {actu.tuto.video ? (
+                    <figure className="mt-6 w-full max-w-[20rem] border-2 border-[#773331] bg-[#F1EDE9] shadow-[8px_8px_0_#EBA0CD]">
+                      <video
+                        aria-label={actu.tuto.video.description}
+                        autoPlay
+                        className="block h-auto w-full"
+                        height={1558}
+                        loop
+                        muted
+                        playsInline
+                        poster={actu.tuto.video.poster}
+                        preload="metadata"
+                        src={actu.tuto.video.src}
+                        width={720}
+                      />
+                    </figure>
+                  ) : null}
+                  <ol className="mt-10 grid gap-8 sm:grid-cols-3 sm:gap-5">
+                    {actu.tuto.etapes.map((etape, index) => (
+                      <li className="grid content-start gap-4" key={etape.titre}>
+                        <Image
+                          alt={etape.image.alt}
+                          className="h-auto w-full max-w-[20rem] border-2 border-[#773331]"
+                          height={etape.image.hauteur}
+                          sizes="(min-width: 640px) 230px, 90vw"
+                          src={etape.image.src}
+                          width={etape.image.largeur}
+                        />
+                        <h3 className="font-display text-xl uppercase leading-[1.1]">
+                          <span className="mr-2 inline-flex border-2 border-[#773331] bg-[#FFB200] px-2 font-mono text-sm font-black">
+                            {index + 1}
+                          </span>
+                          {etape.titre}
+                        </h3>
+                        <p className="text-[1.05rem] leading-[1.65]">{etape.texte}</p>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+              ) : null}
               {actu.appels && actu.appels.length > 0 ? (
                 <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                   {actu.appels.map((appel, index) => {
