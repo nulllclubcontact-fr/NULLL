@@ -30,6 +30,68 @@ export type Actu = {
 
 export const actus: Actu[] = [
   {
+    slug: "quatrieme-social-run-nulll-club-aix",
+    titre: "Quatrième social run de NULLL.CLUB à Aix : les photos",
+    date: "2026-10-26",
+    resume:
+      "Samedi 24 octobre, quatrième social run de NULLL.CLUB à Aix-en-Provence. On a couru, on est restés, on a ri. Les photos sont là.",
+    image: {
+      src: "/assets/actus/quatrieme-run/01.webp",
+      alt: "Des membres de NULLL.CLUB partagent le ravito après le quatrième social run à Aix-en-Provence"
+    },
+    galerie: [
+      { src: "/assets/actus/quatrieme-run/01.webp", alt: "Des membres de NULLL.CLUB partagent le ravito après le quatrième social run à Aix-en-Provence", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/02.webp", alt: "Des coureuses et coureurs du club sur un sentier, en pleine sortie", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/03.webp", alt: "Le groupe file sur un chemin bordé d’une barrière en bois, sous les arbres", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/04.webp", alt: "Éclats de rire entre coureuses après le run", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/05.webp", alt: "Un coureur en maillot rose, tout sourire après la sortie", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/06.webp", alt: "Deux membres du club posent ensemble, bouteille d’eau à la main", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/07.webp", alt: "Une coureuse en sweat jaune raconte sa sortie au groupe", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/08.webp", alt: "Le groupe se retrouve sur la pelouse après la course", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/09.webp", alt: "Trois coureuses sourient à l’objectif après le run", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/10.webp", alt: "Une coureuse en gilet d’hydratation, au soleil, après la sortie", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/11.webp", alt: "Un membre du club en sweat gris, souriant dans le parc", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/12.webp", alt: "Une coureuse rit, canette dans une main, eau dans l’autre", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/13.webp", alt: "Un coureur en gilet bleu profite de l’après-run sous les arbres", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/14.webp", alt: "Un membre du club en casquette lève sa canette en riant", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/15.webp", alt: "Une coureuse assise à l’ombre d’un arbre, au calme après l’effort", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/16.webp", alt: "Discussions autour de la table des boissons après la course", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/17.webp", alt: "La pyramide de canettes Bee Zen du ravito", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/18.webp", alt: "Un membre de l’équipe prépare le ravito, bouteilles d’eau sur la table", largeur: 900, hauteur: 1600 }
+    ],
+    sections: [
+      {
+        titre: "Et de quatre",
+        paragraphes: [
+          "Samedi 24 octobre, NULLL.CLUB a couru son quatrième social run à Aix-en-Provence.",
+          "Même principe que d’habitude : pas de chrono, une allure qui laisse parler, et personne ne repart tout de suite."
+        ]
+      },
+      {
+        titre: "Après la course",
+        paragraphes: [
+          "Le meilleur moment arrive souvent après : le ravito, les canettes, les discussions qui durent.",
+          "Tu peux venir seul : c’est justement pour ça qu’on court en groupe."
+        ]
+      },
+      {
+        titre: "Le prochain",
+        paragraphes: [
+          `Un samedi sur deux à 8h30, au ${DEPART.nom.replace(/^Parking/, "parking")}, ${DEPART.repere}.`,
+          "Inscris-toi sur le site : tu reçois ton QR code, et tu retrouves ensuite toutes les photos de ta sortie dans ton compte."
+        ]
+      }
+    ],
+    source: {
+      label: "Voir le post sur Instagram",
+      url: "https://www.instagram.com/p/De9ErDjCMWj/"
+    },
+    appels: [
+      { label: "Voir les sorties", href: "/fr/runs" },
+      { label: "Créer mon compte", href: "/membre/register" }
+    ]
+  },
+  {
     slug: "romane-fournier-associee-nulll-club",
     titre: "Romane rejoint NULLL comme associée",
     date: "2026-10-26",
@@ -365,7 +427,7 @@ export const actus: Actu[] = [
  * Actus epinglees sur l'accueil, dans cet ordre. Les autres suivent,
  * les plus recentes d'abord.
  */
-export const EPINGLEES_ACCUEIL = ["romane-fournier-associee-nulll-club", "telecharger-photos-social-run-aix"];
+export const EPINGLEES_ACCUEIL = ["quatrieme-social-run-nulll-club-aix", "romane-fournier-associee-nulll-club", "telecharger-photos-social-run-aix"];
 
 export function listActusAccueil(nombre = 3): Array<Actu & { epinglee: boolean }> {
   const epinglees = EPINGLEES_ACCUEIL.flatMap((slug) => {
