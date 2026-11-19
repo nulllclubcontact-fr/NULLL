@@ -42,7 +42,7 @@ export const actus: Actu[] = [
     slug: "red-bull-partenaire-nulll-club",
     rubrique: "Partenaires",
     titre: "C’est officiel : Red Bull court avec nous",
-    date: "2026-10-10",
+    date: "2026-09-26",
     resume:
       "Les canettes que tu attrapes à l’arrivée ne sont pas là par hasard. Red Bull est désormais partenaire de Nulll Club. Ce que ça change pour tes samedis.",
     image: {
@@ -59,7 +59,7 @@ export const actus: Actu[] = [
         titre: "C’est officiel",
         paragraphes: [
           "Red Bull est désormais **partenaire de Nulll Club**.",
-          "Tu les as sûrement déjà croisées : les canettes Red Bull sont au ravito depuis le tout premier social run, le 26 septembre."
+          "Et ça commence tout de suite : les canettes Red Bull sont au ravito dès ce **premier social run**, le samedi 26 septembre."
         ],
         citation: "À l’arrivée, il y a des gens, des sourires, et des canettes."
       },
