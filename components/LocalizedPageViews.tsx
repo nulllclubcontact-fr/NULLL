@@ -98,7 +98,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             <ol className="-mx-[max(5vw,20px)] mt-16 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[max(5vw,20px)] pb-4 lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:px-0">
               {page.timeline.map((etape, index) => {
                 const photos = [
-                  "/assets/photos/fondateurs.webp",
+                  "/assets/actus/bienvenue/18.webp",
                   "/assets/actus/quatrieme-run/11.webp",
                   "/assets/actus/quatrieme-run/17.webp",
                   "/assets/actus/bienvenue/01.webp",
