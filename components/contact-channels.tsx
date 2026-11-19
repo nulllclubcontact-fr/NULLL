@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowIcon } from "./ArrowIcon";
 
 type Channel = {
   title: string;
@@ -48,23 +47,24 @@ export function ContactChannels({ channels }: { channels: Channel[] }) {
   }
 
   const couleurs = ["st-pink", "st-yellow", "st-blue", "st-lime", "st-cream"];
+  // Une ligne par canal : aucune case vide, quel que soit leur nombre.
   return (
-    <ul className="grid gap-4 md:grid-cols-2">
+    <ul className="grid gap-3">
       {channels.map((channel, index) => {
         const externe = channel.href.startsWith("http");
         const copiable = valeurCopiable(channel);
         const actif = etat?.cle === channel.title ? etat : null;
 
         return (
-          <li className="flex flex-col rounded-[2px] border border-white/10 bg-[#1E1A21]" key={channel.title}>
+          <li className="flex flex-col rounded-[2px] border border-white/10 bg-[#1E1A21] sm:flex-row sm:items-stretch" key={channel.title}>
             <a
-              className="group flex flex-1 flex-col items-start gap-4 p-6 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#FFC531] sm:p-8"
+              className="group grid flex-1 gap-3 p-5 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#FFC531] sm:grid-cols-[150px_minmax(0,1fr)] sm:items-center sm:gap-6 sm:p-6 lg:grid-cols-[170px_minmax(0,1fr)_minmax(0,1fr)]"
               href={channel.href}
               rel={externe ? "noreferrer noopener" : undefined}
               target={externe ? "_blank" : undefined}
             >
-              <span className={`st ${couleurs[index % couleurs.length]}`}>{channel.title}</span>
-              <span className="copy-safe block font-display text-[clamp(1.6rem,2.6vw,2.4rem)] uppercase leading-[1.08] transition-colors group-hover:text-[#FFC531]">
+              <span><span className={`st ${couleurs[index % couleurs.length]}`}>{channel.title}</span></span>
+              <span className="copy-safe block font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-[1.08] transition-colors group-hover:text-[#FFC531]">
                 {/* L'adresse e-mail peut passer a la ligne apres l'arobase. */}
                 {channel.value.includes("@") && !channel.value.startsWith("@") ? (
                   <>
@@ -76,16 +76,15 @@ export function ContactChannels({ channels }: { channels: Channel[] }) {
                   channel.value
                 )}
               </span>
-              <span className="block max-w-[52ch] text-base leading-relaxed text-white/75">{channel.text}</span>
+              <span className="block text-[15px] leading-relaxed text-white/70 sm:col-start-2 lg:col-start-auto">{channel.text}</span>
             </a>
             <button
               aria-label={`Copier ${channel.title.toLowerCase()} : ${copiable}`}
-              className={`flex min-h-12 items-center justify-between border-t border-white/10 px-6 font-mono text-xs font-bold uppercase tracking-[.12em] transition-colors hover:bg-white/5 hover:text-[#FFC531] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#FFC531] sm:px-8 ${actif ? (actif.ok ? "text-[#FFC531]" : "text-[#E8459E]") : "text-white/70"}`}
+              className={`flex min-h-12 items-center justify-center gap-3 border-t border-white/10 px-6 font-mono text-xs font-bold uppercase tracking-[.12em] transition-colors hover:bg-white/5 hover:text-[#FFC531] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#FFC531] sm:w-36 sm:border-l sm:border-t-0 ${actif ? (actif.ok ? "text-[#FFC531]" : "text-[#E8459E]") : "text-white/70"}`}
               onClick={() => copier(channel.title, copiable)}
               type="button"
             >
-              <span>{actif ? (actif.ok ? "Copié" : "Échec de la copie") : "Copier"}</span>
-              <ArrowIcon />
+              {actif ? (actif.ok ? "Copié" : "Échec") : "Copier"}
             </button>
           </li>
         );
