@@ -268,7 +268,7 @@ export const actus: Actu[] = [
     titre: "Romane, la nouvelle tête de NULLL (et celle qui choisit tes parcours)",
     date: "2026-10-26",
     resume:
-      "NULLL, c’était Tom et Tobias. C’est désormais Tom, Tobias et Romane. Rencontre avec l’associée qui s’occupe de tout ce qui touche à la course.",
+      "NULLL, c’était Tobias et Tom. C’est désormais Tobias, Tom et Romane. Rencontre avec l’associée qui s’occupe de tout ce qui touche à la course.",
     image: {
       src: "/assets/actus/bienvenue/15.webp",
       alt: "Le peloton de Nulll Club sur un chemin ombragé d’Aix-en-Provence pendant le social run du samedi"
@@ -277,7 +277,7 @@ export const actus: Actu[] = [
       {
         titre: "On est trois",
         paragraphes: [
-          "NULLL, c’était **Tom et Tobias**. C’est désormais **Tom, Tobias et Romane**.",
+          "NULLL, c’était **Tobias et Tom**. C’est désormais **Tobias, Tom et Romane**.",
           "Romane devient associée du club, avec un rôle bien à elle."
         ],
         citation: "Les parcours que tu cours le samedi, c’est elle qui les choisit."

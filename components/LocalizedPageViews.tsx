@@ -57,7 +57,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             <figure className="relative mx-auto w-full max-w-md -rotate-2 lg:max-w-none">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[2px]">
                 <Image
-                  alt="Tom Brenier et Tobias Ringot, fondateurs de Nulll Club, dans une rue d’Aix-en-Provence"
+                  alt="Tobias Ringot et Tom Brenier, fondateurs de Nulll Club, dans une rue d’Aix-en-Provence"
                   className="-scale-x-100 object-cover object-[50%_38%]"
                   fill
                   sizes="(min-width: 1024px) 40vw, 90vw"
