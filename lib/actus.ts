@@ -39,6 +39,58 @@ export type Actu = {
 
 export const actus: Actu[] = [
   {
+    slug: "nulll-club-cherche-partenaires",
+    rubrique: "Partenaires",
+    titre: "On cherche nos prochains partenaires (et c’est peut-être toi)",
+    date: "2026-11-19",
+    resume:
+      "Red Bull, Bee Zen, Aix Ynov Campus : ils ont déjà sauté le pas. Le club grandit, et on cherche les suivants. Commerce d’Aix, marque, école : voici ce qu’on peut faire ensemble.",
+    image: {
+      src: "/assets/actus/partenaires/02.webp",
+      alt: "Le ravito après un social run : des membres du club se servent en discutant"
+    },
+    galerie: [
+      { src: "/assets/actus/partenaires/01.webp", alt: "Deux membres du club au ravito, tartine à la main, après la sortie", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/red-bull/01.webp", alt: "Un membre de Nulll Club, tout sourire, tend une canette Red Bull vers l’objectif", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/bee-zen/04.webp", alt: "Deux membres du club font les pitres avec une Bee Zen", largeur: 1066, hauteur: 1600 }
+    ],
+    sections: [
+      {
+        titre: "Le club grandit",
+        paragraphes: [
+          "Depuis le premier social run du **26 septembre**, il y a eu des samedis au parc, une course solidaire aux Bacchantes et un jeu concours.",
+          "Et à chaque fois, le même constat : après la course, **personne ne repart**."
+        ],
+        citation: "On cherche des partenaires qui ont envie d’être là quand Aix se retrouve."
+      },
+      {
+        titre: "Ils ont déjà sauté le pas",
+        paragraphes: [
+          "[Red Bull](https://www.redbull.com/fr-fr/) et [Bee Zen](https://www.beezendrinks.com/) sont au ravito depuis le premier run.",
+          "Avec [Aix Ynov Campus](https://www.ynov.com/campus/aix-en-provence), on a fait gagner **dix places** pour Les Bacchantes à nos membres."
+        ]
+      },
+      {
+        titre: "Ce qu’on peut faire ensemble",
+        paragraphes: [
+          "Un **ravito** à l’arrivée, un **jeu concours**, une sortie qui part ou finit **chez toi** : on cherche le format qui colle à ta marque ou à ton commerce.",
+          "Chaque partenaire a aussi son **espace pro** sur le site."
+        ]
+      },
+      {
+        titre: "Comment nous écrire",
+        paragraphes: [
+          "Tout est sur la page [Devenir partenaire](/fr/partenaires) : les formats, les étapes et le formulaire.",
+          "Ou écris directement à **contact@nulll.club**. On te répond."
+        ]
+      }
+    ],
+    appels: [
+      { label: "Devenir partenaire", href: "/fr/partenaires" },
+      { label: "Voir les sorties", href: "/fr/runs" }
+    ]
+  },
+  {
     slug: "red-bull-partenaire-nulll-club",
     rubrique: "Partenaires",
     titre: "C’est officiel : Red Bull court avec nous",
@@ -709,7 +761,7 @@ export const actus: Actu[] = [
  * les plus recentes d'abord.
  */
 // Les trois actus de l'accueil, dans cet ordre (sans mention « epinglee »).
-export const EPINGLEES_ACCUEIL: string[] = ["equipe-nulll-les-bacchantes-aix-2026", "jeu-concours-bacchantes-aix-ynov-campus", "duo-nulll-new-york"];
+export const EPINGLEES_ACCUEIL: string[] = ["nulll-club-cherche-partenaires", "equipe-nulll-les-bacchantes-aix-2026", "jeu-concours-bacchantes-aix-ynov-campus"];
 
 export function listActusAccueil(nombre = 3): Array<Actu & { epinglee: boolean }> {
   const epinglees = EPINGLEES_ACCUEIL.flatMap((slug) => {
