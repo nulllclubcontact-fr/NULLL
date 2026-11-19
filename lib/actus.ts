@@ -473,7 +473,7 @@ export const actus: Actu[] = [
     slug: "photos-du-run-dans-ton-compte",
     rubrique: "Ton compte",
     titre: "Fini de chasser tes photos en story",
-    date: "2026-09-28",
+    date: "2026-09-26",
     resume:
       "Tu cours, on photographie, et les clichés t’attendent dans ton espace membre. Réservés aux inscrits, à télécharger en un geste. Ce qui change pour toi.",
     image: {
@@ -512,7 +512,7 @@ export const actus: Actu[] = [
     slug: "pourquoi-creer-ton-compte-nulll",
     rubrique: "Ton compte",
     titre: "Le compte NULLL, ou comment ne plus jamais rater un samedi",
-    date: "2026-09-28",
+    date: "2026-09-26",
     resume:
       "T’inscrire en un clic, recevoir ton QR code, retrouver tes sorties et tes photos. Tout passe par ton compte, et il ne coûte rien. Tour du propriétaire.",
     image: {
@@ -559,7 +559,7 @@ export const actus: Actu[] = [
     slug: "partenaires-nulll-club",
     rubrique: "Partenaires",
     titre: "Red Bull, Bee Zen… et pourquoi pas toi ?",
-    date: "2026-09-28",
+    date: "2026-09-26",
     resume:
       "Deux marques remplissent déjà notre ravito. On cherche les prochaines : commerces d’Aix, marques qui ont envie d’être là quand les gens se retrouvent. Ce qu’on propose, et comment nous écrire.",
     image: {
@@ -606,7 +606,7 @@ export const actus: Actu[] = [
     slug: "rejoins-le-club-strava",
     rubrique: "Communauté",
     titre: "Sur Strava, le club ne s’arrête jamais",
-    date: "2026-09-28",
+    date: "2026-09-26",
     resume:
       "Le samedi, on court ensemble. Le reste de la semaine, on se suit sur Strava : l’événement du samedi, les rappels, les sorties de la bande. Pourquoi tu devrais nous rejoindre là-bas aussi.",
     image: {
@@ -645,7 +645,7 @@ export const actus: Actu[] = [
     slug: "bienvenue-social-run-samedi-aix",
     rubrique: "Le début",
     titre: "Pas de chrono, pas de pression : bienvenue chez NULLL",
-    date: "2026-09-28",
+    date: "2026-09-26",
     resume:
       "Tout a commencé comme ça : un samedi matin à Aix, des inconnus, quelques kilomètres à allure conversation, et l’envie de recommencer. Le manifeste du social run, en photos.",
     image: {
