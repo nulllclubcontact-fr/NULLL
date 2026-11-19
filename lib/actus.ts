@@ -20,7 +20,8 @@ export type Actu = {
   rubrique?: string;
   /**
    * Sections du recit. Dans les paragraphes, **texte** est surligne en
-   * etiquette. La citation, facultative, sort en grand apres la section.
+   * etiquette, [texte](url) devient un lien. La citation, facultative, sort
+   * en grand apres la section.
    */
   sections: Array<{ titre: string; paragraphes: string[]; citation?: string }>;
   /** Pas-a-pas illustre, affiche sous les sections : la video du parcours puis une capture par etape. */
@@ -30,6 +31,8 @@ export type Actu = {
     etapes: Array<{ titre: string; texte: string; image: { src: string; alt: string; largeur: number; hauteur: number } }>;
   };
   source?: { label: string; url: string };
+  /** Partenaire de l'actu : mention « Avec la participation de » et logo en tete d'article. */
+  avec?: { nom: string; logo: string; ratio: number; url: string };
   /** Boutons d'action en fin d'article (interne ou externe). */
   appels?: Array<{ label: string; href: string }>;
 };
@@ -51,7 +54,7 @@ export const actus: Actu[] = [
         titre: "Un dimanche pas comme les autres",
         paragraphes: [
           "D’habitude, NULLL, c’est le samedi matin, l’allure conversation et le ravito qui dure. Ce **dimanche 15 novembre**, on a changé de jour, et un peu de raison de courir.",
-          "La team NULLL était au départ des **Bacchantes**, à Aix-en-Provence. Et pas seule : les dix places gagnées au jeu concours avec Aix Ynov Campus étaient pour ce matin-là."
+          "La team NULLL était au départ des **Bacchantes**, à Aix-en-Provence. Et pas seule : les dix places gagnées au [jeu concours](/fr/actu/jeu-concours-bacchantes-aix-ynov-campus) avec [Aix Ynov Campus](https://www.ynov.com/campus/aix-en-provence) étaient pour ce matin-là."
         ],
         citation: "Courir ensemble, on sait faire. Courir pour quelque chose, c’est encore mieux."
       },
@@ -89,7 +92,7 @@ export const actus: Actu[] = [
       {
         titre: "Le deal",
         paragraphes: [
-          "L’idée tenait en une phrase : avec **Aix Ynov Campus**, faire gagner **dix places** pour Les Bacchantes, la course solidaire du dimanche 15 novembre à Aix-en-Provence.",
+          "L’idée tenait en une phrase : avec [Aix Ynov Campus](https://www.ynov.com/campus/aix-en-provence), faire gagner **dix places** pour Les Bacchantes, la course solidaire du dimanche 15 novembre à Aix-en-Provence.",
           "Les Bacchantes, c’est un événement qui sensibilise aux cancers masculins, notamment au cancer de la prostate. Une course qu’on avait envie de courir, et de faire courir."
         ],
         citation: "Les dix places sont parties chez des membres de NULLL."
@@ -97,7 +100,7 @@ export const actus: Actu[] = [
       {
         titre: "Les règles du jeu",
         paragraphes: [
-          "Pour tenter ta chance, il fallait être **abonné à @ynovaix et à @nulll.club**, liker le post, commenter, et identifier deux amis.",
+          "Pour tenter ta chance, il fallait être abonné à [@ynovaix](https://www.instagram.com/ynovaix/) et à [@nulll.club](https://www.instagram.com/nulll.club/), liker le post, commenter, et identifier deux amis.",
           "Simple, rapide, et le meilleur moyen de faire découvrir le club à des gens qui ne nous connaissaient pas encore."
         ]
       },
@@ -105,12 +108,14 @@ export const actus: Actu[] = [
         titre: "Lundi 9 novembre",
         paragraphes: [
           "Le tirage au sort a eu lieu le **lundi 9 novembre**. Les dix places sont toutes parties chez des membres de NULLL.",
-          "Bravo à eux, et merci à Aix Ynov Campus pour le partenariat. La suite s’est jouée le dimanche suivant, au départ des Bacchantes."
+          "Bravo à eux, et merci à [Aix Ynov Campus](https://www.ynov.com/campus/aix-en-provence) pour le partenariat. La suite s’est jouée le dimanche suivant, au départ des Bacchantes."
         ]
       }
     ],
+    avec: { nom: "Aix Ynov Campus", logo: "/assets/partenaires/ynov.svg", ratio: 395 / 149, url: "https://www.ynov.com/campus/aix-en-provence" },
     source: { label: "Le post du jeu concours sur Instagram", url: "https://www.instagram.com/p/DfFcQDeCOf2/" },
     appels: [
+      { label: "Découvrir Aix Ynov Campus", href: "https://www.ynov.com/campus/aix-en-provence" },
       { label: "Les Bacchantes, on y était", href: "/fr/actu/equipe-nulll-les-bacchantes-aix-2026" },
       { label: "Voir les sorties", href: "/fr/runs" }
     ]

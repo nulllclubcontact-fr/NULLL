@@ -90,6 +90,12 @@ export default async function ActuArticlePage({ params }: PageProps) {
               <span aria-hidden="true">·</span>
               <span>{minutes} min de lecture</span>
             </p>
+            {actu.avec ? (
+              <a className="mt-7 inline-flex flex-wrap items-center gap-x-4 gap-y-2 rounded-[2px] bg-[#141116]/70 px-4 py-3 transition-colors hover:bg-[#141116]" href={actu.avec.url} rel="noopener noreferrer" target="_blank">
+                <span className="font-mono text-xs font-bold uppercase tracking-[.14em] text-white/80">Avec la participation d’{actu.avec.nom}</span>
+                <Image alt={actu.avec.nom} className="h-8 w-auto" height={32} src={actu.avec.logo} unoptimized width={Math.round(32 * actu.avec.ratio)} />
+              </a>
+            ) : null}
           </div>
         </section>
 
@@ -253,7 +259,7 @@ const COULEURS = ["st-yellow", "st-blue", "st-lime", "st-cream"];
 
 /** Paragraphe : **texte** devient un surlignage facon etiquette. */
 function Texte({ texte }: { texte: string }) {
-  const morceaux = texte.split(/(\*\*[^*]+\*\*)/g);
+  const morceaux = texte.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)\s]+\))/g);
   return (
     <>
       {morceaux.map((morceau, index) =>
@@ -261,10 +267,27 @@ function Texte({ texte }: { texte: string }) {
           <mark className="surligne" key={index}>
             {morceau.slice(2, -2)}
           </mark>
+        ) : morceau.startsWith("[") && /^\[[^\]]+\]\([^)\s]+\)$/.test(morceau) ? (
+          <Lien key={index} morceau={morceau} />
         ) : (
           <span key={index}>{morceau}</span>
         )
       )}
     </>
+  );
+}
+
+/** [texte](url) : lien externe en rose NULLL, interne sans nouvel onglet. */
+function Lien({ morceau }: { morceau: string }) {
+  const [, label, href] = morceau.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/) ?? [];
+  const externe = href.startsWith("http");
+  return (
+    <a
+      className="font-bold text-[#E8459E] underline decoration-2 underline-offset-4 transition-colors hover:text-white"
+      href={href}
+      {...(externe ? { rel: "noopener noreferrer", target: "_blank" } : {})}
+    >
+      {label}
+    </a>
   );
 }
