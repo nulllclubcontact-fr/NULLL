@@ -307,8 +307,8 @@
 /* Ouverture « post » : titre ancre en bas a gauche, photo degagee. */
 .home-journey .hx-hero.hx-hero-bas{align-items:flex-end;justify-content:flex-start;text-align:left}
 .home-journey .hx-hero-bas .hx-hero-shade{background:linear-gradient(180deg,rgba(20,17,22,.1) 30%,rgba(20,17,22,.85) 100%),linear-gradient(90deg,rgba(20,17,22,.55),rgba(20,17,22,0) 65%)}
-.home-journey .hx-hero-bas .hx-hero-copy{align-items:flex-start;max-width:min(860px,100%)}
+.home-journey .hx-hero-bas .hx-hero-copy{align-items:flex-start;max-width:min(1200px,100%)}
 .home-journey .hx-hero-bas .hx-hero-title{align-items:flex-start;margin-top:.3em}
 .home-journey .hx-hero-bas .hx-hero-title .st-cream{--r:1deg;font-size:clamp(18px,1.8vw,26px);margin-bottom:.15em}
 .home-journey .hx-hero-bas .hx-hero-title .st-pink{font-size:clamp(46px,6.2vw,100px)}
-.home-journey .hx-hero-bas .hx-hero-support{font-weight:400;font-size:clamp(16px,1.3vw,19px);max-width:46ch;margin-top:22px;color:rgba(255,255,255,.88)}
+.home-journey .hx-hero-bas .hx-hero-support{font-weight:400;font-size:clamp(16px,1.3vw,19px);max-width:82ch;margin-top:22px;color:rgba(255,255,255,.88)}
