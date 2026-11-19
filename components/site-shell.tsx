@@ -120,17 +120,16 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
   const legal = "inline-flex min-h-11 items-center transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]";
   return (
     <footer className="overflow-hidden bg-[#141116] text-white">
-      <div className="mx-auto max-w-[1500px] px-5 pt-16 sm:px-8 sm:pt-20 xl:px-12">
-        <div className="grid gap-x-8 gap-y-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div className="mx-auto max-w-[1500px] px-5 pt-12 sm:px-8 sm:pt-14 xl:px-12">
+        <div className="grid gap-x-10 gap-y-10 lg:grid-cols-[1.2fr_2fr]">
           <div>
-            <Image alt="Nulll Club" className="h-auto w-40" height={313} sizes="160px" src="/assets/nulll-new/logo-cream.png" width={2449} />
-            <p className="mt-6 max-w-sm text-[1.05rem] leading-relaxed text-white/70">
+            <p className="max-w-sm text-[1.05rem] leading-relaxed text-white/70">
               Social sport club à Aix-en-Provence. Courir ensemble, couper la semaine, et revenir avec autre chose qu’un chrono.
             </p>
-            <p className="mt-6 inline-block -rotate-1 rounded-[2px] bg-[#FFC531] px-3 pb-1 pt-1.5 font-display text-lg uppercase leading-none text-[#141116]">Ouvert à tous · Gratuit</p>
+            <p className="mt-5 inline-block -rotate-1 rounded-[2px] bg-[#FFC531] px-3 pb-1 pt-1.5 font-display text-lg uppercase leading-none text-[#141116]">Ouvert à tous · Gratuit</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:col-span-3">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
             <FooterColumn
               links={[
                 { href: getRoute(locale, "runs"), label: "Sorties" },
@@ -156,11 +155,11 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
 
             <div className="col-span-2 sm:col-span-1">
               <p className="font-mono text-xs font-bold uppercase tracking-[.16em] text-white/45">Le rendez-vous</p>
-              <ul className="mt-4 space-y-2 text-[1rem] leading-snug text-white/80">
-                <li className="py-1">Un samedi sur deux</li>
-                <li className="py-1">Rendez-vous <strong className="font-bold text-[#FFC531]">9h30</strong>, départ <strong className="font-bold text-[#FFC531]">10h</strong></li>
-                <li className="py-1">{DEPART.nom}</li>
-                <li className="py-1">Gratuit, sur inscription</li>
+              <ul className="mt-3 space-y-0.5 text-[.95rem] leading-snug text-white/80">
+                <li className="py-0.5">Un samedi sur deux</li>
+                <li className="py-0.5">Rendez-vous <strong className="font-bold text-[#FFC531]">9h30</strong>, départ <strong className="font-bold text-[#FFC531]">10h</strong></li>
+                <li className="py-0.5">{DEPART.nom}</li>
+                <li className="py-0.5">Gratuit, sur inscription</li>
               </ul>
             </div>
           </div>
@@ -168,10 +167,10 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
 
       </div>
 
-      {/* Le nom du club en tres grand, en entier, sur toute la largeur. */}
-      <p aria-hidden="true" className="pointer-events-none mt-16 select-none whitespace-nowrap text-center font-display text-[22.5vw] uppercase leading-[.84] tracking-[-.01em] text-[#E8459E]">
-        NULLL.CLUB
-      </p>
+      {/* Le logo du club en tres grand, sur toute la largeur. */}
+      <div aria-hidden="true" className="pointer-events-none mx-auto mt-12 max-w-[1500px] select-none px-5 sm:px-8 xl:px-12">
+        <Image alt="" className="h-auto w-full" height={313} sizes="(min-width: 1500px) 1400px, 92vw" src="/assets/nulll-new/logo-pink.png" width={2449} />
+      </div>
 
       <div className="mx-auto max-w-[1500px] px-5 pb-6 sm:px-8 xl:px-12">
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-1 border-t border-white/10 pt-4 font-mono text-xs uppercase tracking-[.12em] text-white/55 sm:justify-between">
@@ -198,11 +197,11 @@ function FooterColumn({ title, links }: { title: string; links: Array<{ href: st
       <p className="font-mono text-xs font-bold uppercase tracking-[.16em] text-white/45">{title}</p>
       {/* Sur telephone, les liens se touchent : chacun garde 44 px de haut
           pour le doigt, sans l'espace en plus qui allongeait le pied. */}
-      <ul className="mt-4 space-y-2">
+      <ul className="mt-3 space-y-0.5">
         {links.map((link) => (
           <li key={link.href}>
             <Link
-              className="inline-flex min-h-11 items-center py-1 text-[1rem] leading-snug text-white/80 transition-colors hover:text-[#E8459E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531] sm:min-h-0"
+              className="inline-flex min-h-11 items-center py-0.5 text-[.95rem] leading-snug text-white/80 transition-colors hover:text-[#E8459E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531] sm:min-h-0"
               href={link.href}
             >
               {/* L'adresse e-mail peut passer a la ligne apres l'arobase dans
