@@ -19,6 +19,6 @@ export const DEPART = {
  * rebours disparait de lui-meme.
  */
 export const SORTIE_ANNONCEE = {
-  iso: "2026-12-01T09:30:00+01:00",
-  libelle: "Mardi 1er décembre · 9h30"
+  iso: "2026-12-01T19:00:00+01:00",
+  libelle: "Mardi 1er décembre · 19h · au Cutback, Aix-en-Provence"
 } as const;

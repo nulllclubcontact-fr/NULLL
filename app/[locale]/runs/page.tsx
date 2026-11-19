@@ -106,7 +106,7 @@ export default async function RunsPage({ params }: PageProps) {
               <span className="st st-yellow hx-hero-kicker">Les prochaines dates · Aix-en-Provence</span>
               <span className="st st-pink hx-titre-geant">Les sorties</span>
             </h1>
-            <p className="hx-hero-support">
+            <p className="hx-hero-support !max-w-[48ch]">
               {cible ? <>Prochaine sortie : <strong>{cible.libelle}</strong></> : "Nouvelles dates très bientôt."}
             </p>
             {cible ? (
