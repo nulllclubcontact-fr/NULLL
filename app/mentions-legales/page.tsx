@@ -54,8 +54,8 @@ export default function MentionsLegalesPage() {
             Site conçu et réalisé par <strong>Oculot Studio</strong> · <Lien href="https://oculot.studio">oculot.studio</Lien>
           </p>
           <p>
-            Oculot Studio est un studio web qui crée et refait les sites des commerces, des indépendants et des
-            associations : design, développement et mise en ligne.
+            Oculot Studio est un studio de développement de sites web, spécialisé dans la refonte. Il propose aussi
+            des automatisations par l’IA, du branding et de la communication.
           </p>
           <p>
             Contact : <Lien href="mailto:bonjour@oculot.studio">bonjour@oculot.studio</Lien>
