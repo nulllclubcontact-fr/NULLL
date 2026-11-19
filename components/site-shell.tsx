@@ -169,7 +169,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
 
       {/* Le logo du club en tres grand, sur toute la largeur. */}
       <div aria-hidden="true" className="pointer-events-none mx-auto mt-12 max-w-[1500px] select-none px-5 sm:px-8 xl:px-12">
-        <Image alt="" className="h-auto w-full" height={313} sizes="(min-width: 1500px) 1400px, 92vw" src="/assets/nulll-new/logo-pink.png" width={2449} />
+        <Image alt="" className="h-auto w-full brightness-0 invert" height={313} sizes="(min-width: 1500px) 1400px, 92vw" src="/assets/nulll-new/logo-cream.png" width={2449} />
       </div>
 
       <div className="mx-auto max-w-[1500px] px-5 pb-6 sm:px-8 xl:px-12">
