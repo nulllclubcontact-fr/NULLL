@@ -313,3 +313,11 @@
 .home-journey .hx-hero-bas .hx-hero-title .st-pink{font-size:clamp(46px,6.2vw,100px)}
 .home-journey .hx-hero-bas .hx-hero-support{font-weight:400;font-size:clamp(16px,1.3vw,19px);max-width:82ch;margin-top:40px;color:rgba(255,255,255,.88)}
 .home-journey .st-lg{font-size:clamp(34px,4vw,62px);line-height:1;padding:.06em .22em .02em}
+
+/* Guides : cartes d'actus en plus petit, 4 par rangee. */
+.home-journey .hx-guides-list{grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,2.2vw,32px)}
+.home-journey .hx-guides-list .hx-news-title{font-size:clamp(19px,1.45vw,23px);margin-top:-1.9em}
+.home-journey .hx-guides-list .hx-news-date{font-size:14px}
+.home-journey .hx-guides-list .hx-news-text{font-size:14.5px}
+@media (max-width:1100px){.home-journey .hx-guides-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.home-journey .hx-guides-list{grid-template-columns:minmax(0,1fr);gap:44px}}

@@ -299,3 +299,66 @@ export function buildActuMetadata({ titre, resume, date, image, url }: {
     twitter: { card: "summary_large_image", title, description: resume, images: [`${SITE_URL}${image.src}`] }
   };
 }
+
+/** Fiche Article d'un guide local : sujet Aix-en-Provence, auteur le club. */
+export function buildGuideSchema(guide: {
+  titre: string;
+  description: string;
+  datePublication: string;
+  dateMiseAJour: string;
+  image: { src: string };
+  photos: Array<{ src: string }>;
+  chemin: string;
+  rubrique: string;
+}) {
+  const images = [guide.image.src, ...guide.photos.map((photo) => photo.src)].filter((src, i, tout) => tout.indexOf(src) === i);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.titre,
+    description: guide.description,
+    articleSection: guide.rubrique,
+    datePublished: guide.datePublication,
+    dateModified: guide.dateMiseAJour,
+    inLanguage: "fr-FR",
+    image: images.slice(0, 6).map((src) => `${SITE_URL}${src}`),
+    mainEntityOfPage: `${SITE_URL}${guide.chemin}`,
+    about: { "@type": "City", name: "Aix-en-Provence", sameAs: "https://fr.wikipedia.org/wiki/Aix-en-Provence" },
+    spatialCoverage: { "@type": "Place", name: "Aix-en-Provence, Bouches-du-Rhône, France" },
+    author: { "@type": "Organization", "@id": ORG_ID, name: "Nulll Club", url: SITE_URL },
+    publisher: {
+      "@type": "Organization",
+      name: "Nulll Club",
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/assets/brand/icone-n-rose.png` }
+    }
+  };
+}
+
+/** Metadonnees d'un guide : title court, canonique, image du guide. */
+export function buildGuideMetadata({ seoTitle, description, image, chemin, dateMiseAJour, datePublication }: {
+  seoTitle: string;
+  description: string;
+  image: { src: string; alt: string };
+  chemin: string;
+  datePublication: string;
+  dateMiseAJour: string;
+}): Metadata {
+  const canonical = `${SITE_URL}${chemin}`;
+  return {
+    title: seoTitle,
+    description,
+    alternates: { canonical, languages: { fr: canonical, "x-default": canonical } },
+    openGraph: {
+      title: seoTitle,
+      description,
+      url: canonical,
+      siteName: "Nulll Club",
+      locale: "fr_FR",
+      type: "article",
+      publishedTime: datePublication,
+      modifiedTime: dateMiseAJour,
+      images: [{ url: `${SITE_URL}${image.src}`, alt: image.alt }]
+    },
+    twitter: { card: "summary_large_image", title: seoTitle, description, images: [`${SITE_URL}${image.src}`] }
+  };
+}

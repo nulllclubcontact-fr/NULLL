@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { listActus } from "../lib/actus";
+import { guidesDeLaRubrique } from "../lib/guides";
 import { getRoute, type RouteKey } from "../lib/site-content";
 
 // « about » n'est plus une page : elle redirige en 308 vers « community ».
 // Une URL qui redirige n'a rien a faire dans un sitemap.
-const routeKeys: RouteKey[] = ["home", "runs", "community", "merch", "contact", "localClub", "localRunning", "localEvents", "news", "partners"];
+const routeKeys: RouteKey[] = ["home", "runs", "community", "merch", "contact", "localClub", "localRunning", "localEvents", "news", "partners", "guides"];
 
 // Pas de lastmod : la date du build annoncait chaque page modifiee a
 // chaque deploiement, ce qui est faux, et Google ignore un lastmod peu
@@ -22,5 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: 0.6
   }));
-  return [...pages, ...actus];
+  // Les guides servis sous /fr/guide/ (les trois premiers gardent leur adresse, deja listee).
+  const guides: MetadataRoute.Sitemap = guidesDeLaRubrique().map((guide) => ({
+    url: `https://nulll.club${guide.chemin}`,
+    lastModified: guide.dateMiseAJour,
+    changeFrequency: "monthly",
+    priority: 0.7
+  }));
+  return [...pages, ...actus, ...guides];
 }

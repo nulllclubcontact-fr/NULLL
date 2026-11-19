@@ -14,7 +14,8 @@ export type RouteKey =
   | "localRunning"
   | "localEvents"
   | "news"
-  | "partners";
+  | "partners"
+  | "guides";
 
 export type RunEvent = {
   id: string;
@@ -46,7 +47,7 @@ export type Product = {
 };
 
 export type Article = {
-  key: Exclude<RouteKey, "home" | "runs" | "community" | "merch" | "about" | "contact" | "checkout" | "news" | "partners">;
+  key: Exclude<RouteKey, "home" | "runs" | "community" | "merch" | "about" | "contact" | "checkout" | "news" | "partners" | "guides">;
   slug: string;
   title: string;
   description: string;
@@ -71,7 +72,8 @@ const routeSlugs: Record<Locale, Record<RouteKey, string>> = {
     localRunning: "courir-a-aix-en-provence",
     localEvents: "evenements-running-aix",
     news: "actu",
-    partners: "partenaires"
+    partners: "partenaires",
+    guides: "guide"
   }
 };
 
@@ -233,6 +235,11 @@ export function getSiteCopy(locale: Locale) {
           title: "À propos du club de running | Nulll Club",
           description:
             "Comprends la vision de Nulll Club, social sport club à Aix-en-Provence centré sur la communauté, la régularité et le plaisir de courir ensemble."
+        },
+        guides: {
+          title: "Guides locaux d’Aix-en-Provence : courir, sortir, rencontrer | Nulll Club",
+          description:
+            "Nos guides d’Aix-en-Provence : où courir, run club gratuit, débuter la course, rencontrer des gens, que faire et où sortir. Écrits par des Aixois."
         },
         partners: {
           title: "Devenir partenaire de Nulll Club | Run club à Aix-en-Provence",

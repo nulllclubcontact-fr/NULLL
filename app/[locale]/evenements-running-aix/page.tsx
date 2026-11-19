@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import { GuideView } from "../../../components/guide-view";
+import { getGuide } from "../../../lib/guides";
 import { resolveLocale } from "../../../lib/locale";
 import { listPublicRuns } from "../../../lib/races/repo";
-import { buildPageMetadata } from "../../../lib/seo";
-import { getRoute, getSiteCopy } from "../../../lib/site-content";
-import { SeoArticleView } from "../../shared/SeoArticleView";
+import { buildGuideMetadata } from "../../../lib/seo";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -12,21 +12,13 @@ type PageProps = {
 // Les dates viennent de la base : meme regeneration que la page Sorties.
 export const revalidate = 60;
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const locale = resolveLocale((await params).locale);
-  const article = getSiteCopy(locale).articles.find((entry) => entry.key === "localEvents")!;
-  return buildPageMetadata({
-    locale,
-    routeKey: "localEvents",
-    title: article.title,
-    description: article.description
-  });
+const guide = getGuide("evenements-running-aix")!;
+
+export async function generateMetadata(): Promise<Metadata> {
+  return buildGuideMetadata(guide);
 }
 
 export default async function LocalEventsPage({ params }: PageProps) {
-  const locale = resolveLocale((await params).locale);
-  const article = getSiteCopy(locale).articles.find((entry) => entry.key === "localEvents")!;
-
-  // La page s'appelait « agenda » sans montrer une seule date.
-  return <SeoArticleView article={article} locale={locale} pathname={getRoute(locale, "localEvents")} prochaines={await listPublicRuns()} />;
+  // La page d'agenda montre les vraies dates, lues en base.
+  return <GuideView guide={guide} locale={resolveLocale((await params).locale)} prochaines={await listPublicRuns()} />;
 }

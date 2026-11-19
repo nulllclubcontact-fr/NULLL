@@ -149,7 +149,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
                 { href: copy.contact.linkedin, label: "LinkedIn" },
                 { href: `mailto:${copy.contact.email}`, label: copy.contact.email },
                 { href: `tel:${copy.contact.phone}`, label: copy.contact.phoneLabel },
-                { href: getRoute(locale, "localClub"), label: "Guide local" }
+                { href: getRoute(locale, "guides"), label: "Guides d’Aix" }
               ]}
               title="Nous suivre"
             />
