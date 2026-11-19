@@ -91,7 +91,7 @@ export default async function ActuArticlePage({ params }: PageProps) {
               <span>{minutes} min de lecture</span>
             </p>
             {actu.avec ? (
-              <a className="mt-7 inline-flex flex-wrap items-center gap-x-4 gap-y-2 rounded-[2px] bg-[#141116]/70 px-4 py-3 transition-colors hover:bg-[#141116]" href={actu.avec.url} rel="noopener noreferrer" target="_blank">
+              <a className="mt-7 inline-flex flex-wrap items-center gap-x-4 gap-y-2 transition-opacity hover:opacity-80" href={actu.avec.url} rel="noopener noreferrer" target="_blank">
                 <span className="font-mono text-xs font-bold uppercase tracking-[.14em] text-white/80">Avec la participation d’{actu.avec.nom}</span>
                 <Image alt={actu.avec.nom} className="h-8 w-auto" height={32} src={actu.avec.logo} unoptimized width={Math.round(32 * actu.avec.ratio)} />
               </a>
