@@ -208,13 +208,13 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
 
 /** Photo d'ouverture : paysage sur ordinateur, portrait sur telephone. */
 function HeroPhoto() {
-  const commun = { alt: "Des membres de Nulll Club tout sourire après une sortie à Aix-en-Provence", priority: true, sizes: "100vw" } as const;
+  const commun = { alt: "Le peloton de Nulll Club court le long d’une barrière en bois, au parc de la Torse à Aix-en-Provence", priority: true, sizes: "100vw" } as const;
   const {
     props: { srcSet: large }
-  } = getImageProps({ ...commun, width: 1600, height: 900, src: "/assets/actus/quatrieme-run/01.webp" });
+  } = getImageProps({ ...commun, width: 1600, height: 900, src: "/assets/actus/parc-de-la-torse/peloton.webp" });
   const {
     props: { srcSet: portrait, ...rest }
-  } = getImageProps({ ...commun, width: 1066, height: 1600, src: "/assets/actus/bienvenue/19.webp" });
+  } = getImageProps({ ...commun, width: 900, height: 1600, src: "/assets/actus/parc-de-la-torse/passerelle.webp" });
   return (
     <picture className="hx-hero-media">
       <source media="(min-width: 761px)" srcSet={large} />
