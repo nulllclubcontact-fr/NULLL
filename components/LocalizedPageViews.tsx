@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "./reveal";
+import { ArrowIcon } from "./ArrowIcon";
+import { RubanVitesse } from "./ruban-vitesse";
+import "./home-experience.css";
 import { ClubTimeline } from "./club-timeline";
 import { StructuredData } from "./StructuredData";
 import { CheckoutForm } from "./checkout-form";
@@ -25,229 +28,177 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
       />
       <StructuredData data={buildFaqSchema(page.faq)} />
 
-      {/* ---------------- OUVERTURE ----------------
-          Les trois autres pages ouvrent sur une photo plein cadre avec le
-          titre pose dessus. Ici la photo devient un objet encadre et la page
-          s'ouvre sur les mots : c'est une page qui raconte, pas une affiche.
-          Ca supprime aussi la collision entre le titre et les personnes. */}
-      <section className="border-b-2 border-white/15 bg-[#141116] text-white" aria-labelledby="club-title">
-        <div className="mx-auto grid max-w-[1600px] gap-12 px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16 xl:px-12">
-          <div>
-            <p className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFC531]" style={{ animationDelay: "60ms" }}>
-              {page.title}
-            </p>
-            {/* Le h1 est la grande phrase : l'etiquette au-dessus ressemblait a
-                un titre de page pour les lecteurs d'ecran et pour Google. */}
-            <h1 className="da-stack mt-6" id="club-title">
-              {page.punchlineLines.map((ligne, index) => (
-                <span className={`st ${index === 1 ? "st-pink st-xl" : "st-cream"}`} key={ligne}>
-                  {ligne}
-                </span>
-              ))}
+      <div className="home-journey">
+        {/* ---------------- OUVERTURE ---------------- */}
+        <section className="hx-hero" aria-labelledby="club-title">
+          <Image
+            alt="Le groupe de Nulll Club réuni sur la pelouse après une sortie"
+            className="object-cover object-[50%_40%]"
+            fill
+            priority
+            sizes="100vw"
+            src="/assets/actus/quatrieme-run/08.webp"
+          />
+          <div className="hx-hero-shade" aria-hidden="true" />
+          <div className="hx-hero-copy">
+            <h1 className="hx-hero-title" id="club-title">
+              <span className="st st-yellow hx-hero-kicker">{page.title}</span>
+              {page.punchlineLines.map((ligne, index) =>
+                index === 1 ? (
+                  <span className="st st-pink" key={ligne}>{ligne}</span>
+                ) : (
+                  <span className="st st-cream hx-club-ligne" key={ligne}>{ligne}</span>
+                )
+              )}
             </h1>
-            <p className="hero-rise mt-7 max-w-xl text-lg leading-relaxed text-white" style={{ animationDelay: "260ms" }}>
-              {page.intro}
-            </p>
-
+            <p className="hx-hero-support">{page.intro}</p>
           </div>
+        </section>
 
-          {/* La photo, cadree et legendee comme une photo de presse. */}
-          {/* Borne tant que la colonne est empilee : en pleine largeur sur tablette,
-              un cadre en 4/5 depassait la hauteur d'un ecran. */}
-          <figure className="hero-rise relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none" style={{ animationDelay: "220ms" }}>
-            {/* Cadre en portrait : la photo est en 3:4, un cadre paysage lui
-                aurait coupe les tetes ou les jambes. */}
-            <div className="relative aspect-[4/5] overflow-hidden border-2 border-white/15">
+        {/* ---------------- LES FONDATEURS ---------------- */}
+        <section className="hx-club" aria-labelledby="club-founders">
+          <div className="hx-club-photos">
+            <figure className="hx-club-photo hx-club-photo-a">
               <Image
                 alt="Tom Brenier et Tobias Ringot, fondateurs de Nulll Club, dans une rue d’Aix-en-Provence"
-                className="-scale-x-100 object-cover object-[50%_38%]"
+                className="-scale-x-100 object-[50%_38%]"
                 fill
-                priority
-                sizes="(min-width: 1024px) 46vw, 100vw"
+                sizes="(max-width: 760px) 70vw, 30vw"
                 src="/assets/photos/fondateurs.webp"
               />
-            </div>
-            <figcaption className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1 font-mono text-xs font-black uppercase tracking-[.16em] text-white/80">
-              <span className="text-[#FFC531]">Tom Brenier &amp; Tobias Ringot</span>
-              <span>Fondateurs · Aix-en-Provence</span>
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      {/* ---------------- LA LIGNE DE VIE ---------------- */}
-      <section className="border-t-2 border-white/15 bg-[#141116] text-white" aria-labelledby="club-timeline">
-        <div className="mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
-          <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#E8459E]">D’où ça vient</p>
-          <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,5rem)] uppercase leading-[1.12] tracking-[-.035em]" id="club-timeline">
-            {page.timelineTitle}
-          </h2>
-
-          <ClubTimeline entries={page.timeline} />
-        </div>
-      </section>
-
-      {/* ---------------- LES TROIS L ---------------- */}
-      <section className="border-t-2 border-white/15 bg-[#141116] text-white" aria-labelledby="club-letters">
-        <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
-          <div className="flex flex-col gap-5 border-b-2 border-white/15 pb-8 lg:flex-row lg:items-end lg:justify-between">
-            <h2 className="max-w-[14ch] font-display text-[clamp(2.4rem,5vw,4.6rem)] uppercase leading-[1.12] tracking-[-.03em]" id="club-letters">
-              {page.lettersTitle}
+            </figure>
+            <figure className="hx-club-photo hx-club-photo-b">
+              <Image alt="Discussions autour de la table des boissons après la course" fill sizes="(max-width: 760px) 80vw, 34vw" src="/assets/actus/quatrieme-run/16.webp" />
+            </figure>
+            <p className="st st-yellow hx-club-first">Le club est parti<br />de deux potes.</p>
+          </div>
+          <div className="hx-club-copy">
+            <h2 className="hx-stack hx-stack-left" id="club-founders">
+              <span className="st st-blue">Qui on est</span>
+              <span className="st st-pink st-xl">{page.foundersTitle.replace(/\.$/, "")}</span>
             </h2>
-            <p className="max-w-md text-lg font-bold leading-snug">{page.lettersIntro}</p>
+            <ul className="hx-facts">
+              {page.founders.map((f, index) => (
+                <li className={`st ${["st-yellow", "st-cream", "st-lime", "st-pink"][index % 4]}`} key={f.name}>
+                  <span className="block font-display text-2xl uppercase leading-none">{f.name}</span>
+                  <span className="mt-1 block">{f.role}</span>
+                </li>
+              ))}
+            </ul>
           </div>
+        </section>
 
-          {/* Chaque pilier reaffiche NULLL en entier avec son propre L
-              allume. Trois L isoles ne disaient pas d'ou ils venaient ;
-              la, la derivation se voit sans etre expliquee. Et cadrer la
-              chose colonne par colonne evite d'aligner du texte sous des
-              lettres, dont la largeur varie avec la police. */}
-          <ol className="mt-12 grid gap-px bg-[#1E1A21] md:grid-cols-3">
-            {page.letters.map((item, index) => (
-              <Reveal as="li" className="flex flex-col bg-[#141116] px-6 py-8 sm:px-8 sm:py-10" delay={index * 110} key={item.word}>
-                <p aria-hidden="true" className="font-display text-[clamp(2.6rem,5vw,4.4rem)] uppercase leading-[1.12] tracking-[-.02em]">
-                  {"NULLL".split("").map((lettre, position) => (
-                    <span
-                      className={position === item.highlight ? "text-[#E8459E]" : "text-white/22"}
-                      key={position}
-                    >
-                      {lettre}
-                    </span>
-                  ))}
-                </p>
+        {/* ---------------- LA LIGNE DE VIE ---------------- */}
+        <section className="px-[max(5vw,20px)] py-24 sm:py-28" aria-labelledby="club-timeline">
+          <div className="mx-auto max-w-[1500px]">
+            <h2 className="hx-stack" id="club-timeline">
+              <span className="st st-cream">D’où ça vient</span>
+              <span className="st st-yellow st-xl">{page.timelineTitle.replace(/\.$/, "")}</span>
+            </h2>
+            <ClubTimeline entries={page.timeline} />
+          </div>
+        </section>
 
-                <h3 className="mt-6 font-display text-[clamp(1.9rem,2.8vw,2.6rem)] uppercase leading-[1.12]">
-                  {item.word}
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-white">{item.text}</p>
-              </Reveal>
-            ))}
-          </ol>
+        <RubanVitesse className="hx-ruban" texte="Le sport n’est qu’un prétexte ✱ Soyons nous, soyons NULLL ✱ " />
 
-          {/* Les fondateurs, juste apres : ce sont eux les trois L en pratique. */}
-          <div className="mt-14 border-t-2 border-white/15 pt-8">
+        {/* ---------------- LES TROIS L ---------------- */}
+        <section className="px-[max(5vw,20px)] py-24 sm:py-28" aria-labelledby="club-letters">
+          <div className="mx-auto max-w-[1500px]">
+            <h2 className="hx-stack" id="club-letters">
+              <span className="st st-blue">Le nom</span>
+              <span className="st st-pink st-xl">{page.lettersTitle.replace(/\.$/, "")}</span>
+            </h2>
+            <p className="mx-auto mt-8 max-w-xl text-center text-lg leading-relaxed text-white/85">{page.lettersIntro}</p>
+
+            <ol className="mt-14 grid gap-5 md:grid-cols-3">
+              {page.letters.map((item, index) => (
+                <Reveal as="li" className="flex flex-col rounded-[2px] border border-white/10 bg-[#1E1A21] px-6 py-8 sm:px-8 sm:py-10" delay={index * 110} key={item.word}>
+                  <p aria-hidden="true" className="font-display text-[clamp(2.6rem,5vw,4.4rem)] uppercase leading-none">
+                    {"NULLL".split("").map((lettre, position) => (
+                      <span className={position === item.highlight ? "text-[#E8459E]" : "text-white/20"} key={position}>
+                        {lettre}
+                      </span>
+                    ))}
+                  </p>
+                  <h3 className={`st ${["st-yellow", "st-lime", "st-cream"][index % 3]} mt-6`}>{item.word}</h3>
+                  <p className="mt-5 text-base leading-relaxed text-white/85">{item.text}</p>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* ---------------- ÉDITORIAL ---------------- */}
+        <section className="bg-[#1E1A21] px-[max(5vw,20px)] py-24 sm:py-28" aria-labelledby="club-editorial">
+          <div className="mx-auto grid max-w-[1500px] gap-14 lg:grid-cols-[minmax(0,70ch)_minmax(0,1fr)] lg:gap-20">
             <div>
-              <p className="font-mono text-xs font-black uppercase tracking-[.16em] opacity-55">{page.foundersTitle}</p>
-              <ul className="mt-4 flex flex-wrap gap-x-10 gap-y-3">
-                {page.founders.map((f) => (
-                  <li key={f.name}>
-                    <span className="block font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-none">{f.name}</span>
-                    <span className="mt-1 block font-mono text-xs font-black uppercase tracking-[.18em] opacity-55">{f.role}</span>
-                  </li>
+              <h2 className="hx-stack hx-stack-left" id="club-editorial">
+                <span className="st st-yellow">Rejoindre un club de sport</span>
+                <span className="st st-pink st-xl">à Aix-en-Provence</span>
+              </h2>
+              <div className="mt-12 space-y-10">
+                {page.editorial.map((bloc) => (
+                  <div key={bloc.heading}>
+                    <h3 className="font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-[1.1] text-[#FFC531]">{bloc.heading}</h3>
+                    <p className="mt-3 max-w-[68ch] text-lg leading-relaxed text-white/85">{bloc.body}</p>
+                  </div>
                 ))}
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- ÉDITORIAL ---------------- */}
-      <section className="border-t-2 border-white/15 bg-[#1E1A21] text-white" aria-labelledby="club-editorial">
-        <div className="mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
-          <h2 className="max-w-[20ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] uppercase leading-[1.12] tracking-[-.03em]" id="club-editorial">
-            {page.editorialTitle}
-          </h2>
-
-          {/* Le cadre suit les autres sections a 1600px, mais la prose est bridee :
-              une ligne de 150 caracteres ne se lit pas. */}
-          <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,72ch)_minmax(0,1fr)] lg:gap-16">
-            <div className="space-y-10">
-            {page.editorial.map((bloc) => (
-              <Reveal className="border-t-2 border-white/25 pt-6" key={bloc.heading}>
-                <h3 className="font-display text-[clamp(1.5rem,2.2vw,2.1rem)] uppercase leading-[1.12] text-[#FFC531]">{bloc.heading}</h3>
-                <p className="mt-4 max-w-[68ch] text-lg leading-relaxed text-white">{bloc.body}</p>
-              </Reveal>
-            ))}
-            </div>
-
-            <figure className="mx-auto w-full max-w-md lg:sticky lg:top-28 lg:mx-0 lg:max-w-none lg:self-start">
-              {/* Carre cale sur les verres : c'est le reflet du groupe qui compte, pas le front. */}
-              <div className="relative aspect-square overflow-hidden border-2 border-white/15">
-                <Image
-                  alt="Un petit groupe du club reflété dans des lunettes de soleil"
-                  className="object-cover object-[50%_72%]"
-                  fill
-                  sizes="(min-width: 1024px) 38vw, 100vw"
-                  src="/assets/photos/editorial-glasses.webp"
-                />
               </div>
+              <p className="mt-12 max-w-[68ch] text-lg leading-relaxed text-white/85">
+                Pour aller plus loin : <Link className="underline decoration-[#E8459E] decoration-2 underline-offset-4 transition-colors hover:text-[#E8459E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={localClubHref}>le run club à Aix-en-Provence</Link>,{" "}
+                <Link className="underline decoration-[#E8459E] decoration-2 underline-offset-4 transition-colors hover:text-[#E8459E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={localRunningHref}>où courir à Aix-en-Provence</Link> et{" "}
+                <Link className="underline decoration-[#E8459E] decoration-2 underline-offset-4 transition-colors hover:text-[#E8459E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={runsHref}>les prochaines sorties</Link>.
+              </p>
+            </div>
+            <figure className="relative mx-auto w-full max-w-md rotate-2 lg:sticky lg:top-28 lg:mx-0 lg:max-w-none lg:self-start">
+              <div className="relative aspect-square overflow-hidden rounded-[2px]">
+                <Image alt="Un petit groupe du club reflété dans des lunettes de soleil" className="object-cover object-[50%_72%]" fill sizes="(min-width: 1024px) 38vw, 100vw" src="/assets/photos/editorial-glasses.webp" />
+              </div>
+              <figcaption className="st st-lime absolute -bottom-4 left-4">Soyons nous</figcaption>
             </figure>
           </div>
+        </section>
 
-          <p className="mt-10 max-w-[72ch] text-lg leading-relaxed text-white">
-            Pour aller plus loin :{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFC531] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={localClubHref}>
-              le run club à Aix-en-Provence
-            </Link>
-            ,{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFC531] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={localRunningHref}>
-              où courir à Aix-en-Provence
-            </Link>{" "}
-            et{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#FFC531] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={runsHref}>
-              les prochaines sorties
-            </Link>
-            .
-          </p>
-        </div>
-      </section>
-
-      {/* ---------------- FAQ ---------------- */}
-      <section className="border-t-2 border-white/15 bg-[#FFC531] text-[#141116]" aria-labelledby="club-faq">
-        <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24 xl:px-12">
-          <h2 className="max-w-[14ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] uppercase leading-[1.12] tracking-[-.03em]" id="club-faq">
-            {page.faqTitle}
-          </h2>
-
-          <dl className="mt-12 border-t-2 border-white/15">
-            {page.faq.map((entry, index) => (
-              <Reveal className="grid gap-3 border-b-2 border-white/15 py-7 lg:grid-cols-[auto_1fr_1.2fr] lg:items-baseline lg:gap-10" delay={index * 80} key={entry.q}>
-                <span className="font-mono text-xs font-black uppercase tracking-[.14em] opacity-55">0{index + 1}</span>
-                <dt className="font-display text-[clamp(1.4rem,2.2vw,2rem)] uppercase leading-[1.12]">{entry.q}</dt>
-                <dd className="text-lg leading-relaxed text-white">{entry.a}</dd>
-              </Reveal>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* ---------------- LE PREMIER RUN + INSTAGRAM ---------------- */}
-      <section className="border-t-2 border-white/15 bg-[#141116] text-white" aria-labelledby="club-cta">
-        <div className="mx-auto grid max-w-[1600px] gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-16 xl:px-12">
-          <div>
-            <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#E8459E]">{page.social.kicker}</p>
-            <h2 className="mt-5 max-w-[15ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] uppercase leading-[1.12] tracking-[-.03em]" id="club-cta">
-              {page.firstRunTitle}
+        {/* ---------------- FAQ ---------------- */}
+        <section className="px-[max(5vw,20px)] py-24 sm:py-28" aria-labelledby="club-faq">
+          <div className="mx-auto max-w-[1100px]">
+            <h2 className="hx-stack" id="club-faq">
+              <span className="st st-cream">On nous demande souvent</span>
+              <span className="st st-yellow st-xl">Les questions</span>
             </h2>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-white">{page.firstRunText}</p>
-            <Link
-              className="mt-8 inline-flex min-h-16 items-center justify-center border-2 border-[#FFC531] bg-[#FFC531] px-7 font-mono text-xs font-black uppercase tracking-[.1em] text-[#141116] transition-colors hover:bg-transparent hover:text-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFFFFF]"
-              href={runsHref}
-            >
-              Voir les prochaines sorties
+            <dl className="mt-14 grid gap-4">
+              {page.faq.map((entry, index) => (
+                <div className="grid gap-3 rounded-[2px] border border-white/10 bg-[#1E1A21] p-6 sm:p-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10" key={entry.q}>
+                  <dt className="flex items-baseline gap-4 font-display text-[clamp(1.4rem,2.2vw,2rem)] uppercase leading-[1.1]">
+                    <span aria-hidden="true" className="shrink-0 font-mono text-xs font-bold tracking-[.14em] text-[#E8459E]">0{index + 1}</span>
+                    <span>{entry.q}</span>
+                  </dt>
+                  <dd className="text-[1.05rem] leading-relaxed text-white/85">{entry.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* ---------------- LE PREMIER RUN + INSTAGRAM ---------------- */}
+        <section className="grid gap-5 px-[max(5vw,20px)] pb-28 lg:grid-cols-2" aria-labelledby="club-cta">
+          <div className="flex flex-col items-start justify-center rounded-[2px] bg-[#E8459E] p-8 sm:p-12">
+            <h2 className="st st-yellow st-xl" id="club-cta">{page.firstRunTitle.replace(/\.$/, "")}</h2>
+            <p className="mt-6 max-w-lg text-lg font-bold leading-relaxed text-white">{page.firstRunText}</p>
+            <Link className="hx-pill mt-8" href={runsHref}>
+              <span>Voir les prochaines sorties</span>
+              <ArrowIcon />
             </Link>
           </div>
-
-          <a
-            className="social-card group relative flex flex-col justify-between gap-10 overflow-hidden border-2 border-white/30 p-7 focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#E8459E] sm:p-9"
-            href={copy.contact.instagram}
-            rel="noreferrer noopener"
-            target="_blank"
-          >
-            <Image alt="" className="social-card-photo object-cover object-[50%_38%]" fill sizes="(min-width: 1024px) 40vw, 100vw" src="/assets/photos/runs-crew.webp" />
-            <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(140deg,rgba(18,9,8,.9)_0%,rgba(18,9,8,.6)_100%)]" />
-            <span className="relative font-mono text-xs font-black uppercase tracking-[.16em] text-white/70">{page.social.title}</span>
-            <span className="relative">
-              <span className="block font-display text-[clamp(2rem,3.4vw,3rem)] uppercase leading-none">{copy.contact.instagramLabel}</span>
-              <span className="mt-5 inline-flex items-center gap-4 border-2 border-white/15 px-5 py-3 font-mono text-xs font-black uppercase tracking-[.12em] transition-colors group-hover:bg-[#141116] group-hover:text-white">
-                {page.social.cta}
-                <span aria-hidden="true" className="social-card-arrow">→</span>
-              </span>
-            </span>
+          <a className="hx-tile !aspect-auto min-h-[420px]" href={copy.contact.instagram} rel="noreferrer noopener" target="_blank">
+            <Image alt="" fill sizes="(min-width: 1024px) 45vw, 92vw" src="/assets/actus/bienvenue/18.webp" />
+            <span className="hx-tile-shade" aria-hidden="true" />
+            <span className="st st-blue">{page.social.title}</span>
+            <span className="st st-pink st-xl hx-tile-label">{copy.contact.instagramLabel}</span>
+            <span className="st st-cream hx-tile-text">{page.social.cta} →</span>
           </a>
-        </div>
-      </section>
+        </section>
+      </div>
     </SiteShell>
   );
 }
