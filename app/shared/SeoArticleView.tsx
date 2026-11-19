@@ -91,7 +91,7 @@ export function SeoArticleView({
             </div>
 
             <div className="mt-16 flex flex-col items-start gap-5 rounded-[2px] bg-[#E8459E] p-8 sm:p-10">
-              <p className="st st-yellow st-xl">Envie d’essayer ?</p>
+              <p className="st st-yellow st-lg">Envie d’essayer ?</p>
               <p className="max-w-[52ch] text-lg font-bold leading-relaxed text-white">Choisis ta prochaine sortie, ou pose-nous une question avant de venir.</p>
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link className="hx-pill" href={getRoute(locale, "runs")}><span>Voir les sorties</span><ArrowIcon /></Link>

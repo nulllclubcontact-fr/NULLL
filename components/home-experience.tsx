@@ -155,7 +155,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         </div>
         <div className="hx-club-copy">
           <h2 id="home-le-club" className="hx-stack hx-stack-left">
-            <span className="st st-pink st-xl">Social sport club</span>
+            <span className="st st-pink st-lg">Social sport club</span>
             <span className="st st-blue">à Aix-en-Provence</span>
           </h2>
           <p>

@@ -226,7 +226,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
         {/* ---------------- LE PREMIER RUN + INSTAGRAM ---------------- */}
         <section className="grid gap-5 px-[max(5vw,20px)] pb-28 lg:grid-cols-2" aria-labelledby="club-cta">
           <div className="flex flex-col items-start justify-center rounded-[2px] bg-[#E8459E] p-8 sm:p-12">
-            <h2 className="st st-yellow st-xl" id="club-cta">{page.firstRunTitle.replace(/\.$/, "")}</h2>
+            <h2 className="st st-yellow st-lg" id="club-cta">{page.firstRunTitle.replace(/\.$/, "")}</h2>
             <p className="mt-6 max-w-lg text-lg font-bold leading-relaxed text-white">{page.firstRunText}</p>
             <Link className="hx-pill mt-8" href={runsHref}>
               <span>Voir les prochaines sorties</span>
