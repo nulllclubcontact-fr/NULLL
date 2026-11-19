@@ -1,9 +1,8 @@
 "use client";
 
 /**
- * QR décoratif qui se construit module par module, avec une ligne de scan
- * qui le balaie. C'est l'objet que le compte donne au membre : le montrer
- * vaut mieux que l'écrire.
+ * QR décoratif, présenté comme un ticket : c'est l'objet que le compte
+ * donne au membre, le montrer vaut mieux que l'écrire.
  *
  * Le motif est calcule, pas tire au hasard : un Math.random() donnerait un
  * rendu different sur le serveur et dans le navigateur, et React signalerait
@@ -49,19 +48,19 @@ export function QrAnime() {
     }
   }
 
+  // Un ticket blanc, fixe : plus de construction module par module ni de
+  // ligne de scan.
   return (
-    <div aria-hidden="true" className="qr-cadre relative border-2 border-white/15 bg-[#141116] p-4 sm:p-6">
+    <div aria-hidden="true" className="rounded-[6px] bg-white p-5 text-[#141116] sm:p-6">
       <div className="grid gap-[2px]" style={{ gridTemplateColumns: `repeat(${TAILLE}, minmax(0, 1fr))` }}>
         {modules.map(({ x, y, plein }) => (
-          <span
-            className={`qr-module aspect-square ${plein ? "bg-[#1E1A21]" : "bg-transparent"}`}
-            key={`${x}-${y}`}
-            // La vague part du coin haut gauche et descend en diagonale.
-            style={{ animationDelay: `${140 + (x + y) * 26}ms` }}
-          />
+          <span className={`aspect-square ${plein ? "bg-[#141116]" : "bg-transparent"}`} key={`${x}-${y}`} />
         ))}
       </div>
-      <span className="qr-scan pointer-events-none absolute inset-x-4 top-4 block h-[14%] bg-[linear-gradient(to_bottom,transparent,rgba(217,106,180,.55),transparent)] sm:inset-x-6 sm:top-6" />
+      <p className="mt-4 flex items-center justify-between border-t-2 border-dashed border-[#141116]/25 pt-3 font-mono text-[11px] font-bold uppercase tracking-[.14em]">
+        <span>Nulll Club</span>
+        <span>Social run · samedi</span>
+      </p>
     </div>
   );
 }

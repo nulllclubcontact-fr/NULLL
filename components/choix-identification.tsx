@@ -20,22 +20,22 @@ export function ChoixIdentification({ suite }: { suite: string }) {
     <>
       {/* Une phrase, pas trois blocs : le visiteur doit savoir a quoi
           sert un compte sans avoir a lire la page. */}
-      <p className="hero-rise mt-7 max-w-lg text-lg leading-relaxed text-white sm:text-xl" style={{ animationDelay: "220ms" }}>
+      <p className="mt-8 max-w-lg text-lg leading-relaxed text-white/85 sm:text-xl">
         {suite
           ? "Ta sortie est notée. Crée ton compte ou connecte-toi pour confirmer ta place et retrouver ton QR."
           : "Crée ton compte pour choisir une sortie et retrouver son QR."}
       </p>
 
-      <div className="hero-rise mt-10 flex max-w-xl flex-col gap-4" style={{ animationDelay: "300ms" }}>
+      <div className="mt-10 flex max-w-xl flex-col gap-4">
         <Link
-          className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-[#FFC531] bg-[#FFC531] px-7 font-mono text-base font-black uppercase tracking-[.06em] text-[#141116] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFFFFF] sm:text-xl"
+          className="inline-flex min-h-[4.25rem] items-center justify-between gap-8 rounded-[2px] bg-[#FFC531] px-7 font-display text-2xl uppercase leading-none text-[#141116] transition-colors hover:bg-[#E8459E] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-[1.7rem]"
           href={`/membre/register${suite}`}
         >
           <span>Créer mon compte</span>
           <ArrowIcon />
         </Link>
         <Link
-          className="inline-flex min-h-[5.5rem] items-center justify-between gap-8 border-2 border-white/80 px-7 font-mono text-base font-black uppercase tracking-[.06em] transition-colors [word-spacing:.12em] hover:border-white/15 hover:bg-[#141116] hover:text-white focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531] sm:text-xl"
+          className="inline-flex min-h-[4.25rem] items-center justify-between gap-8 rounded-[2px] bg-white px-7 font-display text-2xl uppercase leading-none text-[#141116] transition-colors hover:bg-[#E8459E] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531] sm:text-[1.7rem]"
           href={`/membre/login${suite}`}
         >
           <span>Se connecter</span>
@@ -43,7 +43,7 @@ export function ChoixIdentification({ suite }: { suite: string }) {
         </Link>
       </div>
 
-      <p className="hero-rise mt-8 text-sm leading-relaxed text-white" style={{ animationDelay: "380ms" }}>
+      <p className="mt-8 text-sm leading-relaxed text-white/80">
         {suite ? (
           <>
             Déjà connecté ?{" "}
