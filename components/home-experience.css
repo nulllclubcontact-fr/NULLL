@@ -113,13 +113,17 @@
 .home-journey .hx-band-pink dt{font-family:var(--font-mono),sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;opacity:.9}
 .home-journey .hx-band-pink dd{margin:0;font-size:clamp(20px,2.2vw,34px);line-height:1}
 
-/* ---------- Partenaires : logos fixes, en blanc, centres ---------- */
-.home-journey .hx-partners{display:flex;flex-direction:column;align-items:center;gap:22px;padding:56px max(5vw,20px) 64px;text-align:center}
-.home-journey .hx-partners-title{font-family:var(--font-mono),sans-serif;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)}
-.home-journey .hx-partners-list{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(36px,6vw,88px);list-style:none;margin:0;padding:0}
-.home-journey .hx-partners-link{display:block;padding:6px;opacity:.85;transition:opacity .2s ease,translate .2s ease}
-.home-journey .hx-partners-link:hover{opacity:1;translate:0 -2px}
-.home-journey .hx-partners-logo{display:block;height:calc(34px * var(--echelle, 1));width:auto;max-width:none;filter:brightness(0) invert(1)}
+/* ---------- Partenaires : titre en etiquettes, grandes cartes claires ---------- */
+.home-journey .hx-partners{display:flex;flex-direction:column;align-items:center;padding:100px max(5vw,20px) 110px}
+.home-journey .hx-partners-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,32px);width:100%;max-width:980px;list-style:none;margin:56px 0 0;padding:0}
+.home-journey .hx-partners-list>li:nth-child(odd){rotate:-1deg}
+.home-journey .hx-partners-list>li:nth-child(even){rotate:1deg}
+.home-journey .hx-partners-card{display:flex;flex-direction:column;height:100%;border-radius:2px;background:var(--hx-cream);color:var(--hx-navy);transition:translate .2s ease,background .2s ease}
+.home-journey .hx-partners-card:hover{translate:0 -4px;background:var(--hx-white)}
+.home-journey .hx-partners-logo-box{display:grid;place-items:center;min-height:clamp(170px,18vw,230px);padding:32px}
+.home-journey .hx-partners-logo{display:block;height:calc(clamp(52px,5.6vw,76px) * var(--echelle, 1));width:auto;max-width:100%;object-fit:contain}
+.home-journey .hx-partners-meta{display:flex;justify-content:space-between;gap:12px;padding:14px 20px;border-top:2px solid var(--hx-navy);font-family:var(--font-mono),sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.home-journey .hx-partners-go{color:var(--hx-magenta)}
 
 /* ---------- Les dates : photo a gauche, contenu a droite, sans chevauchement ---------- */
 .home-journey .hx-dates{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);scroll-margin-top:90px}
@@ -242,8 +246,9 @@
   .home-journey .hx-band-pink>div{width:50%;padding:10px 10px;border-right:0;flex-direction:column;gap:2px;align-items:flex-start}
   .home-journey .hx-band-pink dd{font-size:clamp(20px,5.6vw,28px);white-space:normal}
 
-  .home-journey .hx-partners{padding:44px 16px 48px}
-  .home-journey .hx-partners-logo{height:calc(26px * var(--echelle, 1))}
+  .home-journey .hx-partners{padding:72px 16px 80px}
+  .home-journey .hx-partners-list{grid-template-columns:minmax(0,1fr);margin-top:40px}
+  .home-journey .hx-partners-logo{height:calc(46px * var(--echelle, 1))}
 
   .home-journey .hx-dates{display:block;min-height:0}
   .home-journey .hx-dates-photo{min-height:0;aspect-ratio:4/3}
