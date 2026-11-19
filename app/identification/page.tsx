@@ -36,7 +36,7 @@ export default function IdentificationPage() {
               recoit en s'inscrivant. Apres les boutons sur telephone. */}
           <div aria-hidden="true" className="relative order-2 mx-auto w-full max-w-[22rem] pb-16 pr-10 sm:max-w-[26rem] lg:order-1 lg:max-w-[30rem]">
             <div className="relative aspect-[4/5] -rotate-3 overflow-hidden rounded-[2px]">
-              <Image alt="" className="object-cover" fill priority sizes="(min-width: 1024px) 30vw, 80vw" src="/assets/actus/bienvenue/19.webp" />
+              <Image alt="" className="object-cover" fill priority sizes="(min-width: 1024px) 30vw, 80vw" src="/assets/actus/bienvenue/12.webp" />
             </div>
             <div className="absolute -bottom-2 right-0 w-[58%] rotate-[5deg]">
               <QrAnime />

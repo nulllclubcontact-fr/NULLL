@@ -113,7 +113,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
                 ];
                 const couleurs = ["st-yellow", "st-pink", "st-blue", "st-lime", "st-cream"];
                 return (
-                  <li className="relative isolate flex aspect-[9/15] w-[72vw] max-w-[300px] shrink-0 snap-center flex-col justify-between overflow-hidden rounded-[6px] p-4 lg:w-auto lg:max-w-none" key={etape.label} style={{ rotate: `${[-1.5, 1, -0.8, 1.4, -1.2][index % 5]}deg` }}>
+                  <li className="relative isolate flex aspect-[9/15] w-[72vw] max-w-[300px] shrink-0 snap-center flex-col justify-between overflow-hidden rounded-[2px] p-4 lg:w-auto lg:max-w-none" key={etape.label} style={{ rotate: `${[-1.5, 1, -0.8, 1.4, -1.2][index % 5]}deg` }}>
                     <Image alt="" className="-z-20 object-cover" fill sizes="(min-width: 1024px) 18vw, 72vw" src={photos[index % photos.length]} />
                     <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(20,17,22,.55)_0%,rgba(20,17,22,.1)_30%,rgba(20,17,22,.88)_70%)]" />
                     <div>
@@ -203,7 +203,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             </div>
             <figure className="relative mx-auto w-full max-w-sm rotate-2">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[2px]">
-                <Image alt="Un membre du club en casquette lève sa canette en riant après une sortie" className="object-cover" fill sizes="(min-width: 1024px) 28vw, 80vw" src="/assets/actus/quatrieme-run/14.webp" />
+                <Image alt="Tobias Ringot, cofondateur de Nulll Club, canette à la main après une sortie" className="object-cover object-[50%_30%]" fill sizes="(min-width: 1024px) 28vw, 80vw" src="/assets/actus/bienvenue/12.webp" />
               </div>
               <figcaption className="st st-lime absolute -bottom-4 left-4" style={{ "--r": "-3deg" } as React.CSSProperties}>Soyons nous</figcaption>
             </figure>

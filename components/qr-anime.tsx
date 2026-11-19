@@ -51,7 +51,7 @@ export function QrAnime() {
   // Un ticket blanc, fixe : plus de construction module par module ni de
   // ligne de scan.
   return (
-    <div aria-hidden="true" className="rounded-[6px] bg-white p-5 text-[#141116] sm:p-6">
+    <div aria-hidden="true" className="rounded-[2px] bg-white p-5 text-[#141116] sm:p-6">
       <div className="grid gap-[2px]" style={{ gridTemplateColumns: `repeat(${TAILLE}, minmax(0, 1fr))` }}>
         {modules.map(({ x, y, plein }) => (
           <span className={`aspect-square ${plein ? "bg-[#141116]" : "bg-transparent"}`} key={`${x}-${y}`} />
