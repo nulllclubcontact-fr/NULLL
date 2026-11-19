@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { partenairesVisibles } from "../lib/partenaires";
+import { getSiteCopy } from "../lib/site-content";
+import { ArrowIcon } from "./ArrowIcon";
 
 /**
  * Les partenaires du club, mis en avant dans la DA des stories : chaque
@@ -9,6 +11,7 @@ import { partenairesVisibles } from "../lib/partenaires";
  */
 export function BandeauPartenaires() {
   if (partenairesVisibles.length === 0) return null;
+  const email = getSiteCopy("fr").contact.email;
 
   return (
     <section aria-labelledby="home-partners-title" className="hx-partners">
@@ -36,6 +39,13 @@ export function BandeauPartenaires() {
           </li>
         ))}
       </ul>
+      <div className="hx-partners-join">
+        <p>Une marque, un commerce d’Aix, une idée pour le club ?</p>
+        <a className="hx-pill" href={`mailto:${email}?subject=${encodeURIComponent("Devenir partenaire")}`}>
+          <span>Devenir partenaire</span>
+          <ArrowIcon />
+        </a>
+      </div>
     </section>
   );
 }

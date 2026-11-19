@@ -24,6 +24,8 @@
   position:relative;
   isolation:isolate;
   overflow:clip;
+  /* La photo d'ouverture remonte sous la barre fixe : pas de bande vide. */
+  margin-top:calc(-1 * var(--h-haut));
   background:var(--hx-ink);
   color:var(--hx-white);
 }
@@ -88,8 +90,8 @@
 .home-journey .hx-hero{
   position:relative;isolation:isolate;
   display:flex;align-items:center;justify-content:center;
-  min-height:min(calc(100svh - 72px),1000px);
-  padding:clamp(56px,9vh,110px) max(5vw,20px);
+  min-height:min(100svh,1072px);
+  padding:calc(var(--h-haut) + clamp(40px,7vh,90px)) max(5vw,20px) clamp(56px,9vh,110px);
   overflow:hidden;text-align:center;
 }
 .home-journey .hx-hero-media{position:absolute;inset:0;z-index:-2}
@@ -127,6 +129,8 @@
 .home-journey .hx-partners-yellow .hx-partners-logo{filter:brightness(0)}
 .home-journey .hx-partners-go{position:absolute;right:18px;bottom:-20px;--r:-3deg;font-size:clamp(18px,1.8vw,26px)}
 .home-journey .hx-partners-yellow .hx-partners-go{--r:3deg}
+.home-journey .hx-partners-join{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:80px;text-align:center}
+.home-journey .hx-partners-join>p{font-size:clamp(17px,1.4vw,20px);color:rgba(255,255,255,.8)}
 
 /* ---------- Les dates : photo a gauche, contenu a droite, sans chevauchement ---------- */
 .home-journey .hx-dates{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);scroll-margin-top:90px}
@@ -240,7 +244,7 @@
 
 /* ---------- Telephone ---------- */
 @media (max-width:760px){
-  .home-journey .hx-hero{min-height:min(calc(100svh - 60px),820px);padding:48px 16px 64px}
+  .home-journey .hx-hero{min-height:min(100svh,880px);padding:calc(var(--h-haut) + 40px) 16px 64px}
   .home-journey .hx-hero-image{object-position:center 30%}
   .home-journey .hx-hero-title .st{font-size:clamp(50px,15.5vw,96px)}
   .home-journey .hx-hero-support{font-size:19px;margin-top:22px}

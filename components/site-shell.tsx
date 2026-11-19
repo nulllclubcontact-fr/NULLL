@@ -66,7 +66,9 @@ export function SiteHeader({
 
   return (
     <>
-    <header className="site-header sticky top-0 z-50 text-white">
+    {/* La barre est fixe : cette cale lui reserve sa place dans la page. */}
+    <div aria-hidden="true" className="site-header-place" />
+    <header className="site-header z-50 text-white">
       <SuiviDefilement />
       <a
         className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-[60] focus:rounded-[2px] focus:bg-[#FFC531] focus:px-4 focus:py-3 focus:font-mono focus:text-xs focus:font-black focus:uppercase focus:text-[#141116]"

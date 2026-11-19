@@ -1126,6 +1126,7 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
 
 @media (max-height: 450px) and (max-width: 1023px) {
   .site-header, .panel-navigation, .pro-header { position: relative; top: auto; }
+  .site-header-place { display: none; }
 }
 
 @media (max-width: 639px) {
@@ -1190,22 +1191,18 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
    Tout est interpole depuis cette seule valeur, sans transition : la
    forme suit exactement le defilement.
    ------------------------------------------------------------------ */
+:root { --h-haut: 72px; --h-compacte: 56px; --marge: 12px; }
+.site-header-place { height: var(--h-haut); }
 .site-header {
   --p: 0;
-  --h-haut: 72px;
-  --h-compacte: 56px;
-  --marge: 12px;
+  position: fixed;
+  inset: 0 0 auto;
   /* Hauteur fixe : la marge qui apparait est prise sur la barre, qui
-     retrecit d'autant. Le contenu en dessous ne bouge pas d'un pixel. */
+     retrecit d'autant. Aucun fond autour : la page passe dessous. */
   height: var(--h-haut);
   box-sizing: border-box;
   padding: calc(var(--p) * var(--marge)) calc(var(--p) * var(--marge)) 0;
   pointer-events: none;
-  /* Tant que la page n'a pas glisse sous la barre (premiers ~70 px), le
-     tour de la barre reste sombre : sinon on voyait le fond clair de la
-     page au-dessus de la photo. Il s'efface ensuite pour laisser la barre
-     flotter. */
-  background: rgb(20 17 22 / min(1, calc((1 - var(--p)) * 2.06)));
 }
 .site-header > * { pointer-events: auto; }
 .site-header-bar {
@@ -1233,7 +1230,7 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
 .site-header nav[aria-label="Navigation mobile"] .site-header-link { padding: 12px; font-size: 13px; }
 
 @media (max-width: 1023px) {
-  .site-header { --h-haut: 60px; --h-compacte: 50px; --marge: 10px; }
+  :root { --h-haut: 60px; --h-compacte: 50px; --marge: 10px; }
   .site-header-logo { width: calc(120px - var(--p) * 16px); }
   .site-header-cta { padding: calc(10px - var(--p) * 2px) calc(14px - var(--p) * 2px); font-size: calc(16px - var(--p) * 1px); }
 }
