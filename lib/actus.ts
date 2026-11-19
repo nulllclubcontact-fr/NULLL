@@ -115,7 +115,6 @@ export const actus: Actu[] = [
     avec: { nom: "Aix Ynov Campus", logo: "/assets/partenaires/ynov.svg", ratio: 395 / 149, url: "https://www.ynov.com/campus/aix-en-provence" },
     source: { label: "Le post du jeu concours sur Instagram", url: "https://www.instagram.com/p/DfFcQDeCOf2/" },
     appels: [
-      { label: "Découvrir Aix Ynov Campus", href: "https://www.ynov.com/campus/aix-en-provence" },
       { label: "Les Bacchantes, on y était", href: "/fr/actu/equipe-nulll-les-bacchantes-aix-2026" },
       { label: "Voir les sorties", href: "/fr/runs" }
     ]
