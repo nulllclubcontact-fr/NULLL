@@ -30,6 +30,140 @@ export type Actu = {
 
 export const actus: Actu[] = [
   {
+    slug: "equipe-nulll-les-bacchantes-aix-2026",
+    titre: "L’équipe NULLL a couru Les Bacchantes",
+    date: "2026-11-16",
+    resume:
+      "Dimanche 15 novembre, l’équipe Nulll Club était au départ des Bacchantes à Aix-en-Provence, la course solidaire qui sensibilise aux cancers masculins.",
+    image: {
+      src: "/assets/actus/bienvenue/01.webp",
+      alt: "La bande de Nulll Club réunie après une sortie à Aix-en-Provence"
+    },
+    sections: [
+      {
+        titre: "Dimanche, on y était",
+        paragraphes: [
+          "Dimanche 15 novembre, l’équipe NULLL a pris le départ des Bacchantes, à Aix-en-Provence.",
+          "Les dix places gagnées par nos membres au jeu concours avec Aix Ynov Campus étaient pour cette course."
+        ]
+      },
+      {
+        titre: "Plus qu’une course",
+        paragraphes: [
+          "Les Bacchantes, c’est un événement solidaire qui sensibilise aux cancers masculins, notamment au cancer de la prostate.",
+          "Une cause qui nous tient à cœur : courir ensemble pour quelque chose, c’est exactement l’esprit du club."
+        ]
+      },
+      {
+        titre: "La suite",
+        paragraphes: [
+          "Le prochain rendez-vous est sur la page Sorties. Viens courir avec nous : c’est gratuit et ouvert à tous les niveaux."
+        ]
+      }
+    ],
+    appels: [
+      { label: "Voir les sorties", href: "/fr/runs" },
+      { label: "Le jeu concours", href: "/fr/actu/jeu-concours-bacchantes-aix-ynov-campus" }
+    ]
+  },
+  {
+    slug: "jeu-concours-bacchantes-aix-ynov-campus",
+    titre: "Jeu concours avec Aix Ynov Campus : 10 places pour Les Bacchantes",
+    date: "2026-11-09",
+    resume:
+      "Avec Aix Ynov Campus, on a fait gagner 10 places pour Les Bacchantes, la course solidaire du 15 novembre à Aix-en-Provence. Le tirage au sort a eu lieu le lundi 9 novembre.",
+    image: {
+      src: "/assets/actus/bienvenue/13.webp",
+      alt: "Des membres de Nulll Club rigolent ensemble, canette à la main, après une sortie"
+    },
+    sections: [
+      {
+        titre: "NULLL × Aix Ynov Campus",
+        paragraphes: [
+          "On s’est associés à Aix Ynov Campus pour faire gagner 10 places pour Les Bacchantes, la course du dimanche 15 novembre à Aix-en-Provence.",
+          "Les Bacchantes, c’est bien plus qu’une course : un événement solidaire qui sensibilise aux cancers masculins, notamment au cancer de la prostate."
+        ]
+      },
+      {
+        titre: "Comment on participait",
+        paragraphes: [
+          "Être abonné à @ynovaix et à @nulll.club sur Instagram, liker le post, commenter et identifier deux amis."
+        ]
+      },
+      {
+        titre: "Le tirage",
+        paragraphes: [
+          "Le tirage au sort a eu lieu le lundi 9 novembre. Les 10 places sont parties à des membres de NULLL.",
+          "Bravo à eux, et merci à Aix Ynov Campus pour le partenariat."
+        ]
+      }
+    ],
+    source: { label: "Le post du jeu concours sur Instagram", url: "https://www.instagram.com/p/DfFcQDeCOf2/" },
+    appels: [
+      { label: "Les Bacchantes, on y était", href: "/fr/actu/equipe-nulll-les-bacchantes-aix-2026" },
+      { label: "Voir les sorties", href: "/fr/runs" }
+    ]
+  },
+  {
+    slug: "duo-nulll-new-york",
+    titre: "Le duo NULLL est parti courir à New York",
+    date: "2026-11-09",
+    resume:
+      "Le week-end du 7 novembre, Tobias et Tom sont partis courir à New York. Pas de social run à Aix ce samedi-là : on revient vite.",
+    image: {
+      src: "/assets/actus/bienvenue/18.webp",
+      alt: "Tobias et Tom, le duo à l’origine de Nulll Club, canette Bee Zen à la main"
+    },
+    sections: [
+      {
+        titre: "Direction New York",
+        paragraphes: [
+          "Le week-end du 7 novembre, Tobias et Tom, les deux fondateurs du club, ont posé leurs baskets à New York.",
+          "Pas de course officielle : des runs en ville, pour le plaisir de courir ailleurs."
+        ]
+      },
+      {
+        titre: "Pas de social run ce samedi-là",
+        paragraphes: [
+          "Avec le duo de l’autre côté de l’Atlantique, il n’y a pas eu de social run à Aix le samedi 7 novembre.",
+          "Les sorties reprennent au rythme habituel : les prochaines dates sont sur la page Sorties."
+        ]
+      }
+    ],
+    appels: [{ label: "Voir les sorties", href: "/fr/runs" }]
+  },
+  {
+    slug: "cinquieme-social-run-parc-de-la-torse",
+    titre: "Cinquième social run au parc de la Torse",
+    date: "2026-10-31",
+    resume:
+      "Samedi 31 octobre, le cinquième social run de Nulll Club s’est couru au parc de la Torse, à Aix-en-Provence.",
+    image: {
+      src: "/assets/actus/bienvenue/09.webp",
+      alt: "Des coureurs de Nulll Club pendant un social run à Aix-en-Provence"
+    },
+    sections: [
+      {
+        titre: "Changement de décor",
+        paragraphes: [
+          "Pour le cinquième social run, on a changé de point de départ : rendez-vous au parc de la Torse, à Aix-en-Provence.",
+          "Rendez-vous à 9h, départ à 9h30, et on a couru ensemble à allure conversation."
+        ]
+      },
+      {
+        titre: "Toujours le même esprit",
+        paragraphes: [
+          "Pas de chrono, pas de pression : on court ensemble, et personne n’est laissé derrière.",
+          "Chaque sortie annonce son lieu de départ : vérifie toujours la date que tu choisis sur la page Sorties."
+        ]
+      }
+    ],
+    appels: [
+      { label: "Voir les sorties", href: "/fr/runs" },
+      { label: "Le club", href: "/fr/communaute" }
+    ]
+  },
+  {
     slug: "quatrieme-social-run-nulll-club-aix",
     titre: "Quatrième social run de Nulll Club à Aix : les photos",
     date: "2026-10-26",
