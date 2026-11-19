@@ -149,7 +149,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
             <Image src="/assets/actus/quatrieme-run/10.webp" alt="Une coureuse en gilet d’hydratation, au soleil, après la sortie" fill sizes="(max-width: 760px) 70vw, 30vw" />
           </figure>
           <figure className="hx-club-photo hx-club-photo-b">
-            <Image src="/assets/actus/quatrieme-run/04.webp" alt="Éclats de rire entre coureuses après le run" fill sizes="(max-width: 760px) 80vw, 34vw" />
+            <Image src="/assets/actus/parc-de-la-torse/trio-sourires.webp" alt="Trois membres de Nulll Club tout sourire après une sortie" fill sizes="(max-width: 760px) 80vw, 34vw" />
           </figure>
           <p className="st st-yellow hx-club-first">Première fois ? <br />Tu peux venir seul.</p>
         </div>

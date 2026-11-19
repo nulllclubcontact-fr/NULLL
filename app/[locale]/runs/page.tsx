@@ -211,8 +211,8 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
   // Sans photo choisie dans l'admin, une vraie photo des sorties du club.
   const visuels = [
     { src: "/assets/actus/quatrieme-run/03.webp", position: "object-[50%_45%]", etiquette: "st-yellow" },
-    { src: "/assets/actus/bienvenue/09.webp", position: "object-center", etiquette: "st-pink" },
-    { src: "/assets/actus/quatrieme-run/02.webp", position: "object-center", etiquette: "st-blue" }
+    { src: "/assets/actus/parc-de-la-torse/passerelle.webp", position: "object-center", etiquette: "st-pink" },
+    { src: "/assets/actus/parc-de-la-torse/sentier.webp", position: "object-center", etiquette: "st-blue" }
   ];
   const visuel = visuels[index % visuels.length];
 

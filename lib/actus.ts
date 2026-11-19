@@ -36,8 +36,8 @@ export const actus: Actu[] = [
     resume:
       "Dimanche 15 novembre, l’équipe Nulll Club était au départ des Bacchantes à Aix-en-Provence, la course solidaire qui sensibilise aux cancers masculins.",
     image: {
-      src: "/assets/actus/bienvenue/01.webp",
-      alt: "La bande de Nulll Club réunie après une sortie à Aix-en-Provence"
+      src: "/assets/actus/parc-de-la-torse/depart.webp",
+      alt: "Le groupe de Nulll Club part courir sur un chemin du parc de la Torse"
     },
     sections: [
       {
@@ -73,8 +73,8 @@ export const actus: Actu[] = [
     resume:
       "Avec Aix Ynov Campus, on a fait gagner 10 places pour Les Bacchantes, la course solidaire du 15 novembre à Aix-en-Provence. Le tirage au sort a eu lieu le lundi 9 novembre.",
     image: {
-      src: "/assets/actus/bienvenue/13.webp",
-      alt: "Des membres de Nulll Club rigolent ensemble, canette à la main, après une sortie"
+      src: "/assets/actus/parc-de-la-torse/rires-groupe.webp",
+      alt: "Des membres de Nulll Club éclatent de rire après une sortie"
     },
     sections: [
       {
@@ -111,8 +111,8 @@ export const actus: Actu[] = [
     resume:
       "Le samedi 7 novembre, Tobias et Tom ont couru dans New York : Central Park, Times Square, la Cinquième Avenue. Pas de social run à Aix ce samedi-là.",
     image: {
-      src: "/assets/actus/new-york/01.webp",
-      alt: "Selfie de Tobias et Tom sous un pont, à New York"
+      src: "/assets/actus/new-york/03.webp",
+      alt: "Selfie de Tobias dans une rue de New York, avec deux amis"
     },
     galerie: [
       { src: "/assets/actus/new-york/01.webp", alt: "Selfie de Tobias et Tom sous un pont, à New York", largeur: 900, hauteur: 1600 },
@@ -152,8 +152,8 @@ export const actus: Actu[] = [
     resume:
       "Samedi 31 octobre, le cinquième social run de Nulll Club s’est couru au parc de la Torse, à Aix-en-Provence.",
     image: {
-      src: "/assets/actus/bienvenue/09.webp",
-      alt: "Des coureurs de Nulll Club pendant un social run à Aix-en-Provence"
+      src: "/assets/actus/parc-de-la-torse/peloton.webp",
+      alt: "Le peloton de Nulll Club dans le parc de la Torse, à Aix-en-Provence"
     },
     sections: [
       {
