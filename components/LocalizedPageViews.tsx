@@ -76,7 +76,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             <div>
               <h2 className="hx-stack hx-stack-left" id="club-founders">
                 <span className="st st-blue">Qui on est</span>
-                <span className="st st-pink st-xl">{page.foundersTitle.replace(/\.$/, "")}</span>
+                <span className="st st-pink st-lg">{page.foundersTitle.replace(/\.$/, "")}</span>
               </h2>
               <ul className="mt-12 grid gap-5 sm:grid-cols-2">
                 {page.founders.map((f, index) => (
@@ -185,7 +185,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
             <div>
               <h2 className="hx-stack hx-stack-left" id="club-editorial">
                 <span className="st st-yellow">Rejoindre un club de sport</span>
-                <span className="st st-pink st-xl">à Aix-en-Provence</span>
+                <span className="st st-pink st-lg">à Aix-en-Provence</span>
               </h2>
               <ul className="mt-10 grid gap-6">
                 {page.editorial.map((bloc) => (

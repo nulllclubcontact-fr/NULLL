@@ -1300,3 +1300,6 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
 .da-admin table th { color: rgb(255 255 255 / .6); font-weight: 700; }
 .da-admin table td { border-color: rgb(255 255 255 / .08); }
 .da-admin .primary-button, .da-admin .primary-link, .da-admin .secondary-link { font-size: 1rem; min-height: 2.75rem; padding: .7rem 1rem; }
+/* Taille intermediaire pour les titres en colonne : grande, mais qui tient
+   sur une ligne (une etiquette repliee garde toute la largeur). */
+.da .st-lg { font-size: clamp(34px, 4vw, 62px); line-height: 1; padding: .06em .22em .02em; }

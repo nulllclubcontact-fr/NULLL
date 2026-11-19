@@ -74,7 +74,7 @@ export default async function ContactPage({ params }: PageProps) {
             <div>
               <h2 className="hx-stack hx-stack-left" id="contact-partenaires">
                 <span className="st st-blue">Commerçants d’Aix</span>
-                <span className="st st-pink st-xl">Deviens partenaire</span>
+                <span className="st st-pink st-lg">Deviens partenaire</span>
               </h2>
               <p className="mt-8 max-w-lg text-lg leading-relaxed text-white/85">
                 Tu tiens un commerce à Aix ? Parlons d’une façon de se retrouver après les sorties.
@@ -109,7 +109,7 @@ export default async function ContactPage({ params }: PageProps) {
             <div>
               <h2 className="hx-stack hx-stack-left" id="contact-write">
                 <span className="st st-cream">Message direct</span>
-                <span className="st st-yellow st-xl">Écris-nous</span>
+                <span className="st st-yellow st-lg">Écris-nous</span>
               </h2>
               <p className="mt-8 max-w-md text-lg leading-relaxed text-white/80">
                 Le message part directement d’ici, sans passer par ta messagerie. On répond à l’adresse que tu laisses.
