@@ -103,13 +103,9 @@ export default async function ActuArticlePage({ params }: PageProps) {
                   <div className="mt-6 space-y-6 text-[1.13rem] leading-[1.8] text-white/88">
                     {section.paragraphes.map((paragraphe, numero) =>
                       index === 0 && numero === 0 ? (
-                        // Le premier paragraphe ouvre l'article : plus grand, avec une lettrine.
+                        // Le premier paragraphe ouvre l'article : simplement plus grand.
                         <p className="text-[clamp(1.3rem,2vw,1.55rem)] leading-[1.6] text-white" key={paragraphe}>
-                          <span aria-hidden="true" className="float-left mr-3 mt-1 -rotate-2 rounded-[2px] bg-[#E8459E] px-3 pt-1 font-display text-[4.6rem] leading-[.85] text-white">
-                            {paragraphe.replace(/^\*\*/, "").charAt(0)}
-                          </span>
-                          <span className="sr-only">{paragraphe.replace(/^\*\*/, "").charAt(0)}</span>
-                          <Texte texte={retirerPremiereLettre(paragraphe)} />
+                          <Texte texte={paragraphe} />
                         </p>
                       ) : (
                         <p key={paragraphe}>
@@ -243,11 +239,6 @@ export default async function ActuArticlePage({ params }: PageProps) {
 }
 
 const COULEURS = ["st-yellow", "st-blue", "st-lime", "st-cream"];
-
-/** Retire la premiere lettre (pour la lettrine), en gardant un eventuel surlignage. */
-function retirerPremiereLettre(texte: string) {
-  return texte.startsWith("**") ? `**${texte.slice(3)}` : texte.slice(1);
-}
 
 /** Paragraphe : **texte** devient un surlignage facon etiquette. */
 function Texte({ texte }: { texte: string }) {
