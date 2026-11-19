@@ -5,6 +5,7 @@ import { StructuredData } from "../../../components/StructuredData";
 import { ArrowIcon } from "../../../components/ArrowIcon";
 import { Countdown } from "../../../components/countdown";
 import { Reveal } from "../../../components/reveal";
+import { FaqAccordeon } from "../../../components/faq-accordeon";
 import { RubanVitesse } from "../../../components/ruban-vitesse";
 import "../../../components/home-experience.css";
 import { RunCarouselNav } from "../../../components/run-carousel-nav";
@@ -188,24 +189,8 @@ export default async function RunsPage({ params }: PageProps) {
               <span className="st st-pink st-xl">Avant de venir</span>
             </h2>
 
-            {/* Accordeon natif : les <details> partagent le meme name, le
-                navigateur referme tout seul la question ouverte quand on en
-                ouvre une autre. Clavier et lecteurs d'ecran inclus. */}
-            <div className="mt-14 grid gap-3">
-              {copy.runsPage.faq.map((entry, index) => (
-                <details className="group rounded-[2px] border border-white/10 bg-[#1E1A21] open:border-[#E8459E]" key={entry.q} name="faq-sorties" open={index === 0}>
-                  <summary className="flex cursor-pointer list-none items-center gap-4 p-5 sm:p-7">
-                    <span aria-hidden="true" className="shrink-0 font-mono text-xs font-bold tracking-[.14em] text-[#FFC531]">0{index + 1}</span>
-                    <span className="flex-1 font-display text-[clamp(1.3rem,2.1vw,1.9rem)] uppercase leading-[1.1]">{entry.q}</span>
-                    <span aria-hidden="true" className="grid size-10 shrink-0 place-items-center rounded-[2px] bg-white/10 transition-colors group-open:bg-[#E8459E]">
-                      <svg className="size-4 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 16 16">
-                        <path d="M8 1v14M1 8h14" stroke="currentColor" strokeLinecap="round" strokeWidth="2.5" />
-                      </svg>
-                    </span>
-                  </summary>
-                  <p className="max-w-[62ch] px-5 pb-6 text-[1.05rem] leading-relaxed text-white/85 sm:px-7 sm:pb-8 sm:pl-[4.25rem]">{entry.a}</p>
-                </details>
-              ))}
+            <div className="mt-14">
+              <FaqAccordeon entrees={copy.runsPage.faq} nom="faq-sorties" />
             </div>
 
             <div className="mt-16 flex flex-col items-center gap-5 text-center">

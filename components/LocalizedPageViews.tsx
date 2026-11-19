@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "./ArrowIcon";
 import { RubanVitesse } from "./ruban-vitesse";
+import { FaqAccordeon } from "./faq-accordeon";
 import "./home-experience.css";
 import { StructuredData } from "./StructuredData";
 import { CheckoutForm } from "./checkout-form";
@@ -209,17 +210,9 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
               <span className="st st-cream">On nous demande souvent</span>
               <span className="st st-yellow st-xl">Les questions</span>
             </h2>
-            <dl className="mt-14 grid gap-4">
-              {page.faq.map((entry, index) => (
-                <div className="grid gap-3 rounded-[2px] border border-white/10 bg-[#1E1A21] p-6 sm:p-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10" key={entry.q}>
-                  <dt className="flex items-baseline gap-4 font-display text-[clamp(1.4rem,2.2vw,2rem)] uppercase leading-[1.1]">
-                    <span aria-hidden="true" className="shrink-0 font-mono text-xs font-bold tracking-[.14em] text-[#E8459E]">0{index + 1}</span>
-                    <span>{entry.q}</span>
-                  </dt>
-                  <dd className="text-[1.05rem] leading-relaxed text-white/85">{entry.a}</dd>
-                </div>
-              ))}
-            </dl>
+            <div className="mt-14">
+              <FaqAccordeon accent="text-[#E8459E]" entrees={page.faq} nom="faq-club" />
+            </div>
           </div>
         </section>
 

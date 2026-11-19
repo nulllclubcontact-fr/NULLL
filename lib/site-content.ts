@@ -445,7 +445,7 @@ export function getSiteCopy(locale: Locale) {
         faq: [
           {
             q: "Le club a-t-il déjà commencé ?",
-            a: "Notre première sortie collective a lieu le samedi 26 septembre 2026 à 8h30, au parking du chemin de la Cible, près du lycée Émile Zola. Le club, lui, se prépare depuis le printemps 2026."
+            a: "Notre première sortie collective a eu lieu le samedi 26 septembre 2026 à 8h30, au parking du chemin de la Cible, près du lycée Émile Zola. Le club, lui, se préparait depuis le printemps 2026."
           },
           {
             q: "Faut-il être membre pour venir courir ?",
