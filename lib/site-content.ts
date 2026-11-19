@@ -13,7 +13,8 @@ export type RouteKey =
   | "localClub"
   | "localRunning"
   | "localEvents"
-  | "news";
+  | "news"
+  | "partners";
 
 export type RunEvent = {
   id: string;
@@ -45,7 +46,7 @@ export type Product = {
 };
 
 export type Article = {
-  key: Exclude<RouteKey, "home" | "runs" | "community" | "merch" | "about" | "contact" | "checkout" | "news">;
+  key: Exclude<RouteKey, "home" | "runs" | "community" | "merch" | "about" | "contact" | "checkout" | "news" | "partners">;
   slug: string;
   title: string;
   description: string;
@@ -69,7 +70,8 @@ const routeSlugs: Record<Locale, Record<RouteKey, string>> = {
     localClub: "run-club-aix-en-provence",
     localRunning: "courir-a-aix-en-provence",
     localEvents: "evenements-running-aix",
-    news: "actu"
+    news: "actu",
+    partners: "partenaires"
   }
 };
 
@@ -204,8 +206,7 @@ export function getSiteCopy(locale: Locale) {
         { key: "news" as const, label: "Actus" },
         // Merch retire tant que les pieces ne sont pas en vente.
         { key: "contact" as const, label: "Contact" },
-        // Pas de page dediee : le lien mene a la section partenaires de Contact.
-        { key: "contact" as const, label: "Devenir partenaire", ancre: "contact-partenaires" }
+        { key: "partners" as const, label: "Devenir partenaire" }
       ] as Array<{ key: RouteKey; label: string; ancre?: string }>,
       meta: {
         home: {
@@ -232,6 +233,11 @@ export function getSiteCopy(locale: Locale) {
           title: "À propos du club de running | Nulll Club",
           description:
             "Comprends la vision de Nulll Club, social sport club à Aix-en-Provence centré sur la communauté, la régularité et le plaisir de courir ensemble."
+        },
+        partners: {
+          title: "Devenir partenaire de Nulll Club | Run club à Aix-en-Provence",
+          description:
+            "Marque ou commerce d’Aix : associe-toi au run club gratuit du samedi. Ravito, jeu concours, sortie chez toi : parlons-en."
         },
         contact: {
           title: "Contacter Nulll Club",

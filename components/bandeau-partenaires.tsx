@@ -1,6 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
 import { partenairesVisibles } from "../lib/partenaires";
-import { getSiteCopy } from "../lib/site-content";
 import { ArrowIcon } from "./ArrowIcon";
 
 /**
@@ -10,7 +10,6 @@ import { ArrowIcon } from "./ArrowIcon";
  */
 export function BandeauPartenaires() {
   if (partenairesVisibles.length === 0) return null;
-  const email = getSiteCopy("fr").contact.email;
 
   return (
     <section aria-labelledby="home-partners-title" className="hx-partners">
@@ -39,10 +38,10 @@ export function BandeauPartenaires() {
       </ul>
       <div className="hx-partners-join">
         <p>Une marque, un commerce d’Aix, une idée pour le club ?</p>
-        <a className="hx-pill" href={`mailto:${email}?subject=${encodeURIComponent("Devenir partenaire")}`}>
+        <Link className="hx-pill" href="/fr/partenaires">
           <span>Devenir partenaire</span>
           <ArrowIcon />
-        </a>
+        </Link>
       </div>
     </section>
   );

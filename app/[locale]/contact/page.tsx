@@ -80,10 +80,10 @@ export default async function ContactPage({ params }: PageProps) {
                 Tu tiens un commerce à Aix ? Parlons d’une façon de se retrouver après les sorties.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <a className="hx-pill" href={`mailto:${copy.contact.email}?subject=${encodeURIComponent("Devenir partenaire")}`}>
+                <Link className="hx-pill" href={getRoute(locale, "partners")}>
                   <span>Devenir partenaire</span>
                   <ArrowIcon />
-                </a>
+                </Link>
                 <Link className="inline-flex min-h-[62px] items-center rounded-[2px] border border-white/30 px-5 font-mono text-xs font-bold uppercase tracking-[.1em] transition-colors hover:border-white hover:bg-white hover:text-[#141116]" href="/pro/login">
                   Déjà partenaire : espace pro
                 </Link>

@@ -3,13 +3,14 @@
 import type { ReactNode } from "react";
 
 /**
- * Lien d'ancre au defilement ralenti et amorti.
- * Le defilement natif est trop rapide ; on l'anime nous-memes.
+ * Lien d'ancre au defilement court et amorti (0,6 s).
+ * Chaque pas est applique en « instant » : sinon le scroll-behavior: smooth
+ * du html relance un defilement doux a chaque image et tout traine.
  */
 export function SmoothAnchor({
   children,
   className,
-  duration = 1600,
+  duration = 600,
   targetId
 }: {
   children: ReactNode;
@@ -26,7 +27,9 @@ export function SmoothAnchor({
     event.preventDefault();
 
     const start = window.scrollY;
-    const end = target.getBoundingClientRect().top + start;
+    // On s'arrete sous la barre de navigation fixe (scroll-margin-top).
+    const marge = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    const end = target.getBoundingClientRect().top + start - marge;
     const distance = end - start;
     const startedAt = performance.now();
 
@@ -35,7 +38,7 @@ export function SmoothAnchor({
       // easeInOutCubic : depart doux, milieu rapide, arrivee amortie
       const eased =
         progress < 0.5 ? 4 * progress ** 3 : 1 - (-2 * progress + 2) ** 3 / 2;
-      window.scrollTo(0, start + distance * eased);
+      window.scrollTo({ top: start + distance * eased, behavior: "instant" });
       if (progress < 1) window.requestAnimationFrame(step);
     }
 

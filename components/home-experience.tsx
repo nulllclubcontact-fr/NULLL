@@ -29,7 +29,7 @@ type HomeExperienceProps = {
  * couleur, de travers et qui se chevauchent, et des fleches tracees a la
  * main qui pointent l'action.
  */
-export function HomeExperience({ runs, runsHref, communityHref, merchHref, aboutHref, localClubHref, localRunningHref, newsHref, actus }: HomeExperienceProps) {
+export function HomeExperience({ runs, runsHref, communityHref, aboutHref, localClubHref, localRunningHref, newsHref, actus }: HomeExperienceProps) {
   const nextRun = runs[0];
 
   return (
@@ -186,7 +186,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         </h2>
         <div className="hx-explore-grid">
           <ExploreTile href={communityHref} image="/assets/actus/bienvenue/13.webp" alt="Une bande de membres du club discute, canette à la main" label="Le club" text="D’où vient Nulll Club, et pourquoi trois L." couleur="st-pink" />
-          <ExploreTile href={merchHref} image="/assets/actus/quatrieme-run/05.webp" alt="Un coureur en maillot rose, tout sourire après la sortie" label="Merch" text="Les pièces du club, quand elles sont dispo." couleur="st-yellow" />
+          <ExploreTile href="/identification" image="/assets/actus/quatrieme-run/05.webp" alt="Un coureur en maillot rose, tout sourire après la sortie" label="S’inscrire" text="Ton compte gratuit : ton QR code et tes photos." couleur="st-yellow" />
           <ExploreTile href={aboutHref} image="/assets/actus/quatrieme-run/07.webp" alt="Une coureuse en sweat jaune raconte sa sortie au groupe" label="Contact" text="Une question avant de venir samedi ?" couleur="st-blue" />
         </div>
       </section>
@@ -208,13 +208,13 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
 
 /** Photo d'ouverture : paysage sur ordinateur, portrait sur telephone. */
 function HeroPhoto() {
-  const commun = { alt: "Le peloton de Nulll Club court le long d’une barrière en bois, au parc de la Torse à Aix-en-Provence", priority: true, sizes: "100vw" } as const;
+  const commun = { alt: "Une foule de coureurs de Nulll Club part ensemble sur un chemin d’Aix-en-Provence", priority: true, sizes: "100vw" } as const;
   const {
     props: { srcSet: large }
-  } = getImageProps({ ...commun, width: 1600, height: 900, src: "/assets/actus/parc-de-la-torse/peloton.webp" });
+  } = getImageProps({ ...commun, width: 1600, height: 1066, src: "/assets/accueil/foule.webp" });
   const {
     props: { srcSet: portrait, ...rest }
-  } = getImageProps({ ...commun, width: 900, height: 1600, src: "/assets/actus/parc-de-la-torse/passerelle.webp" });
+  } = getImageProps({ ...commun, width: 1066, height: 1600, src: "/assets/accueil/foule-portrait.webp" });
   return (
     <picture className="hx-hero-media">
       <source media="(min-width: 761px)" srcSet={large} />

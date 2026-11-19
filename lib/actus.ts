@@ -504,7 +504,7 @@ export const actus: Actu[] = [
       }
     ],
     appels: [
-      { label: "Devenir partenaire", href: "/fr/contact" },
+      { label: "Devenir partenaire", href: "/fr/partenaires" },
       { label: "contact@nulll.club", href: "mailto:contact@nulll.club" }
     ]
   },
@@ -615,7 +615,7 @@ export const actus: Actu[] = [
  * les plus recentes d'abord.
  */
 // Les trois actus de l'accueil, dans cet ordre (sans mention « epinglee »).
-export const EPINGLEES_ACCUEIL: string[] = ["quatrieme-social-run-nulll-club-aix", "pourquoi-creer-ton-compte-nulll", "partenaires-nulll-club"];
+export const EPINGLEES_ACCUEIL: string[] = ["equipe-nulll-les-bacchantes-aix-2026", "jeu-concours-bacchantes-aix-ynov-campus", "duo-nulll-new-york"];
 
 export function listActusAccueil(nombre = 3): Array<Actu & { epinglee: boolean }> {
   const epinglees = EPINGLEES_ACCUEIL.flatMap((slug) => {
