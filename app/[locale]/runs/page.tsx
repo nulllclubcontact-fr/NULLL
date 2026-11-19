@@ -5,6 +5,8 @@ import { StructuredData } from "../../../components/StructuredData";
 import { ArrowIcon } from "../../../components/ArrowIcon";
 import { Countdown } from "../../../components/countdown";
 import { Reveal } from "../../../components/reveal";
+import { RubanVitesse } from "../../../components/ruban-vitesse";
+import "../../../components/home-experience.css";
 import { RunCarouselNav } from "../../../components/run-carousel-nav";
 import { SmoothAnchor } from "../../../components/smooth-anchor";
 import { SiteShell } from "../../../components/site-shell";
@@ -72,231 +74,189 @@ export default async function RunsPage({ params }: PageProps) {
         ])}
       />
 
-      {/* ---------------- AFFICHE D'OUVERTURE ---------------- */}
-      <section className="relative flex min-h-[calc(100dvh-82px)] flex-col overflow-hidden bg-[#1E1A21] text-white" aria-labelledby="runs-title">
-        <Image
-          alt="Un membre de Nulll Club en pleine foulée sur un chemin, saisi en flou de mouvement"
-          className="object-cover object-[50%_54%]"
-          fill
-          priority
-          sizes="100vw"
-          src="/assets/photos/runs-blur.webp"
-        />
-        <div className="absolute inset-0 bg-[rgba(30,14,10,.10)]" />
-
-        {/* Barre identique a celle de l'accueil */}
-        <div className="relative mx-auto w-full max-w-[1600px] shrink-0 px-5 pt-6 sm:px-8 sm:pt-8 xl:px-12">
-          <div className="flex flex-col items-start gap-1 border-b border-white/45 pb-4 font-mono text-xs font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
-            <span>Social sport club · Aix-en-Provence</span>
-            <span className="text-[#FFC531]">Ouvert à tous · Gratuit</span>
-          </div>
-        </div>
-
-        <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col items-center justify-center gap-9 px-5 py-8 text-center sm:gap-14 sm:px-8 sm:py-12 xl:px-12">
-          <h1 className="da-stack da-center" id="runs-title">
-            <span className="st st-yellow">Les prochaines</span>
-            <span className="st st-pink st-xl">sorties</span>
-          </h1>
-
-          <div className="hero-rise flex w-full flex-col items-center" style={{ animationDelay: "280ms" }}>
-            <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFC531]">
-              Prochaine sortie
+      <div className="home-journey">
+        {/* ---------------- OUVERTURE ---------------- */}
+        <section className="hx-hero" aria-labelledby="runs-title">
+          <Image
+            alt="Le groupe de Nulll Club court vers l’objectif sur un chemin du parc"
+            className="object-cover object-[50%_35%]"
+            fill
+            priority
+            sizes="100vw"
+            src="/assets/actus/bienvenue/15.webp"
+          />
+          <div className="hx-hero-shade" aria-hidden="true" />
+          <div className="hx-hero-copy">
+            <h1 className="hx-hero-title" id="runs-title">
+              <span className="st st-yellow hx-hero-kicker">Les prochaines dates · Aix-en-Provence</span>
+              <span className="st st-pink">Les sorties</span>
+            </h1>
+            <p className="hx-hero-support">
+              {prochaine ? <>Prochaine sortie : <strong>{prochaine.date}</strong></> : "Nouvelles dates très bientôt."}
             </p>
-            <p className="mt-3 font-display text-[clamp(1.9rem,4vw,3.4rem)] uppercase leading-none [overflow-wrap:normal]">
-              {prochaine ? prochaine.date : "Nouvelles dates très bientôt"}
-            </p>
-
             {prochaine ? (
-              <div className="mt-7">
+              <div className="mt-6">
                 <Countdown centered isoDate={prochaine.isoDate} />
               </div>
             ) : null}
-            <SmoothAnchor
-              className="group mt-6 inline-flex min-h-[4.25rem] cursor-pointer items-center justify-center gap-8 border-2 border-[#FFC531] bg-[#FFC531] px-8 font-display text-[1.35rem] uppercase leading-none text-[#141116] transition-colors hover:bg-transparent hover:text-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFFFFF]"
-              targetId="prochaines-sorties"
-            >
-              <span>Choisir une date</span>
-              <span aria-hidden="true">↓</span>
-            </SmoothAnchor>
-          </div>
-        </div>
-
-        <div
-          aria-label={tickerCopy}
-          className="marquee relative shrink-0 border-y-2 border-white/15 bg-[#FFC531] py-4 text-[#141116] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#E8459E]"
-          role="region"
-          tabIndex={0}
-        >
-          <div aria-hidden="true" className="marquee-track font-mono text-xs font-black uppercase tracking-[.16em] sm:text-sm">
-            <p className="shrink-0 whitespace-nowrap px-6">{tickerCopy}&nbsp;&nbsp;·&nbsp;&nbsp;</p>
-            <p className="shrink-0 whitespace-nowrap px-6">{tickerCopy}&nbsp;&nbsp;·&nbsp;&nbsp;</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- PROCHAINES SORTIES ---------------- */}
-      <section className="scroll-mt-20 bg-[#1E1A21] text-white" aria-labelledby="runs-list-title" id="prochaines-sorties">
-        <div className="mx-auto max-w-[1600px] px-5 pb-10 pt-16 sm:px-8 sm:pb-12 sm:pt-24 xl:px-12">
-          <div className="flex flex-col gap-5 border-b border-white/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFC531]">01 · Le calendrier</p>
-              <h2 className="mt-4 font-display text-[clamp(3.2rem,6vw,6rem)] uppercase leading-[1.12] tracking-[-.035em]" id="runs-list-title">
-                Prochaine <span className="text-[#E8459E]">sortie.</span>
-              </h2>
+            <div className="hx-hero-cta">
+              <SmoothAnchor className="hx-pill cursor-pointer" targetId="prochaines-sorties">
+                <span>Choisir une date</span>
+                <span aria-hidden="true">↓</span>
+              </SmoothAnchor>
+              <span className="hx-note">Gratuit · tous niveaux · tu peux venir seul</span>
             </div>
-            <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#E8459E]">Swipe pour la suite →</p>
           </div>
+        </section>
 
-          <div className="mt-6 flex items-center justify-between gap-4 font-mono text-xs font-black uppercase tracking-[.16em]">
-            <span className="text-white/80">
-              {runs.length} sortie{runs.length > 1 ? "s" : ""}
-            </span>
-            {runs.length > 1 ? <RunCarouselNav runs={runs.map(({ date, id }) => ({ date, id }))} /> : null}
-          </div>
-
-          {runs.length === 0 ? (
-            <p className="mt-6 border-2 border-dashed border-white/15 p-8 font-display text-[clamp(1.6rem,3vw,2.6rem)] uppercase leading-[1.12]">
-              {panne
-                ? "Impossible de charger les sorties. Réessaie."
-                : "Pas de sortie programmée pour l’instant. Les prochaines dates arrivent ici dès qu’elles sont publiées."}
-              {panne ? (
-                <Link className="mt-5 block w-fit border-2 border-white/15 px-4 py-3 font-mono text-xs font-black uppercase tracking-[.12em]" href={getRoute(locale, "runs")}>
-                  Réessayer
-                </Link>
-              ) : null}
-            </p>
-          ) : (
-          <div
-            aria-label="Prochaines sorties, carrousel horizontal"
-            className="run-carousel -ml-4 mt-1 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pl-4 pr-[10%] pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531] sm:-ml-6 sm:gap-8 sm:pl-6 sm:pr-[18%] xl:-ml-10 xl:pl-10"
-            role="region"
-            tabIndex={0}
-          >
-            {runs.map((run, index) => (
-              <div className="run-carousel-slide flex w-[90%] shrink-0 snap-center sm:w-[78%] xl:w-[72%]" id={`run-card-${run.id}`} key={run.id}>
-                <RunCardCol index={index} joinHref={`/membre/login?sortie=${run.id}`} run={run} />
-              </div>
-            ))}
-          </div>
-          )}
-        </div>
-      </section>
-
-      {/* ---------------- FAQ ---------------- */}
-      <section className="bg-[#FFC531] text-[#141116]" aria-labelledby="runs-faq">
-        <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-28 xl:px-12">
-          <p className="font-mono text-xs font-black uppercase tracking-[.16em]">02 · Les questions</p>
-          <h2
-            className="mt-5 max-w-[12ch] font-display text-[clamp(3rem,6.4vw,6.4rem)] uppercase leading-[1.12] tracking-[-.04em]"
-            id="runs-faq"
-          >
-            Avant de venir.
-          </h2>
-
-          <dl className="mt-14 border-t-2 border-white/15">
-            {copy.runsPage.faq.map((entry, index) => (
-              <Reveal
-                className="grid gap-4 border-b-2 border-white/15 py-8 lg:grid-cols-[1fr_1.1fr] lg:items-baseline lg:gap-10"
-                delay={index * 110}
-                key={entry.q}
-              >
-                {/* Le numero vit dans le dt : un span entre dt et dd rendait la liste invalide. */}
-                <dt className="flex items-baseline gap-5 font-display text-[clamp(1.5rem,2.6vw,2.3rem)] uppercase leading-[1.12]">
-                  <span aria-hidden="true" className="font-mono text-xs font-black tracking-[.14em]">
-                    0{index + 1}
-                  </span>
-                  <span>{entry.q}</span>
-                </dt>
-                <dd className="text-lg font-bold leading-snug">{entry.a}</dd>
-              </Reveal>
-            ))}
+        <section className="hx-bands" aria-label="Informations pratiques">
+          <dl className="hx-band hx-band-pink">
+            <div><dt>Quand</dt><dd>Samedi 9h30</dd></div>
+            <div><dt>Départ</dt><dd>10h</dd></div>
+            <div><dt>Où</dt><dd>{DEPART.nom}</dd></div>
+            <div><dt>Distance</dt><dd>5 à 6 km</dd></div>
+            <div><dt>Combien</dt><dd>0 €</dd></div>
           </dl>
+        </section>
 
-          <div className="mt-14 flex flex-col gap-4 border-2 border-white/15 bg-[#1E1A21] p-8 text-white sm:flex-row sm:items-center sm:justify-between sm:p-10">
-            <p className="max-w-md font-display text-[clamp(1.6rem,3vw,2.6rem)] uppercase leading-[1.12]">
-              Il reste une question ?
-            </p>
-            <Link
-              className="group inline-flex min-h-[4rem] items-center justify-between gap-10 border-2 border-[#FFC531] bg-[#FFC531] px-7 font-display text-[1.35rem] uppercase leading-none text-[#141116] transition-colors hover:bg-transparent hover:text-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFFFFF]"
-              href={contactHref}
-            >
-              <span>{copy.runsPage.cta}</span>
-              <ArrowIcon />
-            </Link>
+        {/* ---------------- LE CALENDRIER ---------------- */}
+        <section className="scroll-mt-24 px-[max(5vw,20px)] pb-16 pt-28 sm:pb-20 sm:pt-32" aria-labelledby="runs-list-title" id="prochaines-sorties">
+          <div className="mx-auto max-w-[1500px]">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              <h2 className="hx-stack hx-stack-left" id="runs-list-title">
+                <span className="st st-blue">Le calendrier</span>
+                <span className="st st-yellow st-xl">Choisis ta date</span>
+              </h2>
+              <div className="flex items-center gap-4 font-mono text-xs font-bold uppercase tracking-[.14em] text-white/70">
+                <span>{runs.length} sortie{runs.length > 1 ? "s" : ""}</span>
+                {runs.length > 1 ? <RunCarouselNav runs={runs.map(({ date, id }) => ({ date, id }))} /> : null}
+              </div>
+            </div>
+
+            {runs.length === 0 ? (
+              <div className="mt-12 max-w-2xl -rotate-1 rounded-[2px] bg-[#FFF3DF] p-8 text-[#1C2245]">
+                <p className="font-display text-[clamp(1.8rem,3.4vw,2.8rem)] uppercase leading-[1.05]">
+                  {panne ? "Impossible de charger les sorties." : "Pas de sortie programmée pour l’instant."}
+                </p>
+                <p className="mt-3 text-base leading-relaxed">
+                  {panne ? "Recharge la page dans un instant." : "Les prochaines dates arrivent ici dès qu’elles sont publiées. Suis le club sur Instagram pour ne rien rater."}
+                </p>
+                {panne ? (
+                  <Link className="mt-5 inline-flex min-h-11 items-center rounded-[2px] bg-[#141116] px-4 font-mono text-xs font-bold uppercase tracking-[.12em] text-white" href={getRoute(locale, "runs")}>
+                    Réessayer
+                  </Link>
+                ) : null}
+              </div>
+            ) : (
+              <div
+                aria-label="Prochaines sorties, carrousel horizontal"
+                className="run-carousel -ml-4 mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pl-4 pr-[10%] pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531] sm:-ml-6 sm:gap-8 sm:pl-6 sm:pr-[18%]"
+                role="region"
+                tabIndex={0}
+              >
+                {runs.map((run, index) => (
+                  <div className="run-carousel-slide flex w-[90%] shrink-0 snap-center sm:w-[78%] xl:w-[64%]" id={`run-card-${run.id}`} key={run.id}>
+                    <RunCardCol index={index} joinHref={`/membre/login?sortie=${run.id}`} run={run} />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
-      </section>
+        </section>
 
+        <RubanVitesse className="hx-ruban" texte={`${tickerCopy} ✱ `} />
+
+        {/* ---------------- AVANT DE VENIR ---------------- */}
+        <section className="px-[max(5vw,20px)] pb-24 pt-28 sm:pb-28" aria-labelledby="runs-faq">
+          <div className="mx-auto max-w-[1100px]">
+            <h2 className="hx-stack" id="runs-faq">
+              <span className="st st-cream">Les questions</span>
+              <span className="st st-pink st-xl">Avant de venir</span>
+            </h2>
+
+            <dl className="mt-14 grid gap-4">
+              {copy.runsPage.faq.map((entry, index) => (
+                <div className="grid gap-3 rounded-[2px] border border-white/10 bg-[#1E1A21] p-6 sm:p-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10" key={entry.q}>
+                  <dt className="flex items-baseline gap-4 font-display text-[clamp(1.4rem,2.2vw,2rem)] uppercase leading-[1.1]">
+                    <span aria-hidden="true" className="shrink-0 font-mono text-xs font-bold tracking-[.14em] text-[#FFC531]">0{index + 1}</span>
+                    <span>{entry.q}</span>
+                  </dt>
+                  <dd className="text-[1.05rem] leading-relaxed text-white/85">{entry.a}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="mt-16 flex flex-col items-center gap-5 text-center">
+              <p className="st st-yellow">Il reste une question ?</p>
+              <Link className="hx-pill" href={contactHref}>
+                <span>{copy.runsPage.cta}</span>
+                <ArrowIcon />
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
     </SiteShell>
   );
 }
 
 function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string; run: RunEvent }) {
-  const visuals = [
-    { src: "/assets/photos/runs-golden.webp", position: "object-[50%_58%]", accent: "bg-[#FFC531] text-[#141116]" },
-    { src: "/assets/photos/runs-motion.webp", position: "object-center", accent: "bg-[#E8459E] text-white" },
-    { src: "/assets/photos/runs-crew.webp", position: "object-center", accent: "bg-[#141116] text-white" }
+  // Sans photo choisie dans l'admin, une vraie photo des sorties du club.
+  const visuels = [
+    { src: "/assets/actus/quatrieme-run/03.webp", position: "object-[50%_45%]", etiquette: "st-yellow" },
+    { src: "/assets/actus/bienvenue/09.webp", position: "object-center", etiquette: "st-pink" },
+    { src: "/assets/actus/quatrieme-run/02.webp", position: "object-center", etiquette: "st-blue" }
   ];
-  const visual = visuals[index % visuals.length];
+  const visuel = visuels[index % visuels.length];
 
   return (
-    <Reveal
-      as="article"
-      className={`run-poster group relative h-full w-full overflow-hidden border-4 text-white ${index === 0 ? "run-poster--featured border-[#FFC531]" : "border-white/15"}`}
-      delay={index * 100}
-    >
+    <Reveal as="article" className="run-poster group relative h-full w-full overflow-hidden rounded-[2px] text-white" delay={index * 100}>
       {/* La photo de la sortie si l'admin en a mis une, sinon une photo du
           club. Servie telle quelle depuis Supabase : aucun domaine distant
           a declarer dans next.config. */}
       <Image
         alt=""
-        className={`run-card-image object-cover ${run.image ? "object-center" : visual.position}`}
+        className={`run-card-image object-cover ${run.image ? "object-center" : visuel.position}`}
         fill
-        sizes="(min-width: 1280px) 72vw, (min-width: 640px) 78vw, 90vw"
-        src={run.image || visual.src}
+        sizes="(min-width: 1280px) 64vw, (min-width: 640px) 78vw, 90vw"
+        src={run.image || visuel.src}
       />
-      <div className="run-card-shade absolute inset-0" />
-      <div aria-hidden="true" className={`absolute left-0 top-0 h-3 w-full ${visual.accent.split(" ")[0]}`} />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,17,22,.15)_0%,rgba(20,17,22,.25)_40%,rgba(20,17,22,.85)_100%)]" />
 
-      <div className="relative z-10 flex h-full min-h-[31rem] flex-col justify-between p-5 sm:min-h-[34rem] sm:p-8 lg:min-h-[38rem] lg:p-10">
-        <div className="flex items-start justify-between gap-4">
-          <span className={`inline-flex min-h-11 items-center px-4 font-mono text-xs font-black uppercase tracking-[.14em] ${visual.accent}`}>
-            {index === 0 ? "À ne pas rater" : `Sortie 0${index + 1}`}
-          </span>
-          <span className="font-display text-5xl leading-none sm:text-7xl">0{index + 1}</span>
+      <div className="relative z-10 flex h-full min-h-[31rem] flex-col justify-between p-5 sm:min-h-[34rem] sm:p-8 lg:min-h-[36rem] lg:p-10">
+        <div>
+          <span className={`st ${visuel.etiquette}`}>{index === 0 ? "La prochaine" : `Sortie ${index + 1}`}</span>
         </div>
 
         <div>
-          <h3 className="run-card-date max-w-[11ch] break-normal font-display text-[clamp(2.55rem,7.2vw,7.4rem)] uppercase leading-[1.12] tracking-[-.04em] [overflow-wrap:normal] sm:leading-[1.12]" id={`run-${run.id}`}>
+          <h3 className="max-w-[14ch] font-display text-[clamp(2.4rem,5.6vw,5.6rem)] uppercase leading-[1.02] [overflow-wrap:normal]" id={`run-${run.id}`}>
             {run.date}
           </h3>
-          <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs font-black uppercase tracking-[.1em]">
-            <span className="bg-[#1E1A21] px-4 py-3">{run.time}</span>
-            <span className="bg-[#1E1A21] px-4 py-3">{run.distance}</span>
+          <div className="mt-5 flex flex-wrap items-center gap-2 font-mono text-xs font-bold uppercase tracking-[.1em]">
+            <span className="rounded-[2px] bg-white/15 px-3 py-2.5">RDV {run.time}</span>
+            <span className="rounded-[2px] bg-white/15 px-3 py-2.5">{run.distance}</span>
             <a
               aria-label={`Ouvrir le lieu de départ ${run.location} dans Google Maps`}
-              className="inline-flex min-h-14 items-center gap-3 bg-[#141116] px-4 py-2.5 text-white transition-colors hover:bg-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#FFC531]"
+              className="inline-flex min-h-11 items-center gap-2 rounded-[2px] bg-white/15 px-3 py-2 transition-colors hover:bg-white hover:text-[#141116] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFC531]"
               href={mapsUrl(run)}
               rel="noreferrer noopener"
               target="_blank"
             >
-              <span aria-hidden="true" className="text-lg">⌖</span>
+              <span aria-hidden="true">⌖</span>
               <span>{run.location}</span>
               <span aria-hidden="true">↗</span>
             </a>
           </div>
           {run.inscriptionsOuvertes === false ? (
-            <p className="mt-5 flex min-h-16 w-full items-center border-2 border-dashed border-white/15 px-5 font-display text-[1.55rem] uppercase leading-none sm:w-fit sm:min-w-72">
-              Inscriptions fermées
-            </p>
+            <p className="st st-cream mt-6">Inscriptions fermées</p>
           ) : (
             <Link
               aria-label={`Choisir la sortie du ${run.date}, à ${run.time}, ${run.distance}. Départ ${run.location}.`}
-              className={`mt-5 flex min-h-16 w-full items-center justify-between gap-6 px-5 font-display text-[1.55rem] uppercase leading-none transition-colors focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFFFFF] sm:w-fit sm:min-w-72 ${visual.accent}`}
+              className="hx-pill mt-6"
               href={joinHref}
             >
               <span>Choisir cette sortie</span>
-              <span className="run-cta-arrow"><ArrowIcon /></span>
+              <ArrowIcon />
             </Link>
           )}
         </div>
