@@ -1318,3 +1318,10 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
 .da .bouton svg { width: 30px; height: 18px; flex-shrink: 0; }
 /* Un lien vers une section (#ancre) s'arrete sous la barre fixe. */
 .da [id] { scroll-margin-top: 110px; }
+
+/* Surlignage dans le texte des articles : un sticker jaune en ligne. */
+.da .surligne {
+  background: var(--da-yellow); color: var(--da-ink);
+  font-weight: 700; padding: .05em .3em; border-radius: 2px;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}

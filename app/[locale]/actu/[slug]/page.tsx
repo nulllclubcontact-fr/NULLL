@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowIcon } from "../../../../components/ArrowIcon";
 import "../../../../components/home-experience.css";
 import { StructuredData } from "../../../../components/StructuredData";
-import { PrimaryLink, SiteShell } from "../../../../components/site-shell";
+import { SiteShell } from "../../../../components/site-shell";
 import { actus, formaterDateActu, getActu } from "../../../../lib/actus";
 import { resolveLocale } from "../../../../lib/locale";
 import {
@@ -51,6 +51,13 @@ export default async function ActuArticlePage({ params }: PageProps) {
   const galerie = (actu.galerie ?? []).filter(
     (photo) => photo.src !== actu.image.src,
   );
+  // Facon magazine : une photo apres chaque section (sauf la derniere),
+  // le reste en galerie a la fin.
+  const nbDansLeTexte = Math.max(0, actu.sections.length - 1);
+  const photosDansLeTexte = galerie.slice(0, nbDansLeTexte);
+  const photosEnGalerie = galerie.slice(nbDansLeTexte);
+  const mots = actu.sections.flatMap((section) => section.paragraphes).join(" ").split(/\s+/).length;
+  const minutes = Math.max(1, Math.round(mots / 200));
 
   return (
     <SiteShell current="news" locale={locale} pathname={url}>
@@ -66,170 +73,196 @@ export default async function ActuArticlePage({ params }: PageProps) {
       />
 
       <div className="home-journey">
-        <section className="hx-hero !min-h-[min(88svh,860px)]" aria-labelledby="article-titre">
+        {/* ---------- OUVERTURE : rubrique, titre accrocheur, chapo ---------- */}
+        <section className="hx-hero hx-hero-bas !min-h-[min(92svh,900px)]" aria-labelledby="article-titre">
           <Image alt={actu.image.alt} className="object-cover" fill priority sizes="100vw" src={actu.image.src} />
           <div className="hx-hero-shade" aria-hidden="true" />
           <div className="hx-hero-copy">
-            <p className="st st-yellow"><Link href={base}>Actu</Link> · <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time></p>
-            <h1 className="mt-4 w-full max-w-[1000px] -rotate-1 [overflow-wrap:normal] [text-wrap:balance]" id="article-titre"><span className="st st-pink st-long">{actu.titre}</span></h1>
-            <p className="hx-hero-support !max-w-[52ch]">{actu.resume}</p>
+            <p className="st st-yellow">{actu.rubrique ?? "Actu"}</p>
+            <h1 className="mt-4 w-full max-w-[1100px] -rotate-1 [overflow-wrap:normal] [text-wrap:balance]" id="article-titre">
+              <span className="st st-pink st-long">{actu.titre}</span>
+            </h1>
+            <p className="mt-7 max-w-[54ch] text-[clamp(1.15rem,1.7vw,1.5rem)] font-normal leading-[1.45] text-white">{actu.resume}</p>
+            <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs font-bold uppercase tracking-[.14em] text-white/75">
+              <span>Par la team NULLL</span>
+              <span aria-hidden="true">·</span>
+              <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
+              <span aria-hidden="true">·</span>
+              <span>{minutes} min de lecture</span>
+            </p>
           </div>
         </section>
-      <article>
-        {/* La grille est dans son propre bloc : « .shell.grid » (globals.css)
-            force une seule colonne et l'emporterait sur lg:grid-cols. */}
-        <div className="shell max-w-[1180px] py-12 sm:py-16">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-20">
-            <div className="min-w-0">
-              <div className="grid gap-14">
-                {actu.sections.map((section) => (
-                  <section key={section.titre}>
-                    <h2 className="max-w-[26ch] font-display text-[clamp(1.7rem,3vw,2.3rem)] uppercase leading-[1.12] text-[#FFC531] [text-wrap:balance]">
-                      {section.titre}
-                    </h2>
-                    <div className="mt-5 max-w-[66ch] space-y-5 text-[1.15rem] leading-[1.75] text-white/85">
-                      {section.paragraphes.map((paragraphe) => (
-                        <p key={paragraphe}>{paragraphe}</p>
-                      ))}
-                    </div>
-                  </section>
-                ))}
-              </div>
-              {actu.tuto ? (
-                <section aria-labelledby="tuto-titre" className="mt-14">
-                  <h2
-                    className="max-w-[26ch] font-display text-[clamp(1.7rem,3vw,2.3rem)] uppercase leading-[1.12] [text-wrap:balance]"
-                    id="tuto-titre"
-                  >
-                    {actu.tuto.titre}
-                  </h2>
-                  {actu.tuto.video ? (
-                    <figure className="mt-6 w-full max-w-[20rem] border-2 border-white/15 bg-[#141116]">
-                      <video
-                        aria-label={actu.tuto.video.description}
-                        autoPlay
-                        className="block h-auto w-full"
-                        height={1558}
-                        loop
-                        muted
-                        playsInline
-                        poster={actu.tuto.video.poster}
-                        preload="metadata"
-                        src={actu.tuto.video.src}
-                        width={720}
-                      />
-                    </figure>
-                  ) : null}
-                  <ol className="mt-10 grid gap-8 sm:grid-cols-3 sm:gap-5">
-                    {actu.tuto.etapes.map((etape, index) => (
-                      <li className="grid content-start gap-4" key={etape.titre}>
-                        <Image
-                          alt={etape.image.alt}
-                          className="h-auto w-full max-w-[20rem] border-2 border-white/15"
-                          height={etape.image.hauteur}
-                          sizes="(min-width: 640px) 230px, 90vw"
-                          src={etape.image.src}
-                          width={etape.image.largeur}
-                        />
-                        <h3 className="font-display text-xl uppercase leading-[1.1]">
-                          <span className="mr-2 inline-flex border-2 border-white/15 bg-[#FFC531] px-2 font-mono text-sm font-black text-[#141116]">
-                            {index + 1}
-                          </span>
-                          {etape.titre}
-                        </h3>
-                        <p className="text-[1.05rem] leading-[1.65]">{etape.texte}</p>
-                      </li>
-                    ))}
-                  </ol>
-                </section>
-              ) : null}
-              {actu.appels && actu.appels.length > 0 ? (
-                <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-                  {actu.appels.map((appel, index) => {
-                    const externe = appel.href.startsWith("http");
-                    const classe = `group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-white/15 px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
-                      index === 0 ? "bg-[#1E1A21] text-white hover:bg-[#FFC531] hover:text-[#141116]" : "bg-[#141116] text-white hover:bg-[#1E1A21] hover:text-[#141116]"
-                    }`;
-                    return appel.href.startsWith("/") ? (
-                      <Link className={classe} href={appel.href} key={appel.href}>
-                        <span>{appel.label}</span>
-                        <ArrowIcon />
-                      </Link>
-                    ) : (
-                      <a className={classe} href={appel.href} key={appel.href} {...(externe ? { rel: "noopener noreferrer", target: "_blank" } : {})}>
-                        <span>{appel.label}</span>
-                        <span aria-hidden="true">{externe ? "↗" : "→"}</span>
-                      </a>
-                    );
-                  })}
-                </div>
-              ) : null}
-              {galerie.length > 0 ? (
-                <section aria-labelledby="galerie-titre" className="mt-16">
-                  <h2
-                    className="font-display text-[clamp(1.7rem,3vw,2.3rem)] uppercase leading-[1.12]"
-                    id="galerie-titre"
-                  >
-                    En images{" "}
-                    <span className="font-mono text-xs font-black tracking-[.14em]">
-                      ({galerie.length})
-                    </span>
-                  </h2>
-                  <ul className="mt-6 columns-2 gap-3 sm:columns-3 [&>li]:mb-3">
-                    {galerie.map((photo) => (
-                      <li className="break-inside-avoid" key={photo.src}>
-                        <a
-                          className="block border-2 border-white/15 transition-transform hover:-translate-y-1 focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#FFC531]"
-                          href={photo.src}
-                          rel="noopener"
-                          target="_blank"
-                        >
-                          <Image
-                            alt={photo.alt}
-                            className="h-auto w-full"
-                            height={photo.hauteur}
-                            sizes="(min-width: 1024px) 240px, 50vw"
-                            src={photo.src}
-                            width={photo.largeur}
-                          />
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              ) : null}
-              {actu.source ? (
-                <p className="mt-12 font-mono text-xs font-black uppercase tracking-[.12em]">
-                  <a
-                    className="underline decoration-2 underline-offset-4"
-                    href={actu.source.url}
-                    rel="noreferrer noopener"
-                    target="_blank"
-                  >
-                    {actu.source.label} ↗
-                  </a>
-                </p>
-              ) : null}
-            </div>
 
-            <aside className="grid gap-5 self-start border-2 border-white/15 bg-[#FFC531] p-6 lg:sticky lg:top-28 text-[#141116]">
-              <p className="font-display text-[clamp(1.7rem,3vw,2.2rem)] uppercase leading-[1.1]">
-                On court samedi ?
+        <article className="px-[max(5vw,20px)] pb-24 pt-16 sm:pt-20">
+          {actu.sections.map((section, index) => {
+            const photo = photosDansLeTexte[index];
+            return (
+              <div key={section.titre}>
+                <section className="mx-auto max-w-[680px]">
+                  <h2 className={`st ${COULEURS[index % COULEURS.length]} ${index === 0 ? "" : "mt-4"}`}>{section.titre}</h2>
+                  <div className="mt-6 space-y-6 text-[1.13rem] leading-[1.8] text-white/88">
+                    {section.paragraphes.map((paragraphe, numero) =>
+                      index === 0 && numero === 0 ? (
+                        // Le premier paragraphe ouvre l'article : plus grand, avec une lettrine.
+                        <p className="text-[clamp(1.3rem,2vw,1.55rem)] leading-[1.6] text-white" key={paragraphe}>
+                          <span aria-hidden="true" className="float-left mr-3 mt-1 -rotate-2 rounded-[2px] bg-[#E8459E] px-3 pt-1 font-display text-[4.6rem] leading-[.85] text-white">
+                            {paragraphe.replace(/^\*\*/, "").charAt(0)}
+                          </span>
+                          <span className="sr-only">{paragraphe.replace(/^\*\*/, "").charAt(0)}</span>
+                          <Texte texte={retirerPremiereLettre(paragraphe)} />
+                        </p>
+                      ) : (
+                        <p key={paragraphe}>
+                          <Texte texte={paragraphe} />
+                        </p>
+                      )
+                    )}
+                  </div>
+                </section>
+
+                {section.citation ? (
+                  <blockquote className="mx-auto my-16 max-w-[900px] text-center">
+                    <p className="-rotate-1 [text-wrap:balance]">
+                      <span className="st st-long !bg-[#FFC531] !text-[#141116]">{section.citation}</span>
+                    </p>
+                  </blockquote>
+                ) : null}
+
+                {photo ? (
+                  <figure className={`mx-auto my-16 ${photo.largeur > photo.hauteur ? "max-w-[1100px]" : "max-w-[440px]"}`}>
+                    <div className={`overflow-hidden rounded-[2px] ${index % 2 === 0 ? "rotate-[.6deg]" : "-rotate-[.6deg]"}`}>
+                      <Image alt={photo.alt} className="h-auto w-full" height={photo.hauteur} sizes="(min-width: 1100px) 1100px, 100vw" src={photo.src} width={photo.largeur} />
+                    </div>
+                    <figcaption className="mt-4 text-center font-hand text-[1.5rem] leading-snug text-white/70">{photo.alt}</figcaption>
+                  </figure>
+                ) : (
+                  <div className="h-14" />
+                )}
+              </div>
+            );
+          })}
+
+          {actu.tuto ? (
+            <section aria-labelledby="tuto-titre" className="mx-auto mt-6 max-w-[900px]">
+              <h2 className="st st-blue" id="tuto-titre">{actu.tuto.titre}</h2>
+              {actu.tuto.video ? (
+                <figure className="mt-8 w-full max-w-[20rem] overflow-hidden rounded-[2px]">
+                  <video
+                    aria-label={actu.tuto.video.description}
+                    autoPlay
+                    className="block h-auto w-full"
+                    height={1558}
+                    loop
+                    muted
+                    playsInline
+                    poster={actu.tuto.video.poster}
+                    preload="metadata"
+                    src={actu.tuto.video.src}
+                    width={720}
+                  />
+                </figure>
+              ) : null}
+              <ol className="mt-10 grid gap-8 sm:grid-cols-3 sm:gap-6">
+                {actu.tuto.etapes.map((etape, index) => (
+                  <li className="grid content-start gap-4" key={etape.titre}>
+                    <Image alt={etape.image.alt} className="h-auto w-full max-w-[20rem] rounded-[2px]" height={etape.image.hauteur} sizes="(min-width: 640px) 280px, 90vw" src={etape.image.src} width={etape.image.largeur} />
+                    <h3 className="font-display text-xl uppercase leading-[1.1]">
+                      <span className="mr-2 inline-grid size-8 place-items-center rounded-[2px] bg-[#FFC531] font-mono text-sm font-bold text-[#141116]">{index + 1}</span>
+                      {etape.titre}
+                    </h3>
+                    <p className="text-[1.05rem] leading-[1.65] text-white/85">{etape.texte}</p>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ) : null}
+
+          {photosEnGalerie.length > 0 ? (
+            <section aria-labelledby="galerie-titre" className="mx-auto mt-10 max-w-[1100px]">
+              <h2 className="st st-lime" id="galerie-titre">
+                La galerie <span className="font-mono text-sm">({photosEnGalerie.length})</span>
+              </h2>
+              <ul className="mt-8 columns-2 gap-4 sm:columns-3 [&>li]:mb-4">
+                {photosEnGalerie.map((photo) => (
+                  <li className="break-inside-avoid" key={photo.src}>
+                    <a className="block overflow-hidden rounded-[2px] transition-transform hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFC531]" href={photo.src} rel="noopener" target="_blank">
+                      <Image alt={photo.alt} className="h-auto w-full" height={photo.hauteur} sizes="(min-width: 1024px) 360px, 50vw" src={photo.src} width={photo.largeur} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          <div className="mx-auto mt-16 max-w-[680px]">
+            {actu.appels && actu.appels.length > 0 ? (
+              <div className="flex flex-wrap gap-4">
+                {actu.appels.map((appel) => {
+                  const externe = appel.href.startsWith("http");
+                  return appel.href.startsWith("/") ? (
+                    <Link className="hx-pill" href={appel.href} key={appel.href}>
+                      <span>{appel.label}</span>
+                      <ArrowIcon />
+                    </Link>
+                  ) : (
+                    <a className="hx-pill" href={appel.href} key={appel.href} {...(externe ? { rel: "noopener noreferrer", target: "_blank" } : {})}>
+                      <span>{appel.label}</span>
+                      <span aria-hidden="true">{externe ? "↗" : "→"}</span>
+                    </a>
+                  );
+                })}
+              </div>
+            ) : null}
+            {actu.source ? (
+              <p className="mt-10 font-mono text-xs font-bold uppercase tracking-[.12em] text-white/70">
+                <a className="underline decoration-2 underline-offset-4 hover:text-[#FFC531]" href={actu.source.url} rel="noreferrer noopener" target="_blank">
+                  {actu.source.label} ↗
+                </a>
               </p>
-              <p className="text-lg leading-relaxed">
-                Choisis ta sortie, reçois ton QR code, et viens comme tu es.
-              </p>
-              <PrimaryLink href={getRoute(locale, "runs")}>
-                Voir les sorties
-              </PrimaryLink>
-              <PrimaryLink href={base} secondary>
-                Toutes les actus
-              </PrimaryLink>
-            </aside>
+            ) : null}
           </div>
-        </div>
-      </article>
+
+          {/* Fin d'article : l'appel du samedi, en grande etiquette rose. */}
+          <aside className="mx-auto mt-20 flex max-w-[1100px] flex-col items-center gap-5 rounded-[2px] bg-[#E8459E] px-6 py-14 text-center">
+            <p className="st st-yellow st-lg">On court samedi ?</p>
+            <p className="max-w-md text-lg font-bold text-white">Choisis ta sortie, reçois ton QR code, et viens comme tu es.</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link className="hx-pill" href={getRoute(locale, "runs")}>
+                <span>Voir les sorties</span>
+                <ArrowIcon />
+              </Link>
+              <Link className="inline-flex min-h-[62px] items-center rounded-[2px] border border-white/70 px-5 font-mono text-xs font-bold uppercase tracking-[.1em] text-white transition-colors hover:bg-white hover:text-[#141116]" href={base}>
+                Toutes les actus
+              </Link>
+            </div>
+          </aside>
+        </article>
       </div>
     </SiteShell>
+  );
+}
+
+const COULEURS = ["st-yellow", "st-blue", "st-lime", "st-cream"];
+
+/** Retire la premiere lettre (pour la lettrine), en gardant un eventuel surlignage. */
+function retirerPremiereLettre(texte: string) {
+  return texte.startsWith("**") ? `**${texte.slice(3)}` : texte.slice(1);
+}
+
+/** Paragraphe : **texte** devient un surlignage facon etiquette. */
+function Texte({ texte }: { texte: string }) {
+  const morceaux = texte.split(/(\*\*[^*]+\*\*)/g);
+  return (
+    <>
+      {morceaux.map((morceau, index) =>
+        morceau.startsWith("**") && morceau.endsWith("**") ? (
+          <mark className="surligne" key={index}>
+            {morceau.slice(2, -2)}
+          </mark>
+        ) : (
+          <span key={index}>{morceau}</span>
+        )
+      )}
+    </>
   );
 }

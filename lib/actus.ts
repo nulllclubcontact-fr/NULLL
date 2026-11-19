@@ -16,7 +16,13 @@ export type Actu = {
   image: { src: string; alt: string };
   /** Photos du post d'origine, affichees en galerie sous le texte. */
   galerie?: Array<{ src: string; alt: string; largeur: number; hauteur: number }>;
-  sections: Array<{ titre: string; paragraphes: string[] }>;
+  /** Rubrique affichee en etiquette au-dessus du titre (facon magazine). */
+  rubrique?: string;
+  /**
+   * Sections du recit. Dans les paragraphes, **texte** est surligne en
+   * etiquette. La citation, facultative, sort en grand apres la section.
+   */
+  sections: Array<{ titre: string; paragraphes: string[]; citation?: string }>;
   /** Pas-a-pas illustre, affiche sous les sections : la video du parcours puis une capture par etape. */
   tuto?: {
     titre: string;
@@ -31,33 +37,35 @@ export type Actu = {
 export const actus: Actu[] = [
   {
     slug: "equipe-nulll-les-bacchantes-aix-2026",
-    titre: "L’équipe NULLL a couru Les Bacchantes",
+    rubrique: "Événement",
+    titre: "On a couru pour plus grand que nous",
     date: "2026-11-16",
     resume:
-      "Dimanche 15 novembre, l’équipe Nulll Club était au départ des Bacchantes à Aix-en-Provence, la course solidaire qui sensibilise aux cancers masculins.",
+      "Dimanche 15 novembre, la team NULLL a troqué le samedi tranquille pour une course qui compte vraiment : Les Bacchantes, à Aix. Avec dix de nos membres au départ. On vous raconte pourquoi celle-là n’était pas comme les autres.",
     image: {
       src: "/assets/actus/parc-de-la-torse/depart.webp",
       alt: "Le groupe de Nulll Club part courir sur un chemin du parc de la Torse"
     },
     sections: [
       {
-        titre: "Dimanche, on y était",
+        titre: "Un dimanche pas comme les autres",
         paragraphes: [
-          "Dimanche 15 novembre, l’équipe NULLL a pris le départ des Bacchantes, à Aix-en-Provence.",
-          "Les dix places gagnées par nos membres au jeu concours avec Aix Ynov Campus étaient pour cette course."
+          "D’habitude, NULLL, c’est le samedi matin, l’allure conversation et le ravito qui dure. Ce **dimanche 15 novembre**, on a changé de jour, et un peu de raison de courir.",
+          "La team NULLL était au départ des **Bacchantes**, à Aix-en-Provence. Et pas seule : les dix places gagnées au jeu concours avec Aix Ynov Campus étaient pour ce matin-là."
+        ],
+        citation: "Courir ensemble, on sait faire. Courir pour quelque chose, c’est encore mieux."
+      },
+      {
+        titre: "Pourquoi celle-là",
+        paragraphes: [
+          "Les Bacchantes, c’est bien plus qu’une course. C’est un événement solidaire qui sensibilise aux **cancers masculins**, notamment au cancer de la prostate.",
+          "Une cause qui nous tient à cœur. Et qui colle à ce qu’on répète depuis le premier run : le sport n’est qu’un prétexte. Là, le prétexte servait à quelque chose."
         ]
       },
       {
-        titre: "Plus qu’une course",
+        titre: "Et maintenant ?",
         paragraphes: [
-          "Les Bacchantes, c’est un événement solidaire qui sensibilise aux cancers masculins, notamment au cancer de la prostate.",
-          "Une cause qui nous tient à cœur : courir ensemble pour quelque chose, c’est exactement l’esprit du club."
-        ]
-      },
-      {
-        titre: "La suite",
-        paragraphes: [
-          "Le prochain rendez-vous est sur la page Sorties. Viens courir avec nous : c’est gratuit et ouvert à tous les niveaux."
+          "On retourne à nos samedis. Les prochaines dates sont sur la page Sorties : c’est **gratuit**, ouvert à tous les niveaux, et tu peux venir seul."
         ]
       }
     ],
@@ -68,33 +76,36 @@ export const actus: Actu[] = [
   },
   {
     slug: "jeu-concours-bacchantes-aix-ynov-campus",
-    titre: "Jeu concours avec Aix Ynov Campus : 10 places pour Les Bacchantes",
+    rubrique: "Jeu concours",
+    titre: "Dix places offertes, un tirage au sort : le lundi où nos membres ont gagné",
     date: "2026-11-09",
     resume:
-      "Avec Aix Ynov Campus, on a fait gagner 10 places pour Les Bacchantes, la course solidaire du 15 novembre à Aix-en-Provence. Le tirage au sort a eu lieu le lundi 9 novembre.",
+      "Un partenariat avec Aix Ynov Campus, un post Instagram, un lundi de tirage. À la clé : dix places pour Les Bacchantes, toutes parties chez des membres de NULLL. Les coulisses d’un jeu concours.",
     image: {
       src: "/assets/actus/parc-de-la-torse/rires-groupe.webp",
       alt: "Des membres de Nulll Club éclatent de rire après une sortie"
     },
     sections: [
       {
-        titre: "NULLL × Aix Ynov Campus",
+        titre: "Le deal",
         paragraphes: [
-          "On s’est associés à Aix Ynov Campus pour faire gagner 10 places pour Les Bacchantes, la course du dimanche 15 novembre à Aix-en-Provence.",
-          "Les Bacchantes, c’est bien plus qu’une course : un événement solidaire qui sensibilise aux cancers masculins, notamment au cancer de la prostate."
+          "L’idée tenait en une phrase : avec **Aix Ynov Campus**, faire gagner **dix places** pour Les Bacchantes, la course solidaire du dimanche 15 novembre à Aix-en-Provence.",
+          "Les Bacchantes, c’est un événement qui sensibilise aux cancers masculins, notamment au cancer de la prostate. Une course qu’on avait envie de courir, et de faire courir."
+        ],
+        citation: "Les dix places sont parties chez des membres de NULLL."
+      },
+      {
+        titre: "Les règles du jeu",
+        paragraphes: [
+          "Pour tenter ta chance, il fallait être **abonné à @ynovaix et à @nulll.club**, liker le post, commenter, et identifier deux amis.",
+          "Simple, rapide, et le meilleur moyen de faire découvrir le club à des gens qui ne nous connaissaient pas encore."
         ]
       },
       {
-        titre: "Comment on participait",
+        titre: "Lundi 9 novembre",
         paragraphes: [
-          "Être abonné à @ynovaix et à @nulll.club sur Instagram, liker le post, commenter et identifier deux amis."
-        ]
-      },
-      {
-        titre: "Le tirage",
-        paragraphes: [
-          "Le tirage au sort a eu lieu le lundi 9 novembre. Les 10 places sont parties à des membres de NULLL.",
-          "Bravo à eux, et merci à Aix Ynov Campus pour le partenariat."
+          "Le tirage au sort a eu lieu le **lundi 9 novembre**. Les dix places sont toutes parties chez des membres de NULLL.",
+          "Bravo à eux, et merci à Aix Ynov Campus pour le partenariat. La suite s’est jouée le dimanche suivant, au départ des Bacchantes."
         ]
       }
     ],
@@ -106,10 +117,11 @@ export const actus: Actu[] = [
   },
   {
     slug: "duo-nulll-new-york",
-    titre: "Le duo NULLL est parti courir à New York",
+    rubrique: "Voyage",
+    titre: "Tobias et Tom ont couru New York (et Aix a dû attendre)",
     date: "2026-11-09",
     resume:
-      "Le samedi 7 novembre, Tobias et Tom ont couru dans New York : Central Park, Times Square, la Cinquième Avenue. Pas de social run à Aix ce samedi-là.",
+      "Central Park en automne, Times Square, la Cinquième Avenue au pas de course. Le samedi 7 novembre, les deux fondateurs du club ont échangé le parc de la Torse contre Manhattan. Carnet de route.",
     image: {
       src: "/assets/actus/new-york/03.webp",
       alt: "Selfie de Tobias dans une rue de New York, avec deux amis"
@@ -129,17 +141,25 @@ export const actus: Actu[] = [
     ],
     sections: [
       {
-        titre: "Direction New York",
+        titre: "Changer de terrain de jeu",
         paragraphes: [
-          "Le samedi 7 novembre, Tobias et Tom, les deux fondateurs du club, ont posé leurs baskets à New York.",
-          "Pas de course officielle : des runs en ville, de Central Park à Times Square, en passant par la cathédrale Saint-Patrick sur la Cinquième Avenue."
+          "Le **samedi 7 novembre**, Tobias et Tom, les deux fondateurs de NULLL, n’étaient pas au départ à Aix. Ils étaient à **New York**.",
+          "Pas de dossard, pas de course officielle. Juste des runs en ville, pour le plaisir de courir ailleurs, et de voir ce que ça fait de mettre des baskets dans une ville qui ne dort jamais."
+        ],
+        citation: "Pas de chrono, pas de dossard : juste New York, au pas de course."
+      },
+      {
+        titre: "Ce qu’ils ont vu",
+        paragraphes: [
+          "**Central Park** sous les arbres d’automne, **Times Square** et ses écrans, la **cathédrale Saint-Patrick** sur la Cinquième Avenue.",
+          "Et entre deux runs, des selfies, des pauses aux carrefours, et la même envie qu’à Aix : courir, puis prendre le temps."
         ]
       },
       {
-        titre: "Pas de social run ce samedi-là",
+        titre: "Et Aix, pendant ce temps ?",
         paragraphes: [
-          "Avec le duo de l’autre côté de l’Atlantique, il n’y a pas eu de social run à Aix le samedi 7 novembre.",
-          "Les sorties reprennent au rythme habituel : les prochaines dates sont sur la page Sorties."
+          "Avec le duo de l’autre côté de l’Atlantique, il n’y a pas eu de social run à Aix ce samedi-là. On ne recommencera pas souvent.",
+          "Les sorties ont repris au rythme habituel : les prochaines dates sont sur la page **Sorties**."
         ]
       }
     ],
@@ -147,27 +167,29 @@ export const actus: Actu[] = [
   },
   {
     slug: "cinquieme-social-run-parc-de-la-torse",
-    titre: "Cinquième social run au parc de la Torse",
+    rubrique: "Social run",
+    titre: "Cinquième social run : on a changé de décor (et d’heure)",
     date: "2026-10-31",
     resume:
-      "Samedi 31 octobre, le cinquième social run de Nulll Club s’est couru au parc de la Torse, à Aix-en-Provence.",
+      "Samedi 31 octobre, NULLL a posé ses baskets au parc de la Torse. Nouveau spot, nouvel horaire, même esprit. Pourquoi ce coin d’Aix nous va si bien.",
     image: {
       src: "/assets/actus/parc-de-la-torse/peloton.webp",
       alt: "Le peloton de Nulll Club dans le parc de la Torse, à Aix-en-Provence"
     },
     sections: [
       {
-        titre: "Changement de décor",
+        titre: "Nouveau spot",
         paragraphes: [
-          "Pour le cinquième social run, on a changé de point de départ : rendez-vous au parc de la Torse, à Aix-en-Provence.",
-          "Rendez-vous à 9h, départ à 9h30, et on a couru ensemble à allure conversation."
-        ]
+          "Pour le **cinquième social run**, on a changé de point de départ : rendez-vous au **parc de la Torse**, à Aix-en-Provence.",
+          "Et on a décalé l’horaire : **rendez-vous à 9h, départ à 9h30**. De quoi laisser la ville se réveiller avant nous."
+        ],
+        citation: "Pas de chrono, pas de pression. Personne n’est laissé derrière."
       },
       {
-        titre: "Toujours le même esprit",
+        titre: "Le même esprit",
         paragraphes: [
-          "Pas de chrono, pas de pression : on court ensemble, et personne n’est laissé derrière.",
-          "Chaque sortie annonce son lieu de départ : vérifie toujours la date que tu choisis sur la page Sorties."
+          "Le décor change, le reste non. On court ensemble, à allure conversation, et personne n’est laissé derrière.",
+          "Chaque sortie annonce son lieu de départ : vérifie toujours la date que tu choisis sur la page **Sorties**."
         ]
       }
     ],
@@ -178,10 +200,11 @@ export const actus: Actu[] = [
   },
   {
     slug: "quatrieme-social-run-nulll-club-aix",
-    titre: "Quatrième social run de Nulll Club à Aix : les photos",
+    rubrique: "Social run",
+    titre: "On est venus courir. On est restés pour tout le reste",
     date: "2026-10-26",
     resume:
-      "Samedi 24 octobre, quatrième social run de Nulll Club à Aix-en-Provence. On a couru, on est restés, on a ri. Les photos sont là.",
+      "Samedi 24 octobre, quatrième social run à Aix. Une pyramide de canettes, un ravito qui déborde, des discussions qui ont duré plus longtemps que la course. Dix-huit photos pour comprendre pourquoi on revient.",
     image: {
       src: "/assets/actus/quatrieme-run/01.webp",
       alt: "Des membres de Nulll Club partagent le ravito après le quatrième social run à Aix-en-Provence"
@@ -210,21 +233,22 @@ export const actus: Actu[] = [
       {
         titre: "Et de quatre",
         paragraphes: [
-          "Samedi 24 octobre, Nulll Club a couru son quatrième social run à Aix-en-Provence.",
-          "Même principe que d’habitude : pas de chrono, une allure qui laisse parler, et personne ne repart tout de suite."
-        ]
+          "Samedi **24 octobre**, Nulll Club a couru son **quatrième social run** à Aix-en-Provence.",
+          "Même recette que d’habitude : pas de chrono, une allure qui laisse parler, et personne qui repart tout de suite."
+        ],
+        citation: "On vient pour courir. On revient pour les gens."
       },
       {
-        titre: "Après la course",
+        titre: "Le vrai moment, c’est après",
         paragraphes: [
-          "Le meilleur moment arrive souvent après : le ravito, les canettes, les discussions qui durent.",
+          "Le meilleur arrive souvent quand on s’arrête. Le **ravito**, les canettes, la pyramide qu’on monte et qu’on démonte, les conversations qui s’étirent.",
           "Tu peux venir seul : c’est justement pour ça qu’on court en groupe."
         ]
       },
       {
         titre: "Le prochain",
         paragraphes: [
-          `Un samedi sur deux, rendez-vous à 9h30 et départ à 10h, au ${DEPART.nom.replace(/^Parking/, "parking")}, ${DEPART.repere}.`,
+          "Un samedi sur deux, **rendez-vous à 9h30, départ à 10h**. Le lieu est annoncé avec chaque date.",
           "Inscris-toi sur le site : tu reçois ton QR code, et tu retrouves ensuite toutes les photos de ta sortie dans ton compte."
         ]
       }
@@ -240,10 +264,11 @@ export const actus: Actu[] = [
   },
   {
     slug: "romane-fournier-associee-nulll-club",
-    titre: "Romane rejoint NULLL comme associée",
+    rubrique: "Le club",
+    titre: "Romane, la nouvelle tête de NULLL (et celle qui choisit tes parcours)",
     date: "2026-10-26",
     resume:
-      "Romane Fournier devient associée de Nulll Club, le social run club d’Aix-en-Provence. Elle s’occupe du sport : la préparation des sorties et la recherche des tracés.",
+      "NULLL, c’était Tom et Tobias. C’est désormais Tom, Tobias et Romane. Rencontre avec l’associée qui s’occupe de tout ce qui touche à la course.",
     image: {
       src: "/assets/actus/bienvenue/15.webp",
       alt: "Le peloton de Nulll Club sur un chemin ombragé d’Aix-en-Provence pendant le social run du samedi"
@@ -252,22 +277,23 @@ export const actus: Actu[] = [
       {
         titre: "On est trois",
         paragraphes: [
-          "NULLL, c’était Tom et Tobias. C’est désormais Tom, Tobias et Romane.",
+          "NULLL, c’était **Tom et Tobias**. C’est désormais **Tom, Tobias et Romane**.",
           "Romane devient associée du club, avec un rôle bien à elle."
-        ]
+        ],
+        citation: "Les parcours que tu cours le samedi, c’est elle qui les choisit."
       },
       {
         titre: "Le côté sport, c’est elle",
         paragraphes: [
-          "Romane prend en main tout ce qui touche à la course : la préparation des sorties et la recherche des tracés.",
-          "Les parcours que tu cours à Aix un samedi sur deux, c’est elle qui va les chercher, les tester et les choisir. Pour que chaque sortie reste faisable par tout le monde, à allure conversation."
+          "Romane prend en main tout ce qui touche à la course : **la préparation des sorties** et **la recherche des tracés**.",
+          "Les parcours que tu cours à Aix, c’est elle qui va les chercher, les tester et les choisir. Pour que chaque sortie reste faisable par tout le monde, à allure conversation."
         ]
       },
       {
         titre: "Viens la croiser",
         paragraphes: [
-          "Le plus simple pour la rencontrer : venir courir. Rendez-vous au départ, un samedi sur deux à 9h30.",
-          "Tu as un coin d’Aix à faire découvrir au club ? Dis-le-nous, elle prend."
+          "Le plus simple pour la rencontrer : venir courir. Rendez-vous au départ, un samedi sur deux.",
+          "Tu as un coin d’Aix à faire découvrir au club ? Dis-le-nous, **elle prend**."
         ]
       }
     ],
@@ -278,10 +304,11 @@ export const actus: Actu[] = [
   },
   {
     slug: "telecharger-photos-social-run-aix",
-    titre: "Les photos du run sont téléchargeables après chaque sortie",
+    rubrique: "Ton compte",
+    titre: "Tes photos du run t’attendent. Trois clics, promis",
     date: "2026-10-26",
     resume:
-      "Après chaque social run à Aix-en-Provence, tes photos t’attendent dans ton compte NULLL. Trois clics pour les télécharger, une par une ou toutes d’un coup.",
+      "Fini de fouiller les stories pour te retrouver. Après chaque social run, tes photos arrivent dans ton compte NULLL, en bonne qualité. Mode d’emploi.",
     image: {
       src: "/assets/actus/bienvenue/07.webp",
       alt: "Trois membres de Nulll Club posent après le social run du samedi à Aix-en-Provence"
@@ -290,15 +317,15 @@ export const actus: Actu[] = [
       {
         titre: "C’est en ligne",
         paragraphes: [
-          "Tu as couru avec nous ? Les photos de la sortie sont dans ton compte, et tu peux les garder.",
+          "Tu as couru avec nous ? Les photos de la sortie sont **dans ton compte**, et tu peux les garder.",
           "Pas besoin de les chercher dans une story ou de les demander en message. Elles sont là, en bonne qualité, prêtes à partir sur ton téléphone."
         ]
       },
       {
         titre: "Qui y a accès",
         paragraphes: [
-          "Seuls les inscrits de la sortie voient ses photos. Pas d’album public, pas de lien qui circule.",
-          "Pas encore de compte ? Il est gratuit, et c’est lui qui t’inscrit aux prochains runs."
+          "Seuls **les inscrits de la sortie** voient ses photos. Pas d’album public, pas de lien qui circule.",
+          "Pas encore de compte ? Il est **gratuit**, et c’est lui qui t’inscrit aux prochains runs."
         ]
       }
     ],
@@ -350,10 +377,11 @@ export const actus: Actu[] = [
   },
   {
     slug: "photos-du-run-dans-ton-compte",
-    titre: "Les photos du run, directement dans ton compte NULLL",
+    rubrique: "Ton compte",
+    titre: "Fini de chasser tes photos en story",
     date: "2026-09-28",
     resume:
-      "Après chaque sortie, les photos arrivent dans ton espace membre. Réservées aux inscrits, à télécharger une par une ou d’un coup.",
+      "Tu cours, on photographie, et les clichés t’attendent dans ton espace membre. Réservés aux inscrits, à télécharger en un geste. Ce qui change pour toi.",
     image: {
       src: "/assets/actus/bienvenue/12.webp",
       alt: "Un coureur reçoit une canette à l’arrivée d’une sortie Nulll Club"
@@ -362,22 +390,22 @@ export const actus: Actu[] = [
       {
         titre: "Ce qui change",
         paragraphes: [
-          "Après chaque sortie, les photos prises pendant le run sont déposées dans ton espace membre.",
+          "Après chaque sortie, les photos prises pendant le run sont déposées **dans ton espace membre**.",
           "Plus besoin de les chercher dans une story ou de les demander en message : elles t’attendent dans ton compte."
         ]
       },
       {
         titre: "Réservées aux inscrits",
         paragraphes: [
-          "Seuls les inscrits de la sortie voient ses photos. Elles ne sont pas publiques : pas d’album ouvert à tous, pas de lien qui circule.",
+          "Seuls les inscrits de la sortie voient ses photos. **Pas d’album ouvert à tous**, pas de lien qui circule.",
           "C’est ton inscription à la sortie qui t’ouvre l’accès."
         ]
       },
       {
         titre: "Comment les récupérer",
         paragraphes: [
-          "Dans Mes sorties, un bouton Photos apparaît sur chaque sortie passée.",
-          "Tu les télécharges une par une, ou toutes d’un coup dans un seul fichier. Et quand elles sont en ligne, on te prévient par mail."
+          "Dans **Mes sorties**, un bouton Photos apparaît sur chaque sortie passée.",
+          "Tu les télécharges une par une, ou toutes d’un coup dans un seul fichier. Et quand elles sont en ligne, **on te prévient par mail**."
         ]
       }
     ],
@@ -388,10 +416,11 @@ export const actus: Actu[] = [
   },
   {
     slug: "pourquoi-creer-ton-compte-nulll",
-    titre: "Pourquoi créer ton compte NULLL",
+    rubrique: "Ton compte",
+    titre: "Le compte NULLL, ou comment ne plus jamais rater un samedi",
     date: "2026-09-28",
     resume:
-      "T’inscrire aux sorties, recevoir ton QR code, retrouver ton historique et les photos du run : tout passe par ton compte. Et il est gratuit.",
+      "T’inscrire en un clic, recevoir ton QR code, retrouver tes sorties et tes photos. Tout passe par ton compte, et il ne coûte rien. Tour du propriétaire.",
     image: {
       src: "/assets/actus/bienvenue/13.webp",
       alt: "Quatre membres de Nulll Club, canettes en main après la sortie"
@@ -400,14 +429,15 @@ export const actus: Actu[] = [
       {
         titre: "T’inscrire aux sorties",
         paragraphes: [
-          "Tu choisis ta sortie et tu t’inscris en un clic. De notre côté, on sait combien on sera samedi.",
+          "Tu choisis ta sortie et tu t’inscris **en un clic**. De notre côté, on sait combien on sera samedi.",
           "Ton QR code arrive aussitôt par mail."
-        ]
+        ],
+        citation: "Le compte est gratuit, comme les sorties."
       },
       {
         titre: "Ton QR code",
         paragraphes: [
-          "Au départ, l’équipe scanne ton QR code : c’est ton pointage.",
+          "Au départ, l’équipe scanne ton **QR code** : c’est ton pointage.",
           "Plus de mail sous la main ? Il est aussi dans ton espace membre."
         ]
       },
@@ -415,13 +445,13 @@ export const actus: Actu[] = [
         titre: "Tes sorties et tes photos",
         paragraphes: [
           "Tes sorties à venir et passées, au même endroit.",
-          "Et après chaque run auquel tu étais inscrit, les photos à télécharger."
+          "Et après chaque run auquel tu étais inscrit, **les photos à télécharger**."
         ]
       },
       {
         titre: "Ton profil, si tu veux",
         paragraphes: [
-          "Un numéro pour te prévenir si une sortie change au dernier moment, une personne à contacter en cas de pépin. Tout est facultatif.",
+          "Un numéro pour te prévenir si une sortie change au dernier moment, une personne à contacter en cas de pépin. **Tout est facultatif.**",
           "Le compte est gratuit, comme les sorties."
         ]
       }
@@ -433,10 +463,11 @@ export const actus: Actu[] = [
   },
   {
     slug: "partenaires-nulll-club",
-    titre: "Nos partenaires, et comment le devenir",
+    rubrique: "Partenaires",
+    titre: "Red Bull, Bee Zen… et pourquoi pas toi ?",
     date: "2026-09-28",
     resume:
-      "Red Bull et Bee Zen soutiennent Nulll Club. Tu as une marque ou un commerce à Aix-en-Provence ? Voici comment rejoindre le club.",
+      "Deux marques remplissent déjà notre ravito. On cherche les prochaines : commerces d’Aix, marques qui ont envie d’être là quand les gens se retrouvent. Ce qu’on propose, et comment nous écrire.",
     image: {
       src: "/assets/actus/bienvenue/06.webp",
       alt: "Un membre de l’équipe tend des canettes devant la table des boissons après le run"
@@ -445,28 +476,29 @@ export const actus: Actu[] = [
       {
         titre: "Ils sont avec nous",
         paragraphes: [
-          "Red Bull et Bee Zen soutiennent le club. On les retrouve après les sorties, canette en main.",
+          "**Red Bull** et **Bee Zen** soutiennent le club. On les retrouve après les sorties, canette en main.",
           "Merci à eux : sans partenaires, pas de boissons à l’arrivée."
-        ]
+        ],
+        citation: "Pas un logo de plus sur une banderole : une marque qui fait partie du moment."
       },
       {
         titre: "Pourquoi s’associer au club",
         paragraphes: [
-          "Un samedi sur deux, des Aixois se retrouvent pour courir, puis restent pour les gens.",
+          "Un samedi sur deux, des Aixois se retrouvent pour courir, puis **restent pour les gens**.",
           "Un partenaire du club, c’est une marque ou un commerce qui fait partie de ce moment, pas un logo de plus sur une banderole."
         ]
       },
       {
         titre: "Pour les commerces d’Aix",
         paragraphes: [
-          "Tu tiens un commerce à Aix ? Parlons d’une façon de se retrouver après les sorties.",
+          "Tu tiens un commerce à Aix ? Parlons d’une façon de se retrouver **après les sorties**.",
           "Les partenaires ont leur espace pro sur le site."
         ]
       },
       {
         titre: "Comment devenir partenaire",
         paragraphes: [
-          "Écris-nous depuis la page Contact ou à contact@nulll.club : présente ta marque ou ton commerce, et ce que tu imagines avec le club.",
+          "Écris-nous depuis la page Contact ou à **contact@nulll.club** : présente ta marque ou ton commerce, et ce que tu imagines avec le club.",
           "On te répond."
         ]
       }
@@ -478,10 +510,11 @@ export const actus: Actu[] = [
   },
   {
     slug: "rejoins-le-club-strava",
-    titre: "Rejoins le club NULLL sur Strava",
+    rubrique: "Communauté",
+    titre: "Sur Strava, le club ne s’arrête jamais",
     date: "2026-09-28",
     resume:
-      "Le club a son espace Strava : l’événement du samedi, les rappels, les publications et les sorties de la bande. Rejoins-le.",
+      "Le samedi, on court ensemble. Le reste de la semaine, on se suit sur Strava : l’événement du samedi, les rappels, les sorties de la bande. Pourquoi tu devrais nous rejoindre là-bas aussi.",
     image: {
       src: "/assets/actus/bienvenue/15.webp",
       alt: "Le peloton de Nulll Club sur un chemin ombragé d’Aix-en-Provence"
@@ -489,12 +522,15 @@ export const actus: Actu[] = [
     sections: [
       {
         titre: "Le club sur Strava",
-        paragraphes: ["NULLL CLUB · Social Run Aix est sur Strava, à l’adresse strava.com/clubs/nulllclub. Rejoindre le club est gratuit."]
+        paragraphes: [
+          "**NULLL CLUB · Social Run Aix** est sur Strava, à l’adresse strava.com/clubs/nulllclub. Rejoindre le club est **gratuit**."
+        ],
+        citation: "Strava pour se suivre. Le site pour courir avec nous."
       },
       {
         titre: "Ce que tu y trouves",
         paragraphes: [
-          "L’événement « Social Run du samedi », un samedi sur deux : clique sur « Je participe » pour recevoir les rappels.",
+          "L’événement « Social Run du samedi » : clique sur **« Je participe »** pour recevoir les rappels.",
           "Les publications du club, les sorties des membres et le classement de la semaine."
         ]
       },
@@ -502,7 +538,7 @@ export const actus: Actu[] = [
         titre: "Strava et le site, les deux",
         paragraphes: [
           "Strava, c’est pour suivre le club et partager tes sorties.",
-          "L’inscription aux runs, ton QR code et les photos, c’est sur le site. Inscris-toi aux deux."
+          "L’inscription aux runs, ton QR code et les photos, c’est **sur le site**. Inscris-toi aux deux."
         ]
       }
     ],
@@ -513,10 +549,11 @@ export const actus: Actu[] = [
   },
   {
     slug: "bienvenue-social-run-samedi-aix",
-    titre: "Bienvenue chez NULLL : le social run du samedi à Aix",
+    rubrique: "Le début",
+    titre: "Pas de chrono, pas de pression : bienvenue chez NULLL",
     date: "2026-09-28",
     resume:
-      "Pas de chrono, pas de pression : un samedi sur deux à 9h30, on court ensemble 5 à 10 km à allure conversation, au départ du chemin de la Cible à Aix-en-Provence.",
+      "Tout a commencé comme ça : un samedi matin à Aix, des inconnus, quelques kilomètres à allure conversation, et l’envie de recommencer. Le manifeste du social run, en photos.",
     image: {
       src: "/assets/actus/bienvenue/01.webp",
       alt: "Photo de groupe des coureurs de Nulll Club au départ, sous les arbres"
@@ -546,19 +583,22 @@ export const actus: Actu[] = [
       {
         titre: "Pas de chrono, pas de pression",
         paragraphes: [
-          "Ici, pas de chrono ni de pression : un samedi sur deux à 9h30, on court ensemble 5 à 10 km à allure conversation.",
-          "Tu peux venir seul : c’est justement pour ça qu’on court en groupe."
-        ]
+          "Ici, **pas de chrono ni de pression** : un samedi sur deux à 9h30, on court ensemble 5 à 10 km à allure conversation.",
+          "Tu peux **venir seul** : c’est justement pour ça qu’on court en groupe."
+        ],
+        citation: "Le sport n’est qu’un prétexte. Soyons nous, soyons NULLL."
       },
       {
         titre: "Le départ",
-        paragraphes: [`Rendez-vous au ${DEPART.nom.replace(/^Parking/, "parking")}, ${DEPART.repere}, à Aix-en-Provence.`]
+        paragraphes: [
+          `Rendez-vous au ${DEPART.nom.replace(/^Parking/, "parking")}, ${DEPART.repere}, à Aix-en-Provence.`
+        ]
       },
       {
         titre: "Comment venir",
         paragraphes: [
           "Sur Strava, clique sur « Je participe » dans l’événement « Social Run du samedi » du club Nulll Club pour recevoir les rappels.",
-          "Et surtout, inscris-toi sur le site de NULLL : tu peux gagner des canettes, et même retrouver tes photos du run.",
+          "Et surtout, **inscris-toi sur le site** de NULLL : tu peux gagner des canettes, et même retrouver tes photos du run.",
           "Soyons nous. Soyons NULLL 🧡"
         ]
       }
