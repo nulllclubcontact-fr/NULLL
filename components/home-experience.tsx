@@ -98,6 +98,9 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         </div>
       </section>
 
+      {/* Le ruban passe a cheval sur la jonction des deux photos. */}
+      <RubanVitesse className="hx-ruban" texte="Le sport n’est qu’un prétexte ✱ Soyons nous, soyons NULLL ✱ " />
+
       <section className="hx-together" aria-label="Courir ensemble, à allure conversation">
         <Image src="/assets/actus/bienvenue/01.webp" alt="Tout le groupe de Nulll Club réuni après une sortie, assis et debout dans le parc" fill sizes="100vw" />
         <div className="hx-together-shade" aria-hidden="true" />
@@ -111,8 +114,6 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
           <p className="st st-blue hx-together-pace">5 à 6 km · allure conversation</p>
         </div>
       </section>
-
-      <RubanVitesse className="hx-ruban" texte="Le sport n’est qu’un prétexte ✱ Soyons nous, soyons NULLL ✱ " />
 
       {actus.length > 0 ? (
         <section className="hx-news" aria-labelledby="home-news-title">

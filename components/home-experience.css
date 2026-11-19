@@ -159,7 +159,7 @@
 .home-journey .hx-together-pace{--r:-1deg;margin:.5em 0 0;font-size:clamp(16px,1.5vw,22px)}
 
 /* ---------- Ruban qui accelere au defilement (React Bits, Scroll Velocity) ---------- */
-.home-journey .hx-ruban{position:relative;z-index:5;margin:-26px 0 0;overflow-x:clip;rotate:-1deg;width:104%;margin-left:-2%;background:var(--hx-yellow);color:var(--hx-ink)}
+.home-journey .hx-ruban{position:relative;z-index:5;margin:-28px 0 -28px;overflow-x:clip;rotate:-1deg;width:104%;margin-left:-2%;background:var(--hx-yellow);color:var(--hx-ink)}
 .home-journey .hx-ruban-piste{display:flex;width:max-content;white-space:nowrap;will-change:transform;font-family:var(--font-display),Impact,sans-serif;text-transform:uppercase;font-size:clamp(22px,2.6vw,40px);line-height:1;padding:14px 0 10px}
 .home-journey .hx-ruban-piste span{padding-right:.4em}
 
