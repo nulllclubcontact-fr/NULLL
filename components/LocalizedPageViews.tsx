@@ -65,6 +65,13 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
                 />
               </div>
               <figcaption className="st st-yellow absolute -bottom-5 right-4" style={{ "--r": "3deg" } as React.CSSProperties}>Le club est parti de deux potes</figcaption>
+              {/* Romane, associee depuis octobre : sa photo chevauche le coin. */}
+              <div className="absolute -bottom-14 -left-4 w-[36%] -rotate-[5deg] sm:-left-10">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-[2px] ring-4 ring-[#141116]">
+                  <Image alt="Romane Fournier, associée de Nulll Club, au soleil après une sortie" className="object-cover object-[50%_25%]" fill sizes="(min-width: 1024px) 16vw, 35vw" src="/assets/actus/quatrieme-run/10.webp" />
+                </div>
+                <p className="st st-lime absolute -bottom-3 -right-3" style={{ "--r": "4deg" } as React.CSSProperties}>Romane</p>
+              </div>
             </figure>
             <div>
               <h2 className="hx-stack hx-stack-left" id="club-founders">
