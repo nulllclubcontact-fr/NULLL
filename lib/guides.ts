@@ -749,6 +749,795 @@ export const GUIDES: Guide[] = [
     liens: ["run-club-aix-en-provence", "courir-a-aix-en-provence", "sortir-a-aix-en-provence"],
     datePublication: "2026-11-19",
     dateMiseAJour: "2026-11-19"
+  },
+  {
+    slug: "trail-aix-en-provence",
+    chemin: "/fr/guide/trail-aix-en-provence",
+    rubrique: "Trail",
+    titre: "Trail autour d’Aix-en-Provence : Sainte-Victoire, Bibémus, Bimont, le guide pour débuter",
+    seoTitle: "Trail à Aix-en-Provence : où courir, conseils, sécurité",
+    description:
+      "Faire du trail autour d’Aix-en-Provence : Sainte-Victoire, plateau de Bibémus, barrages de Bimont et Zola. Spots, matériel, sécurité et accès aux massifs en été.",
+    resume:
+      "À quelques kilomètres du Cours Mirabeau, les chemins deviennent cailloux, pins et dénivelé. Aix est une porte d’entrée rêvée vers le trail, à condition de respecter la montagne. Voici où aller, comment s’équiper et les règles à connaître avant de partir.",
+    enBref: [
+      "Les spots de trail près d’Aix : le plateau de Bibémus, les barrages de Bimont et Zola, et la montagne Sainte-Victoire.",
+      "Pour débuter, choisis des boucles courtes avec peu de dénivelé, et pars toujours avec de l’eau.",
+      "En été, l’accès aux massifs des Bouches-du-Rhône est réglementé : vérifie la carte de la préfecture avant chaque sortie.",
+      "Le trail se prépare aussi sur le plat : courir régulièrement en groupe, comme avec Nulll Club, construit l’endurance."
+    ],
+    image: { src: "/assets/guides/048.webp", alt: "Une quinzaine de coureurs du club arrivent le long d’une barrière en bois, au parc" },
+    photos: [
+      { src: "/assets/guides/069.webp", alt: "Le groupe s’éloigne en courant sur une allée du parc", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/02.webp", alt: "Des coureuses et coureurs du club sur un sentier, en pleine sortie", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/parc-de-la-torse/sentier.webp", alt: "Des coureurs du club sur un sentier ombragé du parc de la Torse", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/10.webp", alt: "Une coureuse en gilet d’hydratation, au soleil, après la sortie", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/15.webp", alt: "Une coureuse assise à l’ombre d’un arbre, au calme après l’effort", largeur: 1600, hauteur: 900 }
+    ],
+    sections: [
+      {
+        titre: "Le trail, c’est quoi ?",
+        paragraphes: [
+          "Le **trail**, c’est de la course à pied en nature : sur des chemins, des sentiers de montagne, avec du **dénivelé** et un terrain irrégulier. On marche souvent dans les montées, on court sur le plat et dans les descentes.",
+          "C’est une discipline plus lente que la route, mais plus variée. On regarde ses pieds, on apprend à lire le terrain, et on profite de paysages qu’on ne voit jamais depuis le bitume.",
+          "Autour d’Aix-en-Provence, la nature commence presque aux portes de la ville. C’est ce qui fait de la région l’un des plus beaux terrains de jeu du sud de la France pour s’y mettre."
+        ],
+        citation: "Le trail, c’est accepter de marcher dans les montées. Et de sourire dans les descentes."
+      },
+      {
+        titre: "Le plateau de Bibémus, pour commencer",
+        paragraphes: [
+          "À l’est de la ville, le **plateau de Bibémus** est le spot idéal pour une première sortie trail. Des chemins larges, des pins, des roches ocre, et un dénivelé raisonnable.",
+          "C’est aussi un lieu chargé d’histoire : ses anciennes carrières ont inspiré **Paul Cézanne**. Les carrières elles-mêmes se visitent uniquement avec un guide, mais les chemins alentour se prêtent bien à la course.",
+          "**Bon pour** : une sortie de 45 minutes à 1 heure, pour apprendre à courir sur les cailloux sans se mettre dans le rouge."
+        ]
+      },
+      {
+        titre: "Les barrages de Bimont et Zola, pour monter en puissance",
+        paragraphes: [
+          "Au-dessus du Tholonet, les sentiers qui relient le **barrage Zola** au **barrage de Bimont** offrent un parcours plus engagé. Ça monte, ça descend, et la vue sur l’eau et sur la Sainte-Victoire récompense chaque effort.",
+          "Le barrage Zola porte le nom de **François Zola**, l’ingénieur qui l’a conçu, père de l’écrivain Émile Zola. Le lac de Bimont, lui, est une étape classique des randonneurs.",
+          "**Bon pour** : une sortie plus longue, avec du dénivelé, une fois que tu es à l’aise sur les chemins."
+        ]
+      },
+      {
+        titre: "La Sainte-Victoire, le grand défi",
+        paragraphes: [
+          "La **montagne Sainte-Victoire** est le symbole de la région. Ses sentiers montent vers la **Croix de Provence**, d’où la vue sur la Provence est spectaculaire. Son point culminant, le pic des Mouches, dépasse les 1 000 mètres.",
+          "C’est un terrain exigeant : pentes raides, pierres, passages techniques. Prévois **beaucoup d’eau**, des chaussures de trail avec une bonne accroche, et ne pars jamais sans avoir regardé la météo.",
+          "Pour une première fois, le mieux est d’y aller **accompagné** de quelqu’un qui connaît les sentiers, et de choisir un itinéraire balisé."
+        ]
+      },
+      {
+        titre: "Sécurité et accès aux massifs",
+        paragraphes: [
+          "Du 1er juin au 30 septembre, l’accès aux massifs des Bouches-du-Rhône est réglementé selon le risque d’incendie : consulte la carte publiée chaque jour par la préfecture avant de partir.",
+          "Les jours de risque élevé, l’accès peut être déconseillé ou interdit. Ce n’est pas une formalité : les incendies sont un vrai danger en Provence, et les règles protègent autant les coureurs que la forêt.",
+          "Toute l’année, préviens quelqu’un de ton itinéraire, emporte un téléphone chargé, une couche contre le vent, et reste sur les sentiers balisés. Le **mistral** peut rendre les crêtes glaciales même par beau temps."
+        ]
+      },
+      {
+        titre: "Se préparer au trail depuis Aix",
+        paragraphes: [
+          "Le trail se prépare aussi en ville. Courir **régulièrement**, à allure tranquille, construit l’endurance dont tu auras besoin en montagne. Ajoute des côtes et des escaliers pour renforcer les jambes.",
+          "Un samedi sur deux, [Nulll Club](/fr/run-club-aix-en-provence) court 5 à 6 km à allure conversation, souvent sur des chemins de terre comme au **parc de la Torse**. C’est une bonne base, et l’occasion de rencontrer d’autres coureurs qui aiment la nature.",
+          "Pour connaître tous les terrains autour de la ville, lis aussi notre guide [Où courir à Aix-en-Provence](/fr/guide/ou-courir-a-aix-en-provence)."
+        ]
+      }
+    ],
+    faq: [
+      { q: "Où faire du trail à Aix-en-Provence ?", a: "Les principaux spots sont le plateau de Bibémus pour débuter, les sentiers des barrages de Bimont et Zola pour le dénivelé, et la montagne Sainte-Victoire pour les sorties les plus exigeantes." },
+      { q: "Peut-on courir sur la Sainte-Victoire en été ?", a: "Cela dépend du risque d’incendie. Du 1er juin au 30 septembre, l’accès aux massifs des Bouches-du-Rhône est réglementé : il faut consulter la carte publiée chaque jour par la préfecture." },
+      { q: "Quel matériel pour débuter le trail ?", a: "Des chaussures de trail avec une bonne accroche, de l’eau, une couche coupe-vent et un téléphone chargé. Un sac ou une ceinture d’hydratation devient vite indispensable sur les sorties longues." },
+      { q: "Comment se préparer au trail quand on court en ville ?", a: "En courant régulièrement à allure tranquille pour l’endurance, et en ajoutant des côtes et des escaliers pour les jambes. Le social run de Nulll Club, un samedi sur deux, est une bonne base." }
+    ],
+    liens: ["ou-courir-a-aix-en-provence", "courir-quand-il-fait-chaud-a-aix", "sport-en-plein-air-aix-en-provence"],
+    datePublication: "2026-11-19",
+    dateMiseAJour: "2026-11-19"
+  },
+  {
+    slug: "courir-quand-il-fait-chaud-a-aix",
+    chemin: "/fr/guide/courir-quand-il-fait-chaud-a-aix",
+    rubrique: "Conseils",
+    titre: "Courir quand il fait chaud à Aix : nos règles pour survivre à l’été (et au mistral)",
+    seoTitle: "Courir par forte chaleur à Aix-en-Provence : nos conseils",
+    description:
+      "Courir l’été à Aix-en-Provence sans souffrir : horaires, hydratation, parcours à l’ombre, mistral et signes d’alerte. Les conseils d’un run club aixois.",
+    resume:
+      "Aix en été, c’est la lumière, les cigales, et des températures qui grimpent dès le matin. Courir reste possible, mais pas n’importe comment. Voici les règles qu’on applique au club pour continuer à courir de juin à septembre.",
+    enBref: [
+      "En été à Aix, cours tôt le matin ou en fin de journée, quand il fait plus frais.",
+      "Bois avant, pendant et après la sortie, même pour un footing court.",
+      "Choisis des parcours à l’ombre, comme le parc de la Torse ou le parc Jourdan.",
+      "Ralentis : par forte chaleur, il est normal de courir moins vite. Arrête-toi au moindre signe de malaise."
+    ],
+    image: { src: "/assets/actus/quatrieme-run/12.webp", alt: "Une coureuse rit, canette dans une main, eau dans l’autre" },
+    photos: [
+      { src: "/assets/actus/quatrieme-run/18.webp", alt: "Un membre de l’équipe prépare le ravito, bouteilles d’eau sur la table", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/06.webp", alt: "Deux membres du club posent ensemble, bouteille d’eau à la main", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/parc-de-la-torse/passerelle.webp", alt: "Des coureurs du club traversent une passerelle du parc de la Torse", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/10.webp", alt: "Une coureuse ouvre sa canette après l’effort", largeur: 1200, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/15.webp", alt: "Une coureuse assise à l’ombre d’un arbre, au calme après l’effort", largeur: 1600, hauteur: 900 }
+    ],
+    sections: [
+      {
+        titre: "Le climat d’Aix, en deux mots",
+        paragraphes: [
+          "Aix-en-Provence a un **climat méditerranéen** : des hivers doux, beaucoup de soleil, et des étés **chauds et secs**. De juin à septembre, la chaleur s’installe vite dans la journée.",
+          "S’y ajoute le **mistral**, ce vent du nord qui peut souffler fort plusieurs jours d’affilée. Il rafraîchit l’air, mais il assèche aussi, et rend certaines sorties plus dures qu’elles n’en ont l’air.",
+          "Bonne nouvelle : avec quelques règles simples, on peut courir toute l’année à Aix. Il suffit d’adapter l’heure, le parcours et l’allure."
+        ]
+      },
+      {
+        titre: "Règle n°1 : choisir le bon horaire",
+        paragraphes: [
+          "En été, le meilleur moment pour courir, c’est **tôt le matin**. Avant 9h, la ville est encore fraîche, l’ombre est longue, et le sol n’a pas emmagasiné la chaleur de la journée.",
+          "La **fin de journée**, après 19h, est l’autre bonne option, même si la chaleur accumulée met parfois du temps à retomber. Évite à tout prix le milieu de journée.",
+          "C’est aussi pour ça que les sorties collectives du **samedi matin** marchent bien à Aix : à 10h, il fait encore bon une bonne partie de l’année."
+        ],
+        citation: "En été à Aix, le meilleur chrono, c’est celui de ton réveil."
+      },
+      {
+        titre: "Règle n°2 : boire, avant, pendant, après",
+        paragraphes: [
+          "Bois un grand verre d’eau avant de partir, et emporte **de l’eau** même pour une sortie de 30 minutes. Une gourde à la main ou une ceinture d’hydratation suffit.",
+          "Après la sortie, continue à boire. Sur les sorties longues ou très chaudes, l’eau seule peut ne pas suffire : pense à compenser les sels minéraux perdus avec la transpiration.",
+          "Au club, il y a toujours un **ravito** à l’arrivée : eau et canettes de nos partenaires. C’est aussi le moment où tout le monde reste discuter."
+        ]
+      },
+      {
+        titre: "Règle n°3 : courir à l’ombre",
+        paragraphes: [
+          "Les parcours ombragés font une énorme différence. En ville, le **parc de la Torse** et le **parc Jourdan** offrent de l’ombre sous les arbres, et la terre y chauffe moins que le bitume.",
+          "Évite les longues lignes droites en plein soleil et les côtes exposées aux heures chaudes. Pour toutes nos idées de parcours, lis [Où courir à Aix-en-Provence](/fr/guide/ou-courir-a-aix-en-provence).",
+          "En montagne, souviens-toi que l’accès aux massifs est réglementé en été à cause du risque d’incendie. Vérifie toujours avant de partir."
+        ]
+      },
+      {
+        titre: "Règle n°4 : ralentir, sans culpabiliser",
+        paragraphes: [
+          "Par forte chaleur, le corps travaille plus pour se refroidir. Il est **normal** de courir moins vite qu’en hiver à effort égal. Ralentis, raccourcis la sortie, marche si besoin.",
+          "Une casquette, des vêtements clairs et respirants, et de la crème solaire complètent l’équipement. Et apprends à reconnaître les **signes d’alerte** : vertiges, maux de tête, nausées, frissons. Au moindre doute, arrête-toi, mets-toi à l’ombre et bois."
+        ]
+      },
+      {
+        titre: "Et le mistral ?",
+        paragraphes: [
+          "Quand le mistral souffle, commence ta sortie **face au vent** pour finir avec lui dans le dos, quand tu es fatigué. Une couche légère coupe-vent est utile en hiver, quand il rend l’air glacial.",
+          "En été, il donne une fausse impression de fraîcheur : tu transpires sans t’en rendre compte. Bois donc autant, voire plus.",
+          "Courir en groupe aide aussi : on s’abrite derrière les autres, on se relaie, et les kilomètres passent plus vite. Un samedi sur deux, viens essayer avec [Nulll Club](/fr/run-club-aix-en-provence)."
+        ]
+      }
+    ],
+    faq: [
+      { q: "À quelle heure courir l’été à Aix-en-Provence ?", a: "Tôt le matin, idéalement avant 9h, ou en fin de journée après 19h. Évite le milieu de journée, quand la chaleur est la plus forte." },
+      { q: "Où courir à l’ombre à Aix ?", a: "Le parc de la Torse et le parc Jourdan sont les plus ombragés du centre. Leurs chemins chauffent aussi moins que le bitume." },
+      { q: "Combien boire quand on court par forte chaleur ?", a: "Bois avant de partir, emporte de l’eau même pour une sortie courte, et continue à boire après. Sur les sorties longues, pense aussi aux sels minéraux." },
+      { q: "Quels sont les signes d’un coup de chaleur en courant ?", a: "Vertiges, maux de tête, nausées, frissons ou confusion. Au moindre signe, arrête-toi, mets-toi à l’ombre, bois, et demande de l’aide si ça ne passe pas." }
+    ],
+    liens: ["courir-a-aix-en-provence", "trail-aix-en-provence", "ou-courir-a-aix-en-provence"],
+    datePublication: "2026-11-19",
+    dateMiseAJour: "2026-11-19"
+  },
+  {
+    slug: "sport-gratuit-aix-en-provence",
+    chemin: "/fr/guide/sport-gratuit-aix-en-provence",
+    rubrique: "Sport gratuit",
+    titre: "Faire du sport gratuitement à Aix-en-Provence : les meilleures options (sans abonnement)",
+    seoTitle: "Sport gratuit à Aix-en-Provence : nos meilleures idées",
+    description:
+      "Faire du sport gratuitement à Aix-en-Provence : run club gratuit le samedi, parcs, randonnée à la Sainte-Victoire, sport en plein air. Sans abonnement ni salle.",
+    resume:
+      "Pas envie de payer une salle de sport ? Bonne nouvelle : à Aix, le soleil, les parcs et la montagne sont gratuits. On a rassemblé les meilleures façons de se bouger sans sortir la carte bleue, seul ou en groupe.",
+    enBref: [
+      "Le plus simple : la course à pied, gratuite et praticable partout dans Aix.",
+      "Nulll Club organise un run club gratuit un samedi sur deux, ouvert à tous les niveaux.",
+      "Les parcs Jourdan et de la Torse sont parfaits pour courir, marcher ou faire du renforcement.",
+      "La randonnée autour de la Sainte-Victoire et des barrages de Bimont et Zola ne coûte rien."
+    ],
+    image: { src: "/assets/guides/050.webp", alt: "Le peloton de Nulll Club en pleine course, sous les arbres du parc" },
+    photos: [
+      { src: "/assets/guides/015.webp", alt: "Des membres du club trottinent sur la pelouse du parc", largeur: 900, hauteur: 1600 },
+      { src: "/assets/guides/060.webp", alt: "Des coureurs du club traversent la passerelle, en pleine sortie", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/04.webp", alt: "Deux coureuses arrivent sur un chemin de terre", largeur: 1067, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/09.webp", alt: "Trois coureuses sourient à l’objectif après le run", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/bienvenue/13.webp", alt: "Quatre membres du club, canettes en main", largeur: 1066, hauteur: 1600 }
+    ],
+    sections: [
+      {
+        titre: "Pourquoi Aix est faite pour le sport gratuit",
+        paragraphes: [
+          "Aix-en-Provence a un atout que peu de villes ont : **le climat**. Avec beaucoup de soleil et des hivers doux, on peut faire du sport dehors presque toute l’année.",
+          "La ville compte des **parcs** accessibles à pied, et la nature commence aux portes du centre. Pas besoin de matériel coûteux ni d’abonnement pour se bouger.",
+          "Le vrai défi, ce n’est pas le prix. C’est la **régularité**. Et pour ça, rien ne vaut un rendez-vous fixe avec d’autres personnes."
+        ]
+      },
+      {
+        titre: "Le run club gratuit du samedi",
+        paragraphes: [
+          "Un samedi sur deux, [Nulll Club](/fr/run-club-aix-en-provence) organise un **social run gratuit** à Aix. Rendez-vous à **9h30**, départ à **10h**, pour 5 à 6 km à allure conversation.",
+          "Pas de cotisation, pas de licence : il suffit de **créer un compte gratuit** sur le site et de s’inscrire à la sortie. Tu reçois un QR code, et après chaque run, les photos t’attendent dans ton compte.",
+          "C’est ouvert à tous les niveaux, et personne n’est laissé derrière. Tu peux venir seul : c’est justement pour ça qu’on court en groupe."
+        ],
+        citation: "Pas d’abonnement, pas de licence, pas de prise de tête. Juste un rendez-vous, un samedi sur deux."
+      },
+      {
+        titre: "Courir seul, n’importe quand",
+        paragraphes: [
+          "La course à pied reste le sport gratuit par excellence. Une paire de chaussures, et c’est parti. Le **parc Jourdan**, en plein centre, et le **parc de la Torse**, à l’est, sont parfaits pour un footing.",
+          "Tôt le matin, le centre historique se prête aussi à de jolies boucles. Toutes nos idées sont dans le guide [Où courir à Aix-en-Provence](/fr/guide/ou-courir-a-aix-en-provence).",
+          "Tu débutes ? Notre guide [Commencer la course à pied](/fr/guide/commencer-la-course-a-pied) te donne un plan simple sur 8 semaines."
+        ]
+      },
+      {
+        titre: "Randonner autour d’Aix",
+        paragraphes: [
+          "La randonnée est l’autre grand sport gratuit de la région. La **Sainte-Victoire**, le **plateau de Bibémus** et les sentiers des **barrages de Bimont et Zola** offrent des itinéraires pour tous les niveaux.",
+          "Pense à vérifier la météo, à emporter de l’eau, et, en été, à consulter les conditions d’accès aux massifs, réglementé du 1er juin au 30 septembre à cause du risque d’incendie."
+        ]
+      },
+      {
+        titre: "Le renforcement en plein air",
+        paragraphes: [
+          "Pas besoin de salle pour se muscler. Pompes, squats, gainage, fentes : un coin de pelouse dans un parc suffit pour une séance complète au poids du corps.",
+          "Les escaliers et les petites côtes du centre-ville sont aussi parfaits pour travailler les jambes et le cardio. Le tout, c’est de commencer doucement et d’être régulier."
+        ]
+      },
+      {
+        titre: "Le secret : ne pas le faire seul",
+        paragraphes: [
+          "Le sport gratuit a un piège : comme personne ne t’attend, il est facile de laisser tomber. La solution, c’est de te trouver **un rendez-vous** et des gens.",
+          "C’est toute l’idée de Nulll Club : un créneau fixe, des têtes qu’on retrouve, et un après-course où tout le monde reste. Choisis ta date sur la page [Sorties](/fr/runs) et viens nous rejoindre."
+        ]
+      }
+    ],
+    faq: [
+      { q: "Où faire du sport gratuitement à Aix-en-Provence ?", a: "Dans les parcs Jourdan et de la Torse pour courir ou se renforcer, en randonnée autour de la Sainte-Victoire, ou avec le run club gratuit de Nulll Club, un samedi sur deux." },
+      { q: "Existe-t-il un club de sport gratuit à Aix ?", a: "Oui. Nulll Club est un run club associatif gratuit : un social run un samedi sur deux, ouvert à tous les niveaux, sans cotisation ni licence." },
+      { q: "Comment faire du sport sans salle à Aix ?", a: "Course à pied, randonnée et renforcement au poids du corps dans les parcs. Le climat d’Aix permet de s’entraîner dehors presque toute l’année." },
+      { q: "Faut-il une licence pour courir avec Nulll Club ?", a: "Non. Il suffit de créer un compte gratuit sur le site et de s’inscrire à la sortie choisie." }
+    ],
+    liens: ["run-club-aix-en-provence", "sport-en-plein-air-aix-en-provence", "commencer-la-course-a-pied"],
+    datePublication: "2026-11-19",
+    dateMiseAJour: "2026-11-19"
+  },
+  {
+    slug: "etudiant-a-aix-en-provence",
+    chemin: "/fr/guide/etudiant-a-aix-en-provence",
+    rubrique: "Étudiant",
+    titre: "Étudiant à Aix-en-Provence : le guide pour profiter de la ville (et pas que des cours)",
+    seoTitle: "Étudiant à Aix-en-Provence : le guide de la vie étudiante",
+    description:
+      "Étudiant à Aix-en-Provence : s’installer, sortir, faire du sport gratuitement, rencontrer du monde hors de la fac. Le guide de la vie étudiante à Aix.",
+    resume:
+      "Aix est l’une des grandes villes étudiantes du sud. Entre les amphis, les terrasses et la Sainte-Victoire, il y a de quoi vivre une belle vie étudiante, à condition de sortir de sa bulle. Voici nos conseils pour en profiter dès la rentrée.",
+    enBref: [
+      "Aix accueille notamment des facultés d’Aix-Marseille Université, Sciences Po Aix et des écoles comme Aix Ynov Campus.",
+      "Le centre historique, ses places et ses terrasses sont le cœur de la vie étudiante.",
+      "Pour faire du sport sans payer, Nulll Club organise un run club gratuit un samedi sur deux.",
+      "Pour rencontrer du monde hors de ta promo, rejoins une activité régulière dès les premières semaines."
+    ],
+    image: { src: "/assets/guides/067.webp", alt: "Trois coureurs du club rient en courant sur la passerelle" },
+    photos: [
+      { src: "/assets/guides/063.webp", alt: "Une coureuse en sweat bleu court avec le groupe sur la passerelle", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/04.webp", alt: "Éclats de rire entre coureuses après le run", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/bienvenue/18.webp", alt: "Deux coureurs font les pitres avec une Bee Zen", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/14.webp", alt: "Un membre du club en casquette lève sa canette en riant", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/16.webp", alt: "Une coureuse en lunettes de soleil attrape une Red Bull", largeur: 1200, hauteur: 1600 }
+    ],
+    sections: [
+      {
+        titre: "Aix, une ville étudiante",
+        paragraphes: [
+          "Aix-en-Provence accueille chaque année de nombreux étudiants. On y trouve notamment des facultés d’**Aix-Marseille Université**, **Sciences Po Aix**, et des écoles comme **Aix Ynov Campus**, avec qui le club a organisé un [jeu concours](/fr/actu/jeu-concours-bacchantes-aix-ynov-campus).",
+          "Résultat : une ville jeune, vivante, où les terrasses se remplissent dès les premiers rayons de soleil. Mais aussi une ville où il est facile de rester enfermé dans sa promo, si on n’y prend pas garde."
+        ]
+      },
+      {
+        titre: "S’installer et prendre ses repères",
+        paragraphes: [
+          "Le centre d’Aix se vit **à pied**. Commence par le Cours Mirabeau, puis explore le vieil Aix, la place de l’Hôtel de Ville et le quartier Mazarin. Les **marchés** du matin, comme celui de la place Richelme, sont parfaits pour faire ses courses à petit prix.",
+          "Pour les démarches liées au logement et aux bourses, le **Crous** est l’interlocuteur des étudiants. Et pour tout le reste, notre guide [Nouveau à Aix-en-Provence](/fr/guide/nouveau-a-aix-en-provence) te donne une checklist du premier mois."
+        ]
+      },
+      {
+        titre: "Faire du sport sans se ruiner",
+        paragraphes: [
+          "Le budget étudiant est souvent serré. Bonne nouvelle : à Aix, le sport peut être **gratuit**. Les parcs, les chemins et le climat font le travail.",
+          "Un samedi sur deux, [Nulll Club](/fr/run-club-aix-en-provence) organise un **social run gratuit** : 5 à 6 km à allure conversation, puis un ravito où tout le monde reste discuter. Pas de cotisation, pas de licence, juste un compte gratuit à créer.",
+          "Et si tu n’as jamais couru, pas de panique : lis [Commencer la course à pied](/fr/guide/commencer-la-course-a-pied), puis viens essayer."
+        ],
+        citation: "Le meilleur moyen de rencontrer des gens hors de ta promo ? Courir avec eux le samedi."
+      },
+      {
+        titre: "Sortir le soir",
+        paragraphes: [
+          "La vie nocturne étudiante se concentre dans le **centre historique**, autour de la **place des Cardeurs** et du Cours Mirabeau. Concerts, cinémas, théâtres : il y a aussi de quoi varier les plaisirs.",
+          "Toutes nos idées sont dans le guide [Sortir à Aix-en-Provence](/fr/guide/sortir-a-aix-en-provence)."
+        ]
+      },
+      {
+        titre: "Rencontrer du monde hors de la fac",
+        paragraphes: [
+          "Les amis de promo, c’est bien. Mais rencontrer des gens d’autres horizons, c’est encore mieux. La clé : rejoindre **une activité régulière** dès la rentrée, et s’y tenir plusieurs semaines.",
+          "Sport, association, bénévolat : l’important, c’est la répétition. Pour des idées concrètes, lis [Rencontrer des gens à Aix-en-Provence](/fr/guide/rencontrer-des-gens-a-aix-en-provence)."
+        ]
+      },
+      {
+        titre: "Le week-end, prendre l’air",
+        paragraphes: [
+          "Aix a un avantage énorme : la nature est à côté. Une randonnée à la **Sainte-Victoire**, une balade aux **barrages de Bimont et Zola**, ou une journée à la mer, avec Marseille à une trentaine de kilomètres.",
+          "Pour remplir tes week-ends, notre guide [Idée de sortie à Aix-en-Provence](/fr/guide/sortie-a-aix-en-provence) liste dix plans testés."
+        ]
+      }
+    ],
+    faq: [
+      { q: "Aix-en-Provence est-elle une ville étudiante ?", a: "Oui. Elle accueille notamment des facultés d’Aix-Marseille Université, Sciences Po Aix et plusieurs écoles, dont Aix Ynov Campus." },
+      { q: "Comment faire du sport gratuitement quand on est étudiant à Aix ?", a: "En courant dans les parcs, en randonnant autour de la Sainte-Victoire, ou en rejoignant le run club gratuit de Nulll Club, un samedi sur deux." },
+      { q: "Où sortir quand on est étudiant à Aix ?", a: "Dans le centre historique, autour de la place des Cardeurs et du Cours Mirabeau, ainsi que dans les salles de concert, cinémas et théâtres de la ville." },
+      { q: "Comment rencontrer des gens hors de sa promo à Aix ?", a: "Rejoins une activité régulière dès la rentrée, comme un run club, une association ou du bénévolat, et tiens-la plusieurs semaines." }
+    ],
+    liens: ["nouveau-a-aix-en-provence", "sortir-a-aix-en-provence", "sport-gratuit-aix-en-provence"],
+    datePublication: "2026-11-19",
+    dateMiseAJour: "2026-11-19"
+  },
+  {
+    slug: "activites-entre-amis-aix-en-provence",
+    chemin: "/fr/guide/activites-entre-amis-aix-en-provence",
+    rubrique: "Entre amis",
+    titre: "Activités entre amis à Aix-en-Provence : 12 idées pour sortir du sempiternel apéro",
+    seoTitle: "Activités entre amis à Aix-en-Provence : 12 idées",
+    description:
+      "Que faire entre amis à Aix-en-Provence ? Run club gratuit, randonnée, pique-nique, marchés, musées, concerts, escapade à la mer : 12 idées pour sortir du quotidien.",
+    resume:
+      "L’apéro, c’est bien. Mais à force, on finit toujours à la même terrasse avec les mêmes conversations. À Aix, il y a mieux à faire entre amis, et souvent pour pas cher. Voici douze idées pour vos prochains week-ends.",
+    enBref: [
+      "Bouger ensemble : un social run gratuit avec Nulll Club, une randonnée à la Sainte-Victoire, un footing au parc.",
+      "Prendre l’air : un pique-nique au parc Jourdan, le Terrain des Peintres au coucher du soleil, une journée à la mer.",
+      "Se cultiver : le musée Granet, l’Hôtel de Caumont, un spectacle au Pavillon Noir ou au Grand Théâtre de Provence.",
+      "Le soir : un concert au 6MIC, un film en VO, une terrasse place des Cardeurs."
+    ],
+    image: { src: "/assets/actus/parc-de-la-torse/trio-sourires.webp", alt: "Trois membres de Nulll Club tout sourire après une sortie" },
+    photos: [
+      { src: "/assets/guides/054.webp", alt: "Une coureuse en tee-shirt rose mène le groupe sur la passerelle", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/07.webp", alt: "Trois membres du club posent après la course", largeur: 1600, hauteur: 1067 },
+      { src: "/assets/actus/quatrieme-run/16.webp", alt: "Discussions autour de la table des boissons après la course", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/bee-zen/04.webp", alt: "Deux membres du club font les pitres avec une Bee Zen", largeur: 1066, hauteur: 1600 }
+    ],
+    sections: [
+      {
+        titre: "Bouger ensemble",
+        paragraphes: [
+          "**1. Un social run.** Un samedi sur deux, venez courir avec [Nulll Club](/fr/run-club-aix-en-provence). C’est **gratuit**, 5 à 6 km à allure conversation, et il y a un ravito à l’arrivée. Parfait pour embarquer le pote qui « ne court jamais ».",
+          "**2. Une randonnée à la Sainte-Victoire.** Le grand classique aixois, avec des sentiers pour tous les niveaux. Vérifiez l’accès aux massifs en été.",
+          "**3. Un footing au parc.** Le parc Jourdan ou le parc de la Torse, en fin de journée, suivi d’un verre bien mérité."
+        ],
+        citation: "Le meilleur souvenir entre amis, c’est rarement le dixième apéro. C’est le jour où vous avez fait quelque chose ensemble."
+      },
+      {
+        titre: "Prendre l’air",
+        paragraphes: [
+          "**4. Un pique-nique au parc Jourdan.** Passez d’abord au marché du centre pour remplir le panier, puis installez-vous à l’ombre.",
+          "**5. Le Terrain des Peintres au coucher du soleil.** Juste au-dessus de l’atelier de Cézanne, la vue sur la Sainte-Victoire est imbattable.",
+          "**6. Une journée à la mer.** Marseille est à une trentaine de kilomètres d’Aix : une escapade sur le littoral s’organise facilement."
+        ]
+      },
+      {
+        titre: "Se cultiver sans s’ennuyer",
+        paragraphes: [
+          "**7. Une expo.** Le **musée Granet** et l’**Hôtel de Caumont** proposent des expositions qui valent le détour. Parfait les jours de grosse chaleur ou de pluie.",
+          "**8. Sur les pas de Cézanne.** Son atelier des Lauves se visite, et le plateau de Bibémus se découvre lors de visites guidées.",
+          "**9. Un spectacle.** Danse au **Pavillon Noir**, maison du Ballet Preljocaj, ou grande soirée au **Grand Théâtre de Provence**."
+        ]
+      },
+      {
+        titre: "Le soir, autrement",
+        paragraphes: [
+          "**10. Un concert au 6MIC**, la salle de musiques actuelles d’Aix.",
+          "**11. Un film en VO** dans l’un des cinémas du centre-ville.",
+          "**12. Une terrasse place des Cardeurs**, mais cette fois pour fêter quelque chose que vous avez fait ensemble. Plus d’idées dans [Sortir à Aix-en-Provence](/fr/guide/sortir-a-aix-en-provence)."
+        ]
+      },
+      {
+        titre: "Et si vous ne connaissez pas encore assez de monde ?",
+        paragraphes: [
+          "Pas d’amis à Aix pour l’instant ? C’est le cas de beaucoup de nouveaux arrivants. La solution, c’est de commencer par une activité régulière où l’on rencontre du monde.",
+          "Chez nous, on se rencontre en courant le samedi, et on finit souvent par faire d’autres choses ensemble. Lis aussi [Rencontrer des gens à Aix-en-Provence](/fr/guide/rencontrer-des-gens-a-aix-en-provence)."
+        ]
+      }
+    ],
+    faq: [
+      { q: "Que faire entre amis à Aix-en-Provence ?", a: "Un social run gratuit avec Nulll Club, une randonnée à la Sainte-Victoire, un pique-nique au parc Jourdan, une expo au musée Granet, un concert au 6MIC ou une escapade à la mer." },
+      { q: "Quelle activité gratuite faire entre amis à Aix ?", a: "Le run club de Nulll Club, un samedi sur deux, un pique-nique au parc, une randonnée ou le Terrain des Peintres au coucher du soleil." },
+      { q: "Que faire entre amis à Aix quand il pleut ?", a: "Une exposition au musée Granet ou à l’Hôtel de Caumont, un film en VO dans un cinéma du centre, ou un spectacle." },
+      { q: "Quelle activité sportive faire entre amis à Aix ?", a: "Courir ensemble avec Nulll Club, faire une randonnée autour de la Sainte-Victoire ou des barrages de Bimont et Zola." }
+    ],
+    liens: ["sortie-a-aix-en-provence", "sortir-a-aix-en-provence", "que-faire-a-aix-en-provence"],
+    datePublication: "2026-11-19",
+    dateMiseAJour: "2026-11-19"
+  },
+  {
+    slug: "reprendre-la-course-a-pied",
+    chemin: "/fr/guide/reprendre-la-course-a-pied",
+    rubrique: "Reprise",
+    titre: "Reprendre la course à pied après une pause : la méthode douce pour revenir sans se blesser",
+    seoTitle: "Reprendre la course à pied après une pause : la méthode",
+    description:
+      "Reprendre la course à pied après plusieurs mois d’arrêt : repartir lentement, alterner marche et course, écouter son corps et retrouver la motivation en groupe.",
+    resume:
+      "Tu as couru, puis la vie a pris le dessus : boulot, études, blessure, déménagement. Aujourd’hui, tu veux t’y remettre. Bonne nouvelle : le corps se souvient. Mauvaise nouvelle : il faut lui laisser le temps. Voici comment revenir sans brûler les étapes.",
+    enBref: [
+      "Après une longue pause, repars plus bas que ton ancien niveau : volume réduit, allure lente.",
+      "Alterne marche et course les premières semaines, puis augmente progressivement.",
+      "Ne monte pas le volume de plus de 10 % environ par semaine, et garde des jours de repos.",
+      "Un rendez-vous régulier en groupe, comme le social run de Nulll Club, aide à tenir dans la durée."
+    ],
+    image: { src: "/assets/guides/063.webp", alt: "Une coureuse en sweat bleu court avec le groupe sur la passerelle" },
+    photos: [
+      { src: "/assets/guides/013.webp", alt: "Un coureur en sweat gris trottine sur la pelouse du parc", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/04.webp", alt: "Deux coureuses arrivent sur un chemin de terre", largeur: 1067, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/11.webp", alt: "Un membre du club en sweat gris, souriant dans le parc", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/13.webp", alt: "Un coureur en gilet bleu profite de l’après-run sous les arbres", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/09.webp", alt: "Trois coureuses sourient à l’objectif après le run", largeur: 1600, hauteur: 900 }
+    ],
+    sections: [
+      {
+        titre: "Le piège de la reprise",
+        paragraphes: [
+          "Quand on reprend, on a en tête **son ancien niveau**. On se souvient de ses 10 km faciles, de son allure d’avant. Et on veut y retourner tout de suite.",
+          "C’est là que les blessures arrivent. Le souffle revient vite, mais les **tendons, les articulations et les muscles** mettent plus de temps à se réhabituer aux chocs de la course.",
+          "La règle d’or : **repartir plus bas** que ce que tu crois pouvoir faire. Tu auras l’impression d’en faire trop peu. C’est exactement le but."
+        ],
+        citation: "Le souffle revient en deux semaines. Les tendons, eux, prennent leur temps."
+      },
+      {
+        titre: "Les premières semaines",
+        paragraphes: [
+          "Selon la durée de ta pause, commence par **alterner marche et course** : par exemple 3 minutes de course, 1 minute de marche, à répéter 5 ou 6 fois. Trois sorties par semaine, avec un jour de repos entre chaque.",
+          "Cours **lentement**, à une allure où tu peux parler. Oublie le chrono pour l’instant : la vitesse reviendra d’elle-même quand la base sera reconstruite.",
+          "Si tu n’as jamais vraiment couru, ou si ta pause a duré plusieurs années, suis plutôt notre plan [Commencer la course à pied](/fr/guide/commencer-la-course-a-pied)."
+        ]
+      },
+      {
+        titre: "Augmenter sans se blesser",
+        paragraphes: [
+          "Une fois que tu cours 30 minutes sans t’arrêter, augmente **progressivement**. Un repère souvent cité : ne pas augmenter ton volume de plus de **10 % environ** d’une semaine à l’autre.",
+          "Toutes les trois ou quatre semaines, prévois une semaine plus légère pour laisser le corps assimiler. Et garde au moins **un jour de repos** entre deux sorties au début."
+        ]
+      },
+      {
+        titre: "Écouter son corps",
+        paragraphes: [
+          "Une fatigue musculaire après une sortie, c’est normal. Une **douleur** qui persiste, qui s’aggrave en courant ou qui te fait boiter, non. Dans ce cas, arrête-toi et consulte un professionnel de santé.",
+          "Après une blessure, demande l’avis d’un médecin ou d’un kiné avant de reprendre. Et n’hésite pas à remplacer une sortie par de la marche ou du vélo les jours où le corps dit stop."
+        ]
+      },
+      {
+        titre: "Retrouver la motivation",
+        paragraphes: [
+          "La reprise, c’est souvent plus une affaire de **tête** que de jambes. On se compare à avant, on se décourage. Le meilleur remède : un objectif simple et un rendez-vous fixe.",
+          "Un samedi sur deux, [Nulll Club](/fr/run-club-aix-en-provence) court **5 à 6 km à allure conversation** à Aix-en-Provence. Personne n’est laissé derrière, et personne ne regarde ton chrono. C’est le cadre idéal pour reprendre en douceur.",
+          "Et après la course, il y a le ravito. C’est souvent ce moment-là qui donne envie de revenir la fois suivante."
+        ]
+      },
+      {
+        titre: "Où reprendre à Aix",
+        paragraphes: [
+          "Pour les premières sorties, privilégie des terrains **souples et plats** : les allées du **parc Jourdan** ou les chemins de terre du **parc de la Torse** ménagent davantage les articulations que le bitume.",
+          "En été, cours tôt le matin, et lis nos conseils pour [courir quand il fait chaud à Aix](/fr/guide/courir-quand-il-fait-chaud-a-aix)."
+        ]
+      }
+    ],
+    faq: [
+      { q: "Comment reprendre la course à pied après plusieurs mois d’arrêt ?", a: "En repartant plus bas que ton ancien niveau : alterne marche et course, cours lentement, trois fois par semaine, puis augmente progressivement." },
+      { q: "Combien de temps pour retrouver son niveau en course à pied ?", a: "Cela dépend de la durée de l’arrêt et de ton niveau d’avant. Le souffle revient vite, mais il faut souvent plusieurs semaines pour que les tendons et les articulations se réhabituent." },
+      { q: "Faut-il voir un médecin avant de reprendre la course ?", a: "C’est recommandé après une blessure, une longue période d’inactivité ou en cas de problème de santé. Au moindre doute, demande l’avis d’un professionnel." },
+      { q: "Où reprendre la course à pied en groupe à Aix ?", a: "Avec Nulll Club, un samedi sur deux : 5 à 6 km à allure conversation, gratuit et ouvert à tous les niveaux." }
+    ],
+    liens: ["commencer-la-course-a-pied", "courir-en-groupe", "run-club-aix-en-provence"],
+    datePublication: "2026-11-19",
+    dateMiseAJour: "2026-11-19"
+  },
+  {
+    slug: "courir-en-groupe",
+    chemin: "/fr/guide/courir-en-groupe",
+    rubrique: "Courir en groupe",
+    titre: "Courir en groupe : pourquoi ça change tout (et comment trouver le bon à Aix)",
+    seoTitle: "Courir en groupe à Aix-en-Provence : pourquoi ça change tout",
+    description:
+      "Pourquoi courir en groupe aide à progresser et à tenir : motivation, régularité, rencontres. Comment choisir son groupe de course à Aix-en-Provence.",
+    resume:
+      "Courir seul, c’est la liberté. Courir en groupe, c’est la régularité, la motivation, et des rencontres qu’on n’aurait jamais faites autrement. Voici pourquoi tant de gens s’y mettent, et comment choisir le groupe qui te correspond à Aix.",
+    enBref: [
+      "Courir en groupe aide à tenir : un rendez-vous fixe et des gens qui t’attendent rendent la régularité plus facile.",
+      "Les kilomètres passent plus vite quand on discute, et l’effort paraît moins dur.",
+      "Avant de rejoindre un groupe, vérifie l’allure annoncée, le lieu, l’horaire et le niveau attendu.",
+      "À Aix, Nulll Club court un samedi sur deux à allure conversation, gratuitement et sans laisser personne derrière."
+    ],
+    image: { src: "/assets/guides/050.webp", alt: "Le peloton de Nulll Club en pleine course, sous les arbres du parc" },
+    photos: [
+      { src: "/assets/guides/060.webp", alt: "Des coureurs du club traversent la passerelle, en pleine sortie", largeur: 900, hauteur: 1600 },
+      { src: "/assets/guides/015.webp", alt: "Des membres du club trottinent sur la pelouse du parc", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/15.webp", alt: "Le peloton du samedi sur un chemin ombragé", largeur: 1067, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/08.webp", alt: "Le groupe se retrouve sur la pelouse après la course", largeur: 1600, hauteur: 900 }
+    ],
+    sections: [
+      {
+        titre: "La régularité, avant tout",
+        paragraphes: [
+          "Le plus dur en course à pied, ce n’est pas de courir. C’est de **continuer** à courir semaine après semaine. Seul, il suffit d’une journée fatigante ou d’un ciel gris pour annuler.",
+          "En groupe, il y a **un rendez-vous** et des gens qui t’attendent. On y va même quand on n’a pas très envie, et on rentre content d’y être allé. Sur la durée, c’est ce qui fait la différence."
+        ],
+        citation: "Seul, on court quand on a envie. En groupe, on court parce qu’on a rendez-vous."
+      },
+      {
+        titre: "Des kilomètres qui passent plus vite",
+        paragraphes: [
+          "Quand on discute en courant, on ne compte plus les minutes. L’effort paraît plus léger, et on se surprend à finir des distances qu’on n’aurait jamais tentées seul.",
+          "C’est tout l’intérêt de **l’allure conversation** : assez lente pour parler, assez régulière pour progresser. C’est aussi la meilleure allure pour construire son endurance."
+        ]
+      },
+      {
+        titre: "Rencontrer du monde",
+        paragraphes: [
+          "Un groupe de course, c’est aussi une **communauté**. On y croise des étudiants, des actifs, des nouveaux arrivants, des débutants et des habitués. Tous partagent au moins une chose : l’envie de bouger ensemble.",
+          "Dans un **social run**, l’après-course compte autant que la course. C’est là que les inconnus du départ deviennent des têtes connues. Lis aussi [Rencontrer des gens à Aix-en-Provence](/fr/guide/rencontrer-des-gens-a-aix-en-provence)."
+        ]
+      },
+      {
+        titre: "Bien choisir son groupe",
+        paragraphes: [
+          "Avant de rejoindre un groupe, vérifie **l’allure annoncée**. Un groupe qui ne précise pas son rythme finit souvent par courir trop vite pour les nouveaux venus.",
+          "Regarde aussi le **lieu et l’horaire**, la **distance**, le **prix** éventuel, et la façon de contacter les organisateurs. Un bon groupe répond à tes questions avant ta première venue.",
+          "Enfin, demande-toi ce que tu cherches : préparer une course, progresser en vitesse, ou simplement courir avec des gens sympas. Il y a un groupe pour chaque envie."
+        ]
+      },
+      {
+        titre: "Le groupe du samedi à Aix",
+        paragraphes: [
+          "À Aix-en-Provence, [Nulll Club](/fr/run-club-aix-en-provence) a fait un choix clair : courir **ensemble**, pas les uns contre les autres. Un samedi sur deux, rendez-vous à **9h30**, départ à **10h**, pour 5 à 6 km à allure conversation.",
+          "C’est **gratuit**, ouvert à tous les niveaux, et **personne n’est laissé derrière**. Pour venir, crée ton compte gratuit et inscris-toi à la sortie sur la page [Sorties](/fr/runs)."
+        ]
+      }
+    ],
+    faq: [
+      { q: "Pourquoi courir en groupe ?", a: "Pour la régularité, grâce à un rendez-vous fixe, pour la motivation, et pour les rencontres. Les kilomètres passent aussi plus vite quand on discute." },
+      { q: "Comment trouver un groupe de course à pied à Aix-en-Provence ?", a: "Nulll Club organise un social run gratuit un samedi sur deux à Aix, ouvert à tous les niveaux. Vérifie toujours l’allure, le lieu et l’horaire d’un groupe avant d’y aller." },
+      { q: "Faut-il un bon niveau pour courir en groupe ?", a: "Pas forcément. Certains groupes, comme Nulll Club, courent à allure conversation et attendent tout le monde. D’autres sont orientés performance : renseigne-toi avant." },
+      { q: "C’est quoi l’allure conversation ?", a: "C’est une allure assez lente pour pouvoir discuter en courant. C’est la meilleure pour construire son endurance et la plus agréable en groupe." }
+    ],
+    liens: ["run-club-aix-en-provence", "rencontrer-des-gens-a-aix-en-provence", "reprendre-la-course-a-pied"],
+    datePublication: "2026-11-19",
+    dateMiseAJour: "2026-11-19"
+  },
+  {
+    slug: "preparer-sa-premiere-course",
+    chemin: "/fr/guide/preparer-sa-premiere-course",
+    rubrique: "Première course",
+    titre: "Préparer sa première course de 5 ou 10 km : le guide pour franchir la ligne avec le sourire",
+    seoTitle: "Préparer sa première course de 5 ou 10 km : le guide",
+    description:
+      "Préparer sa première course à pied de 5 ou 10 km : choisir sa course, s’entraîner, gérer la veille et le jour J, les formalités. Conseils d’un run club aixois.",
+    resume:
+      "Accrocher un dossard, entendre le départ, franchir la ligne : la première course, on s’en souvient toute sa vie. Pas besoin d’être un athlète pour s’y lancer. Voici comment choisir ta course, t’entraîner et vivre le jour J sereinement.",
+    enBref: [
+      "Choisis une première course courte, 5 ou 10 km, sur un parcours plutôt plat.",
+      "Compte plusieurs semaines de préparation, avec trois sorties par semaine à allure tranquille.",
+      "Vérifie les formalités dans le règlement : en France, les non-licenciés doivent souvent suivre le Parcours Prévention Santé (PPS).",
+      "Le jour J, ne teste rien de nouveau, pars doucement, et profite."
+    ],
+    image: { src: "/assets/actus/parc-de-la-torse/depart.webp", alt: "Le peloton de Nulll Club part en courant sur un chemin du parc de la Torse" },
+    photos: [
+      { src: "/assets/guides/054.webp", alt: "Une coureuse en tee-shirt rose mène le groupe sur la passerelle", largeur: 900, hauteur: 1600 },
+      { src: "/assets/guides/048.webp", alt: "Une quinzaine de coureurs du club arrivent le long d’une barrière en bois, au parc", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/05.webp", alt: "Un coureur en maillot rose, tout sourire après la sortie", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/12.webp", alt: "Un coureur reçoit une Red Bull à l’arrivée", largeur: 1200, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/04.webp", alt: "Éclats de rire entre coureuses après le run", largeur: 1600, hauteur: 900 }
+    ],
+    sections: [
+      {
+        titre: "Choisir sa première course",
+        paragraphes: [
+          "Pour une première, vise **court** : un **5 km** si tu débutes, un **10 km** si tu cours déjà régulièrement. Un parcours plutôt plat, en ville ou sur route, rend l’expérience plus agréable.",
+          "Choisis aussi une course qui a du sens pour toi. En novembre 2026, la team NULLL a couru **Les Bacchantes** à Aix, une course solidaire qui sensibilise aux cancers masculins. On raconte tout dans [On a couru pour plus grand que nous](/fr/actu/equipe-nulll-les-bacchantes-aix-2026)."
+        ],
+        citation: "Ta première course, ce n’est pas un chrono. C’est un souvenir."
+      },
+      {
+        titre: "Combien de temps pour se préparer",
+        paragraphes: [
+          "Si tu pars de zéro, compte d’abord le temps de pouvoir **courir 30 minutes sans t’arrêter**, environ 8 semaines avec notre plan [Commencer la course à pied](/fr/guide/commencer-la-course-a-pied). Un 5 km devient alors accessible.",
+          "Pour un 10 km, ajoute plusieurs semaines pour allonger progressivement ta sortie la plus longue. **Trois sorties par semaine**, majoritairement à allure tranquille, suffisent largement pour finir avec le sourire."
+        ]
+      },
+      {
+        titre: "Une semaine d’entraînement type",
+        paragraphes: [
+          "**Une sortie facile** de 30 à 45 minutes, à allure conversation. **Une sortie un peu plus rythmée**, avec quelques accélérations ou des côtes. **Une sortie longue**, qui s’allonge un peu chaque semaine.",
+          "Entre les deux, du repos. Les progrès se font pendant la récupération, pas pendant l’effort. Et si tu as un doute sur ta santé, demande l’avis d’un médecin avant de te lancer."
+        ]
+      },
+      {
+        titre: "Les formalités à ne pas oublier",
+        paragraphes: [
+          "Lis attentivement le **règlement** de la course. En France, pour les courses hors stade, les coureurs non licenciés doivent souvent avoir suivi le **Parcours Prévention Santé** (PPS), à faire en ligne avant l’épreuve.",
+          "Vérifie aussi le lieu et l’heure de retrait des **dossards**, l’heure du départ, et les éventuelles consignes d’accès. Mieux vaut tout préparer la veille."
+        ]
+      },
+      {
+        titre: "La veille et le jour J",
+        paragraphes: [
+          "La veille, mange normalement, bois bien et prépare tes affaires. Le jour J, **ne teste rien de nouveau** : ni chaussures, ni tenue, ni petit-déjeuner inhabituel.",
+          "Arrive en avance, échauffe-toi doucement, et **pars lentement**. L’adrénaline du départ pousse à partir trop vite : c’est l’erreur la plus fréquente. Garde des forces pour la fin, et profite de l’ambiance."
+        ]
+      },
+      {
+        titre: "S’entraîner en groupe à Aix",
+        paragraphes: [
+          "Préparer une course seul, c’est possible. Mais c’est bien plus facile avec des gens. Un samedi sur deux, [Nulll Club](/fr/run-club-aix-en-provence) court 5 à 6 km à allure conversation à Aix : une parfaite sortie facile pour ta semaine.",
+          "Et qui sait, tu y trouveras peut-être des partenaires pour ta première course. Les dates sont sur la page [Sorties](/fr/runs)."
+        ]
+      }
+    ],
+    faq: [
+      { q: "Combien de temps pour préparer un 5 km ?", a: "Si tu pars de zéro, environ 8 semaines pour courir 30 minutes d’affilée, soit à peu près la durée d’un 5 km à allure tranquille." },
+      { q: "Faut-il un certificat médical pour courir une course en France ?", a: "Pour les courses hors stade, les non-licenciés doivent souvent avoir suivi le Parcours Prévention Santé (PPS), à faire en ligne. Vérifie toujours le règlement de la course." },
+      { q: "Quelle est l’erreur la plus fréquente lors d’une première course ?", a: "Partir trop vite, porté par l’adrénaline du départ. Pars lentement et garde des forces pour la fin." },
+      { q: "Peut-on préparer sa première course en groupe à Aix ?", a: "Oui. Le social run gratuit de Nulll Club, un samedi sur deux, est une bonne sortie facile à intégrer à ta préparation." }
+    ],
+    liens: ["commencer-la-course-a-pied", "courir-en-groupe", "evenements-running-aix"],
+    datePublication: "2026-11-19",
+    dateMiseAJour: "2026-11-19"
+  },
+  {
+    slug: "samedi-matin-a-aix-en-provence",
+    chemin: "/fr/guide/samedi-matin-a-aix-en-provence",
+    rubrique: "Samedi matin",
+    titre: "Que faire le samedi matin à Aix-en-Provence ? Le programme parfait, de 8h à midi",
+    seoTitle: "Que faire le samedi matin à Aix-en-Provence ?",
+    description:
+      "Que faire le samedi matin à Aix-en-Provence : marchés, run club gratuit, café en terrasse, balade au centre ou à la Sainte-Victoire. Notre programme idéal.",
+    resume:
+      "Le samedi matin, Aix est à son meilleur : les marchés s’installent, l’air est encore frais, et la ville s’éveille doucement. Voici notre programme idéal pour en profiter, de l’heure du croissant à celle de l’apéro.",
+    enBref: [
+      "Le samedi matin, les marchés du centre sont ouverts, dont le marché de producteurs de la place Richelme.",
+      "Un samedi sur deux, Nulll Club donne rendez-vous à 9h30 pour un social run gratuit, départ 10h.",
+      "Après l’effort, le Cours Mirabeau et les places du centre attendent pour un café en terrasse.",
+      "Pour les plus matinaux, une balade au Terrain des Peintres ou au pied de la Sainte-Victoire."
+    ],
+    image: { src: "/assets/actus/quatrieme-run/09.webp", alt: "Trois coureuses sourient à l’objectif après le run" },
+    photos: [
+      { src: "/assets/actus/bienvenue/03.webp", alt: "Le groupe rassemblé à l’ombre avant de partir", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/guides/069.webp", alt: "Le groupe s’éloigne en courant sur une allée du parc", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/06.webp", alt: "Un membre de l’équipe tend des canettes Bee Zen devant la table des boissons", largeur: 1067, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/07.webp", alt: "Une coureuse en sweat jaune raconte sa sortie au groupe", largeur: 1600, hauteur: 900 }
+    ],
+    sections: [
+      {
+        titre: "8h : le marché",
+        paragraphes: [
+          "Commence par le **marché de producteurs de la place Richelme**, ouvert tous les matins. Fruits, légumes, fromages : c’est le cœur gourmand du centre.",
+          "Le samedi, c’est aussi jour de **grand marché** dans le centre-ville, comme le mardi et le jeudi. Prends le temps de flâner entre les étals avant que la foule n’arrive."
+        ]
+      },
+      {
+        titre: "9h30 : le social run",
+        paragraphes: [
+          "Un samedi sur deux, rejoins [Nulll Club](/fr/run-club-aix-en-provence) pour le **social run** : rendez-vous à **9h30**, départ à **10h**, au parking du chemin de la Cible, près du lycée Émile Zola, sauf si la sortie annonce un autre point de départ.",
+          "On court **5 à 6 km à allure conversation**, puis on reste pour le ravito. C’est **gratuit**, ouvert à tous les niveaux, et tu peux venir seul. Les dates sont sur la page [Sorties](/fr/runs)."
+        ],
+        citation: "Le samedi matin à Aix : marché, run, terrasse. Dans cet ordre."
+      },
+      {
+        titre: "11h30 : la terrasse",
+        paragraphes: [
+          "Après l’effort, le réconfort. Le **Cours Mirabeau** et les places du centre historique sont parfaits pour un café ou un jus en terrasse, au soleil.",
+          "C’est souvent là que les conversations commencées pendant la course se prolongent. Et que naissent les plans du week-end."
+        ]
+      },
+      {
+        titre: "Pour les lève-tôt : prendre de la hauteur",
+        paragraphes: [
+          "Tu préfères la nature ? Monte au **Terrain des Peintres**, au-dessus de l’atelier de Cézanne, pour voir la Sainte-Victoire dans la lumière du matin.",
+          "Plus sportif, une sortie aux **barrages de Bimont et Zola** ou sur les sentiers de la Sainte-Victoire. En été, pars très tôt et vérifie l’accès aux massifs."
+        ]
+      },
+      {
+        titre: "Les samedis sans run",
+        paragraphes: [
+          "Le club court un samedi sur deux. Les autres samedis, profite-en pour courir seul dans les parcs, découvrir un musée ou partir en balade.",
+          "Toutes nos idées sont dans [Idée de sortie à Aix-en-Provence](/fr/guide/sortie-a-aix-en-provence) et [Que faire à Aix-en-Provence](/fr/guide/que-faire-a-aix-en-provence)."
+        ]
+      }
+    ],
+    faq: [
+      { q: "Que faire le samedi matin à Aix-en-Provence ?", a: "Le marché, un social run gratuit avec Nulll Club un samedi sur deux, puis un café en terrasse sur le Cours Mirabeau." },
+      { q: "Y a-t-il un marché le samedi à Aix-en-Provence ?", a: "Oui. Le marché de producteurs de la place Richelme a lieu tous les matins, et les grands marchés du centre se tiennent le mardi, le jeudi et le samedi matin." },
+      { q: "À quelle heure est le run club du samedi à Aix ?", a: "Nulll Club donne rendez-vous à 9h30 pour un départ à 10h, un samedi sur deux. Chaque sortie annonce son point de départ." },
+      { q: "Que faire le samedi matin à Aix quand on est nouveau ?", a: "Rejoindre le social run de Nulll Club : c’est gratuit, ouvert à tous, et pensé pour rencontrer du monde." }
+    ],
+    liens: ["sortie-a-aix-en-provence", "run-club-aix-en-provence", "nouveau-a-aix-en-provence"],
+    datePublication: "2026-11-19",
+    dateMiseAJour: "2026-11-19"
+  },
+  {
+    slug: "sport-en-plein-air-aix-en-provence",
+    chemin: "/fr/guide/sport-en-plein-air-aix-en-provence",
+    rubrique: "Plein air",
+    titre: "Sport en plein air à Aix-en-Provence : courir, randonner, se muscler au soleil",
+    seoTitle: "Sport en plein air à Aix-en-Provence : où et comment",
+    description:
+      "Faire du sport en plein air à Aix-en-Provence : course à pied, run club, trail, randonnée, renforcement dans les parcs. Les meilleurs spots et nos conseils.",
+    resume:
+      "À Aix, la meilleure salle de sport n’a pas de toit. Parcs ombragés, chemins de terre, montagne à l’horizon : tout invite à bouger dehors. Voici comment profiter du plein air, quel que soit ton sport.",
+    enBref: [
+      "Les parcs Jourdan et de la Torse sont les deux spots de sport en plein air les plus pratiques du centre.",
+      "Pour la nature : le plateau de Bibémus, les barrages de Bimont et Zola et la Sainte-Victoire.",
+      "Le climat permet de faire du sport dehors presque toute l’année, en adaptant l’horaire l’été.",
+      "Pour bouger en groupe, Nulll Club organise un run club gratuit un samedi sur deux."
+    ],
+    image: { src: "/assets/accueil/coureurs-passerelle.webp", alt: "Cinq coureurs de Nulll Club, tout sourire, courent ensemble sur une passerelle du parc" },
+    photos: [
+      { src: "/assets/guides/054.webp", alt: "Une coureuse en tee-shirt rose mène le groupe sur la passerelle", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/parc-de-la-torse/sentier.webp", alt: "Des coureurs du club sur un sentier ombragé du parc de la Torse", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bienvenue/14.webp", alt: "Un coureur pose au milieu des arbres", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/guides/013.webp", alt: "Un coureur en sweat gris trottine sur la pelouse du parc", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/quatrieme-run/13.webp", alt: "Un coureur en gilet bleu profite de l’après-run sous les arbres", largeur: 1600, hauteur: 900 }
+    ],
+    sections: [
+      {
+        titre: "Pourquoi bouger dehors à Aix",
+        paragraphes: [
+          "Le climat méditerranéen d’Aix-en-Provence offre **beaucoup de soleil** et des hivers doux. C’est l’une des villes les plus agréables pour faire du sport en plein air, presque toute l’année.",
+          "Bouger dehors, c’est aussi changer de décor, respirer, et profiter de paysages qui ont inspiré Cézanne. Sans abonnement, sans file d’attente aux machines."
+        ],
+        citation: "À Aix, la plus belle salle de sport a la Sainte-Victoire pour plafond."
+      },
+      {
+        titre: "La course à pied, le sport roi",
+        paragraphes: [
+          "Courir est le sport de plein air le plus simple : une paire de chaussures et c’est parti. En ville, le **parc Jourdan** et le **parc de la Torse** sont les spots les plus pratiques.",
+          "Pour courir en groupe, [Nulll Club](/fr/run-club-aix-en-provence) organise un social run **gratuit** un samedi sur deux : 5 à 6 km à allure conversation, puis ravito. Tous nos parcours préférés sont dans [Où courir à Aix-en-Provence](/fr/guide/ou-courir-a-aix-en-provence)."
+        ]
+      },
+      {
+        titre: "Trail et randonnée",
+        paragraphes: [
+          "Dès qu’on quitte le centre, la nature prend le relais. Le **plateau de Bibémus**, les sentiers des **barrages de Bimont et Zola** et la **Sainte-Victoire** offrent des terrains de randonnée et de trail pour tous les niveaux.",
+          "Du 1er juin au 30 septembre, l’accès aux massifs des Bouches-du-Rhône est réglementé selon le risque d’incendie : consulte la carte de la préfecture avant de partir. Pour aller plus loin, lis [Trail autour d’Aix-en-Provence](/fr/guide/trail-aix-en-provence)."
+        ]
+      },
+      {
+        titre: "Le renforcement au parc",
+        paragraphes: [
+          "Une pelouse, un banc, quelques marches : c’est tout ce qu’il faut pour une séance de **renforcement au poids du corps**. Pompes, squats, fentes, gainage, à enchaîner en circuit.",
+          "Combiner course et renforcement est idéal : les muscles renforcés protègent les articulations et rendent la course plus efficace. Deux petites séances par semaine suffisent pour sentir la différence."
+        ]
+      },
+      {
+        titre: "Adapter sa pratique aux saisons",
+        paragraphes: [
+          "En **été**, bouge tôt le matin ou en fin de journée, cherche l’ombre et emporte de l’eau. Nos conseils sont dans [Courir quand il fait chaud à Aix](/fr/guide/courir-quand-il-fait-chaud-a-aix).",
+          "En **hiver**, les journées ensoleillées sont nombreuses, mais le **mistral** peut rendre l’air glacial. Une couche coupe-vent et des gants légers font l’affaire."
+        ]
+      },
+      {
+        titre: "Bouger ensemble",
+        paragraphes: [
+          "Le sport en plein air est encore meilleur à plusieurs. On se motive, on se relaie, et on prolonge par un moment ensemble.",
+          "Un samedi sur deux, viens courir avec nous. C’est gratuit, ouvert à tous, et ça se passe dehors, évidemment. Les dates sont sur la page [Sorties](/fr/runs)."
+        ]
+      }
+    ],
+    faq: [
+      { q: "Où faire du sport en plein air à Aix-en-Provence ?", a: "Dans les parcs Jourdan et de la Torse pour la course et le renforcement, et autour de la Sainte-Victoire, du plateau de Bibémus et des barrages de Bimont et Zola pour la randonnée et le trail." },
+      { q: "Peut-on faire du sport dehors toute l’année à Aix ?", a: "Oui, le climat méditerranéen le permet. L’été, il faut adapter les horaires à la chaleur, et l’hiver se protéger du mistral." },
+      { q: "Quel sport de plein air faire en groupe à Aix ?", a: "La course à pied avec Nulll Club, un samedi sur deux, gratuitement et à allure conversation, ou la randonnée entre amis." },
+      { q: "Faut-il une autorisation pour aller dans les massifs l’été ?", a: "Du 1er juin au 30 septembre, l’accès aux massifs des Bouches-du-Rhône est réglementé selon le risque d’incendie : il faut consulter la carte publiée chaque jour par la préfecture." }
+    ],
+    liens: ["sport-gratuit-aix-en-provence", "trail-aix-en-provence", "ou-courir-a-aix-en-provence"],
+    datePublication: "2026-11-19",
+    dateMiseAJour: "2026-11-19"
   }
 ];
 
