@@ -156,8 +156,8 @@
 .home-journey .hx-together-copy{position:relative;display:flex;flex-direction:column;align-items:center;padding:80px max(5vw,20px);width:100%}
 .home-journey .hx-together-copy>.st-cream{--r:-1.5deg;margin:0 0 .3em;position:relative;z-index:3}
 .home-journey .hx-together-big .st-xl{font-size:clamp(46px,7.4vw,120px)}
-.home-journey .hx-together-note{--r:1.5deg;margin-top:1.4em;font-size:clamp(16px,1.5vw,22px)}
-.home-journey .hx-together-pace{--r:-1deg;margin:.5em 0 0;font-size:clamp(16px,1.5vw,22px)}
+.home-journey .hx-together-note{--r:1.5deg;margin-top:1.2em;font-size:clamp(22px,2.4vw,36px)}
+.home-journey .hx-together-pace{--r:-1deg;margin:.4em 0 0;font-size:clamp(22px,2.4vw,36px)}
 
 /* ---------- Ruban qui accelere au defilement (React Bits, Scroll Velocity) ---------- */
 .home-journey .hx-ruban{position:relative;z-index:5;margin:-28px 0 -28px;overflow-x:clip;rotate:-1deg;width:104%;margin-left:-2%;background:var(--hx-yellow);color:var(--hx-ink)}
