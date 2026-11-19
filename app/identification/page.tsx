@@ -31,7 +31,7 @@ export default function IdentificationPage() {
       <AccountHeader />
 
       <main className="relative flex flex-1 items-center overflow-hidden px-5 py-16 text-white sm:px-8 sm:py-24" id="contenu" tabIndex={-1}>
-        <div className="relative mx-auto grid w-full max-w-[1400px] items-center gap-16 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+        <div className="relative mx-auto grid w-full max-w-[1200px] items-center gap-16 lg:grid-cols-[.9fr_1.1fr] lg:gap-20">
           {/* Collage decoratif : une photo du club, et devant le QR qu'on
               recoit en s'inscrivant. Apres les boutons sur telephone. */}
           <div aria-hidden="true" className="relative order-2 mx-auto w-full max-w-[22rem] pb-16 pr-10 sm:max-w-[26rem] lg:order-1 lg:max-w-[30rem]">
@@ -47,8 +47,8 @@ export default function IdentificationPage() {
           <div className="order-1 lg:order-2">
             <p className="st st-cream" style={{ "--r": "2deg" } as React.CSSProperties}>Espace membre</p>
             <h1 className="da-stack mt-4">
-              <span className="st st-yellow st-xl">Viens faire</span>
-              <span className="st st-pink st-xl">ton premier pas</span>
+              <span className="st st-yellow st-lg">Viens faire</span>
+              <span className="st st-pink st-lg">ton premier pas</span>
             </h1>
             <Suspense fallback={<ChoixIdentification suite="" />}>
               <ChoixIdentificationAvecSortie />
