@@ -121,9 +121,9 @@ export default async function ActuArticlePage({ params }: PageProps) {
                 </section>
 
                 {section.citation ? (
-                  <blockquote className="mx-auto my-16 max-w-[900px] text-center">
+                  <blockquote className="mx-auto my-14 max-w-[680px] text-center">
                     <p className="-rotate-1 [text-wrap:balance]">
-                      <span className="st st-long !bg-[#FFC531] !text-[#141116]">{section.citation}</span>
+                      <span className="st st-long !bg-[#FFC531] !text-[clamp(22px,2.6vw,34px)] !leading-[1.35] !text-[#141116]">{section.citation}</span>
                     </p>
                   </blockquote>
                 ) : null}
