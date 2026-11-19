@@ -100,7 +100,7 @@ export async function POST(request: Request) {
       Authorization: `Basic ${Buffer.from(`${utilisateur}:${motDePasse}`).toString("base64")}`
     },
     body: JSON.stringify({
-      textMessage: { text: `NULLL.CLUB : ton code est ${code}. Ne le donne à personne.` },
+      textMessage: { text: `Nulll Club : ton code est ${code}. Ne le donne à personne.` },
       phoneNumbers: [`+${telephone}`]
     }),
     signal: AbortSignal.timeout(4500)

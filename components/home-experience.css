@@ -97,7 +97,8 @@
 .home-journey .hx-hero-shade{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,rgba(20,17,22,.62) 0,rgba(20,17,22,.38) 70%),linear-gradient(180deg,rgba(20,17,22,0) 60%,rgba(20,17,22,.7) 100%)}
 .home-journey .hx-hero-copy{display:flex;flex-direction:column;align-items:center;max-width:min(980px,100%)}
 .home-journey .hx-hero-kicker{--r:-1.5deg;position:relative;z-index:2;margin-bottom:-.2em;font-size:clamp(17px,1.7vw,24px)}
-.home-journey .hx-hero-title .st{--r:-2deg;font-size:clamp(62px,10vw,168px);line-height:1;padding:.06em .2em .02em}
+.home-journey .hx-hero-title{display:flex;flex-direction:column;align-items:center}
+.home-journey .hx-hero-title .st-pink{--r:-2deg;font-size:clamp(50px,7.4vw,128px);line-height:1;padding:.06em .2em .02em}
 .home-journey .hx-hero-support{margin:28px 0 0;max-width:30ch;font-size:clamp(19px,1.8vw,26px);line-height:1.35;font-weight:700;color:var(--hx-white)}
 .home-journey .hx-hero-cta{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:clamp(28px,4.5vh,44px)}
 .home-journey .hx-note{}

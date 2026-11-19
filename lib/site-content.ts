@@ -78,7 +78,7 @@ export const productsByLocale: Record<Locale, Product[]> = {
     {
       id: "tee-noir",
       image: "/assets/merch/tee-black-blank.webp",
-      alt: "T-shirt noir NULLL.CLUB",
+      alt: "T-shirt noir Nulll Club",
       name: "T-shirt noir club",
       price: 35,
       badge: "Edition Aix 001",
@@ -88,7 +88,7 @@ export const productsByLocale: Record<Locale, Product[]> = {
     {
       id: "tee-blanc",
       image: "/assets/merch/tee-white-blank.webp",
-      alt: "T-shirt blanc NULLL.CLUB",
+      alt: "T-shirt blanc Nulll Club",
       name: "T-shirt blanc signal",
       price: 35,
       badge: "Edition Aix 001",
@@ -98,7 +98,7 @@ export const productsByLocale: Record<Locale, Product[]> = {
     {
       id: "tee-social",
       image: "/assets/merch/tee-black-blank.webp",
-      alt: "T-shirt noir message social NULLL.CLUB",
+      alt: "T-shirt noir message social Nulll Club",
       name: "T-shirt social warning",
       price: 38,
       badge: "Edition 001",
@@ -183,7 +183,7 @@ export function getSiteCopy(locale: Locale) {
 
   return {
       locale,
-      siteName: "NULLL.CLUB",
+      siteName: "Nulll Club",
       brandLine: "Social sport club à Aix-en-Provence",
       city: "Aix-en-Provence",
       contact: {
@@ -206,51 +206,51 @@ export function getSiteCopy(locale: Locale) {
       ],
       meta: {
         home: {
-          title: "NULLL.CLUB | Run club gratuit à Aix-en-Provence",
+          title: "Nulll Club | Run club gratuit à Aix-en-Provence",
           description:
             "Le social sport club d’Aix-en-Provence : une sortie gratuite un samedi sur deux, rendez-vous à 9h30, à une allure qui permet de discuter."
         },
         runs: {
-          title: "Sorties à Aix-en-Provence | NULLL.CLUB",
+          title: "Sorties à Aix-en-Provence | Nulll Club",
           description:
             "Les prochaines sorties du club à Aix-en-Provence : date, heure, distance et point de départ. Choisis la tienne."
         },
         community: {
-          title: "Le club et son histoire | NULLL.CLUB",
+          title: "Le club et son histoire | Nulll Club",
           description:
-            "NULLL.CLUB, le club du samedi à Aix-en-Provence. On court pour se rencontrer. Découvre le club et les prochaines sorties gratuites."
+            "Nulll Club, le club du samedi à Aix-en-Provence. On court pour se rencontrer. Découvre le club et les prochaines sorties gratuites."
         },
         merch: {
-          title: "Les pièces du club | NULLL.CLUB",
+          title: "Les pièces du club | Nulll Club",
           description:
-            "Les pièces NULLL.CLUB arrivent. En attendant, les sorties du samedi sont déjà là."
+            "Les pièces Nulll Club arrivent. En attendant, les sorties du samedi sont déjà là."
         },
         about: {
-          title: "À propos du club de running | NULLL.CLUB",
+          title: "À propos du club de running | Nulll Club",
           description:
-            "Comprends la vision de NULLL.CLUB, social sport club à Aix-en-Provence centré sur la communauté, la régularité et le plaisir de courir ensemble."
+            "Comprends la vision de Nulll Club, social sport club à Aix-en-Provence centré sur la communauté, la régularité et le plaisir de courir ensemble."
         },
         contact: {
-          title: "Contacter NULLL.CLUB",
+          title: "Contacter Nulll Club",
           description:
-            "Une question avant ta première sortie, une idée de partenariat ou un projet ? Écris à NULLL.CLUB."
+            "Une question avant ta première sortie, une idée de partenariat ou un projet ? Écris à Nulll Club."
         },
         checkout: {
-          title: "Finaliser ma commande | NULLL.CLUB",
+          title: "Finaliser ma commande | Nulll Club",
           description:
-            "Valide ta commande de merchandising NULLL.CLUB et envoie ta demande de confirmation."
+            "Valide ta commande de merchandising Nulll Club et envoie ta demande de confirmation."
         },
         news: {
-          title: "Actu du club | NULLL.CLUB",
+          title: "Actu du club | Nulll Club",
           description:
-            "Les nouvelles de NULLL.CLUB, le social run club d’Aix-en-Provence : sorties du samedi, annonces et vie du club."
+            "Les nouvelles de Nulll Club, le social run club d’Aix-en-Provence : sorties du samedi, annonces et vie du club."
         }
       },
       home: {
         hero: {
           title: "Le run club social qui fait vraiment bouger Aix-en-Provence.",
           intro:
-            "NULLL.CLUB organise des runs accessibles à Aix-en-Provence pour courir, rencontrer du monde et revenir un samedi sur deux avec une vraie raison de sortir.",
+            "Nulll Club organise des runs accessibles à Aix-en-Provence pour courir, rencontrer du monde et revenir un samedi sur deux avec une vraie raison de sortir.",
           primaryCta: "Voir les prochains runs",
           secondaryCta: "Découvrir la communauté",
           stats: [
@@ -288,7 +288,7 @@ export function getSiteCopy(locale: Locale) {
             "Une sélection courte qui prolonge l'énergie du club sans prendre la place du run.",
           seoTitle: "Pourquoi rejoindre un groupe de course à Aix ?",
           seoBody:
-            "Si tu cherches un run club à Aix-en-Provence, un club de running local ou un groupe de course convivial, NULLL.CLUB t’offre un format simple : des événements running récurrents, une communication claire et une communauté ouverte."
+            "Si tu cherches un run club à Aix-en-Provence, un club de running local ou un groupe de course convivial, Nulll Club t’offre un format simple : des événements running récurrents, une communication claire et une communauté ouverte."
         },
         faq: [
           {
@@ -336,7 +336,7 @@ export function getSiteCopy(locale: Locale) {
         // Deux temps : la coupure doit tomber au point, pas au milieu.
         punchlineLines: ["On a passé un an à regarder.", "Maintenant on avance."],
         intro:
-          "Pendant un an, on a eu de grandes idées. Le sport était la seule qui tenait dans nos semaines. Alors on s’est dit : pourquoi ne pas le partager avec des gens qu’on ne connaît pas ? NULLL.CLUB est parti de là.",
+          "Pendant un an, on a eu de grandes idées. Le sport était la seule qui tenait dans nos semaines. Alors on s’est dit : pourquoi ne pas le partager avec des gens qu’on ne connaît pas ? Nulll Club est parti de là.",
 
         // Les trois L du nom. Ils tiennent en un mot chacun : c'est ce qui les
         // rend citables. L'ordre suit l'histoire : on entre libre, on reste
@@ -467,7 +467,7 @@ export function getSiteCopy(locale: Locale) {
       aboutPage: {
         title: "Un club de running social, pas une posture.",
         intro:
-          "NULLL.CLUB existe pour rendre les sorties running à Aix-en-Provence plus simples à rejoindre, plus lisibles et plus humaines.",
+          "Nulll Club existe pour rendre les sorties running à Aix-en-Provence plus simples à rejoindre, plus lisibles et plus humaines.",
         values: [
           {
             title: "Clarté",
@@ -500,7 +500,7 @@ export function getSiteCopy(locale: Locale) {
           },
           {
             title: "Strava",
-            value: "NULLL CLUB",
+            value: "Nulll Club",
             text: "Rejoins le club sur Strava : l’événement du samedi, les rappels et les sorties de la bande.",
             href: "https://www.strava.com/clubs/nulllclub"
           },
@@ -518,7 +518,7 @@ export function getSiteCopy(locale: Locale) {
           },
           {
             title: "LinkedIn",
-            value: "NULLL.CLUB",
+            value: "Nulll Club",
             text: "Pour les partenaires, collaborations locales et projets de marque.",
             href: "https://www.linkedin.com/company/nulll-club/?viewAsMember=true"
           }
@@ -544,12 +544,12 @@ export function getSiteCopy(locale: Locale) {
         {
           key: "localClub",
           slug: "run-club-aix-en-provence",
-          title: "Run club à Aix-en-Provence | NULLL.CLUB",
+          title: "Run club à Aix-en-Provence | Nulll Club",
           description:
-            "Courir en groupe le samedi à Aix-en-Provence avec NULLL.CLUB. Retrouve les prochaines dates et les informations pratiques pour venir.",
+            "Courir en groupe le samedi à Aix-en-Provence avec Nulll Club. Retrouve les prochaines dates et les informations pratiques pour venir.",
           h1: "Run club à Aix-en-Provence : courir en groupe le samedi",
           intro:
-            "NULLL.CLUB propose des sorties gratuites le samedi à Aix-en-Provence. On court à une allure qui permet de discuter. Choisis une date pour retrouver l’heure, la distance et le point de départ.",
+            "Nulll Club propose des sorties gratuites le samedi à Aix-en-Provence. On court à une allure qui permet de discuter. Choisis une date pour retrouver l’heure, la distance et le point de départ.",
           sections: [
             {
               title: "Le rendez-vous en pratique",
@@ -618,7 +618,7 @@ export function getSiteCopy(locale: Locale) {
               title: "Courir accompagné change tout",
               body: [
                 "Un rendez-vous dans la semaine, des gens à retrouver : c’est souvent ce qui fait tenir l’habitude.",
-                "Pour courir en groupe le samedi, retrouve les prochaines sorties de NULLL.CLUB."
+                "Pour courir en groupe le samedi, retrouve les prochaines sorties de Nulll Club."
               ]
             },
             {
@@ -633,7 +633,7 @@ export function getSiteCopy(locale: Locale) {
         {
           key: "localEvents",
           slug: "evenements-running-aix",
-          title: "Les rendez-vous du club à Aix | NULLL.CLUB",
+          title: "Les rendez-vous du club à Aix | Nulll Club",
           description:
             "L’agenda des sorties running à Aix-en-Provence : rendez-vous du samedi 9h30, un samedi sur deux, événements du club et rencontres après la course.",
           h1: "Événements running à Aix-en-Provence",

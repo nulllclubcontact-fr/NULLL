@@ -35,7 +35,7 @@ export default async function ActuPage({ params }: PageProps) {
 
       <header className="border-b-2 border-[#773331] bg-[#EBA0CD]">
         <div className="shell max-w-[1180px] py-12 sm:py-16 lg:py-20">
-          <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Actu · NULLL.CLUB</p>
+          <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Actu · Nulll Club</p>
           <h1 className="mt-5 font-display text-[clamp(3rem,9vw,7rem)] uppercase leading-[1.02]">Ce qui bouge.</h1>
           <p className="mt-6 max-w-[52ch] text-[clamp(1.1rem,1.6vw,1.3rem)] font-bold leading-relaxed">
             Les nouvelles du club : les sorties, les annonces, la vie du samedi.

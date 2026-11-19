@@ -31,16 +31,16 @@ export type Actu = {
 export const actus: Actu[] = [
   {
     slug: "quatrieme-social-run-nulll-club-aix",
-    titre: "Quatrième social run de NULLL.CLUB à Aix : les photos",
+    titre: "Quatrième social run de Nulll Club à Aix : les photos",
     date: "2026-10-26",
     resume:
-      "Samedi 24 octobre, quatrième social run de NULLL.CLUB à Aix-en-Provence. On a couru, on est restés, on a ri. Les photos sont là.",
+      "Samedi 24 octobre, quatrième social run de Nulll Club à Aix-en-Provence. On a couru, on est restés, on a ri. Les photos sont là.",
     image: {
       src: "/assets/actus/quatrieme-run/01.webp",
-      alt: "Des membres de NULLL.CLUB partagent le ravito après le quatrième social run à Aix-en-Provence"
+      alt: "Des membres de Nulll Club partagent le ravito après le quatrième social run à Aix-en-Provence"
     },
     galerie: [
-      { src: "/assets/actus/quatrieme-run/01.webp", alt: "Des membres de NULLL.CLUB partagent le ravito après le quatrième social run à Aix-en-Provence", largeur: 1600, hauteur: 900 },
+      { src: "/assets/actus/quatrieme-run/01.webp", alt: "Des membres de Nulll Club partagent le ravito après le quatrième social run à Aix-en-Provence", largeur: 1600, hauteur: 900 },
       { src: "/assets/actus/quatrieme-run/02.webp", alt: "Des coureuses et coureurs du club sur un sentier, en pleine sortie", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/quatrieme-run/03.webp", alt: "Le groupe file sur un chemin bordé d’une barrière en bois, sous les arbres", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/quatrieme-run/04.webp", alt: "Éclats de rire entre coureuses après le run", largeur: 1600, hauteur: 900 },
@@ -63,7 +63,7 @@ export const actus: Actu[] = [
       {
         titre: "Et de quatre",
         paragraphes: [
-          "Samedi 24 octobre, NULLL.CLUB a couru son quatrième social run à Aix-en-Provence.",
+          "Samedi 24 octobre, Nulll Club a couru son quatrième social run à Aix-en-Provence.",
           "Même principe que d’habitude : pas de chrono, une allure qui laisse parler, et personne ne repart tout de suite."
         ]
       },
@@ -96,10 +96,10 @@ export const actus: Actu[] = [
     titre: "Romane rejoint NULLL comme associée",
     date: "2026-10-26",
     resume:
-      "Romane Fournier devient associée de NULLL.CLUB, le social run club d’Aix-en-Provence. Elle s’occupe du sport : la préparation des sorties et la recherche des tracés.",
+      "Romane Fournier devient associée de Nulll Club, le social run club d’Aix-en-Provence. Elle s’occupe du sport : la préparation des sorties et la recherche des tracés.",
     image: {
       src: "/assets/actus/bienvenue/15.webp",
-      alt: "Le peloton de NULLL.CLUB sur un chemin ombragé d’Aix-en-Provence pendant le social run du samedi"
+      alt: "Le peloton de Nulll Club sur un chemin ombragé d’Aix-en-Provence pendant le social run du samedi"
     },
     sections: [
       {
@@ -137,7 +137,7 @@ export const actus: Actu[] = [
       "Après chaque social run à Aix-en-Provence, tes photos t’attendent dans ton compte NULLL. Trois clics pour les télécharger, une par une ou toutes d’un coup.",
     image: {
       src: "/assets/actus/bienvenue/07.webp",
-      alt: "Trois membres de NULLL.CLUB posent après le social run du samedi à Aix-en-Provence"
+      alt: "Trois membres de Nulll Club posent après le social run du samedi à Aix-en-Provence"
     },
     sections: [
       {
@@ -160,7 +160,7 @@ export const actus: Actu[] = [
       video: {
         src: "/assets/actus/telecharger-photos/parcours.mp4",
         poster: "/assets/actus/telecharger-photos/parcours.webp",
-        description: "Le parcours en vidéo : de l’espace membre NULLL.CLUB jusqu’au téléchargement des photos d’une sortie.",
+        description: "Le parcours en vidéo : de l’espace membre Nulll Club jusqu’au téléchargement des photos d’une sortie.",
         duree: "PT8S"
       },
       etapes: [
@@ -169,7 +169,7 @@ export const actus: Actu[] = [
           texte: "Connecte-toi, puis touche Mes sorties dans la barre jaune de ton espace membre.",
           image: {
             src: "/assets/actus/telecharger-photos/etape-1.webp",
-            alt: "Espace membre NULLL.CLUB sur mobile, l’onglet Mes sorties est mis en évidence",
+            alt: "Espace membre Nulll Club sur mobile, l’onglet Mes sorties est mis en évidence",
             largeur: 720,
             hauteur: 1558
           }
@@ -209,7 +209,7 @@ export const actus: Actu[] = [
       "Après chaque sortie, les photos arrivent dans ton espace membre. Réservées aux inscrits, à télécharger une par une ou d’un coup.",
     image: {
       src: "/assets/actus/bienvenue/12.webp",
-      alt: "Un coureur reçoit une canette à l’arrivée d’une sortie NULLL.CLUB"
+      alt: "Un coureur reçoit une canette à l’arrivée d’une sortie Nulll Club"
     },
     sections: [
       {
@@ -247,7 +247,7 @@ export const actus: Actu[] = [
       "T’inscrire aux sorties, recevoir ton QR code, retrouver ton historique et les photos du run : tout passe par ton compte. Et il est gratuit.",
     image: {
       src: "/assets/actus/bienvenue/13.webp",
-      alt: "Quatre membres de NULLL.CLUB, canettes en main après la sortie"
+      alt: "Quatre membres de Nulll Club, canettes en main après la sortie"
     },
     sections: [
       {
@@ -289,7 +289,7 @@ export const actus: Actu[] = [
     titre: "Nos partenaires, et comment le devenir",
     date: "2026-09-28",
     resume:
-      "Red Bull et Bee Zen soutiennent NULLL.CLUB. Tu as une marque ou un commerce à Aix-en-Provence ? Voici comment rejoindre le club.",
+      "Red Bull et Bee Zen soutiennent Nulll Club. Tu as une marque ou un commerce à Aix-en-Provence ? Voici comment rejoindre le club.",
     image: {
       src: "/assets/actus/bienvenue/06.webp",
       alt: "Un membre de l’équipe tend des canettes devant la table des boissons après le run"
@@ -337,7 +337,7 @@ export const actus: Actu[] = [
       "Le club a son espace Strava : l’événement du samedi, les rappels, les publications et les sorties de la bande. Rejoins-le.",
     image: {
       src: "/assets/actus/bienvenue/15.webp",
-      alt: "Le peloton de NULLL.CLUB sur un chemin ombragé d’Aix-en-Provence"
+      alt: "Le peloton de Nulll Club sur un chemin ombragé d’Aix-en-Provence"
     },
     sections: [
       {
@@ -372,10 +372,10 @@ export const actus: Actu[] = [
       "Pas de chrono, pas de pression : un samedi sur deux à 9h30, on court ensemble 5 à 10 km à allure conversation, au départ du chemin de la Cible à Aix-en-Provence.",
     image: {
       src: "/assets/actus/bienvenue/01.webp",
-      alt: "Photo de groupe des coureurs de NULLL.CLUB au départ, sous les arbres"
+      alt: "Photo de groupe des coureurs de Nulll Club au départ, sous les arbres"
     },
     galerie: [
-      { src: "/assets/actus/bienvenue/01.webp", alt: "Photo de groupe des coureurs de NULLL.CLUB au départ, sous les arbres", largeur: 1380, hauteur: 920 },
+      { src: "/assets/actus/bienvenue/01.webp", alt: "Photo de groupe des coureurs de Nulll Club au départ, sous les arbres", largeur: 1380, hauteur: 920 },
       { src: "/assets/actus/bienvenue/02.webp", alt: "Des coureuses et coureurs du club le long d’un mur, en pleine sortie", largeur: 1066, hauteur: 1600 },
       { src: "/assets/actus/bienvenue/03.webp", alt: "Le groupe rassemblé à l’ombre avant de partir", largeur: 1066, hauteur: 1600 },
       { src: "/assets/actus/bienvenue/04.webp", alt: "Deux coureuses arrivent sur un chemin de terre", largeur: 1067, hauteur: 1600 },
@@ -410,7 +410,7 @@ export const actus: Actu[] = [
       {
         titre: "Comment venir",
         paragraphes: [
-          "Sur Strava, clique sur « Je participe » dans l’événement « Social Run du samedi » du club NULLL CLUB pour recevoir les rappels.",
+          "Sur Strava, clique sur « Je participe » dans l’événement « Social Run du samedi » du club Nulll Club pour recevoir les rappels.",
           "Et surtout, inscris-toi sur le site de NULLL : tu peux gagner des canettes, et même retrouver tes photos du run.",
           "Soyons nous. Soyons NULLL 🧡"
         ]

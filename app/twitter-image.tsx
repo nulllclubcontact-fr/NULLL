@@ -1,7 +1,7 @@
 import OpenGraphImage from "./opengraph-image";
 
 export const runtime = "edge";
-export const alt = "NULLL.CLUB";
+export const alt = "Nulll Club";
 export const size = {
   width: 1200,
   height: 630

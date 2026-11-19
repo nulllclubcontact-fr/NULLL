@@ -15,7 +15,7 @@ const CONTACT_EMAIL = process.env.CONTACT_TO || "contact@nulll.club";
  * Resend. Tant que nulll.club ne l'est pas, RESEND_FROM peut pointer sur
  * onboarding@resend.dev, qui fonctionne sans verification.
  */
-const FROM = process.env.RESEND_FROM || "NULLL.CLUB <onboarding@resend.dev>";
+const FROM = process.env.RESEND_FROM || "Nulll Club <onboarding@resend.dev>";
 
 /**
  * Limite d'envoi : 5 messages par quart d'heure et par adresse, comptes en

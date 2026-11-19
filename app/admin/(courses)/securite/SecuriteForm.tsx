@@ -42,7 +42,7 @@ export function SecuriteForm({ facteurs }: { facteurs: Facteur[] }) {
           if (f.status !== "verified") await supabase.auth.mfa.unenroll({ factorId: f.id });
         }
 
-        const { data, error } = await supabase.auth.mfa.enroll({ factorType: "totp", friendlyName: "NULLL admin", issuer: "NULLL.CLUB" });
+        const { data, error } = await supabase.auth.mfa.enroll({ factorType: "totp", friendlyName: "NULLL admin", issuer: "Nulll Club" });
 
         if (error || !data) {
           setErreur("Activation impossible pour le moment. La double vérification est-elle activée côté Supabase ?");

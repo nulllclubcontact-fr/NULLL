@@ -59,7 +59,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
                 aurait coupe les tetes ou les jambes. */}
             <div className="relative aspect-[4/5] overflow-hidden border-2 border-[#F1EDE9] shadow-[14px_14px_0_#EBA0CD]">
               <Image
-                alt="Tom Brenier et Tobias Ringot, fondateurs de NULLL.CLUB, dans une rue d’Aix-en-Provence"
+                alt="Tom Brenier et Tobias Ringot, fondateurs de Nulll Club, dans une rue d’Aix-en-Provence"
                 className="-scale-x-100 object-cover object-[50%_38%]"
                 fill
                 priority

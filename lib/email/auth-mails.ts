@@ -12,7 +12,7 @@ import { echapper, rendreEmail } from "./gabarit";
  * rien — et on le poste par Resend, avec SPF et DKIM au nom du domaine.
  */
 
-const FROM = process.env.RESEND_FROM_MEMBRES || "NULLL.CLUB <sorties@nulll.club>";
+const FROM = process.env.RESEND_FROM_MEMBRES || "Nulll Club <sorties@nulll.club>";
 const REPONSE = "contact@nulll.club";
 
 export function siteUrl() {
@@ -57,7 +57,7 @@ export async function creerCompteEtEnvoyerConfirmation(email: string, password: 
 
   await poster({
     to: [email],
-    subject: "Confirme ton adresse · NULLL.CLUB",
+    subject: "Confirme ton adresse · Nulll Club",
     text: [
       "Bienvenue au club !",
       "",
@@ -98,7 +98,7 @@ export async function envoyerLienMotDePasse(email: string) {
 
   await poster({
     to: [email],
-    subject: "Ton nouveau mot de passe · NULLL.CLUB",
+    subject: "Ton nouveau mot de passe · Nulll Club",
     text: [
       "Tu as demandé à changer ton mot de passe.",
       "",

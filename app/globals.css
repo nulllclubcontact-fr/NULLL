@@ -1201,6 +1201,11 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
   box-sizing: border-box;
   padding: calc(var(--p) * var(--marge)) calc(var(--p) * var(--marge)) 0;
   pointer-events: none;
+  /* Tant que la page n'a pas glisse sous la barre (premiers ~70 px), le
+     tour de la barre reste sombre : sinon on voyait le fond clair de la
+     page au-dessus de la photo. Il s'efface ensuite pour laisser la barre
+     flotter. */
+  background: rgb(20 17 22 / min(1, calc((1 - var(--p)) * 2.06)));
 }
 .site-header > * { pointer-events: auto; }
 .site-header-bar {

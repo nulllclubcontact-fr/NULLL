@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "NULLL.CLUB, social sport club à Aix-en-Provence";
+export const alt = "Nulll Club, social sport club à Aix-en-Provence";
 export const size = {
   width: 1200,
   height: 630
@@ -30,7 +30,7 @@ export default async function OpenGraphImage() {
       >
         <div style={{ display: "flex", flex: 1, flexDirection: "column", justifyContent: "space-between", padding: "64px 72px 48px" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <img alt="NULLL.CLUB" height={70} src={logo as unknown as string} width={548} />
+            <img alt="Nulll Club" height={70} src={logo as unknown as string} width={548} />
             <div
               style={{
                 display: "flex",

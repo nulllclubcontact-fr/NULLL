@@ -5,7 +5,7 @@ import { SiteFooter, SiteHeader } from "../components/site-shell";
 import { getRoute, getSiteCopy } from "../lib/site-content";
 
 export const metadata: Metadata = {
-  title: "Page introuvable | NULLL.CLUB",
+  title: "Page introuvable | Nulll Club",
   robots: { index: false, follow: true }
 };
 

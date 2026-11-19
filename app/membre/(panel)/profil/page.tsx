@@ -3,7 +3,7 @@ import { ProfilForm } from "./ProfilForm";
 import { SuppressionCompte } from "./SuppressionCompte";
 import { sessionServeur } from "../../../../lib/supabase/server";
 
-export const metadata = { title: "Mes infos | NULLL.CLUB", robots: { index: false, follow: false } };
+export const metadata = { title: "Mes infos | Nulll Club", robots: { index: false, follow: false } };
 
 export default async function MemberProfilPage() {
   // Une seule verification de session par requete : layout et page

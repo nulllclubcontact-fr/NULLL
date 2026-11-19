@@ -75,7 +75,7 @@ export default async function RunsPage({ params }: PageProps) {
       {/* ---------------- AFFICHE D'OUVERTURE ---------------- */}
       <section className="relative flex min-h-[calc(100dvh-82px)] flex-col overflow-hidden bg-[#773331] text-[#F1EDE9]" aria-labelledby="runs-title">
         <Image
-          alt="Un membre de NULLL.CLUB en pleine foulée sur un chemin, saisi en flou de mouvement"
+          alt="Un membre de Nulll Club en pleine foulée sur un chemin, saisi en flou de mouvement"
           className="object-cover object-[50%_54%]"
           fill
           priority

@@ -1,6 +1,6 @@
 import { RegisterForm } from "./RegisterForm";
 
-export const metadata = { title: "Créer mon compte | NULLL.CLUB", robots: { index: false, follow: false } };
+export const metadata = { title: "Créer mon compte | Nulll Club", robots: { index: false, follow: false } };
 import { AccountShell } from "../../../components/account-shell";
 import { fournisseursAuth } from "../../../lib/auth/reglages";
 import { sortieValide, suiteSortie } from "../../../lib/races/sortie-choisie";
@@ -12,7 +12,7 @@ export default async function MemberRegisterPage({ searchParams }: { searchParam
     <AccountShell
       eyebrow="Inscription membre"
       image="/assets/photos/apres-course-sol.webp"
-      imageAlt="Un membre de NULLL.CLUB assis au sol après une sortie, médaille de finisher et clés posées à côté de ses chaussures"
+      imageAlt="Un membre de Nulll Club assis au sol après une sortie, médaille de finisher et clés posées à côté de ses chaussures"
       imagePosition="50% 66%"
       footerLink={{ label: "Déjà un compte ?", href: `/membre/login${suiteSortie(sortie)}`, cta: "Se connecter" }}
       intro="Crée ton compte, choisis une sortie et retrouve son QR."

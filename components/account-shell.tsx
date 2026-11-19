@@ -41,7 +41,7 @@ export function AccountShell({
   children,
   image = "/assets/photos/coucher-soleil-calanques.webp",
   titleAccent,
-  imageAlt = "Coucher de soleil sur la mer depuis les hauteurs, après une sortie NULLL.CLUB",
+  imageAlt = "Coucher de soleil sur la mer depuis les hauteurs, après une sortie Nulll Club",
   imagePosition = "50% 45%",
   benefits = BENEFITS_PAR_DEFAUT,
   steps,

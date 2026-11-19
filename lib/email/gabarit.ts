@@ -78,7 +78,7 @@ export function rendreEmail({
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light only">
-<title>NULLL.CLUB</title>
+<title>Nulll Club</title>
 </head>
 <body style="margin:0;padding:0;background:${SOMBRE}">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0">${echapper(preheader)}</div>
@@ -88,7 +88,7 @@ export function rendreEmail({
   <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:600px;background:${CREME};border:2px solid ${BRUN}">
 
     <tr><td style="background:${BRUN};padding:20px 32px">
-      <span style="font-family:${TITRE};font-size:20px;letter-spacing:1px;color:${CREME}">NULLL.CLUB</span>
+      <span style="font-family:${TITRE};font-size:20px;letter-spacing:1px;color:${CREME}">Nulll Club</span>
       <span style="font-family:${TEXTE};font-size:11px;letter-spacing:2px;text-transform:uppercase;color:${ROSE};padding-left:12px">Aix-en-Provence</span>
     </td></tr>
 

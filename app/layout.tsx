@@ -42,7 +42,7 @@ const police_display = Anton({
 });
 
 /**
- * Les intitules en capitales du site — « 01 — NULLL.CLUB », les chapeaux —
+ * Les intitules en capitales du site — « 01 — Nulll Club », les chapeaux —
  * passaient par une machine a ecrire. Ils prennent desormais la meme
  * famille condensee que le reste.
  *
@@ -68,9 +68,9 @@ const police_main = Caveat({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nulll.club"),
-  title: "NULLL.CLUB | Run club gratuit à Aix-en-Provence",
+  title: "Nulll Club | Run club gratuit à Aix-en-Provence",
   description:
-    "NULLL.CLUB est un club de course ouvert à tous à Aix-en-Provence.",
+    "Nulll Club est un club de course ouvert à tous à Aix-en-Provence.",
   verification: {
     google: "fNfY1cH-yZV7xIDDC6nfD4skGeF04uJSexk94VyoQSY"
   },
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     apple: "/assets/brand/icone-n-rose-180.png"
   },
   openGraph: {
-    title: "NULLL.CLUB",
+    title: "Nulll Club",
     description: "Club de course ouvert à tous à Aix-en-Provence.",
     type: "website"
   }

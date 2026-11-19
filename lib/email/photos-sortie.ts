@@ -4,7 +4,7 @@ import { siteUrl } from "./auth-mails";
 import { echapper, rendreEmail } from "./gabarit";
 import { createSupabaseServiceClient } from "../supabase/service";
 
-const FROM = process.env.RESEND_FROM_MEMBRES || "NULLL.CLUB <sorties@nulll.club>";
+const FROM = process.env.RESEND_FROM_MEMBRES || "Nulll Club <sorties@nulll.club>";
 const REPONSE = "contact@nulll.club";
 
 type Inscrit = { user_id: string; profiles: { first_name: string | null } | null };
@@ -50,7 +50,7 @@ export async function envoyerPhotosDisponibles(raceId: string): Promise<{ envoye
         titre: "Les photos sont là.",
         intro: `Salut${prenom ? `, ${echapper(prenom)}` : ""} ! Les photos de la sortie du ${echapper(jour)} sont en ligne, rien que pour les inscrits.`,
         bouton: { libelle: "Télécharger les photos", href: lien },
-        pied: "Le lien s’ouvre dans ton espace membre NULLL.CLUB."
+        pied: "Le lien s’ouvre dans ton espace membre Nulll Club."
       })
     });
   }

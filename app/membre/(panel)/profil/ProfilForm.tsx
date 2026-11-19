@@ -78,7 +78,7 @@ export function ProfilForm({ valeurs, email }: { valeurs: Valeurs; email: string
       <fieldset className="grid gap-3 border-2 border-[#773331] p-4" id="photos" style={{ "--pas": 5 } as React.CSSProperties}>
         <legend className="px-2 font-mono text-xs font-black uppercase tracking-[.14em]">Photos et vidéos</legend>
         <p className="text-sm font-bold leading-snug text-[#773331]">
-          On prend des photos et des vidéos pendant les sorties. Est-ce que tu acceptes d’y apparaître, et que NULLL.CLUB
+          On prend des photos et des vidéos pendant les sorties. Est-ce que tu acceptes d’y apparaître, et que Nulll Club
           les publie sur son site et ses réseaux ? Tu peux changer d’avis quand tu veux.
           {valeurs.consent_image === null ? " Tu n’as pas encore répondu." : ""}
         </p>

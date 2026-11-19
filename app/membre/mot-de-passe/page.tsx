@@ -4,7 +4,7 @@ import { AccountShell } from "../../../components/account-shell";
 import { createSupabaseServerClient } from "../../../lib/supabase/server";
 
 export const metadata = {
-  title: "Nouveau mot de passe | NULLL.CLUB",
+  title: "Nouveau mot de passe | Nulll Club",
   robots: { index: false, follow: false }
 };
 
@@ -34,7 +34,7 @@ export default async function MemberPasswordPage() {
       benefits={[]}
       eyebrow="Espace membre"
       image="/assets/photos/medaille-bouche.webp"
-      imageAlt="Un membre de NULLL.CLUB mord sa médaille de finisher, la mer en arrière-plan"
+      imageAlt="Un membre de Nulll Club mord sa médaille de finisher, la mer en arrière-plan"
       intro={connecte ? "Choisis-en un nouveau, et tu repars comme avant." : "Ce lien n’est plus valable. Demande un nouveau lien pour changer ton mot de passe."}
       ticker="Un nouveau mot de passe"
       title="Un nouveau"

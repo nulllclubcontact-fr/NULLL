@@ -76,7 +76,7 @@ export function SiteHeader({
       </a>
       <div className="site-header-bar mx-auto flex items-center gap-3 px-4 sm:px-6 lg:gap-6 lg:px-8">
         <Link className="flex shrink-0 items-center rounded-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={getRoute(locale, "home")}>
-          <Image alt="NULLL.CLUB" className="site-header-logo h-auto" height={313} priority sizes="(min-width: 1280px) 144px, (min-width: 640px) 128px, 112px" src="/assets/nulll-new/logo-cream.png" width={2449} />
+          <Image alt="Nulll Club" className="site-header-logo h-auto" height={313} priority sizes="(min-width: 1280px) 144px, (min-width: 640px) 128px, 112px" src="/assets/nulll-new/logo-cream.png" width={2449} />
         </Link>
         <nav aria-label="Navigation principale" className="mx-auto hidden items-center gap-1 lg:flex">
           {copy.nav.map((item: { key: RouteKey; label: string }) => (
@@ -121,7 +121,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
       <div className="mx-auto max-w-[1500px] px-5 pt-16 sm:px-8 sm:pt-20 xl:px-12">
         <div className="grid gap-x-8 gap-y-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <Image alt="NULLL.CLUB" className="h-auto w-40" height={313} sizes="160px" src="/assets/nulll-new/logo-cream.png" width={2449} />
+            <Image alt="Nulll Club" className="h-auto w-40" height={313} sizes="160px" src="/assets/nulll-new/logo-cream.png" width={2449} />
             <p className="mt-6 max-w-sm text-[1.05rem] leading-relaxed text-white/70">
               Social sport club à Aix-en-Provence. Courir ensemble, couper la semaine, et revenir avec autre chose qu’un chrono.
             </p>
@@ -174,7 +174,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
       <div className="mx-auto max-w-[1500px] px-5 pb-6 sm:px-8 xl:px-12">
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-1 border-t border-white/10 pt-4 font-mono text-xs uppercase tracking-[.12em] text-white/55 sm:justify-between">
           <span>
-            © 2026 NULLL.CLUB · Fait avec <span aria-label="amour" className="text-[#E8459E]" role="img">♥</span> par{" "}
+            © 2026 Nulll Club · Fait avec <span aria-label="amour" className="text-[#E8459E]" role="img">♥</span> par{" "}
             <a className="underline decoration-1 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href="https://oculot.studio" rel="noopener" target="_blank">
               oculot.studio
             </a>
@@ -278,7 +278,7 @@ export function SectionTitle({
   const HeadingTag = as;
   return (
     <div className="space-y-4">
-      <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">{index} / NULLL.CLUB</p>
+      <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">{index} / Nulll Club</p>
       <HeadingTag className="max-w-4xl font-display text-[clamp(2.8rem,6.4vw,6rem)] uppercase leading-[0.94]">{title}</HeadingTag>
       {text ? <p className="max-w-2xl text-xl font-bold leading-tight text-[#773331]">{text}</p> : null}
     </div>

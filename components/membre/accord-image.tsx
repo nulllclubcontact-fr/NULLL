@@ -72,7 +72,7 @@ export function AccordImage({ prenom }: { prenom: string | null }) {
         <form action={repondre} className="flex min-h-0 flex-col">
           <div className="grid gap-4 overflow-y-auto overscroll-contain px-5 py-5 sm:px-7 sm:py-6">
             <p className="text-base leading-relaxed" id="accord-image-texte">
-              On prend des photos et des vidéos pendant les sorties, pour le site et les réseaux de NULLL.CLUB. Tu es
+              On prend des photos et des vidéos pendant les sorties, pour le site et les réseaux de Nulll Club. Tu es
               d’accord pour y apparaître ? C’est facultatif, ça ne change rien à ta venue, et tu pourras changer d’avis
               à tout moment dans Mon profil.
             </p>

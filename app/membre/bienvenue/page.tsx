@@ -6,7 +6,7 @@ import { destinationMembre, sortieValide } from "../../../lib/races/sortie-chois
 
 export const dynamic = "force-dynamic";
 
-export const metadata = { title: "Bienvenue | NULLL.CLUB", robots: { index: false, follow: false } };
+export const metadata = { title: "Bienvenue | Nulll Club", robots: { index: false, follow: false } };
 
 /**
  * Etape unique des comptes ouverts par Google ou Apple : verifier son nom
@@ -45,7 +45,7 @@ export default async function BienvenuePage({ searchParams }: { searchParams: Pr
       benefits={[]}
       eyebrow="Dernière étape"
       image="/assets/photos/apres-course-sol.webp"
-      imageAlt="Un membre de NULLL.CLUB assis au sol après une sortie, médaille de finisher et clés posées à côté de ses chaussures"
+      imageAlt="Un membre de Nulll Club assis au sol après une sortie, médaille de finisher et clés posées à côté de ses chaussures"
       imagePosition="50% 66%"
       intro="Vérifie ton nom et lis la décharge avant de choisir ta sortie."
       ticker="Bienvenue au club"

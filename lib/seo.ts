@@ -19,8 +19,8 @@ export function buildWebSiteSchema(locale: Locale) {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    name: "NULLL.CLUB",
-    alternateName: ["NULLL", "NULLL Club", "Nulll Club Aix-en-Provence"],
+    name: "Nulll Club",
+    alternateName: ["NULLL.CLUB", "NULLL", "Nulll Club Aix-en-Provence"],
     url: `${SITE_URL}${getRoute(locale, "home")}`,
     inLanguage: "fr-FR",
     publisher: { "@id": ORG_ID },
@@ -79,7 +79,7 @@ export function buildPageMetadata({
       title,
       description,
       url: canonical,
-      siteName: "NULLL.CLUB",
+      siteName: "Nulll Club",
       locale: "fr_FR",
       type: "website",
       images: [
@@ -124,12 +124,12 @@ export function buildOrganizationSchema(locale: Locale) {
   return {
     "@context": "https://schema.org",
     // SportsClub (sous-type d'Organization et de LocalBusiness) correspond a
-    // ce qu'est NULLL.CLUB : une association, pas un simple lieu de pratique.
+    // ce qu'est Nulll Club : une association, pas un simple lieu de pratique.
     // Une seule fiche, plutot qu'une Organization et un SportsClub en double.
     "@type": "SportsClub",
     "@id": ORG_ID,
-    name: "NULLL.CLUB",
-    alternateName: ["NULLL", "NULLL Club", "NULLL Run Club Aix-en-Provence"],
+    name: "Nulll Club",
+    alternateName: ["NULLL.CLUB", "NULLL", "Nulll Run Club Aix-en-Provence"],
     description:
       "Social sport club d’Aix-en-Provence : une sortie running gratuite un samedi sur deux à 9h30, ouverte à tous les niveaux, à une allure qui permet de discuter.",
     url: `${SITE_URL}${getRoute(locale, "home")}`,
@@ -208,7 +208,7 @@ export function buildEventSchema(event: {
     organizer: {
       "@type": "Organization",
       "@id": ORG_ID,
-      name: "NULLL.CLUB",
+      name: "Nulll Club",
       url: `${SITE_URL}${getRoute(event.locale, "home")}`
     },
     ...(event.ouverte === false
@@ -263,10 +263,10 @@ export function buildNewsArticleSchema(actu: {
           }
         }
       : {}),
-    author: { "@type": "Organization", "@id": ORG_ID, name: "NULLL.CLUB", url: SITE_URL },
+    author: { "@type": "Organization", "@id": ORG_ID, name: "Nulll Club", url: SITE_URL },
     publisher: {
       "@type": "Organization",
-      name: "NULLL.CLUB",
+      name: "Nulll Club",
       logo: { "@type": "ImageObject", url: `${SITE_URL}/assets/brand/icone-n-rose.png` }
     }
   };
@@ -281,7 +281,7 @@ export function buildActuMetadata({ titre, resume, date, image, url }: {
   url: string;
 }): Metadata {
   const canonical = `${SITE_URL}${url}`;
-  const title = `${titre} | NULLL.CLUB`;
+  const title = `${titre} | Nulll Club`;
   return {
     title,
     description: resume,
@@ -290,7 +290,7 @@ export function buildActuMetadata({ titre, resume, date, image, url }: {
       title,
       description: resume,
       url: canonical,
-      siteName: "NULLL.CLUB",
+      siteName: "Nulll Club",
       locale: "fr_FR",
       type: "article",
       publishedTime: date,

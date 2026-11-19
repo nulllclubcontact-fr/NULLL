@@ -4,7 +4,7 @@ import { niveauVerification } from "../../../lib/admin/require-admin";
 import { sessionServeur } from "../../../lib/supabase/server";
 import { VerificationForm } from "./VerificationForm";
 
-export const metadata = { title: "Vérification | NULLL.CLUB", robots: { index: false, follow: false } };
+export const metadata = { title: "Vérification | Nulll Club", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
 
 /**

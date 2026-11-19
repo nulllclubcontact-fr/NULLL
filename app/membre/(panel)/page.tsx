@@ -10,7 +10,7 @@ import { sortieValide } from "../../../lib/races/sortie-choisie";
 import { sessionServeur } from "../../../lib/supabase/server";
 import type { RegistrationWithRace } from "../../../lib/races/types";
 
-export const metadata = { title: "Mon espace | NULLL.CLUB", robots: { index: false, follow: false } };
+export const metadata = { title: "Mon espace | Nulll Club", robots: { index: false, follow: false } };
 
 const JOUR_NUMERO = new Intl.DateTimeFormat("fr-FR", { day: "2-digit", timeZone: "Europe/Paris" });
 const JOUR_NOM = new Intl.DateTimeFormat("fr-FR", { weekday: "long", timeZone: "Europe/Paris" });

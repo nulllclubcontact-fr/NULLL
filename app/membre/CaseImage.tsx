@@ -11,7 +11,7 @@ export function CaseImage({ pas, defaultChecked = false }: { pas: number; defaul
     >
       <input className="mt-0.5 h-6 w-6 shrink-0 accent-[#EBA0CD]" defaultChecked={defaultChecked} name="image" type="checkbox" />
       <span>
-        Facultatif. J’accepte d’être pris·e en photo ou filmé·e pendant les sorties, et que NULLL.CLUB publie ces images
+        Facultatif. J’accepte d’être pris·e en photo ou filmé·e pendant les sorties, et que Nulll Club publie ces images
         sur son site et ses réseaux. Je peux changer d’avis à tout moment depuis mon profil.
       </span>
     </label>

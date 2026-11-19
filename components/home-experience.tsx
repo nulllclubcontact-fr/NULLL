@@ -38,11 +38,11 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         <HeroPhoto />
         <div className="hx-hero-shade" aria-hidden="true" />
         <div className="hx-hero-copy">
-          <p className="st st-yellow hx-hero-kicker">Run club gratuit · Aix-en-Provence</p>
           <h1 id="home-title" className="hx-hero-title">
-            <span className="st st-pink">NULLL.CLUB</span>
+            <span className="st st-yellow hx-hero-kicker">Le run club gratuit d’Aix-en-Provence</span>
+            <span className="st st-pink">On court ensemble</span>
           </h1>
-          <p className="hx-hero-support">On court ensemble, on se rencontre, et on recommence samedi.</p>
+          <p className="hx-hero-support">On se rencontre, on discute, et on recommence samedi.</p>
           <div className="hx-hero-cta">
             <Link className="hx-pill" href={runsHref}><span>Choisir ma sortie</span><ArrowIcon /></Link>
             <span className="hx-note">Gratuit · tous niveaux · tu peux venir seul</span>
@@ -99,7 +99,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
       </section>
 
       <section className="hx-together" aria-label="Courir ensemble, à allure conversation">
-        <Image src="/assets/actus/bienvenue/01.webp" alt="Tout le groupe de NULLL.CLUB réuni après une sortie, assis et debout dans le parc" fill sizes="100vw" />
+        <Image src="/assets/actus/bienvenue/01.webp" alt="Tout le groupe de Nulll Club réuni après une sortie, assis et debout dans le parc" fill sizes="100vw" />
         <div className="hx-together-shade" aria-hidden="true" />
         <div className="hx-together-copy">
           <p className="st st-cream">On vient pour courir.</p>
@@ -159,7 +159,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
             <span className="st st-blue">à Aix-en-Provence</span>
           </h2>
           <p>
-            NULLL.CLUB est un social sport club associatif à Aix-en-Provence. On se retrouve
+            Nulll Club est un social sport club associatif à Aix-en-Provence. On se retrouve
             <strong> le samedi à 9h30</strong>, départ à 10h, pour courir ensemble, à une allure qui permet de discuter.
             Les prochaines dates et leurs infos pratiques sont sur la page Sorties.
           </p>
@@ -185,7 +185,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
           <span className="st st-magenta st-xl">du club</span>
         </h2>
         <div className="hx-explore-grid">
-          <ExploreTile href={communityHref} image="/assets/actus/bienvenue/13.webp" alt="Une bande de membres du club discute, canette à la main" label="Le club" text="D’où vient NULLL.CLUB, et pourquoi trois L." couleur="st-pink" />
+          <ExploreTile href={communityHref} image="/assets/actus/bienvenue/13.webp" alt="Une bande de membres du club discute, canette à la main" label="Le club" text="D’où vient Nulll Club, et pourquoi trois L." couleur="st-pink" />
           <ExploreTile href={merchHref} image="/assets/actus/quatrieme-run/05.webp" alt="Un coureur en maillot rose, tout sourire après la sortie" label="Merch" text="Les pièces du club, quand elles sont dispo." couleur="st-yellow" />
           <ExploreTile href={aboutHref} image="/assets/actus/quatrieme-run/07.webp" alt="Une coureuse en sweat jaune raconte sa sortie au groupe" label="Contact" text="Une question avant de venir samedi ?" couleur="st-blue" />
         </div>
@@ -208,7 +208,7 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
 
 /** Photo d'ouverture : paysage sur ordinateur, portrait sur telephone. */
 function HeroPhoto() {
-  const commun = { alt: "Des membres de NULLL.CLUB tout sourire après une sortie à Aix-en-Provence", priority: true, sizes: "100vw" } as const;
+  const commun = { alt: "Des membres de Nulll Club tout sourire après une sortie à Aix-en-Provence", priority: true, sizes: "100vw" } as const;
   const {
     props: { srcSet: large }
   } = getImageProps({ ...commun, width: 1600, height: 900, src: "/assets/actus/quatrieme-run/01.webp" });

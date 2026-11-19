@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AccountHeader } from "../../../components/account-shell";
 
 export const metadata = {
-  title: "Compte supprimé | NULLL.CLUB",
+  title: "Compte supprimé | Nulll Club",
   robots: { index: false, follow: false }
 };
 

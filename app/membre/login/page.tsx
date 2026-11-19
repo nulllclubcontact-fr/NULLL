@@ -1,6 +1,6 @@
 import { LoginForm } from "./LoginForm";
 
-export const metadata = { title: "Connexion membre | NULLL.CLUB", robots: { index: false, follow: false } };
+export const metadata = { title: "Connexion membre | Nulll Club", robots: { index: false, follow: false } };
 import { AccountShell } from "../../../components/account-shell";
 import { fournisseursAuth } from "../../../lib/auth/reglages";
 import { redirect } from "next/navigation";
@@ -47,7 +47,7 @@ export default async function MemberLoginPage({
     <AccountShell
       eyebrow="Espace membre"
       image="/assets/photos/medaille-bouche.webp"
-      imageAlt="Un membre de NULLL.CLUB mord sa médaille de finisher, la mer en arrière-plan"
+      imageAlt="Un membre de Nulll Club mord sa médaille de finisher, la mer en arrière-plan"
       footerLink={{ label: "Pas encore de compte ?", href: `/membre/register${suiteSortie(sortie)}`, cta: "S’inscrire" }}
       intro="Retrouve tes sorties et le QR à montrer en arrivant."
       ticker="Samedi 9h30 · Aix-en-Provence · Gratuit · Tous les niveaux"

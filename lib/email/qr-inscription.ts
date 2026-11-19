@@ -10,7 +10,7 @@ import { echapper, rendreEmail } from "./gabarit";
  * chez Resend : tant que nulll.club ne l'est pas, Resend refuse l'envoi et
  * seule la trace console en garde la marque. L'inscription, elle, passe.
  */
-const FROM = process.env.RESEND_FROM_MEMBRES || "NULLL.CLUB <sorties@nulll.club>";
+const FROM = process.env.RESEND_FROM_MEMBRES || "Nulll Club <sorties@nulll.club>";
 const REPONSE = "contact@nulll.club";
 
 type Inscription = {
@@ -92,7 +92,7 @@ export async function construireMailQr({
 
   const corps = `<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
     <tr><td align="center" style="padding:8px 0 20px">
-      <img src="cid:qr-inscription" width="240" height="240" alt="Ton QR code NULLL.CLUB" style="display:block;width:240px;height:240px;border:2px solid #773331;background:#ffffff">
+      <img src="cid:qr-inscription" width="240" height="240" alt="Ton QR code Nulll Club" style="display:block;width:240px;height:240px;border:2px solid #773331;background:#ffffff">
     </td></tr>
     <tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#773331;background:#FFB200;border:2px solid #773331;padding:14px 18px">
       <strong style="text-transform:uppercase">${echapper(jour)} · ${echapper(heure)}${echapper(distance)}</strong><br>

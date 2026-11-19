@@ -34,7 +34,7 @@ export function SeoArticleView({
       <article>
         <header className="border-b-2 border-[#773331] bg-[#EBA0CD]">
           <div className="shell max-w-[1180px] py-12 sm:py-16 lg:py-20">
-            <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Guide · NULLL.CLUB</p>
+            <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Guide · Nulll Club</p>
             <h1 className="mt-5 max-w-[22ch] font-display text-[clamp(2.4rem,6vw,4.6rem)] uppercase leading-[1.08] tracking-[-.01em] [text-wrap:balance]">
               {article.h1}
             </h1>

@@ -31,7 +31,7 @@ export function BienvenueForm({ prenom, nom, sortie }: { prenom: string; nom: st
       >
         <input checked={accepted} className="mt-0.5 h-6 w-6 shrink-0 accent-[#EBA0CD]" name="waiver" onChange={(event) => setAccepted(event.target.checked)} type="checkbox" />
         <span>
-          J’ai lu et j’accepte la décharge de responsabilité : je participe aux activités de NULLL.CLUB sous ma propre
+          J’ai lu et j’accepte la décharge de responsabilité : je participe aux activités de Nulll Club sous ma propre
           responsabilité, je reconnais les risques liés à la course à pied et je renonce à tout recours, sauf faute de
           l’organisateur.{" "}
           <Link className="inline-flex min-h-11 items-center font-black text-[#773331] underline decoration-[#EBA0CD] decoration-2 underline-offset-4" href="/membre/decharge?depuis=bienvenue" rel="noopener" target="_blank">

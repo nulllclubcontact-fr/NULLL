@@ -7,8 +7,8 @@ import { getSiteCopy } from "../../lib/site-content";
 import { SiteFooter } from "../../components/site-shell";
 
 export const metadata = {
-  title: "S'identifier | NULLL.CLUB",
-  description: "Connexion membre, inscription membre et accès professionnel partenaire NULLL.CLUB.",
+  title: "S'identifier | Nulll Club",
+  description: "Connexion membre, inscription membre et accès professionnel partenaire Nulll Club.",
   // Page passerelle vers les espaces prives : aucun interet dans les resultats.
   robots: { index: false, follow: false }
 };
