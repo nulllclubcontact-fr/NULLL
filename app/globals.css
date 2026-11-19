@@ -1290,3 +1290,13 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
 .da .da-stack > .st:nth-child(1) { --r: -2deg; position: relative; z-index: 2; }
 .da .da-stack > .st:nth-child(2) { --r: 1deg; margin-top: .06em; }
 .da .da-stack > .st:nth-child(3) { --r: -1deg; margin-top: .06em; }
+
+/* Admin : version sobre, pensee pour lire vite. Bordures fines, pas
+   d'etiquettes penchees, gros titres ramenes a une taille de travail. */
+.da-admin .border-2 { border-width: 1px; }
+.da-admin .border-white\/15 { border-color: rgb(255 255 255 / .1); }
+.da-admin .st { rotate: none; }
+.da-admin main h1.font-display { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; }
+.da-admin table th { color: rgb(255 255 255 / .6); font-weight: 700; }
+.da-admin table td { border-color: rgb(255 255 255 / .08); }
+.da-admin .primary-button, .da-admin .primary-link, .da-admin .secondary-link { font-size: 1rem; min-height: 2.75rem; padding: .7rem 1rem; }

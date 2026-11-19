@@ -34,12 +34,12 @@ export function AccordImage({ prenom }: { prenom: string | null }) {
   }
 
   return (
-    <div className="fixed inset-0 z-[90] grid place-items-center bg-[#3A1A18]/80 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]" role="presentation">
+    <div className="fixed inset-0 z-[90] grid place-items-center bg-[#141116]/80 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]" role="presentation">
       <div
         aria-describedby="accord-image-texte"
         aria-labelledby="accord-image-titre"
         aria-modal="true"
-        className="flex max-h-[calc(100dvh-2rem-env(safe-area-inset-bottom))] w-full max-w-xl outline-none flex-col overflow-hidden border-2 border-[#773331] bg-[#F1EDE9] text-[#773331] shadow-[10px_10px_0_#EBA0CD]"
+        className="flex max-h-[calc(100dvh-2rem-env(safe-area-inset-bottom))] w-full max-w-xl outline-none flex-col overflow-hidden border-2 border-white/15 bg-[#141116] text-white"
         onKeyDown={(event) => {
           if (event.key === "Escape") {
             event.preventDefault();
@@ -62,7 +62,7 @@ export function AccordImage({ prenom }: { prenom: string | null }) {
         role="dialog"
         tabIndex={-1}
       >
-        <div className="shrink-0 border-b-2 border-[#773331] bg-[#EBA0CD] px-5 py-4 sm:px-7">
+        <div className="shrink-0 border-b-2 border-white/15 bg-[#E8459E] px-5 py-4 sm:px-7">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Une question{prenom ? `, ${prenom}` : ""}</p>
           <h2 className="mt-2 font-display text-[clamp(1.9rem,6vw,2.6rem)] uppercase leading-[1.12]" id="accord-image-titre">
             Photos et vidéos
@@ -78,13 +78,13 @@ export function AccordImage({ prenom }: { prenom: string | null }) {
             </p>
 
             {etat.error ? (
-              <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
+              <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
                 {etat.error}
               </p>
             ) : null}
           </div>
 
-          <div className="grid shrink-0 gap-2 border-t-2 border-[#773331] px-3 py-3 sm:grid-cols-2 sm:px-7">
+          <div className="grid shrink-0 gap-2 border-t-2 border-white/15 px-3 py-3 sm:grid-cols-2 sm:px-7">
             <button className="primary-button justify-center" disabled={enCours} name="image" type="submit" value="oui">
               Oui, ça me va
             </button>

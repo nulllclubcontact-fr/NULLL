@@ -99,13 +99,13 @@ export default async function AdminPartenairePage({ params }: { params: Promise<
   return (
     <section className="shell grid gap-12 py-8 lg:py-12">
       <header>
-        <Link className="font-mono text-xs font-black uppercase tracking-[.14em] hover:underline hover:decoration-[#EBA0CD] hover:decoration-2" href="/admin/reseau">
+        <Link className="font-mono text-xs font-black uppercase tracking-[.14em] hover:underline hover:decoration-[#E8459E] hover:decoration-2" href="/admin/reseau">
           ← Tous les partenaires
         </Link>
         <div className="mt-5 flex flex-wrap items-center gap-4">
           <h1 className="font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[.95]">
             {partenaire.name}
-            <span className="text-[#EBA0CD]">.</span>
+            <span className="text-[#E8459E]">.</span>
           </h1>
           {partenaire.active ? <Etiquette teinte="bordeaux">Actif</Etiquette> : <Etiquette pointillee teinte="creme">Désactivé</Etiquette>}
         </div>
@@ -113,7 +113,7 @@ export default async function AdminPartenairePage({ params }: { params: Promise<
           Partenaire depuis le {DEPUIS.format(new Date(partenaire.created_at))}
           {" · "}
           {partenaire.contact_email ? (
-            <a className="underline decoration-[#EBA0CD] decoration-2 underline-offset-4" href={`mailto:${partenaire.contact_email}`}>
+            <a className="underline decoration-[#E8459E] decoration-2 underline-offset-4" href={`mailto:${partenaire.contact_email}`}>
               {partenaire.contact_email}
             </a>
           ) : (
@@ -189,15 +189,15 @@ export default async function AdminPartenairePage({ params }: { params: Promise<
 
           <div>
             <Intitule>Accès à l’espace pro</Intitule>
-            <div className="mt-5 grid gap-3 border-2 border-[#773331] p-5">
+            <div className="mt-5 grid gap-3 border-2 border-white/15 p-5">
               <p className="flex items-center justify-between gap-4 font-mono text-xs font-black uppercase tracking-[.1em]">
                 Codes actifs <span>{codesActifs}</span>
               </p>
               <p className="flex items-center justify-between gap-4 font-mono text-xs font-black uppercase tracking-[.1em]">
                 Dernière connexion
-                <span className={derniereConnexion ? "" : "bg-[#FFB200] px-2 py-1"}>{derniereConnexion ? formatJourCourt(derniereConnexion) : "jamais"}</span>
+                <span className={derniereConnexion ? "" : "bg-[#FFC531] px-2 py-1"}>{derniereConnexion ? formatJourCourt(derniereConnexion) : "jamais"}</span>
               </p>
-              <div className="mt-2 border-t-2 border-[#773331] pt-4">
+              <div className="mt-2 border-t-2 border-white/15 pt-4">
                 <NouveauCodeForm aDejaUnCode={codesActifs > 0} partnerId={partenaire.id} />
               </div>
             </div>
@@ -217,7 +217,7 @@ export default async function AdminPartenairePage({ params }: { params: Promise<
         <div>
           <Intitule>Dernières ventes</Intitule>
           {ventes.length === 0 ? (
-            <p className="mt-5 border-2 border-dashed border-[#773331] p-6 font-bold">
+            <p className="mt-5 border-2 border-dashed border-white/15 p-6 font-bold">
               Rien de scanné pour l’instant. Les ventes arrivent ici dès que le partenaire scanne un QR membre depuis son espace pro.
             </p>
           ) : (
@@ -225,16 +225,16 @@ export default async function AdminPartenairePage({ params }: { params: Promise<
               <table className="w-full min-w-[34rem] border-collapse text-left">
                 <thead>
                   <tr className="font-mono text-xs font-black uppercase tracking-[.14em]">
-                    <th className="border-b-2 border-[#773331] pb-2 pr-4">Quand</th>
-                    <th className="border-b-2 border-[#773331] pb-2 pr-4">Membre</th>
-                    <th className="border-b-2 border-[#773331] pb-2 pr-4">Libellé</th>
-                    <th className="border-b-2 border-[#773331] pb-2 pr-4 text-right">Montant</th>
-                    <th className="border-b-2 border-[#773331] pb-2 text-right">Points</th>
+                    <th className="border-b-2 border-white/15 pb-2 pr-4">Quand</th>
+                    <th className="border-b-2 border-white/15 pb-2 pr-4">Membre</th>
+                    <th className="border-b-2 border-white/15 pb-2 pr-4">Libellé</th>
+                    <th className="border-b-2 border-white/15 pb-2 pr-4 text-right">Montant</th>
+                    <th className="border-b-2 border-white/15 pb-2 text-right">Points</th>
                   </tr>
                 </thead>
                 <tbody>
                   {ventes.slice(0, 20).map((v) => (
-                    <tr className="border-b border-[#773331]/30 transition hover:bg-[#EBA0CD]/35" key={v.id}>
+                    <tr className="border-b border-white/30 transition hover:bg-[#E8459E]/35" key={v.id}>
                       <td className="py-3 pr-4 font-mono text-xs font-bold">
                         {formatJourCourt(v.created_at)} · {formatHeure(v.created_at)}
                       </td>

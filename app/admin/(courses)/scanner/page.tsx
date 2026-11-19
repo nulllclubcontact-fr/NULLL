@@ -25,14 +25,14 @@ export default async function AdminScannerPage({
   return (
     <section className="scanner-page shell grid gap-6 py-6 lg:py-10">
       <header>
-        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#773331]">Administration</p>
+        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-white">Administration</p>
         <h1 className="mt-3 font-display text-[clamp(2.2rem,6vw,3.6rem)] uppercase leading-[.95]">
-          Scanner<span className="text-[#EBA0CD]">.</span>
+          Scanner<span className="text-[#E8459E]">.</span>
         </h1>
       </header>
 
       {courses.length === 0 ? (
-        <p className="border-2 border-dashed border-[#773331]/30 p-6 font-bold text-[#773331]">
+        <p className="border-2 border-dashed border-white/30 p-6 font-bold text-white">
           Aucune sortie à pointer. Publie-en une d’abord.
         </p>
       ) : (

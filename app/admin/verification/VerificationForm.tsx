@@ -69,7 +69,7 @@ export function VerificationForm() {
       </label>
 
       {erreur ? (
-        <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
+        <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
           {erreur}
         </p>
       ) : null}

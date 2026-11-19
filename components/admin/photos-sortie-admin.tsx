@@ -15,7 +15,7 @@ import { createSupabaseBrowserClient } from "../../lib/supabase/client";
 import { BUCKET_PHOTOS_SORTIES, COTE_MINIATURE, TYPES_PHOTO_SORTIE } from "../../lib/photos-sorties/regles";
 import type { PhotoSortie } from "../../lib/photos-sorties/lister";
 
-const BOUTON = "inline-flex min-h-11 items-center border-2 border-[#773331] px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition";
+const BOUTON = "inline-flex min-h-11 items-center border-2 border-white/15 px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition";
 const initial: PhotosSortieState = {};
 
 /**
@@ -86,9 +86,9 @@ export function PhotosSortieAdmin({ raceId, photos, nomArchive }: { raceId: stri
   const enCours = progression !== null;
 
   return (
-    <div className="grid gap-5 border-2 border-[#773331] bg-[#F1EDE9] p-4 sm:p-5">
+    <div className="grid gap-5 border-2 border-white/15 bg-[#141116] p-4 sm:p-5">
       <div className="flex flex-wrap items-center gap-3">
-        <label className={`${BOUTON} cursor-pointer bg-[#EBA0CD] hover:bg-[#FFB200] ${enCours ? "pointer-events-none opacity-70" : ""}`}>
+        <label className={`${BOUTON} cursor-pointer bg-[#E8459E] hover:bg-[#FFC531] ${enCours ? "pointer-events-none opacity-70" : ""}`}>
           {enCours ? `Envoi ${progression.fait}/${progression.total}…` : "Ajouter des photos"}
           <input
             accept={Object.keys(TYPES_PHOTO_SORTIE).join(",")}
@@ -106,7 +106,7 @@ export function PhotosSortieAdmin({ raceId, photos, nomArchive }: { raceId: stri
 
         <form action={prevenir}>
           <input name="race_id" type="hidden" value={raceId} />
-          <button className={`${BOUTON} bg-[#FFB200] hover:bg-[#F1EDE9] disabled:opacity-60`} disabled={mailEnCours || !photos?.length} type="submit">
+          <button className={`${BOUTON} bg-[#FFC531] hover:bg-[#141116] disabled:opacity-60`} disabled={mailEnCours || !photos?.length} type="submit">
             {mailEnCours ? "Envoi des mails…" : "Prévenir les inscrits par mail"}
           </button>
         </form>
@@ -118,13 +118,13 @@ export function PhotosSortieAdmin({ raceId, photos, nomArchive }: { raceId: stri
 
       {[etatMail, etatSuppression].map((etat, i) =>
         etat.message || etat.error ? (
-          <p className={`border-2 border-[#773331] px-3 py-2 font-mono text-xs font-black uppercase ${etat.error ? "bg-[#FFB200]" : "bg-[#F1EDE9]"}`} key={i} role={etat.error ? "alert" : "status"}>
+          <p className={`border-2 border-white/15 px-3 py-2 font-mono text-xs font-black uppercase ${etat.error ? "bg-[#FFC531]" : "bg-[#141116]"}`} key={i} role={etat.error ? "alert" : "status"}>
             {etat.error ?? etat.message}
           </p>
         ) : null
       )}
       {erreurs.length > 0 ? (
-        <ul className="border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase" role="alert">
+        <ul className="border-2 border-white/15 bg-[#FFC531] px-3 py-2 font-mono text-xs font-black uppercase text-[#141116]" role="alert">
           {erreurs.map((e) => (
             <li key={e}>{e}</li>
           ))}
@@ -137,11 +137,11 @@ export function PhotosSortieAdmin({ raceId, photos, nomArchive }: { raceId: stri
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
           {photos.map((photo) => (
             <li className="grid gap-2" key={photo.chemin}>
-              <Image alt="" className="aspect-square w-full border-2 border-[#773331] object-cover" height={160} src={photo.miniature} unoptimized width={160} />
+              <Image alt="" className="aspect-square w-full border-2 border-white/15 object-cover" height={160} src={photo.miniature} unoptimized width={160} />
               <form action={supprimer}>
                 <input name="race_id" type="hidden" value={raceId} />
                 <input name="chemin" type="hidden" value={photo.chemin} />
-                <button className={`${BOUTON} w-full justify-center border-transparent hover:border-[#773331]`} disabled={suppressionEnCours} type="submit">
+                <button className={`${BOUTON} w-full justify-center border-transparent hover:border-white/15`} disabled={suppressionEnCours} type="submit">
                   Supprimer
                 </button>
               </form>

@@ -63,7 +63,7 @@ function LogoApple() {
 }
 
 const BOUTON =
-  "flex min-h-12 w-full items-center justify-center gap-3 border-2 border-[#773331] px-4 font-mono text-xs font-black uppercase tracking-[.1em] transition disabled:opacity-60";
+  "flex min-h-12 w-full items-center justify-center gap-3 border-2 border-white/15 px-4 font-mono text-xs font-black uppercase tracking-[.1em] transition disabled:opacity-60";
 
 /**
  * Bouton officiel de Google, dessine par Google dans la page. La connexion
@@ -199,26 +199,26 @@ export function BoutonsSociaux({ google, apple, separateur, sortie }: { google: 
         <BoutonGoogleOfficiel onErreur={setErreur} onIndisponible={() => setGoogleParRedirection(true)} sortie={sortie} />
       ) : null}
       {google && googleParRedirection ? (
-        <button className={`${BOUTON} bg-white text-[#1f1f1f] hover:bg-[#F1EDE9]`} disabled={enCours !== null} onClick={() => continuer("google")} type="button">
+        <button className={`${BOUTON} bg-white text-[#1f1f1f] hover:bg-[#141116]`} disabled={enCours !== null} onClick={() => continuer("google")} type="button">
           <LogoGoogle />
           {enCours === "google" ? "Ouverture de Google…" : "Continuer avec Google"}
         </button>
       ) : null}
       {apple ? (
-        <button className={`${BOUTON} bg-black text-white hover:bg-[#3A1A18]`} disabled={enCours !== null} onClick={() => continuer("apple")} type="button">
+        <button className={`${BOUTON} bg-black text-white hover:bg-[#141116]`} disabled={enCours !== null} onClick={() => continuer("apple")} type="button">
           <LogoApple />
           {enCours === "apple" ? "Ouverture d’Apple…" : "Continuer avec Apple"}
         </button>
       ) : null}
       {erreur ? (
-        <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 text-sm font-bold" role="alert">
+        <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 text-sm font-bold text-[#141116]" role="alert">
           {erreur}
         </p>
       ) : null}
       <p className="flex items-center gap-3 font-mono text-xs font-black uppercase tracking-[.14em]">
-        <span aria-hidden="true" className="h-0.5 flex-1 bg-[#773331]" />
+        <span aria-hidden="true" className="h-0.5 flex-1 bg-[#1E1A21]" />
         {separateur}
-        <span aria-hidden="true" className="h-0.5 flex-1 bg-[#773331]" />
+        <span aria-hidden="true" className="h-0.5 flex-1 bg-[#1E1A21]" />
       </p>
     </div>
   );

@@ -8,7 +8,7 @@ const initial: EquipeState = {};
 function Retour({ state }: { state: EquipeState }) {
   if (state.error) {
     return (
-      <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
+      <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
         {state.error}
       </p>
     );
@@ -58,12 +58,12 @@ export function FormulaireMembreEquipe({ id, nom, aDoubleVerification }: { id: s
             <summary className="nav-link cursor-pointer">Téléphone perdu</summary>
             <form
               action={actionMfa}
-              className="absolute right-0 z-20 mt-2 grid w-72 max-w-[calc(100vw-2rem)] gap-3 border-2 border-[#773331] bg-[#F1EDE9] p-4 shadow-[6px_6px_0_#EBA0CD]"
+              className="absolute right-0 z-20 mt-2 grid w-72 max-w-[calc(100vw-2rem)] gap-3 border-2 border-white/15 bg-[#141116] p-4"
             >
               <input name="profile_id" type="hidden" value={id} />
               <p className="text-sm font-bold">Retirer la double vérification de {nom} ? Son mot de passe seul rouvrira l’administration, jusqu’à ce qu’il la réactive.</p>
               <button
-                className="inline-flex min-h-11 items-center justify-center border-2 border-[#773331] bg-[#773331] px-3 font-mono text-xs font-black uppercase tracking-[.1em] text-[#F1EDE9] transition hover:bg-[#FFB200] hover:text-[#773331]"
+                className="inline-flex min-h-11 items-center justify-center border-2 border-white/15 bg-[#1E1A21] px-3 font-mono text-xs font-black uppercase tracking-[.1em] text-white transition hover:bg-[#FFC531] hover:text-[#141116]"
                 disabled={mfaEnCours}
                 type="submit"
               >
@@ -77,12 +77,12 @@ export function FormulaireMembreEquipe({ id, nom, aDoubleVerification }: { id: s
           <summary className="nav-link cursor-pointer">Retirer l’accès</summary>
           <form
             action={actionRetrait}
-            className="absolute right-0 z-20 mt-2 grid w-72 max-w-[calc(100vw-2rem)] gap-3 border-2 border-[#773331] bg-[#F1EDE9] p-4 shadow-[6px_6px_0_#EBA0CD]"
+            className="absolute right-0 z-20 mt-2 grid w-72 max-w-[calc(100vw-2rem)] gap-3 border-2 border-white/15 bg-[#141116] p-4"
           >
             <input name="profile_id" type="hidden" value={id} />
             <p className="text-sm font-bold">Retirer l’accès admin à {nom} ? Son compte membre, ses inscriptions et ses points restent.</p>
             <button
-              className="inline-flex min-h-11 items-center justify-center border-2 border-[#773331] bg-[#773331] px-3 font-mono text-xs font-black uppercase tracking-[.1em] text-[#F1EDE9] transition hover:bg-[#FFB200] hover:text-[#773331]"
+              className="inline-flex min-h-11 items-center justify-center border-2 border-white/15 bg-[#1E1A21] px-3 font-mono text-xs font-black uppercase tracking-[.1em] text-white transition hover:bg-[#FFC531] hover:text-[#141116]"
               disabled={retraitEnCours}
               type="submit"
             >

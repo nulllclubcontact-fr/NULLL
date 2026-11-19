@@ -6,7 +6,7 @@ import { changerPhotoCourse, preparerEnvoiPhoto, type CourseState } from "../../
 import { createSupabaseBrowserClient } from "../../lib/supabase/client";
 
 const BOUTON =
-  "inline-flex min-h-11 items-center border-2 border-[#773331] px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition";
+  "inline-flex min-h-11 items-center border-2 border-white/15 px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition";
 
 /**
  * Choix d'une photo de sortie. Le fichier part tout de suite vers Supabase ;
@@ -45,14 +45,14 @@ export function ChampPhoto({ initiale = null, onEnvoi }: { initiale?: string | n
       <span>Photo de la sortie</span>
       <input name="cover_image_url" readOnly type="hidden" value={url ?? ""} />
 
-      <div className="flex flex-wrap items-center gap-4 border-2 border-[#773331] bg-[#F1EDE9] p-3">
+      <div className="flex flex-wrap items-center gap-4 border-2 border-white/15 bg-[#141116] p-3">
         {url ? (
-          <Image alt="Aperçu de la photo" className="h-20 w-32 border-2 border-[#773331] object-cover" height={80} src={url} unoptimized width={128} />
+          <Image alt="Aperçu de la photo" className="h-20 w-32 border-2 border-white/15 object-cover" height={80} src={url} unoptimized width={128} />
         ) : (
-          <span className="grid h-20 w-32 place-items-center border-2 border-dashed border-[#773331] text-xs tracking-[.12em]">Pas de photo</span>
+          <span className="grid h-20 w-32 place-items-center border-2 border-dashed border-white/15 text-xs tracking-[.12em]">Pas de photo</span>
         )}
 
-        <label className={`${BOUTON} cursor-pointer bg-[#EBA0CD] hover:bg-[#FFB200] ${enCours ? "pointer-events-none opacity-70" : ""}`}>
+        <label className={`${BOUTON} cursor-pointer bg-[#E8459E] hover:bg-[#FFC531] ${enCours ? "pointer-events-none opacity-70" : ""}`}>
           {enCours ? "Envoi…" : url ? "Changer" : "Choisir une photo"}
           <input
             accept="image/jpeg,image/png,image/webp,image/avif"
@@ -68,7 +68,7 @@ export function ChampPhoto({ initiale = null, onEnvoi }: { initiale?: string | n
         </label>
 
         {url && !enCours ? (
-          <button className={`${BOUTON} border-transparent hover:border-[#773331]`} onClick={() => setUrl(null)} type="button">
+          <button className={`${BOUTON} border-transparent hover:border-white/15`} onClick={() => setUrl(null)} type="button">
             Retirer
           </button>
         ) : null}
@@ -76,7 +76,7 @@ export function ChampPhoto({ initiale = null, onEnvoi }: { initiale?: string | n
 
       <span className="text-xs font-bold tracking-[.1em]">JPG, PNG, WebP ou AVIF · 10 Mo max · format paysage conseillé</span>
       {erreur ? (
-        <p className="border-2 border-[#773331] bg-[#FFB200] px-3 py-2" role="alert">
+        <p className="border-2 border-white/15 bg-[#FFC531] px-3 py-2 text-[#141116]" role="alert">
           {erreur}
         </p>
       ) : null}
@@ -105,7 +105,7 @@ export function FormulairePhotoCourse({ raceId, initiale }: { raceId: string; in
           </p>
         ) : null}
         {state.error ? (
-          <p className="border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase" role="alert">
+          <p className="border-2 border-white/15 bg-[#FFC531] px-3 py-2 font-mono text-xs font-black uppercase text-[#141116]" role="alert">
             {state.error}
           </p>
         ) : null}

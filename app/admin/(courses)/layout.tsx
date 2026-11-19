@@ -4,17 +4,10 @@ import { SiteHeader, SiteFooter } from "../../../components/site-shell";
 import { getSiteCopy } from "../../../lib/site-content";
 import { requireAdminUser } from "../../../lib/admin/require-admin";
 import { logoutMember } from "../../membre/actions";
+import { OngletsAdmin } from "../../../components/admin/onglets-admin";
 
 export const dynamic = "force-dynamic";
 
-const ONGLETS = [
-  { href: "/admin/dashboard", label: "Vue d’ensemble" },
-  { href: "/admin/courses", label: "Sorties" },
-  { href: "/admin/reseau", label: "Partenaires" },
-  { href: "/admin/journal", label: "Journal" },
-  { href: "/admin/equipe", label: "Équipe" },
-  { href: "/admin/securite", label: "Sécurité" }
-];
 
 export default async function AdminCoursesLayout({ children }: { children: ReactNode }) {
   // Verifie a chaque requete, jamais deduit d'un cookie : un membre
@@ -22,7 +15,7 @@ export default async function AdminCoursesLayout({ children }: { children: React
   const { prenom } = await requireAdminUser();
 
   return (
-    <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
+    <div className="da da-admin min-h-dvh bg-[#141116] text-white">
       {/* Meme parti pris que l'espace membre : on garde la barre du site
           plutot qu'un bandeau a part, pour ne pas perdre la navigation en
           entrant dans l'administration. */}
@@ -34,45 +27,17 @@ export default async function AdminCoursesLayout({ children }: { children: React
         pathname="/admin"
       />
 
-      {/* Sous-navigation rose : l'administration ne doit pas pouvoir etre
-          confondue avec l'espace membre, qui porte le jaune. */}
-      <div className="panel-navigation sticky top-20 z-40 border-b-2 border-[#773331] bg-[#EBA0CD]">
+      {/* Sous-navigation de l'admin : sobre, l'onglet en cours en rose. */}
+      <div className="panel-navigation sticky top-20 z-40 border-b border-white/10 bg-[#1E1A21]">
         <div className="shell flex flex-wrap items-center gap-x-1 gap-y-2 py-2">
-          <span className="mr-2 hidden font-mono text-xs font-black uppercase tracking-[.16em] text-[#773331] sm:inline">
-            Admin
-          </span>
-
-          {ONGLETS.map((onglet) => (
-            <Link
-              className="inline-flex min-h-11 items-center border-2 border-transparent px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition hover:border-[#773331] hover:bg-[#F1EDE9] focus-visible:border-[#773331] focus-visible:bg-[#F1EDE9] focus-visible:outline-none"
-              href={onglet.href}
-              key={onglet.href}
-            >
-              {onglet.label}
-            </Link>
-          ))}
-
-          {/* Le scanner est l'outil du jour de course : il se distingue. */}
-          <Link
-            className="inline-flex min-h-11 items-center border-2 border-[#773331] bg-[#773331] px-3 font-mono text-xs font-black uppercase tracking-[.1em] text-[#F1EDE9] transition hover:bg-[#FFB200] hover:text-[#773331]"
-            href="/admin/scanner"
-          >
-            Scanner
-          </Link>
-
-          <Link
-            className="inline-flex min-h-11 items-center border-2 border-transparent px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition hover:border-[#773331] hover:bg-[#F1EDE9] focus-visible:border-[#773331] focus-visible:bg-[#F1EDE9] focus-visible:outline-none"
-            href="/membre"
-          >
+          <span className="mr-3 hidden text-[13px] font-bold uppercase tracking-[.12em] text-white/50 sm:inline">Admin</span>
+          <OngletsAdmin />
+          <Link className="inline-flex min-h-10 items-center rounded-[2px] px-3 text-[13px] font-bold uppercase tracking-[.08em] text-white/75 transition-colors hover:bg-white/10 hover:text-white" href="/membre">
             <span className="sm:hidden">Mon espace</span>
             <span className="hidden sm:inline">{prenom ? `Espace de ${prenom}` : "Mon espace"}</span>
           </Link>
-
           <form action={logoutMember} className="ml-auto">
-            <button
-              className="inline-flex min-h-11 items-center border-2 border-transparent px-3 font-mono text-xs font-black uppercase tracking-[.1em] transition hover:border-[#773331] hover:bg-[#F1EDE9] focus-visible:border-[#773331] focus-visible:bg-[#F1EDE9] focus-visible:outline-none"
-              type="submit"
-            >
+            <button className="inline-flex min-h-10 items-center rounded-[2px] px-3 text-[13px] font-bold uppercase tracking-[.08em] text-white/75 transition-colors hover:bg-white/10 hover:text-white" type="submit">
               Déconnexion
             </button>
           </form>

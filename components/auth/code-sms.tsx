@@ -51,7 +51,7 @@ export function CodeSms({
           />
         </label>
         {etat.error ? (
-          <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">
+          <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
             {etat.error}
           </p>
         ) : null}
@@ -67,7 +67,7 @@ export function CodeSms({
         </button>
         {retour ? (
           // Un vrai rechargement : l'etat du formulaire precedent repart de zero.
-          <a className="font-mono text-xs font-black uppercase underline decoration-[#EBA0CD] decoration-2 underline-offset-4" href={retour.href}>
+          <a className="font-mono text-xs font-black uppercase underline decoration-[#E8459E] decoration-2 underline-offset-4" href={retour.href}>
             {retour.label}
           </a>
         ) : null}

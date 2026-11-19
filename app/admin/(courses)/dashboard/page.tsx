@@ -29,11 +29,11 @@ const JOURS_HISTORIQUE = 14;
 // Chaque statut porte une couleur de la palette : on lit l'etat d'une
 // sortie d'un coup d'oeil, sans dechiffrer un mot anglais.
 const STATUTS: Record<RaceStatus, { label: string; classe: string }> = {
-  draft: { label: "Brouillon", classe: "border-dashed bg-[#F1EDE9] text-[#773331]" },
-  published: { label: "Publiée", classe: "bg-[#EBA0CD] text-[#773331]" },
-  closed: { label: "Fermée", classe: "bg-[#FFB200] text-[#773331]" },
-  completed: { label: "Terminée", classe: "bg-[#773331] text-[#F1EDE9]" },
-  cancelled: { label: "Annulée", classe: "bg-[#F1EDE9] text-[#773331] line-through" }
+  draft: { label: "Brouillon", classe: "border-dashed bg-[#141116] text-white" },
+  published: { label: "Publiée", classe: "bg-[#E8459E] text-white" },
+  closed: { label: "Fermée", classe: "bg-[#FFC531] text-[#141116]" },
+  completed: { label: "Terminée", classe: "bg-[#1E1A21] text-white" },
+  cancelled: { label: "Annulée", classe: "bg-[#141116] text-white line-through" }
 };
 
 // La page est rendue a chaque requete (layout force-dynamic) : l'instant
@@ -92,7 +92,7 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
     return (
       <section className="shell grid gap-6 py-8 lg:py-12">
         <h1 className="font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[1.04]">Vue d’ensemble.</h1>
-        <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-bold" role="alert">
+        <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-bold text-[#141116]" role="alert">
           Impossible de charger les sorties pour le moment. Recharge la page dans un instant.
         </p>
       </section>
@@ -160,9 +160,9 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
 
   const totalRepartition = inscriptions + annulations;
   const repartition = [
-    { label: "Présents", valeur: presences, couleur: "bg-[#773331]" },
-    { label: "Pas encore scannés", valeur: absents, couleur: "bg-[#FFB200]" },
-    { label: "Annulés", valeur: annulations, couleur: "bg-[#EBA0CD]" }
+    { label: "Présents", valeur: presences, couleur: "bg-[#1E1A21]" },
+    { label: "Pas encore scannés", valeur: absents, couleur: "bg-[#FFC531]" },
+    { label: "Annulés", valeur: annulations, couleur: "bg-[#E8459E]" }
   ];
 
   const totalJours = fenetre.jours.reduce((s, j) => s + j.total, 0);
@@ -189,7 +189,7 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
       <header>
         <p className="font-mono text-xs font-black uppercase tracking-[.18em]">Administration</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[.95]">
-          Vue d’ensemble<span className="text-[#EBA0CD]">.</span>
+          Vue d’ensemble<span className="text-[#E8459E]">.</span>
         </h1>
         <p className="mt-4 font-mono text-xs font-black uppercase tracking-[.14em]">
           {membres ?? 0} membre{(membres ?? 0) > 1 ? "s" : ""} · {nouveaux ?? 0} {(nouveaux ?? 0) > 1 ? "nouveaux" : "nouveau"} ces 30 derniers jours
@@ -211,15 +211,55 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
       />
 
       <div>
+        <Intitule>Prochaines sorties</Intitule>
+        {prochaines.length === 0 ? (
+          <p className="mt-5 border-2 border-dashed border-white/15 p-6 font-bold">
+            Rien de publié à venir. <Link className="underline decoration-[#E8459E] decoration-2 underline-offset-4" href="/admin/courses">Crée une sortie.</Link>
+          </p>
+        ) : (
+          <ul className="mt-5 grid gap-3">
+            {prochaines.map((c, index) => {
+              const actives = c.race_registrations.filter((i) => i.status !== "cancelled").length;
+              return (
+                <li
+                  className={`flex flex-wrap items-center justify-between gap-4 border-2 border-white/15 p-4 ${index === 0 ? "bg-[#1E1A21] text-white" : "bg-[#141116]"}`}
+                  key={c.id}
+                >
+                  <div>
+                    {index === 0 ? (
+                      <p className="mb-2 inline-block bg-[#FFC531] px-2 py-1 font-mono text-xs font-black uppercase tracking-[.14em] text-[#141116]">La prochaine</p>
+                    ) : null}
+                    <Link
+                      className={`block ${TITRE_LIGNE} ${index === 0 ? "hover:text-[#FFC531]" : "hover:underline hover:decoration-[#E8459E] hover:decoration-4"}`}
+                      href={`/admin/courses/${c.id}`}
+                    >
+                      {c.title}
+                    </Link>
+                    <p className="mt-2 font-mono text-xs font-black uppercase tracking-[.12em]">
+                      {formatJour(c.start_datetime)} · {formatHeure(c.start_datetime)}
+                    </p>
+                  </div>
+                  <p className={`border-2 px-3 py-2 font-mono text-xs font-black uppercase ${index === 0 ? "border-white/15 bg-[#E8459E] text-white" : "border-white/15 bg-[#E8459E]"}`}>
+                    {actives} inscrit{actives > 1 ? "s" : ""}
+                    {c.max_participants ? ` / ${c.max_participants}` : ""}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+
+      <div>
         <Intitule>Visiteurs du site</Intitule>
-        <nav aria-label="Période des visites" className="mt-5 flex border-2 border-[#773331] sm:max-w-md">
+        <nav aria-label="Période des visites" className="mt-5 flex border-2 border-white/15 sm:max-w-md">
           {VUES_VISITES.map(({ vue, label }) => {
             const actif = vue === vueVisites;
             return (
               <Link
                 aria-current={actif ? "page" : undefined}
-                className={`inline-flex min-h-11 flex-1 items-center justify-center border-r-2 border-[#773331] px-3 font-mono text-xs font-black uppercase tracking-[.12em] transition last:border-r-0 ${
-                  actif ? "bg-[#773331] text-[#F1EDE9]" : "bg-[#F1EDE9] text-[#773331] hover:bg-[#EBA0CD]"
+                className={`inline-flex min-h-11 flex-1 items-center justify-center border-r-2 border-white/15 px-3 font-mono text-xs font-black uppercase tracking-[.12em] transition last:border-r-0 ${
+                  actif ? "bg-[#1E1A21] text-white" : "bg-[#141116] text-white hover:bg-[#E8459E]"
                 }`}
                 href={vue === "jour" ? "/admin/dashboard" : `/admin/dashboard?vue=${vue}`}
                 key={vue}
@@ -231,7 +271,7 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
           })}
         </nav>
         {visites === null ? (
-          <p className="mt-5 border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-bold" role="alert">
+          <p className="mt-5 border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-bold text-[#141116]" role="alert">
             Impossible de lire les visites pour le moment.
           </p>
         ) : (
@@ -258,7 +298,7 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
         <div>
           <Intitule>Remplissage des sorties</Intitule>
           {remplissage.length === 0 ? (
-            <p className="mt-5 border-2 border-dashed border-[#773331] p-6 font-bold">Aucune sortie publiée à mesurer.</p>
+            <p className="mt-5 border-2 border-dashed border-white/15 p-6 font-bold">Aucune sortie publiée à mesurer.</p>
           ) : (
             <>
               <ul className="mt-6 grid gap-5">
@@ -269,7 +309,7 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
                   return (
                     <li key={course.id}>
                       <div className="flex flex-wrap items-baseline justify-between gap-2">
-                        <Link className={`${TITRE_LIGNE} hover:underline hover:decoration-[#EBA0CD] hover:decoration-4`} href={`/admin/courses/${course.id}`}>
+                        <Link className={`${TITRE_LIGNE} hover:underline hover:decoration-[#E8459E] hover:decoration-4`} href={`/admin/courses/${course.id}`}>
                           {course.title}
                         </Link>
                         <span className="font-mono text-xs font-black uppercase tracking-[.08em]">
@@ -284,20 +324,20 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
                       </p>
                       <div
                         aria-label={`${inscrits} inscrits, ${presents} présents${course.max_participants ? ` sur ${course.max_participants} places` : ""}`}
-                        className="relative mt-2 h-7 border-2 border-[#773331] bg-[#F1EDE9]"
+                        className="relative mt-2 h-7 border-2 border-white/15 bg-[#141116]"
                         role="img"
                       >
-                        <div className="absolute inset-y-0 left-0 bg-[#EBA0CD]" style={{ width: `${largeurInscrits}%` }} />
-                        <div className="absolute inset-y-0 left-0 bg-[#773331]" style={{ width: `${largeurPresents}%` }} />
+                        <div className="absolute inset-y-0 left-0 bg-[#E8459E]" style={{ width: `${largeurInscrits}%` }} />
+                        <div className="absolute inset-y-0 left-0 bg-[#1E1A21]" style={{ width: `${largeurPresents}%` }} />
                       </div>
                     </li>
                   );
                 })}
               </ul>
               <p className="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs font-black uppercase tracking-[.12em]">
-                <span className="inline-flex items-center gap-2"><Pastille couleur="bg-[#EBA0CD]" />Inscrits</span>
-                <span className="inline-flex items-center gap-2"><Pastille couleur="bg-[#773331]" />Présents</span>
-                <span className="inline-flex items-center gap-2"><Pastille couleur="bg-[#F1EDE9]" />Places libres</span>
+                <span className="inline-flex items-center gap-2"><Pastille couleur="bg-[#E8459E]" />Inscrits</span>
+                <span className="inline-flex items-center gap-2"><Pastille couleur="bg-[#1E1A21]" />Présents</span>
+                <span className="inline-flex items-center gap-2"><Pastille couleur="bg-[#141116]" />Places libres</span>
               </p>
             </>
           )}
@@ -308,13 +348,13 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
             <Intitule>Répartition des inscrits</Intitule>
             <div
               aria-label={repartition.map((r) => `${r.valeur} ${r.label.toLowerCase()}`).join(", ")}
-              className="mt-6 flex h-12 border-2 border-[#773331] bg-[repeating-linear-gradient(135deg,#F1EDE9_0_8px,#EBA0CD_8px_10px)]"
+              className="mt-6 flex h-12 border-2 border-white/15 bg-[repeating-linear-gradient(135deg,#2A2430_0_8px,#3A3340_8px_10px)]"
               role="img"
             >
               {totalRepartition > 0
                 ? repartition.map((r) =>
                     r.valeur > 0 ? (
-                      <div className={`h-full border-r-2 border-[#773331] last:border-r-0 ${r.couleur}`} key={r.label} style={{ width: `${(r.valeur / totalRepartition) * 100}%` }} />
+                      <div className={`h-full border-r-2 border-white/15 last:border-r-0 ${r.couleur}`} key={r.label} style={{ width: `${(r.valeur / totalRepartition) * 100}%` }} />
                     ) : null
                   )
                 : null}
@@ -324,7 +364,7 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
             ) : null}
             <ul className="mt-4 grid gap-2">
               {repartition.map((r) => (
-                <li className="flex items-center justify-between gap-4 border-b border-[#773331]/30 pb-2" key={r.label}>
+                <li className="flex items-center justify-between gap-4 border-b border-white/30 pb-2" key={r.label}>
                   <span className="inline-flex items-center gap-2 font-mono text-xs font-black uppercase tracking-[.1em]">
                     <Pastille couleur={r.couleur} />
                     {r.label}
@@ -348,73 +388,33 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
       </div>
 
       <div>
-        <Intitule>Prochaines sorties</Intitule>
-        {prochaines.length === 0 ? (
-          <p className="mt-5 border-2 border-dashed border-[#773331] p-6 font-bold">
-            Rien de publié à venir. <Link className="underline decoration-[#EBA0CD] decoration-2 underline-offset-4" href="/admin/courses">Crée une sortie.</Link>
-          </p>
-        ) : (
-          <ul className="mt-5 grid gap-3">
-            {prochaines.map((c, index) => {
-              const actives = c.race_registrations.filter((i) => i.status !== "cancelled").length;
-              return (
-                <li
-                  className={`flex flex-wrap items-center justify-between gap-4 border-2 border-[#773331] p-4 ${index === 0 ? "bg-[#773331] text-[#F1EDE9]" : "bg-[#F1EDE9]"}`}
-                  key={c.id}
-                >
-                  <div>
-                    {index === 0 ? (
-                      <p className="mb-2 inline-block bg-[#FFB200] px-2 py-1 font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]">La prochaine</p>
-                    ) : null}
-                    <Link
-                      className={`block ${TITRE_LIGNE} ${index === 0 ? "hover:text-[#FFB200]" : "hover:underline hover:decoration-[#EBA0CD] hover:decoration-4"}`}
-                      href={`/admin/courses/${c.id}`}
-                    >
-                      {c.title}
-                    </Link>
-                    <p className="mt-2 font-mono text-xs font-black uppercase tracking-[.12em]">
-                      {formatJour(c.start_datetime)} · {formatHeure(c.start_datetime)}
-                    </p>
-                  </div>
-                  <p className={`border-2 px-3 py-2 font-mono text-xs font-black uppercase ${index === 0 ? "border-[#F1EDE9] bg-[#EBA0CD] text-[#773331]" : "border-[#773331] bg-[#EBA0CD]"}`}>
-                    {actives} inscrit{actives > 1 ? "s" : ""}
-                    {c.max_participants ? ` / ${c.max_participants}` : ""}
-                  </p>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </div>
-
-      <div>
         <Intitule>Toutes les sorties</Intitule>
         <div aria-label="Inscriptions" className="mt-5 overflow-x-auto" tabIndex={0}>
           <table className="w-full min-w-[38rem] border-collapse text-left">
             <thead>
               <tr className="font-mono text-xs font-black uppercase tracking-[.14em]">
-                <th className="border-b-2 border-[#773331] pb-2 pr-4">Sortie</th>
-                <th className="border-b-2 border-[#773331] pb-2 pr-4">Date</th>
-                <th className="border-b-2 border-[#773331] pb-2 pr-4">Statut</th>
-                <th className="border-b-2 border-[#773331] pb-2 pr-4 text-right">Inscrits</th>
-                <th className="border-b-2 border-[#773331] pb-2 text-right">Présents</th>
+                <th className="border-b-2 border-white/15 pb-2 pr-4">Sortie</th>
+                <th className="border-b-2 border-white/15 pb-2 pr-4">Date</th>
+                <th className="border-b-2 border-white/15 pb-2 pr-4">Statut</th>
+                <th className="border-b-2 border-white/15 pb-2 pr-4 text-right">Inscrits</th>
+                <th className="border-b-2 border-white/15 pb-2 text-right">Présents</th>
               </tr>
             </thead>
             <tbody>
               {liste.map((c) => {
                 const actives = c.race_registrations.filter((i) => i.status !== "cancelled");
                 const presents = actives.filter((i) => i.checked_in).length;
-                const statut = STATUTS[c.status] ?? { label: c.status, classe: "bg-[#F1EDE9] text-[#773331]" };
+                const statut = STATUTS[c.status] ?? { label: c.status, classe: "bg-[#141116] text-white" };
                 return (
-                  <tr className="border-b border-[#773331]/30 transition hover:bg-[#EBA0CD]/35" key={c.id}>
+                  <tr className="border-b border-white/30 transition hover:bg-[#E8459E]/35" key={c.id}>
                     <td className="py-3 pr-4">
-                      <Link className="font-bold hover:underline hover:decoration-[#773331] hover:decoration-2" href={`/admin/courses/${c.id}`}>
+                      <Link className="font-bold hover:underline hover:decoration-white hover:decoration-2" href={`/admin/courses/${c.id}`}>
                         {c.title}
                       </Link>
                     </td>
                     <td className="py-3 pr-4 font-mono text-xs font-bold">{formatJourCourt(c.start_datetime)}</td>
                     <td className="py-3 pr-4">
-                      <span className={`inline-block border-2 border-[#773331] px-2 py-1 font-mono text-xs font-black uppercase tracking-[.12em] ${statut.classe}`}>
+                      <span className={`inline-block border-2 border-white/15 px-2 py-1 font-mono text-xs font-black uppercase tracking-[.12em] ${statut.classe}`}>
                         {statut.label}
                       </span>
                     </td>
@@ -427,7 +427,7 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
           </table>
         </div>
         {liste.length === 0 ? (
-          <p className="mt-5 border-2 border-dashed border-[#773331] p-6 font-bold">
+          <p className="mt-5 border-2 border-dashed border-white/15 p-6 font-bold">
             Aucune sortie. La migration est-elle passée ?
           </p>
         ) : null}

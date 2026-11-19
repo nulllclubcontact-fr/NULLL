@@ -27,10 +27,10 @@ export default function IdentificationPage() {
   const copy = getSiteCopy("fr");
 
   return (
-    <div className="flex min-h-dvh flex-col bg-[#3A1A18]">
+    <div className="da flex min-h-dvh flex-col bg-[#141116] text-white">
       <AccountHeader />
 
-      <main className="relative flex flex-1 items-center overflow-hidden px-5 py-14 text-[#F1EDE9] sm:px-8 sm:py-20" id="contenu" tabIndex={-1}>
+      <main className="relative flex flex-1 items-center overflow-hidden px-5 py-14 text-white sm:px-8 sm:py-20" id="contenu" tabIndex={-1}>
         {/* Filigrane discret : il ne doit rien disputer a la carte. */}
         <Image
           alt=""
@@ -54,14 +54,14 @@ export default function IdentificationPage() {
           </div>
 
           <div className="order-1 lg:order-2">
-            <p className="hero-rise font-mono text-xs font-black uppercase tracking-[.2em] text-[#FFB200] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
+            <p className="hero-rise font-mono text-xs font-black uppercase tracking-[.2em] text-[#FFC531] [word-spacing:.22em]" style={{ animationDelay: "60ms" }}>
               Espace membre
             </p>
             <h1 className="hero-rise mt-6 font-display text-[clamp(2.8rem,6.4vw,5.4rem)] uppercase leading-[1.12] tracking-[-.035em]" style={{ animationDelay: "140ms" }}>
               {/* Coupure imposee : laisse au navigateur, le titre rejetait
                   « ici. » seul sur la seconde ligne. */}
               <span className="block">Viens faire</span>
-              <span className="block text-[#EBA0CD]">ton premier pas.</span>
+              <span className="block text-[#E8459E]">ton premier pas.</span>
             </h1>
 
             <Suspense fallback={<ChoixIdentification suite="" />}>

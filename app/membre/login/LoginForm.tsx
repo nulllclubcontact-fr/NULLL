@@ -30,7 +30,7 @@ export function LoginForm({ fournisseurs, sortie }: { fournisseurs: Fournisseurs
         {/* Cochee par defaut : le samedi, personne ne doit se retrouver
             deconnecte au moment de montrer son QR. */}
         <label className="flex cursor-pointer items-center gap-3 text-sm font-bold">
-          <input className="h-5 w-5 shrink-0 accent-[#EBA0CD]" defaultChecked name="souvenir" type="checkbox" />
+          <input className="h-5 w-5 shrink-0 accent-[#E8459E]" defaultChecked name="souvenir" type="checkbox" />
           <span>
             Rester connecté sur cet appareil
             <span className="block text-xs font-normal">À éviter sur un appareil partagé.</span>
@@ -41,12 +41,12 @@ export function LoginForm({ fournisseurs, sortie }: { fournisseurs: Fournisseurs
         <BoutonsSociaux apple={fournisseurs.apple} google={fournisseurs.google} separateur="ou" sortie={sortie} />
 
         {loginState.error ? (
-          <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">
+          <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
             {loginState.error}
           </p>
         ) : null}
         <button
-          className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#FFB200] enabled:hover:text-[#773331]"
+          className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#FFC531] enabled:hover:text-[#141116]"
           disabled={loginPending}
           type="submit"
         >
@@ -57,7 +57,7 @@ export function LoginForm({ fournisseurs, sortie }: { fournisseurs: Fournisseurs
       {/* « Mot de passe oublie » nommait la section, pas le champ : rien ne
           disait qu'il fallait y remettre son e-mail. Le bloc annonce
           maintenant ce qu'il fait, et le champ ce qu'il attend. */}
-      <div className="mt-5 border-t-2 border-[#773331] pt-5" style={{ "--pas": 1 } as React.CSSProperties}>
+      <div className="mt-5 border-t-2 border-white/15 pt-5" style={{ "--pas": 1 } as React.CSSProperties}>
         {resetState.etape === "code" && resetState.telephone ? (
           <CodeSms
             renvoyer={resetMemberPassword}
@@ -70,7 +70,7 @@ export function LoginForm({ fournisseurs, sortie }: { fournisseurs: Fournisseurs
           <form action={resetAction} className="grid gap-3">
             <div>
               <p className="font-mono text-xs font-black uppercase tracking-[.1em]">Mot de passe oublié ?</p>
-              <p className="mt-1.5 text-sm font-bold leading-snug text-[#773331]">
+              <p className="mt-1.5 text-sm font-bold leading-snug text-white">
                 {telephoneActif
                   ? "Donne ton e-mail ou ton numéro : on t’envoie un lien par mail ou un code par SMS pour en choisir un nouveau."
                   : "Donne ton e-mail, on t’envoie un lien pour en choisir un nouveau."}
@@ -87,8 +87,8 @@ export function LoginForm({ fournisseurs, sortie }: { fournisseurs: Fournisseurs
                 type={telephoneActif ? "text" : "email"}
               />
             </label>
-            {resetState.error ? <p className="text-sm font-bold text-[#773331]">{resetState.error}</p> : null}
-            {resetState.message ? <p className="text-sm font-bold text-[#773331]">{resetState.message}</p> : null}
+            {resetState.error ? <p className="text-sm font-bold text-white">{resetState.error}</p> : null}
+            {resetState.message ? <p className="text-sm font-bold text-white">{resetState.message}</p> : null}
             <button className="secondary-link justify-center" disabled={resetPending} type="submit">
               {telephoneActif ? "Recevoir le lien ou le code" : "Recevoir le lien"}
             </button>

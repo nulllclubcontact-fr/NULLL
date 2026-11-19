@@ -68,13 +68,13 @@ export function EditRaceForm({ course, departLocal }: { course: Race; departLoca
           </label>
         </div>
 
-        <label className="flex cursor-pointer items-center gap-3 border-2 border-[#773331] bg-[#F1EDE9] p-4 text-sm font-bold">
-          <input className="h-5 w-5 accent-[#EBA0CD]" defaultChecked={course.registration_open} name="registration_open" type="checkbox" />
+        <label className="flex cursor-pointer items-center gap-3 border-2 border-white/15 bg-[#141116] p-4 text-sm font-bold">
+          <input className="h-5 w-5 accent-[#E8459E]" defaultChecked={course.registration_open} name="registration_open" type="checkbox" />
           <span>Inscriptions ouvertes</span>
         </label>
 
         {state.error ? (
-          <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
+          <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
             {state.error}
           </p>
         ) : null}

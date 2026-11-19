@@ -4,10 +4,9 @@ import { getSiteCopy } from "../lib/site-content";
 import { ArrowIcon } from "./ArrowIcon";
 
 /**
- * Les partenaires du club, mis en avant dans la DA des stories : chaque
- * partenaire est une grande etiquette de couleur penchee, logo en aplat,
- * avec un petit sticker « Voir le site » sur le coin. La carte entiere
- * mene au site du partenaire.
+ * Les partenaires du club, sur une grande photo du ravito : titre en
+ * etiquettes, logos en blanc separes par un trait (format « collab » des
+ * visuels Instagram du club), puis l'appel « Devenir partenaire ».
  */
 export function BandeauPartenaires() {
   if (partenairesVisibles.length === 0) return null;
@@ -15,26 +14,27 @@ export function BandeauPartenaires() {
 
   return (
     <section aria-labelledby="home-partners-title" className="hx-partners">
+      <Image alt="" aria-hidden="true" className="hx-partners-bg" fill sizes="100vw" src="/assets/actus/quatrieme-run/16.webp" />
+      <div className="hx-partners-shade" aria-hidden="true" />
       <h2 className="hx-stack" id="home-partners-title">
         <span className="st st-blue">Merci à</span>
         <span className="st st-lime st-xl">nos partenaires</span>
       </h2>
+      {/* Logos cote a cote, separes par un trait : le format « collab » des
+          visuels du club sur Instagram. */}
       <ul className="hx-partners-list">
-        {partenairesVisibles.map((partenaire, index) => (
-          <li className={index % 2 === 0 ? "hx-partners-pink" : "hx-partners-yellow"} key={partenaire.nom}>
-            <a className="hx-partners-card" href={partenaire.url} rel="sponsored noopener noreferrer" target="_blank">
-              <span className="hx-partners-logo-box">
-                <Image
-                  alt={partenaire.nom}
-                  className="hx-partners-logo"
-                  height={Math.round(48 * (partenaire.echelle ?? 1))}
-                  src={partenaire.logo}
-                  style={{ "--echelle": partenaire.echelle ?? 1 } as React.CSSProperties}
-                  unoptimized={partenaire.logo.endsWith(".svg")}
-                  width={Math.round(48 * (partenaire.echelle ?? 1) * partenaire.ratio)}
-                />
-              </span>
-              <span className="st st-cream hx-partners-go">Voir le site →</span>
+        {partenairesVisibles.map((partenaire) => (
+          <li key={partenaire.nom}>
+            <a className="hx-partners-link" href={partenaire.url} rel="sponsored noopener noreferrer" target="_blank">
+              <Image
+                alt={partenaire.nom}
+                className="hx-partners-logo"
+                height={Math.round(48 * (partenaire.echelle ?? 1))}
+                src={partenaire.logo}
+                style={{ "--echelle": partenaire.echelle ?? 1 } as React.CSSProperties}
+                unoptimized={partenaire.logo.endsWith(".svg")}
+                width={Math.round(48 * (partenaire.echelle ?? 1) * partenaire.ratio)}
+              />
             </a>
           </li>
         ))}

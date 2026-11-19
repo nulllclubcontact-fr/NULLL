@@ -30,11 +30,11 @@ export default async function MemberWaiverPage({
   const anciennes = Object.keys(DECHARGES).filter((v) => v !== VERSION_DECHARGE);
 
   return (
-    <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
+    <div className="da min-h-dvh bg-[#141116] text-white">
       <AccountHeader />
       <main className="shell grid gap-8 py-10" id="contenu" tabIndex={-1}>
         <div>
-          <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">Décharge / membre</p>
+          <p className="inline-flex border-2 border-white/15 bg-[#FFC531] px-3 py-2 font-mono text-xs font-black uppercase text-[#141116]">Décharge / membre</p>
           <h1 className="mt-6 font-display text-[clamp(3rem,8vw,6.4rem)] uppercase leading-[1.04]">Décharge de responsabilité.</h1>
           <p className="mt-5 max-w-xl text-lg font-bold leading-snug">
             Lis les conditions de participation avant de les accepter. Une question ?{" "}
@@ -56,13 +56,13 @@ export default async function MemberWaiverPage({
           </p>
           <div className="mt-8 grid gap-6">
             {decharge.sections.map((section) => (
-              <section className="border-t-2 border-[#773331] pt-5" key={section.title}>
+              <section className="border-t-2 border-white/15 pt-5" key={section.title}>
                 <h3 className="font-mono text-sm font-black uppercase">{section.title}</h3>
                 <p className="mt-3 max-w-[70ch] leading-relaxed">{section.text}</p>
               </section>
             ))}
           </div>
-          <p className="mt-8 border-t-2 border-[#773331] pt-5 font-mono text-sm font-black uppercase">
+          <p className="mt-8 border-t-2 border-white/15 pt-5 font-mono text-sm font-black uppercase">
             Je certifie avoir lu et compris la présente décharge et l’accepter sans réserve.
           </p>
         </article>

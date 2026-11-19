@@ -53,7 +53,7 @@ export function RegisterForm({ fournisseurs, sortie }: { fournisseurs: Fournisse
       {telephoneActif ? (
         <div
           aria-label="S’inscrire avec"
-          className="grid grid-cols-2 border-2 border-[#773331]"
+          className="grid grid-cols-2 border-2 border-white/15"
           role="radiogroup"
           style={{ "--pas": 1 } as React.CSSProperties}
         >
@@ -61,7 +61,7 @@ export function RegisterForm({ fournisseurs, sortie }: { fournisseurs: Fournisse
             <button
               aria-checked={mode === choix}
               className={`min-h-11 font-mono text-xs font-black uppercase tracking-[.12em] transition ${
-                mode === choix ? "bg-[#773331] text-[#F1EDE9]" : "bg-[#F1EDE9] text-[#773331] hover:bg-[#EBA0CD]"
+                mode === choix ? "bg-[#1E1A21] text-white" : "bg-[#141116] text-white hover:bg-[#E8459E]"
               }`}
               key={choix}
               onClick={() => setMode(choix)}
@@ -93,21 +93,21 @@ export function RegisterForm({ fournisseurs, sortie }: { fournisseurs: Fournisse
       <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 2 } as React.CSSProperties}>
         <span>Mot de passe</span>
         <input autoComplete="new-password" className="field" minLength={6} name="password" required type="password" />
-        <span className="font-mono text-xs font-bold normal-case tracking-normal text-[#773331]">
+        <span className="font-mono text-xs font-bold normal-case tracking-normal text-white">
           Six caractères au minimum.
         </span>
       </label>
 
       <label
-        className="flex cursor-pointer gap-3 border-2 border-[#773331] bg-[#F1EDE9] p-4 text-sm font-bold leading-tight text-[#773331] transition-colors duration-300 has-[:checked]:bg-[#EBA0CD]/12"
+        className="flex cursor-pointer gap-3 border-2 border-white/15 bg-[#141116] p-4 text-sm font-bold leading-tight text-white transition-colors duration-300 has-[:checked]:bg-[#E8459E]/12"
         style={{ "--pas": 3 } as React.CSSProperties}
       >
-        <input checked={accepted} className="mt-0.5 h-6 w-6 shrink-0 accent-[#EBA0CD]" name="waiver" onChange={(event) => setAccepted(event.target.checked)} type="checkbox" />
+        <input checked={accepted} className="mt-0.5 h-6 w-6 shrink-0 accent-[#E8459E]" name="waiver" onChange={(event) => setAccepted(event.target.checked)} type="checkbox" />
         <span>
           J’ai lu et j’accepte la décharge de responsabilité : je participe aux activités de Nulll Club sous ma propre
           responsabilité, je reconnais les risques liés à la course à pied et je renonce à tout recours, sauf faute de
           l’organisateur.{" "}
-          <Link className="inline-flex min-h-11 items-center font-black text-[#773331] underline decoration-[#EBA0CD] decoration-2 underline-offset-4" href="/membre/decharge?depuis=inscription" rel="noopener" target="_blank">
+          <Link className="inline-flex min-h-11 items-center font-black text-white underline decoration-[#E8459E] decoration-2 underline-offset-4" href="/membre/decharge?depuis=inscription" rel="noopener" target="_blank">
             lire la décharge complète
           </Link>
         </span>
@@ -116,7 +116,7 @@ export function RegisterForm({ fournisseurs, sortie }: { fournisseurs: Fournisse
       <CaseImage pas={3} />
 
       {state.error ? (
-        <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">
+        <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
           {state.error}
         </p>
       ) : null}
@@ -130,14 +130,14 @@ export function RegisterForm({ fournisseurs, sortie }: { fournisseurs: Fournisse
           site des qu'il est actif. */}
       <div className="grid gap-2" style={{ "--pas": 4 } as React.CSSProperties}>
         <button
-          className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#FFB200] enabled:hover:text-[#773331]"
+          className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#FFC531] enabled:hover:text-[#141116]"
           disabled={!accepted || pending}
           type="submit"
         >
           {pending ? "Création…" : mode === "telephone" ? "Recevoir mon code" : "Créer mon compte"}
         </button>
         {!accepted && !pending ? (
-          <span aria-live="polite" className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]">
+          <span aria-live="polite" className="font-mono text-xs font-black uppercase tracking-[.14em] text-white">
             Coche la décharge pour continuer.
           </span>
         ) : null}

@@ -23,10 +23,10 @@ type Inscrit = {
 };
 
 const ETIQUETTES: Record<string, { texte: string; classe: string }> = {
-  checked_in: { texte: "Présent", classe: "bg-[#FFB200]" },
-  registered: { texte: "Inscrit", classe: "bg-[#F1EDE9]" },
-  cancelled: { texte: "Annulée", classe: "bg-[#773331] text-[#F1EDE9]" },
-  no_show: { texte: "Absent", classe: "bg-[#EBA0CD]" }
+  checked_in: { texte: "Présent", classe: "bg-[#FFC531]" },
+  registered: { texte: "Inscrit", classe: "bg-[#141116]" },
+  cancelled: { texte: "Annulée", classe: "bg-[#1E1A21] text-white" },
+  no_show: { texte: "Absent", classe: "bg-[#E8459E]" }
 };
 
 // Meme convention que le tableau de bord : l'heure lue au rendu vit hors du composant.
@@ -107,11 +107,11 @@ export default async function AdminCourseDetailPage({
     <section className="shell grid gap-8 py-8 lg:py-12">
       <header className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <Link className="inline-flex min-h-11 items-center font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331] hover:text-[#EBA0CD]" href="/admin/courses">
+          <Link className="inline-flex min-h-11 items-center font-mono text-xs font-black uppercase tracking-[.14em] text-white hover:text-[#E8459E]" href="/admin/courses">
             ← Toutes les sorties
           </Link>
           <h1 className="mt-4 font-display text-[clamp(2.2rem,5.5vw,3.8rem)] uppercase leading-[.98]">{course.title}</h1>
-          <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em] text-[#773331]">
+          <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em] text-white">
             {formatJour(course.start_datetime)} · {formatHeure(course.start_datetime)}
             {course.location ? ` · ${course.location}` : ""}
             {course.distance_km !== null ? ` · ${formatDistance(course.distance_km)}` : ""}
@@ -137,7 +137,7 @@ export default async function AdminCourseDetailPage({
 
       {message ? (
         <p
-          className={`border-2 border-[#773331] px-4 py-3 font-bold ${message.alerte ? "bg-[#FFB200]" : "bg-[#EBA0CD]"}`}
+          className={`border-2 border-white/15 px-4 py-3 font-bold ${message.alerte ? "bg-[#FFC531]" : "bg-[#E8459E]"}`}
           role={message.alerte ? "alert" : "status"}
         >
           {message.texte}
@@ -147,7 +147,7 @@ export default async function AdminCourseDetailPage({
       <dl className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {chiffres.map((c) => (
           <div className="panel p-5" key={c.label}>
-            <dt className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#773331]">{c.label}</dt>
+            <dt className="font-mono text-xs font-black uppercase tracking-[.16em] text-white">{c.label}</dt>
             <dd className="mt-3 font-display text-[clamp(2.4rem,6vw,3.4rem)] leading-none">{c.valeur}</dd>
           </div>
         ))}
@@ -177,24 +177,24 @@ export default async function AdminCourseDetailPage({
       </div>
 
       <div>
-        <h2 className="border-b-2 border-[#773331] pb-3 font-mono text-xs font-black uppercase tracking-[.18em]">
+        <h2 className="border-b-2 border-white/15 pb-3 font-mono text-xs font-black uppercase tracking-[.18em]">
           Les inscrits ({lignes.length})
         </h2>
 
         {lignes.length === 0 ? (
-          <p className="mt-5 border-2 border-dashed border-[#773331]/30 p-6 font-bold text-[#773331]">
+          <p className="mt-5 border-2 border-dashed border-white/30 p-6 font-bold text-white">
             Personne pour l’instant.
           </p>
         ) : (
           <div aria-label="Tableau des inscrits" className="mt-5 overflow-x-auto" tabIndex={0}>
             <table className="w-full min-w-[42rem] border-collapse text-left">
               <thead>
-                <tr className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]">
-                  <th className="border-b-2 border-[#773331] pb-2 pr-4">Participant</th>
-                  <th className="border-b-2 border-[#773331] pb-2 pr-4">Contact</th>
-                  <th className="border-b-2 border-[#773331] pb-2 pr-4">Statut</th>
-                  <th className="border-b-2 border-[#773331] pb-2 pr-4">Scanné à</th>
-                  <th className="border-b-2 border-[#773331] pb-2">
+                <tr className="font-mono text-xs font-black uppercase tracking-[.14em] text-white">
+                  <th className="border-b-2 border-white/15 pb-2 pr-4">Participant</th>
+                  <th className="border-b-2 border-white/15 pb-2 pr-4">Contact</th>
+                  <th className="border-b-2 border-white/15 pb-2 pr-4">Statut</th>
+                  <th className="border-b-2 border-white/15 pb-2 pr-4">Scanné à</th>
+                  <th className="border-b-2 border-white/15 pb-2">
                     <span className="sr-only">Pointer à la main</span>
                   </th>
                 </tr>
@@ -206,22 +206,22 @@ export default async function AdminCourseDetailPage({
                   const nom = [p?.first_name, p?.last_name].filter(Boolean).join(" ") || "Membre";
 
                   return (
-                    <tr className="border-b border-[#773331]/20" key={ligne.id}>
+                    <tr className="border-b border-white/20" key={ligne.id}>
                       <td className="py-3 pr-4 font-bold">
                         {nom}
                         {/* Sans accord (refus ou pas de reponse) : on ne le prend pas en photo. */}
                         {p?.consent_image ? null : (
-                          <span className="mt-1 block w-fit border-2 border-[#773331] bg-[#EBA0CD] px-2 py-0.5 font-mono text-[.7rem] font-black uppercase tracking-[.1em]">
+                          <span className="mt-1 block w-fit border-2 border-white/15 bg-[#E8459E] px-2 py-0.5 font-mono text-[.7rem] font-black uppercase tracking-[.1em]">
                             {p?.consent_image === false ? "Pas de photo" : "Photo : sans réponse"}
                           </span>
                         )}
                       </td>
-                      <td className="py-3 pr-4 font-mono text-xs text-[#773331]">
+                      <td className="py-3 pr-4 font-mono text-xs text-white">
                         {p?.email ?? "Non renseigné"}
                         {p?.phone ? <span className="block">{p.phone}</span> : null}
                       </td>
                       <td className="py-3 pr-4">
-                        <span className={`inline-flex border-2 border-[#773331] px-2 py-1 font-mono text-xs font-black uppercase tracking-[.12em] ${etiquette.classe}`}>
+                        <span className={`inline-flex border-2 border-white/15 px-2 py-1 font-mono text-xs font-black uppercase tracking-[.12em] ${etiquette.classe}`}>
                           {etiquette.texte}
                         </span>
                       </td>

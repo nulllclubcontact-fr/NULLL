@@ -28,7 +28,7 @@ export default async function MemberProfilPage() {
     return (
       <section className="shell grid max-w-3xl gap-6 py-8 lg:py-12">
         <h1 className="font-display text-[clamp(2.4rem,6vw,4rem)] uppercase leading-[1.04]">Tes infos.</h1>
-        <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-bold" role="alert">
+        <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-bold text-[#141116]" role="alert">
           Impossible de charger tes informations pour le moment. Réessaie dans un instant.
         </p>
       </section>
@@ -38,9 +38,9 @@ export default async function MemberProfilPage() {
   return (
     <section className="shell grid max-w-3xl gap-8 py-8 lg:py-12">
       <header>
-        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#773331]">Espace membre</p>
+        <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-white">Espace membre</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4rem)] uppercase leading-[.95]">
-          Tes infos<span className="text-[#EBA0CD]">.</span>
+          Tes infos<span className="text-[#E8459E]">.</span>
         </h1>
       </header>
 

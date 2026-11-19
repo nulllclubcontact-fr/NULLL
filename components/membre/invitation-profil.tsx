@@ -33,12 +33,12 @@ export function InvitationProfil({ prenom }: { prenom: string | null }) {
   }
 
   return (
-    <div className="fixed inset-0 z-[90] grid place-items-center bg-[#3A1A18]/80 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]" role="presentation">
+    <div className="fixed inset-0 z-[90] grid place-items-center bg-[#141116]/80 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]" role="presentation">
       <div
         aria-describedby="invitation-profil-texte"
         aria-labelledby="invitation-profil-titre"
         aria-modal="true"
-        className="invitation-profil flex max-h-[calc(100dvh-2rem-env(safe-area-inset-bottom))] w-full max-w-xl flex-col overflow-hidden border-2 border-[#773331] bg-[#F1EDE9] text-[#773331] shadow-[10px_10px_0_#FFB200]"
+        className="invitation-profil flex max-h-[calc(100dvh-2rem-env(safe-area-inset-bottom))] w-full max-w-xl flex-col overflow-hidden border-2 border-white/15 bg-[#141116] text-white"
         onKeyDown={(event) => {
           if (event.key === "Escape") {
             event.preventDefault();
@@ -61,7 +61,7 @@ export function InvitationProfil({ prenom }: { prenom: string | null }) {
         role="dialog"
         tabIndex={-1}
       >
-        <div className="shrink-0 border-b-2 border-[#773331] bg-[#FFB200] px-5 py-4 sm:px-7">
+        <div className="shrink-0 border-b-2 border-white/15 bg-[#FFC531] px-5 py-4 sm:px-7 text-[#141116]">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Bienvenue{prenom ? `, ${prenom}` : ""}</p>
           <h2 className="mt-2 font-display text-[clamp(1.9rem,6vw,2.6rem)] uppercase leading-[1.05]" id="invitation-profil-titre">
             Deux minutes pour ton profil.
@@ -91,7 +91,7 @@ export function InvitationProfil({ prenom }: { prenom: string | null }) {
             <input className="field" id="invitation-instagram" name="instagram_handle" placeholder="@ton.pseudo" />
           </label>
 
-          <fieldset className="grid gap-4 border-2 border-[#773331] p-4">
+          <fieldset className="grid gap-4 border-2 border-white/15 p-4">
             <legend className="px-2 font-mono text-xs font-black uppercase tracking-[.14em]">En cas de pépin</legend>
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="grid gap-2 font-mono text-xs font-black uppercase" htmlFor="invitation-urgence-nom">
@@ -106,13 +106,13 @@ export function InvitationProfil({ prenom }: { prenom: string | null }) {
           </fieldset>
 
           {etat.error ? (
-            <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
+            <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
               {etat.error}
             </p>
           ) : null}
 
           </div>
-          <div className="grid shrink-0 grid-cols-2 gap-2 border-t-2 border-[#773331] px-3 py-3 sm:grid-cols-[1fr_auto] sm:px-7">
+          <div className="grid shrink-0 grid-cols-2 gap-2 border-t-2 border-white/15 px-3 py-3 sm:grid-cols-[1fr_auto] sm:px-7">
             <button className="primary-button justify-center" disabled={enCours || passeEnCours} type="submit">
               {enCours ? "Enregistrement…" : "Enregistrer"}
             </button>

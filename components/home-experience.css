@@ -116,21 +116,18 @@
 .home-journey .hx-band-pink dt{font-family:var(--font-mono),sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;opacity:.9}
 .home-journey .hx-band-pink dd{margin:0;font-size:clamp(20px,2.2vw,34px);line-height:1}
 
-/* ---------- Partenaires : grandes etiquettes de couleur, comme en story ---------- */
-.home-journey .hx-partners{display:flex;flex-direction:column;align-items:center;padding:100px max(5vw,20px) 120px}
-.home-journey .hx-partners-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,56px);width:100%;max-width:1000px;list-style:none;margin:60px 0 0;padding:0}
-.home-journey .hx-partners-list>li{position:relative}
-.home-journey .hx-partners-card{position:relative;display:grid;place-items:center;min-height:clamp(200px,21vw,270px);padding:40px 32px;border-radius:2px;rotate:var(--r,-2deg);transition:rotate .25s ease,scale .25s ease}
-.home-journey .hx-partners-card:hover{rotate:0deg;scale:1.02}
-.home-journey .hx-partners-pink .hx-partners-card{--r:-2deg;background:var(--hx-pink)}
-.home-journey .hx-partners-yellow .hx-partners-card{--r:2deg;background:var(--hx-yellow)}
-.home-journey .hx-partners-logo{display:block;height:calc(clamp(56px,6vw,84px) * var(--echelle, 1));width:auto;max-width:100%;object-fit:contain}
-.home-journey .hx-partners-pink .hx-partners-logo{filter:brightness(0) invert(1)}
-.home-journey .hx-partners-yellow .hx-partners-logo{filter:brightness(0)}
-.home-journey .hx-partners-go{position:absolute;right:18px;bottom:-20px;--r:-3deg;font-size:clamp(18px,1.8vw,26px)}
-.home-journey .hx-partners-yellow .hx-partners-go{--r:3deg}
-.home-journey .hx-partners-join{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:80px;text-align:center}
-.home-journey .hx-partners-join>p{font-size:clamp(17px,1.4vw,20px);color:rgba(255,255,255,.8)}
+/* ---------- Partenaires : photo du ravito, logos en blanc facon collab ---------- */
+.home-journey .hx-partners{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:min(86vh,820px);padding:110px max(5vw,20px);overflow:hidden;text-align:center}
+.home-journey .hx-partners-bg{object-fit:cover;object-position:center 40%;z-index:-2}
+.home-journey .hx-partners-shade{position:absolute;inset:0;z-index:-1;background:rgba(20,17,22,.62)}
+.home-journey .hx-partners-list{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;list-style:none;margin:64px 0 0;padding:0}
+.home-journey .hx-partners-list>li{display:flex;align-items:center;padding:8px clamp(28px,5vw,72px)}
+.home-journey .hx-partners-list>li+li{border-left:2px solid rgba(255,255,255,.7)}
+.home-journey .hx-partners-link{display:block;transition:scale .2s ease,opacity .2s ease;opacity:.95}
+.home-journey .hx-partners-link:hover{scale:1.05;opacity:1}
+.home-journey .hx-partners-logo{display:block;height:calc(clamp(48px,5.4vw,80px) * var(--echelle, 1));width:auto;max-width:100%;filter:brightness(0) invert(1)}
+.home-journey .hx-partners-join{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:72px}
+.home-journey .hx-partners-join>p{font-size:clamp(17px,1.4vw,20px);font-weight:700;color:#fff}
 
 /* ---------- Les dates : photo a gauche, contenu a droite, sans chevauchement ---------- */
 .home-journey .hx-dates{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);scroll-margin-top:90px}
@@ -253,9 +250,10 @@
   .home-journey .hx-band-pink>div{width:50%;padding:10px 10px;border-right:0;flex-direction:column;gap:2px;align-items:flex-start}
   .home-journey .hx-band-pink dd{font-size:clamp(20px,5.6vw,28px);white-space:normal}
 
-  .home-journey .hx-partners{padding:72px 16px 80px}
-  .home-journey .hx-partners-list{grid-template-columns:minmax(0,1fr);margin-top:40px}
-  .home-journey .hx-partners-logo{height:calc(46px * var(--echelle, 1))}
+  .home-journey .hx-partners{padding:80px 16px;min-height:0}
+  .home-journey .hx-partners-list{margin-top:44px}
+  .home-journey .hx-partners-list>li{padding:8px 22px}
+  .home-journey .hx-partners-logo{height:calc(34px * var(--echelle, 1))}
 
   .home-journey .hx-dates{display:block;min-height:0}
   .home-journey .hx-dates-photo{min-height:0;aspect-ratio:4/3}

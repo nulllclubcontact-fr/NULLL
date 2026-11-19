@@ -233,7 +233,7 @@ export default async function RunsPage({ params }: PageProps) {
 
 function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string; run: RunEvent }) {
   const visuals = [
-    { src: "/assets/photos/runs-golden.webp", position: "object-[50%_58%]", accent: "bg-[#FFC531] text-white" },
+    { src: "/assets/photos/runs-golden.webp", position: "object-[50%_58%]", accent: "bg-[#FFC531] text-[#141116]" },
     { src: "/assets/photos/runs-motion.webp", position: "object-center", accent: "bg-[#E8459E] text-white" },
     { src: "/assets/photos/runs-crew.webp", position: "object-center", accent: "bg-[#141116] text-white" }
   ];

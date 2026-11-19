@@ -37,7 +37,7 @@ export default async function AdminReseauPage() {
         <div>
           <p className="font-mono text-xs font-black uppercase tracking-[.18em]">Administration</p>
           <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[.95]">
-            Partenaires<span className="text-[#EBA0CD]">.</span>
+            Partenaires<span className="text-[#E8459E]">.</span>
           </h1>
           <p className="mt-4 max-w-xl font-bold">
             Chaque partenaire créé apparaît ici, et chaque vente scannée dans son espace pro remonte toute seule.
@@ -92,7 +92,7 @@ export default async function AdminReseauPage() {
       <div>
         <Intitule>Tous les partenaires</Intitule>
         {fiches.length === 0 ? (
-          <p className="mt-5 border-2 border-dashed border-[#773331] p-6 font-bold">
+          <p className="mt-5 border-2 border-dashed border-white/15 p-6 font-bold">
             Aucun partenaire. Crée le premier juste au-dessus.
           </p>
         ) : (
@@ -107,7 +107,7 @@ export default async function AdminReseauPage() {
               return (
                 <li key={partenaire.id}>
                   <Link
-                    className="group flex h-full flex-col border-2 border-[#773331] bg-[#F1EDE9] p-5 transition hover:bg-[#EBA0CD]"
+                    className="group flex h-full flex-col border-2 border-white/15 bg-[#141116] p-5 transition hover:bg-[#E8459E]"
                     href={`/admin/reseau/${partenaire.id}`}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -115,7 +115,7 @@ export default async function AdminReseauPage() {
                       {partenaire.active ? <Etiquette teinte="bordeaux">Actif</Etiquette> : <Etiquette pointillee teinte="creme">Désactivé</Etiquette>}
                     </div>
 
-                    <dl className="mt-5 grid grid-cols-3 gap-3 border-y-2 border-[#773331] py-4">
+                    <dl className="mt-5 grid grid-cols-3 gap-3 border-y-2 border-white/15 py-4">
                       <div>
                         <dt className="font-mono text-xs font-black uppercase tracking-[.12em]">CA</dt>
                         <dd className="mt-1 font-mono text-sm font-black">{formatEuro(resume.revenue)}</dd>
@@ -138,7 +138,7 @@ export default async function AdminReseauPage() {
                         Espace pro ouvert le {formatJourCourt(derniereConnexion)}
                       </p>
                     ) : (
-                      <p className="mt-2 self-start bg-[#FFB200] px-2 py-1 font-mono text-xs font-black uppercase tracking-[.12em]">
+                      <p className="mt-2 self-start bg-[#FFC531] px-2 py-1 font-mono text-xs font-black uppercase tracking-[.12em] text-[#141116]">
                         N’a jamais ouvert son espace pro
                       </p>
                     )}

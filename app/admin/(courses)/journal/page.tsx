@@ -70,7 +70,7 @@ export default async function AdminJournalPage() {
       <header>
         <p className="font-mono text-xs font-black uppercase tracking-[.18em]">Administration</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[.95]">
-          Journal<span className="text-[#EBA0CD]">.</span>
+          Journal<span className="text-[#E8459E]">.</span>
         </h1>
         <p className="mt-4 max-w-xl font-bold">
           Qui a fait quoi dans l’administration. Les exports d’inscrits emportent des e-mails et des téléphones : ils sont en jaune. Les scans du jour de course ont leur propre trace, sur chaque sortie.
@@ -78,22 +78,22 @@ export default async function AdminJournalPage() {
       </header>
 
       {entrees === null ? (
-        <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-bold" role="alert">
+        <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-bold text-[#141116]" role="alert">
           Impossible de lire le journal pour le moment. Recharge la page dans un instant.
         </p>
       ) : entrees.length === 0 ? (
-        <p className="border-2 border-dashed border-[#773331] p-6 font-bold">Rien pour l’instant. La première action apparaîtra ici.</p>
+        <p className="border-2 border-dashed border-white/15 p-6 font-bold">Rien pour l’instant. La première action apparaîtra ici.</p>
       ) : (
         <div>
           <Intitule>Les 200 dernières actions · gardées douze mois</Intitule>
           <div aria-label="Journal des actions" className="mt-5 overflow-x-auto" tabIndex={0}>
             <table className="w-full min-w-[42rem] border-collapse text-left">
               <thead>
-                <tr className="font-mono text-xs font-black uppercase tracking-[.14em] text-[#773331]">
-                  <th className="border-b-2 border-[#773331] pb-2 pr-4">Quand</th>
-                  <th className="border-b-2 border-[#773331] pb-2 pr-4">Qui</th>
-                  <th className="border-b-2 border-[#773331] pb-2 pr-4">Action</th>
-                  <th className="border-b-2 border-[#773331] pb-2">Détail</th>
+                <tr className="font-mono text-xs font-black uppercase tracking-[.14em] text-white">
+                  <th className="border-b-2 border-white/15 pb-2 pr-4">Quand</th>
+                  <th className="border-b-2 border-white/15 pb-2 pr-4">Qui</th>
+                  <th className="border-b-2 border-white/15 pb-2 pr-4">Action</th>
+                  <th className="border-b-2 border-white/15 pb-2">Détail</th>
                 </tr>
               </thead>
               <tbody>
@@ -105,7 +105,7 @@ export default async function AdminJournalPage() {
                   const detail = resumeDetails(e.details);
 
                   return (
-                    <tr className="border-b border-[#773331]/20" key={e.id}>
+                    <tr className="border-b border-white/20" key={e.id}>
                       <td className="py-3 pr-4 font-mono text-xs">
                         {formatJourCourt(e.created_at)} · {formatHeure(e.created_at)}
                       </td>
@@ -117,7 +117,7 @@ export default async function AdminJournalPage() {
                       </td>
                       <td className="py-3 text-sm font-bold">
                         {lien ? (
-                          <Link className="hover:underline hover:decoration-[#EBA0CD] hover:decoration-4" href={lien}>
+                          <Link className="hover:underline hover:decoration-[#E8459E] hover:decoration-4" href={lien}>
                             {detail || "Voir"}
                           </Link>
                         ) : (

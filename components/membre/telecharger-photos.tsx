@@ -42,7 +42,7 @@ export function TelechargerToutesPhotos({ photos, nomArchive }: { photos: Array<
         {etat ? `Préparation ${etat.fait}/${photos.length}…` : `Tout télécharger (${photos.length} photo${photos.length > 1 ? "s" : ""})`}
       </button>
       {erreur ? (
-        <p className="border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase" role="alert">
+        <p className="border-2 border-white/15 bg-[#FFC531] px-3 py-2 font-mono text-xs font-black uppercase text-[#141116]" role="alert">
           {erreur}
         </p>
       ) : null}

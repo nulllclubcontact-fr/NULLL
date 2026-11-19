@@ -166,7 +166,7 @@ export default async function ActuArticlePage({ params }: PageProps) {
                   {actu.appels.map((appel, index) => {
                     const externe = appel.href.startsWith("http");
                     const classe = `group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-white/15 px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
-                      index === 0 ? "bg-[#1E1A21] text-white hover:bg-[#FFC531] hover:text-white" : "bg-[#141116] text-white hover:bg-[#1E1A21] hover:text-white"
+                      index === 0 ? "bg-[#1E1A21] text-white hover:bg-[#FFC531] hover:text-[#141116]" : "bg-[#141116] text-white hover:bg-[#1E1A21] hover:text-[#141116]"
                     }`;
                     return appel.href.startsWith("/") ? (
                       <Link className={classe} href={appel.href} key={appel.href}>

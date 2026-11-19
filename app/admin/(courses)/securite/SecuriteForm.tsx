@@ -114,14 +114,14 @@ export function SecuriteForm({ facteurs }: { facteurs: Facteur[] }) {
   return (
     <div className="grid gap-4">
       {facteurs.map((f) => (
-        <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between" key={f.id}>
+        <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between text-[#141116]" key={f.id}>
           <div>
             <p className="text-sm font-medium text-slate-900">{f.nom}</p>
             <p className="text-sm text-slate-500">Depuis le {f.depuis}</p>
           </div>
           <details className="relative">
             <summary className={`${BOUTON_CREUX} cursor-pointer list-none`}>Retirer</summary>
-            <div className="absolute right-0 z-20 mt-2 grid w-72 max-w-[calc(100vw-2rem)] gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-lg">
+            <div className="absolute right-0 z-20 mt-2 grid w-72 max-w-[calc(100vw-2rem)] gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-lg text-[#141116]">
               <p className="text-sm text-slate-700">Retirer la double vérification ? Ton mot de passe seul ouvrira de nouveau l’administration.</p>
               <button className={BOUTON_PLEIN} disabled={enCours} onClick={() => retirer(f.id)} type="button">
                 Oui, retirer
@@ -145,10 +145,10 @@ export function SecuriteForm({ facteurs }: { facteurs: Facteur[] }) {
       ) : null}
 
       {enrolement ? (
-        <form className="grid gap-4 rounded-xl border border-slate-200 bg-white p-4" onSubmit={confirmer}>
+        <form className="grid gap-4 rounded-xl border border-slate-200 bg-white p-4 text-[#141116]" onSubmit={confirmer}>
           <p className="text-sm font-medium text-slate-900">Scanne ce QR avec ton application</p>
           <div className="grid gap-4 sm:grid-cols-[auto_1fr] sm:items-start">
-            <div className="w-fit rounded-lg border border-slate-200 bg-white p-2">
+            <div className="w-fit rounded-lg border border-slate-200 bg-white p-2 text-[#141116]">
               {/* Un SVG en URL de donnees, genere a la demande : rien a optimiser,
                   et next/image le refuserait. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}

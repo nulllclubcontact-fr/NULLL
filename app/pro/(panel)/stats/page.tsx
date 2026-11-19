@@ -175,24 +175,24 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
   return (
     <section className="shell grid gap-10 py-8 lg:py-12">
       <header>
-        <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">
+        <p className="inline-flex border-2 border-white/15 bg-[#FFC531] px-3 py-2 font-mono text-xs font-black uppercase text-[#141116]">
           Stats pro{partenaire ? ` · ${partenaire.name}` : ""}
         </p>
         <h1 className="mt-6 font-display text-[clamp(3.6rem,10vw,8rem)] uppercase leading-[0.94]">
-          Ton vrai <span className="bg-[#EBA0CD] px-2">CA.</span>
+          Ton vrai <span className="bg-[#E8459E] px-2">CA.</span>
         </h1>
         <p className="mt-5 max-w-xl font-bold leading-tight">Chaque vente scannée en caisse, et rien d’autre. Choisis ta période.</p>
       </header>
 
       <div className="grid gap-4 lg:grid-cols-[auto_1fr] lg:items-end">
-        <nav aria-label="Période" className="flex flex-wrap self-start border-2 border-[#773331] lg:self-end">
+        <nav aria-label="Période" className="flex flex-wrap self-start border-2 border-white/15 lg:self-end">
           {VUES.map(({ vue: choix, label }) => {
             const actif = !surMesure && choix === vue;
             return (
               <Link
                 aria-current={actif ? "page" : undefined}
                 className={`inline-flex min-h-12 flex-1 items-center justify-center px-4 font-mono text-xs font-black uppercase tracking-[.12em] transition ${
-                  actif ? "bg-[#773331] text-[#F1EDE9]" : "bg-[#F1EDE9] text-[#773331] hover:bg-[#EBA0CD]"
+                  actif ? "bg-[#1E1A21] text-white" : "bg-[#141116] text-white hover:bg-[#E8459E]"
                 }`}
                 href={`/pro/stats?vue=${choix}`}
                 key={choix}
@@ -203,7 +203,7 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
           })}
         </nav>
 
-        <form action="/pro/stats" className="grid gap-3 border-2 border-[#773331] bg-[#EBA0CD]/35 p-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] sm:items-end">
+        <form action="/pro/stats" className="grid gap-3 border-2 border-white/15 bg-[#E8459E]/35 p-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] sm:items-end">
           <input name="vue" type="hidden" value={vue} />
           <label className="grid gap-2 font-mono text-xs font-black uppercase">
             Du
@@ -275,30 +275,30 @@ export default async function ProStatsPage({ searchParams }: StatsPageProps) {
       <div>
         <Intitule>Le détail, jour par jour</Intitule>
         {days.length === 0 ? (
-          <p className="mt-5 border-2 border-dashed border-[#773331] p-6 font-bold">
+          <p className="mt-5 border-2 border-dashed border-white/15 p-6 font-bold">
             Pas encore de scan sur cette période. Quand une commande passe par QR, elle arrive ici.
           </p>
         ) : (
           <div className="mt-5 grid gap-4">
             {days.map((day) => (
-              <article className="border-2 border-[#773331] bg-[#F1EDE9]" key={day.day}>
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#773331] bg-[#EBA0CD]/35 p-4">
+              <article className="border-2 border-white/15 bg-[#141116]" key={day.day}>
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-white/15 bg-[#E8459E]/35 p-4">
                   <h2 className={`${TITRE_LIGNE} first-letter:uppercase`}>{formatDate(day.day)}</h2>
                   <p className="flex flex-wrap gap-2 font-mono text-xs font-black uppercase">
-                    <span className="bg-[#773331] px-2 py-1 text-[#F1EDE9]">{formatEuro(day.revenue)}</span>
-                    <span className="border-2 border-[#773331] px-2 py-0.5">
+                    <span className="bg-[#1E1A21] px-2 py-1 text-white">{formatEuro(day.revenue)}</span>
+                    <span className="border-2 border-white/15 px-2 py-0.5">
                       {day.clients.size} client{day.clients.size > 1 ? "s" : ""}
                     </span>
-                    <span className="border-2 border-[#773331] px-2 py-0.5">
+                    <span className="border-2 border-white/15 px-2 py-0.5">
                       {day.scans} scan{day.scans > 1 ? "s" : ""}
                     </span>
-                    <span className="bg-[#FFB200] px-2 py-1">{day.points} pts</span>
+                    <span className="bg-[#FFC531] px-2 py-1 text-[#141116]">{day.points} pts</span>
                   </p>
                 </div>
 
                 <ul className="grid gap-0 px-4">
                   {day.orders.map((order) => (
-                    <li className="grid grid-cols-[4rem_1fr_auto] items-center gap-3 border-b border-[#773331]/30 py-3 last:border-b-0 sm:grid-cols-[5rem_1fr_auto_auto]" key={order.id}>
+                    <li className="grid grid-cols-[4rem_1fr_auto] items-center gap-3 border-b border-white/30 py-3 last:border-b-0 sm:grid-cols-[5rem_1fr_auto_auto]" key={order.id}>
                       <span className="font-mono text-xs font-black">{formatTime(order.created_at)}</span>
                       <span className="font-bold">{order.label}</span>
                       <span className="font-mono text-sm font-black">{formatEuro(Number(order.amount_eur))}</span>

@@ -69,7 +69,7 @@ function Stat({ label, valeur, detail, ton, jauge }: { label: string; valeur: st
       <p className="text-sm font-medium text-slate-600">{label}</p>
       <p className="text-4xl font-semibold tracking-tight text-slate-900">{valeur}</p>
       {jauge !== undefined ? (
-        <div aria-hidden className="h-2 overflow-hidden rounded-full bg-white ring-1 ring-inset ring-slate-200">
+        <div aria-hidden className="h-2 overflow-hidden rounded-full bg-white ring-1 ring-inset ring-slate-200 text-[#141116]">
           <div className={`h-full rounded-full ${TONS[ton].point}`} style={{ width: `${Math.min(100, jauge)}%` }} />
         </div>
       ) : null}
@@ -128,10 +128,10 @@ function ServiceCarte<T>({ titre, sousTitre, service, enfants }: { titre: string
             {service.manque.map((m, i) => (
               <span key={m}>
                 {i > 0 ? ", " : ""}
-                <code className="rounded bg-white px-1 py-0.5 text-xs ring-1 ring-slate-200">{m}</code>
+                <code className="rounded bg-white px-1 py-0.5 text-xs ring-1 ring-slate-200 text-[#141116]">{m}</code>
               </span>
             ))}
-            . La marche à suivre est dans <code className="rounded bg-white px-1 py-0.5 text-xs ring-1 ring-slate-200">docs/admin/05-exploitation.md</code>.
+            . La marche à suivre est dans <code className="rounded bg-white px-1 py-0.5 text-xs ring-1 ring-slate-200 text-[#141116]">docs/admin/05-exploitation.md</code>.
           </p>
         </div>
       ) : service.etat === "erreur" ? (
@@ -440,7 +440,7 @@ export default async function AdminSecuritePage({ searchParams }: { searchParams
             <div className="flex flex-wrap gap-2">
               {FILTRES_AUTH.map((f) => (
                 <Link
-                  className={`rounded-full px-3 py-1.5 text-sm font-medium ring-1 ring-inset ${f.cle === filtre.cle ? "bg-slate-900 text-white ring-slate-900" : "bg-white text-slate-700 ring-slate-300 hover:bg-slate-100"}`}
+                  className={`rounded-full px-3 py-1.5 text-sm font-medium ring-1 ring-inset ${f.cle === filtre.cle ? "bg-slate-900 text-[#141116] ring-slate-900" : "bg-white text-slate-700 ring-slate-300 hover:bg-slate-100"}`}
                   href={f.cle === "tout" ? "/admin/securite" : `/admin/securite?connexions=${f.cle}`}
                   key={f.cle}
                   scroll={false}

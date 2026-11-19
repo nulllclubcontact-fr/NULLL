@@ -41,7 +41,7 @@ export default async function PhotosSortiePage({ params }: { params: Promise<{ i
           ← Mes sorties
         </Link>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4rem)] uppercase leading-[.95]">
-          Les photos<span className="text-[#EBA0CD]">.</span>
+          Les photos<span className="text-[#E8459E]">.</span>
         </h1>
         {course ? (
           <p className="mt-3 font-mono text-xs font-black uppercase tracking-[.12em]">
@@ -51,13 +51,13 @@ export default async function PhotosSortiePage({ params }: { params: Promise<{ i
       </header>
 
       {!acces ? (
-        <p className="border-2 border-dashed border-[#773331]/30 p-6 font-bold">Ces photos sont réservées aux inscrits de la sortie.</p>
+        <p className="border-2 border-dashed border-white/30 p-6 font-bold">Ces photos sont réservées aux inscrits de la sortie.</p>
       ) : photos === null ? (
-        <p className="border-2 border-[#773331] bg-[#FFB200] p-4 font-mono text-sm font-black uppercase" role="alert">
+        <p className="border-2 border-white/15 bg-[#FFC531] p-4 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
           Photos indisponibles pour le moment. Réessaie un peu plus tard.
         </p>
       ) : photos.length === 0 ? (
-        <p className="border-2 border-dashed border-[#773331]/30 p-6 font-bold">Pas encore de photos. On te prévient dès qu’elles sont là.</p>
+        <p className="border-2 border-dashed border-white/30 p-6 font-bold">Pas encore de photos. On te prévient dès qu’elles sont là.</p>
       ) : (
         <>
           <TelechargerToutesPhotos
@@ -67,10 +67,10 @@ export default async function PhotosSortiePage({ params }: { params: Promise<{ i
           <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {photos.map((photo) => (
               <li className="grid gap-2" key={photo.chemin}>
-                <a className="block border-2 border-[#773331] transition-transform hover:-translate-y-1" href={photo.url} rel="noopener" target="_blank">
+                <a className="block border-2 border-white/15 transition-transform hover:-translate-y-1" href={photo.url} rel="noopener" target="_blank">
                   <Image alt={`Photo ${photo.nom}`} className="aspect-square w-full object-cover" height={400} src={photo.miniature} unoptimized width={400} />
                 </a>
-                <a className="inline-flex min-h-11 items-center justify-center border-2 border-[#773331] bg-[#F1EDE9] font-mono text-xs font-black uppercase tracking-[.1em] hover:bg-[#FFB200]" href={photo.telechargement}>
+                <a className="inline-flex min-h-11 items-center justify-center border-2 border-white/15 bg-[#141116] font-mono text-xs font-black uppercase tracking-[.1em] hover:bg-[#FFC531]" href={photo.telechargement}>
                   Télécharger
                 </a>
               </li>

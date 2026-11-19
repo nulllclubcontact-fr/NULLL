@@ -15,7 +15,7 @@ export function SuppressionCompte() {
   const confirme = saisie.trim().toUpperCase() === "SUPPRIMER";
 
   return (
-    <details className="border-2 border-[#773331] p-5 sm:p-6">
+    <details className="border-2 border-white/15 p-5 sm:p-6">
       <summary className="flex min-h-11 cursor-pointer items-center font-mono text-xs font-black uppercase tracking-[.14em]">
         Supprimer mon compte
       </summary>
@@ -42,13 +42,13 @@ export function SuppressionCompte() {
         </label>
 
         {state.error ? (
-          <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase" role="alert">
+          <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
             {state.error}
           </p>
         ) : null}
 
         <button
-          className="inline-flex min-h-14 items-center justify-center border-2 border-[#773331] bg-[#773331] px-6 font-mono text-xs font-black uppercase tracking-[.12em] text-[#F1EDE9] transition enabled:hover:bg-[#EBA0CD] enabled:hover:text-[#773331] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex min-h-14 items-center justify-center border-2 border-white/15 bg-[#1E1A21] px-6 font-mono text-xs font-black uppercase tracking-[.12em] text-white transition enabled:hover:bg-[#E8459E] enabled:hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
           disabled={!confirme || pending}
           type="submit"
         >

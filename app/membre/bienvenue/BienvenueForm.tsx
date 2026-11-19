@@ -26,15 +26,15 @@ export function BienvenueForm({ prenom, nom, sortie }: { prenom: string; nom: st
       </div>
 
       <label
-        className="flex cursor-pointer gap-3 border-2 border-[#773331] bg-[#F1EDE9] p-4 text-sm font-bold leading-tight text-[#773331] transition-colors duration-300 has-[:checked]:bg-[#EBA0CD]/12"
+        className="flex cursor-pointer gap-3 border-2 border-white/15 bg-[#141116] p-4 text-sm font-bold leading-tight text-white transition-colors duration-300 has-[:checked]:bg-[#E8459E]/12"
         style={{ "--pas": 1 } as React.CSSProperties}
       >
-        <input checked={accepted} className="mt-0.5 h-6 w-6 shrink-0 accent-[#EBA0CD]" name="waiver" onChange={(event) => setAccepted(event.target.checked)} type="checkbox" />
+        <input checked={accepted} className="mt-0.5 h-6 w-6 shrink-0 accent-[#E8459E]" name="waiver" onChange={(event) => setAccepted(event.target.checked)} type="checkbox" />
         <span>
           J’ai lu et j’accepte la décharge de responsabilité : je participe aux activités de Nulll Club sous ma propre
           responsabilité, je reconnais les risques liés à la course à pied et je renonce à tout recours, sauf faute de
           l’organisateur.{" "}
-          <Link className="inline-flex min-h-11 items-center font-black text-[#773331] underline decoration-[#EBA0CD] decoration-2 underline-offset-4" href="/membre/decharge?depuis=bienvenue" rel="noopener" target="_blank">
+          <Link className="inline-flex min-h-11 items-center font-black text-white underline decoration-[#E8459E] decoration-2 underline-offset-4" href="/membre/decharge?depuis=bienvenue" rel="noopener" target="_blank">
             lire la décharge complète
           </Link>
         </span>
@@ -43,13 +43,13 @@ export function BienvenueForm({ prenom, nom, sortie }: { prenom: string; nom: st
       <CaseImage pas={1} />
 
       {state.error ? (
-        <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">
+        <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
           {state.error}
         </p>
       ) : null}
 
       <button
-        className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#FFB200] enabled:hover:text-[#773331]"
+        className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#FFC531] enabled:hover:text-[#141116]"
         disabled={!accepted || pending}
         style={{ "--pas": 2 } as React.CSSProperties}
         type="submit"

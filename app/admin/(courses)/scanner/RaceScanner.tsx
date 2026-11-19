@@ -37,13 +37,13 @@ function ecrireAttente(liste: ScanAttente[]) {
 
 /** Chaque issue a sa couleur : sur le terrain on lit l'ecran d'un coup d'oeil. */
 const ALLURE: Record<string, string> = {
-  success: "bg-[#FFB200] text-[#773331]",
-  already_checked_in: "bg-[#F1EDE9] text-[#773331]",
-  wrong_race: "bg-[#EBA0CD] text-[#773331]",
-  race_unavailable: "bg-[#EBA0CD] text-[#773331]",
-  cancelled_registration: "bg-[#773331] text-[#F1EDE9]",
-  invalid_qr: "bg-[#773331] text-[#F1EDE9]",
-  forbidden: "bg-[#773331] text-[#F1EDE9]"
+  success: "bg-[#FFC531] text-[#141116]",
+  already_checked_in: "bg-[#141116] text-white",
+  wrong_race: "bg-[#E8459E] text-white",
+  race_unavailable: "bg-[#E8459E] text-white",
+  cancelled_registration: "bg-[#1E1A21] text-white",
+  invalid_qr: "bg-[#1E1A21] text-white",
+  forbidden: "bg-[#1E1A21] text-white"
 };
 
 export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; courseInitiale?: string }) {
@@ -243,7 +243,7 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
           </select>
         </label>
 
-        <div className="scanner-video border-2 border-[#773331] bg-[#773331] p-2">
+        <div className="scanner-video border-2 border-white/15 bg-[#1E1A21] p-2">
           <video className="aspect-square w-full bg-black object-cover" muted playsInline ref={videoRef} />
         </div>
 
@@ -258,12 +258,12 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
       </div>
 
       <aside className="scanner-feedback grid content-start gap-4">
-        <div aria-live="polite" className="scanner-counts grid grid-cols-2 border-2 border-[#773331]">
-          <p className="border-r-2 border-[#773331] bg-[#FFB200] p-4">
+        <div aria-live="polite" className="scanner-counts grid grid-cols-2 border-2 border-white/15">
+          <p className="border-r-2 border-white/15 bg-[#FFC531] p-4 text-[#141116]">
             <span className="block font-display text-[clamp(2.6rem,7vw,3.6rem)] leading-none tabular-nums">{compteurs ? compteurs.scannes : "…"}</span>
             <span className="mt-2 block font-mono text-xs font-black uppercase tracking-[.14em]">Scannés</span>
           </p>
-          <p className="bg-[#F1EDE9] p-4">
+          <p className="bg-[#141116] p-4">
             <span className="block font-display text-[clamp(2.6rem,7vw,3.6rem)] leading-none tabular-nums">{compteurs ? compteurs.inscrits : "…"}</span>
             <span className="mt-2 block font-mono text-xs font-black uppercase tracking-[.14em]">Inscrits à la sortie</span>
           </p>
@@ -271,7 +271,7 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
 
         <div
           aria-live="polite"
-          className={`scanner-result border-2 border-[#773331] p-5 ${resultat ? ALLURE[resultat.result] ?? "bg-[#F1EDE9]" : "bg-[#F1EDE9]"}`}
+          className={`scanner-result border-2 border-white/15 p-5 ${resultat ? ALLURE[resultat.result] ?? "bg-[#141116]" : "bg-[#141116]"}`}
         >
           <p className="font-mono text-xs font-black uppercase tracking-[.16em] opacity-70">
             {enCours ? "Lecture…" : "Dernier scan"}
@@ -285,7 +285,7 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
         <p aria-live="polite" className="scanner-status font-mono text-xs font-black uppercase tracking-[.12em] opacity-70">{statut}</p>
 
         {enAttente > 0 ? (
-          <div aria-live="polite" className="flex flex-wrap items-center justify-between gap-3 border-2 border-[#773331] bg-[#FFB200] p-4">
+          <div aria-live="polite" className="flex flex-wrap items-center justify-between gap-3 border-2 border-white/15 bg-[#FFC531] p-4 text-[#141116]">
             <p className="font-mono text-xs font-black uppercase tracking-[.12em]">
               {enAttente} scan{enAttente > 1 ? "s" : ""} en attente de réseau
             </p>
@@ -295,7 +295,7 @@ export function RaceScanner({ courses, courseInitiale }: { courses: Course[]; co
           </div>
         ) : null}
 
-        <p className="font-mono text-xs font-black uppercase leading-relaxed tracking-[.12em] text-[#773331]">
+        <p className="font-mono text-xs font-black uppercase leading-relaxed tracking-[.12em] text-white">
           Un QR d’une autre sortie est refusé, et le refus est tracé. Chaque scan est enregistré, même raté.
         </p>
       </aside>

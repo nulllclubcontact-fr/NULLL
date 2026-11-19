@@ -90,7 +90,7 @@ export function ContactMailForm() {
       </label>
 
       <button
-        className="inline-flex min-h-20 w-full items-center justify-between gap-4 border-2 border-[#FFC531] bg-[#FFC531] px-6 font-mono text-xs font-black uppercase tracking-[.1em] text-[#141116] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFFFFF] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-[#FFC531] disabled:hover:text-white sm:px-8"
+        className="inline-flex min-h-20 w-full items-center justify-between gap-4 border-2 border-[#FFC531] bg-[#FFC531] px-6 font-mono text-xs font-black uppercase tracking-[.1em] text-[#141116] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFFFFF] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-[#FFC531] disabled:hover:text-[#141116] sm:px-8"
         disabled={etat === "envoi"}
         type="submit"
       >

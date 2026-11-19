@@ -13,7 +13,7 @@ export function PasswordForm() {
       <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 0 } as React.CSSProperties}>
         <span>Nouveau mot de passe</span>
         <input autoComplete="new-password" className="field" minLength={6} name="password" required type="password" />
-        <span className="font-mono text-xs font-bold normal-case tracking-normal text-[#773331]">Six caractères au minimum.</span>
+        <span className="font-mono text-xs font-bold normal-case tracking-normal text-white">Six caractères au minimum.</span>
       </label>
 
       <label className="account-field grid gap-2 font-mono text-xs font-black uppercase" style={{ "--pas": 1 } as React.CSSProperties}>
@@ -22,13 +22,13 @@ export function PasswordForm() {
       </label>
 
       {state.error ? (
-        <p className="border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" role="alert">
+        <p className="border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-mono text-sm font-black uppercase text-[#141116]" role="alert">
           {state.error}
         </p>
       ) : null}
 
       <button
-        className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#FFB200] enabled:hover:text-[#773331]"
+        className="primary-button transition duration-300 enabled:hover:-translate-y-1 enabled:hover:bg-[#FFC531] enabled:hover:text-[#141116]"
         disabled={pending}
         style={{ "--pas": 2 } as React.CSSProperties}
         type="submit"

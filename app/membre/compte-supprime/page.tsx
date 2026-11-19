@@ -8,12 +8,12 @@ export const metadata = {
 
 export default function CompteSupprimePage() {
   return (
-    <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
+    <div className="da min-h-dvh bg-[#141116] text-white">
       <AccountHeader />
       <main className="shell grid max-w-3xl gap-6 py-10" id="contenu" tabIndex={-1}>
-        <p className="inline-flex w-fit border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">Compte / supprimé</p>
+        <p className="inline-flex w-fit border-2 border-white/15 bg-[#FFC531] px-3 py-2 font-mono text-xs font-black uppercase text-[#141116]">Compte / supprimé</p>
         <h1 className="font-display text-[clamp(3rem,8vw,6rem)] uppercase leading-[1.04]">
-          C’est fait<span className="text-[#EBA0CD]">.</span>
+          C’est fait<span className="text-[#E8459E]">.</span>
         </h1>
         <p className="max-w-xl text-lg font-bold leading-snug">
           Ton compte et toutes tes données ont été effacés : profil, inscriptions aux sorties, présences et accords. Il ne

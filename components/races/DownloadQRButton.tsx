@@ -22,7 +22,7 @@ export function DownloadQRButton({ token, nom }: { token: string; nom: string })
         type: "image/png",
         width: 400,
         margin: 1,
-        color: { dark: "#773331", light: "#ffffff" }
+        color: { dark: "#141116", light: "#ffffff" }
       });
 
       const lien = document.createElement("a");
@@ -41,7 +41,7 @@ export function DownloadQRButton({ token, nom }: { token: string; nom: string })
   return (
     <div className="grid gap-2">
       <button
-        className="inline-flex min-h-11 items-center border-2 border-[#773331] bg-[#773331] px-3 py-2 font-mono text-xs font-black uppercase tracking-[.12em] text-[#F1EDE9] transition hover:bg-[#EBA0CD] hover:text-[#773331] focus-visible:bg-[#EBA0CD] focus-visible:text-[#773331] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFB200] disabled:opacity-70"
+        className="inline-flex min-h-11 items-center border-2 border-white/15 bg-[#1E1A21] px-3 py-2 font-mono text-xs font-black uppercase tracking-[.12em] text-white transition hover:bg-[#E8459E] hover:text-white focus-visible:bg-[#E8459E] focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFC531] disabled:opacity-70"
         disabled={etat === "cours"}
         onClick={telecharger}
         type="button"
@@ -49,7 +49,7 @@ export function DownloadQRButton({ token, nom }: { token: string; nom: string })
         {etat === "cours" ? "Préparation…" : "↓ Télécharger le QR"}
       </button>
       {etat === "erreur" ? (
-        <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#FFB200]" role="alert">
+        <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#FFC531]" role="alert">
           Le QR n’a pas pu être téléchargé. Réessaie.
         </p>
       ) : null}

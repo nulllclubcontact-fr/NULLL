@@ -11,9 +11,9 @@ const DUREE_ROTATION_MS = 4200;
 const ANGLE = 360 / CASES.length;
 
 const COULEURS: Record<Case, { fond: string; texte: string }> = {
-  redbull: { fond: "#FFB200", texte: "#773331" },
-  beezen: { fond: "#EBA0CD", texte: "#773331" },
-  rien: { fond: "#3A1A18", texte: "#F1EDE9" }
+  redbull: { fond: "#FFC531", texte: "#141116" },
+  beezen: { fond: "#E8459E", texte: "#FFFFFF" },
+  rien: { fond: "#1E1A21", texte: "#FFFFFF" }
 };
 const NOMS_CASE: Record<Case, string> = { redbull: "RED BULL", beezen: "BEE ZEN", rien: "RIEN" };
 
@@ -83,12 +83,12 @@ export function RouletteAccueil({ runsHref }: { runsHref: string }) {
   // Rendue dans body : l'accueil isole ses calques (isolation: isolate),
   // la fenetre passait sous l'en-tete et le bandeau cookies.
   return createPortal(
-    <div className="fixed inset-0 z-[90] grid place-items-center bg-[#3A1A18]/80 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]" role="presentation">
+    <div className="fixed inset-0 z-[90] grid place-items-center bg-[#141116]/80 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]" role="presentation">
       <div
         aria-describedby="roulette-texte"
         aria-labelledby="roulette-titre"
         aria-modal="true"
-        className="flex max-h-[calc(100dvh-2rem-env(safe-area-inset-bottom))] w-full max-w-lg flex-col overflow-hidden border-2 border-[#773331] bg-[#F1EDE9] text-[#773331] shadow-[10px_10px_0_#FFB200]"
+        className="flex max-h-[calc(100dvh-2rem-env(safe-area-inset-bottom))] w-full max-w-lg flex-col overflow-hidden border-2 border-white/15 bg-[#141116] text-white"
         onKeyDown={(event) => {
           if (event.key === "Escape" && phase !== "tourne") {
             event.preventDefault();
@@ -111,7 +111,7 @@ export function RouletteAccueil({ runsHref }: { runsHref: string }) {
         role="dialog"
         tabIndex={-1}
       >
-        <div className="flex shrink-0 items-start justify-between gap-4 border-b-2 border-[#773331] bg-[#FFB200] px-5 py-4 sm:px-7">
+        <div className="flex shrink-0 items-start justify-between gap-4 border-b-2 border-white/15 bg-[#FFC531] px-5 py-4 sm:px-7 text-[#141116]">
           <div>
             <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Un essai · Neuf chances sur dix</p>
             <h2 className="mt-2 font-display text-[clamp(1.9rem,6vw,2.6rem)] uppercase leading-[1.05]" id="roulette-titre">
@@ -120,7 +120,7 @@ export function RouletteAccueil({ runsHref }: { runsHref: string }) {
           </div>
           <button
             aria-label="Fermer"
-            className="grid size-11 shrink-0 place-items-center border-2 border-[#773331] font-mono text-lg font-black transition-colors hover:bg-[#773331] hover:text-[#FFB200] disabled:opacity-40"
+            className="grid size-11 shrink-0 place-items-center border-2 border-white/15 font-mono text-lg font-black transition-colors hover:bg-[#1E1A21] hover:text-[#FFC531] disabled:opacity-40"
             disabled={phase === "tourne"}
             onClick={() => setPhase("ferme")}
             type="button"
@@ -159,7 +159,7 @@ function Roue({ rotation }: { rotation: number }) {
     <div className="relative mx-auto w-full max-w-[min(260px,38dvh)]">
       {/* Le curseur, fixe, en haut de la roue. */}
       <svg aria-hidden="true" className="absolute left-1/2 top-[-6px] z-10 -translate-x-1/2" height="28" viewBox="0 0 24 28" width="24">
-        <path d="M2 2 H22 L12 26 Z" fill="#3A1A18" stroke="#F1EDE9" strokeWidth="2" />
+        <path d="M2 2 H22 L12 26 Z" fill="#FFFFFF" stroke="#141116" strokeWidth="2" />
       </svg>
       <svg
         aria-hidden="true"
@@ -177,7 +177,7 @@ function Roue({ rotation }: { rotation: number }) {
           const milieu = index * ANGLE + ANGLE / 2;
           return (
             <g key={index}>
-              <path d={`M0 0 L${x1.toFixed(2)} ${y1.toFixed(2)} A${rayon} ${rayon} 0 0 1 ${x2.toFixed(2)} ${y2.toFixed(2)} Z`} fill={COULEURS[lot].fond} stroke="#773331" strokeWidth="2" />
+              <path d={`M0 0 L${x1.toFixed(2)} ${y1.toFixed(2)} A${rayon} ${rayon} 0 0 1 ${x2.toFixed(2)} ${y2.toFixed(2)} Z`} fill={COULEURS[lot].fond} stroke="#141116" strokeWidth="2" />
               <text
                 fill={COULEURS[lot].texte}
                 fontFamily="var(--font-mono), monospace"
@@ -192,8 +192,8 @@ function Roue({ rotation }: { rotation: number }) {
             </g>
           );
         })}
-        <circle fill="#F1EDE9" r="26" stroke="#773331" strokeWidth="2" />
-        <text fill="#773331" fontFamily="var(--font-display), Impact, sans-serif" fontSize="18" textAnchor="middle" y="7">
+        <circle fill="#FFFFFF" r="26" stroke="#141116" strokeWidth="2" />
+        <text fill="#141116" fontFamily="var(--font-display), Impact, sans-serif" fontSize="18" textAnchor="middle" y="7">
           N
         </text>
       </svg>
@@ -203,7 +203,7 @@ function Roue({ rotation }: { rotation: number }) {
 
 function Resultat({ runsHref }: { runsHref: string }) {
   return (
-    <div className="roulette-chute grid gap-3 border-2 border-[#773331] bg-[#FFB200] p-4">
+    <div className="roulette-chute grid gap-3 border-2 border-white/15 bg-[#FFC531] p-4 text-[#141116]">
       <p className="font-mono text-xs font-black uppercase tracking-[.14em]">Résultat : rien…</p>
       <p className="font-display text-[clamp(1.8rem,6vw,2.4rem)] uppercase leading-[1.05]">Ahah, on rigole. Tout est offert !</p>
       <p className="text-lg font-bold leading-relaxed">On se voit SAMEDI pour le run !!</p>

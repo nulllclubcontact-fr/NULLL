@@ -46,7 +46,7 @@ export default async function AdminEquipePage() {
       <header>
         <p className="font-mono text-xs font-black uppercase tracking-[.18em]">Administration</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[.95]">
-          L’équipe<span className="text-[#EBA0CD]">.</span>
+          L’équipe<span className="text-[#E8459E]">.</span>
         </h1>
         <p className="mt-4 max-w-xl font-bold">
           Les comptes qui ouvrent l’administration. Chaque ajout et chaque retrait est inscrit au journal. Un admin ne peut pas se retirer lui-même, et il en reste toujours un.
@@ -58,7 +58,7 @@ export default async function AdminEquipePage() {
       <div>
         <Intitule>Admins ({admins.length})</Intitule>
         {error ? (
-          <p className="mt-5 border-2 border-[#773331] bg-[#FFB200] px-4 py-3 font-bold" role="alert">
+          <p className="mt-5 border-2 border-white/15 bg-[#FFC531] px-4 py-3 font-bold text-[#141116]" role="alert">
             Impossible de charger l’équipe pour le moment.
           </p>
         ) : (
@@ -69,7 +69,7 @@ export default async function AdminEquipePage() {
               const moi = a.id === user.id;
 
               return (
-                <li className="flex flex-col gap-4 border-2 border-[#773331] p-4 lg:flex-row lg:items-center" key={a.id}>
+                <li className="flex flex-col gap-4 border-2 border-white/15 p-4 lg:flex-row lg:items-center" key={a.id}>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-3">
                       <span className="font-display text-2xl uppercase leading-none">{nom}</span>

@@ -50,7 +50,7 @@ export default async function AdminCoursesPage() {
       <header>
         <p className="font-mono text-xs font-black uppercase tracking-[.18em]">Administration</p>
         <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.2rem)] uppercase leading-[.95]">
-          Les sorties<span className="text-[#EBA0CD]">.</span>
+          Les sorties<span className="text-[#E8459E]">.</span>
         </h1>
         <p className="mt-4 max-w-xl font-bold">
           Une sortie publiée apparaît tout de suite sur l’onglet « Sorties » du site. Une fois l’heure de départ passée, elle en disparaît et bascule ici dans les passées.
@@ -62,7 +62,7 @@ export default async function AdminCoursesPage() {
       <div>
         <Intitule>À venir · la plus proche en premier</Intitule>
         {aVenir.length === 0 ? (
-          <p className="mt-5 border-2 border-dashed border-[#773331] p-6 font-bold">Aucune sortie à venir. Crée la prochaine juste au-dessus.</p>
+          <p className="mt-5 border-2 border-dashed border-white/15 p-6 font-bold">Aucune sortie à venir. Crée la prochaine juste au-dessus.</p>
         ) : (
           <ul className="mt-5 grid gap-4">
             {aVenir.map((course, index) => (
@@ -94,8 +94,8 @@ function CarteCourse({ course, prochaine = false }: { course: LigneCourse; proch
   const statut = STATUT[course.status] ?? STATUT.draft;
 
   return (
-    <li className={`flex flex-col gap-4 border-2 border-[#773331] p-4 lg:flex-row lg:items-center ${prochaine ? "shadow-[6px_6px_0_#EBA0CD]" : ""}`}>
-      <div className="relative h-24 w-full shrink-0 overflow-hidden border-2 border-[#773331] bg-[#EBA0CD] sm:w-40">
+    <li className={`flex flex-col gap-4 border-2 border-white/15 p-4 lg:flex-row lg:items-center ${prochaine ? "" : ""}`}>
+      <div className="relative h-24 w-full shrink-0 overflow-hidden border-2 border-white/15 bg-[#E8459E] sm:w-40">
         {course.cover_image_url ? (
           <Image alt="" className="object-cover" fill sizes="160px" src={course.cover_image_url} />
         ) : (
@@ -105,7 +105,7 @@ function CarteCourse({ course, prochaine = false }: { course: LigneCourse; proch
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-3">
-          <Link className={`${TITRE_LIGNE} hover:underline hover:decoration-[#EBA0CD] hover:decoration-4`} href={`/admin/courses/${course.id}`}>
+          <Link className={`${TITRE_LIGNE} hover:underline hover:decoration-[#E8459E] hover:decoration-4`} href={`/admin/courses/${course.id}`}>
             {course.title}
           </Link>
           <Etiquette pointillee={statut.pointillee} teinte={statut.teinte}>

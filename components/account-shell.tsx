@@ -49,14 +49,14 @@ export function AccountShell({
   ticker = TICKER_PAR_DEFAUT
 }: AccountShellProps) {
   return (
-    <div className="flex min-h-dvh flex-col bg-[#F1EDE9] text-[#773331]">
+    <div className="da flex min-h-dvh flex-col bg-[#141116] text-white">
       <AccountHeader />
 
       {/* La photo occupait un bandeau court au-dessus du formulaire, ce qui
           recadrait les portraits verticaux sur un sourcil. Elle prend
           desormais toute la hauteur de sa colonne, et porte le titre. */}
-      <main className="grid flex-1 grid-cols-[minmax(0,1fr)] border-b-2 border-[#773331] lg:grid-cols-[minmax(0,1fr)_minmax(440px,0.92fr)]" id="contenu" tabIndex={-1}>
-        <div className="relative isolate flex min-h-[38svh] flex-col justify-end overflow-hidden bg-[#3A1A18] text-[#F1EDE9] sm:min-h-[52svh] lg:min-h-[calc(100dvh-8.6rem)]">
+      <main className="grid flex-1 grid-cols-[minmax(0,1fr)] border-b-2 border-white/15 lg:grid-cols-[minmax(0,1fr)_minmax(440px,0.92fr)]" id="contenu" tabIndex={-1}>
+        <div className="relative isolate flex min-h-[38svh] flex-col justify-end overflow-hidden bg-[#141116] text-white sm:min-h-[52svh] lg:min-h-[calc(100dvh-8.6rem)]">
           <Image
             alt={imageAlt}
             className="hero-photo object-cover"
@@ -70,7 +70,7 @@ export function AccountShell({
 
           <div className="relative px-4 pb-8 pt-12 sm:px-8 sm:pb-14 sm:pt-16 lg:pb-10 lg:pt-10 xl:px-12">
             <p
-              className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFB200]"
+              className="hero-rise font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFC531]"
               style={{ animationDelay: "60ms" }}
             >
               {eyebrow}
@@ -80,7 +80,7 @@ export function AccountShell({
               style={{ animationDelay: "150ms" }}
             >
               <span className="block">{title}</span>
-              {titleAccent ? <span className="block text-[#EBA0CD]">{titleAccent}</span> : null}
+              {titleAccent ? <span className="block text-[#E8459E]">{titleAccent}</span> : null}
             </h1>
             <p
               className="hero-rise mt-4 max-w-lg text-base font-bold leading-snug sm:mt-5 sm:text-lg"
@@ -95,18 +95,18 @@ export function AccountShell({
             {/* Sans liste sur la recuperation et la bienvenue : l'ecran se
                 concentre sur l'action en cours. */}
             {benefits.length > 0 ? (
-            <ul className="mt-9 hidden gap-px border-2 border-[#F1EDE9]/30 bg-[#F1EDE9]/30 sm:grid sm:grid-cols-3 lg:mt-7">
+            <ul className="mt-9 hidden gap-px border-2 border-white/30 bg-white/30 sm:grid sm:grid-cols-3 lg:mt-7">
               {benefits.map((b, i) => (
                 <li
-                  className="account-benefit hero-rise bg-[#3A1A18]/85 px-4 py-5 lg:py-4"
+                  className="account-benefit hero-rise bg-[#141116]/85 px-4 py-5 lg:py-4"
                   key={b.label}
                   style={{ animationDelay: `${360 + i * 90}ms` }}
                 >
-                  <span className="account-benefit__num block font-display text-3xl leading-none text-[#FFB200]">
+                  <span className="account-benefit__num block font-display text-3xl leading-none text-[#FFC531]">
                     0{i + 1}
                   </span>
                   <span className="mt-3 block font-display text-lg uppercase leading-none">{b.label}</span>
-                  <span className="mt-2 block text-sm leading-snug text-[#F1EDE9]">{b.text}</span>
+                  <span className="mt-2 block text-sm leading-snug text-white">{b.text}</span>
                 </li>
               ))}
             </ul>
@@ -114,18 +114,18 @@ export function AccountShell({
           </div>
         </div>
 
-        <div className="flex flex-col justify-center bg-[#773331] px-4 py-8 text-[#F1EDE9] sm:px-8 sm:py-14 lg:py-8 xl:px-12">
+        <div className="flex flex-col justify-center bg-[#1E1A21] px-4 py-8 text-white sm:px-8 sm:py-14 lg:py-8 xl:px-12">
           <div className="mx-auto w-full max-w-xl">
             {/* Le fil des etapes remplit le haut de la colonne, qui etait
                 vide, et dit ce qui attend le visiteur apres le formulaire. */}
             {steps ? (
               <ol
-                className="hero-rise flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-[#F1EDE9]/25 pb-5 font-mono text-xs font-black uppercase tracking-[.18em]"
+                className="hero-rise flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-white/25 pb-5 font-mono text-xs font-black uppercase tracking-[.18em]"
                 style={{ animationDelay: "120ms" }}
               >
                 {steps.map((step, i) => (
                   <li
-                    className={`account-step flex items-center gap-2.5 ${i === 0 ? "is-active text-[#F1EDE9]" : "text-[#F1EDE9]/80"}`}
+                    className={`account-step flex items-center gap-2.5 ${i === 0 ? "is-active text-white" : "text-white/80"}`}
                     key={step}
                   >
                     <span aria-hidden="true" className="account-step__dot" />
@@ -141,12 +141,12 @@ export function AccountShell({
 
             {footerLink ? (
               <p
-                className="hero-rise mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs font-black uppercase tracking-[.14em] text-[#F1EDE9]/80"
+                className="hero-rise mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs font-black uppercase tracking-[.14em] text-white/80"
                 style={{ animationDelay: "620ms" }}
               >
                 {footerLink.label}
                 <Link
-                  className="group inline-flex min-h-11 min-w-11 items-center gap-2 text-[#FFB200] underline decoration-[#FFB200]/40 decoration-2 underline-offset-4 transition hover:decoration-[#FFB200]"
+                  className="group inline-flex min-h-11 min-w-11 items-center gap-2 text-[#FFC531] underline decoration-[#FFC531]/40 decoration-2 underline-offset-4 transition hover:decoration-[#FFC531]"
                   href={footerLink.href}
                 >
                   {footerLink.cta}
@@ -164,7 +164,7 @@ export function AccountShell({
           la seule privee, et c'est ce qui la faisait sonner etrangere. */}
       <div
         aria-label={ticker}
-        className="marquee shrink-0 bg-[#FFB200] py-4 text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD]"
+        className="marquee shrink-0 bg-[#FFC531] py-4 text-[#141116] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#E8459E]"
         role="region"
         tabIndex={0}
       >
@@ -184,8 +184,8 @@ export function AccountHeader() {
 export function AccountLink({ href, children, secondary = false }: { href: string; children: ReactNode; secondary?: boolean }) {
   return (
     <Link
-      className={`group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-[#773331] px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
-        secondary ? "bg-[#F1EDE9] text-[#773331] hover:bg-[#773331] hover:text-[#F1EDE9]" : "bg-[#773331] text-[#F1EDE9] hover:bg-[#FFB200] hover:text-[#773331]"
+      className={`group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-white/15 px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
+        secondary ? "bg-[#141116] text-white hover:bg-[#1E1A21] hover:text-[#141116]" : "bg-[#1E1A21] text-white hover:bg-[#FFC531] hover:text-[#141116]"
       }`}
       href={href}
     >
