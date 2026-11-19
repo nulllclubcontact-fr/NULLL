@@ -96,44 +96,55 @@ export default async function ActuArticlePage({ params }: PageProps) {
         <article className="px-[max(5vw,20px)] pb-24 pt-16 sm:pt-20">
           {actu.sections.map((section, index) => {
             const photo = photosDansLeTexte[index];
-            return (
-              <div key={section.titre}>
-                <section className="mx-auto max-w-[680px]">
-                  <h2 className={`st ${COULEURS[index % COULEURS.length]} ${index === 0 ? "" : "mt-4"}`}>{section.titre}</h2>
-                  <div className="mt-6 space-y-6 text-[1.13rem] leading-[1.8] text-white/88">
-                    {section.paragraphes.map((paragraphe, numero) =>
-                      index === 0 && numero === 0 ? (
-                        // Le premier paragraphe ouvre l'article : simplement plus grand.
-                        <p className="text-[clamp(1.3rem,2vw,1.55rem)] leading-[1.6] text-white" key={paragraphe}>
-                          <Texte texte={paragraphe} />
-                        </p>
-                      ) : (
-                        <p key={paragraphe}>
-                          <Texte texte={paragraphe} />
-                        </p>
-                      )
-                    )}
-                  </div>
-                </section>
-
+            const verticale = photo ? photo.hauteur > photo.largeur : false;
+            const texte = (
+              <section className={verticale ? "" : "mx-auto max-w-[680px]"}>
+                <h2 className={`st ${COULEURS[index % COULEURS.length]} ${index === 0 ? "" : "mt-4"}`}>{section.titre}</h2>
+                <div className="mt-6 space-y-6 text-[1.13rem] leading-[1.8] text-white/88">
+                  {section.paragraphes.map((paragraphe, numero) =>
+                    index === 0 && numero === 0 ? (
+                      // Le premier paragraphe ouvre l'article : simplement plus grand.
+                      <p className="text-[clamp(1.3rem,2vw,1.55rem)] leading-[1.6] text-white" key={paragraphe}>
+                        <Texte texte={paragraphe} />
+                      </p>
+                    ) : (
+                      <p key={paragraphe}>
+                        <Texte texte={paragraphe} />
+                      </p>
+                    )
+                  )}
+                </div>
                 {section.citation ? (
-                  <blockquote className="mx-auto my-14 max-w-[680px] text-center">
+                  <blockquote className={verticale ? "mt-10" : "mx-auto my-14 max-w-[680px] text-center"}>
                     <p className="-rotate-1 [text-wrap:balance]">
                       <span className="st st-long !bg-[#FFC531] !text-[clamp(22px,2.6vw,34px)] !leading-[1.35] !text-[#141116]">{section.citation}</span>
                     </p>
                   </blockquote>
                 ) : null}
+              </section>
+            );
+            const figure = photo ? (
+              <figure className={verticale ? "mx-auto w-full max-w-[420px]" : "mx-auto my-16 max-w-[1100px]"}>
+                <div className={`overflow-hidden rounded-[2px] ${index % 2 === 0 ? "rotate-[.8deg]" : "-rotate-[.8deg]"}`}>
+                  <Image alt={photo.alt} className="h-auto w-full" height={photo.hauteur} sizes={verticale ? "(min-width: 1024px) 420px, 90vw" : "(min-width: 1100px) 1100px, 100vw"} src={photo.src} width={photo.largeur} />
+                </div>
+                <figcaption className="mt-4 text-center font-hand text-[1.5rem] leading-snug text-white/70">{photo.alt}</figcaption>
+              </figure>
+            ) : null;
 
-                {photo ? (
-                  <figure className={`mx-auto my-16 ${photo.largeur > photo.hauteur ? "max-w-[1100px]" : "max-w-[440px]"}`}>
-                    <div className={`overflow-hidden rounded-[2px] ${index % 2 === 0 ? "rotate-[.6deg]" : "-rotate-[.6deg]"}`}>
-                      <Image alt={photo.alt} className="h-auto w-full" height={photo.hauteur} sizes="(min-width: 1100px) 1100px, 100vw" src={photo.src} width={photo.largeur} />
-                    </div>
-                    <figcaption className="mt-4 text-center font-hand text-[1.5rem] leading-snug text-white/70">{photo.alt}</figcaption>
-                  </figure>
-                ) : (
-                  <div className="h-14" />
-                )}
+            // Photo verticale : le texte se met a cote, la photo alterne de cote.
+            if (verticale) {
+              return (
+                <div className={`mx-auto my-16 grid max-w-[1100px] items-center gap-12 lg:gap-16 ${index % 2 === 0 ? "lg:grid-cols-[minmax(0,1fr)_420px]" : "lg:grid-cols-[420px_minmax(0,1fr)]"}`} key={section.titre}>
+                  <div className={index % 2 === 0 ? "" : "lg:order-2"}>{texte}</div>
+                  <div className={index % 2 === 0 ? "" : "lg:order-1"}>{figure}</div>
+                </div>
+              );
+            }
+            return (
+              <div key={section.titre}>
+                {texte}
+                {figure ?? <div className="h-14" />}
               </div>
             );
           })}

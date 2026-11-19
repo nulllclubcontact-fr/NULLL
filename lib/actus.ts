@@ -121,15 +121,15 @@ export const actus: Actu[] = [
     titre: "Tobias et Tom ont couru New York (et Aix a dû attendre)",
     date: "2026-11-09",
     resume:
-      "Central Park en automne, Times Square, la Cinquième Avenue au pas de course. Le samedi 7 novembre, les deux fondateurs du club ont échangé le parc de la Torse contre Manhattan. Carnet de route.",
+      "Central Park en automne, Times Square, la Cinquième Avenue au pas de course. Le samedi 7 novembre, les deux fondateurs du club ont échangé le parc de la Torse contre Manhattan, avec Eliott dans les valises. Carnet de route.",
     image: {
       src: "/assets/actus/new-york/03.webp",
-      alt: "Selfie de Tobias dans une rue de New York, avec deux amis"
+      alt: "Selfie de Tobias dans une rue de New York, avec Tom et Eliott"
     },
     galerie: [
-      { src: "/assets/actus/new-york/01.webp", alt: "Selfie de Tobias et Tom sous un pont, à New York", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/01.webp", alt: "Selfie de Tobias et Eliott sous un pont, à New York", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/new-york/02.webp", alt: "Une avenue de Midtown sous le soleil, entre les gratte-ciel", largeur: 900, hauteur: 1600 },
-      { src: "/assets/actus/new-york/03.webp", alt: "Selfie de Tobias dans une rue de New York, avec deux amis", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/03.webp", alt: "Selfie de Tobias dans une rue de New York, avec Tom et Eliott", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/new-york/04.webp", alt: "Pause à un carrefour de Manhattan, entre deux runs", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/new-york/05.webp", alt: "Times Square, avec une voiture du NYPD", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/new-york/06.webp", alt: "Photo souvenir dans Central Park", largeur: 900, hauteur: 1600 },
@@ -143,7 +143,7 @@ export const actus: Actu[] = [
       {
         titre: "Changer de terrain de jeu",
         paragraphes: [
-          "Le **samedi 7 novembre**, Tobias et Tom, les deux fondateurs de NULLL, n’étaient pas au départ à Aix. Ils étaient à **New York**.",
+          "Le **samedi 7 novembre**, Tobias et Tom, les deux fondateurs de NULLL, n’étaient pas au départ à Aix. Ils étaient à **New York**, avec **Eliott**, un ami qui donne parfois un coup de main au club.",
           "Pas de dossard, pas de course officielle. Juste des runs en ville, pour le plaisir de courir ailleurs, et de voir ce que ça fait de mettre des baskets dans une ville qui ne dort jamais."
         ],
         citation: "Pas de chrono, pas de dossard : juste New York, au pas de course."
@@ -158,7 +158,7 @@ export const actus: Actu[] = [
       {
         titre: "Et Aix, pendant ce temps ?",
         paragraphes: [
-          "Avec le duo de l’autre côté de l’Atlantique, il n’y a pas eu de social run à Aix ce samedi-là. On ne recommencera pas souvent.",
+          "Avec les fondateurs de l’autre côté de l’Atlantique, il n’y a pas eu de social run à Aix ce samedi-là. On ne recommencera pas souvent.",
           "Les sorties ont repris au rythme habituel : les prochaines dates sont sur la page **Sorties**."
         ]
       }
