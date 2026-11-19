@@ -1,6 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowIcon } from "../../components/ArrowIcon";
+import "../../components/home-experience.css";
 import { StructuredData } from "../../components/StructuredData";
-import { PrimaryLink, SiteShell } from "../../components/site-shell";
+import { SiteShell } from "../../components/site-shell";
 import { buildBreadcrumbSchema } from "../../lib/seo";
 import { getRoute, type Article, type Locale, type RunEvent } from "../../lib/site-content";
 
@@ -31,27 +34,29 @@ export function SeoArticleView({
         ])}
       />
 
-      <article>
-        <header className="border-b border-white/10 bg-[#141116]">
-          <div className="shell max-w-[1180px] py-12 sm:py-16 lg:py-20">
-            <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Guide · Nulll Club</p>
-            <h1 className="mt-5 w-full max-w-[1000px] -rotate-1 [overflow-wrap:normal] [text-wrap:balance]"><span className="st st-pink st-long">{article.h1}</span></h1>
-            <p className="mt-7 max-w-[60ch] text-[clamp(1.15rem,1.6vw,1.35rem)] font-bold leading-relaxed">{article.intro}</p>
+      <div className="home-journey">
+        <section className="hx-hero !min-h-[min(88svh,860px)]" aria-labelledby="article-titre">
+          <Image alt={"Trois coureuses de Nulll Club sourient après une sortie à Aix-en-Provence"} className="object-cover" fill priority sizes="100vw" src={"/assets/actus/quatrieme-run/09.webp"} />
+          <div className="hx-hero-shade" aria-hidden="true" />
+          <div className="hx-hero-copy">
+            <p className="st st-yellow">Guide · Nulll Club</p>
+            <h1 className="mt-4 w-full max-w-[1000px] -rotate-1 [overflow-wrap:normal] [text-wrap:balance]" id="article-titre"><span className="st st-pink st-long">{article.h1}</span></h1>
+            <p className="hx-hero-support !max-w-[52ch]">{article.intro}</p>
           </div>
-        </header>
-
+        </section>
+      <article>
         {/* La grille est dans son propre bloc : « .shell.grid » (globals.css)
             force une seule colonne et l'emporterait sur lg:grid-cols, le
             sommaire tombait au-dessus du texte au lieu d'etre a cote. */}
         <div className="shell max-w-[1180px] py-12 sm:py-16">
           <div className="grid gap-12 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-20">
           <aside className="lg:sticky lg:top-28 lg:self-start">
-            <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Dans ce guide</p>
+            <p className="st st-cream">Dans ce guide</p>
             <ol className="mt-4 grid gap-1 border-l-2 border-white/15">
               {article.sections.map((section, index) => (
                 <li key={section.title}>
                   <a
-                    className="block py-2 pl-4 text-[0.95rem] font-bold leading-snug transition-colors hover:bg-[#FFC531] focus-visible:bg-[#FFC531] focus-visible:outline-none"
+                    className="block rounded-[2px] py-2 pl-4 text-[0.95rem] font-bold leading-snug text-white/80 transition-colors hover:bg-white/10 hover:text-[#FFC531] focus-visible:bg-white/10 focus-visible:text-[#FFC531] focus-visible:outline-none"
                     href={`#section-${index + 1}`}
                   >
                     {section.title}
@@ -60,7 +65,7 @@ export function SeoArticleView({
               ))}
             </ol>
             <Link
-              className="mt-6 inline-flex min-h-11 items-center border-2 border-white/15 bg-[#1E1A21] px-4 font-mono text-xs font-black uppercase tracking-[.12em] text-white transition-colors hover:bg-[#FFC531] hover:text-[#141116]"
+              className="mt-6 inline-flex min-h-11 items-center rounded-[2px] bg-[#FFC531] px-4 font-mono text-xs font-bold uppercase tracking-[.12em] text-[#141116] transition-colors hover:bg-[#E8459E] hover:text-white"
               href={getRoute(locale, "runs")}
             >
               Voir les sorties
@@ -73,10 +78,10 @@ export function SeoArticleView({
             <div className="grid gap-14">
               {article.sections.map((section, index) => (
                 <section className="scroll-mt-28" id={`section-${index + 1}`} key={section.title}>
-                  <h2 className="max-w-[26ch] font-display text-[clamp(1.7rem,3vw,2.3rem)] uppercase leading-[1.12] [text-wrap:balance]">
+                  <h2 className="max-w-[26ch] font-display text-[clamp(1.7rem,3vw,2.3rem)] uppercase leading-[1.12] text-[#FFC531] [text-wrap:balance]">
                     {section.title}
                   </h2>
-                  <div className="mt-5 max-w-[66ch] space-y-5 text-[1.15rem] leading-[1.75]">
+                  <div className="mt-5 max-w-[66ch] space-y-5 text-[1.15rem] leading-[1.75] text-white/85">
                     {section.body.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
@@ -85,28 +90,27 @@ export function SeoArticleView({
               ))}
             </div>
 
-            <div className="mt-16 grid gap-5 border-2 border-white/15 bg-[#FFC531] p-6 sm:p-8 text-[#141116]">
-              <p className="font-display text-[clamp(1.7rem,3.4vw,2.4rem)] uppercase leading-[1.1]">Envie d’essayer ?</p>
-              <p className="max-w-[52ch] text-lg leading-relaxed">Choisis ta prochaine sortie, ou pose-nous une question avant de venir.</p>
+            <div className="mt-16 flex flex-col items-start gap-5 rounded-[2px] bg-[#E8459E] p-8 sm:p-10">
+              <p className="st st-yellow st-xl">Envie d’essayer ?</p>
+              <p className="max-w-[52ch] text-lg font-bold leading-relaxed text-white">Choisis ta prochaine sortie, ou pose-nous une question avant de venir.</p>
               <div className="flex flex-col gap-4 sm:flex-row">
-                <PrimaryLink href={getRoute(locale, "runs")}>Voir les prochaines sorties</PrimaryLink>
-                <PrimaryLink href={getRoute(locale, "contact")} secondary>
-                  Contacter le club
-                </PrimaryLink>
+                <Link className="hx-pill" href={getRoute(locale, "runs")}><span>Voir les sorties</span><ArrowIcon /></Link>
+                <Link className="inline-flex min-h-[62px] items-center rounded-[2px] border border-white/60 px-5 font-mono text-xs font-bold uppercase tracking-[.1em] text-white transition-colors hover:bg-white hover:text-[#141116]" href={getRoute(locale, "contact")}>Contacter le club</Link>
               </div>
             </div>
           </div>
           </div>
         </div>
       </article>
+      </div>
     </SiteShell>
   );
 }
 
 function ProchainesDates({ locale, runs }: { locale: Locale; runs: RunEvent[] | null }) {
   return (
-    <section aria-labelledby="prochaines-dates" className="mb-14 border-2 border-white/15 bg-[#141116] p-5 sm:p-6">
-      <h2 className="font-mono text-xs font-black uppercase tracking-[.16em]" id="prochaines-dates">
+    <section aria-labelledby="prochaines-dates" className="mb-14 rounded-[2px] border border-white/10 bg-[#1E1A21] p-5 sm:p-6">
+      <h2 className="st st-yellow" id="prochaines-dates">
         Les prochaines dates
       </h2>
       {runs && runs.length > 0 ? (

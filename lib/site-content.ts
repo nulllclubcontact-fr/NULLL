@@ -611,7 +611,7 @@ export function getSiteCopy(locale: Locale) {
               body: [
                 "Le lac du Réaltor propose une boucle plate d’une dizaine de kilomètres, très roulante, idéale pour tenir une allure régulière sans dénivelé.",
                 "Le plateau de Bibemus et le barrage de Bimont demandent plus d’engagement, avec du dénivelé et des chemins caillouteux. Les sentiers au pied de la Sainte-Victoire sont magnifiques mais exigeants : mieux vaut y aller accompagné et bien chaussé.",
-                "En été, la chaleur impose de partir tôt. C’est aussi pour ça que les sorties collectives du samedi matin fonctionnent bien à Aix : à 8h30, il fait encore bon."
+                "En été, la chaleur impose de partir tôt. C’est aussi pour ça que les sorties collectives du samedi matin fonctionnent bien à Aix : le matin, il fait encore bon."
               ]
             },
             {

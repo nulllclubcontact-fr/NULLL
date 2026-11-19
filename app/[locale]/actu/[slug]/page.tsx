@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowIcon } from "../../../../components/ArrowIcon";
+import "../../../../components/home-experience.css";
 import { StructuredData } from "../../../../components/StructuredData";
 import { PrimaryLink, SiteShell } from "../../../../components/site-shell";
 import { actus, formaterDateActu, getActu } from "../../../../lib/actus";
@@ -64,48 +65,29 @@ export default async function ActuArticlePage({ params }: PageProps) {
         ]}
       />
 
-      <article>
-        <header className="border-b border-white/10 bg-[#141116]">
-          <div className="shell max-w-[1180px] py-12 sm:py-16 lg:py-20">
-            <p className="font-mono text-xs font-black uppercase tracking-[.16em]">
-              <Link
-                className="underline decoration-2 underline-offset-4"
-                href={base}
-              >
-                Actu
-              </Link>
-              {" · "}
-              <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
-            </p>
-            <h1 className="mt-5 w-full max-w-[1000px] -rotate-1 [overflow-wrap:normal] [text-wrap:balance]"><span className="st st-pink st-long">{actu.titre}</span></h1>
-            <p className="mt-7 max-w-[60ch] text-[clamp(1.15rem,1.6vw,1.35rem)] font-bold leading-relaxed">
-              {actu.resume}
-            </p>
+      <div className="home-journey">
+        <section className="hx-hero !min-h-[min(88svh,860px)]" aria-labelledby="article-titre">
+          <Image alt={actu.image.alt} className="object-cover" fill priority sizes="100vw" src={actu.image.src} />
+          <div className="hx-hero-shade" aria-hidden="true" />
+          <div className="hx-hero-copy">
+            <p className="st st-yellow"><Link href={base}>Actu</Link> · <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time></p>
+            <h1 className="mt-4 w-full max-w-[1000px] -rotate-1 [overflow-wrap:normal] [text-wrap:balance]" id="article-titre"><span className="st st-pink st-long">{actu.titre}</span></h1>
+            <p className="hx-hero-support !max-w-[52ch]">{actu.resume}</p>
           </div>
-        </header>
-
+        </section>
+      <article>
         {/* La grille est dans son propre bloc : « .shell.grid » (globals.css)
             force une seule colonne et l'emporterait sur lg:grid-cols. */}
         <div className="shell max-w-[1180px] py-12 sm:py-16">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-20">
             <div className="min-w-0">
-              <figure className="relative mb-12 mr-2 aspect-[4/3] border-2 border-white/15 sm:mr-0">
-                <Image
-                  alt={actu.image.alt}
-                  className="object-cover"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 720px, 100vw"
-                  src={actu.image.src}
-                />
-              </figure>
               <div className="grid gap-14">
                 {actu.sections.map((section) => (
                   <section key={section.titre}>
-                    <h2 className="max-w-[26ch] font-display text-[clamp(1.7rem,3vw,2.3rem)] uppercase leading-[1.12] [text-wrap:balance]">
+                    <h2 className="max-w-[26ch] font-display text-[clamp(1.7rem,3vw,2.3rem)] uppercase leading-[1.12] text-[#FFC531] [text-wrap:balance]">
                       {section.titre}
                     </h2>
-                    <div className="mt-5 max-w-[66ch] space-y-5 text-[1.15rem] leading-[1.75]">
+                    <div className="mt-5 max-w-[66ch] space-y-5 text-[1.15rem] leading-[1.75] text-white/85">
                       {section.paragraphes.map((paragraphe) => (
                         <p key={paragraphe}>{paragraphe}</p>
                       ))}
@@ -247,6 +229,7 @@ export default async function ActuArticlePage({ params }: PageProps) {
           </div>
         </div>
       </article>
+      </div>
     </SiteShell>
   );
 }

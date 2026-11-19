@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowIcon } from "../../../components/ArrowIcon";
 import { StructuredData } from "../../../components/StructuredData";
+import "../../../components/home-experience.css";
 import { SiteShell } from "../../../components/site-shell";
 import { formaterDateActu, listActus } from "../../../lib/actus";
 import { resolveLocale } from "../../../lib/locale";
@@ -33,41 +33,33 @@ export default async function ActuPage({ params }: PageProps) {
         ])}
       />
 
-      <header className="border-b border-white/10 bg-[#141116]">
-        <div className="shell max-w-[1180px] py-12 sm:py-16 lg:py-20">
-          <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Actu · Nulll Club</p>
-          <h1 className="da-stack mt-5"><span className="st st-blue">Ce qui bouge</span><span className="st st-yellow st-xl">au club !!!</span></h1>
-          <p className="mt-6 max-w-[52ch] text-[clamp(1.1rem,1.6vw,1.3rem)] font-bold leading-relaxed">
-            Les nouvelles du club : les sorties, les annonces, la vie du samedi.
-          </p>
-        </div>
-      </header>
+      <div className="home-journey hx-sans-hero">
+        <header className="hx-page-head">
+          <h1 className="hx-stack">
+            <span className="st st-blue">Ce qui bouge</span>
+            <span className="st st-yellow st-xl">au club !!!</span>
+          </h1>
+          <p>Les nouvelles du club : les sorties, les annonces, la vie du samedi.</p>
+        </header>
 
-      <div className="shell max-w-[1180px] py-12 sm:py-16">
-        <ol className="grid gap-8 md:grid-cols-2">
-          {liste.map((actu) => (
-            <li key={actu.slug}>
-              <Link
-                className="group grid h-full border-2 border-white/15 bg-[#141116] transition-colors hover:bg-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]"
-                href={`${base}/${actu.slug}`}
-              >
-                <span className="relative block aspect-[4/3] border-b-2 border-white/15">
-                  <Image alt={actu.image.alt} className="object-cover" fill sizes="(min-width: 768px) 560px, 100vw" src={actu.image.src} />
-                </span>
-                <span className="grid gap-4 p-6">
-                  <time className="font-mono text-xs font-black uppercase tracking-[.16em]" dateTime={actu.date}>
-                    {formaterDateActu(actu.date)}
-                  </time>
-                  <span className="font-display text-[clamp(1.7rem,3vw,2.3rem)] uppercase leading-[1.1]">{actu.titre}</span>
-                  <span className="text-lg leading-relaxed">{actu.resume}</span>
-                  <span className="inline-flex items-center gap-3 font-mono text-xs font-black uppercase tracking-[.12em]">
-                    Lire l’actu <ArrowIcon />
+        <section className="hx-news !pt-4" aria-label="Toutes les actus">
+          <ol className="hx-news-list">
+            {liste.map((actu, index) => (
+              <li key={actu.slug}>
+                <Link className="hx-news-card" href={`${base}/${actu.slug}`}>
+                  <span className="hx-news-photo">
+                    <Image alt={actu.image.alt} fill sizes="(max-width: 760px) 92vw, 33vw" src={actu.image.src} />
                   </span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
+                  <span className={`st ${["st-pink", "st-yellow", "st-blue"][index % 3]} hx-news-date`}>
+                    <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
+                  </span>
+                  <h2 className="st st-cream hx-news-title">{actu.titre}</h2>
+                  <p className="hx-news-text">{actu.resume}</p>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </section>
       </div>
     </SiteShell>
   );
