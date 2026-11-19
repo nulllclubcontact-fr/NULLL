@@ -117,9 +117,7 @@
 .home-journey .hx-band-pink dd{margin:0;font-size:clamp(20px,2.2vw,34px);line-height:1}
 
 /* ---------- Partenaires : photo du ravito, logos en blanc facon collab ---------- */
-.home-journey .hx-partners{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:min(86vh,820px);padding:110px max(5vw,20px);overflow:hidden;text-align:center}
-.home-journey .hx-partners-bg{object-fit:cover;object-position:center 40%;z-index:-2}
-.home-journey .hx-partners-shade{position:absolute;inset:0;z-index:-1;background:rgba(20,17,22,.62)}
+.home-journey .hx-partners{display:flex;flex-direction:column;align-items:center;padding:110px max(5vw,20px) 120px;text-align:center}
 .home-journey .hx-partners-list{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;list-style:none;margin:64px 0 0;padding:0}
 .home-journey .hx-partners-list>li{display:flex;align-items:center;padding:8px clamp(28px,5vw,72px)}
 .home-journey .hx-partners-list>li+li{border-left:2px solid rgba(255,255,255,.7)}

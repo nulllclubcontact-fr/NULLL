@@ -4,7 +4,7 @@ import { getSiteCopy } from "../lib/site-content";
 import { ArrowIcon } from "./ArrowIcon";
 
 /**
- * Les partenaires du club, sur une grande photo du ravito : titre en
+ * Les partenaires du club sur le fond sombre de la page : titre en
  * etiquettes, logos en blanc separes par un trait (format « collab » des
  * visuels Instagram du club), puis l'appel « Devenir partenaire ».
  */
@@ -14,8 +14,6 @@ export function BandeauPartenaires() {
 
   return (
     <section aria-labelledby="home-partners-title" className="hx-partners">
-      <Image alt="" aria-hidden="true" className="hx-partners-bg" fill sizes="100vw" src="/assets/actus/quatrieme-run/16.webp" />
-      <div className="hx-partners-shade" aria-hidden="true" />
       <h2 className="hx-stack" id="home-partners-title">
         <span className="st st-blue">Merci à</span>
         <span className="st st-lime st-xl">nos partenaires</span>
