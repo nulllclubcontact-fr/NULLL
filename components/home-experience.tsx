@@ -1,4 +1,5 @@
 import Image, { getImageProps } from "next/image";
+import { PastilleNulll } from "./pastille-nulll";
 import Link from "next/link";
 import { DEPART } from "../lib/rendez-vous";
 import { formaterDateActu, type Actu } from "../lib/actus";
@@ -130,6 +131,7 @@ export function HomeExperience({ runs, runsHref, communityHref, aboutHref, local
                 <Link className="hx-news-card" href={`${newsHref}/${actu.slug}`}>
                   <span className="hx-news-photo">
                     <Image alt={actu.image.alt} fill sizes="(max-width: 760px) 92vw, 33vw" src={actu.image.src} />
+                    <PastilleNulll />
                   </span>
                   <span className={`st ${["st-pink", "st-yellow", "st-blue"][index % 3]} hx-news-date`}>
                     <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
@@ -187,7 +189,7 @@ export function HomeExperience({ runs, runsHref, communityHref, aboutHref, local
         <div className="hx-explore-grid">
           <ExploreTile href={communityHref} image="/assets/actus/bienvenue/13.webp" alt="Une bande de membres du club discute, canette à la main" label="Le club" text="D’où vient Nulll Club, et pourquoi trois L." couleur="st-pink" />
           <ExploreTile href="/identification" image="/assets/actus/quatrieme-run/05.webp" alt="Un coureur en maillot rose, tout sourire après la sortie" label="S’inscrire" text="Ton compte gratuit : ton QR code et tes photos." couleur="st-yellow" />
-          <ExploreTile href={aboutHref} image="/assets/actus/quatrieme-run/07.webp" alt="Une coureuse en sweat jaune raconte sa sortie au groupe" label="Contact" text="Une question avant de venir samedi ?" couleur="st-blue" />
+          <ExploreTile href={aboutHref} image="/assets/accueil/contact-sourire.webp" alt="Une membre du club en bonnet, tout sourire après la sortie" label="Contact" text="Une question avant de venir samedi ?" couleur="st-blue" />
         </div>
       </section>
 
@@ -208,13 +210,13 @@ export function HomeExperience({ runs, runsHref, communityHref, aboutHref, local
 
 /** Photo d'ouverture : paysage sur ordinateur, portrait sur telephone. */
 function HeroPhoto() {
-  const commun = { alt: "Une foule de coureurs de Nulll Club part ensemble sur un chemin d’Aix-en-Provence", priority: true, sizes: "100vw" } as const;
+  const commun = { alt: "Cinq coureurs de Nulll Club, tout sourire, courent ensemble sur une passerelle du parc", priority: true, sizes: "100vw" } as const;
   const {
     props: { srcSet: large }
-  } = getImageProps({ ...commun, width: 1600, height: 1066, src: "/assets/accueil/foule.webp" });
+  } = getImageProps({ ...commun, width: 1600, height: 900, src: "/assets/accueil/coureurs-passerelle.webp" });
   const {
     props: { srcSet: portrait, ...rest }
-  } = getImageProps({ ...commun, width: 1066, height: 1600, src: "/assets/accueil/foule-portrait.webp" });
+  } = getImageProps({ ...commun, width: 900, height: 1600, src: "/assets/accueil/coureurs-passerelle-portrait.webp" });
   return (
     <picture className="hx-hero-media">
       <source media="(min-width: 761px)" srcSet={large} />

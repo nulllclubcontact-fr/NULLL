@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { PastilleNulll } from "../../../components/pastille-nulll";
 import Link from "next/link";
 import { StructuredData } from "../../../components/StructuredData";
 import "../../../components/home-experience.css";
@@ -49,6 +50,7 @@ export default async function ActuPage({ params }: PageProps) {
                 <Link className="hx-news-card" href={`${base}/${actu.slug}`}>
                   <span className="hx-news-photo">
                     <Image alt={actu.image.alt} fill sizes="(max-width: 760px) 92vw, 33vw" src={actu.image.src} />
+                    <PastilleNulll />
                   </span>
                   <span className={`st ${["st-pink", "st-yellow", "st-blue"][index % 3]} hx-news-date`}>
                     <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
