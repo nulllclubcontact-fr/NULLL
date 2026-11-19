@@ -326,6 +326,18 @@ export function getSiteCopy(locale: Locale) {
             a: "Oui, et c’est gratuit. Crée ton compte, choisis ta sortie : ton QR t’attend dans ton espace, et on le scanne au départ."
           },
           {
+            q: "Où et à quelle heure ?",
+            a: "Au parking du chemin de la Cible, près du lycée Émile Zola, à Aix-en-Provence. Rendez-vous à 9h30, départ à 10h. Vérifie toujours la sortie choisie : une date peut annoncer un autre lieu."
+          },
+          {
+            q: "Combien de kilomètres ?",
+            a: "5 à 6 km, à une allure qui permet de discuter. Personne n’est laissé derrière."
+          },
+          {
+            q: "Je peux venir seul ?",
+            a: "Oui. Le club est fait pour ça : on vient pour courir, on revient pour les gens."
+          },
+          {
             q: "Y a-t-il des événements spéciaux ?",
             a: "Les formats particuliers seront annoncés avec chaque date, sur cette page."
           }

@@ -14,7 +14,7 @@ import { resolveLocale } from "../../../lib/locale";
 import { buildBreadcrumbSchema, buildEventSchema, buildFaqSchema, buildPageMetadata } from "../../../lib/seo";
 import { getRoute, getSiteCopy, type RunEvent } from "../../../lib/site-content";
 import { listPublicRuns } from "../../../lib/races/repo";
-import { DEPART } from "../../../lib/rendez-vous";
+import { DEPART, SORTIE_ANNONCEE } from "../../../lib/rendez-vous";
 
 // Les sorties viennent de la base. La page se regenere au plus tard chaque
 // minute (et aussitot qu'une sortie change dans l'admin) : une sortie
@@ -22,6 +22,12 @@ import { DEPART } from "../../../lib/rendez-vous";
 export const revalidate = 60;
 
 type PageProps = { params: Promise<{ locale: string }> };
+
+// Lu hors du composant : la regle de purete de React refuse Date.now()
+// pendant le rendu.
+function instantPresent() {
+  return Date.now();
+}
 
 /**
  * Le depart habituel s'ouvre sur ses coordonnees : chercher « parking du
@@ -47,6 +53,14 @@ export default async function RunsPage({ params }: PageProps) {
   const panne = lecture === null;
   const runs = lecture ?? [];
   const prochaine = runs[0];
+  // Le compte a rebours vise la sortie publiee la plus proche, sinon la
+  // sortie annoncee a la main tant qu'elle est a venir.
+  const annonceeAVenir = new Date(SORTIE_ANNONCEE.iso).getTime() > instantPresent();
+  const cible = prochaine
+    ? { iso: prochaine.isoDate, libelle: prochaine.date }
+    : annonceeAVenir
+      ? SORTIE_ANNONCEE
+      : null;
 
   return (
     <SiteShell current="runs" locale={locale} pathname={getRoute(locale, "runs")}>
@@ -78,25 +92,25 @@ export default async function RunsPage({ params }: PageProps) {
         {/* ---------------- OUVERTURE ---------------- */}
         <section className="hx-hero" aria-labelledby="runs-title">
           <Image
-            alt="Le groupe de Nulll Club court vers l’objectif sur un chemin du parc"
-            className="object-cover object-[50%_35%]"
+            alt="Des coureuses et coureurs de Nulll Club longent un mur, en pleine sortie"
+            className="object-cover object-[50%_65%]"
             fill
             priority
             sizes="100vw"
-            src="/assets/actus/bienvenue/15.webp"
+            src="/assets/actus/bienvenue/02.webp"
           />
           <div className="hx-hero-shade" aria-hidden="true" />
           <div className="hx-hero-copy">
             <h1 className="hx-hero-title" id="runs-title">
               <span className="st st-yellow hx-hero-kicker">Les prochaines dates · Aix-en-Provence</span>
-              <span className="st st-pink">Les sorties</span>
+              <span className="st st-pink hx-titre-geant">Les sorties</span>
             </h1>
             <p className="hx-hero-support">
-              {prochaine ? <>Prochaine sortie : <strong>{prochaine.date}</strong></> : "Nouvelles dates très bientôt."}
+              {cible ? <>Prochaine sortie : <strong>{cible.libelle}</strong></> : "Nouvelles dates très bientôt."}
             </p>
-            {prochaine ? (
+            {cible ? (
               <div className="mt-6">
-                <Countdown centered isoDate={prochaine.isoDate} />
+                <Countdown centered isoDate={cible.iso} />
               </div>
             ) : null}
             <div className="hx-hero-cta">
@@ -174,17 +188,25 @@ export default async function RunsPage({ params }: PageProps) {
               <span className="st st-pink st-xl">Avant de venir</span>
             </h2>
 
-            <dl className="mt-14 grid gap-4">
+            {/* Accordeon natif : les <details> partagent le meme name, le
+                navigateur referme tout seul la question ouverte quand on en
+                ouvre une autre. Clavier et lecteurs d'ecran inclus. */}
+            <div className="mt-14 grid gap-3">
               {copy.runsPage.faq.map((entry, index) => (
-                <div className="grid gap-3 rounded-[2px] border border-white/10 bg-[#1E1A21] p-6 sm:p-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10" key={entry.q}>
-                  <dt className="flex items-baseline gap-4 font-display text-[clamp(1.4rem,2.2vw,2rem)] uppercase leading-[1.1]">
+                <details className="group rounded-[2px] border border-white/10 bg-[#1E1A21] open:border-[#E8459E]" key={entry.q} name="faq-sorties" open={index === 0}>
+                  <summary className="flex cursor-pointer list-none items-center gap-4 p-5 sm:p-7">
                     <span aria-hidden="true" className="shrink-0 font-mono text-xs font-bold tracking-[.14em] text-[#FFC531]">0{index + 1}</span>
-                    <span>{entry.q}</span>
-                  </dt>
-                  <dd className="text-[1.05rem] leading-relaxed text-white/85">{entry.a}</dd>
-                </div>
+                    <span className="flex-1 font-display text-[clamp(1.3rem,2.1vw,1.9rem)] uppercase leading-[1.1]">{entry.q}</span>
+                    <span aria-hidden="true" className="grid size-10 shrink-0 place-items-center rounded-[2px] bg-white/10 transition-colors group-open:bg-[#E8459E]">
+                      <svg className="size-4 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 16 16">
+                        <path d="M8 1v14M1 8h14" stroke="currentColor" strokeLinecap="round" strokeWidth="2.5" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <p className="max-w-[62ch] px-5 pb-6 text-[1.05rem] leading-relaxed text-white/85 sm:px-7 sm:pb-8 sm:pl-[4.25rem]">{entry.a}</p>
+                </details>
               ))}
-            </dl>
+            </div>
 
             <div className="mt-16 flex flex-col items-center gap-5 text-center">
               <p className="st st-yellow">Il reste une question ?</p>
