@@ -91,18 +91,43 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
               <span className="st st-cream">D’où ça vient</span>
               <span className="st st-yellow st-xl">{page.timelineTitle.replace(/\.$/, "")}</span>
             </h2>
-            <ol className="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-              {page.timeline.map((etape, index) => (
-                <li className={`border-t-2 pt-6 ${etape.status === "aVenir" ? "border-dashed border-white/30" : "border-[#E8459E]"}`} key={etape.label}>
-                  <div className="flex items-center justify-between gap-4">
-                    <span className={`st ${etape.status === "aVenir" ? "st-cream" : ["st-yellow", "st-pink", "st-blue", "st-lime"][index % 4]}`}>{etape.date}</span>
-                    <span aria-hidden="true" className="font-display text-4xl leading-none text-white/15">0{index + 1}</span>
-                  </div>
-                  <h3 className="mt-5 font-display text-[clamp(1.6rem,2.4vw,2.2rem)] uppercase leading-[1.05]">{etape.label}</h3>
-                  <p className="mt-3 text-base leading-relaxed text-white/80">{etape.text}</p>
-                  {etape.status === "aVenir" ? <p className="mt-4 font-mono text-xs font-bold uppercase tracking-[.14em] text-[#FFC531]">À venir</p> : null}
-                </li>
-              ))}
+            {/* Chaque etape est une story : photo, barres de progression en
+                haut, date en etiquette, titre, deux lignes. Defilement au
+                doigt sur telephone, cote a cote sur grand ecran. */}
+            <ol className="-mx-[max(5vw,20px)] mt-16 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[max(5vw,20px)] pb-4 lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:px-0">
+              {page.timeline.map((etape, index) => {
+                const photos = [
+                  "/assets/photos/runs-crew.webp",
+                  "/assets/actus/quatrieme-run/11.webp",
+                  "/assets/actus/quatrieme-run/17.webp",
+                  "/assets/actus/bienvenue/01.webp",
+                  "/assets/actus/quatrieme-run/16.webp"
+                ];
+                const couleurs = ["st-yellow", "st-pink", "st-blue", "st-lime", "st-cream"];
+                return (
+                  <li className="relative isolate flex aspect-[9/15] w-[72vw] max-w-[300px] shrink-0 snap-center flex-col justify-between overflow-hidden rounded-[6px] p-4 lg:w-auto lg:max-w-none" key={etape.label} style={{ rotate: `${[-1.5, 1, -0.8, 1.4, -1.2][index % 5]}deg` }}>
+                    <Image alt="" className="-z-20 object-cover" fill sizes="(min-width: 1024px) 18vw, 72vw" src={photos[index % photos.length]} />
+                    <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(20,17,22,.55)_0%,rgba(20,17,22,.1)_30%,rgba(20,17,22,.88)_70%)]" />
+                    <div>
+                      {/* Barres de progression, comme une story */}
+                      <div aria-hidden="true" className="flex gap-1">
+                        {page.timeline.map((_, barre) => (
+                          <span className={`h-[3px] flex-1 rounded-full ${barre <= index ? "bg-white" : "bg-white/30"}`} key={barre} />
+                        ))}
+                      </div>
+                      <p className="mt-3 flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[.1em] text-white/85">
+                        <span className="grid size-6 place-items-center rounded-full bg-[#E8459E] text-[9px] text-white">N</span>
+                        Nulll Club · {index + 1}/{page.timeline.length}
+                      </p>
+                    </div>
+                    <div className="flex flex-col items-start gap-3">
+                      <span className={`st ${etape.status === "aVenir" ? "st-cream" : couleurs[index % couleurs.length]} !text-[15px]`}>{etape.status === "aVenir" ? `À venir · ${etape.date}` : etape.date}</span>
+                      <h3 className="font-display text-[clamp(1.6rem,2vw,2rem)] uppercase leading-[1.02]">{etape.label}</h3>
+                      <p className="text-[14px] leading-snug text-white/90">{etape.text}</p>
+                    </div>
+                  </li>
+                );
+              })}
             </ol>
           </div>
         </section>

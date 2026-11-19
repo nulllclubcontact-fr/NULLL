@@ -403,8 +403,8 @@ export function getSiteCopy(locale: Locale) {
           {
             date: "26 septembre 2026",
             label: "La première sortie",
-            text: "Notre première sortie collective, 8h30 au parking du chemin de la Cible, près du lycée Émile Zola. 5 à 6 kilomètres à allure conversation. Tout le monde y sera pour la première fois, nous les premiers.",
-            status: "aVenir" as const
+            text: "Notre première sortie collective, à 8h30 au parking du chemin de la Cible, près du lycée Émile Zola. 5 à 6 kilomètres à allure conversation. Tout le monde y était pour la première fois, nous les premiers.",
+            status: "passe" as const
           },
           {
             date: "Ensuite",
