@@ -119,22 +119,22 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
 
   if (status.type === "success") {
     return (
-      <div className="border-2 border-[#773331] bg-[#F1EDE9] p-8" role="status">
-        <p className="font-mono text-xs font-black uppercase text-[#EBA0CD]">Commande reçue</p>
+      <div className="border-2 border-white/15 bg-[#141116] p-8" role="status">
+        <p className="font-mono text-xs font-black uppercase text-[#E8459E]">Commande reçue</p>
         <h2 className="mt-4 font-display text-[clamp(2.6rem,5vw,4rem)] uppercase leading-[0.92]">
           Demande confirmée.
         </h2>
-        <p className="mt-4 max-w-2xl text-[#773331]">
+        <p className="mt-4 max-w-2xl text-white">
           Nous avons enregistré ta demande. Conserve cette référence et surveille ta boîte mail pour la confirmation.
         </p>
-        <div className="mt-6 inline-flex border-2 border-[#773331] bg-[#FFB200] px-4 py-3 text-[#773331]">
+        <div className="mt-6 inline-flex border-2 border-white/15 bg-[#FFC531] px-4 py-3 text-[#141116]">
           <strong>{status.reference}</strong>
         </div>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-          <Link className="inline-flex min-h-14 items-center border-2 border-[#773331] bg-[#773331] px-4 py-3 font-mono text-sm font-black uppercase text-[#F1EDE9]" href={getRoute(locale, "runs")}>
+          <Link className="inline-flex min-h-14 items-center border-2 border-white/15 bg-[#1E1A21] px-4 py-3 font-mono text-sm font-black uppercase text-white" href={getRoute(locale, "runs")}>
             Voir les prochains runs
           </Link>
-          <Link className="inline-flex min-h-14 items-center border-2 border-[#773331] bg-[#F1EDE9] px-4 py-3 font-mono text-sm font-black uppercase text-[#773331]" href={getRoute(locale, "merch")}>
+          <Link className="inline-flex min-h-14 items-center border-2 border-white/15 bg-[#141116] px-4 py-3 font-mono text-sm font-black uppercase text-white" href={getRoute(locale, "merch")}>
             Retour au merch
           </Link>
         </div>
@@ -144,7 +144,7 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
 
   return (
     <div className="grid gap-6 xl:grid-cols-[0.92fr_0.48fr]">
-      <form className="border-2 border-[#773331] bg-[#F1EDE9] p-6 lg:p-8" onSubmit={handleSubmit}>
+      <form className="border-2 border-white/15 bg-[#141116] p-6 lg:p-8" onSubmit={handleSubmit}>
         <div className="grid gap-5 md:grid-cols-2">
           <Field
             label="Prénom"
@@ -178,11 +178,11 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
         </div>
 
         <label className="mt-5 block">
-          <span className="mb-2 block font-mono text-xs font-black uppercase text-[#773331]">
+          <span className="mb-2 block font-mono text-xs font-black uppercase text-white">
             Méthode de remise
           </span>
           <select
-            className="w-full border-2 border-[#773331] bg-[#F1EDE9] p-3 font-mono text-sm outline-none transition focus:bg-[#FFB200]/20"
+            className="w-full border-2 border-white/15 bg-[#141116] p-3 font-mono text-sm outline-none transition focus:bg-[#FFC531]/20"
             onChange={(event) => setForm((current) => ({ ...current, deliveryMethod: event.target.value }))}
             required
             value={form.deliveryMethod}
@@ -193,34 +193,34 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
         </label>
 
         <label className="mt-5 block">
-          <span className="mb-2 block font-mono text-xs font-black uppercase text-[#773331]">
+          <span className="mb-2 block font-mono text-xs font-black uppercase text-white">
             Notes
           </span>
           <textarea
-            className="min-h-[140px] w-full border-2 border-[#773331] bg-[#F1EDE9] p-3 font-mono text-sm outline-none transition focus:bg-[#FFB200]/20"
+            className="min-h-[140px] w-full border-2 border-white/15 bg-[#141116] p-3 font-mono text-sm outline-none transition focus:bg-[#FFC531]/20"
             onChange={(event) => setForm((current) => ({ ...current, notes: event.target.value }))}
             placeholder="Taille souhaitée, préférence de remise, message utile..."
             value={form.notes}
           />
         </label>
 
-        {status.type === "error" ? <p className="mt-4 text-sm text-[#EBA0CD]" role="alert">{status.message}</p> : null}
+        {status.type === "error" ? <p className="mt-4 text-sm text-[#E8459E]" role="alert">{status.message}</p> : null}
 
-        <button aria-busy={status.type === "loading"} className="mt-6 inline-flex min-h-14 w-full items-center justify-center border-2 border-[#773331] bg-[#773331] px-4 py-3 font-mono text-sm font-black uppercase text-[#F1EDE9] transition hover:bg-[#FFB200] hover:text-[#773331] disabled:opacity-50" disabled={status.type === "loading"} type="submit">
+        <button aria-busy={status.type === "loading"} className="mt-6 inline-flex min-h-14 w-full items-center justify-center border-2 border-white/15 bg-[#1E1A21] px-4 py-3 font-mono text-sm font-black uppercase text-white transition hover:bg-[#FFC531] hover:text-[#141116] disabled:opacity-50" disabled={status.type === "loading"} type="submit">
           {status.type === "loading" ? "Envoi en cours..." : "Envoyer ma demande"}
         </button>
       </form>
 
-      <aside className="border-2 border-[#773331] bg-[#773331] p-6 text-[#F1EDE9]">
-        <p className="font-mono text-xs font-black uppercase text-[#EBA0CD]">Récapitulatif</p>
+      <aside className="border-2 border-white/15 bg-[#1E1A21] p-6 text-white">
+        <p className="font-mono text-xs font-black uppercase text-[#E8459E]">Récapitulatif</p>
         <div className="mt-4 space-y-4">
           {items.length ? (
             items.map((item) => (
-              <div className="border-b-2 border-[#F1EDE9] pb-4" key={item!.id}>
+              <div className="border-b-2 border-white/15 pb-4" key={item!.id}>
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="font-semibold">{item!.name}</p>
-                    <p className="text-sm text-[#F1EDE9]/80">
+                    <p className="text-sm text-white/80">
                       {item!.quantity} x {item!.price}€
                     </p>
                   </div>
@@ -229,18 +229,18 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
               </div>
             ))
           ) : (
-            <p className="text-[#F1EDE9]/80">
+            <p className="text-white/80">
               Aucun article dans le panier.
             </p>
           )}
         </div>
-        <div className="mt-6 border-t-2 border-[#F1EDE9] pt-5">
+        <div className="mt-6 border-t-2 border-white/15 pt-5">
           <div className="flex items-center justify-between gap-4">
-            <span className="text-[#F1EDE9]/80">Total</span>
+            <span className="text-white/80">Total</span>
             <strong className="text-2xl">{total}€</strong>
           </div>
         </div>
-        <p className="mt-5 text-sm text-[#F1EDE9]/80">
+        <p className="mt-5 text-sm text-white/80">
           La demande confirme ton panier, ton mode de remise et tes coordonnées avant validation finale par email.
         </p>
       </aside>
@@ -265,8 +265,8 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block font-mono text-xs font-black uppercase text-[#773331]">{label}</span>
-      <input autoComplete={autoComplete} className="w-full border-2 border-[#773331] bg-[#F1EDE9] p-3 font-mono text-sm outline-none transition focus:bg-[#FFB200]/20" onChange={(event) => onChange(event.target.value)} required={required} type={type} value={value} />
+      <span className="mb-2 block font-mono text-xs font-black uppercase text-white">{label}</span>
+      <input autoComplete={autoComplete} className="w-full border-2 border-white/15 bg-[#141116] p-3 font-mono text-sm outline-none transition focus:bg-[#FFC531]/20" onChange={(event) => onChange(event.target.value)} required={required} type={type} value={value} />
     </label>
   );
 }

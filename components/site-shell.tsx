@@ -26,7 +26,7 @@ export function SiteShell({
   const copy = getSiteCopy(locale) as ShellCopy;
 
   return (
-    <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
+    <div className="da min-h-dvh bg-[#141116] text-white">
       <SiteHeader copy={copy} current={current} locale={locale} pathname={pathname} />
       <main id="contenu" tabIndex={-1} className="outline-none">
         {children}
@@ -244,21 +244,21 @@ export function HeroPanel({
 }) {
   return (
     <section className="mx-auto grid w-full max-w-[1600px] gap-6 px-5 py-8 sm:px-8 xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.68fr)] xl:px-12 xl:py-12">
-      <div className="min-w-0 border-2 border-[#773331] bg-[#F1EDE9] p-5 shadow-[6px_6px_0_#EBA0CD] sm:p-6 sm:shadow-[8px_8px_0_#EBA0CD] xl:p-10">
-        <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">{stamp} / {label}</p>
+      <div className="min-w-0 border-2 border-white/15 bg-[#141116] p-5 sm:p-6 xl:p-10">
+        <p className="inline-flex border-2 border-white/15 bg-[#FFC531] px-3 py-2 font-mono text-xs font-black uppercase text-[#141116]">{stamp} / {label}</p>
         <h1 className="mt-6 max-w-4xl font-display text-[clamp(2.8rem,7.5vw,7.4rem)] uppercase leading-[0.94] sm:mt-8">{title}</h1>
-        <p className="mt-6 max-w-2xl text-lg font-bold leading-tight text-[#773331] xl:text-xl">{intro}</p>
+        <p className="mt-6 max-w-2xl text-lg font-bold leading-tight text-white xl:text-xl">{intro}</p>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">{actions}</div>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {facts.map((fact) => (
-            <div className="border-t-2 border-[#773331] pt-4" key={fact.label}>
-              <p className="font-mono text-xs font-black uppercase text-[#773331]">{fact.label}</p>
+            <div className="border-t-2 border-white/15 pt-4" key={fact.label}>
+              <p className="font-mono text-xs font-black uppercase text-white">{fact.label}</p>
               <p className="mt-2 text-lg">{fact.value}</p>
             </div>
           ))}
         </div>
       </div>
-      <div className="overflow-hidden border-2 border-[#773331] bg-[#773331] p-3">
+      <div className="overflow-hidden border-2 border-white/15 bg-[#1E1A21] p-3">
         <PosterPhoto alt={imageAlt} className="min-h-[320px] sm:min-h-[460px] xl:min-h-[640px]" priority src={image} stamp="AIX" />
       </div>
     </section>
@@ -279,9 +279,9 @@ export function SectionTitle({
   const HeadingTag = as;
   return (
     <div className="space-y-4">
-      <p className="inline-flex border-2 border-[#773331] bg-[#FFB200] px-3 py-2 font-mono text-xs font-black uppercase">{index} / Nulll Club</p>
+      <p className="inline-flex border-2 border-white/15 bg-[#FFC531] px-3 py-2 font-mono text-xs font-black uppercase text-[#141116]">{index} / Nulll Club</p>
       <HeadingTag className="max-w-4xl font-display text-[clamp(2.8rem,6.4vw,6rem)] uppercase leading-[0.94]">{title}</HeadingTag>
-      {text ? <p className="max-w-2xl text-xl font-bold leading-tight text-[#773331]">{text}</p> : null}
+      {text ? <p className="max-w-2xl text-xl font-bold leading-tight text-white">{text}</p> : null}
     </div>
   );
 }
@@ -289,8 +289,8 @@ export function SectionTitle({
 export function PrimaryLink({ href, children, secondary = false }: { href: string; children: ReactNode; secondary?: boolean }) {
   return (
     <Link
-      className={`group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-[#773331] px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
-        secondary ? "bg-[#F1EDE9] text-[#773331] hover:bg-[#773331] hover:text-[#F1EDE9]" : "bg-[#773331] text-[#F1EDE9] hover:bg-[#FFB200] hover:text-[#773331]"
+      className={`group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-white/15 px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
+        secondary ? "bg-[#141116] text-white hover:bg-[#1E1A21] hover:text-[#141116]" : "bg-[#1E1A21] text-white hover:bg-[#FFC531] hover:text-[#141116]"
       }`}
       href={href}
     >
@@ -302,15 +302,15 @@ export function PrimaryLink({ href, children, secondary = false }: { href: strin
 
 export function RunCard({ run }: { run: RunEvent }) {
   return (
-    <article className="flex h-full flex-col border-2 border-[#773331] bg-[#F1EDE9] p-5 transition hover:-translate-y-1 hover:shadow-[8px_8px_0_#FFB200]">
-      <div className="flex items-start justify-between gap-4 border-b-2 border-[#773331] pb-4">
+    <article className="flex h-full flex-col border-2 border-white/15 bg-[#141116] p-5 transition hover:-translate-y-1">
+      <div className="flex items-start justify-between gap-4 border-b-2 border-white/15 pb-4">
         <div>
-          <p className="font-mono text-xs font-black uppercase text-[#773331]">{run.date}</p>
+          <p className="font-mono text-xs font-black uppercase text-white">{run.date}</p>
           <h3 className="mt-2 font-display text-[clamp(2rem,4vw,3.6rem)] uppercase leading-[0.92]">{run.title}</h3>
         </div>
-        <p className="border-2 border-[#773331] bg-[#FFB200] px-2 py-1 text-right font-mono text-xs font-black uppercase">{run.time}</p>
+        <p className="border-2 border-white/15 bg-[#FFC531] px-2 py-1 text-right font-mono text-xs font-black uppercase text-[#141116]">{run.time}</p>
       </div>
-      <div className="mt-5 grid gap-2 text-[#773331]">
+      <div className="mt-5 grid gap-2 text-white">
         <p>
           <strong>Distance :</strong> {run.distance}
         </p>
@@ -324,7 +324,7 @@ export function RunCard({ run }: { run: RunEvent }) {
           <strong>Après la course :</strong> {run.afterRun}
         </p>
       </div>
-      <p className="mt-5 text-[#773331]">{run.summary}</p>
+      <p className="mt-5 text-white">{run.summary}</p>
     </article>
   );
 }

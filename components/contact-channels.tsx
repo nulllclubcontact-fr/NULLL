@@ -48,16 +48,16 @@ export function ContactChannels({ channels }: { channels: Channel[] }) {
   }
 
   return (
-    <ul className="border-b-2 border-[#773331] bg-[#FFB200] text-[#773331]">
+    <ul className="border-b-2 border-white/15 bg-[#FFC531] text-[#141116]">
       {channels.map((channel, index) => {
         const externe = channel.href.startsWith("http");
         const copiable = valeurCopiable(channel);
         const actif = etat?.cle === channel.title ? etat : null;
 
         return (
-          <li className="flex items-stretch border-t-2 border-[#773331] first:border-t-0" key={channel.title}>
+          <li className="flex items-stretch border-t-2 border-white/15 first:border-t-0" key={channel.title}>
             <a
-              className="contact-row-link group flex min-h-[7.5rem] min-w-0 flex-1 items-center gap-4 px-4 py-6 focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-[#773331] sm:gap-10 sm:px-8 xl:px-12"
+              className="contact-row-link group flex min-h-[7.5rem] min-w-0 flex-1 items-center gap-4 px-4 py-6 focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-[#FFC531] sm:gap-10 sm:px-8 xl:px-12"
               href={channel.href}
               rel={externe ? "noreferrer noopener" : undefined}
               target={externe ? "_blank" : undefined}
@@ -93,7 +93,7 @@ export function ContactChannels({ channels }: { channels: Channel[] }) {
 
             <button
                 aria-label={`Copier ${channel.title.toLowerCase()} : ${copiable}`}
-                className={`${actif ? `copy-done bg-[#773331] ${actif.ok ? "text-[#FFB200]" : "text-[#EBA0CD]"}` : "bg-transparent"} w-[4.5rem] shrink-0 border-l-2 border-[#773331] font-mono text-xs font-black uppercase tracking-[.1em] sm:text-xs sm:tracking-[.14em] transition-colors hover:bg-[#773331] hover:text-[#FFB200] focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-[#773331] sm:w-32`}
+                className={`${actif ? `copy-done bg-[#1E1A21] ${actif.ok ? "text-[#FFC531]" : "text-[#E8459E]"}` : "bg-transparent"} w-[4.5rem] shrink-0 border-l-2 border-white/15 font-mono text-xs font-black uppercase tracking-[.1em] sm:text-xs sm:tracking-[.14em] transition-colors hover:bg-[#1E1A21] hover:text-[#FFC531] focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-[#FFC531] sm:w-32`}
               onClick={() => copier(channel.title, copiable)}
               type="button"
             >

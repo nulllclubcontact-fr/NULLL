@@ -65,7 +65,7 @@ export default async function ActuArticlePage({ params }: PageProps) {
       />
 
       <article>
-        <header className="border-b-2 border-[#773331] bg-[#EBA0CD]">
+        <header className="border-b border-white/10 bg-[#141116]">
           <div className="shell max-w-[1180px] py-12 sm:py-16 lg:py-20">
             <p className="font-mono text-xs font-black uppercase tracking-[.16em]">
               <Link
@@ -77,9 +77,7 @@ export default async function ActuArticlePage({ params }: PageProps) {
               {" · "}
               <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
             </p>
-            <h1 className="mt-5 max-w-[22ch] font-display text-[clamp(2.4rem,6vw,4.6rem)] uppercase leading-[1.08] tracking-[-.01em] [text-wrap:balance]">
-              {actu.titre}
-            </h1>
+            <h1 className="mt-5 w-full max-w-[1000px] -rotate-1 [overflow-wrap:normal] [text-wrap:balance]"><span className="st st-pink st-long">{actu.titre}</span></h1>
             <p className="mt-7 max-w-[60ch] text-[clamp(1.15rem,1.6vw,1.35rem)] font-bold leading-relaxed">
               {actu.resume}
             </p>
@@ -91,7 +89,7 @@ export default async function ActuArticlePage({ params }: PageProps) {
         <div className="shell max-w-[1180px] py-12 sm:py-16">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-20">
             <div className="min-w-0">
-              <figure className="relative mb-12 mr-2 aspect-[4/3] border-2 border-[#773331] shadow-[8px_8px_0_#FFB200] sm:mr-0">
+              <figure className="relative mb-12 mr-2 aspect-[4/3] border-2 border-white/15 sm:mr-0">
                 <Image
                   alt={actu.image.alt}
                   className="object-cover"
@@ -124,7 +122,7 @@ export default async function ActuArticlePage({ params }: PageProps) {
                     {actu.tuto.titre}
                   </h2>
                   {actu.tuto.video ? (
-                    <figure className="mt-6 w-full max-w-[20rem] border-2 border-[#773331] bg-[#F1EDE9] shadow-[8px_8px_0_#EBA0CD]">
+                    <figure className="mt-6 w-full max-w-[20rem] border-2 border-white/15 bg-[#141116]">
                       <video
                         aria-label={actu.tuto.video.description}
                         autoPlay
@@ -145,14 +143,14 @@ export default async function ActuArticlePage({ params }: PageProps) {
                       <li className="grid content-start gap-4" key={etape.titre}>
                         <Image
                           alt={etape.image.alt}
-                          className="h-auto w-full max-w-[20rem] border-2 border-[#773331]"
+                          className="h-auto w-full max-w-[20rem] border-2 border-white/15"
                           height={etape.image.hauteur}
                           sizes="(min-width: 640px) 230px, 90vw"
                           src={etape.image.src}
                           width={etape.image.largeur}
                         />
                         <h3 className="font-display text-xl uppercase leading-[1.1]">
-                          <span className="mr-2 inline-flex border-2 border-[#773331] bg-[#FFB200] px-2 font-mono text-sm font-black">
+                          <span className="mr-2 inline-flex border-2 border-white/15 bg-[#FFC531] px-2 font-mono text-sm font-black text-[#141116]">
                             {index + 1}
                           </span>
                           {etape.titre}
@@ -167,8 +165,8 @@ export default async function ActuArticlePage({ params }: PageProps) {
                 <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                   {actu.appels.map((appel, index) => {
                     const externe = appel.href.startsWith("http");
-                    const classe = `group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-[#773331] px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
-                      index === 0 ? "bg-[#773331] text-[#F1EDE9] hover:bg-[#FFB200] hover:text-[#773331]" : "bg-[#F1EDE9] text-[#773331] hover:bg-[#773331] hover:text-[#F1EDE9]"
+                    const classe = `group inline-flex min-h-14 items-center justify-between gap-4 border-2 border-white/15 px-4 py-3 font-mono text-sm font-black uppercase transition hover:-translate-y-1 ${
+                      index === 0 ? "bg-[#1E1A21] text-white hover:bg-[#FFC531] hover:text-white" : "bg-[#141116] text-white hover:bg-[#1E1A21] hover:text-white"
                     }`;
                     return appel.href.startsWith("/") ? (
                       <Link className={classe} href={appel.href} key={appel.href}>
@@ -199,7 +197,7 @@ export default async function ActuArticlePage({ params }: PageProps) {
                     {galerie.map((photo) => (
                       <li className="break-inside-avoid" key={photo.src}>
                         <a
-                          className="block border-2 border-[#773331] transition-transform hover:-translate-y-1 focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#773331]"
+                          className="block border-2 border-white/15 transition-transform hover:-translate-y-1 focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#FFC531]"
                           href={photo.src}
                           rel="noopener"
                           target="_blank"
@@ -232,7 +230,7 @@ export default async function ActuArticlePage({ params }: PageProps) {
               ) : null}
             </div>
 
-            <aside className="grid gap-5 self-start border-2 border-[#773331] bg-[#FFB200] p-6 lg:sticky lg:top-28">
+            <aside className="grid gap-5 self-start border-2 border-white/15 bg-[#FFC531] p-6 lg:sticky lg:top-28 text-[#141116]">
               <p className="font-display text-[clamp(1.7rem,3vw,2.2rem)] uppercase leading-[1.1]">
                 On court samedi ?
               </p>

@@ -20,31 +20,16 @@ export default function ConfidentialitePage() {
   const copy = getSiteCopy("fr");
 
   return (
-    <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
+    <div className="da min-h-dvh bg-[#141116] text-white">
       <SiteHeader copy={copy} current="confidentialite" locale="fr" pathname="/confidentialite" />
 
       <main className="mx-auto max-w-[900px] px-5 py-14 sm:px-8 sm:py-20" id="contenu" tabIndex={-1}>
         <p className="font-mono text-xs font-black uppercase tracking-[.16em]">
           Mise à jour du {MAJ}
         </p>
-        <h1 className="mt-5 font-display text-[clamp(2.6rem,7vw,5rem)] uppercase leading-[1.04]">
-          Politique de<br />
-          {/* Bande calee sur la ligne de base plutot qu'un fond plein : a
-              cet interlignage, la boite de la police deborde et le fond
-              mordrait la ligne du dessus. Meme traitement que l'accueil. */}
-          <span
-            className="px-[.12em]"
-            style={{
-              backgroundImage: "linear-gradient(#EBA0CD,#EBA0CD)",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100% .95em",
-              backgroundPosition: "0 100%",
-              WebkitBoxDecorationBreak: "clone",
-              boxDecorationBreak: "clone"
-            }}
-          >
-            confidentialité.
-          </span>
+        <h1 className="da-stack mt-5">
+          <span className="st st-yellow">Politique de</span>
+          <span className="st st-pink st-xl">confidentialité</span>
         </h1>
 
         <p className="mt-8 text-lg leading-relaxed">
@@ -283,7 +268,7 @@ export default function ConfidentialitePage() {
         </Bloc>
 
         <Link
-          className="mt-14 inline-flex min-h-14 items-center border-2 border-[#773331] bg-[#FFB200] px-8 font-mono text-xs font-black uppercase tracking-[.12em] text-[#773331] transition-colors hover:bg-[#773331] hover:text-[#F1EDE9] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#773331]"
+          className="mt-14 inline-flex min-h-14 items-center border-2 border-white/15 bg-[#FFC531] px-8 font-mono text-xs font-black uppercase tracking-[.12em] text-[#141116] transition-colors hover:bg-[#1E1A21] hover:text-white focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]"
           href="/fr"
         >
           Retour à l’accueil
@@ -297,7 +282,7 @@ export default function ConfidentialitePage() {
 
 function Bloc({ titre, children }: { titre: string; children: React.ReactNode }) {
   return (
-    <section className="mt-14 border-t-2 border-[#773331] pt-8">
+    <section className="mt-14 border-t-2 border-white/15 pt-8">
       <h2 className="font-display text-[clamp(1.7rem,3.4vw,2.6rem)] uppercase leading-[1.1]">{titre}</h2>
       <div className="mt-5 space-y-4 text-[1.02rem] leading-relaxed">{children}</div>
     </section>
@@ -307,7 +292,7 @@ function Bloc({ titre, children }: { titre: string; children: React.ReactNode })
 function Lien({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a
-      className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#773331]/70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#773331]"
+      className="underline decoration-2 underline-offset-4 transition-colors hover:text-white/70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]"
       href={href}
     >
       {children}
@@ -320,7 +305,7 @@ function Tableau({ lignes }: { lignes: Array<{ quoi: string; pourquoi: string; b
     <div className="overflow-x-auto">
       <table className="w-full min-w-[560px] border-collapse text-left text-[.95rem]">
         <thead>
-          <tr className="border-b-2 border-[#773331] font-mono text-xs font-black uppercase tracking-[.12em]">
+          <tr className="border-b-2 border-white/15 font-mono text-xs font-black uppercase tracking-[.12em]">
             <th className="py-3 pr-4">Donnée</th>
             <th className="py-3 pr-4">Pourquoi</th>
             <th className="py-3">Base légale</th>
@@ -328,10 +313,10 @@ function Tableau({ lignes }: { lignes: Array<{ quoi: string; pourquoi: string; b
         </thead>
         <tbody>
           {lignes.map((l) => (
-            <tr className="border-b border-[#773331]/30 align-top" key={l.quoi}>
+            <tr className="border-b border-white/30 align-top" key={l.quoi}>
               <td className="py-4 pr-4 font-bold">{l.quoi}</td>
               <td className="py-4 pr-4">{l.pourquoi}</td>
-              <td className="py-4 text-[#773331]">{l.base}</td>
+              <td className="py-4 text-white">{l.base}</td>
             </tr>
           ))}
         </tbody>

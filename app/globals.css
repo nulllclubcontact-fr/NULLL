@@ -1234,3 +1234,59 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
   .site-header-logo { width: calc(120px - var(--p) * 16px); }
   .site-header-cta { padding: calc(10px - var(--p) * 2px) calc(14px - var(--p) * 2px); font-size: calc(16px - var(--p) * 1px); }
 }
+
+/* ------------------------------------------------------------------
+   DA « stories » sur les pages publiques (.da = SiteShell et pages
+   legales). L'espace membre, l'admin et le pro gardent l'ancien style.
+   Fond sombre, texte blanc, jaune / rose vifs, 2 px d'arrondi, aucune
+   ombre.
+   ------------------------------------------------------------------ */
+.da { --da-ink: #141116; --da-ink-2: #1E1A21; --da-yellow: #FFC531; --da-pink: #E8459E; --da-cream: #FFF3DF; }
+.da ::selection { background: var(--da-pink); color: #fff; }
+.da *, .da *::before, .da *::after { box-shadow: none !important; }
+.da .panel { border-color: rgb(255 255 255 / .15); background: var(--da-ink-2); color: #fff; }
+.da .nav-link { border-color: rgb(255 255 255 / .2); border-radius: 2px; }
+.da .nav-link:hover { border-color: var(--da-pink); background: var(--da-pink); color: #fff; }
+.da .primary-link,
+.da .secondary-link,
+.da .primary-button { border-radius: 2px; font-family: var(--font-display), Impact, sans-serif; font-weight: 400; font-size: 1.15rem; letter-spacing: .01em; }
+.da .primary-link,
+.da .primary-button { border-color: var(--da-yellow); background: var(--da-yellow); color: var(--da-ink); }
+.da .secondary-link { border-color: #fff; background: #fff; color: var(--da-ink); }
+.da .primary-link:hover,
+.da .secondary-link:hover,
+.da .primary-button:hover { transform: none; border-color: var(--da-pink); background: var(--da-pink); color: #fff; }
+.da .field { border: 1px solid rgb(255 255 255 / .25); border-radius: 2px; background: var(--da-ink-2); color: #fff; }
+.da .field:focus { border-color: var(--da-yellow); }
+.da .field::placeholder { color: rgb(255 255 255 / .45); }
+.da .timeline-marker { background: var(--da-pink); }
+.da .timeline-dot { background: var(--da-ink); }
+.da .contact-row-link::before { background: var(--da-pink); }
+.da .field-rule::after { background: var(--da-yellow); }
+
+/* Etiquettes « stories », partagees par toutes les pages publiques. */
+.da .st {
+  display: inline-block; width: fit-content; max-width: 100%;
+  padding: .1em .32em .04em;
+  font-family: var(--font-display), Impact, sans-serif; font-weight: 400;
+  font-size: clamp(20px, 2vw, 30px); line-height: 1.08;
+  text-transform: uppercase; letter-spacing: .005em;
+  rotate: var(--r, -1.2deg);
+  border-radius: 2px;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.da .st-xl { font-size: clamp(44px, 6.2vw, 100px); line-height: 1; padding: .06em .22em .02em; }
+/* Titre long (articles) : en ligne, sur plusieurs lignes, sans rotation. */
+.da .st-long { display: inline; rotate: none; font-size: clamp(34px, 4.6vw, 68px); line-height: 1.28; padding: .04em .18em 0; }
+.da .st-pink { background: var(--da-pink); color: #fff; }
+.da .st-magenta { background: #D9157A; color: #fff; }
+.da .st-yellow { background: var(--da-yellow); color: var(--da-ink); }
+.da .st-blue { background: #1F7FE0; color: #fff; }
+.da .st-lime { background: #D7F04A; color: var(--da-ink); }
+.da .st-cream { background: var(--da-cream); color: #1C2245; }
+.da .st-white { background: #fff; color: var(--da-ink); }
+.da .da-stack { display: flex; flex-direction: column; align-items: flex-start; }
+.da .da-stack.da-center { align-items: center; text-align: center; }
+.da .da-stack > .st:nth-child(1) { --r: -2deg; position: relative; z-index: 2; }
+.da .da-stack > .st:nth-child(2) { --r: 1deg; margin-top: .06em; }
+.da .da-stack > .st:nth-child(3) { --r: -1deg; margin-top: .06em; }

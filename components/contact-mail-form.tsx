@@ -62,10 +62,10 @@ export function ContactMailForm() {
         value={piege}
       />
 
-      <label className="field-rule flex flex-col gap-3 pb-[3px] font-mono text-xs font-black uppercase tracking-[.16em] text-[#F1EDE9]/70 [word-spacing:.18em]">
+      <label className="field-rule flex flex-col gap-3 pb-[3px] font-mono text-xs font-black uppercase tracking-[.16em] text-white/70 [word-spacing:.18em]">
         Ton email
         <input
-          className="min-h-16 border-2 border-[#F1EDE9]/35 bg-transparent px-5 text-lg font-bold normal-case tracking-normal text-[#F1EDE9] outline-none transition-colors [word-spacing:normal] placeholder:text-[#F1EDE9]/35 focus:border-[#FFB200] focus:bg-[#F1EDE9]/5"
+          className="min-h-16 border-2 border-white/35 bg-transparent px-5 text-lg font-bold normal-case tracking-normal text-white outline-none transition-colors [word-spacing:normal] placeholder:text-white/35 focus:border-[#FFC531] focus:bg-white/5"
           disabled={etat === "envoi"}
           name="email"
           onChange={(event) => setEmail(event.target.value)}
@@ -76,10 +76,10 @@ export function ContactMailForm() {
         />
       </label>
 
-      <label className="field-rule flex flex-1 flex-col gap-3 pb-[3px] font-mono text-xs font-black uppercase tracking-[.16em] text-[#F1EDE9]/70 [word-spacing:.18em]">
+      <label className="field-rule flex flex-1 flex-col gap-3 pb-[3px] font-mono text-xs font-black uppercase tracking-[.16em] text-white/70 [word-spacing:.18em]">
         Ton message
         <textarea maxLength={5000}
-          className="min-h-48 flex-1 resize-y border-2 border-[#F1EDE9]/35 bg-transparent px-5 py-4 text-lg font-bold normal-case leading-snug tracking-normal text-[#F1EDE9] outline-none transition-colors [word-spacing:normal] placeholder:text-[#F1EDE9]/35 focus:border-[#FFB200] focus:bg-[#F1EDE9]/5"
+          className="min-h-48 flex-1 resize-y border-2 border-white/35 bg-transparent px-5 py-4 text-lg font-bold normal-case leading-snug tracking-normal text-white outline-none transition-colors [word-spacing:normal] placeholder:text-white/35 focus:border-[#FFC531] focus:bg-white/5"
           disabled={etat === "envoi"}
           name="message"
           onChange={(event) => setMessage(event.target.value)}
@@ -90,7 +90,7 @@ export function ContactMailForm() {
       </label>
 
       <button
-        className="inline-flex min-h-20 w-full items-center justify-between gap-4 border-2 border-[#FFB200] bg-[#FFB200] px-6 font-mono text-xs font-black uppercase tracking-[.1em] text-[#773331] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-[#FFB200] disabled:hover:text-[#773331] sm:px-8"
+        className="inline-flex min-h-20 w-full items-center justify-between gap-4 border-2 border-[#FFC531] bg-[#FFC531] px-6 font-mono text-xs font-black uppercase tracking-[.1em] text-[#141116] transition-colors [word-spacing:.12em] hover:bg-transparent hover:text-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFFFFF] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-[#FFC531] disabled:hover:text-white sm:px-8"
         disabled={etat === "envoi"}
         type="submit"
       >
@@ -98,9 +98,9 @@ export function ContactMailForm() {
         <ArrowIcon />
       </button>
 
-      <p className="text-sm leading-relaxed text-[#F1EDE9]">
+      <p className="text-sm leading-relaxed text-white">
         Ton adresse sert seulement à te répondre.{" "}
-        <Link className="underline decoration-2 underline-offset-4 hover:text-[#FFB200]" href="/confidentialite">
+        <Link className="underline decoration-2 underline-offset-4 hover:text-[#FFC531]" href="/confidentialite">
           Confidentialité
         </Link>
       </p>
@@ -109,9 +109,9 @@ export function ContactMailForm() {
           affiche : l'envoi ne change pas de page. */}
       <p aria-live="polite" className="min-h-6 text-base leading-relaxed">
         {etat === "envoye" ? (
-          <span className="font-bold text-[#FFB200]">C’est parti. On te répond à cette adresse.</span>
+          <span className="font-bold text-[#FFC531]">C’est parti. On te répond à cette adresse.</span>
         ) : null}
-        {etat === "erreur" ? <span className="font-bold text-[#EBA0CD]">{erreur}</span> : null}
+        {etat === "erreur" ? <span className="font-bold text-[#E8459E]">{erreur}</span> : null}
       </p>
     </form>
   );

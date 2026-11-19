@@ -18,11 +18,11 @@ export default function MentionsLegalesPage() {
   const copy = getSiteCopy("fr");
 
   return (
-    <div className="min-h-dvh bg-[#F1EDE9] text-[#773331]">
+    <div className="da min-h-dvh bg-[#141116] text-white">
       <SiteHeader copy={copy} current="confidentialite" locale="fr" pathname="/mentions-legales" />
 
       <main className="mx-auto max-w-[900px] px-5 py-14 sm:px-8 sm:py-20" id="contenu" tabIndex={-1}>
-        <h1 className="font-display text-[clamp(2.6rem,7vw,5rem)] uppercase leading-[1.04]">Mentions légales.</h1>
+        <h1><span className="st st-pink st-xl">Mentions légales</span></h1>
 
         <Bloc titre="Éditeur du site">
           <p>
@@ -64,7 +64,7 @@ export default function MentionsLegalesPage() {
         </Bloc>
 
         <Link
-          className="mt-14 inline-flex min-h-14 items-center border-2 border-[#773331] bg-[#FFB200] px-8 font-mono text-xs font-black uppercase tracking-[.12em] text-[#773331] transition-colors hover:bg-[#773331] hover:text-[#F1EDE9] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#773331]"
+          className="mt-14 inline-flex min-h-14 items-center border-2 border-white/15 bg-[#FFC531] px-8 font-mono text-xs font-black uppercase tracking-[.12em] text-[#141116] transition-colors hover:bg-[#1E1A21] hover:text-white focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]"
           href="/fr"
         >
           Retour à l’accueil
@@ -78,7 +78,7 @@ export default function MentionsLegalesPage() {
 
 function Bloc({ titre, children }: { titre: string; children: React.ReactNode }) {
   return (
-    <section className="mt-14 border-t-2 border-[#773331] pt-8">
+    <section className="mt-14 border-t-2 border-white/15 pt-8">
       <h2 className="font-display text-[clamp(1.7rem,3.4vw,2.6rem)] uppercase leading-[1.1]">{titre}</h2>
       <div className="mt-5 space-y-4 text-[1.02rem] leading-relaxed">{children}</div>
     </section>
@@ -88,7 +88,7 @@ function Bloc({ titre, children }: { titre: string; children: React.ReactNode })
 function Lien({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a
-      className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#EBA0CD] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#773331]"
+      className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#E8459E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]"
       href={href}
     >
       {children}

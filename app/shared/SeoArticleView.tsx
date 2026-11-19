@@ -32,12 +32,10 @@ export function SeoArticleView({
       />
 
       <article>
-        <header className="border-b-2 border-[#773331] bg-[#EBA0CD]">
+        <header className="border-b border-white/10 bg-[#141116]">
           <div className="shell max-w-[1180px] py-12 sm:py-16 lg:py-20">
             <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Guide · Nulll Club</p>
-            <h1 className="mt-5 max-w-[22ch] font-display text-[clamp(2.4rem,6vw,4.6rem)] uppercase leading-[1.08] tracking-[-.01em] [text-wrap:balance]">
-              {article.h1}
-            </h1>
+            <h1 className="mt-5 w-full max-w-[1000px] -rotate-1 [overflow-wrap:normal] [text-wrap:balance]"><span className="st st-pink st-long">{article.h1}</span></h1>
             <p className="mt-7 max-w-[60ch] text-[clamp(1.15rem,1.6vw,1.35rem)] font-bold leading-relaxed">{article.intro}</p>
           </div>
         </header>
@@ -49,11 +47,11 @@ export function SeoArticleView({
           <div className="grid gap-12 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-20">
           <aside className="lg:sticky lg:top-28 lg:self-start">
             <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Dans ce guide</p>
-            <ol className="mt-4 grid gap-1 border-l-2 border-[#773331]">
+            <ol className="mt-4 grid gap-1 border-l-2 border-white/15">
               {article.sections.map((section, index) => (
                 <li key={section.title}>
                   <a
-                    className="block py-2 pl-4 text-[0.95rem] font-bold leading-snug transition-colors hover:bg-[#FFB200] focus-visible:bg-[#FFB200] focus-visible:outline-none"
+                    className="block py-2 pl-4 text-[0.95rem] font-bold leading-snug transition-colors hover:bg-[#FFC531] focus-visible:bg-[#FFC531] focus-visible:outline-none"
                     href={`#section-${index + 1}`}
                   >
                     {section.title}
@@ -62,7 +60,7 @@ export function SeoArticleView({
               ))}
             </ol>
             <Link
-              className="mt-6 inline-flex min-h-11 items-center border-2 border-[#773331] bg-[#773331] px-4 font-mono text-xs font-black uppercase tracking-[.12em] text-[#F1EDE9] transition-colors hover:bg-[#FFB200] hover:text-[#773331]"
+              className="mt-6 inline-flex min-h-11 items-center border-2 border-white/15 bg-[#1E1A21] px-4 font-mono text-xs font-black uppercase tracking-[.12em] text-white transition-colors hover:bg-[#FFC531] hover:text-[#141116]"
               href={getRoute(locale, "runs")}
             >
               Voir les sorties
@@ -87,7 +85,7 @@ export function SeoArticleView({
               ))}
             </div>
 
-            <div className="mt-16 grid gap-5 border-2 border-[#773331] bg-[#FFB200] p-6 sm:p-8">
+            <div className="mt-16 grid gap-5 border-2 border-white/15 bg-[#FFC531] p-6 sm:p-8 text-[#141116]">
               <p className="font-display text-[clamp(1.7rem,3.4vw,2.4rem)] uppercase leading-[1.1]">Envie d’essayer ?</p>
               <p className="max-w-[52ch] text-lg leading-relaxed">Choisis ta prochaine sortie, ou pose-nous une question avant de venir.</p>
               <div className="flex flex-col gap-4 sm:flex-row">
@@ -107,14 +105,14 @@ export function SeoArticleView({
 
 function ProchainesDates({ locale, runs }: { locale: Locale; runs: RunEvent[] | null }) {
   return (
-    <section aria-labelledby="prochaines-dates" className="mb-14 border-2 border-[#773331] bg-[#F1EDE9] p-5 shadow-[8px_8px_0_#EBA0CD] sm:p-6">
+    <section aria-labelledby="prochaines-dates" className="mb-14 border-2 border-white/15 bg-[#141116] p-5 sm:p-6">
       <h2 className="font-mono text-xs font-black uppercase tracking-[.16em]" id="prochaines-dates">
         Les prochaines dates
       </h2>
       {runs && runs.length > 0 ? (
         <ul className="mt-4 grid gap-2">
           {runs.map((run) => (
-            <li className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-[#773331] pb-2 last:border-b-0" key={run.id}>
+            <li className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-white/15 pb-2 last:border-b-0" key={run.id}>
               <span className="font-display text-xl uppercase leading-[1.15]">{run.date}</span>
               <span className="font-mono text-xs font-black uppercase tracking-[.1em]">
                 {run.time} · {run.distance} · {run.location}

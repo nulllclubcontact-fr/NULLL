@@ -40,12 +40,12 @@ export default async function MerchPage({ params }: PageProps) {
           Pas d'affiche d'ouverture ici : c'est une page qui vend des
           vetements, la premiere chose a l'ecran doit etre les vetements.
           Le titre tient sur une barre, les pieces demarrent juste dessous. */}
-      <section className="bg-[#F1EDE9] text-[#773331]">
+      <section className="bg-[#141116] text-white">
         <div className="mx-auto w-full max-w-[1600px] px-5 pb-16 pt-8 sm:px-8 sm:pb-24 sm:pt-10 xl:px-12">
-          <div className="flex flex-col gap-5 border-b-2 border-[#773331] pb-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+          <div className="flex flex-col gap-5 border-b-2 border-white/15 pb-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
             <div>
-              <h1 className="font-display text-[clamp(2.2rem,4.6vw,3.8rem)] uppercase leading-[1.12] tracking-[-.035em]">{page.title}</h1>
-              <p className="mt-4 max-w-lg text-base leading-relaxed text-[#773331]">{page.intro}</p>
+              <h1><span className="st st-pink st-xl">{page.title}</span></h1>
+              <p className="mt-4 max-w-lg text-base leading-relaxed text-white">{page.intro}</p>
             </div>
             {/* Les photos des cartes sont des images d'ambiance, pas les
                 pieces. Dit une fois ici en clair, et rappele sur chaque
@@ -54,9 +54,9 @@ export default async function MerchPage({ params }: PageProps) {
                 du site. La mention est une phrase — a cet ecartement les mots
                 se detachent les uns des autres. Reglage phrase : lettres
                 resserrees, mots elargis. */}
-            <p className="shrink-0 font-mono text-xs font-black uppercase leading-[1.7] text-[#773331] lg:text-right">
+            <p className="shrink-0 font-mono text-xs font-black uppercase leading-[1.7] text-white lg:text-right">
               <span className="block tracking-[.18em]">{products.length} pièces en ligne</span>
-              <span className="block tracking-[.06em] text-[#773331] [word-spacing:.14em]">
+              <span className="block tracking-[.06em] text-white [word-spacing:.14em]">
                 Photos d’ambiance. Les visuels des pièces arrivent.
               </span>
             </p>

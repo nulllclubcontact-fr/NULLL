@@ -73,7 +73,7 @@ export default async function RunsPage({ params }: PageProps) {
       />
 
       {/* ---------------- AFFICHE D'OUVERTURE ---------------- */}
-      <section className="relative flex min-h-[calc(100dvh-82px)] flex-col overflow-hidden bg-[#773331] text-[#F1EDE9]" aria-labelledby="runs-title">
+      <section className="relative flex min-h-[calc(100dvh-82px)] flex-col overflow-hidden bg-[#1E1A21] text-white" aria-labelledby="runs-title">
         <Image
           alt="Un membre de Nulll Club en pleine foulée sur un chemin, saisi en flou de mouvement"
           className="object-cover object-[50%_54%]"
@@ -86,23 +86,20 @@ export default async function RunsPage({ params }: PageProps) {
 
         {/* Barre identique a celle de l'accueil */}
         <div className="relative mx-auto w-full max-w-[1600px] shrink-0 px-5 pt-6 sm:px-8 sm:pt-8 xl:px-12">
-          <div className="flex flex-col items-start gap-1 border-b border-[#F1EDE9]/45 pb-4 font-mono text-xs font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
+          <div className="flex flex-col items-start gap-1 border-b border-white/45 pb-4 font-mono text-xs font-black uppercase tracking-[.1em] min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between min-[400px]:gap-4 sm:text-xs">
             <span>Social sport club · Aix-en-Provence</span>
-            <span className="text-[#FFB200]">Ouvert à tous · Gratuit</span>
+            <span className="text-[#FFC531]">Ouvert à tous · Gratuit</span>
           </div>
         </div>
 
         <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col items-center justify-center gap-9 px-5 py-8 text-center sm:gap-14 sm:px-8 sm:py-12 xl:px-12">
-          <h1
-            className="hero-rise font-display text-[clamp(2.6rem,9vw,9rem)] uppercase leading-[1.12] tracking-[-.02em]"
-            id="runs-title"
-            style={{ animationDelay: "120ms" }}
-          >
-            Les prochaines <span className="text-[#EBA0CD]">sorties.</span>
+          <h1 className="da-stack da-center" id="runs-title">
+            <span className="st st-yellow">Les prochaines</span>
+            <span className="st st-pink st-xl">sorties</span>
           </h1>
 
           <div className="hero-rise flex w-full flex-col items-center" style={{ animationDelay: "280ms" }}>
-            <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFB200]">
+            <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#FFC531]">
               Prochaine sortie
             </p>
             <p className="mt-3 font-display text-[clamp(1.9rem,4vw,3.4rem)] uppercase leading-none [overflow-wrap:normal]">
@@ -115,7 +112,7 @@ export default async function RunsPage({ params }: PageProps) {
               </div>
             ) : null}
             <SmoothAnchor
-              className="group mt-6 inline-flex min-h-[4.25rem] cursor-pointer items-center justify-center gap-8 border-2 border-[#FFB200] bg-[#FFB200] px-8 font-display text-[1.35rem] uppercase leading-none text-[#773331] transition-colors hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
+              className="group mt-6 inline-flex min-h-[4.25rem] cursor-pointer items-center justify-center gap-8 border-2 border-[#FFC531] bg-[#FFC531] px-8 font-display text-[1.35rem] uppercase leading-none text-[#141116] transition-colors hover:bg-transparent hover:text-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFFFFF]"
               targetId="prochaines-sorties"
             >
               <span>Choisir une date</span>
@@ -126,7 +123,7 @@ export default async function RunsPage({ params }: PageProps) {
 
         <div
           aria-label={tickerCopy}
-          className="marquee relative shrink-0 border-y-2 border-[#773331] bg-[#FFB200] py-4 text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD]"
+          className="marquee relative shrink-0 border-y-2 border-white/15 bg-[#FFC531] py-4 text-[#141116] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#E8459E]"
           role="region"
           tabIndex={0}
         >
@@ -138,32 +135,32 @@ export default async function RunsPage({ params }: PageProps) {
       </section>
 
       {/* ---------------- PROCHAINES SORTIES ---------------- */}
-      <section className="scroll-mt-20 bg-[#773331] text-[#F1EDE9]" aria-labelledby="runs-list-title" id="prochaines-sorties">
+      <section className="scroll-mt-20 bg-[#1E1A21] text-white" aria-labelledby="runs-list-title" id="prochaines-sorties">
         <div className="mx-auto max-w-[1600px] px-5 pb-10 pt-16 sm:px-8 sm:pb-12 sm:pt-24 xl:px-12">
-          <div className="flex flex-col gap-5 border-b border-[#F1EDE9]/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col gap-5 border-b border-white/35 pb-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">01 · Le calendrier</p>
+              <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFC531]">01 · Le calendrier</p>
               <h2 className="mt-4 font-display text-[clamp(3.2rem,6vw,6rem)] uppercase leading-[1.12] tracking-[-.035em]" id="runs-list-title">
-                Prochaine <span className="text-[#EBA0CD]">sortie.</span>
+                Prochaine <span className="text-[#E8459E]">sortie.</span>
               </h2>
             </div>
-            <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#EBA0CD]">Swipe pour la suite →</p>
+            <p className="font-mono text-xs font-black uppercase tracking-[.12em] text-[#E8459E]">Swipe pour la suite →</p>
           </div>
 
           <div className="mt-6 flex items-center justify-between gap-4 font-mono text-xs font-black uppercase tracking-[.16em]">
-            <span className="text-[#F1EDE9]/80">
+            <span className="text-white/80">
               {runs.length} sortie{runs.length > 1 ? "s" : ""}
             </span>
             {runs.length > 1 ? <RunCarouselNav runs={runs.map(({ date, id }) => ({ date, id }))} /> : null}
           </div>
 
           {runs.length === 0 ? (
-            <p className="mt-6 border-2 border-dashed border-[#F1EDE9] p-8 font-display text-[clamp(1.6rem,3vw,2.6rem)] uppercase leading-[1.12]">
+            <p className="mt-6 border-2 border-dashed border-white/15 p-8 font-display text-[clamp(1.6rem,3vw,2.6rem)] uppercase leading-[1.12]">
               {panne
                 ? "Impossible de charger les sorties. Réessaie."
                 : "Pas de sortie programmée pour l’instant. Les prochaines dates arrivent ici dès qu’elles sont publiées."}
               {panne ? (
-                <Link className="mt-5 block w-fit border-2 border-[#F1EDE9] px-4 py-3 font-mono text-xs font-black uppercase tracking-[.12em]" href={getRoute(locale, "runs")}>
+                <Link className="mt-5 block w-fit border-2 border-white/15 px-4 py-3 font-mono text-xs font-black uppercase tracking-[.12em]" href={getRoute(locale, "runs")}>
                   Réessayer
                 </Link>
               ) : null}
@@ -171,7 +168,7 @@ export default async function RunsPage({ params }: PageProps) {
           ) : (
           <div
             aria-label="Prochaines sorties, carrousel horizontal"
-            className="run-carousel -ml-4 mt-1 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pl-4 pr-[10%] pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200] sm:-ml-6 sm:gap-8 sm:pl-6 sm:pr-[18%] xl:-ml-10 xl:pl-10"
+            className="run-carousel -ml-4 mt-1 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pl-4 pr-[10%] pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531] sm:-ml-6 sm:gap-8 sm:pl-6 sm:pr-[18%] xl:-ml-10 xl:pl-10"
             role="region"
             tabIndex={0}
           >
@@ -186,7 +183,7 @@ export default async function RunsPage({ params }: PageProps) {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <section className="bg-[#FFB200] text-[#773331]" aria-labelledby="runs-faq">
+      <section className="bg-[#FFC531] text-[#141116]" aria-labelledby="runs-faq">
         <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-28 xl:px-12">
           <p className="font-mono text-xs font-black uppercase tracking-[.16em]">02 · Les questions</p>
           <h2
@@ -196,10 +193,10 @@ export default async function RunsPage({ params }: PageProps) {
             Avant de venir.
           </h2>
 
-          <dl className="mt-14 border-t-2 border-[#773331]">
+          <dl className="mt-14 border-t-2 border-white/15">
             {copy.runsPage.faq.map((entry, index) => (
               <Reveal
-                className="grid gap-4 border-b-2 border-[#773331] py-8 lg:grid-cols-[1fr_1.1fr] lg:items-baseline lg:gap-10"
+                className="grid gap-4 border-b-2 border-white/15 py-8 lg:grid-cols-[1fr_1.1fr] lg:items-baseline lg:gap-10"
                 delay={index * 110}
                 key={entry.q}
               >
@@ -215,12 +212,12 @@ export default async function RunsPage({ params }: PageProps) {
             ))}
           </dl>
 
-          <div className="mt-14 flex flex-col gap-4 border-2 border-[#773331] bg-[#773331] p-8 text-[#F1EDE9] sm:flex-row sm:items-center sm:justify-between sm:p-10">
+          <div className="mt-14 flex flex-col gap-4 border-2 border-white/15 bg-[#1E1A21] p-8 text-white sm:flex-row sm:items-center sm:justify-between sm:p-10">
             <p className="max-w-md font-display text-[clamp(1.6rem,3vw,2.6rem)] uppercase leading-[1.12]">
               Il reste une question ?
             </p>
             <Link
-              className="group inline-flex min-h-[4rem] items-center justify-between gap-10 border-2 border-[#FFB200] bg-[#FFB200] px-7 font-display text-[1.35rem] uppercase leading-none text-[#773331] transition-colors hover:bg-transparent hover:text-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9]"
+              className="group inline-flex min-h-[4rem] items-center justify-between gap-10 border-2 border-[#FFC531] bg-[#FFC531] px-7 font-display text-[1.35rem] uppercase leading-none text-[#141116] transition-colors hover:bg-transparent hover:text-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFFFFF]"
               href={contactHref}
             >
               <span>{copy.runsPage.cta}</span>
@@ -236,16 +233,16 @@ export default async function RunsPage({ params }: PageProps) {
 
 function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string; run: RunEvent }) {
   const visuals = [
-    { src: "/assets/photos/runs-golden.webp", position: "object-[50%_58%]", accent: "bg-[#FFB200] text-[#773331]" },
-    { src: "/assets/photos/runs-motion.webp", position: "object-center", accent: "bg-[#EBA0CD] text-[#773331]" },
-    { src: "/assets/photos/runs-crew.webp", position: "object-center", accent: "bg-[#F1EDE9] text-[#773331]" }
+    { src: "/assets/photos/runs-golden.webp", position: "object-[50%_58%]", accent: "bg-[#FFC531] text-white" },
+    { src: "/assets/photos/runs-motion.webp", position: "object-center", accent: "bg-[#E8459E] text-white" },
+    { src: "/assets/photos/runs-crew.webp", position: "object-center", accent: "bg-[#141116] text-white" }
   ];
   const visual = visuals[index % visuals.length];
 
   return (
     <Reveal
       as="article"
-      className={`run-poster group relative h-full w-full overflow-hidden border-4 text-[#F1EDE9] ${index === 0 ? "run-poster--featured border-[#FFB200]" : "border-[#F1EDE9]"}`}
+      className={`run-poster group relative h-full w-full overflow-hidden border-4 text-white ${index === 0 ? "run-poster--featured border-[#FFC531]" : "border-white/15"}`}
       delay={index * 100}
     >
       {/* La photo de la sortie si l'admin en a mis une, sinon une photo du
@@ -274,11 +271,11 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
             {run.date}
           </h3>
           <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs font-black uppercase tracking-[.1em]">
-            <span className="bg-[#773331] px-4 py-3">{run.time}</span>
-            <span className="bg-[#773331] px-4 py-3">{run.distance}</span>
+            <span className="bg-[#1E1A21] px-4 py-3">{run.time}</span>
+            <span className="bg-[#1E1A21] px-4 py-3">{run.distance}</span>
             <a
               aria-label={`Ouvrir le lieu de départ ${run.location} dans Google Maps`}
-              className="inline-flex min-h-14 items-center gap-3 bg-[#F1EDE9] px-4 py-2.5 text-[#773331] transition-colors hover:bg-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#FFB200]"
+              className="inline-flex min-h-14 items-center gap-3 bg-[#141116] px-4 py-2.5 text-white transition-colors hover:bg-[#FFC531] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#FFC531]"
               href={mapsUrl(run)}
               rel="noreferrer noopener"
               target="_blank"
@@ -289,13 +286,13 @@ function RunCardCol({ index, joinHref, run }: { index: number; joinHref: string;
             </a>
           </div>
           {run.inscriptionsOuvertes === false ? (
-            <p className="mt-5 flex min-h-16 w-full items-center border-2 border-dashed border-[#F1EDE9] px-5 font-display text-[1.55rem] uppercase leading-none sm:w-fit sm:min-w-72">
+            <p className="mt-5 flex min-h-16 w-full items-center border-2 border-dashed border-white/15 px-5 font-display text-[1.55rem] uppercase leading-none sm:w-fit sm:min-w-72">
               Inscriptions fermées
             </p>
           ) : (
             <Link
               aria-label={`Choisir la sortie du ${run.date}, à ${run.time}, ${run.distance}. Départ ${run.location}.`}
-              className={`mt-5 flex min-h-16 w-full items-center justify-between gap-6 px-5 font-display text-[1.55rem] uppercase leading-none transition-colors focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EDE9] sm:w-fit sm:min-w-72 ${visual.accent}`}
+              className={`mt-5 flex min-h-16 w-full items-center justify-between gap-6 px-5 font-display text-[1.55rem] uppercase leading-none transition-colors focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFFFFF] sm:w-fit sm:min-w-72 ${visual.accent}`}
               href={joinHref}
             >
               <span>Choisir cette sortie</span>
