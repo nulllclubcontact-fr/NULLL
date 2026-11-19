@@ -42,7 +42,7 @@ export const actus: Actu[] = [
     slug: "red-bull-partenaire-nulll-club",
     rubrique: "Partenaires",
     titre: "C’est officiel : Red Bull court avec nous",
-    date: "2026-11-19",
+    date: "2026-10-10",
     resume:
       "Les canettes que tu attrapes à l’arrivée ne sont pas là par hasard. Red Bull est désormais partenaire de Nulll Club. Ce que ça change pour tes samedis.",
     image: {
@@ -52,8 +52,7 @@ export const actus: Actu[] = [
     galerie: [
       { src: "/assets/actus/red-bull/01.webp", alt: "Un membre de Nulll Club, tout sourire, tend une canette Red Bull vers l’objectif", largeur: 1066, hauteur: 1600 },
       { src: "/assets/actus/red-bull/02.webp", alt: "Une canette Red Bull en main, au départ d’une sortie", largeur: 1066, hauteur: 1600 },
-      { src: "/assets/actus/red-bull/03.webp", alt: "Un coureur pose avec sa Red Bull sous les arbres", largeur: 1066, hauteur: 1600 },
-      { src: "/assets/actus/red-bull/04.webp", alt: "Les packs Red Bull sur la table du ravito, au parc", largeur: 1600, hauteur: 900 }
+      { src: "/assets/actus/red-bull/03.webp", alt: "Un coureur pose avec sa Red Bull sous les arbres", largeur: 1066, hauteur: 1600 }
     ],
     sections: [
       {
@@ -87,42 +86,39 @@ export const actus: Actu[] = [
   {
     slug: "bee-zen-partenaire-nulll-club",
     rubrique: "Partenaires",
-    titre: "La pyramide de canettes, c’était eux : Bee Zen devient partenaire",
-    date: "2026-11-19",
+    titre: "Bee Zen rejoint l’aventure dès le premier run",
+    date: "2026-09-26",
     resume:
-      "Tu l’as vue au ravito du 24 octobre, cette pyramide de canettes. Bee Zen est désormais partenaire de Nulll Club. On vous raconte.",
+      "Premier social run, premier ravito, et déjà un partenaire sur la table. Bee Zen est désormais partenaire de Nulll Club. On vous raconte.",
     image: {
-      src: "/assets/actus/bee-zen/01.webp",
-      alt: "La pyramide de canettes Bee Zen montée au ravito, sous les arbres"
+      src: "/assets/actus/bee-zen/04.webp",
+      alt: "Deux membres du club font les pitres avec une Bee Zen"
     },
     galerie: [
-      { src: "/assets/actus/bee-zen/01.webp", alt: "La pyramide de canettes Bee Zen montée au ravito, sous les arbres", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/bee-zen/04.webp", alt: "Deux membres du club font les pitres avec une Bee Zen", largeur: 1066, hauteur: 1600 },
-      { src: "/assets/actus/bee-zen/02.webp", alt: "La pyramide Bee Zen vue d’en bas", largeur: 900, hauteur: 1600 },
-      { src: "/assets/actus/bee-zen/05.webp", alt: "Un coureur tend sa Bee Zen vers l’objectif", largeur: 1066, hauteur: 1600 },
-      { src: "/assets/actus/bee-zen/03.webp", alt: "Une canette Bee Zen sur la table du ravito", largeur: 900, hauteur: 1600 },
-      { src: "/assets/actus/bee-zen/06.webp", alt: "Un membre du club pose avec deux Bee Zen devant la table du ravito", largeur: 1066, hauteur: 1600 }
+      { src: "/assets/actus/bee-zen/06.webp", alt: "Un membre du club pose avec deux Bee Zen devant la table du ravito", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/bee-zen/05.webp", alt: "Un coureur tend sa Bee Zen vers l’objectif", largeur: 1066, hauteur: 1600 }
     ],
     sections: [
       {
         titre: "C’est officiel",
         paragraphes: [
           "**Bee Zen** est désormais **partenaire de Nulll Club**.",
-          "Ses canettes sont au ravito depuis le tout premier social run, le 26 septembre."
+          "Et ça commence fort : ses canettes sont au ravito dès ce **premier social run**, le samedi 26 septembre."
         ],
-        citation: "Une pyramide de canettes, et tout le monde reste."
+        citation: "Premier run, premier ravito, et déjà des canettes sur la table."
       },
       {
-        titre: "La pyramide",
+        titre: "Ce que ça change pour toi",
         paragraphes: [
-          "Au **quatrième social run**, le 24 octobre, les canettes Bee Zen ont fini en **pyramide** sur la table du ravito.",
-          "On la monte, on la démonte, et pendant ce temps, personne ne repart."
+          "Après la sortie, on reste. Les canettes Bee Zen sont là, **au ravito**, pendant que tout le monde discute.",
+          "Le reste ne bouge pas : les sorties restent **gratuites** et ouvertes à tous les niveaux."
         ]
       },
       {
         titre: "Merci",
         paragraphes: [
-          "Merci à [Bee Zen](https://www.beezendrinks.com/) de soutenir le club. On se retrouve samedi, canette en main."
+          "Merci à [Bee Zen](https://www.beezendrinks.com/) de soutenir le club dès le premier jour. On se retrouve au prochain run, canette en main."
         ]
       }
     ],
@@ -713,7 +709,7 @@ export const actus: Actu[] = [
  * les plus recentes d'abord.
  */
 // Les trois actus de l'accueil, dans cet ordre (sans mention « epinglee »).
-export const EPINGLEES_ACCUEIL: string[] = ["red-bull-partenaire-nulll-club", "bee-zen-partenaire-nulll-club", "equipe-nulll-les-bacchantes-aix-2026"];
+export const EPINGLEES_ACCUEIL: string[] = ["equipe-nulll-les-bacchantes-aix-2026", "jeu-concours-bacchantes-aix-ynov-campus", "duo-nulll-new-york"];
 
 export function listActusAccueil(nombre = 3): Array<Actu & { epinglee: boolean }> {
   const epinglees = EPINGLEES_ACCUEIL.flatMap((slug) => {
