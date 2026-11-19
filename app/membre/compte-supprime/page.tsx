@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowIcon } from "../../../components/ArrowIcon";
 import { AccountHeader } from "../../../components/account-shell";
 
 export const metadata = {
@@ -22,8 +23,9 @@ export default function CompteSupprimePage() {
         <p className="max-w-xl leading-relaxed">
           Tu peux toujours revenir courir avec nous. Il faudra juste recréer un compte.
         </p>
-        <Link className="primary-link w-fit" href="/fr">
-          Retour à l’accueil
+        <Link className="bouton w-fit" href="/fr">
+          <span>Retour à l’accueil</span>
+          <ArrowIcon />
         </Link>
       </main>
     </div>

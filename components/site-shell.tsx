@@ -81,12 +81,12 @@ export function SiteHeader({
           <Image alt="Nulll Club" className="site-header-logo h-auto" height={313} priority sizes="(min-width: 1280px) 144px, (min-width: 640px) 128px, 112px" src="/assets/nulll-new/logo-cream.png" width={2449} />
         </Link>
         <nav aria-label="Navigation principale" className="mx-auto hidden items-center gap-1 lg:flex">
-          {copy.nav.map((item: { key: RouteKey; label: string }) => (
+          {copy.nav.map((item: { key: RouteKey; label: string; ancre?: string }) => (
             <Link
-              aria-current={item.key === current ? "page" : undefined}
-              className={`${lien} ${item.key === current ? actif : repos}`}
-              href={getRoute(locale, item.key)}
-              key={item.key}
+              aria-current={item.key === current && !item.ancre ? "page" : undefined}
+              className={`${lien} ${item.key === current && !item.ancre ? actif : repos}`}
+              href={`${getRoute(locale, item.key)}${item.ancre ? `#${item.ancre}` : ""}`}
+              key={item.label}
             >
               {item.label}
             </Link>
@@ -98,8 +98,8 @@ export function SiteHeader({
             <summary className="site-header-link flex cursor-pointer items-center rounded-[2px] border border-white/25 font-mono font-bold uppercase tracking-[.08em] transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFC531]">Menu</summary>
             <FermetureMenu />
             <nav aria-label="Navigation mobile" className="absolute inset-x-0 top-full z-50 grid max-h-[calc(100dvh-60px)] gap-1 overflow-y-auto border-b border-white/10 bg-[#141116] px-4 py-3">
-              {copy.nav.map((item: { key: RouteKey; label: string }) => (
-                <Link aria-current={item.key === current ? "page" : undefined} className={`flex min-h-12 items-center ${lien} ${item.key === current ? actif : repos}`} href={getRoute(locale, item.key)} key={item.key}>
+              {copy.nav.map((item: { key: RouteKey; label: string; ancre?: string }) => (
+                <Link aria-current={item.key === current && !item.ancre ? "page" : undefined} className={`flex min-h-12 items-center ${lien} ${item.key === current && !item.ancre ? actif : repos}`} href={`${getRoute(locale, item.key)}${item.ancre ? `#${item.ancre}` : ""}`} key={item.label}>
                   {item.label}
                 </Link>
               ))}

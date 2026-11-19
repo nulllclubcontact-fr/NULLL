@@ -201,9 +201,12 @@ export function getSiteCopy(locale: Locale) {
         { key: "home" as const, label: "Accueil" },
         { key: "runs" as const, label: "Sorties" },
         { key: "community" as const, label: "Le club" },
-        { key: "merch" as const, label: "Merch" },
-        { key: "contact" as const, label: "Contact" }
-      ],
+        { key: "news" as const, label: "Actus" },
+        // Merch retire tant que les pieces ne sont pas en vente.
+        { key: "contact" as const, label: "Contact" },
+        // Pas de page dediee : le lien mene a la section partenaires de Contact.
+        { key: "contact" as const, label: "Devenir partenaire", ancre: "contact-partenaires" }
+      ] as Array<{ key: RouteKey; label: string; ancre?: string }>,
       meta: {
         home: {
           title: "Nulll Club | Run club gratuit à Aix-en-Provence",

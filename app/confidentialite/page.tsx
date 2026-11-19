@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowIcon } from "../../components/ArrowIcon";
 import { SiteFooter, SiteHeader } from "../../components/site-shell";
 import { getSiteCopy } from "../../lib/site-content";
 
@@ -267,11 +268,9 @@ export default function ConfidentialitePage() {
           </p>
         </Bloc>
 
-        <Link
-          className="mt-14 inline-flex min-h-14 items-center border-2 border-white/15 bg-[#FFC531] px-8 font-mono text-xs font-black uppercase tracking-[.12em] text-[#141116] transition-colors hover:bg-[#1E1A21] hover:text-white focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]"
-          href="/fr"
-        >
-          Retour à l’accueil
+        <Link className="bouton mt-14" href="/fr">
+          <span>Retour à l’accueil</span>
+          <ArrowIcon />
         </Link>
       </main>
 
