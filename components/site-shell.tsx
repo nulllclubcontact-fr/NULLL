@@ -142,7 +142,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
 
             <FooterColumn
               links={[
-                { href: copy.contact.instagram, label: copy.contact.instagramLabel },
+                { href: copy.contact.instagram, label: "Instagram" },
                 { href: copy.contact.strava, label: "Strava" },
                 { href: copy.contact.linkedin, label: "LinkedIn" },
                 { href: `mailto:${copy.contact.email}`, label: copy.contact.email },
@@ -154,17 +154,25 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
 
             <div className="col-span-2 sm:col-span-1">
               <p className="font-mono text-xs font-bold uppercase tracking-[.16em] text-white/45">Le rendez-vous</p>
-              <ul className="mt-5 space-y-3 text-[1.02rem] text-white/80">
-                <li>Un samedi sur deux</li>
-                <li>Rendez-vous <strong className="font-bold text-[#FFC531]">9h30</strong>, départ <strong className="font-bold text-[#FFC531]">10h</strong></li>
-                <li>{DEPART.nom}</li>
-                <li>Gratuit, sur inscription</li>
+              <ul className="mt-4 space-y-2 text-[1rem] leading-snug text-white/80">
+                <li className="py-1">Un samedi sur deux</li>
+                <li className="py-1">Rendez-vous <strong className="font-bold text-[#FFC531]">9h30</strong>, départ <strong className="font-bold text-[#FFC531]">10h</strong></li>
+                <li className="py-1">{DEPART.nom}</li>
+                <li className="py-1">Gratuit, sur inscription</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-1 border-t border-white/10 pt-4 font-mono text-xs uppercase tracking-[.12em] text-white/55 sm:justify-between">
+      </div>
+
+      {/* Le nom du club en tres grand, en entier, sur toute la largeur. */}
+      <p aria-hidden="true" className="pointer-events-none mt-16 select-none whitespace-nowrap text-center font-display text-[22.5vw] uppercase leading-[.84] tracking-[-.01em] text-[#E8459E]">
+        NULLL.CLUB
+      </p>
+
+      <div className="mx-auto max-w-[1500px] px-5 pb-6 sm:px-8 xl:px-12">
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-1 border-t border-white/10 pt-4 font-mono text-xs uppercase tracking-[.12em] text-white/55 sm:justify-between">
           <span>
             © 2026 NULLL.CLUB · Fait avec <span aria-label="amour" className="text-[#E8459E]" role="img">♥</span> par{" "}
             <a className="underline decoration-1 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href="https://oculot.studio" rel="noopener" target="_blank">
@@ -178,11 +186,6 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
           </span>
         </div>
       </div>
-
-      {/* Le nom du club en tres grand, coupe par le bas de la page. */}
-      <p aria-hidden="true" className="pointer-events-none mt-4 select-none whitespace-nowrap text-center font-display text-[18.5vw] uppercase leading-[.78] tracking-[-.01em] text-[#E8459E] [margin-bottom:-.12em]">
-        NULLL.CLUB
-      </p>
     </footer>
   );
 }
@@ -193,11 +196,11 @@ function FooterColumn({ title, links }: { title: string; links: Array<{ href: st
       <p className="font-mono text-xs font-bold uppercase tracking-[.16em] text-white/45">{title}</p>
       {/* Sur telephone, les liens se touchent : chacun garde 44 px de haut
           pour le doigt, sans l'espace en plus qui allongeait le pied. */}
-      <ul className="mt-4 sm:mt-5 sm:space-y-1">
+      <ul className="mt-4 space-y-2">
         {links.map((link) => (
           <li key={link.href}>
             <Link
-              className="inline-flex min-h-11 items-center text-[.95rem] text-white/80 transition-colors hover:text-[#E8459E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531] sm:py-2 sm:text-[1.02rem]"
+              className="inline-flex min-h-11 items-center py-1 text-[1rem] leading-snug text-white/80 transition-colors hover:text-[#E8459E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531] sm:min-h-0"
               href={link.href}
             >
               {/* L'adresse e-mail peut passer a la ligne apres l'arobase dans
