@@ -2,9 +2,10 @@ import Image from "next/image";
 import { partenairesVisibles } from "../lib/partenaires";
 
 /**
- * Les partenaires du club, mis en avant : un titre en etiquettes comme les
- * autres sections, puis une grande carte claire par partenaire, logo dans
- * ses vraies couleurs. La carte entiere mene au site du partenaire.
+ * Les partenaires du club, mis en avant dans la DA des stories : chaque
+ * partenaire est une grande etiquette de couleur penchee, logo en aplat,
+ * avec un petit sticker « Voir le site » sur le coin. La carte entiere
+ * mene au site du partenaire.
  */
 export function BandeauPartenaires() {
   if (partenairesVisibles.length === 0) return null;
@@ -13,11 +14,11 @@ export function BandeauPartenaires() {
     <section aria-labelledby="home-partners-title" className="hx-partners">
       <h2 className="hx-stack" id="home-partners-title">
         <span className="st st-blue">Merci à</span>
-        <span className="st st-yellow st-xl">nos partenaires</span>
+        <span className="st st-lime st-xl">nos partenaires</span>
       </h2>
       <ul className="hx-partners-list">
-        {partenairesVisibles.map((partenaire) => (
-          <li key={partenaire.nom}>
+        {partenairesVisibles.map((partenaire, index) => (
+          <li className={index % 2 === 0 ? "hx-partners-pink" : "hx-partners-yellow"} key={partenaire.nom}>
             <a className="hx-partners-card" href={partenaire.url} rel="sponsored noopener noreferrer" target="_blank">
               <span className="hx-partners-logo-box">
                 <Image
@@ -30,10 +31,7 @@ export function BandeauPartenaires() {
                   width={Math.round(48 * (partenaire.echelle ?? 1) * partenaire.ratio)}
                 />
               </span>
-              <span className="hx-partners-meta">
-                <span>Partenaire du club</span>
-                <span className="hx-partners-go">Voir le site →</span>
-              </span>
+              <span className="st st-cream hx-partners-go">Voir le site →</span>
             </a>
           </li>
         ))}
