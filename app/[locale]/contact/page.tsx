@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowIcon } from "../../../components/ArrowIcon";
@@ -43,38 +42,25 @@ export default async function ContactPage({ params }: PageProps) {
         ])}
       />
 
-      <div className="home-journey">
-        <section className="hx-hero" aria-labelledby="contact-title">
-          <Image
-            alt="Une coureuse de Nulll Club en sweat jaune raconte sa sortie au groupe"
-            className="object-cover object-[50%_35%]"
-            fill
-            priority
-            sizes="100vw"
-            src="/assets/actus/quatrieme-run/07.webp"
-          />
-          <div className="hx-hero-shade" aria-hidden="true" />
-          <div className="hx-hero-copy">
-            <h1 className="hx-hero-title" id="contact-title">
-              <span className="st st-yellow hx-hero-kicker">Une question ?</span>
-              <span className="st st-pink">Parle-nous</span>
-            </h1>
-            <p className="hx-hero-support">{page.intro}</p>
-            <p className="mt-5 max-w-xl text-base text-white/85">
-              Pour les dates et les infos pratiques, regarde <Link className="font-bold text-[#FFC531] underline decoration-2 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={runsHref}>les sorties</Link> et{" "}
-              <Link className="font-bold text-[#FFC531] underline decoration-2 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={communityHref}>la page du club</Link>.
-            </p>
-          </div>
-        </section>
-
-        {/* ---------------- LES CANAUX ---------------- */}
-        <section className="px-[max(5vw,20px)] pb-24 pt-28" aria-labelledby="contact-canaux">
+      <div className="home-journey hx-sans-hero">
+        {/* En-tete compact : les canaux doivent etre visibles sans defiler. */}
+        <section className="px-[max(5vw,20px)] pb-24 pt-12 sm:pt-16" aria-labelledby="contact-title">
           <div className="mx-auto max-w-[1300px]">
-            <h2 className="hx-stack" id="contact-canaux">
-              <span className="st st-cream">{page.title}</span>
-              <span className="st st-yellow st-xl">Nos canaux</span>
-            </h2>
-            <div className="mt-14">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+              <h1 className="hx-stack hx-stack-left" id="contact-title">
+                <span className="st st-yellow">Une question ?</span>
+                <span className="st st-pink st-xl">Parle-nous</span>
+              </h1>
+              <div className="max-w-xl text-base leading-relaxed text-white/85 lg:pb-3 lg:text-right">
+                <p>{page.intro}</p>
+                <p className="mt-2 text-white/70">
+                  Dates et infos pratiques : <Link className="font-bold text-[#FFC531] underline decoration-2 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={runsHref}>les sorties</Link> et{" "}
+                  <Link className="font-bold text-[#FFC531] underline decoration-2 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={communityHref}>le club</Link>.
+                </p>
+              </div>
+            </div>
+            <h2 className="sr-only">{page.title}</h2>
+            <div className="mt-10">
               <ContactChannels channels={page.channels} />
             </div>
           </div>
