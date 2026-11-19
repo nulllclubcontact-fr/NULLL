@@ -109,17 +109,30 @@ export const actus: Actu[] = [
     titre: "Le duo NULLL est parti courir à New York",
     date: "2026-11-09",
     resume:
-      "Le week-end du 7 novembre, Tobias et Tom sont partis courir à New York. Pas de social run à Aix ce samedi-là : on revient vite.",
+      "Le samedi 7 novembre, Tobias et Tom ont couru dans New York : Central Park, Times Square, la Cinquième Avenue. Pas de social run à Aix ce samedi-là.",
     image: {
-      src: "/assets/actus/bienvenue/18.webp",
-      alt: "Tobias et Tom, le duo à l’origine de Nulll Club, canette Bee Zen à la main"
+      src: "/assets/actus/new-york/01.webp",
+      alt: "Selfie de Tobias et Tom sous un pont, à New York"
     },
+    galerie: [
+      { src: "/assets/actus/new-york/01.webp", alt: "Selfie de Tobias et Tom sous un pont, à New York", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/02.webp", alt: "Une avenue de Midtown sous le soleil, entre les gratte-ciel", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/03.webp", alt: "Selfie de Tobias dans une rue de New York, avec deux amis", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/04.webp", alt: "Pause à un carrefour de Manhattan, entre deux runs", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/05.webp", alt: "Times Square, avec une voiture du NYPD", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/06.webp", alt: "Photo souvenir dans Central Park", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/07.webp", alt: "Une allée de Central Park sous les arbres d’automne", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/08.webp", alt: "Selfie de Tobias dans Central Park", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/09.webp", alt: "Une pause au pied des tours de Manhattan", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/10.webp", alt: "Devant la cathédrale Saint-Patrick, sur la Cinquième Avenue", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/new-york/11.webp", alt: "En contre-jour devant la cathédrale Saint-Patrick", largeur: 900, hauteur: 1600 }
+    ],
     sections: [
       {
         titre: "Direction New York",
         paragraphes: [
-          "Le week-end du 7 novembre, Tobias et Tom, les deux fondateurs du club, ont posé leurs baskets à New York.",
-          "Pas de course officielle : des runs en ville, pour le plaisir de courir ailleurs."
+          "Le samedi 7 novembre, Tobias et Tom, les deux fondateurs du club, ont posé leurs baskets à New York.",
+          "Pas de course officielle : des runs en ville, de Central Park à Times Square, en passant par la cathédrale Saint-Patrick sur la Cinquième Avenue."
         ]
       },
       {
