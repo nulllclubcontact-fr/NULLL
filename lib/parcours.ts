@@ -138,5 +138,5 @@ export const PARCOURS_INFOS = {
   distanceKm: 5.07,
   denivelePositifM: 45,
   depart: "Parking du chemin de la Cible",
-  heure: "08h30"
+  heure: "09h30"
 };

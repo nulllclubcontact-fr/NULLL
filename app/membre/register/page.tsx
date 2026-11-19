@@ -17,7 +17,7 @@ export default async function MemberRegisterPage({ searchParams }: { searchParam
       footerLink={{ label: "Déjà un compte ?", href: `/membre/login${suiteSortie(sortie)}`, cta: "Se connecter" }}
       intro="Crée ton compte, choisis une sortie et retrouve son QR."
       steps={["Tes infos", "La décharge", "Ta sortie"]}
-      ticker="Rejoins le club · Samedi 8h30 · Aix-en-Provence"
+      ticker="Rejoins le club · Samedi 9h30 · Aix-en-Provence"
       title="Entre dans le"
       titleAccent="club."
     >

@@ -208,7 +208,7 @@ export function getSiteCopy(locale: Locale) {
         home: {
           title: "NULLL.CLUB | Run club gratuit à Aix-en-Provence",
           description:
-            "Le social sport club d’Aix-en-Provence : une sortie gratuite un samedi sur deux à 8h30, à une allure qui permet de discuter."
+            "Le social sport club d’Aix-en-Provence : une sortie gratuite un samedi sur deux, rendez-vous à 9h30, à une allure qui permet de discuter."
         },
         runs: {
           title: "Sorties à Aix-en-Provence | NULLL.CLUB",
@@ -554,7 +554,7 @@ export function getSiteCopy(locale: Locale) {
             {
               title: "Le rendez-vous en pratique",
               body: [
-                "Le départ habituel est à 8h30, au parking du chemin de la Cible, près du lycée Émile Zola. Vérifie les informations de la sortie choisie avant de venir.",
+                "Le rendez-vous habituel est à 9h30, pour un départ à 10h, au parking du chemin de la Cible, près du lycée Émile Zola. Vérifie les informations de la sortie choisie avant de venir.",
                 "On court à une allure qui permet de discuter. Il n’y a rien à payer : un compte gratuit et l’inscription à la sortie suffisent. Si tu hésites sur le format, écris-nous avant de venir.",
                 "Viens en tenue de sport avec de quoi boire. Après la course, on prend un moment ensemble : c’est souvent là que le club se joue vraiment."
               ]
@@ -635,7 +635,7 @@ export function getSiteCopy(locale: Locale) {
           slug: "evenements-running-aix",
           title: "Les rendez-vous du club à Aix | NULLL.CLUB",
           description:
-            "L’agenda des sorties running à Aix-en-Provence : rendez-vous du samedi 8h30, un samedi sur deux, événements du club et rencontres après la course.",
+            "L’agenda des sorties running à Aix-en-Provence : rendez-vous du samedi 9h30, un samedi sur deux, événements du club et rencontres après la course.",
           h1: "Événements running à Aix-en-Provence",
           intro:
             "À Aix-en-Provence, l’essentiel de la vie running ne se joue pas sur les courses officielles mais sur les rendez-vous réguliers, gratuits et ouverts. Voici comment se repérer.",

@@ -32,7 +32,7 @@ const BENEFITS_PAR_DEFAUT = [
   { label: "Tes infos", text: "Mets ton profil à jour quand tu en as besoin." }
 ];
 
-const TICKER_PAR_DEFAUT = "Samedi 8h30 · Aix-en-Provence · Gratuit · Tous les niveaux";
+const TICKER_PAR_DEFAUT = "Samedi 9h30 · Aix-en-Provence · Gratuit · Tous les niveaux";
 
 export function AccountShell({
   eyebrow,

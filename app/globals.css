@@ -1092,17 +1092,16 @@ summary { min-height: 44px; align-content: center; }
   line-height: 1.5;
 }
 .course-actions :is(a, button) { width: 100%; justify-content: center; }
-.panel-navigation { top: 82px; }
+.panel-navigation { top: 72px; }
 html { scroll-padding-bottom: calc(var(--cookie-banner-height, 0px) + 16px); }
 body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
 
 @media (max-width: 639px) {
-  .site-header .min-h-20 { min-height: 56px; }
   .site-header nav[aria-label="Navigation mobile"] {
-    max-height: calc(100dvh - 58px);
+    max-height: calc(100dvh - 60px);
     padding-bottom: env(safe-area-inset-bottom);
   }
-  .panel-navigation { top: 58px; }
+  .panel-navigation { top: 60px; }
   .panel-navigation > .shell {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1181,4 +1180,55 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
   .roulette-chute {
     animation: none;
   }
+}
+
+
+/* ------------------------------------------------------------------
+   En-tete qui se transforme au defilement.
+   --p (0 a 1) est pose par SuiviDefilement : a 0, barre pleine largeur
+   collee au haut de la page ; a 1, barre compacte detachee du bord.
+   Tout est interpole depuis cette seule valeur, sans transition : la
+   forme suit exactement le defilement.
+   ------------------------------------------------------------------ */
+.site-header {
+  --p: 0;
+  --h-haut: 72px;
+  --h-compacte: 56px;
+  --marge: 12px;
+  /* Hauteur fixe : la marge qui apparait est prise sur la barre, qui
+     retrecit d'autant. Le contenu en dessous ne bouge pas d'un pixel. */
+  height: var(--h-haut);
+  box-sizing: border-box;
+  padding: calc(var(--p) * var(--marge)) calc(var(--p) * var(--marge)) 0;
+  pointer-events: none;
+}
+.site-header > * { pointer-events: auto; }
+.site-header-bar {
+  position: relative;
+  height: calc(var(--h-haut) - var(--p) * (var(--h-haut) - var(--h-compacte)));
+  width: calc(100% - var(--p) * max(0px, 100% - 1120px));
+  max-width: none;
+  border: 1px solid rgb(255 255 255 / calc(.04 + var(--p) * .08));
+  border-width: 0 0 1px;
+  border-radius: calc(var(--p) * 2px);
+  background: #141116;
+}
+.site-header[data-compacte] .site-header-bar { border-width: 1px; }
+.site-header-logo { width: calc(144px - var(--p) * 32px); }
+/* Les boutons retrecissent avec la barre : meme progression --p. */
+.site-header-link {
+  padding: calc(8px - var(--p) * 2px) calc(12px - var(--p) * 2px);
+  font-size: calc(13px - var(--p) * 1px);
+}
+.site-header-cta {
+  padding: calc(13px - var(--p) * 4px) calc(20px - var(--p) * 4px);
+  font-size: calc(18px - var(--p) * 2px);
+}
+/* Le menu deplie garde des cibles confortables au doigt. */
+.site-header nav[aria-label="Navigation mobile"] .site-header-link { padding: 12px; font-size: 13px; }
+
+@media (max-width: 1023px) {
+  .site-header { --h-haut: 60px; --h-compacte: 50px; --marge: 10px; }
+  .site-header-logo { width: calc(120px - var(--p) * 16px); }
+  .site-header-cta { padding: calc(10px - var(--p) * 2px) calc(14px - var(--p) * 2px); font-size: calc(16px - var(--p) * 1px); }
 }

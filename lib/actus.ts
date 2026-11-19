@@ -77,7 +77,7 @@ export const actus: Actu[] = [
       {
         titre: "Le prochain",
         paragraphes: [
-          `Un samedi sur deux à 8h30, au ${DEPART.nom.replace(/^Parking/, "parking")}, ${DEPART.repere}.`,
+          `Un samedi sur deux, rendez-vous à 9h30 et départ à 10h, au ${DEPART.nom.replace(/^Parking/, "parking")}, ${DEPART.repere}.`,
           "Inscris-toi sur le site : tu reçois ton QR code, et tu retrouves ensuite toutes les photos de ta sortie dans ton compte."
         ]
       }
@@ -119,7 +119,7 @@ export const actus: Actu[] = [
       {
         titre: "Viens la croiser",
         paragraphes: [
-          "Le plus simple pour la rencontrer : venir courir. Rendez-vous au départ, un samedi sur deux à 8h30.",
+          "Le plus simple pour la rencontrer : venir courir. Rendez-vous au départ, un samedi sur deux à 9h30.",
           "Tu as un coin d’Aix à faire découvrir au club ? Dis-le-nous, elle prend."
         ]
       }
@@ -347,7 +347,7 @@ export const actus: Actu[] = [
       {
         titre: "Ce que tu y trouves",
         paragraphes: [
-          "L’événement « Social Run du samedi · 8h30 », un samedi sur deux : clique sur « Je participe » pour recevoir les rappels.",
+          "L’événement « Social Run du samedi », un samedi sur deux : clique sur « Je participe » pour recevoir les rappels.",
           "Les publications du club, les sorties des membres et le classement de la semaine."
         ]
       },
@@ -369,7 +369,7 @@ export const actus: Actu[] = [
     titre: "Bienvenue chez NULLL : le social run du samedi à Aix",
     date: "2026-09-28",
     resume:
-      "Pas de chrono, pas de pression : un samedi sur deux à 8h30, on court ensemble 5 à 10 km à allure conversation, au départ du chemin de la Cible à Aix-en-Provence.",
+      "Pas de chrono, pas de pression : un samedi sur deux à 9h30, on court ensemble 5 à 10 km à allure conversation, au départ du chemin de la Cible à Aix-en-Provence.",
     image: {
       src: "/assets/actus/bienvenue/01.webp",
       alt: "Photo de groupe des coureurs de NULLL.CLUB au départ, sous les arbres"
@@ -399,7 +399,7 @@ export const actus: Actu[] = [
       {
         titre: "Pas de chrono, pas de pression",
         paragraphes: [
-          "Ici, pas de chrono ni de pression : un samedi sur deux à 8h30, on court ensemble 5 à 10 km à allure conversation.",
+          "Ici, pas de chrono ni de pression : un samedi sur deux à 9h30, on court ensemble 5 à 10 km à allure conversation.",
           "Tu peux venir seul : c’est justement pour ça qu’on court en groupe."
         ]
       },

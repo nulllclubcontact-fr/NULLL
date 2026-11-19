@@ -1,12 +1,14 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import { DEPART } from "../lib/rendez-vous";
 import { formaterDateActu, type Actu } from "../lib/actus";
 import type { RunEvent } from "../lib/site-content";
 import { ArrowIcon } from "./ArrowIcon";
 import { BandeauPartenaires } from "./bandeau-partenaires";
+import { FlecheMain } from "./fleche-main";
 import { HomeJourney } from "./home-journey";
 import { RouletteAccueil } from "./roulette-accueil";
+import { RubanVitesse } from "./ruban-vitesse";
 import "./home-experience.css";
 
 type HomeExperienceProps = {
@@ -21,103 +23,119 @@ type HomeExperienceProps = {
   actus: Array<Actu & { epinglee?: boolean }>;
 };
 
+/**
+ * Accueil, version « stories ». La DA suit le compte Instagram du club :
+ * de grandes photos des sorties, des titres poses dessus en etiquettes de
+ * couleur, de travers et qui se chevauchent, et des fleches tracees a la
+ * main qui pointent l'action.
+ */
 export function HomeExperience({ runs, runsHref, communityHref, merchHref, aboutHref, localClubHref, localRunningHref, newsHref, actus }: HomeExperienceProps) {
   const nextRun = runs[0];
 
   return (
     <HomeJourney>
-      <section className="home-hero" aria-labelledby="home-title">
-        <div className="home-hero-media">
-          <Image alt="Un groupe court ensemble en ville" className="home-hero-image" fill priority sizes="(max-width: 760px) 100vw, 45vw" src="/assets/photos/hero-city.jpg" />
-        </div>
-        <div className="home-hero-overlay" aria-hidden="true" />
-        <div className="home-hero-copy">
-          <p className="home-label">Social sport club · Aix-en-Provence</p>
-          <h1 id="home-title">NULLL<span>.CLUB</span></h1>
-          <p className="home-hero-support">On court à Aix. On se rencontre. On recommence samedi.</p>
-          <div className="home-hero-invitation">
-            <Link className="home-hero-link" href={runsHref}><span>Choisir ma sortie</span><ArrowIcon /></Link>
-            <span className="home-label home-hero-reassurance">Gratuit · Tous niveaux</span>
+      <section className="hx-hero" aria-labelledby="home-title">
+        <HeroPhoto />
+        <div className="hx-hero-shade" aria-hidden="true" />
+        <div className="hx-hero-copy">
+          <p className="st st-yellow hx-hero-kicker">Run club gratuit · Aix-en-Provence</p>
+          <h1 id="home-title" className="hx-hero-title">
+            <span className="st st-pink">NULLL.CLUB</span>
+          </h1>
+          <p className="hx-hero-support">On court ensemble, on se rencontre, et on recommence samedi.</p>
+          <div className="hx-hero-cta">
+            <Link className="hx-pill" href={runsHref}><span>Choisir ma sortie</span><ArrowIcon /></Link>
+            <span className="hx-note">Gratuit · tous niveaux · tu peux venir seul</span>
           </div>
         </div>
       </section>
 
-      <section className="home-hero-facts" aria-label="Informations pratiques">
-        <dl>
-          <div><dt className="home-label">Quand</dt><dd>Samedi <span>8h30</span></dd></div>
-          <div><dt className="home-label">Où</dt><dd>Chemin <span>de la Cible</span></dd></div>
-          <div><dt className="home-label">Distance</dt><dd>5 à 6 <span>km</span></dd></div>
-          <div><dt className="home-label">Combien</dt><dd>0 <span>€</span></dd></div>
+      <section className="hx-bands" aria-label="Informations pratiques">
+        <dl className="hx-band hx-band-pink">
+          <div><dt>Quand</dt><dd>Samedi 9h30</dd></div>
+          <div><dt>Départ</dt><dd>10h</dd></div>
+          <div><dt>Où</dt><dd>{DEPART.nom}</dd></div>
+          <div><dt>Distance</dt><dd>5 à 6 km</dd></div>
+          <div><dt>Combien</dt><dd>0 €</dd></div>
         </dl>
-        <p className="home-manifesto-strip">
-          <span className="home-strip-star" aria-hidden="true">＊</span>
-          <span className="home-slogan">Le sport n’est qu’un prétexte pour la rencontre.</span>
-          <span className="home-strip-star" aria-hidden="true">＊</span>
-        </p>
       </section>
 
       <BandeauPartenaires />
 
-      <section className="home-dates home-section" id="home-dates-section" aria-labelledby="home-next-runs">
-        <div className="home-section-top home-label"><span>01 · On se retrouve</span><span className="home-hand">Le samedi, c’est ici.</span></div>
-        <div className="home-dates-layout">
-          <div className="home-dates-intro" data-home-reveal>
-            <h2 id="home-next-runs">Les prochaines<br /><span>dates.</span></h2>
-            <p>Rendez-vous au même endroit,<br />un samedi sur deux.</p>
-            <figure className="home-dates-photo">
-              <Image src="/assets/photos/runs-blur.webp" alt="Un coureur en mouvement sur un chemin" fill sizes="(max-width: 760px) 85vw, 30vw" />
-              <figcaption className="home-label">De quoi courir. De quoi discuter.</figcaption>
-            </figure>
-          </div>
-          <ol className="home-run-list">
+      <section className="hx-dates" id="home-dates-section" aria-labelledby="home-next-runs">
+        <figure className="hx-dates-photo">
+          <Image src="/assets/actus/quatrieme-run/03.webp" alt="Le groupe file sur un chemin bordé d’une barrière en bois, sous les arbres" fill sizes="(max-width: 760px) 100vw, 55vw" />
+        </figure>
+        <div className="hx-dates-copy">
+          <h2 id="home-next-runs" className="hx-stack hx-stack-left">
+            <span className="st st-yellow">Le samedi</span>
+            <span className="st st-magenta st-xl">on se retrouve</span>
+          </h2>
+          <p className="hx-dates-sub">Un samedi sur deux, au même endroit.<br />Rendez-vous à <strong>9h30</strong>, départ à <strong>10h</strong>.</p>
+          <ol className="hx-runs">
             {runs.length === 0 ? (
-              <li className="home-run-row home-run-first" data-home-reveal>
-                <p className="home-run-location">Nouvelles dates très bientôt.</p>
-                <Link className="home-run-link home-label" href={runsHref}><span>Voir les sorties</span><ArrowIcon /></Link>
+              <li className="hx-run">
+                <p className="hx-run-empty">Nouvelles dates très bientôt.</p>
+                <Link className="hx-run-link" href={runsHref}><span>Voir les sorties</span><ArrowIcon /></Link>
               </li>
             ) : null}
             {runs.map((run, index) => {
               const [weekday, day, ...month] = run.date.split(" ");
-              return <li className={`home-run-row ${index === 0 ? "home-run-first" : ""}`} key={run.id} data-home-reveal>
-                <div className="home-run-kicker home-label"><span>{index === 0 ? "Prochaine sortie" : `Sortie ${index + 1}`}</span><span>0{index + 1}</span></div>
-                <div className="home-run-date"><strong>{day?.padStart(2, "0")}</strong><p><span className="home-label">{weekday}</span><span>{month.join(" ")}</span></p></div>
-                <p className="home-label home-run-details">{run.time} · {run.distance} · {run.pace}</p>
-                <p className="home-run-location">{run.location}</p>
-                <Link className="home-run-link home-label" href={`/membre/login?sortie=${run.id}`}><span>Choisir cette sortie</span><ArrowIcon /></Link>
-              </li>;
+              return (
+                <li className="hx-run" key={run.id}>
+                  <p className="hx-run-date">
+                    <strong>{day?.padStart(2, "0")}</strong>
+                    <span><span>{weekday}</span><span>{month.join(" ")}</span></span>
+                  </p>
+                  <p className="hx-run-kicker">{index === 0 ? "Prochaine sortie" : `Sortie ${index + 1}`}</p>
+                  <p className="hx-run-details">{run.time} · {run.distance} · {run.pace}</p>
+                  <p className="hx-run-location">{run.location}</p>
+                  <Link className="hx-run-link" href={`/membre/login?sortie=${run.id}`}><span>Choisir cette sortie</span><ArrowIcon /></Link>
+                </li>
+              );
             })}
           </ol>
         </div>
       </section>
 
+      <section className="hx-together" aria-label="Courir ensemble, à allure conversation">
+        <Image src="/assets/actus/bienvenue/01.webp" alt="Tout le groupe de NULLL.CLUB réuni après une sortie, assis et debout dans le parc" fill sizes="100vw" />
+        <div className="hx-together-shade" aria-hidden="true" />
+        <div className="hx-together-copy">
+          <p className="st st-cream">On vient pour courir.</p>
+          <p className="hx-stack hx-together-big">
+            <span className="st st-yellow st-xl">On revient</span>
+            <span className="st st-pink st-xl">pour les gens.</span>
+          </p>
+          <p className="st st-lime hx-together-note">Personne ne sera laissé derrière</p>
+          <p className="st st-blue hx-together-pace">5 à 6 km · allure conversation</p>
+        </div>
+      </section>
+
+      <RubanVitesse className="hx-ruban" texte="Le sport n’est qu’un prétexte ✱ Soyons nous, soyons NULLL ✱ " />
+
       {actus.length > 0 ? (
-        <section className="home-news home-section" aria-labelledby="home-news-title">
-          <div className="home-section-top home-label"><span>02 · Actu</span><span className="home-hand">Ce qui bouge au club.</span></div>
-          <div className="home-news-heading" data-home-reveal>
-            <h2 id="home-news-title">L’actu <span>du club.</span></h2>
-            <Link className="home-news-all home-label" href={newsHref}><span>Toutes les actus</span><ArrowIcon /></Link>
+        <section className="hx-news" aria-labelledby="home-news-title">
+          <div className="hx-news-head">
+            <h2 id="home-news-title" className="hx-stack">
+              <span className="st st-blue">Ce qui bouge</span>
+              <span className="st st-yellow st-xl">au club !!!</span>
+            </h2>
+            <Link className="hx-pill hx-pill-small" href={newsHref}><span>Toutes les actus</span><ArrowIcon /></Link>
           </div>
-          <ol className="home-news-list">
-            {actus.map((actu) => (
-              <li key={actu.slug} data-home-reveal>
-                <Link className="home-news-card" href={`${newsHref}/${actu.slug}`}>
-                  <span className="home-news-photo">
-                    <Image alt={actu.image.alt} fill sizes="(max-width: 760px) 90vw, 30vw" src={actu.image.src} />
+          <ol className="hx-news-list">
+            {actus.map((actu, index) => (
+              <li key={actu.slug}>
+                <Link className="hx-news-card" href={`${newsHref}/${actu.slug}`}>
+                  <span className="hx-news-photo">
+                    <Image alt={actu.image.alt} fill sizes="(max-width: 760px) 92vw, 33vw" src={actu.image.src} />
                   </span>
-                  <span className="home-news-meta home-label">
+                  <span className={`st ${["st-pink", "st-yellow", "st-blue"][index % 3]} hx-news-date`}>
                     <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
-                    {actu.epinglee ? (
-                      <span aria-label="Épinglé" className="home-news-pin" role="img" title="Épinglé">
-                        <svg aria-hidden="true" fill="currentColor" height="20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="20">
-                          <line x1="12" x2="12" y1="17" y2="22" />
-                          <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
-                        </svg>
-                      </span>
-                    ) : null}
+                    {actu.epinglee ? <span className="hx-news-pin"> · épinglé</span> : null}
                   </span>
-                  <h3>{actu.titre}</h3>
-                  <p>{actu.resume}</p>
-                  <span className="home-news-read home-label"><span>Lire l’actu</span><ArrowIcon /></span>
+                  <h3 className="st st-cream hx-news-title">{actu.titre}</h3>
+                  <p className="hx-news-text">{actu.resume}</p>
                 </Link>
               </li>
             ))}
@@ -125,69 +143,62 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
         </section>
       ) : null}
 
-      <section className="home-together" aria-label="Courir ensemble, à allure conversation">
-        <Image src="/assets/photos/principle-meet.webp" alt="Deux coureurs de NULLL.CLUB courent côte à côte sur un chemin bordé d’arbres" fill sizes="100vw" />
-        <div className="home-together-shade" />
-        <div className="home-together-copy" data-home-reveal><span className="home-label">5 à 6 km · Allure conversation</span><p>On vient pour courir.<br /><span>On revient<br />pour les gens.</span></p></div>
-        <span className="home-together-note home-label">Personne ne sera laissé derrière.</span>
-      </section>
-
-      <section className="home-club home-section" aria-labelledby="home-le-club">
-        <div className="home-section-top home-label"><span>03 · Bienvenue au club</span><span className="home-hand">Aucune avance. Aucune pression.</span></div>
-        <div className="home-club-heading" data-home-reveal><h2 id="home-le-club">Un social sport club<br /><span>à Aix-en-Provence.</span></h2></div>
-        <div className="home-club-layout">
-          <div className="home-club-visual" data-home-reveal>
-            <figure className="home-crew-photo"><Image src="/assets/photos/runs-crew.webp" alt="Un groupe de coureurs réunis en plein air" fill sizes="(max-width: 760px) 90vw, 45vw" /></figure>
-            <div className="home-first-time"><span className="home-label">Samedi · 8h30</span><p>Pour ta première<br />sortie.</p><span className="home-label">Tu peux venir seul.</span></div>
-          </div>
-          <div className="home-club-copy" data-home-reveal>
-              <p>
-                NULLL.CLUB est un social sport club associatif à Aix-en-Provence. On se retrouve
-                <strong> le samedi à 8h30</strong> pour courir ensemble, à une allure qui permet de discuter. Les
-                prochaines dates et leurs informations pratiques sont sur la page Sorties.
-              </p>
-              <p>
-                C’est <strong>gratuit</strong>. Tu peux venir une fois pour voir, puis revenir pour les gens.
-              </p>
-            {/* Les infos pratiques remontent a cote de la photo : la colonne
-                restait vide sous deux paragraphes. */}
-            <dl className="home-facts" data-home-reveal>
-          {[
-            { t: "Quand", d: "Un samedi sur deux, 8h30" },
-            { t: "Où", d: DEPART.adresse },
-            { t: "Distance", d: "5 à 6 km, allure conversation" },
-            { t: "Combien", d: "Gratuit, sur inscription" }
-          ].map((fact, i) => <div key={fact.t}><dt className="home-label"><span>0{i + 1}</span>{fact.t}</dt><dd>{fact.d}</dd></div>)}
-        </dl>
-          <p className="home-local-links">
-            Plus de détails sur{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#EBA0CD] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]" href={localClubHref}>
-              le run club à Aix-en-Provence
-            </Link>{" "}
-            et sur{" "}
-            <Link className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#EBA0CD] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#EBA0CD]" href={localRunningHref}>
-              où courir à Aix-en-Provence
-            </Link>.
+      <section className="hx-club" aria-labelledby="home-le-club">
+        <div className="hx-club-photos">
+          <figure className="hx-club-photo hx-club-photo-a">
+            <Image src="/assets/actus/quatrieme-run/10.webp" alt="Une coureuse en gilet d’hydratation, au soleil, après la sortie" fill sizes="(max-width: 760px) 70vw, 30vw" />
+          </figure>
+          <figure className="hx-club-photo hx-club-photo-b">
+            <Image src="/assets/actus/quatrieme-run/04.webp" alt="Éclats de rire entre coureuses après le run" fill sizes="(max-width: 760px) 80vw, 34vw" />
+          </figure>
+          <p className="st st-yellow hx-club-first">Première fois ? <br />Tu peux venir seul.</p>
+        </div>
+        <div className="hx-club-copy">
+          <h2 id="home-le-club" className="hx-stack hx-stack-left">
+            <span className="st st-pink st-xl">Social sport club</span>
+            <span className="st st-blue">à Aix-en-Provence</span>
+          </h2>
+          <p>
+            NULLL.CLUB est un social sport club associatif à Aix-en-Provence. On se retrouve
+            <strong> le samedi à 9h30</strong>, départ à 10h, pour courir ensemble, à une allure qui permet de discuter.
+            Les prochaines dates et leurs infos pratiques sont sur la page Sorties.
           </p>
-          </div>
+          <p>C’est <strong>gratuit</strong>. Tu peux venir une fois pour voir, puis revenir pour les gens.</p>
+          <dl className="hx-facts">
+            {[
+              { t: "Quand", d: "Un samedi sur deux, rendez-vous 9h30, départ 10h", c: "st-yellow" },
+              { t: "Où", d: DEPART.adresse, c: "st-cream" },
+              { t: "Distance", d: "5 à 6 km, allure conversation", c: "st-lime" },
+              { t: "Combien", d: "Gratuit, sur inscription", c: "st-pink" }
+            ].map((fact) => <div className={`st ${fact.c}`} key={fact.t}><dt>{fact.t}</dt><dd>{fact.d}</dd></div>)}
+          </dl>
+          <p className="hx-local-links">
+            Plus de détails sur <Link href={localClubHref}>le run club à Aix-en-Provence</Link> et sur{" "}
+            <Link href={localRunningHref}>où courir à Aix-en-Provence</Link>.
+          </p>
         </div>
       </section>
 
-      <section className="home-explore home-section" aria-labelledby="home-explore-title">
-        <div className="home-section-top home-label"><span>04 · Au-delà des kilomètres</span><span>NULLL.CLUB</span></div>
-        {/* Titre et liens se repondent en deux colonnes. Empiles, le titre
-            prenait toute la largeur et les liens tombaient dessous. */}
-        <div className="home-explore-body">
-          <h2 id="home-explore-title" data-home-reveal>Le reste<br />du <span>club.</span></h2>
-          <div className="home-explore-links" data-home-reveal>
-            <ExploreLink href={communityHref} index="01" label="Le club" text="D’où vient NULLL.CLUB, et pourquoi trois L." />
-            <ExploreLink href={merchHref} index="02" label="Merch" text="Les pièces du club, quand elles sont dispo." />
-            <ExploreLink href={aboutHref} index="03" label="Contact" text="Une question avant de venir samedi." />
-          </div>
+      <section className="hx-explore" aria-labelledby="home-explore-title">
+        <h2 id="home-explore-title" className="hx-stack hx-explore-title">
+          <span className="st st-lime">Le reste</span>
+          <span className="st st-magenta st-xl">du club</span>
+        </h2>
+        <div className="hx-explore-grid">
+          <ExploreTile href={communityHref} image="/assets/actus/bienvenue/13.webp" alt="Une bande de membres du club discute, canette à la main" label="Le club" text="D’où vient NULLL.CLUB, et pourquoi trois L." couleur="st-pink" />
+          <ExploreTile href={merchHref} image="/assets/actus/quatrieme-run/05.webp" alt="Un coureur en maillot rose, tout sourire après la sortie" label="Merch" text="Les pièces du club, quand elles sont dispo." couleur="st-yellow" />
+          <ExploreTile href={aboutHref} image="/assets/actus/quatrieme-run/07.webp" alt="Une coureuse en sweat jaune raconte sa sortie au groupe" label="Contact" text="Une question avant de venir samedi ?" couleur="st-blue" />
         </div>
-        <Link className="home-final-cta" href={runsHref}><span>Voir les sorties</span><ArrowIcon /></Link>
-        {nextRun && <p className="home-label home-final-meta">{nextRun.date} · {nextRun.time} · {nextRun.location} · {nextRun.distance} · {nextRun.pace}</p>}
-        <p className="home-label home-final-meta">Ouvert à tous · Gratuit · Inscription en ligne</p>
+      </section>
+
+      <section className="hx-final" aria-label="Rejoindre la prochaine sortie">
+        <p className="st st-yellow hx-final-kicker">Attends, c’est quand ???</p>
+        <div className="hx-final-row">
+          <FlecheMain className="hx-final-arrow" variante="vague" />
+          <Link className="hx-final-cta" href={runsHref}><span>Voir les sorties</span><ArrowIcon /></Link>
+        </div>
+        {nextRun ? <p className="hx-final-meta">{nextRun.date} · {nextRun.time} · {nextRun.location} · {nextRun.distance} · {nextRun.pace}</p> : null}
+        <p className="hx-final-meta">Ouvert à tous · Gratuit · Inscription en ligne</p>
       </section>
 
       <RouletteAccueil runsHref={runsHref} />
@@ -195,6 +206,32 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
   );
 }
 
-function ExploreLink({ href, index, label, text }: { href: string; index: string; label: string; text: string }) {
-  return <Link className="home-explore-link" href={href}><span className="home-label">{index}</span><h3>{label}</h3><p>{text}</p><ArrowIcon /></Link>;
+/** Photo d'ouverture : paysage sur ordinateur, portrait sur telephone. */
+function HeroPhoto() {
+  const commun = { alt: "Des membres de NULLL.CLUB tout sourire après une sortie à Aix-en-Provence", priority: true, sizes: "100vw" } as const;
+  const {
+    props: { srcSet: large }
+  } = getImageProps({ ...commun, width: 1600, height: 900, src: "/assets/actus/quatrieme-run/01.webp" });
+  const {
+    props: { srcSet: portrait, ...rest }
+  } = getImageProps({ ...commun, width: 1066, height: 1600, src: "/assets/actus/bienvenue/19.webp" });
+  return (
+    <picture className="hx-hero-media">
+      <source media="(min-width: 761px)" srcSet={large} />
+      <source media="(max-width: 760px)" srcSet={portrait} />
+      {/* eslint-disable-next-line jsx-a11y/alt-text -- alt fourni par rest */}
+      <img {...rest} className="hx-hero-image" />
+    </picture>
+  );
+}
+
+function ExploreTile({ href, image, alt, label, text, couleur }: { href: string; image: string; alt: string; label: string; text: string; couleur: string }) {
+  return (
+    <Link className="hx-tile" href={href}>
+      <Image src={image} alt={alt} fill sizes="(max-width: 760px) 92vw, 33vw" />
+      <span className="hx-tile-shade" aria-hidden="true" />
+      <h3 className={`st ${couleur} st-xl hx-tile-label`}>{label}</h3>
+      <span className="st st-cream hx-tile-text">{text}</span>
+    </Link>
+  );
 }

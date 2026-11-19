@@ -131,7 +131,7 @@ export function buildOrganizationSchema(locale: Locale) {
     name: "NULLL.CLUB",
     alternateName: ["NULLL", "NULLL Club", "NULLL Run Club Aix-en-Provence"],
     description:
-      "Social sport club d’Aix-en-Provence : une sortie running gratuite un samedi sur deux à 8h30, ouverte à tous les niveaux, à une allure qui permet de discuter.",
+      "Social sport club d’Aix-en-Provence : une sortie running gratuite un samedi sur deux à 9h30, ouverte à tous les niveaux, à une allure qui permet de discuter.",
     url: `${SITE_URL}${getRoute(locale, "home")}`,
     logo: `${SITE_URL}/assets/brand/icone-n-rose.png`,
     image: `${SITE_URL}/assets/photos/hero-nulll-aix-v2.webp`,

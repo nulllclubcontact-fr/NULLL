@@ -5,6 +5,7 @@ import { ArrowIcon } from "./ArrowIcon";
 import { LienCompte } from "./lien-compte";
 import { PosterPhoto } from "./PosterPhoto";
 import { FermetureMenu } from "./fermeture-menu";
+import { SuiviDefilement } from "./suivi-defilement";
 import { DEPART } from "../lib/rendez-vous";
 import { getRoute, getSiteCopy, type Locale, type RouteKey, type RunEvent } from "../lib/site-content";
 
@@ -59,31 +60,29 @@ export function SiteHeader({
   // reste donc rendu sur le serveur, seul ce lien s'hydrate.
   const isIdentification = current === "identification" || pathname === "/identification";
 
+  const lien = "site-header-link rounded-[2px] font-mono font-bold uppercase tracking-[.08em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFC531]";
+  const actif = "bg-[#E8459E] text-white";
+  const repos = "text-white/75 hover:bg-white/10 hover:text-white";
+
   return (
-    <header className="site-header sticky top-0 z-50 border-b-2 border-[#773331] bg-[#F1EDE9]">
+    <>
+    <header className="site-header sticky top-0 z-50 text-white">
+      <SuiviDefilement />
       <a
-        className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-[60] focus:border-2 focus:border-[#773331] focus:bg-[#FFB200] focus:px-4 focus:py-3 focus:font-mono focus:text-xs focus:font-black focus:uppercase focus:text-[#773331]"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-[60] focus:rounded-[2px] focus:bg-[#FFC531] focus:px-4 focus:py-3 focus:font-mono focus:text-xs focus:font-black focus:uppercase focus:text-[#141116]"
         href="#contenu"
       >
         Aller au contenu
       </a>
-      <div className="mx-auto grid min-h-20 w-full max-w-none grid-cols-[minmax(0,1fr)_auto_auto] items-stretch lg:grid-cols-[200px_minmax(0,1fr)_132px_172px] xl:grid-cols-[240px_minmax(0,1fr)_150px_190px] 2xl:grid-cols-[280px_minmax(0,1fr)_170px_220px]">
-        <Link className="flex min-w-0 items-center border-r-2 border-[#773331] px-3 transition hover:bg-[#FFB200] focus-visible:bg-[#FFB200] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] sm:px-5" href={getRoute(locale, "home")}>
-          <Image alt="NULLL.CLUB" className="h-auto w-28 max-w-full sm:w-40 lg:w-32 xl:w-40 2xl:w-44" height={313} priority sizes="(min-width: 1536px) 176px, (min-width: 1280px) 160px, (min-width: 1024px) 128px, (min-width: 640px) 160px, 112px" src="/assets/nulll-new/logo-burgundy.png" width={2449} />
+      <div className="site-header-bar mx-auto flex items-center gap-3 px-4 sm:px-6 lg:gap-6 lg:px-8">
+        <Link className="flex shrink-0 items-center rounded-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href={getRoute(locale, "home")}>
+          <Image alt="NULLL.CLUB" className="site-header-logo h-auto" height={313} priority sizes="(min-width: 1280px) 144px, (min-width: 640px) 128px, 112px" src="/assets/nulll-new/logo-cream.png" width={2449} />
         </Link>
-        <nav
-          aria-label="Navigation principale"
-          className="hidden min-w-0 font-mono text-xs font-black uppercase lg:grid"
-          // Le nombre de colonnes suit le nombre d'entrees : il etait fige a 6
-          // et laissait une colonne vide depuis la fusion des pages.
-          style={{ gridTemplateColumns: `repeat(${copy.nav.length}, minmax(0, 1fr))` }}
-        >
+        <nav aria-label="Navigation principale" className="mx-auto hidden items-center gap-1 lg:flex">
           {copy.nav.map((item: { key: RouteKey; label: string }) => (
             <Link
               aria-current={item.key === current ? "page" : undefined}
-              className={`grid place-items-center border-r-2 border-[#773331] px-2 text-center transition hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] ${
-                item.key === current ? "bg-[#EBA0CD]" : ""
-              }`}
+              className={`${lien} ${item.key === current ? actif : repos}`}
               href={getRoute(locale, item.key)}
               key={item.key}
             >
@@ -91,115 +90,99 @@ export function SiteHeader({
             </Link>
           ))}
         </nav>
-        <LienCompte
-          actif={isIdentification}
-          className={`hidden place-items-center border-r-2 border-[#773331] px-3 text-center font-mono text-xs font-black uppercase transition hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] lg:grid ${
-            isIdentification ? "bg-[#EBA0CD]" : ""
-          }`}
-          fige={compte}
-        />
-        <details className="static lg:hidden">
-          <summary className="flex min-h-20 cursor-pointer items-center border-r-2 border-[#773331] px-3 font-mono text-xs font-black uppercase transition-colors hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] sm:px-5">Menu</summary>
-          <FermetureMenu />
-          <nav aria-label="Navigation mobile" className="absolute inset-x-0 top-full z-50 grid max-h-[calc(100dvh-80px)] overflow-y-auto border-t-2 border-[#773331] bg-[#F1EDE9] font-mono text-xs font-black uppercase shadow-[0_8px_0_rgba(53,24,21,.18)]">
-            {copy.nav.map((item: { key: RouteKey; label: string }) => (
-              <Link className={`flex min-h-14 items-center border-b-2 border-[#773331] px-4 py-3 transition-colors hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] ${item.key === current ? "bg-[#EBA0CD]" : ""}`} aria-current={item.key === current ? "page" : undefined} href={getRoute(locale, item.key)} key={item.key}>
-                {item.label}
-              </Link>
-            ))}
-            <LienCompte
-              actif={isIdentification}
-              className={`flex min-h-14 items-center border-b-2 border-[#773331] px-4 py-3 transition-colors hover:bg-[#EBA0CD] focus-visible:bg-[#EBA0CD] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#773331] ${isIdentification ? "bg-[#EBA0CD]" : ""}`}
-              fige={compte}
-            />
-          </nav>
-        </details>
-        <Link className="grid min-h-20 place-items-center bg-[#773331] px-4 text-center font-mono text-xs font-black uppercase text-[#F1EDE9] transition hover:bg-[#FFB200] hover:text-[#773331] focus-visible:bg-[#FFB200] focus-visible:text-[#773331] focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-[#EBA0CD] sm:px-6" href={getRoute(locale, "runs")}>
-          <span className="sm:hidden">Courir</span><span className="hidden sm:inline">Prochaine sortie</span>
-        </Link>
+        <div className="ml-auto flex items-center gap-2 lg:ml-0">
+          <LienCompte actif={isIdentification} className={`hidden lg:inline-flex ${lien} ${isIdentification ? actif : repos}`} fige={compte} />
+          <details className="static lg:hidden">
+            <summary className="site-header-link flex cursor-pointer items-center rounded-[2px] border border-white/25 font-mono font-bold uppercase tracking-[.08em] transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFC531]">Menu</summary>
+            <FermetureMenu />
+            <nav aria-label="Navigation mobile" className="absolute inset-x-0 top-full z-50 grid max-h-[calc(100dvh-60px)] gap-1 overflow-y-auto border-b border-white/10 bg-[#141116] px-4 py-3">
+              {copy.nav.map((item: { key: RouteKey; label: string }) => (
+                <Link aria-current={item.key === current ? "page" : undefined} className={`flex min-h-12 items-center ${lien} ${item.key === current ? actif : repos}`} href={getRoute(locale, item.key)} key={item.key}>
+                  {item.label}
+                </Link>
+              ))}
+              <LienCompte actif={isIdentification} className={`flex min-h-12 items-center ${lien} ${isIdentification ? actif : repos}`} fige={compte} />
+            </nav>
+          </details>
+          <Link className="site-header-cta inline-flex items-center rounded-[2px] bg-[#FFC531] font-display uppercase leading-none text-[#141116] transition-colors hover:bg-[#E8459E] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href={getRoute(locale, "runs")}>
+            <span className="sm:hidden">Courir</span><span className="hidden sm:inline">Prochaine sortie</span>
+          </Link>
+        </div>
       </div>
     </header>
+    </>
   );
 }
 
 export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }) {
+  const legal = "inline-flex min-h-11 items-center transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]";
   return (
-    <footer className="border-t-2 border-[#773331] bg-[#773331] text-[#F1EDE9]">
-      {/* Sur telephone, les deux colonnes de liens restent cote a cote et le
-          rendez-vous tient en une ligne : empile, le pied faisait deux ecrans. */}
-      <div className="mx-auto max-w-[1600px] px-5 py-8 sm:px-8 sm:py-14 xl:px-12">
-        <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-12">
-          <div className="col-span-2 sm:col-span-1">
-            <p className="max-w-[13ch] font-display text-[clamp(2rem,3.4vw,2.9rem)] uppercase leading-[1.12] [overflow-wrap:normal]">
-              Social sport club à Aix-en-Provence.
+    <footer className="overflow-hidden bg-[#141116] text-white">
+      <div className="mx-auto max-w-[1500px] px-5 pt-16 sm:px-8 sm:pt-20 xl:px-12">
+        <div className="grid gap-x-8 gap-y-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <Image alt="NULLL.CLUB" className="h-auto w-40" height={313} sizes="160px" src="/assets/nulll-new/logo-cream.png" width={2449} />
+            <p className="mt-6 max-w-sm text-[1.05rem] leading-relaxed text-white/70">
+              Social sport club à Aix-en-Provence. Courir ensemble, couper la semaine, et revenir avec autre chose qu’un chrono.
             </p>
-            <p className="mt-4 max-w-xs leading-relaxed text-[#F1EDE9]/70">
-              Courir ensemble, couper la semaine, et revenir avec autre chose qu’un chrono.
-            </p>
+            <p className="mt-6 inline-block -rotate-1 rounded-[2px] bg-[#FFC531] px-3 pb-1 pt-1.5 font-display text-lg uppercase leading-none text-[#141116]">Ouvert à tous · Gratuit</p>
           </div>
 
-          <FooterColumn
-            links={[
-              { href: getRoute(locale, "runs"), label: "Sorties" },
-              { href: getRoute(locale, "community"), label: "Le club" },
-              { href: getRoute(locale, "news"), label: "Actu" },
-              { href: getRoute(locale, "merch"), label: "Merch" },
-              { href: getRoute(locale, "contact"), label: "Contact" }
-            ]}
-            title="Navigation"
-          />
+          <div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:col-span-3">
+            <FooterColumn
+              links={[
+                { href: getRoute(locale, "runs"), label: "Sorties" },
+                { href: getRoute(locale, "community"), label: "Le club" },
+                { href: getRoute(locale, "news"), label: "Actu" },
+                { href: getRoute(locale, "merch"), label: "Merch" },
+                { href: getRoute(locale, "contact"), label: "Contact" }
+              ]}
+              title="Navigation"
+            />
 
-          <FooterColumn
-            links={[
-              { href: copy.contact.instagram, label: copy.contact.instagramLabel },
-              { href: copy.contact.strava, label: "Strava" },
-              { href: copy.contact.linkedin, label: "LinkedIn" },
-              { href: `mailto:${copy.contact.email}`, label: copy.contact.email },
-              { href: `tel:${copy.contact.phone}`, label: copy.contact.phoneLabel },
-              { href: getRoute(locale, "localClub"), label: "Guide local" }
-            ]}
-            title="Nous suivre"
-          />
+            <FooterColumn
+              links={[
+                { href: copy.contact.instagram, label: copy.contact.instagramLabel },
+                { href: copy.contact.strava, label: "Strava" },
+                { href: copy.contact.linkedin, label: "LinkedIn" },
+                { href: `mailto:${copy.contact.email}`, label: copy.contact.email },
+                { href: `tel:${copy.contact.phone}`, label: copy.contact.phoneLabel },
+                { href: getRoute(locale, "localClub"), label: "Guide local" }
+              ]}
+              title="Nous suivre"
+            />
 
-          <div className="col-span-2 sm:col-span-1">
-            <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">Le rendez-vous</p>
-            <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[.95rem] text-[#F1EDE9]/80 sm:mt-5 sm:block sm:space-y-3 sm:text-[1.02rem]">
-              <li>Un samedi sur deux</li>
-              <li>08:30</li>
-              <li>{DEPART.nom}</li>
-              <li>Gratuit, sur inscription</li>
-            </ul>
+            <div className="col-span-2 sm:col-span-1">
+              <p className="font-mono text-xs font-bold uppercase tracking-[.16em] text-white/45">Le rendez-vous</p>
+              <ul className="mt-5 space-y-3 text-[1.02rem] text-white/80">
+                <li>Un samedi sur deux</li>
+                <li>Rendez-vous <strong className="font-bold text-[#FFC531]">9h30</strong>, départ <strong className="font-bold text-[#FFC531]">10h</strong></li>
+                <li>{DEPART.nom}</li>
+                <li>Gratuit, sur inscription</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-[#F1EDE9]/20 pt-3 font-mono text-xs uppercase tracking-[.12em] text-[#F1EDE9]/80 sm:mt-10 sm:justify-between sm:pt-5">
+        <div className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-1 border-t border-white/10 pt-4 font-mono text-xs uppercase tracking-[.12em] text-white/55 sm:justify-between">
           <span>
-            © 2026 NULLL.CLUB · Fait avec <span aria-label="amour" className="text-[#FF6A4D]" role="img">♥</span> par{" "}
-            <a
-              className="underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
-              href="https://oculot.studio"
-              rel="noopener"
-              target="_blank"
-            >
+            © 2026 NULLL.CLUB · Fait avec <span aria-label="amour" className="text-[#E8459E]" role="img">♥</span> par{" "}
+            <a className="underline decoration-1 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531]" href="https://oculot.studio" rel="noopener" target="_blank">
               oculot.studio
             </a>
           </span>
-          <Link
-            className="inline-flex min-h-11 items-center underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
-            href="/confidentialite"
-          >
-            Confidentialité
-          </Link>
-          <Link
-            className="inline-flex min-h-11 items-center underline decoration-2 underline-offset-4 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200]"
-            href="/mentions-legales"
-          >
-            Mentions légales
-          </Link>
-          <span>Aix-en-Provence, France</span>
-          <span className="text-[#FFB200]">Ouvert à tous</span>
+          <span className="flex flex-wrap gap-x-6">
+            <Link className={legal} href="/confidentialite">Confidentialité</Link>
+            <Link className={legal} href="/mentions-legales">Mentions légales</Link>
+            <span className="inline-flex min-h-11 items-center">Aix-en-Provence, France</span>
+          </span>
         </div>
       </div>
+
+      {/* Le nom du club en tres grand, coupe par le bas de la page. */}
+      <p aria-hidden="true" className="pointer-events-none mt-4 select-none whitespace-nowrap text-center font-display text-[18.5vw] uppercase leading-[.78] tracking-[-.01em] text-[#E8459E] [margin-bottom:-.12em]">
+        NULLL.CLUB
+      </p>
     </footer>
   );
 }
@@ -207,14 +190,14 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
 function FooterColumn({ title, links }: { title: string; links: Array<{ href: string; label: string }> }) {
   return (
     <div>
-      <p className="font-mono text-xs font-black uppercase tracking-[.16em] text-[#FFB200]">{title}</p>
+      <p className="font-mono text-xs font-bold uppercase tracking-[.16em] text-white/45">{title}</p>
       {/* Sur telephone, les liens se touchent : chacun garde 44 px de haut
           pour le doigt, sans l'espace en plus qui allongeait le pied. */}
-      <ul className="mt-2 sm:mt-5 sm:space-y-3">
+      <ul className="mt-4 sm:mt-5 sm:space-y-1">
         {links.map((link) => (
           <li key={link.href}>
             <Link
-              className="inline-flex min-h-11 items-center text-[.95rem] text-[#F1EDE9]/80 transition-colors hover:text-[#F1EDE9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFB200] sm:py-2 sm:text-[1.02rem]"
+              className="inline-flex min-h-11 items-center text-[.95rem] text-white/80 transition-colors hover:text-[#E8459E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC531] sm:py-2 sm:text-[1.02rem]"
               href={link.href}
             >
               {/* L'adresse e-mail peut passer a la ligne apres l'arobase dans

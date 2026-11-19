@@ -1,367 +1,284 @@
-/* Scoped to the homepage: shared styles and all other pages are unchanged. */
-.home-journey{--home-cream:#F1EDE9;--home-ink:#773331;--home-dark:#3A1A18;--home-yellow:#FFB200;--home-pink:#EBA0CD;position:relative;isolation:isolate;overflow:clip;background:var(--home-cream);color:var(--home-ink)}
-.home-journey h1, .home-journey h2, .home-journey h3, .home-journey .home-run-date>strong, .home-journey .home-first-time p, .home-journey .home-together-copy>p, .home-journey .home-final-cta{font-family:var(--font-display),Impact,sans-serif;font-weight:400;text-transform:uppercase}
-.home-journey .home-label{font-family:var(--font-mono),"Arial Narrow",sans-serif;font-size:12px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
-.home-journey a{touch-action:manipulation}
-.home-journey a:focus-visible{outline:3px solid var(--home-ink);outline-offset:5px}
-.home-journey .home-hero a:focus-visible,
-.home-journey .home-hero-facts a:focus-visible,
-.home-journey .home-together a:focus-visible,
-.home-journey .home-explore a:focus-visible{outline-color:var(--home-pink)}
-.home-journey h2{font-size:clamp(48px,6.5vw,96px);line-height:1.02;letter-spacing:-.02em}
-.home-journey h2 span{color:var(--home-ink);background-image:linear-gradient(var(--home-pink),var(--home-pink));background-repeat:no-repeat;background-size:100% .95em;background-position:0 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .12em}
-.home-journey .home-section{position:relative;padding:42px max(6vw,24px) 90px}
-.home-journey .home-section-top{position:relative;z-index:2;display:flex;justify-content:space-between;gap:20px;border-top:1px solid currentColor;padding-top:16px;margin-bottom:64px}
-.home-journey .home-dates-point{top:58%;left:96%}
-.home-journey .home-together-point{top:50%;left:7%}
-.home-journey .home-club-point{top:45%;left:3%}
-.home-journey .home-explore-point{top:25%;left:96%}
-.home-journey h1{font-size:clamp(80px,10.5vw,170px);line-height:.99;letter-spacing:-.025em;margin-left:-3px}
-.home-journey h1>span{color:var(--home-yellow)}
-.home-journey .home-explore a:focus-visible{outline-color:var(--home-yellow)}
-.home-journey .home-manifesto-strip{position:relative;z-index:2;margin:0;background:var(--home-ink);color:var(--home-cream);padding:22px 6vw;display:flex;align-items:center;justify-content:center;gap:26px;font-size:clamp(20px,2.4vw,36px);letter-spacing:.015em;border-top:1px solid #F1EDE933}
-.home-journey .home-strip-star{color:var(--home-pink);font-size:40px;line-height:1}
-.home-journey .home-dates{padding-top:48px}
-.home-journey .home-dates-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:8vw;position:relative;z-index:2}
-.home-journey .home-dates-intro>p{font-size:17px;line-height:1.5;margin-top:24px}
-.home-journey .home-dates-photo{position:relative;margin:16px 20px 0 0;aspect-ratio:1.32;transform:rotate(-4deg);border:7px solid var(--home-cream);box-shadow:0 0 0 1px var(--home-ink)}
-.home-journey .home-dates-photo img{object-fit:cover}
-.home-journey .home-dates-photo figcaption{position:absolute;left:12px;bottom:12px;padding:8px 10px;background:var(--home-cream);max-width:90%}
-.home-journey .home-run-list{align-self:start;border-top:2px solid var(--home-ink)}
-.home-journey .home-run-row{padding:24px 26px 0;border-bottom:2px solid var(--home-ink);background:var(--home-cream)}
-.home-journey .home-run-first{background:var(--home-yellow)}
-.home-journey .home-run-kicker{display:flex;justify-content:space-between}
-.home-journey .home-run-date{display:flex;align-items:center;gap:24px;margin:14px 0 18px}
-.home-journey .home-run-date>strong{font-size:90px;line-height:1}
-.home-journey .home-run-date>p{display:flex;flex-direction:column;gap:8px;font-weight:700;font-size:21px;text-transform:uppercase}
-.home-journey .home-run-date>p>span:last-child{max-width:220px}
-.home-journey .home-run-location{font-size:13px;margin-top:7px}
-.home-journey .home-run-link{border-top:1px solid #77333155;display:flex;align-items:center;justify-content:space-between;min-height:51px;margin-top:20px;transition:color .2s}
-.home-journey .home-run-link svg{transition:transform .2s}
-.home-journey .home-run-link:hover svg{transform:translateX(6px)}
-.home-journey .home-together{position:relative;min-height:570px;color:var(--home-cream);background:var(--home-ink);isolation:isolate}
-/* Photo en portrait (1350x2400) dans une bande de 2,65:1 : on n'en voit
-   qu'environ 21% de la hauteur. Valeur trouvee en decoupant l'image aux
-   positions candidates : a 16% il n'y a que le feuillage, a 45% la coupe
-   passe sous les mentons. 22% tient les deux visages. */
-.home-journey .home-together>img{object-fit:cover;object-position:center 22%;z-index:-2}
-.home-journey .home-together-shade{position:absolute;inset:0;background:rgba(18,9,8,.6);z-index:-1}
-.home-journey .home-together-copy{position:relative;z-index:2;padding:65px 12vw}
-.home-journey .home-together-copy>p{font-size:clamp(26px,3vw,44px);line-height:1.12;margin-top:30px}
-.home-journey .home-together-copy>p>span{display:block;font-size:clamp(54px,7.8vw,116px);line-height:1.02;margin-top:15px;color:var(--home-yellow)}
-.home-journey .home-together-note{position:absolute;right:5vw;bottom:40px;writing-mode:vertical-rl}
-.home-journey .home-club{padding-top:48px}
-.home-journey .home-club-heading{display:flex;align-items:center;justify-content:space-between;gap:36px;position:relative;z-index:2;margin-bottom:40px}
-.home-journey .home-club-heading h2{font-size:clamp(42px,5.6vw,83px)}
-.home-journey .home-club-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:4.5vw;align-items:start;position:relative;z-index:2}
-.home-journey .home-club-visual{position:relative;padding-bottom:65px}
-.home-journey .home-crew-photo{position:relative;aspect-ratio:1.18}
-.home-journey .home-crew-photo img{object-fit:cover}
-.home-journey .home-first-time{position:absolute;right:-20px;bottom:0;background:var(--home-yellow);padding:26px;transform:rotate(4deg);border:2px solid var(--home-ink);box-shadow:6px 6px 0 var(--home-ink)}
-.home-journey .home-first-time p{font-size:32px;line-height:1.1;margin:12px 0}
-.home-journey .home-club-copy{font-size:clamp(19px,1.5vw,24px);line-height:1.6;align-self:start;padding-top:6px}
-.home-journey .home-club-copy>p+p{margin-top:22px}
-/* Dans la colonne du texte, les infos pratiques forment une vraie grille
-   2 x 2 : memes marges, un filet vertical au milieu, un filet entre les
-   deux rangees. Les regles generales (4 colonnes, 1re case sans marge)
-   faisaient decaler la 3e case. */
-.home-journey .home-club-copy .home-facts{grid-template-columns:1fr 1fr;margin-top:36px}
-.home-journey .home-club-copy .home-facts>div{padding:22px 0 22px 22px!important;border-right:0;border-top:0}
-.home-journey .home-club-copy .home-facts>div:nth-child(odd){padding:22px 22px 22px 0!important;border-right:1px solid #77333155}
-.home-journey .home-club-copy .home-facts>div:nth-child(n+3){border-top:1px solid #77333155}
-.home-journey .home-club-copy .home-facts dd{max-width:none}
-.home-journey .home-club-copy .home-local-links{margin-top:24px;font-size:16px;line-height:1.6}
-.home-journey .home-facts{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);margin-top:65px;border-top:2px solid var(--home-ink);border-bottom:2px solid var(--home-ink);background:var(--home-cream)}
-.home-journey .home-facts>div{padding:26px 20px;border-right:1px solid #77333155}
-.home-journey .home-facts>div:first-child{padding-left:0}
-.home-journey .home-facts>div:last-child{border-right:0}
-.home-journey .home-facts dt{display:flex;align-items:center;gap:15px}
-.home-journey .home-facts dt>span{color:var(--home-ink);background:var(--home-pink);padding:.2em .5em;border-radius:2px}
-.home-journey .home-facts dd{font-weight:700;font-size:17px;line-height:1.4;margin-top:16px;max-width:240px}
-.home-journey .home-local-links{position:relative;z-index:2;margin-top:26px;font-size:14px;line-height:1.7}
-/* Titre a gauche, liens a droite, sur la meme ligne de depart. Ils
-   etaient empiles : le titre occupait toute la largeur et les liens
-   passaient dessous, sans jamais se repondre. */
-.home-journey .home-explore{background:var(--home-ink);color:var(--home-cream);padding-bottom:50px;isolation:isolate}
-.home-journey .home-explore-body{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:60px;align-items:start}
-.home-journey .home-explore h2{position:relative;z-index:2;margin:0;font-size:clamp(56px,6.6vw,112px)}
-.home-journey .home-explore h2 span{color:var(--home-pink);background-image:none;padding:0}
-.home-journey .home-explore-links{position:relative;z-index:2;margin:0 0 65px;background:var(--home-ink)}
-.home-journey .home-explore-link{display:grid;grid-template-columns:25px 1fr 1.2fr 25px;align-items:center;gap:20px;padding:25px 0;border-bottom:1px solid #F1EDE966;transition:color .2s}
-.home-journey .home-explore-link:first-child{border-top:1px solid #F1EDE966}
-.home-journey .home-explore-link h3{font-size:40px;line-height:1.1}
-.home-journey .home-explore-link>p{font-size:14px;line-height:1.5;max-width:210px}
-.home-journey .home-explore-link>svg{color:var(--home-yellow)}
-.home-journey .home-explore-link:hover{color:var(--home-yellow)}
-.home-journey .home-final-cta{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:20px;border:2px solid var(--home-yellow);padding:30px 35px;background:var(--home-yellow);color:var(--home-ink);font-size:clamp(40px,7.5vw,115px);line-height:1.1;transition:background .2s,color .2s}
-.home-journey .home-final-cta:hover{background:var(--home-ink);color:var(--home-yellow)}
-.home-journey .home-final-cta>svg{width:70px;height:70px;flex-shrink:0}
-.home-journey .home-final-meta{position:relative;z-index:2;text-align:center;margin-top:22px}
-.home-journey .home-final-meta+.home-final-meta{margin-top:8px;color:var(--home-pink)}
-.home-journey [data-home-reveal]{transition:opacity .4s ease,translate .4s cubic-bezier(.2,.65,.3,1)}
-.home-journey .home-wait:not(.home-in){opacity:0;translate:0 24px}
-
-@media(min-width:1700px){.home-journey .home-section{padding-left:max(6vw,calc((100vw - 1500px)/2));padding-right:max(6vw,calc((100vw - 1500px)/2))}}
-
-@media(max-width:1100px){.home-journey .home-dates-layout{gap:5vw;grid-template-columns:1fr 1.1fr}
-.home-journey .home-run-row{padding:22px 20px 0}
-.home-journey .home-run-date>strong{font-size:75px}
-.home-journey .home-run-date>p{font-size:18px}
-.home-journey .home-club-copy{font-size:16px;line-height:1.7}
-.home-journey .home-explore-body{grid-template-columns:minmax(0,1fr);gap:28px}}
-
-@media(max-width:760px){.home-journey .home-section{padding:30px 24px 56px}
-.home-journey .home-section-top{margin-bottom:38px;font-size:12px}
-.home-journey .home-section-top>span:last-child{max-width:125px;text-align:right}
-.home-journey h1{font-size:clamp(60px,14.3vw,107px);line-height:1.04;letter-spacing:-.018em}
-.home-journey .home-manifesto-strip{padding:16px 20px;gap:10px;font-size:clamp(14px,3.2vw,24px)}
-.home-journey .home-strip-star{font-size:20px}
-.home-journey .home-dates-layout{display:block}
-.home-journey h2{font-size:clamp(45px,10vw,68px)}
-.home-journey .home-dates-intro>p{font-size:16px}
-.home-journey .home-dates-photo{margin:30px 9px 50px;aspect-ratio:1.65}
-.home-journey .home-dates-photo figcaption{font-size:12px}
-.home-journey .home-run-date>strong{font-size:80px}
-.home-journey .home-run-date>p{font-size:19px}
-.home-journey .home-run-row{padding:22px 20px 0}
-.home-journey .home-run-details{font-size:14px}
-.home-journey .home-run-date{gap:22px}
-.home-journey .home-run-list{margin-top:10px}
-.home-journey .home-together{min-height:420px}
-.home-journey .home-together-copy{padding:45px 24px}
-.home-journey .home-together-copy>p{font-size:24px}
-.home-journey .home-together-copy>p>span{font-size:clamp(48px,11vw,72px)}
-.home-journey .home-together-note{writing-mode:horizontal-tb;left:24px;bottom:30px;font-size:12px}
-.home-journey .home-club-heading{display:block;margin-bottom:36px}
-.home-journey .home-club-heading h2{font-size:clamp(40px,9vw,64px)}
-.home-journey .home-club-layout{display:block}
-.home-journey .home-club-visual{padding-bottom:70px;margin-bottom:40px}
-.home-journey .home-first-time{right:0;padding:20px}
-.home-journey .home-first-time p{font-size:28px}
-.home-journey .home-club-copy{font-size:16px;line-height:1.8}
-.home-journey .home-facts{grid-template-columns:1fr 1fr;margin-top:38px}
-.home-journey .home-facts>div{padding:22px 15px!important}
-.home-journey .home-facts>div:nth-child(2){border-right:0}
-.home-journey .home-facts>div:nth-child(n+3){border-top:1px solid #77333155}
-.home-journey .home-facts dd{font-size:15px}
-.home-journey .home-facts dt{gap:10px;font-size:12px}
-.home-journey .home-explore h2{font-size:78px}
-.home-journey .home-explore-links{margin:0 0 40px}
-.home-journey .home-explore-link{grid-template-columns:20px 1fr 24px;gap:12px;padding:22px 0}
-.home-journey .home-explore-link h3{font-size:36px}
-.home-journey .home-explore-link>p{grid-column:2;grid-row:2;max-width:none}
-.home-journey .home-explore-link>svg{grid-column:3;grid-row:1/3}
-.home-journey .home-final-cta{padding:24px 18px;font-size:clamp(28px,6.8vw,46px);gap:12px}
-.home-journey .home-final-cta>svg{width:32px;height:32px}
-.home-journey .home-final-meta{font-size:12px;line-height:1.8}
-.home-journey .home-dates-point{left:98%}
-.home-journey .home-club-point{left:2%}
-.home-journey .home-together-point{left:94%}
-.home-journey .home-explore-point{left:98%}}
-
-@media(prefers-reduced-motion:reduce){.home-journey *, .home-journey *::before, .home-journey *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-.home-journey .home-wait:not(.home-in){opacity:1;translate:none}}
-
-@media(max-width:760px){.home-journey h1{font-size:clamp(60px,18.2vw,128px)}}
-.home-journey #home-next-runs{ scroll-margin-top: 110px; }
-
-
-/* ---------- La phrase du bandeau, a la main ----------
-   Le seul endroit du site ou l'ecriture manuscrite intervient. Ce n'est
-   pas une information a lire vite, c'est une phrase qu'on lance : elle
-   supporte donc un ton different du reste.
-
-   Pas de capitales : Caveat est un script, ses majuscules se collent et
-   perdent le geste. Et une taille superieure au reste, parce qu'une
-   ecriture manuscrite parait toujours plus petite a corps egal. */
-.home-journey .home-manifesto-strip{
-  font-family:var(--font-hand),"Bradley Hand","Segoe Script",cursive;
-  font-weight:600;
-  text-transform:none;
-  font-size:clamp(28px,3.4vw,52px);
-  letter-spacing:0;
-}
-
-.home-journey .home-strip-star{
-  /* L'etoile n'existe pas dans un script : elle garde la condensee. */
-  font-family:var(--font-display),"Arial Narrow",sans-serif;
-  font-size:.5em;
-}
-
-@media(max-width:760px){
-  .home-journey .home-manifesto-strip{font-size:clamp(20px,4.6vw,34px)}}
-
-
-/* ---------- L'ecriture manuscrite ----------
-   Le troisieme registre du systeme. Elle sert aux phrases qu'on lance,
-   jamais aux informations qu'on doit lire vite.
-
-   Jamais de capitales : un script y colle ses majuscules et perd le
-   geste. Et toujours un corps superieur au voisinage, une ecriture a la
-   main paraissant plus petite a taille egale. */
-.home-journey .home-hand{
-  font-family:var(--font-hand),"Bradley Hand","Segoe Script",cursive;
-  font-weight:600;
-  text-transform:none;
-  letter-spacing:0;
-  font-size:1.7em;
-  line-height:1.1;
-}
-
-.home-journey .home-hand-kicker{
-  display:block;
-  margin-bottom:14px;
-  font-size:clamp(26px,2.6vw,40px);
-  color:var(--home-yellow);
-  /* Le chapeau vit dans une grille a deux colonnes. La classe qu'il
-     portait avant lui donnait « grid-column: 1 / -1 » ; sans cette
-     reprise, il occupe la premiere cellule et rejette le titre dans la
-     colonne etroite de droite, ou il se coupe en plein mot. */
-  grid-column:1 / -1;
-}
-
-/* Les mentions de bas de section vivent dans une ligne en flex : a 1.7em
-   elles feraient sauter la ligne. Elles gardent un corps mesure. */
-.home-journey .home-section-top .home-hand{
-  font-size:1.45em;
-  line-height:1;
-}
-
-/* ---------- LE HERO ---------- */
-.home-journey .home-hero{
+/* ==================================================================
+   Accueil NULLL.CLUB, DA « stories ».
+   Reprise du compte Instagram : photos des sorties en grand, titres en
+   etiquettes de couleur posees de travers et qui se chevauchent,
+   fleches tracees a la main. Scope a l'accueil uniquement.
+   ================================================================== */
+.home-journey{
+  --hx-ink:#141116;
+  --hx-ink-2:#1E1A21;
+  --hx-white:#FFFFFF;
+  --hx-cream:#FFF3DF;
+  --hx-navy:#1C2245;
+  --hx-pink:#E8459E;
+  --hx-magenta:#D9157A;
+  --hx-yellow:#FFC531;
+  --hx-blue:#1F7FE0;
+  --hx-lime:#D7F04A;
+  /* Anciens noms : la roulette et le bandeau partenaires les lisent. */
+  --home-cream:var(--hx-cream);
+  --home-ink:var(--hx-ink);
+  --home-dark:var(--hx-ink);
+  --home-yellow:var(--hx-yellow);
+  --home-pink:var(--hx-pink);
   position:relative;
   isolation:isolate;
-  display:flex;
-  align-items:center;
-  min-height:clamp(520px,calc(85svh - 82px),780px);
-  padding:clamp(48px,8vh,90px) max(5vw,28px);
-  overflow:hidden;
-  background:#120908;
-  color:var(--home-cream);
+  overflow:clip;
+  background:var(--hx-ink);
+  color:var(--hx-white);
 }
+.home-journey a{touch-action:manipulation}
+.home-journey a:focus-visible{outline:3px solid var(--hx-yellow);outline-offset:5px}
+.home-journey h1,.home-journey h2,.home-journey h3{margin:0;font-weight:400;letter-spacing:0;overflow-wrap:normal}
 
-/* Phrase de soutien sous le nom : la signature du club dit ce qu'on fait. */
-.home-journey .home-hero-copy>.home-hero-support{margin:18px 0 24px;max-width:30ch;font-size:clamp(18px,2vw,26px);line-height:1.35;font-weight:700;color:var(--home-cream)}
-
-.home-journey .home-hero-media{position:absolute;top:0;bottom:0;right:0;width:45%;z-index:-3;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%);mask-image:linear-gradient(90deg,transparent 0,#000 18%)}
-.home-journey .home-hero-image{object-fit:cover;object-position:center 58%}
-.home-journey .home-hero-overlay{display:none}
-.home-journey .home-hero-copy{width:min(1050px,86vw)}
-.home-journey .home-hero-copy>p{margin-bottom:24px;color:var(--home-yellow)}
-.home-journey .home-hero h1{margin:0;font-size:clamp(72px,9.5vw,154px);line-height:1.12;letter-spacing:-.02em}
-.home-journey .home-hero h1 span{color:var(--home-pink)}
-.home-journey .home-hero-invitation{display:flex;align-items:center;gap:22px;margin-top:36px;flex-wrap:wrap}
-.home-journey .home-hero-link{display:inline-flex;align-items:center;justify-content:space-between;gap:36px;min-height:66px;padding:12px 24px;background:var(--home-pink);color:var(--home-dark);font-family:var(--font-display),Impact,sans-serif;font-size:26px;line-height:1.1;text-transform:uppercase;transition:background-color .2s ease,color .2s ease,transform .2s ease}
-.home-journey .home-hero-reassurance{color:var(--home-cream)}
-.home-journey .home-hero-link:hover{transform:translateY(-3px);border-color:var(--home-yellow);background:var(--home-yellow)}
-.home-journey .home-hero-link svg{width:20px;height:20px}
-
-.home-journey .home-hero-facts{background:var(--home-ink);color:var(--home-cream);border-top:2px solid var(--home-cream)}
-.home-journey .home-hero-facts>dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid rgba(241,237,233,.25)}
-.home-journey .home-hero-facts>dl>div{min-width:0;padding:22px max(2.5vw,20px);border-right:1px solid rgba(241,237,233,.25)}
-.home-journey .home-hero-facts>dl>div:last-child{border-right:0}
-.home-journey .home-hero-facts dt{color:var(--home-yellow)}
-.home-journey .home-hero-facts dd{margin-top:10px;font-family:var(--font-display),Impact,sans-serif;font-size:clamp(18px,1.85vw,34px);line-height:1.2;text-transform:uppercase;white-space:nowrap}
-.home-journey .home-hero-facts dd span{color:var(--home-pink)}
-.home-journey .home-hero-facts .home-manifesto-strip{border-top:0;padding:14px max(4vw,24px);font-size:clamp(24px,2.4vw,36px);line-height:1.2}
-
-@media(max-width:1100px){
-  .home-journey .home-hero h1{font-size:clamp(68px,10vw,112px)}
-}
-
-@media(max-width:760px){
-  .home-journey .home-hero{align-items:flex-end;min-height:560px;padding:42px 22px}
-  .home-journey .home-hero-media{width:100%;-webkit-mask-image:none;mask-image:none}
-  .home-journey .home-hero-image{object-position:52% center}
-  /* Le voile n avait ni position ni taille : zero pixel de haut, jamais visible. */
-  .home-journey .home-hero-overlay{display:block;position:absolute;inset:0;z-index:-2;background:rgba(18,9,8,.62)}
-  .home-journey .home-hero-copy{width:100%}
-  .home-journey .home-hero-copy>p{margin-bottom:18px;font-size:12px}
-  .home-journey .home-hero-copy>.home-hero-support{font-size:19px;margin:14px 0 22px}
-  .home-journey .home-hero h1{font-size:clamp(36px,10.5vw,78px);line-height:1.14}
-  .home-journey .home-hero-invitation{margin-top:28px;gap:14px}
-  .home-journey .home-hero-link{min-height:58px;font-size:23px}
-  .home-journey .home-hero-reassurance{width:100%;font-size:12px}
-  .home-journey .home-hero-facts>dl{grid-template-columns:1fr}
-  .home-journey .home-hero-facts>dl>div{padding:18px 16px}
-  .home-journey .home-hero-facts>dl>div:nth-child(2){border-right:0}
-  .home-journey .home-hero-facts>dl>div:nth-child(n+3){border-top:1px solid rgba(241,237,233,.25)}
-  .home-journey .home-hero-facts>dl>div{display:flex;align-items:center;justify-content:space-between;gap:16px;border-right:0;border-bottom:1px solid rgba(241,237,233,.25)}
-  .home-journey .home-hero-facts>dl>div:nth-child(n+3){border-top:0}
-  .home-journey .home-hero-facts dd{margin-top:0;font-size:clamp(20px,5.5vw,30px)}
-  .home-journey .home-hero-facts .home-manifesto-strip{display:flex;justify-content:space-between;gap:8px;padding:14px 16px;font-size:clamp(16px,4vw,26px)}
-  .home-journey .home-hero-facts .home-manifesto-strip .home-strip-star{display:none}
-}
-
-
-/* ---------- Le slogan ----------
-   Il tient la bande juste sous l'heure et le lieu : la these du club vient
-   apres les informations pratiques, jamais avant. Centre, dans l'ecriture
-   manuscrite deja definie plus haut pour la bande. */
-.home-journey .home-slogan{text-align:center}
-
-/* ---------- La signature ----------
-   Le dernier mot avant l'appel final. Sur le fond sombre de la section,
-   le rose passe en texte plein : 9:1, il n'a pas besoin du surligneur
-   qu'on applique aux titres poses sur le fond clair. */
-.home-journey .home-signoff{
-  position:relative;
-  z-index:2;
-  margin:0 0 28px;
+/* ---------- L'etiquette ----------
+   Le motif de toute la page : un bloc de couleur serre autour d'un mot en
+   capitales condensees, legerement de travers. --r regle l'angle. */
+.home-journey .st{
+  display:inline-block;
+  width:fit-content;
+  max-width:100%;
+  padding:.1em .32em .04em;
   font-family:var(--font-display),Impact,sans-serif;
   font-weight:400;
+  font-size:clamp(20px,2vw,30px);
+  line-height:1.08;
   text-transform:uppercase;
-  font-size:clamp(34px,5vw,78px);
-  line-height:1.06;
-  letter-spacing:-.01em;
+  letter-spacing:.005em;
+  rotate:var(--r,-1.2deg);
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone;
 }
-.home-journey .home-signoff span{color:var(--home-pink)}
+.home-journey .st-xl{font-size:clamp(44px,6.2vw,100px);line-height:1;padding:.06em .22em .02em}
+.home-journey .st-pink{background:var(--hx-pink);color:var(--hx-white)}
+.home-journey .st-magenta{background:var(--hx-magenta);color:var(--hx-white)}
+.home-journey .st-yellow{background:var(--hx-yellow);color:var(--hx-ink)}
+.home-journey .st-blue{background:var(--hx-blue);color:var(--hx-white)}
+.home-journey .st-lime{background:var(--hx-lime);color:var(--hx-ink)}
+.home-journey .st-cream{background:var(--hx-cream);color:var(--hx-navy)}
+.home-journey .st-white{background:var(--hx-white);color:var(--hx-ink)}
 
-@media(max-width:760px){
-  .home-journey .home-manifesto-strip{padding-left:20px;padding-right:20px}
-  .home-journey .home-signoff{font-size:clamp(28px,8vw,46px);margin-bottom:20px}
+/* Pile d'etiquettes : chacune deborde sur la precedente, angles alternes. */
+.home-journey .hx-stack{display:flex;flex-direction:column;align-items:center;text-align:center}
+.home-journey .hx-stack>.st:nth-child(1){--r:-2deg;position:relative;z-index:2}
+.home-journey .hx-stack>.st:nth-child(2){--r:1deg;margin-top:.06em}
+.home-journey .hx-stack>.st:nth-child(3){--r:-1deg;margin-top:.06em}
+.home-journey .hx-stack-left{align-items:flex-start;text-align:left}
+/* La petite etiquette passe toujours par-dessus la grande, comme en story. */
+.home-journey .hx-stack>.st:not(.st-xl){position:relative;z-index:3}
+
+
+
+/* ---------- Bouton « pilule », comme le sticker lien des stories ---------- */
+.home-journey .hx-pill{
+  display:inline-flex;align-items:center;gap:22px;
+  min-height:62px;padding:10px 26px;
+  border-radius:2px;
+  background:var(--hx-white);color:var(--hx-ink);
+  font-family:var(--font-display),Impact,sans-serif;font-size:clamp(22px,2.2vw,30px);text-transform:uppercase;line-height:1;
+  rotate:-1.5deg;
+  transition:rotate .2s ease,scale .2s ease,background .2s ease;
+}
+.home-journey .hx-pill:hover{rotate:0deg;scale:1.04;background:var(--hx-yellow)}
+.home-journey .hx-pill svg{width:30px;height:18px}
+.home-journey .hx-pill-small{min-height:50px;font-size:20px;padding:8px 18px}
+.home-journey .hx-note{font-family:var(--font-hand),"Bradley Hand",cursive;font-weight:600;font-size:clamp(22px,2vw,30px);line-height:1.1;color:var(--hx-white)}
+
+/* ---------- HERO : centre, une seule etiquette forte ---------- */
+.home-journey .hx-hero{
+  position:relative;isolation:isolate;
+  display:flex;align-items:center;justify-content:center;
+  min-height:min(calc(100svh - 72px),1000px);
+  padding:clamp(56px,9vh,110px) max(5vw,20px);
+  overflow:hidden;text-align:center;
+}
+.home-journey .hx-hero-media{position:absolute;inset:0;z-index:-2}
+.home-journey .hx-hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.home-journey .hx-hero-shade{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,rgba(20,17,22,.62) 0,rgba(20,17,22,.38) 70%),linear-gradient(180deg,rgba(20,17,22,0) 60%,rgba(20,17,22,.7) 100%)}
+.home-journey .hx-hero-copy{display:flex;flex-direction:column;align-items:center;max-width:min(980px,100%)}
+.home-journey .hx-hero-kicker{--r:-1.5deg;position:relative;z-index:2;margin-bottom:-.2em;font-size:clamp(17px,1.7vw,24px)}
+.home-journey .hx-hero-title .st{--r:-2deg;font-size:clamp(62px,10vw,168px);line-height:1;padding:.06em .2em .02em}
+.home-journey .hx-hero-support{margin:28px 0 0;max-width:30ch;font-size:clamp(19px,1.8vw,26px);line-height:1.35;font-weight:700;color:var(--hx-white)}
+.home-journey .hx-hero-cta{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:clamp(28px,4.5vh,44px)}
+.home-journey .hx-note{}
+
+/* ---------- Bande infos pratiques ---------- */
+/* overflow-x seulement : la bande inclinee depasse en haut et en bas,
+   par-dessus la photo et la section suivante, sans etre rognee. */
+.home-journey .hx-bands{position:relative;z-index:5;padding:0;margin:-22px 0 0;overflow-x:clip;overflow-y:visible}
+.home-journey .hx-band{margin:0 0 0 -2%;width:104%;display:flex;flex-wrap:nowrap;justify-content:center;font-family:var(--font-display),Impact,sans-serif;text-transform:uppercase;white-space:nowrap}
+.home-journey .hx-band-pink{rotate:-1deg;background:var(--hx-pink);color:var(--hx-white)}
+.home-journey .hx-band-pink>div{display:flex;align-items:baseline;gap:12px;padding:16px clamp(16px,2.6vw,40px);border-right:2px solid rgba(255,255,255,.35)}
+.home-journey .hx-band-pink>div:last-child{border-right:0}
+.home-journey .hx-band-pink dt{font-family:var(--font-mono),sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;opacity:.9}
+.home-journey .hx-band-pink dd{margin:0;font-size:clamp(20px,2.2vw,34px);line-height:1}
+
+/* ---------- Partenaires : logos fixes, en blanc, centres ---------- */
+.home-journey .hx-partners{display:flex;flex-direction:column;align-items:center;gap:22px;padding:56px max(5vw,20px) 64px;text-align:center}
+.home-journey .hx-partners-title{font-family:var(--font-mono),sans-serif;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.home-journey .hx-partners-list{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(36px,6vw,88px);list-style:none;margin:0;padding:0}
+.home-journey .hx-partners-link{display:block;padding:6px;opacity:.85;transition:opacity .2s ease,translate .2s ease}
+.home-journey .hx-partners-link:hover{opacity:1;translate:0 -2px}
+.home-journey .hx-partners-logo{display:block;height:calc(34px * var(--echelle, 1));width:auto;max-width:none;filter:brightness(0) invert(1)}
+
+/* ---------- Les dates : photo a gauche, contenu a droite, sans chevauchement ---------- */
+.home-journey .hx-dates{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);scroll-margin-top:90px}
+.home-journey .hx-dates-photo{position:relative;margin:0;min-height:clamp(520px,46vw,720px)}
+.home-journey .hx-dates-photo img{object-fit:cover;object-position:center 60%}
+.home-journey .hx-dates-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(56px,7vw,110px) max(5vw,20px)}
+.home-journey .hx-dates-copy>h2 .st-xl{font-size:clamp(42px,5vw,84px)}
+.home-journey .hx-dates-sub{margin:28px 0 0;font-size:clamp(17px,1.4vw,21px);line-height:1.55;color:rgba(255,255,255,.85)}
+.home-journey .hx-dates-sub strong{color:var(--hx-yellow)}
+.home-journey .hx-runs{list-style:none;margin:36px 0 0;padding:0;display:grid;gap:22px;width:100%;max-width:520px}
+.home-journey .hx-run{position:relative;background:var(--hx-cream);color:var(--hx-navy);padding:22px 24px 0;border-radius:2px}
+.home-journey .hx-run-date{display:flex;align-items:center;gap:16px;margin:0}
+.home-journey .hx-run-date strong{font-family:var(--font-display),Impact,sans-serif;font-weight:400;font-size:84px;line-height:.9;background:var(--hx-magenta);color:var(--hx-white);padding:6px 10px 0;rotate:-3deg}
+.home-journey .hx-run-date>span{display:flex;flex-direction:column;font-family:var(--font-display),Impact,sans-serif;text-transform:uppercase;font-size:24px;line-height:1.1}
+.home-journey .hx-run-kicker{position:absolute;top:-16px;right:18px;margin:0;background:var(--hx-yellow);color:var(--hx-ink);padding:4px 10px 2px;font-family:var(--font-display),Impact,sans-serif;text-transform:uppercase;font-size:18px;rotate:4deg}
+.home-journey .hx-run-details{margin:16px 0 0;font-weight:700;text-transform:uppercase;font-size:14px;letter-spacing:.06em}
+.home-journey .hx-run-location,.home-journey .hx-run-empty{margin:6px 0 0;font-size:16px;line-height:1.4}
+.home-journey .hx-run-empty{font-family:var(--font-display),Impact,sans-serif;text-transform:uppercase;font-size:32px;line-height:1.05;margin:0}
+.home-journey .hx-run-link{display:flex;align-items:center;justify-content:space-between;min-height:54px;margin-top:16px;border-top:2px solid var(--hx-navy);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.08em}
+.home-journey .hx-run-link svg{transition:translate .2s}
+.home-journey .hx-run-link:hover svg{translate:6px 0}
+
+/* ---------- Ensemble : photo plein ecran, phrase qui s'empile ---------- */
+.home-journey .hx-together{position:relative;isolation:isolate;min-height:min(86vh,820px);display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center}
+.home-journey .hx-together>img{object-fit:cover;object-position:center 45%;z-index:-2}
+.home-journey .hx-together-shade{position:absolute;inset:0;z-index:-1;background:rgba(20,17,22,.5)}
+.home-journey .hx-together-copy{position:relative;display:flex;flex-direction:column;align-items:center;padding:80px max(5vw,20px);width:100%}
+.home-journey .hx-together-copy>.st-cream{--r:-1.5deg;margin:0 0 .3em;position:relative;z-index:3}
+.home-journey .hx-together-big .st-xl{font-size:clamp(46px,7.4vw,120px)}
+.home-journey .hx-together-note{--r:1.5deg;margin-top:1.4em;font-size:clamp(16px,1.5vw,22px)}
+.home-journey .hx-together-pace{--r:-1deg;margin:.5em 0 0;font-size:clamp(16px,1.5vw,22px)}
+
+/* ---------- Ruban qui accelere au defilement (React Bits, Scroll Velocity) ---------- */
+.home-journey .hx-ruban{position:relative;z-index:5;margin:-26px 0 0;overflow-x:clip;rotate:-1deg;width:104%;margin-left:-2%;background:var(--hx-yellow);color:var(--hx-ink)}
+.home-journey .hx-ruban-piste{display:flex;width:max-content;white-space:nowrap;will-change:transform;font-family:var(--font-display),Impact,sans-serif;text-transform:uppercase;font-size:clamp(22px,2.6vw,40px);line-height:1;padding:14px 0 10px}
+.home-journey .hx-ruban-piste span{padding-right:.4em}
+
+/* ---------- Actu : la photo d'abord, le titre colle dessus ---------- */
+.home-journey .hx-news{padding:110px max(5vw,20px) 100px}
+.home-journey .hx-news-head{display:flex;flex-direction:column;align-items:center;gap:28px;margin-bottom:64px}
+.home-journey .hx-news-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,48px)}
+.home-journey .hx-news-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;height:100%}
+.home-journey .hx-news-photo{position:relative;display:block;width:100%;aspect-ratio:4/5;overflow:hidden}
+.home-journey .hx-news-photo img{object-fit:cover;transition:scale .5s ease}
+.home-journey .hx-news-card:hover .hx-news-photo img{scale:1.05}
+.home-journey .hx-news-date{position:absolute;top:14px;left:14px;--r:-2deg;font-size:17px}
+.home-journey .hx-news-title{--r:-1deg;margin:-2.2em 10px 0 14px;position:relative;font-size:clamp(24px,2.2vw,34px);line-height:1.04}
+.home-journey .hx-news-list>li:nth-child(even) .hx-news-title{--r:1deg}
+.home-journey .hx-news-text{margin:18px 4px 0;font-size:16px;line-height:1.55;color:rgba(255,255,255,.82)}
+
+/* ---------- Le club : collage de photos qui se chevauchent ---------- */
+.home-journey .hx-club{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,100px);align-items:center;padding:100px max(5vw,20px) 120px;background:var(--hx-ink-2)}
+.home-journey .hx-club-photos{position:relative;min-height:clamp(520px,58vw,820px)}
+.home-journey .hx-club-photo{position:absolute;margin:0;overflow:hidden}
+.home-journey .hx-club-photo img{object-fit:cover}
+.home-journey .hx-club-photo-a{left:0;top:0;width:62%;aspect-ratio:2/3;rotate:-3deg}
+.home-journey .hx-club-photo-b{right:0;bottom:0;width:66%;aspect-ratio:16/10;rotate:2.5deg;z-index:2}
+.home-journey .hx-club-first{--r:-3deg;position:absolute;right:4%;top:14%;z-index:3;font-size:clamp(22px,2.2vw,32px)}
+.home-journey .hx-club-copy>p{max-width:56ch;font-size:clamp(17px,1.3vw,20px);line-height:1.65;color:rgba(255,255,255,.88)}
+.home-journey .hx-club-copy>h2{margin-bottom:34px}
+.home-journey .hx-club-copy>h2 .st-xl{font-size:clamp(42px,5vw,84px)}
+.home-journey .hx-club-copy>p+p{margin-top:18px}
+.home-journey .hx-club-copy strong{color:var(--hx-yellow)}
+.home-journey .hx-facts{display:grid;grid-template-columns:1fr 1fr;gap:28px 18px;margin:40px 0 0}
+.home-journey .hx-facts>.st{font-family:var(--font-mono),sans-serif;text-transform:none;font-size:16px;line-height:1.35;padding:14px 16px;width:auto}
+.home-journey .hx-facts>.st:nth-child(1){--r:-.8deg}
+.home-journey .hx-facts>.st:nth-child(2){--r:.8deg}
+.home-journey .hx-facts>.st:nth-child(3){--r:.8deg}
+.home-journey .hx-facts>.st:nth-child(4){--r:-.8deg}
+.home-journey .hx-facts dt{font-family:var(--font-display),Impact,sans-serif;text-transform:uppercase;font-size:24px;line-height:1;margin-bottom:6px}
+.home-journey .hx-facts dd{margin:0;font-weight:700}
+.home-journey .hx-local-links{margin-top:30px;font-size:15px!important}
+.home-journey .hx-local-links a{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:var(--hx-pink)}
+.home-journey .hx-local-links a:hover{color:var(--hx-pink)}
+
+/* ---------- Le reste du club : tuiles photo facon posts epingles ---------- */
+.home-journey .hx-explore{padding:110px max(5vw,20px) 60px}
+.home-journey .hx-explore-title{margin-bottom:56px}
+.home-journey .hx-explore-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
+.home-journey .hx-tile{position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;aspect-ratio:4/5;padding:24px 20px;overflow:hidden}
+.home-journey .hx-tile>img{object-fit:cover;z-index:-2;transition:scale .5s ease}
+.home-journey .hx-tile:hover>img{scale:1.06}
+.home-journey .hx-tile-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 40%,rgba(20,17,22,.7))}
+.home-journey .hx-tile-label.st-xl{font-size:clamp(40px,4.4vw,72px);--r:-2deg}
+.home-journey .hx-tile-text{--r:.8deg;margin:-.2em 0 0 .6em;font-family:var(--font-mono),sans-serif;text-transform:none;font-weight:700;font-size:15px;line-height:1.35;padding:8px 12px}
+
+/* ---------- Appel final ---------- */
+.home-journey .hx-final{display:flex;flex-direction:column;align-items:center;padding:70px max(5vw,20px) 110px;text-align:center}
+.home-journey .hx-final-kicker{--r:-3deg;position:relative;z-index:2;margin-bottom:-.3em;font-size:clamp(22px,2.4vw,36px)}
+.home-journey .hx-final-row{position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(8px,1.4vw,20px);width:100%}
+.home-journey .hx-final-arrow{flex-shrink:0;width:clamp(90px,10vw,170px);height:auto;color:var(--hx-lime);rotate:8deg}
+.home-journey .hx-final-cta{
+  display:inline-flex;align-items:center;gap:clamp(16px,2vw,36px);
+  padding:.12em .35em .04em;rotate:1.5deg;border-radius:2px;
+  background:var(--hx-pink);color:var(--hx-white);
+  font-family:var(--font-display),Impact,sans-serif;text-transform:uppercase;
+  font-size:clamp(40px,6vw,104px);line-height:1;
+  transition:rotate .2s ease,background .2s ease,color .2s ease;
+}
+.home-journey .hx-final-cta:hover{rotate:-1deg;background:var(--hx-yellow);color:var(--hx-ink)}
+.home-journey .hx-final-cta svg{width:clamp(36px,5vw,80px);height:auto}
+.home-journey .hx-final-meta{margin-top:26px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:rgba(255,255,255,.8)}
+.home-journey .hx-final-meta+.hx-final-meta{margin-top:8px;color:var(--hx-yellow)}
+
+/* ---------- Tablette ---------- */
+@media (max-width:1100px){
+  .home-journey .hx-news-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .home-journey .hx-club{grid-template-columns:minmax(0,1fr)}
+  .home-journey .hx-club-photos{min-height:clamp(440px,80vw,720px)}
 }
 
-/* ------------------------------------------------------------------
-   Bandeau partenaires : logos en boucle sous les infos pratiques.
-   La liste de liens reste lisible pour les lecteurs d'ecran et au
-   clavier ; seule la partie qui defile est decorative.
-   ------------------------------------------------------------------ */
-.home-journey .home-partners{position:relative;z-index:2;background:var(--home-cream)}
-.home-journey .home-partners-top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:14px max(6vw,24px);border-bottom:1px solid #77333155}
-.home-journey .home-partners-title{font:inherit;letter-spacing:inherit;text-transform:inherit;margin:0}
-.home-journey .home-partners-list{display:flex;gap:18px;list-style:none;margin:0;padding:0}
-.home-journey .home-partners-list a{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
-.home-journey .home-partners-list a:hover{color:var(--home-dark)}
-.home-journey .home-partners-marquee{padding:16px 0}
-.home-journey .home-partners-item{gap:3.5rem;padding-inline:3.5rem;color:var(--home-pink)}
-.home-journey .home-partners-logo{display:block;height:calc(36px * var(--echelle, 1));width:auto;max-width:none}
+/* ---------- Telephone ---------- */
+@media (max-width:760px){
+  .home-journey .hx-hero{min-height:min(calc(100svh - 60px),820px);padding:48px 16px 64px}
+  .home-journey .hx-hero-image{object-position:center 30%}
+  .home-journey .hx-hero-title .st{font-size:clamp(50px,15.5vw,96px)}
+  .home-journey .hx-hero-support{font-size:19px;margin-top:22px}
+  .home-journey .hx-bands{margin-top:-16px}
+  .home-journey .hx-band-pink{flex-wrap:wrap;width:106%;margin-left:-3%;padding:6px 3%}
+  .home-journey .hx-band-pink>div{width:50%;padding:10px 10px;border-right:0;flex-direction:column;gap:2px;align-items:flex-start}
+  .home-journey .hx-band-pink dd{font-size:clamp(20px,5.6vw,28px);white-space:normal}
 
-/* ------------------------------------------------------------------
-   Actu : les dernieres nouvelles du club, en cartes.
-   ------------------------------------------------------------------ */
-.home-journey .home-news{background:var(--home-cream)}
-.home-journey .home-news-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:48px}
-.home-journey .home-news-heading h2{margin:0}
-.home-journey .home-news-all{display:inline-flex;align-items:center;gap:14px;border-bottom:2px solid currentColor;padding-bottom:6px;white-space:nowrap}
-.home-journey .home-news-all svg{transition:transform .2s}
-.home-journey .home-news-all:hover svg{transform:translateX(6px)}
-.home-journey .home-news-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;list-style:none;margin:0;padding:0}
-.home-journey .home-news-card{display:grid;gap:14px;height:100%;border:2px solid var(--home-ink);background:var(--home-cream);padding:0 0 22px;box-shadow:8px 8px 0 var(--home-yellow);transition:background .2s,transform .2s}
-.home-journey .home-news-card:hover{background:var(--home-yellow);transform:translate(-3px,-3px)}
-.home-journey .home-news-card>*:not(.home-news-photo){margin-inline:22px}
-.home-journey .home-news-photo{position:relative;display:block;aspect-ratio:4/3;border-bottom:2px solid var(--home-ink)}
-.home-journey .home-news-photo img{object-fit:cover}
-.home-journey .home-news-card h3{font-size:clamp(26px,2.4vw,34px);line-height:1.1}
-.home-journey .home-news-card p{font-size:16px;line-height:1.55}
-.home-journey .home-news-read{display:inline-flex;align-items:center;justify-content:space-between;border-top:1px solid #77333155;padding-top:14px;margin-top:auto}
-@media(max-width:1100px){.home-journey .home-news-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){
-.home-journey .home-partners-top{flex-direction:column;align-items:flex-start;gap:6px}
-.home-journey .home-partners-marquee{padding:12px 0}
-.home-journey .home-partners-logo{height:calc(28px * var(--echelle, 1))}
-.home-journey .home-partners-item{gap:2.25rem;padding-inline:2.25rem}
-.home-journey .home-news-heading{flex-direction:column;align-items:flex-start;gap:18px;margin-bottom:32px}
-.home-journey .home-news-list{grid-template-columns:minmax(0,1fr)}}
-.home-journey .home-news-meta{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.home-journey .home-news-pin{display:inline-flex;color:var(--home-ink);transform:rotate(-12deg)}
+  .home-journey .hx-partners{padding:44px 16px 48px}
+  .home-journey .hx-partners-logo{height:calc(26px * var(--echelle, 1))}
+
+  .home-journey .hx-dates{display:block;min-height:0}
+  .home-journey .hx-dates-photo{min-height:0;aspect-ratio:4/3}
+  .home-journey .hx-dates-copy{padding:48px 16px 64px}
+      .home-journey .hx-run-date strong{font-size:68px}
+
+  .home-journey .hx-together{min-height:600px}
+  .home-journey .hx-together>img{object-position:30% center}
+  .home-journey .hx-together-shade{background:rgba(20,17,22,.55)}
+  .home-journey .hx-together-copy{padding:60px 16px}
+  .home-journey .hx-together-big .st-xl{font-size:clamp(46px,14vw,80px)}
+    
+  .home-journey .hx-news{padding:80px 16px 70px}
+  .home-journey .hx-news-head{margin-bottom:40px}
+  .home-journey .hx-news-list{grid-template-columns:minmax(0,1fr);gap:48px}
+  .home-journey .hx-news-date{left:-4px}
+
+  .home-journey .hx-club{padding:70px 16px 90px}
+  .home-journey .hx-club-photos{min-height:clamp(420px,120vw,560px)}
+  .home-journey .hx-club-photo-a{width:64%}
+  .home-journey .hx-club-photo-b{width:80%}
+  .home-journey .hx-club-first{right:0;top:6%}
+  .home-journey .hx-facts{grid-template-columns:1fr}
+
+  .home-journey .hx-explore{padding:80px 16px 40px}
+  .home-journey .hx-explore-grid{grid-template-columns:minmax(0,1fr);gap:20px}
+  .home-journey .hx-tile{aspect-ratio:5/4}
+
+  .home-journey .hx-final{padding:50px 16px 80px}
+  .home-journey .hx-final-arrow{position:static;translate:none;width:110px;rotate:70deg;margin-bottom:6px}
+  .home-journey .hx-final-row{flex-direction:column}
+  .home-journey .hx-final-cta{font-size:clamp(36px,11vw,60px)}
+  .home-journey .hx-final-meta{font-size:12px;line-height:1.8}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .home-journey *,.home-journey *::before,.home-journey *::after{animation:none!important;transition:none!important}
+}
