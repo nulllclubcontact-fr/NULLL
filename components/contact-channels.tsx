@@ -47,57 +47,45 @@ export function ContactChannels({ channels }: { channels: Channel[] }) {
     minuteur.current = window.setTimeout(() => setEtat(null), 1800);
   }
 
+  const couleurs = ["st-pink", "st-yellow", "st-blue", "st-lime", "st-cream"];
   return (
-    <ul className="border-b-2 border-white/15 bg-[#FFC531] text-[#141116]">
+    <ul className="grid gap-4 md:grid-cols-2">
       {channels.map((channel, index) => {
         const externe = channel.href.startsWith("http");
         const copiable = valeurCopiable(channel);
         const actif = etat?.cle === channel.title ? etat : null;
 
         return (
-          <li className="flex items-stretch border-t-2 border-white/15 first:border-t-0" key={channel.title}>
+          <li className="flex flex-col rounded-[2px] border border-white/10 bg-[#1E1A21]" key={channel.title}>
             <a
-              className="contact-row-link group flex min-h-[7.5rem] min-w-0 flex-1 items-center gap-4 px-4 py-6 focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-[#FFC531] sm:gap-10 sm:px-8 xl:px-12"
+              className="group flex flex-1 flex-col items-start gap-4 p-6 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#FFC531] sm:p-8"
               href={channel.href}
               rel={externe ? "noreferrer noopener" : undefined}
               target={externe ? "_blank" : undefined}
             >
-              <span className="w-6 shrink-0 font-mono text-xs font-black uppercase tracking-[.16em] opacity-55 sm:w-12">
-                0{index + 1}
+              <span className={`st ${couleurs[index % couleurs.length]}`}>{channel.title}</span>
+              <span className="copy-safe block font-display text-[clamp(1.6rem,2.6vw,2.4rem)] uppercase leading-[1.08] transition-colors group-hover:text-[#FFC531]">
+                {/* L'adresse e-mail peut passer a la ligne apres l'arobase. */}
+                {channel.value.includes("@") && !channel.value.startsWith("@") ? (
+                  <>
+                    {channel.value.slice(0, channel.value.indexOf("@") + 1)}
+                    <wbr />
+                    {channel.value.slice(channel.value.indexOf("@") + 1)}
+                  </>
+                ) : (
+                  channel.value
+                )}
               </span>
-
-              <span className="min-w-0 flex-1">
-                <span className="block font-mono text-xs font-black uppercase tracking-[.16em] opacity-55 [word-spacing:.18em]">
-                  {channel.title}
-                </span>
-                <span className="contact-row-value copy-safe mt-2 block font-display text-[clamp(1.15rem,4vw,3rem)] uppercase leading-[1.12] tracking-[-.03em]">
-                  {/* A 320 px, l'adresse e-mail ne tient pas sur une ligne : on
-                      autorise la coupure apres l'arobase, jamais au milieu d'un mot. */}
-                  {channel.value.includes("@") ? (
-                    <>
-                      {channel.value.slice(0, channel.value.indexOf("@") + 1)}
-                      <wbr />
-                      {channel.value.slice(channel.value.indexOf("@") + 1)}
-                    </>
-                  ) : (
-                    channel.value
-                  )}
-                </span>
-                <span className="contact-row-text block max-w-[56ch] text-base leading-relaxed opacity-80">{channel.text}</span>
-              </span>
-
-              <span className="contact-row-arrow shrink-0">
-                <ArrowIcon />
-              </span>
+              <span className="block max-w-[52ch] text-base leading-relaxed text-white/75">{channel.text}</span>
             </a>
-
             <button
-                aria-label={`Copier ${channel.title.toLowerCase()} : ${copiable}`}
-                className={`${actif ? `copy-done bg-[#1E1A21] ${actif.ok ? "text-[#FFC531]" : "text-[#E8459E]"}` : "bg-transparent"} w-[4.5rem] shrink-0 border-l-2 border-white/15 font-mono text-xs font-black uppercase tracking-[.1em] sm:text-xs sm:tracking-[.14em] transition-colors hover:bg-[#1E1A21] hover:text-[#FFC531] focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-[#FFC531] sm:w-32`}
+              aria-label={`Copier ${channel.title.toLowerCase()} : ${copiable}`}
+              className={`flex min-h-12 items-center justify-between border-t border-white/10 px-6 font-mono text-xs font-bold uppercase tracking-[.12em] transition-colors hover:bg-white/5 hover:text-[#FFC531] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#FFC531] sm:px-8 ${actif ? (actif.ok ? "text-[#FFC531]" : "text-[#E8459E]") : "text-white/70"}`}
               onClick={() => copier(channel.title, copiable)}
               type="button"
             >
-              {actif ? (actif.ok ? "Copié" : "Échec") : "Copier"}
+              <span>{actif ? (actif.ok ? "Copié" : "Échec de la copie") : "Copier"}</span>
+              <ArrowIcon />
             </button>
           </li>
         );
