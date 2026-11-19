@@ -32,12 +32,106 @@ export type Actu = {
   };
   source?: { label: string; url: string };
   /** Partenaire de l'actu : mention « Avec la participation de » et logo en tete d'article. */
-  avec?: { nom: string; logo: string; ratio: number; url: string };
+  avec?: { nom: string; logo: string; ratio: number; url: string; blanchir?: boolean; hauteur?: number };
   /** Boutons d'action en fin d'article (interne ou externe). */
   appels?: Array<{ label: string; href: string }>;
 };
 
 export const actus: Actu[] = [
+  {
+    slug: "red-bull-partenaire-nulll-club",
+    rubrique: "Partenaires",
+    titre: "C’est officiel : Red Bull court avec nous",
+    date: "2026-11-19",
+    resume:
+      "Les canettes que tu attrapes à l’arrivée ne sont pas là par hasard. Red Bull est désormais partenaire de Nulll Club. Ce que ça change pour tes samedis.",
+    image: {
+      src: "/assets/actus/red-bull/01.webp",
+      alt: "Un membre de Nulll Club, tout sourire, tend une canette Red Bull vers l’objectif"
+    },
+    galerie: [
+      { src: "/assets/actus/red-bull/01.webp", alt: "Un membre de Nulll Club, tout sourire, tend une canette Red Bull vers l’objectif", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/red-bull/02.webp", alt: "Une canette Red Bull en main, au départ d’une sortie", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/red-bull/03.webp", alt: "Un coureur pose avec sa Red Bull sous les arbres", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/red-bull/04.webp", alt: "Les packs Red Bull sur la table du ravito, au parc", largeur: 1600, hauteur: 900 }
+    ],
+    sections: [
+      {
+        titre: "C’est officiel",
+        paragraphes: [
+          "Red Bull est désormais **partenaire de Nulll Club**.",
+          "Tu les as sûrement déjà croisées : les canettes Red Bull sont au ravito depuis le tout premier social run, le 26 septembre."
+        ],
+        citation: "À l’arrivée, il y a des gens, des sourires, et des canettes."
+      },
+      {
+        titre: "Ce que ça change pour toi",
+        paragraphes: [
+          "Après la sortie, on reste. Et Red Bull est là, **au ravito**, pendant que tout le monde discute.",
+          "Le reste ne bouge pas : les sorties restent **gratuites** et ouvertes à tous les niveaux."
+        ]
+      },
+      {
+        titre: "Merci",
+        paragraphes: [
+          "Merci à [Red Bull](https://www.redbull.com/fr-fr/) de soutenir le club. Rendez-vous au prochain samedi pour trinquer."
+        ]
+      }
+    ],
+    avec: { nom: "Red Bull", logo: "/assets/partenaires/red-bull.svg", ratio: 607 / 147, url: "https://www.redbull.com/fr-fr/", blanchir: true },
+    appels: [
+      { label: "Voir les sorties", href: "/fr/runs" },
+      { label: "Devenir partenaire", href: "/fr/partenaires" }
+    ]
+  },
+  {
+    slug: "bee-zen-partenaire-nulll-club",
+    rubrique: "Partenaires",
+    titre: "La pyramide de canettes, c’était eux : Bee Zen devient partenaire",
+    date: "2026-11-19",
+    resume:
+      "Tu l’as vue au ravito du 24 octobre, cette pyramide de canettes. Bee Zen est désormais partenaire de Nulll Club. On vous raconte.",
+    image: {
+      src: "/assets/actus/bee-zen/01.webp",
+      alt: "La pyramide de canettes Bee Zen montée au ravito, sous les arbres"
+    },
+    galerie: [
+      { src: "/assets/actus/bee-zen/01.webp", alt: "La pyramide de canettes Bee Zen montée au ravito, sous les arbres", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bee-zen/04.webp", alt: "Deux membres du club font les pitres avec une Bee Zen", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/bee-zen/02.webp", alt: "La pyramide Bee Zen vue d’en bas", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bee-zen/05.webp", alt: "Un coureur tend sa Bee Zen vers l’objectif", largeur: 1066, hauteur: 1600 },
+      { src: "/assets/actus/bee-zen/03.webp", alt: "Une canette Bee Zen sur la table du ravito", largeur: 900, hauteur: 1600 },
+      { src: "/assets/actus/bee-zen/06.webp", alt: "Un membre du club pose avec deux Bee Zen devant la table du ravito", largeur: 1066, hauteur: 1600 }
+    ],
+    sections: [
+      {
+        titre: "C’est officiel",
+        paragraphes: [
+          "**Bee Zen** est désormais **partenaire de Nulll Club**.",
+          "Ses canettes sont au ravito depuis le tout premier social run, le 26 septembre."
+        ],
+        citation: "Une pyramide de canettes, et tout le monde reste."
+      },
+      {
+        titre: "La pyramide",
+        paragraphes: [
+          "Au **quatrième social run**, le 24 octobre, les canettes Bee Zen ont fini en **pyramide** sur la table du ravito.",
+          "On la monte, on la démonte, et pendant ce temps, personne ne repart."
+        ]
+      },
+      {
+        titre: "Merci",
+        paragraphes: [
+          "Merci à [Bee Zen](https://www.beezendrinks.com/) de soutenir le club. On se retrouve samedi, canette en main."
+        ]
+      }
+    ],
+    avec: { nom: "Bee Zen", logo: "/assets/partenaires/bee-zen.png", ratio: 764 / 320, url: "https://www.beezendrinks.com/", blanchir: true, hauteur: 52 },
+    appels: [
+      { label: "Voir les sorties", href: "/fr/runs" },
+      { label: "Devenir partenaire", href: "/fr/partenaires" }
+    ]
+  },
   {
     slug: "equipe-nulll-les-bacchantes-aix-2026",
     rubrique: "Événement",
@@ -619,7 +713,7 @@ export const actus: Actu[] = [
  * les plus recentes d'abord.
  */
 // Les trois actus de l'accueil, dans cet ordre (sans mention « epinglee »).
-export const EPINGLEES_ACCUEIL: string[] = ["equipe-nulll-les-bacchantes-aix-2026", "jeu-concours-bacchantes-aix-ynov-campus", "duo-nulll-new-york"];
+export const EPINGLEES_ACCUEIL: string[] = ["red-bull-partenaire-nulll-club", "bee-zen-partenaire-nulll-club", "equipe-nulll-les-bacchantes-aix-2026"];
 
 export function listActusAccueil(nombre = 3): Array<Actu & { epinglee: boolean }> {
   const epinglees = EPINGLEES_ACCUEIL.flatMap((slug) => {
