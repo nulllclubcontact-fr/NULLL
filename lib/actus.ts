@@ -427,7 +427,8 @@ export const actus: Actu[] = [
  * Actus epinglees sur l'accueil, dans cet ordre. Les autres suivent,
  * les plus recentes d'abord.
  */
-export const EPINGLEES_ACCUEIL = ["quatrieme-social-run-nulll-club-aix", "romane-fournier-associee-nulll-club", "telecharger-photos-social-run-aix"];
+// Aucune actu epinglee : l'accueil montre les plus recentes.
+export const EPINGLEES_ACCUEIL: string[] = [];
 
 export function listActusAccueil(nombre = 3): Array<Actu & { epinglee: boolean }> {
   const epinglees = EPINGLEES_ACCUEIL.flatMap((slug) => {

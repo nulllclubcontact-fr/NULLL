@@ -133,7 +133,6 @@ export function HomeExperience({ runs, runsHref, communityHref, merchHref, about
                   </span>
                   <span className={`st ${["st-pink", "st-yellow", "st-blue"][index % 3]} hx-news-date`}>
                     <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
-                    {actu.epinglee ? <span className="hx-news-pin"> · épinglé</span> : null}
                   </span>
                   <h3 className="st st-cream hx-news-title">{actu.titre}</h3>
                   <p className="hx-news-text">{actu.resume}</p>
