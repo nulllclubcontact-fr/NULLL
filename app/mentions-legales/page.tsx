@@ -49,6 +49,19 @@ export default function MentionsLegalesPage() {
           </p>
         </Bloc>
 
+        <Bloc titre="Conception et réalisation">
+          <p>
+            Site conçu et réalisé par <strong>Oculot Studio</strong> · <Lien href="https://oculot.studio">oculot.studio</Lien>
+          </p>
+          <p>
+            Oculot Studio est un studio web qui crée et refait les sites des commerces, des indépendants et des
+            associations : design, développement et mise en ligne.
+          </p>
+          <p>
+            Contact : <Lien href="mailto:bonjour@oculot.studio">bonjour@oculot.studio</Lien>
+          </p>
+        </Bloc>
+
         <Bloc titre="Propriété intellectuelle">
           <p>
             Le nom NULLL.CLUB, le logo, les textes et les photographies de ce site appartiennent à l’association ou à
