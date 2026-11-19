@@ -3,7 +3,9 @@ import Link from "next/link";
 import { ArrowIcon } from "./ArrowIcon";
 import { getRoute, productsByLocale, type Locale, type Product } from "../lib/site-content";
 
-const productMood = ["/assets/photos/editorial-bed.webp", "/assets/photos/editorial-shower.webp", "/assets/photos/runner-ground.webp"];
+// Photos du club, en attendant celles des pieces : passees en gris et
+// floutees, elles donnent l'ambiance sans faire croire a un produit.
+const productMood = ["/assets/actus/bienvenue/17.webp", "/assets/actus/bienvenue/19.webp", "/assets/actus/bienvenue/13.webp"];
 
 /**
  * La boutique n'est pas ouverte : les pieces se montrent, rien ne
@@ -44,7 +46,7 @@ function ProductCard({ index, product }: { index: number; product: Product }) {
         {/* Photo d'ambiance, pas une photo du produit : decorative. */}
         <Image
           alt=""
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          className="scale-110 object-cover blur-[6px] grayscale transition-[filter] duration-500 ease-out group-hover:blur-[3px]"
           fill
           sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 100vw"
           src={productMood[index % productMood.length]}
