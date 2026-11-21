@@ -757,7 +757,7 @@ export const GUIDES: Guide[] = [
     titre: "Trail autour d’Aix-en-Provence : Sainte-Victoire, Bibémus, Bimont, le guide pour débuter",
     seoTitle: "Trail à Aix-en-Provence : où courir, conseils, sécurité",
     description:
-      "Faire du trail autour d’Aix-en-Provence : Sainte-Victoire, plateau de Bibémus, barrages de Bimont et Zola. Spots, matériel, sécurité et accès aux massifs en été.",
+      "Trail autour d’Aix-en-Provence : Sainte-Victoire, plateau de Bibémus, barrages de Bimont et Zola. Spots, matériel, sécurité et accès aux massifs en été.",
     resume:
       "À quelques kilomètres du Cours Mirabeau, les chemins deviennent cailloux, pins et dénivelé. Aix est une porte d’entrée rêvée vers le trail, à condition de respecter la montagne. Voici où aller, comment s’équiper et les règles à connaître avant de partir.",
     enBref: [
@@ -1088,7 +1088,7 @@ export const GUIDES: Guide[] = [
     titre: "Activités entre amis à Aix-en-Provence : 12 idées pour sortir du sempiternel apéro",
     seoTitle: "Activités entre amis à Aix-en-Provence : 12 idées",
     description:
-      "Que faire entre amis à Aix-en-Provence ? Run club gratuit, randonnée, pique-nique, marchés, musées, concerts, escapade à la mer : 12 idées pour sortir du quotidien.",
+      "Que faire entre amis à Aix-en-Provence ? Run club gratuit, randonnée, pique-nique, marchés, musées, concerts, mer : 12 idées pour sortir du quotidien.",
     resume:
       "L’apéro, c’est bien. Mais à force, on finit toujours à la même terrasse avec les mêmes conversations. À Aix, il y a mieux à faire entre amis, et souvent pour pas cher. Voici douze idées pour vos prochains week-ends.",
     enBref: [

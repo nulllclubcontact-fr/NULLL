@@ -54,6 +54,7 @@ export function ContactMailForm() {
           d'ecran, mais rempli par les robots qui remplissent tout. */}
       <input
         aria-hidden="true"
+        aria-label="Ne pas remplir ce champ"
         autoComplete="off"
         className="pointer-events-none absolute h-px w-px overflow-hidden opacity-0"
         name="website"

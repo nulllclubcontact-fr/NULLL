@@ -281,14 +281,16 @@ export function buildActuMetadata({ titre, resume, date, image, url }: {
   url: string;
 }): Metadata {
   const canonical = `${SITE_URL}${url}`;
-  const title = `${titre} | Nulll Club`;
+  // Le suffixe de marque seulement s'il tient dans la soixantaine de caracteres.
+  const title = titre.length <= 50 ? `${titre} | Nulll Club` : titre;
+  const description = resumerPourMeta(resume);
   return {
     title,
-    description: resume,
+    description,
     alternates: { canonical, languages: { fr: canonical, "x-default": canonical } },
     openGraph: {
       title,
-      description: resume,
+      description,
       url: canonical,
       siteName: "Nulll Club",
       locale: "fr_FR",
@@ -296,8 +298,25 @@ export function buildActuMetadata({ titre, resume, date, image, url }: {
       publishedTime: date,
       images: [{ url: `${SITE_URL}${image.src}`, alt: image.alt }]
     },
-    twitter: { card: "summary_large_image", title, description: resume, images: [`${SITE_URL}${image.src}`] }
+    twitter: { card: "summary_large_image", title, description, images: [`${SITE_URL}${image.src}`] }
   };
+}
+
+/**
+ * Meta description de 160 caracteres au plus : on garde les phrases
+ * entieres qui tiennent, sinon on coupe au dernier mot.
+ */
+export function resumerPourMeta(texte: string, max = 160) {
+  if (texte.length <= max) return texte;
+  const phrases = texte.match(/[^.!?]+[.!?]+/g) ?? [texte];
+  let sortie = "";
+  for (const phrase of phrases) {
+    if ((sortie + phrase).trim().length > max) break;
+    sortie += phrase;
+  }
+  sortie = sortie.trim();
+  if (sortie.length >= 50) return sortie;
+  return `${texte.slice(0, max - 1).replace(/\s+\S*$/, "")}…`;
 }
 
 /** Fiche Article d'un guide local : sujet Aix-en-Provence, auteur le club. */

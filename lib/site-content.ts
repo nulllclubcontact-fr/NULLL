@@ -237,7 +237,7 @@ export function getSiteCopy(locale: Locale) {
             "Comprends la vision de Nulll Club, social sport club à Aix-en-Provence centré sur la communauté, la régularité et le plaisir de courir ensemble."
         },
         guides: {
-          title: "Guides locaux d’Aix-en-Provence : courir, sortir, rencontrer | Nulll Club",
+          title: "Guides d’Aix-en-Provence : courir, sortir | Nulll Club",
           description:
             "Nos guides d’Aix-en-Provence : où courir, run club gratuit, débuter la course, rencontrer des gens, que faire et où sortir. Écrits par des Aixois."
         },
