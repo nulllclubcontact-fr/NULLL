@@ -46,8 +46,8 @@ export const actus: Actu[] = [
     resume:
       "Red Bull, Bee Zen, Aix Ynov Campus : ils ont déjà sauté le pas. Le club grandit, et on cherche les suivants. Commerce d’Aix, marque, école : voici ce qu’on peut faire ensemble.",
     image: {
-      src: "/assets/actus/partenaires/02.webp",
-      alt: "Le ravito après un social run : des membres du club se servent en discutant"
+      src: "/assets/actus/partenaires/03.webp",
+      alt: "Trois membres du club discutent près de la table du ravito, dans le parc"
     },
     galerie: [
       { src: "/assets/actus/partenaires/01.webp", alt: "Deux membres du club au ravito, tartine à la main, après la sortie", largeur: 900, hauteur: 1600 },
@@ -416,8 +416,8 @@ export const actus: Actu[] = [
     resume:
       "NULLL, c’était Tobias et Tom. C’est désormais Tobias, Tom et Romane. Rencontre avec l’associée qui s’occupe de tout ce qui touche à la course.",
     image: {
-      src: "/assets/actus/bienvenue/15.webp",
-      alt: "Le peloton de Nulll Club sur un chemin ombragé d’Aix-en-Provence pendant le social run du samedi"
+      src: "/assets/actus/quatrieme-run/10.webp",
+      alt: "Romane Fournier, associée de Nulll Club, au soleil après une sortie"
     },
     sections: [
       {

@@ -49,7 +49,7 @@ export const GUIDES: Guide[] = [
       "De mai à septembre, cours tôt le matin ou en fin de journée : la chaleur monte vite à Aix.",
       "Pour courir en groupe gratuitement, Nulll Club donne rendez-vous un samedi sur deux à 9h30, départ 10h."
     ],
-    image: { src: "/assets/accueil/coureurs-passerelle.webp", alt: "Cinq coureurs de Nulll Club, tout sourire, courent ensemble sur une passerelle du parc" },
+    image: { src: "/assets/guides/couvertures/courir-a-aix-en-provence.webp", alt: "Le peloton du club court sur une route ombragée, le long d’un mur" },
     photos: [
       { src: "/assets/actus/quatrieme-run/03.webp", alt: "Le groupe file sur un chemin bordé d’une barrière en bois, sous les arbres", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/parc-de-la-torse/peloton.webp", alt: "Le peloton du club longe une barrière en bois au parc de la Torse", largeur: 1600, hauteur: 900 },
@@ -124,7 +124,7 @@ export const GUIDES: Guide[] = [
       "La sortie fait 5 à 6 km à allure conversation, et personne n’est laissé derrière.",
       "Pour venir, il suffit de créer un compte gratuit et de s’inscrire à la sortie : tu reçois un QR code."
     ],
-    image: { src: "/assets/actus/bienvenue/01.webp", alt: "Photo de groupe des coureurs de Nulll Club au départ, sous les arbres" },
+    image: { src: "/assets/guides/couvertures/run-club-aix-en-provence.webp", alt: "Les membres du club se retrouvent autour de la table avant la sortie" },
     photos: [
       { src: "/assets/actus/bienvenue/02.webp", alt: "Des coureuses et coureurs du club le long d’un mur, en pleine sortie", largeur: 1066, hauteur: 1600 },
       { src: "/assets/actus/quatrieme-run/16.webp", alt: "Discussions autour de la table des boissons après la course", largeur: 1600, hauteur: 900 },
@@ -197,7 +197,7 @@ export const GUIDES: Guide[] = [
       "Trois sorties par semaine suffisent, avec un jour de repos entre chaque.",
       "En 8 semaines environ, la plupart des débutants courent 30 minutes d’affilée."
     ],
-    image: { src: "/assets/actus/quatrieme-run/04.webp", alt: "Éclats de rire entre coureuses après le run" },
+    image: { src: "/assets/guides/couvertures/commencer-la-course-a-pied.webp", alt: "Deux coureuses du club sur la passerelle du parc, en pleine sortie" },
     photos: [
       { src: "/assets/actus/bienvenue/04.webp", alt: "Deux coureuses arrivent sur un chemin de terre", largeur: 1067, hauteur: 1600 },
       { src: "/assets/actus/quatrieme-run/02.webp", alt: "Des coureuses et coureurs du club sur un sentier, en pleine sortie", largeur: 900, hauteur: 1600 },
@@ -269,7 +269,7 @@ export const GUIDES: Guide[] = [
       "Pour du trail : le plateau de Bibémus, les barrages de Bimont et Zola, la Sainte-Victoire.",
       "En été, vérifie l’accès aux massifs avant de partir : il peut être limité à cause du risque d’incendie."
     ],
-    image: { src: "/assets/actus/parc-de-la-torse/depart.webp", alt: "Le peloton de Nulll Club part en courant sur un chemin du parc de la Torse" },
+    image: { src: "/assets/guides/couvertures/ou-courir-a-aix-en-provence.webp", alt: "Des coureurs du club traversent la pelouse du parc" },
     photos: [
       { src: "/assets/actus/parc-de-la-torse/sentier.webp", alt: "Des coureurs du club sur un sentier ombragé du parc de la Torse", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/parc-de-la-torse/passerelle.webp", alt: "Des coureurs du club traversent une passerelle du parc de la Torse", largeur: 900, hauteur: 1600 },
@@ -348,7 +348,7 @@ export const GUIDES: Guide[] = [
       "Les associations, le bénévolat et les événements culturels d’Aix sont d’autres portes d’entrée.",
       "Nulll Club organise un social run gratuit un samedi sur deux, pensé pour venir seul et repartir avec des gens."
     ],
-    image: { src: "/assets/actus/quatrieme-run/01.webp", alt: "Des membres de Nulll Club partagent le ravito après le quatrième social run à Aix-en-Provence" },
+    image: { src: "/assets/guides/couvertures/rencontrer-des-gens-a-aix-en-provence.webp", alt: "Deux coureuses éclatent de rire après la sortie" },
     photos: [
       { src: "/assets/actus/parc-de-la-torse/trio-sourires.webp", alt: "Trois membres de Nulll Club tout sourire après une sortie", largeur: 1600, hauteur: 900 },
       { src: "/assets/actus/bienvenue/19.webp", alt: "Un membre du club en pleine discussion après la sortie", largeur: 1066, hauteur: 1600 },
@@ -420,7 +420,7 @@ export const GUIDES: Guide[] = [
       "Marseille est à une trentaine de kilomètres : la mer est facile d’accès.",
       "Pour rencontrer du monde vite, rejoins une activité régulière, comme le social run gratuit de Nulll Club."
     ],
-    image: { src: "/assets/actus/bienvenue/07.webp", alt: "Trois membres du club posent après la course" },
+    image: { src: "/assets/guides/couvertures/nouveau-a-aix-en-provence.webp", alt: "Trois membres du club sourient dans le parc" },
     photos: [
       { src: "/assets/actus/quatrieme-run/11.webp", alt: "Un membre du club en sweat gris, souriant dans le parc", largeur: 1600, hauteur: 900 },
       { src: "/assets/actus/bienvenue/03.webp", alt: "Le groupe rassemblé à l’ombre avant de partir", largeur: 1066, hauteur: 1600 },
@@ -491,7 +491,7 @@ export const GUIDES: Guide[] = [
       "Culture : le musée Granet, l’Hôtel de Caumont, la Fondation Vasarely et le Festival d’Aix en juillet.",
       "Plein air : la Sainte-Victoire, les barrages de Bimont et Zola, et le social run gratuit de Nulll Club."
     ],
-    image: { src: "/assets/actus/quatrieme-run/08.webp", alt: "Le groupe se retrouve sur la pelouse après la course" },
+    image: { src: "/assets/guides/couvertures/que-faire-a-aix-en-provence.webp", alt: "Une coureuse et un coureur discutent dans le parc après la sortie" },
     photos: [
       { src: "/assets/actus/bienvenue/09.webp", alt: "Des coureurs sur le parking au retour du run", largeur: 1066, hauteur: 1600 },
       { src: "/assets/actus/quatrieme-run/06.webp", alt: "Deux membres du club posent ensemble, bouteille d’eau à la main", largeur: 900, hauteur: 1600 },
@@ -562,7 +562,7 @@ export const GUIDES: Guide[] = [
       "Culture : musée Granet, Hôtel de Caumont, atelier de Cézanne, Terrain des Peintres.",
       "Envie de mer : Marseille et la Méditerranée sont à une trentaine de kilomètres."
     ],
-    image: { src: "/assets/actus/parc-de-la-torse/rires-groupe.webp", alt: "Des membres de Nulll Club éclatent de rire après une sortie" },
+    image: { src: "/assets/guides/couvertures/sortie-a-aix-en-provence.webp", alt: "Une membre du club rit, canette Bee Zen à la main" },
     photos: [
       { src: "/assets/actus/quatrieme-run/05.webp", alt: "Un coureur en maillot rose, tout sourire après la sortie", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/bienvenue/06.webp", alt: "Un membre de l’équipe tend des canettes Bee Zen devant la table des boissons", largeur: 1067, hauteur: 1600 },
@@ -633,7 +633,7 @@ export const GUIDES: Guide[] = [
       "Pour les spectacles : le Grand Théâtre de Provence, le Pavillon Noir et le théâtre du Jeu de Paume.",
       "Pour le cinéma : les cinémas du centre-ville, dont plusieurs proposent des films en version originale."
     ],
-    image: { src: "/assets/actus/quatrieme-run/16.webp", alt: "Discussions autour de la table des boissons après la course" },
+    image: { src: "/assets/guides/couvertures/sortir-a-aix-en-provence.webp", alt: "Deux membres du club trinquent après la course" },
     photos: [
       { src: "/assets/actus/bienvenue/11.webp", alt: "Une canette tendue à un membre du club en casquette", largeur: 1200, hauteur: 1600 },
       { src: "/assets/actus/bienvenue/17.webp", alt: "Un coureur reçoit une canette au retour", largeur: 1200, hauteur: 1600 },
@@ -703,7 +703,7 @@ export const GUIDES: Guide[] = [
       "Le club participe aussi à des courses, comme Les Bacchantes à Aix en novembre 2026.",
       "Le prochain rendez-vous hors run : le mardi 1er décembre à 19h, au Cutback."
     ],
-    image: { src: "/assets/actus/parc-de-la-torse/peloton.webp", alt: "Le peloton du club longe une barrière en bois au parc de la Torse" },
+    image: { src: "/assets/guides/couvertures/evenements-running-aix.webp", alt: "Le groupe se dirige vers le départ du premier social run" },
     photos: [
       { src: "/assets/actus/bienvenue/12.webp", alt: "Un coureur reçoit une Red Bull à l’arrivée", largeur: 1200, hauteur: 1600 },
       { src: "/assets/actus/quatrieme-run/17.webp", alt: "La pyramide de canettes Bee Zen du ravito", largeur: 900, hauteur: 1600 },
@@ -766,7 +766,7 @@ export const GUIDES: Guide[] = [
       "En été, l’accès aux massifs des Bouches-du-Rhône est réglementé : vérifie la carte de la préfecture avant chaque sortie.",
       "Le trail se prépare aussi sur le plat : courir régulièrement en groupe, comme avec Nulll Club, construit l’endurance."
     ],
-    image: { src: "/assets/guides/048.webp", alt: "Une quinzaine de coureurs du club arrivent le long d’une barrière en bois, au parc" },
+    image: { src: "/assets/guides/couvertures/trail-aix-en-provence.webp", alt: "Des coureurs du club sur un chemin bordé d’arbres" },
     photos: [
       { src: "/assets/guides/069.webp", alt: "Le groupe s’éloigne en courant sur une allée du parc", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/quatrieme-run/02.webp", alt: "Des coureuses et coureurs du club sur un sentier, en pleine sortie", largeur: 900, hauteur: 1600 },
@@ -851,7 +851,7 @@ export const GUIDES: Guide[] = [
       "Choisis des parcours à l’ombre, comme le parc de la Torse ou le parc Jourdan.",
       "Ralentis : par forte chaleur, il est normal de courir moins vite. Arrête-toi au moindre signe de malaise."
     ],
-    image: { src: "/assets/actus/quatrieme-run/12.webp", alt: "Une coureuse rit, canette dans une main, eau dans l’autre" },
+    image: { src: "/assets/guides/couvertures/courir-quand-il-fait-chaud-a-aix.webp", alt: "Un membre du club boit une canette après l’effort" },
     photos: [
       { src: "/assets/actus/quatrieme-run/18.webp", alt: "Un membre de l’équipe prépare le ravito, bouteilles d’eau sur la table", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/quatrieme-run/06.webp", alt: "Deux membres du club posent ensemble, bouteille d’eau à la main", largeur: 900, hauteur: 1600 },
@@ -935,7 +935,7 @@ export const GUIDES: Guide[] = [
       "Les parcs Jourdan et de la Torse sont parfaits pour courir, marcher ou faire du renforcement.",
       "La randonnée autour de la Sainte-Victoire et des barrages de Bimont et Zola ne coûte rien."
     ],
-    image: { src: "/assets/guides/050.webp", alt: "Le peloton de Nulll Club en pleine course, sous les arbres du parc" },
+    image: { src: "/assets/guides/couvertures/sport-gratuit-aix-en-provence.webp", alt: "Un membre de l’équipe prépare le ravito sur la table, dans le parc" },
     photos: [
       { src: "/assets/guides/015.webp", alt: "Des membres du club trottinent sur la pelouse du parc", largeur: 900, hauteur: 1600 },
       { src: "/assets/guides/060.webp", alt: "Des coureurs du club traversent la passerelle, en pleine sortie", largeur: 900, hauteur: 1600 },
@@ -1017,7 +1017,7 @@ export const GUIDES: Guide[] = [
       "Pour faire du sport sans payer, Nulll Club organise un run club gratuit un samedi sur deux.",
       "Pour rencontrer du monde hors de ta promo, rejoins une activité régulière dès les premières semaines."
     ],
-    image: { src: "/assets/guides/067.webp", alt: "Trois coureurs du club rient en courant sur la passerelle" },
+    image: { src: "/assets/guides/couvertures/etudiant-a-aix-en-provence.webp", alt: "Une coureuse tire la langue, bras dessus bras dessous avec un ami" },
     photos: [
       { src: "/assets/guides/063.webp", alt: "Une coureuse en sweat bleu court avec le groupe sur la passerelle", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/quatrieme-run/04.webp", alt: "Éclats de rire entre coureuses après le run", largeur: 1600, hauteur: 900 },
@@ -1097,7 +1097,7 @@ export const GUIDES: Guide[] = [
       "Se cultiver : le musée Granet, l’Hôtel de Caumont, un spectacle au Pavillon Noir ou au Grand Théâtre de Provence.",
       "Le soir : un concert au 6MIC, un film en VO, une terrasse place des Cardeurs."
     ],
-    image: { src: "/assets/actus/parc-de-la-torse/trio-sourires.webp", alt: "Trois membres de Nulll Club tout sourire après une sortie" },
+    image: { src: "/assets/guides/couvertures/activites-entre-amis-aix-en-provence.webp", alt: "Deux membres du club rient, penchées vers la table du ravito" },
     photos: [
       { src: "/assets/guides/054.webp", alt: "Une coureuse en tee-shirt rose mène le groupe sur la passerelle", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/bienvenue/07.webp", alt: "Trois membres du club posent après la course", largeur: 1600, hauteur: 1067 },
@@ -1172,7 +1172,7 @@ export const GUIDES: Guide[] = [
       "Ne monte pas le volume de plus de 10 % environ par semaine, et garde des jours de repos.",
       "Un rendez-vous régulier en groupe, comme le social run de Nulll Club, aide à tenir dans la durée."
     ],
-    image: { src: "/assets/guides/063.webp", alt: "Une coureuse en sweat bleu court avec le groupe sur la passerelle" },
+    image: { src: "/assets/guides/couvertures/reprendre-la-course-a-pied.webp", alt: "Un coureur en gilet d’hydratation sourit dans le parc" },
     photos: [
       { src: "/assets/guides/013.webp", alt: "Un coureur en sweat gris trottine sur la pelouse du parc", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/bienvenue/04.webp", alt: "Deux coureuses arrivent sur un chemin de terre", largeur: 1067, hauteur: 1600 },
@@ -1254,7 +1254,7 @@ export const GUIDES: Guide[] = [
       "Avant de rejoindre un groupe, vérifie l’allure annoncée, le lieu, l’horaire et le niveau attendu.",
       "À Aix, Nulll Club court un samedi sur deux à allure conversation, gratuitement et sans laisser personne derrière."
     ],
-    image: { src: "/assets/guides/050.webp", alt: "Le peloton de Nulll Club en pleine course, sous les arbres du parc" },
+    image: { src: "/assets/guides/couvertures/courir-en-groupe.webp", alt: "Des coureurs du club partent au soleil sur un chemin de terre" },
     photos: [
       { src: "/assets/guides/060.webp", alt: "Des coureurs du club traversent la passerelle, en pleine sortie", largeur: 900, hauteur: 1600 },
       { src: "/assets/guides/015.webp", alt: "Des membres du club trottinent sur la pelouse du parc", largeur: 900, hauteur: 1600 },
@@ -1326,7 +1326,7 @@ export const GUIDES: Guide[] = [
       "Vérifie les formalités dans le règlement : en France, les non-licenciés doivent souvent suivre le Parcours Prévention Santé (PPS).",
       "Le jour J, ne teste rien de nouveau, pars doucement, et profite."
     ],
-    image: { src: "/assets/actus/parc-de-la-torse/depart.webp", alt: "Le peloton de Nulll Club part en courant sur un chemin du parc de la Torse" },
+    image: { src: "/assets/guides/couvertures/preparer-sa-premiere-course.webp", alt: "Un membre du club éclate de rire au départ" },
     photos: [
       { src: "/assets/guides/054.webp", alt: "Une coureuse en tee-shirt rose mène le groupe sur la passerelle", largeur: 900, hauteur: 1600 },
       { src: "/assets/guides/048.webp", alt: "Une quinzaine de coureurs du club arrivent le long d’une barrière en bois, au parc", largeur: 1600, hauteur: 900 },
@@ -1405,7 +1405,7 @@ export const GUIDES: Guide[] = [
       "Après l’effort, le Cours Mirabeau et les places du centre attendent pour un café en terrasse.",
       "Pour les plus matinaux, une balade au Terrain des Peintres ou au pied de la Sainte-Victoire."
     ],
-    image: { src: "/assets/actus/quatrieme-run/09.webp", alt: "Trois coureuses sourient à l’objectif après le run" },
+    image: { src: "/assets/guides/couvertures/samedi-matin-a-aix-en-provence.webp", alt: "Le ravito du samedi matin, entouré de membres du club" },
     photos: [
       { src: "/assets/actus/bienvenue/03.webp", alt: "Le groupe rassemblé à l’ombre avant de partir", largeur: 1066, hauteur: 1600 },
       { src: "/assets/guides/069.webp", alt: "Le groupe s’éloigne en courant sur une allée du parc", largeur: 900, hauteur: 1600 },
@@ -1476,7 +1476,7 @@ export const GUIDES: Guide[] = [
       "Le climat permet de faire du sport dehors presque toute l’année, en adaptant l’horaire l’été.",
       "Pour bouger en groupe, Nulll Club organise un run club gratuit un samedi sur deux."
     ],
-    image: { src: "/assets/accueil/coureurs-passerelle.webp", alt: "Cinq coureurs de Nulll Club, tout sourire, courent ensemble sur une passerelle du parc" },
+    image: { src: "/assets/guides/couvertures/sport-en-plein-air-aix-en-provence.webp", alt: "Des coureuses du club traversent la passerelle du parc" },
     photos: [
       { src: "/assets/guides/054.webp", alt: "Une coureuse en tee-shirt rose mène le groupe sur la passerelle", largeur: 900, hauteur: 1600 },
       { src: "/assets/actus/parc-de-la-torse/sentier.webp", alt: "Des coureurs du club sur un sentier ombragé du parc de la Torse", largeur: 900, hauteur: 1600 },
