@@ -1322,3 +1322,7 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
 /* Mot mis en avant dans le texte des articles : juste la couleur NULLL,
    en gras, sans fond (lisible meme quand il y en a plusieurs). */
 .da .surligne { background: none; color: var(--da-pink); font-weight: 700; padding: 0; }
+
+/* Le site est sombre : sous le pied de page (rebond, bandeau cookies), on
+   ne doit pas voir le fond clair d'origine. */
+html:has(.da),body:has(.da){background:#141116}

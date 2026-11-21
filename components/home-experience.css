@@ -321,3 +321,15 @@
 .home-journey .hx-guides-list .hx-news-text{font-size:14.5px}
 @media (max-width:1100px){.home-journey .hx-guides-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.home-journey .hx-guides-list{grid-template-columns:minmax(0,1fr);gap:44px}}
+
+/* ---------- Telephone : titres d'ouverture lisibles ---------- */
+@media (max-width:760px){
+  /* L'etiquette du dessus reste petite : la regle .hx-hero-title .st la
+     passait au format geant, et elle recouvrait le titre. */
+  .home-journey .hx-hero-title .hx-hero-kicker{font-size:15px;line-height:1.25;padding:.3em .6em .2em;margin-bottom:.45em;max-width:92%;white-space:normal}
+  .home-journey .hx-hero-title .st-pink.hx-titre-geant{font-size:clamp(46px,15vw,80px)}
+  .home-journey .hx-hero-bas .hx-hero-title .st-pink{font-size:clamp(40px,12vw,64px)}
+  /* Titres longs (actus, guides) : 3 ou 4 lignes au lieu de 6. */
+  .home-journey .st-long{font-size:clamp(27px,8vw,40px);line-height:1.32}
+  .home-journey .hx-guides-list .hx-news-title{font-size:23px}
+}

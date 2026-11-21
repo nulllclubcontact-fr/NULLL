@@ -54,13 +54,13 @@ export function GuideView({ guide, locale, prochaines }: { guide: Guide; locale:
               <span className="st st-pink st-long">{guide.titre}</span>
             </h1>
             <p className="mt-7 max-w-[56ch] text-[clamp(1.15rem,1.7vw,1.5rem)] font-normal leading-[1.45] text-white">{guide.resume}</p>
-            <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs font-bold uppercase tracking-[.14em] text-white/75">
+            <p className="mt-6 flex flex-col gap-1 font-mono text-xs font-bold uppercase tracking-[.14em] text-white/75 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3">
               <span>Par la team NULLL</span>
-              <span aria-hidden="true">·</span>
+              <span aria-hidden="true" className="max-sm:hidden">·</span>
               <span>
                 Mis à jour le <time dateTime={guide.dateMiseAJour}>{formaterDateGuide(guide.dateMiseAJour)}</time>
               </span>
-              <span aria-hidden="true">·</span>
+              <span aria-hidden="true" className="max-sm:hidden">·</span>
               <span>{minutes} min de lecture</span>
             </p>
           </div>

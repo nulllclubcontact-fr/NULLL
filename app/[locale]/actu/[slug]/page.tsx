@@ -84,11 +84,11 @@ export default async function ActuArticlePage({ params }: PageProps) {
               <span className="st st-pink st-long">{actu.titre}</span>
             </h1>
             <p className="mt-7 max-w-[54ch] text-[clamp(1.15rem,1.7vw,1.5rem)] font-normal leading-[1.45] text-white">{actu.resume}</p>
-            <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs font-bold uppercase tracking-[.14em] text-white/75">
+            <p className="mt-6 flex flex-col gap-1 font-mono text-xs font-bold uppercase tracking-[.14em] text-white/75 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3">
               <span>Par la team NULLL</span>
-              <span aria-hidden="true">·</span>
+              <span aria-hidden="true" className="max-sm:hidden">·</span>
               <time dateTime={actu.date}>{formaterDateActu(actu.date)}</time>
-              <span aria-hidden="true">·</span>
+              <span aria-hidden="true" className="max-sm:hidden">·</span>
               <span>{minutes} min de lecture</span>
             </p>
             {actu.avec ? (

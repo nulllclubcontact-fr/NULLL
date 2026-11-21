@@ -54,7 +54,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
         {/* ---------------- LES FONDATEURS ---------------- */}
         <section className="px-[max(5vw,20px)] py-24 sm:py-28" aria-labelledby="club-founders">
           <div className="mx-auto grid max-w-[1300px] items-center gap-14 lg:grid-cols-[.9fr_1.1fr] lg:gap-20">
-            <figure className="relative mx-auto w-full max-w-md -rotate-2 lg:max-w-none">
+            <figure className="relative mx-auto mb-14 w-full max-w-md -rotate-2 lg:mb-0 lg:max-w-none">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[2px]">
                 <Image
                   alt="Tobias Ringot et Tom Brenier, fondateurs de Nulll Club, dans une rue d’Aix-en-Provence"
@@ -64,7 +64,7 @@ export function CommunityPageView({ locale }: { locale: Locale }) {
                   src="/assets/photos/fondateurs.webp"
                 />
               </div>
-              <figcaption className="st st-yellow absolute -bottom-5 right-4" style={{ "--r": "3deg" } as React.CSSProperties}>Le club est parti de deux potes</figcaption>
+              <figcaption className="st st-yellow absolute -bottom-5 right-4 max-sm:bottom-auto max-sm:right-2 max-sm:top-4 max-sm:!text-[16px]" style={{ "--r": "3deg" } as React.CSSProperties}>Le club est parti de deux potes</figcaption>
               {/* Romane, associee depuis octobre : sa photo chevauche le coin. */}
               <div className="absolute -bottom-14 -left-4 w-[36%] -rotate-[5deg] sm:-left-10">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-[2px] ring-4 ring-[#141116]">
