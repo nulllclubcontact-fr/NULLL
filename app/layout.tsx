@@ -4,6 +4,7 @@ import { Anton, Roboto_Condensed, Caveat } from "next/font/google";
 import "./globals.css";
 import { BandeauCookies } from "../components/bandeau-cookies";
 import { CompteurVisites } from "../components/compteur-visites";
+import { SuiviOculot } from "../components/suivi-oculot";
 
 // Le site n'embarquait aucune police : il comptait sur Haettenschweiler,
 // livree avec Microsoft Office. Les visiteurs qui ne l'ont pas retombaient
@@ -110,6 +111,7 @@ export default function RootLayout({
         {children}
         <BandeauCookies />
         <CompteurVisites />
+        <SuiviOculot />
       </body>
     </html>
   );
