@@ -142,6 +142,13 @@ export function RegisterForm({ fournisseurs, sortie }: { fournisseurs: Fournisse
           </span>
         ) : null}
       </div>
+
+      <p className="text-sm leading-relaxed text-white">
+        Tes données servent seulement à gérer ton compte et tes sorties.{" "}
+        <Link className="underline decoration-2 underline-offset-4 hover:text-[#FFC531]" href="/confidentialite">
+          Confidentialité
+        </Link>
+      </p>
     </form>
   );
 }

@@ -10,7 +10,7 @@ export const metadata = {
   robots: { index: true, follow: true }
 };
 
-const MAJ = "19 septembre 2026";
+const MAJ = "22 novembre 2026";
 
 /**
  * Page redigee a partir de ce que le schema stocke reellement : la table
@@ -121,7 +121,7 @@ export default function ConfidentialitePage() {
 
         <Bloc titre="Cookies">
           <p>
-            Le site ne pose que des cookies nécessaires à son fonctionnement :
+            Sans ton accord, le site ne pose que des cookies nécessaires à son fonctionnement :
           </p>
           <ul className="ml-5 list-disc space-y-2">
             <li>
@@ -156,8 +156,25 @@ export default function ConfidentialitePage() {
             sont effacés au bout de 13 mois.
           </p>
           <p>
-            Le stockage local de ton navigateur retient aussi que tu as vu le bandeau
-            d’information. Cette information ne quitte jamais ton appareil.
+            Oculot Studio, qui a conçu le site, compte aussi les pages publiques vues,{" "}
+            <strong>sans cookie</strong> : page, site d’origine, type d’appareil, défilement, durée
+            et clics. L’adresse IP n’est pas conservée, les saisies des formulaires ne sont jamais
+            enregistrées, et rien n’est mesuré dans l’espace membre, l’espace partenaire ou
+            l’administration. Ces chiffres servent uniquement à des statistiques et sont effacés au
+            bout de 25 mois. Pour ne pas être compté, active le signal de refus « Global Privacy
+            Control » de ton navigateur.
+          </p>
+          <p>
+            <strong>Google Analytics, seulement si tu l’acceptes.</strong> Avec ton accord, le site
+            utilise Google Analytics (Google Ireland Limited) pour mesurer son audience : pages vues,
+            durée des visites, provenance. Ses cookies (<code className="font-mono text-[.9em]">_ga</code>,{" "}
+            <code className="font-mono text-[.9em]">_ga_*</code>) durent 13 mois au plus. Si tu
+            refuses, aucun cookie de mesure n’est posé. Tu peux changer d’avis à tout moment avec le
+            lien « Cookies » en bas de chaque page.
+          </p>
+          <p>
+            Ton choix est gardé dans le stockage local de ton navigateur, 13 mois si tu acceptes, 6
+            mois si tu refuses. Cette information ne quitte jamais ton appareil.
           </p>
         </Bloc>
 
@@ -181,6 +198,14 @@ export default function ConfidentialitePage() {
             <li>
               <strong>Resend</strong>, pour l’envoi des e-mails et des messages du formulaire de
               contact.
+            </li>
+            <li>
+              <strong>Oculot Studio</strong>, qui a conçu le site, pour les statistiques de visite
+              sans cookie décrites plus haut.
+            </li>
+            <li>
+              <strong>Google Analytics</strong>, seulement si tu l’as accepté, pour la mesure
+              d’audience.
             </li>
           </ul>
           <p>
@@ -209,6 +234,10 @@ export default function ConfidentialitePage() {
             <li>
               <strong>Ton accord pour les photos</strong> : tant que ton compte existe. Les images
               publiées restent en ligne jusqu’à ce que tu demandes leur retrait.
+            </li>
+            <li>
+              <strong>Les photos d’une sortie dans ton espace membre</strong> : 7 jours après la
+              sortie, puis effacées automatiquement.
             </li>
             <li>
               <strong>Les commandes</strong> : 10 ans, obligation comptable.

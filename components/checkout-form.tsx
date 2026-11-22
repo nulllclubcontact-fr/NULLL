@@ -209,6 +209,12 @@ export function CheckoutForm({ locale }: { locale: Locale }) {
         <button aria-busy={status.type === "loading"} className="mt-6 inline-flex min-h-14 w-full items-center justify-center border-2 border-white/15 bg-[#1E1A21] px-4 py-3 font-mono text-sm font-black uppercase text-white transition hover:bg-[#FFC531] hover:text-[#141116] disabled:opacity-50" disabled={status.type === "loading"} type="submit">
           {status.type === "loading" ? "Envoi en cours..." : "Envoyer ma demande"}
         </button>
+        <p className="mt-4 text-sm leading-relaxed text-white">
+          Tes coordonnées servent seulement à traiter ta commande.{" "}
+          <Link className="underline decoration-2 underline-offset-4 hover:text-[#FFC531]" href="/confidentialite">
+            Confidentialité
+          </Link>
+        </p>
       </form>
 
       <aside className="border-2 border-white/15 bg-[#1E1A21] p-6 text-white">
