@@ -46,3 +46,14 @@ export function nomTelechargement(dateIso: string, index: number, chemin: string
   const extension = chemin.split(".").pop()?.toLowerCase() || "jpg";
   return `nulll-club-${jour}-${String(index + 1).padStart(2, "0")}.${extension}`;
 }
+
+/** Les photos d'une sortie sont gardees 7 jours apres la sortie, puis supprimees. */
+export const CONSERVATION_PHOTOS_JOURS = 7;
+
+/** Vrai quand les photos de la sortie ont depasse leur duree de conservation. */
+export function photosExpirees(debutSortieIso: string | null | undefined, maintenant: Date = new Date()): boolean {
+  if (!debutSortieIso) return false;
+  const debut = new Date(debutSortieIso).getTime();
+  if (Number.isNaN(debut)) return false;
+  return maintenant.getTime() - debut > CONSERVATION_PHOTOS_JOURS * 24 * 3600 * 1000;
+}

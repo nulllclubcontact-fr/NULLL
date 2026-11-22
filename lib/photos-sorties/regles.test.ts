@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 import { crc32, creerZip } from "../zip.ts";
-import { cheminDeLaSortie, cheminMiniature, cheminPhoto, inscriptionDonneAcces, nomTelechargement } from "./regles.ts";
+import { cheminDeLaSortie, cheminMiniature, cheminPhoto, inscriptionDonneAcces, nomTelechargement, photosExpirees } from "./regles.ts";
 
 const COURSE = "3f1c2a9e-1111-4222-8333-444455556666";
 
@@ -46,4 +46,13 @@ test("le zip s'ouvre avec unzip et rend les memes octets", () => {
   execFileSync("unzip", ["-q", "t.zip", "-d", "out"], { cwd: dossier });
   assert.deepEqual(new Uint8Array(readFileSync(join(dossier, "out", "a.jpg"))), a);
   assert.deepEqual(new Uint8Array(readFileSync(join(dossier, "out", "nulll-club-02.jpg"))), b);
+});
+
+test("les photos d'une sortie sont gardees 7 jours, puis expirent", () => {
+  const sortie = "2026-11-14T08:00:00.000Z";
+  assert.equal(photosExpirees(sortie, new Date("2026-11-20T08:00:00.000Z")), false);
+  assert.equal(photosExpirees(sortie, new Date("2026-11-21T08:00:00.000Z")), false);
+  assert.equal(photosExpirees(sortie, new Date("2026-11-21T08:00:01.000Z")), true);
+  assert.equal(photosExpirees(null), false);
+  assert.equal(photosExpirees("pas une date"), false);
 });
