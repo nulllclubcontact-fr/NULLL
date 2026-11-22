@@ -24,11 +24,11 @@ const securite = [
  */
 const cspObservation = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://accounts.google.com https://vercel.live https://va.vercel-scripts.com https://crm.oculot.studio",
+  "script-src 'self' 'unsafe-inline' https://accounts.google.com https://vercel.live https://va.vercel-scripts.com https://crm.oculot.studio https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline' https://accounts.google.com",
   "img-src 'self' data: blob: https://*.supabase.co https://lh3.googleusercontent.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://accounts.google.com https://vitals.vercel-insights.com https://vercel.live https://crm.oculot.studio",
+  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://accounts.google.com https://vitals.vercel-insights.com https://vercel.live https://crm.oculot.studio https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
   "frame-src https://accounts.google.com https://appleid.apple.com https://vercel.live",
   "form-action 'self' https://appleid.apple.com https://accounts.google.com",
   "base-uri 'self'",

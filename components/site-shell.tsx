@@ -184,6 +184,7 @@ export function SiteFooter({ copy, locale }: { copy: ShellCopy; locale: Locale }
           <span className="flex flex-wrap gap-x-6">
             <Link className={legal} href="/confidentialite">Confidentialité</Link>
             <Link className={legal} href="/mentions-legales">Mentions légales</Link>
+            <a className={legal} href="#cookies">Cookies</a>
             <span className="inline-flex min-h-11 items-center">Aix-en-Provence, France</span>
           </span>
         </div>

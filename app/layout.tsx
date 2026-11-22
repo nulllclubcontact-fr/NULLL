@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Anton, Roboto_Condensed, Caveat } from "next/font/google";
 import "./globals.css";
-import { BandeauCookies } from "../components/bandeau-cookies";
+import { ConsentementGA } from "../components/consentement-ga";
 import { CompteurVisites } from "../components/compteur-visites";
 import { SuiviOculot } from "../components/suivi-oculot";
 
@@ -109,7 +109,7 @@ export default function RootLayout({
     <html className={`${police_display.variable} ${police_mono.variable} ${police_main.variable}`} data-scroll-behavior="smooth" lang="fr">
       <body>
         {children}
-        <BandeauCookies />
+        <ConsentementGA />
         <CompteurVisites />
         <SuiviOculot />
       </body>
