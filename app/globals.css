@@ -1167,6 +1167,39 @@ body:has(.cookie-banner) { padding-bottom: var(--cookie-banner-height, 0px); }
   }
 }
 
+/* Fenetre de la roulette, DA « stories » : fond sombre, photo du club en
+   ouverture, titre en etiquettes penchees, fleche tracee a la main. */
+.roulette-fond { background: rgb(20 17 22 / .86); }
+.roulette-carte { border-radius: 2px; background: #141116; outline: 2px solid rgb(255 255 255 / .12); outline-offset: -2px; }
+.roulette-entete { min-height: 12.5rem; }
+.roulette-cadre { transition: max-width .5s cubic-bezier(.22,1,.36,1); }
+.da .st.roulette-chute-titre { font-size: clamp(30px, 8.5vw, 40px); line-height: 1; padding: .06em .2em .02em; white-space: nowrap; }
+.roulette-entete-ombre { background: linear-gradient(180deg, rgb(20 17 22 / .35) 0%, rgb(20 17 22 / .2) 45%, #141116 100%); }
+.da .st.roulette-kicker { --r: -1.5deg; font-size: 17px; }
+.da .st.roulette-titre { font-size: clamp(42px, 12vw, 58px); line-height: 1; padding: .06em .2em .02em; }
+.roulette-fermer { border-radius: 2px; background: #fff; color: #141116; rotate: 2deg; transition: rotate .2s ease, background .2s ease; }
+.roulette-fermer:hover { rotate: 0deg; background: #FFC531; }
+.roulette-fermer:disabled { opacity: .4; }
+.roulette-note {
+  max-width: 15ch;
+  font-family: var(--font-hand), "Bradley Hand", cursive; font-weight: 600;
+  font-size: 25px; line-height: 1.1; color: #fff; rotate: -2deg;
+}
+.roulette-chute .roulette-note { max-width: none; color: #FFC531; }
+.roulette-fleche { position: absolute; right: 2%; top: -6px; width: 74px; height: auto; color: #E8459E; rotate: 8deg; }
+.roulette-curseur { translate: -50% 0; rotate: 0deg; }
+.roulette-pilule {
+  display: inline-flex; align-items: center; justify-content: center; gap: 18px;
+  min-height: 56px; padding: 10px 24px; border-radius: 2px;
+  background: #fff; color: #141116;
+  font-family: var(--font-display), Impact, sans-serif; font-size: 25px; line-height: 1; text-transform: uppercase;
+  rotate: 1.5deg;
+  transition: rotate .2s ease, scale .2s ease, background .2s ease;
+}
+.roulette-pilule:hover:not(:disabled) { rotate: 0deg; scale: 1.04; background: #FFC531; }
+.roulette-pilule:disabled { background: #FFC531; cursor: progress; }
+.roulette-pilule:focus-visible, .roulette-fermer:focus-visible { outline: 3px solid #FFC531; outline-offset: 4px; }
+
 /* La chute de la blague arrive avec un petit rebond. */
 .roulette-chute {
   animation: roulette-chute 520ms cubic-bezier(0.22, 1.4, 0.36, 1) both;

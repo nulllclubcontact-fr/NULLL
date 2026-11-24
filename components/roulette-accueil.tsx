@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { CASES, rotationFinale, type Case } from "../lib/roulette/regles";
+import { FlecheMain } from "./fleche-main";
 
 const CLE_VU = "nulll_roulette_vu";
 const DELAI_MS = 6000;
@@ -81,14 +83,15 @@ export function RouletteAccueil({ runsHref }: { runsHref: string }) {
   }
 
   // Rendue dans body : l'accueil isole ses calques (isolation: isolate),
-  // la fenetre passait sous l'en-tete et le bandeau cookies.
+  // la fenetre passait sous l'en-tete et le bandeau cookies. La classe
+  // « da » redonne les etiquettes et boutons de la DA hors de l'accueil.
   return createPortal(
-    <div className="fixed inset-0 z-[90] grid place-items-center bg-[#141116]/80 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]" role="presentation">
+    <div className="da roulette-fond fixed inset-0 z-[90] grid place-items-center p-4 pb-[max(1rem,env(safe-area-inset-bottom))]" role="presentation">
       <div
         aria-describedby="roulette-texte"
         aria-labelledby="roulette-titre"
         aria-modal="true"
-        className="flex max-h-[calc(100dvh-2rem-env(safe-area-inset-bottom))] w-full max-w-lg flex-col overflow-hidden border-2 border-white/15 bg-[#141116] text-white"
+        className="roulette-carte flex max-h-[calc(100dvh-2rem-env(safe-area-inset-bottom))] w-full max-w-[440px] flex-col overflow-hidden text-white"
         onKeyDown={(event) => {
           if (event.key === "Escape" && phase !== "tourne") {
             event.preventDefault();
@@ -111,41 +114,52 @@ export function RouletteAccueil({ runsHref }: { runsHref: string }) {
         role="dialog"
         tabIndex={-1}
       >
-        <div className="flex shrink-0 items-start justify-between gap-4 border-b-2 border-white/15 bg-[#FFC531] px-5 py-4 sm:px-7 text-[#141116]">
-          <div>
-            <p className="font-mono text-xs font-black uppercase tracking-[.16em]">Un essai · Neuf chances sur dix</p>
-            <h2 className="mt-2 font-display text-[clamp(1.9rem,6vw,2.6rem)] uppercase leading-[1.05]" id="roulette-titre">
-              Tourne la roue.
-            </h2>
+        {/* Ouverture facon story : une photo du club, le titre en etiquettes. */}
+        <div className="roulette-entete relative shrink-0 overflow-hidden px-5 pb-5 pt-4 sm:px-7">
+          <Image alt="" className="object-cover object-[50%_62%]" fill sizes="440px" src="/assets/actus/red-bull/02.webp" />
+          <div aria-hidden="true" className="roulette-entete-ombre absolute inset-0" />
+          <div className="relative flex items-start justify-between gap-4">
+            <span className="st st-white roulette-kicker">1 essai · 9 chances sur 10</span>
+            <button
+              aria-label="Fermer"
+              className="roulette-fermer grid size-11 shrink-0 place-items-center"
+              disabled={phase === "tourne"}
+              onClick={() => setPhase("ferme")}
+              type="button"
+            >
+              <svg aria-hidden="true" fill="none" height="16" viewBox="0 0 16 16" width="16">
+                <path d="M2 2 L14 14 M14 2 L2 14" stroke="currentColor" strokeLinecap="round" strokeWidth="2.6" />
+              </svg>
+            </button>
           </div>
-          <button
-            aria-label="Fermer"
-            className="grid size-11 shrink-0 place-items-center border-2 border-white/15 font-mono text-lg font-black transition-colors hover:bg-[#1E1A21] hover:text-[#FFC531] disabled:opacity-40"
-            disabled={phase === "tourne"}
-            onClick={() => setPhase("ferme")}
-            type="button"
-          >
-            ✕
-          </button>
+          <h2 className="da-stack relative mt-6" id="roulette-titre">
+            <span className="st st-yellow roulette-titre">Tourne</span>
+            <span className="st st-pink roulette-titre">la roue.</span>
+          </h2>
         </div>
 
-        <div className="grid gap-5 overflow-y-auto overscroll-contain px-5 py-6 sm:px-7">
-          <p className="text-base leading-relaxed" id="roulette-texte">
-            Une Red Bull, une Bee Zen… ou rien. Tente ta chance.
-          </p>
+        <div className="grid gap-4 overflow-y-auto overscroll-contain px-5 pb-6 pt-4 sm:px-7">
+          {phase === "resultat" ? null : (
+            <div className="relative">
+              <p className="roulette-note" id="roulette-texte">
+                Une Red Bull, une Bee Zen… ou rien.
+              </p>
+              <FlecheMain className="roulette-fleche" variante="boucle" />
+            </div>
+          )}
 
-          <Roue rotation={rotation} />
+          <Roue petite={phase === "resultat"} rotation={rotation} />
 
           <div aria-live="polite">
             {phase === "resultat" ? <Resultat runsHref={runsHref} /> : null}
           </div>
 
           {phase !== "resultat" ? (
-            <button className="primary-button justify-center" disabled={phase === "tourne"} onClick={tourner} type="button">
-              {phase === "tourne" ? "Ça tourne…" : "Lancer la roue"}
+            <button className="roulette-pilule justify-self-center" disabled={phase === "tourne"} onClick={tourner} type="button">
+              <span>{phase === "tourne" ? "Ça tourne…" : "Lancer la roue"}</span>
+              {phase === "tourne" ? null : <FlecheDroite />}
             </button>
           ) : null}
-
         </div>
       </div>
     </div>,
@@ -153,20 +167,31 @@ export function RouletteAccueil({ runsHref }: { runsHref: string }) {
   );
 }
 
-function Roue({ rotation }: { rotation: number }) {
-  const rayon = 150;
+function FlecheDroite() {
   return (
-    <div className="relative mx-auto w-full max-w-[min(260px,38dvh)]">
-      {/* Le curseur, fixe, en haut de la roue. */}
-      <svg aria-hidden="true" className="absolute left-1/2 top-[-6px] z-10 -translate-x-1/2" height="28" viewBox="0 0 24 28" width="24">
-        <path d="M2 2 H22 L12 26 Z" fill="#FFFFFF" stroke="#141116" strokeWidth="2" />
+    <svg aria-hidden="true" fill="none" height="18" viewBox="0 0 30 18" width="30">
+      <path d="M1 9 H27 M19 2 L27 9 L19 16" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.4" />
+    </svg>
+  );
+}
+
+function Roue({ rotation, petite }: { rotation: number; petite: boolean }) {
+  const rayon = 150;
+  const cadre = rayon + 10;
+  return (
+    <div className={`roulette-cadre relative mx-auto w-full ${petite ? "max-w-[min(150px,20dvh)]" : "max-w-[min(250px,30dvh)]"}`}>
+      {/* Le curseur, fixe, en haut de la roue : un petit sticker jaune. */}
+      <svg aria-hidden="true" className="roulette-curseur absolute left-1/2 top-[-10px] z-10" height="34" viewBox="0 0 30 34" width="30">
+        <path d="M3 3 H27 L15 31 Z" fill="#FFC531" stroke="#141116" strokeLinejoin="round" strokeWidth="3" />
       </svg>
       <svg
         aria-hidden="true"
         className="roulette-roue block h-auto w-full"
         style={{ transform: `rotate(${rotation}deg)`, transitionDuration: `${DUREE_ROTATION_MS}ms` }}
-        viewBox={`-${rayon + 4} -${rayon + 4} ${(rayon + 4) * 2} ${(rayon + 4) * 2}`}
+        viewBox={`-${cadre} -${cadre} ${cadre * 2} ${cadre * 2}`}
       >
+        {/* Le cadre blanc, comme le bord d'un sticker decoupe. */}
+        <circle fill="#FFFFFF" r={rayon + 8} />
         {CASES.map((lot, index) => {
           const debut = ((index * ANGLE - 90) * Math.PI) / 180;
           const fin = (((index + 1) * ANGLE - 90) * Math.PI) / 180;
@@ -177,24 +202,24 @@ function Roue({ rotation }: { rotation: number }) {
           const milieu = index * ANGLE + ANGLE / 2;
           return (
             <g key={index}>
-              <path d={`M0 0 L${x1.toFixed(2)} ${y1.toFixed(2)} A${rayon} ${rayon} 0 0 1 ${x2.toFixed(2)} ${y2.toFixed(2)} Z`} fill={COULEURS[lot].fond} stroke="#141116" strokeWidth="2" />
+              <path d={`M0 0 L${x1.toFixed(2)} ${y1.toFixed(2)} A${rayon} ${rayon} 0 0 1 ${x2.toFixed(2)} ${y2.toFixed(2)} Z`} fill={COULEURS[lot].fond} stroke="#141116" strokeWidth="3" />
               <text
                 fill={COULEURS[lot].texte}
-                fontFamily="var(--font-mono), monospace"
-                fontSize={lot === "rien" ? 11 : 12}
-                fontWeight={900}
-                letterSpacing="1.2"
+                fontFamily="var(--font-display), Impact, sans-serif"
+                fontSize={lot === "rien" ? 19 : 18}
+                letterSpacing=".3"
                 textAnchor="end"
-                transform={`rotate(${milieu - 90}) translate(${rayon - 12} 4)`}
+                transform={`rotate(${milieu - 90}) translate(${rayon - 14} 6.5)`}
               >
                 {NOMS_CASE[lot]}
               </text>
             </g>
           );
         })}
-        <circle fill="#FFFFFF" r="26" stroke="#141116" strokeWidth="2" />
-        <text fill="#141116" fontFamily="var(--font-display), Impact, sans-serif" fontSize="18" textAnchor="middle" y="7">
-          N
+        <circle fill="none" r={rayon} stroke="#141116" strokeWidth="3" />
+        <circle fill="#141116" r="34" stroke="#FFFFFF" strokeWidth="4" />
+        <text fill="#FFC531" fontFamily="var(--font-display), Impact, sans-serif" fontSize="17" letterSpacing=".4" textAnchor="middle" y="6">
+          NULLL
         </text>
       </svg>
     </div>
@@ -203,12 +228,16 @@ function Roue({ rotation }: { rotation: number }) {
 
 function Resultat({ runsHref }: { runsHref: string }) {
   return (
-    <div className="roulette-chute grid gap-3 border-2 border-white/15 bg-[#FFC531] p-4 text-[#141116]">
-      <p className="font-mono text-xs font-black uppercase tracking-[.14em]">Résultat : rien…</p>
-      <p className="font-display text-[clamp(1.8rem,6vw,2.4rem)] uppercase leading-[1.05]">Ahah, on rigole. Tout est offert !</p>
-      <p className="text-lg font-bold leading-relaxed">On se voit SAMEDI pour le run !!</p>
-      <Link className="primary-button justify-center" href={runsHref}>
-        Choisir ma sortie
+    <div className="roulette-chute grid justify-items-center gap-4 text-center">
+      <p className="da-stack da-center">
+        <span className="st st-white roulette-kicker">Résultat : rien…</span>
+        <span className="st st-yellow roulette-chute-titre">Ahah, on rigole.</span>
+        <span className="st st-pink roulette-chute-titre">Tout est offert !</span>
+      </p>
+      <p className="roulette-note">On se voit SAMEDI pour le run !!</p>
+      <Link className="roulette-pilule" href={runsHref}>
+        <span>Choisir ma sortie</span>
+        <FlecheDroite />
       </Link>
     </div>
   );
