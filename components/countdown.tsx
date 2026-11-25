@@ -60,11 +60,18 @@ export function Countdown({ isoDate, centered = false }: { isoDate: string; cent
   return (
     <div className="countdown-shell">
       <p className="font-mono text-xs font-black uppercase tracking-[.18em] opacity-90">Départ dans</p>
-      <div className={`mt-3 flex items-end gap-4 sm:gap-6 ${centered ? "justify-center" : ""}`}>
+      <div className={`countdown-row mt-3 ${centered ? "justify-center" : ""}`}>
         {cells.map(([value, label], index) => (
-          <div className="flex items-end gap-4 sm:gap-6" key={label}>
-            <div>
-              <span className="countdown-value font-display">{String(value).padStart(2, "0")}</span>
+          <div className="countdown-group" key={label}>
+            <div className="countdown-cell">
+              <span className="countdown-value font-display" aria-label={String(value)}>
+                {String(value)
+                  .padStart(2, "0")
+                  .split("")
+                  .map((digit, i) => (
+                    <span aria-hidden="true" className="countdown-digit" key={i}>{digit}</span>
+                  ))}
+              </span>
               <span className="mt-1 block font-mono text-xs font-black uppercase tracking-[.14em] opacity-90">
                 {label}
               </span>
