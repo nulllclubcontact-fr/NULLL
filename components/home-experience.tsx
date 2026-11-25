@@ -41,7 +41,7 @@ export function HomeExperience({ runs, runsHref, communityHref, aboutHref, local
         <div className="hx-hero-copy">
           <h1 id="home-title" className="hx-hero-title">
             <span className="st st-yellow hx-hero-kicker">Le run club gratuit d’Aix-en-Provence</span>
-            <span className="st st-pink">On court ensemble</span>
+            <span className="st st-pink hx-titre-ligne">On court ensemble</span>
           </h1>
           <p className="hx-hero-support">On se rencontre, on discute, et on recommence samedi.</p>
           <div className="hx-hero-cta">

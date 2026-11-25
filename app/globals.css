@@ -483,16 +483,49 @@ textarea {
   min-height: 7.5rem;
 }
 
+/* Largeurs fixes : chaque chiffre a sa case, chaque bloc la sienne.
+   Le compteur ne bouge plus quand un chiffre change ni quand l'ecran
+   change de format. */
+.countdown-shell {
+  --cd-size: clamp(2.2rem, 10vw, 4.6rem);
+}
+
+.countdown-row {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(0.25rem, 1.5vw, 1.25rem);
+}
+
+.countdown-group {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(0.25rem, 1.5vw, 1.25rem);
+}
+
+.countdown-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(var(--cd-size) * 1.35);
+  min-width: 3.6rem;
+}
+
 .countdown-value {
-  display: block;
-  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  display: flex;
+  justify-content: center;
+  font-size: var(--cd-size);
   line-height: 0.86;
-  letter-spacing: -0.045em;
   font-variant-numeric: tabular-nums;
 }
 
+.countdown-digit {
+  display: inline-block;
+  width: 0.56em;
+  text-align: center;
+}
+
 .countdown-sep {
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-size: calc(var(--cd-size) * 0.6);
   line-height: 1;
   opacity: 0.3;
   transform: translateY(-0.35rem);
